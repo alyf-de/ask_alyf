@@ -1383,6 +1383,19 @@ import "./field_agent";
 			this.scrollToBottom();
 		}
 
+		getActiveFormTab(frm) {
+			const tab = frm.get_active_tab?.();
+			if (!tab?.df?.fieldname) {
+				return null;
+			}
+
+			const label = tab.label || tab.df.label || tab.df.fieldname;
+			return {
+				fieldname: tab.df.fieldname,
+				label: __(label, null, tab.doctype || frm.doctype),
+			};
+		}
+
 		getCurrentContext() {
 			const route = frappe.get_route() || [];
 			const context = {
@@ -1397,8 +1410,10 @@ import "./field_agent";
 			}
 
 			if (route[0] === "Form" && window.cur_frm?.doc) {
-				context.current_doctype = cur_frm.doc.doctype;
-				context.current_docname = cur_frm.doc.name;
+				const frm = window.cur_frm;
+				context.current_doctype = frm.doc.doctype;
+				context.current_docname = frm.doc.name;
+				context.current_form_tab = this.getActiveFormTab(frm);
 			}
 
 			if (route[0] === "List" && window.cur_list?.filter_area) {
