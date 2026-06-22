@@ -5,7 +5,7 @@ from dataclasses import dataclass, field
 from typing import Any
 
 import frappe
-from any_agent import AgentConfig, AgentFramework, AnyAgent
+from tinyagent import TinyAgent
 
 from ask_alyf.ask_alyf import field_contexts, tools
 from ask_alyf.ask_alyf.agent import (
@@ -144,8 +144,7 @@ def run_field_agent(
 		_clear_messages_on_tool_error(getattr(toolset, method_name)) for method_name in FIELD_AGENT_TOOLS
 	]
 
-	agent = AnyAgent.create(
-		AgentFramework.TINYAGENT,
+	agent = TinyAgent.create(
 		_build_internal_agent_config(
 			settings=settings,
 			name="Ask ALYF Field Agent",

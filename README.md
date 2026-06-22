@@ -152,7 +152,7 @@ Permission errors, validation errors, missing records, and LLM provider failures
 
 ## Dependencies
 
-- [any-agent](https://mozilla-ai.github.io/any-agent/) for agent orchestration
+- [mozilla-ai-tinyagent](https://docs.mozilla.ai/tinyagent/) for agent orchestration
 - [any-llm-sdk](https://github.com/mozilla-ai/any-llm) for LLM provider access
 - [PyMuPDF](https://pymupdf.readthedocs.io/) for PDF handling
 

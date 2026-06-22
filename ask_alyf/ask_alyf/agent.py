@@ -9,9 +9,9 @@ from urllib.parse import quote
 from uuid import uuid4
 
 import frappe
-from any_agent import AgentConfig, AgentFramework, AnyAgent
 from any_llm import AnyLLM
 from frappe import _
+from tinyagent import AgentConfig, TinyAgent
 
 from ask_alyf.ask_alyf import tools
 from ask_alyf.ask_alyf.skill_utils import (
@@ -106,8 +106,7 @@ async def _create_internal_agent_async(
 	instructions: str,
 	tool_defs: list[Callable[..., Any]],
 ):
-	return await AnyAgent.create_async(
-		AgentFramework.TINYAGENT,
+	return await TinyAgent.create_async(
 		_build_internal_agent_config(
 			settings=settings,
 			name=name,
@@ -1697,8 +1696,7 @@ class ask_alyfAgentRunner:
 		self.runtime = runtime
 		self.settings = tools.get_settings()
 		self.toolset = ask_alyfToolset(runtime, settings=self.settings)
-		self.agent = AnyAgent.create(
-			AgentFramework.TINYAGENT,
+		self.agent = TinyAgent.create(
 			AgentConfig(
 				name="Ask ALYF",
 				model_id=self._get_model_id(),

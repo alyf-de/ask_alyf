@@ -78,7 +78,7 @@ class UnitTestFieldAgent(UnitTestCase):
 		fake_agent = self._make_fake_agent("{{ doc.name }}")
 
 		with (
-			patch("ask_alyf.ask_alyf.field_agent.AnyAgent.create", return_value=fake_agent),
+			patch("ask_alyf.ask_alyf.field_agent.TinyAgent.create", return_value=fake_agent),
 			patch("ask_alyf.ask_alyf.field_agent.tools.get_settings") as mock_settings,
 		):
 			mock_settings.return_value = SimpleNamespace(
@@ -110,7 +110,7 @@ class UnitTestFieldAgent(UnitTestCase):
 		fake_agent = self._make_fake_agent("generated output")
 
 		with (
-			patch("ask_alyf.ask_alyf.field_agent.AnyAgent.create", return_value=fake_agent),
+			patch("ask_alyf.ask_alyf.field_agent.TinyAgent.create", return_value=fake_agent),
 			patch("ask_alyf.ask_alyf.field_agent.tools.get_settings") as mock_settings,
 			patch.object(frappe, "publish_realtime") as mock_realtime,
 		):
