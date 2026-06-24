@@ -102,11 +102,10 @@
 		overlay.append(promptArea).append(statusText).append(footer);
 
 		// Position overlay below the trigger button
-		var btnOffset = triggerBtn.offset();
-		var btnHeight = triggerBtn.outerHeight();
+		var btnRect = triggerBtn[0].getBoundingClientRect();
 		overlay.css({
-			top: btnOffset.top + btnHeight + 4 + "px",
-			left: btnOffset.left + "px",
+			top: btnRect.bottom + 4 + "px",
+			left: btnRect.left + "px",
 		});
 
 		$("body").append(overlay);
