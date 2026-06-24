@@ -98,7 +98,7 @@ def coerce_field_list(value: str | list[str] | None) -> list[str] | None:
 
 	try:
 		parsed = json.loads(stripped)
-	except (TypeError, json.JSONDecodeError):
+	except TypeError, json.JSONDecodeError:
 		parsed = None
 
 	if isinstance(parsed, list):
