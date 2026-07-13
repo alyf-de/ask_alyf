@@ -7,7 +7,7 @@ from unittest.mock import patch
 
 import frappe
 from deepagents.backends import StateBackend
-from frappe.tests import UnitTestCase
+from frappe.tests.utils import FrappeTestCase
 
 from ask_alyf.ask_alyf import tools
 from ask_alyf.ask_alyf.deep_agent_backend import (
@@ -23,7 +23,7 @@ def _app_roots():
 	return tools.get_installed_app_roots()
 
 
-class UnitTestAskALYFVirtualFilesystem(UnitTestCase):
+class UnitTestAskALYFVirtualFilesystem(FrappeTestCase):
 	def test_build_ask_alyf_backend_mounts_workspace_source_and_attachments(self):
 		backend = build_ask_alyf_backend(_app_roots())
 		route_prefixes = {prefix for prefix, _ in backend.sorted_routes}
