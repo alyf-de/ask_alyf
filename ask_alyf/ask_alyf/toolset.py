@@ -15,6 +15,13 @@ from ask_alyf.ask_alyf.history import (
 from ask_alyf.ask_alyf.skill_utils import get_accessible_skill_doc
 from ask_alyf.ask_alyf.utils import parse_newline_list
 
+# Frappe list filters are a list of filter rows, where each row is a list of
+# scalars, e.g. [["Customer", "name", "=", "CUST-001"], ["disabled", "=", 0]].
+# Typed (rather than `list[Any]`) so the generated JSON Schema gives the array
+# `items` a concrete `type`, which OpenAI strict function-calling requires.
+Scalar = str | int | float | bool | None
+FrappeFilterList = list[list[Scalar | list[Scalar]]]
+
 
 @dataclass
 class ask_alyfRuntime:
@@ -143,7 +150,7 @@ class ask_alyfToolset:
 		self,
 		doctype: str,
 		fields: str | list[str] | None = None,
-		filters: dict[str, Any] | list[Any] | None = None,
+		filters: dict[str, Any] | FrappeFilterList | None = None,
 		order_by: str | None = None,
 		limit: int = 20,
 		group_by: str | None = None,
@@ -174,7 +181,7 @@ class ask_alyfToolset:
 	def get_count(
 		self,
 		doctype: str,
-		filters: dict[str, Any] | list[Any] | None = None,
+		filters: dict[str, Any] | FrappeFilterList | None = None,
 	) -> int:
 		"""Count documents that match the given filters.
 
@@ -211,7 +218,7 @@ class ask_alyfToolset:
 		self,
 		doctype: str,
 		fieldname: str | list[str],
-		filters: dict[str, Any] | list[Any] | str | None = None,
+		filters: dict[str, Any] | FrappeFilterList | str | None = None,
 	) -> Any:
 		"""Read one or more field values from a document.
 
