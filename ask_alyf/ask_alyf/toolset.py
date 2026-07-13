@@ -487,7 +487,7 @@ class ask_alyfToolset:
 		self.runtime.emit_status(_("Reading file..."))
 		return tools.read_file_record(file_id=file_id)
 
-	async def extract_document_data(self, file_id: str, extraction_prompt: str = "") -> dict[str, Any]:
+	def extract_document_data(self, file_id: str, extraction_prompt: str = "") -> dict[str, Any]:
 		"""Extract structured data from a PDF or image file using vision AI.
 
 		Call this tool when a user uploads or references a document (invoice, receipt,
@@ -506,7 +506,11 @@ class ask_alyfToolset:
 			and the extracted data as a JSON object.
 		"""
 		self.runtime.emit_status(_("Extracting document data..."))
-		result = await tools.extract_document_data(file_id=file_id, extraction_prompt=extraction_prompt)
+		import asyncio
+
+		result = asyncio.run(
+			tools.extract_document_data(file_id=file_id, extraction_prompt=extraction_prompt)
+		)
 		self.runtime.remember_document_extraction(result, extraction_prompt=extraction_prompt)
 		return result
 
