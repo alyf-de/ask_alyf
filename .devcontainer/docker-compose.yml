@@ -10,6 +10,11 @@ services:
       MARIADB_AUTO_UPGRADE: "1"
     volumes:
       - mariadb-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
 
   redis-cache:
     image: docker.io/redis:alpine
@@ -33,9 +38,12 @@ services:
       - 8000-8005:8000-8005
       - 9000-9005:9000-9005
     depends_on:
-      - mariadb
-      - redis-cache
-      - redis-queue
+      mariadb:
+        condition: service_healthy
+      redis-cache:
+        condition: service_started
+      redis-queue:
+        condition: service_started
 
 volumes:
   mariadb-data:
