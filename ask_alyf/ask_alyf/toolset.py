@@ -1037,30 +1037,18 @@ def _isolated_db():
 		return
 
 	inherited_db = getattr(frappe.local, "db", None)
-	session = getattr(frappe.local, "session", None)
-	session_user = getattr(session, "user", None) if session is not None else None
 
-	frappe.connect()
-	if session_user:
-		frappe.set_user(session_user)
+	frappe.connect(set_admin_as_user=False)
 	try:
 		yield
+		frappe.db.commit()
 	except Exception:
-		try:
+		with contextlib.suppress(Exception):
 			frappe.db.rollback()
-		except Exception:
-			pass
 		raise
-	else:
-		try:
-			frappe.db.commit()
-		except Exception:
-			pass
 	finally:
-		try:
+		with contextlib.suppress(Exception):
 			frappe.local.db.close()
-		except Exception:
-			pass
 		frappe.local.db = inherited_db
 
 
