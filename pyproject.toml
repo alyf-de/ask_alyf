@@ -12,6 +12,12 @@ dependencies = [
     # "frappe~=16.0.0" # Installed and managed by bench.
     "any-llm-sdk",
     "deepagents==0.6.12",
+    # Imported directly (langchain.agents, langchain_core.messages); pinned to
+    # the ranges required by deepagents/langchain-openai so a downstream
+    # resolver cannot silently pull an incompatible version.
+    "langchain>=1.3.11,<2.0.0",
+    "langchain-core>=1.4.9,<2.0.0",
+    "langgraph>=1.2.5,<1.3.0",
     "langchain-openai==1.3.5",
     "pymupdf",
 ]
