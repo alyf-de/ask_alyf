@@ -92,7 +92,8 @@ class ask_alyfAgentRunner:
 		self.toolset = ask_alyfToolset(runtime, settings=self.settings)
 		_ensure_ask_alyf_harness_profile()
 		self.model = build_chat_model(self.settings, temperature=0.2)
-		self.backend = build_ask_alyf_backend()
+		app_roots = tools.get_installed_app_roots() if self.settings.is_code_search_enabled() else {}
+		self.backend = build_ask_alyf_backend(app_roots)
 		self.agent = create_deep_agent(
 			model=self.model,
 			tools=self._build_tools(),

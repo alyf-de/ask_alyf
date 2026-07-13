@@ -25,13 +25,12 @@ from frappe import _
 from ask_alyf.ask_alyf.tools import (
 	_get_accessible_file_doc,
 	build_code_path_entry,
-	ensure_code_search_enabled,
-	get_installed_app_roots,
 	get_path_parts,
 	is_hidden_path,
+	is_path_within,
 	iter_scoped_entries,
 	iter_scoped_files,
-	resolve_installed_app_path,
+	normalize_app_relative_path,
 	to_bench_relative_path,
 )
 
@@ -76,34 +75,40 @@ class ReadOnlySourceBackend(BackendProtocol):
 
 	The composite router strips the `/source/` prefix before dispatching, so
 	methods here receive paths like `/frappe/frappe/__init__.py`. The first
-	segment is the installed app name; the remainder (including any same-named
-	package directory) is resolved within that app root via
-	`resolve_installed_app_path`, which confines the target to the app root
-	and rejects traversal.
+	segment is the installed app name; the remainder is resolved within that
+	app root, confined to the app root, and traversal is rejected.
+
+	App roots are pre-computed in the main thread and passed to the constructor
+	so that no Frappe database calls happen from Deep Agents worker threads.
 	"""
 
-	def _split_app(self, path: str) -> tuple[str, str]:
-		"""Split a backend path into `(app_name, full_relative)`.
+	def __init__(self, app_roots: dict[str, Path]) -> None:
+		self._app_roots = app_roots
 
-		`full_relative` retains the leading app-name segment so that
-		`resolve_installed_app_path` strips exactly one app-name prefix.
-		"""
+	def _split_app(self, path: str) -> tuple[str, str]:
+		"""Split a backend path into `(app_name, full_relative)`."""
 		relative = path.lstrip("/")
 		parts = get_path_parts(relative)
 		if not parts:
-			frappe.throw(_("Path must start with an installed app name."))
+			raise ValueError(_("Path must start with an installed app name."))
 		return parts[0], relative
 
 	def _resolve(self, path: str) -> tuple[Path, Path]:
 		app_name, full_relative = self._split_app(path)
-		return resolve_installed_app_path(app_name, full_relative)
+		app_root = self._app_roots.get(app_name)
+		if not app_root:
+			raise ValueError(_("App '{0}' is not installed.").format(app_name))
+		relative_target = normalize_app_relative_path(app_name, full_relative)
+		target = (app_root / relative_target).resolve()
+		if not is_path_within(app_root.resolve(), target):
+			raise ValueError(_("Code access is restricted to installed app directories."))
+		return app_root, target
 
 	def _collect_files(self, path: str | None) -> list[tuple[Path, Path]]:
 		relative = (path or "").lstrip("/")
 		if not relative:
-			ensure_code_search_enabled()
 			files: list[tuple[Path, Path]] = []
-			for _app_name, app_root in get_installed_app_roots().items():
+			for _app_name, app_root in self._app_roots.items():
 				for entry in iter_scoped_files(app_root, app_root, include_hidden=False):
 					files.append((app_root, entry))
 			return files
@@ -114,11 +119,9 @@ class ReadOnlySourceBackend(BackendProtocol):
 		try:
 			relative = path.lstrip("/")
 			if not relative:
-				ensure_code_search_enabled()
-				app_roots = get_installed_app_roots()
 				entries = [
 					FileInfo(path=f"/{name}", is_dir=True, size=0, modified_at="")
-					for name in sorted(app_roots)
+					for name in sorted(self._app_roots)
 				]
 				return LsResult(entries=entries)
 
@@ -327,21 +330,26 @@ class ReadOnlyAttachmentBackend(BackendProtocol):
 		return EditResult(error=_attachment_read_only_error())
 
 
-def build_ask_alyf_backend() -> CompositeBackend:
+def build_ask_alyf_backend(app_roots: dict[str, Path]) -> CompositeBackend:
 	"""Build the restricted composite virtual filesystem for Ask ALYF agents.
 
+	Args:
+		app_roots: Pre-computed installed app roots from the main thread.
+			Passed to `ReadOnlySourceBackend` so it never calls Frappe
+			database APIs from Deep Agents worker threads.
+
 	Mounts:
-	  - `/workspace/` (default): checkpointed writable scratch space via
+	  - `/workspace/` (default): in-memory writable scratch via
 		`StateBackend` — the only mount that accepts writes.
 	  - `/source/`: read-only access to installed app source code, confined
-		to installed app roots and gated by `ensure_code_search_enabled`.
+		to installed app roots.
 	  - `/attachments/`: read-only access to Frappe **File** documents with
 		per-read permission checks.
 	"""
 	return CompositeBackend(
 		default=StateBackend(),
 		routes={
-			"/source/": ReadOnlySourceBackend(),
+			"/source/": ReadOnlySourceBackend(app_roots),
 			"/attachments/": ReadOnlyAttachmentBackend(),
 		},
 	)

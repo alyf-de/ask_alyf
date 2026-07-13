@@ -442,7 +442,7 @@ class UnitTestCodeTools(UnitTestCase):
 			model=ChatOpenAI(model="dummy", api_key="dummy"),
 			tools=runner._build_tools(),
 			system_prompt="dummy",
-			backend=build_ask_alyf_backend(),
+			backend=build_ask_alyf_backend({}),
 			subagents=runner._build_subagents(),
 			permissions=runner._build_permissions(),
 			name="ask_alyf",
