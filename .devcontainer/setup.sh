@@ -74,6 +74,7 @@ install_editor_config() {
 	log "Installing bench VS Code configuration"
 	mkdir -p "${BENCH_ROOT}/.vscode"
 	cp "${REPO_PATH}/.devcontainer/vscode/"*.json "${BENCH_ROOT}/.vscode/"
+	cp "${REPO_PATH}/.devcontainer/workspace/README.md" "${BENCH_ROOT}/README.md"
 }
 
 link_app() {
@@ -141,7 +142,7 @@ main() {
 	install_app
 	finalize
 
-	log "Done. Run 'bench start' in ${BENCH_ROOT} to serve ${SITE_NAME}."
+	log "Done. See ${BENCH_ROOT}/README.md for startup and debugging options."
 }
 
 main "$@"
