@@ -37,7 +37,7 @@ def _truncate_doc_for_size(
 	Args:
 		doc: The document dict to (potentially) truncate in-place.
 		table_fieldnames: Set of fieldnames whose fieldtype is "Table". When
-			``None`` or empty, any list-of-dicts value is treated as a child table.
+			`None` or empty, any list-of-dicts value is treated as a child table.
 		threshold_bytes: Payload size limit in bytes (default 16 KB).
 		max_rows: Maximum rows to retain per child table (default 20).
 

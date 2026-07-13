@@ -77,7 +77,9 @@ Common settings include:
 
 ## Conversation History
 
-Conversations are stored in the **Ask ALYF Conversation** DocType. This keeps conversations available across page reloads and provides an audit trail for Agent mode proposals and actions.
+Conversations are stored in the **Ask ALYF Conversation** DocType, which keeps messages available across page reloads and provides an audit trail for Agent mode proposals and actions.
+
+The coordinator rebuilds the full conversation history as native LangChain messages on each turn from the stored `messages_json` field. This keeps the source of truth in a single, user-visible DocType that respects owner-only permissions.
 
 Old conversations are deleted after 90 days by default. The retention period can be configured per site through **Log Settings**.
 
@@ -117,15 +119,33 @@ Files, printing, charts, and navigation:
 
 Optional tools:
 
-- `source_code_analyzer` searches installed app files when _Allow Code Search_ is enabled
 - `run_read_only_sql` runs read-only SQL for Administrator and System Manager users
 - `get_app_version`, `read_github_releases`, and `read_documentation_page` help answer app and documentation questions
+
+### Subagents
+
+The coordinator delegates specialized work to restricted Deep Agents subagents via the built-in `task` tool. Each subagent has an explicit, minimal tool list so the parent's proposal and mutation tools are never inherited.
+
+- `source-code-analyzer` is registered only when _Allow Code Search_ is enabled. It searches and reads installed app code through the read-only `/source/` virtual filesystem mount and returns a structured `SourceCodeAnalysisResult`.
+- `document-planner` is registered only in Agent mode. It inspects metadata and documents with read-only tools and returns a `DocumentPlannerResult` that the coordinator turns into a confirmed proposal.
+- A built-in `general-purpose` subagent is provided by Deep Agents for open-ended delegation.
+
+### Todos and Virtual Filesystem
+
+The coordinator uses Deep Agents' built-in `write_todos` planning state to track its own progress. Todos are internal scratch state and are not mapped to Frappe **ToDo** records.
+
+The agent operates against a restricted composite virtual filesystem:
+
+- `/workspace/` is an in-memory scratch mount backed by `StateBackend`. It is _not_ directly writable by the model: filesystem writes are denied by the harness profile (which excludes `write_file`, `edit_file`, and `execute`) and by a blanket `FilesystemPermission` deny rule on `/**`. Planning and progress tracking happen through the built-in `write_todos` tool, not through filesystem writes.
+- `/source/` exposes installed app source code read-only, confined to installed app roots and gated by _Allow Code Search_.
+- `/attachments/` exposes Frappe **File** documents read-only, with per-read permission checks.
+
+Host filesystem writes, shell execution, and the built-in `write_file`/`edit_file`/`execute` tools are excluded from the model-visible tool surface.
 
 ### Agent Mode Tools
 
 Agent mode includes the Ask mode tools plus tools that prepare confirmed actions:
 
-- `document_planner` prepares safe `insert`, `save`, or `set_value` payloads before a proposal is shown
 - `insert` creates a document
 - `batch_insert` creates multiple documents of the same DocType
 - `save` updates a document
@@ -150,8 +170,10 @@ Permission errors, validation errors, missing records, and LLM provider failures
 
 ## Dependencies
 
-- [any-agent](https://mozilla-ai.github.io/any-agent/) for agent orchestration
-- [any-llm-sdk](https://github.com/mozilla-ai/any-llm) for LLM provider access
+- [Deep Agents](https://github.com/langchain-ai/deepagents) for agent orchestration, native messages, subagents, todos, and the virtual filesystem
+- [LangChain](https://github.com/langchain-ai/langchain) and [langgraph](https://github.com/langchain-ai/langgraph) for the agent runtime
+- [langchain-openai](https://github.com/langchain-ai/langchain) for the OpenAI-compatible chat model adapter
+- [any-llm-sdk](https://github.com/mozilla-ai/any-llm) for LLM provider discovery and vision extraction
 - [PyMuPDF](https://pymupdf.readthedocs.io/) for PDF handling
 
 ## Installation

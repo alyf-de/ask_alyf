@@ -64,13 +64,10 @@ class UnitTestFieldContexts(UnitTestCase):
 
 
 class UnitTestFieldAgent(UnitTestCase):
-	def _make_fake_trace(self, output: str = "OK"):
-		return SimpleNamespace(final_output=output)
-
 	def _make_fake_agent(self, output: str = "OK"):
-		trace = self._make_fake_trace(output)
+		"""Build a fake stateless agent whose `invoke` returns a native message list."""
 		agent = MagicMock()
-		agent.run.return_value = trace
+		agent.invoke.return_value = {"messages": [SimpleNamespace(content=output)]}
 		return agent
 
 	def test_run_field_agent_creates_no_conversation(self):
@@ -78,7 +75,7 @@ class UnitTestFieldAgent(UnitTestCase):
 		fake_agent = self._make_fake_agent("{{ doc.name }}")
 
 		with (
-			patch("ask_alyf.ask_alyf.field_agent.AnyAgent.create", return_value=fake_agent),
+			patch("ask_alyf.ask_alyf.field_agent.build_stateless_agent", return_value=fake_agent),
 			patch("ask_alyf.ask_alyf.field_agent.tools.get_settings") as mock_settings,
 		):
 			mock_settings.return_value = SimpleNamespace(
@@ -110,7 +107,7 @@ class UnitTestFieldAgent(UnitTestCase):
 		fake_agent = self._make_fake_agent("generated output")
 
 		with (
-			patch("ask_alyf.ask_alyf.field_agent.AnyAgent.create", return_value=fake_agent),
+			patch("ask_alyf.ask_alyf.field_agent.build_stateless_agent", return_value=fake_agent),
 			patch("ask_alyf.ask_alyf.field_agent.tools.get_settings") as mock_settings,
 			patch.object(frappe, "publish_realtime") as mock_realtime,
 		):
@@ -133,6 +130,35 @@ class UnitTestFieldAgent(UnitTestCase):
 			)
 
 		mock_realtime.assert_not_called()
+
+	def test_run_field_agent_uses_stateless_agent_without_checkpointer(self):
+		"""run_field_agent must build a stateless agent with no checkpointer or subagents."""
+		from ask_alyf.ask_alyf import field_agent
+
+		fake_agent = self._make_fake_agent("ok")
+		with (
+			patch("ask_alyf.ask_alyf.field_agent.build_stateless_agent", return_value=fake_agent) as build,
+			patch("ask_alyf.ask_alyf.field_agent.tools.get_settings") as mock_settings,
+		):
+			mock_settings.return_value = SimpleNamespace(
+				model="gpt-test",
+				llm_provider="OpenAI",
+				base_url="",
+				get_password=lambda _f, raise_exception=False: "test-key",
+			)
+			field_agent.run_field_agent(
+				doctype="Print Format",
+				fieldname="html",
+				fieldtype="Code",
+				current_value="",
+				doc={"name": "TEST-PF"},
+				prompt="generate header",
+			)
+
+		build.assert_called_once()
+		# build_stateless_agent(model, tools, system_prompt=...) — no checkpointer/subagents/VFS kwargs.
+		kwargs = build.call_args.kwargs
+		self.assertEqual(set(kwargs.keys()), {"system_prompt"})
 
 
 class UnitTestFieldAgentEndpoint(UnitTestCase):
