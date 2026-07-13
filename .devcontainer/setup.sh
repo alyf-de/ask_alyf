@@ -16,23 +16,46 @@ ensure_bench() {
 	# mount; the frappe user needs ownership before bench init can write there.
 	sudo chown -R frappe:frappe "${BENCH_ROOT}"
 
-	if [ -d "${BENCH_ROOT}/apps/frappe" ]; then
+	if [ -f "${BENCH_ROOT}/apps/frappe/frappe/__init__.py" ] \
+		&& [ -x "${BENCH_ROOT}/env/bin/python" ] \
+		&& "${BENCH_ROOT}/env/bin/python" -c "import frappe" 2>/dev/null; then
 		log "Bench already initialized at ${BENCH_ROOT}"
 		return
 	fi
 
-	# A stale/partial bench dir would make bench init fail; clear it first.
-	if [ -n "$(ls -A "${BENCH_ROOT}" 2>/dev/null)" ]; then
+	local contents scratch
+	shopt -s dotglob nullglob
+	contents=("${BENCH_ROOT}"/*)
+	shopt -u dotglob nullglob
+	if ((${#contents[@]})); then
 		log "Clearing stale bench at ${BENCH_ROOT}"
-		rm -rf "${BENCH_ROOT:?}/"*
+		rm -rf -- "${contents[@]}"
 	fi
+
+	scratch="$(mktemp -d)"
+	trap 'rm -rf "${scratch}"' EXIT
 
 	log "Initializing bench with Frappe ${FRAPPE_BRANCH}"
 	bench init \
 		--frappe-branch "${FRAPPE_BRANCH}" \
 		--skip-redis-config-generation \
 		--skip-assets \
-		"${BENCH_ROOT}"
+		"${scratch}/frappe-bench"
+
+	cp -a "${scratch}/frappe-bench/." "${BENCH_ROOT}/"
+	rm -rf "${scratch}"
+	trap - EXIT
+
+	# Virtual environments are not relocatable: bench init installed Frappe
+	# against the scratch path. Recreate it at the final mounted location.
+	rm -rf "${BENCH_ROOT}/env"
+	uv venv "${BENCH_ROOT}/env" --seed --python python3
+	uv pip install --quiet --upgrade -e "${BENCH_ROOT}/apps/frappe" --python "${BENCH_ROOT}/env/bin/python"
+
+	if [ ! -f "${BENCH_ROOT}/apps/frappe/frappe/__init__.py" ] || [ ! -x "${BENCH_ROOT}/env/bin/python" ]; then
+		echo "Bench initialization did not produce a usable bench at ${BENCH_ROOT}" >&2
+		return 1
+	fi
 }
 
 configure_bench() {
@@ -75,7 +98,8 @@ create_site() {
 install_app() {
 	bench use "${SITE_NAME}"
 
-	if bench --site "${SITE_NAME}" list-apps | grep -qx "${REPO_NAME}"; then
+	if bench --site "${SITE_NAME}" list-apps --format json \
+		| python3 -c 'import json, sys; sys.exit(not any(sys.argv[1] in apps for apps in json.load(sys.stdin).values()))' "${REPO_NAME}"; then
 		log "${REPO_NAME} already installed on ${SITE_NAME}"
 		return
 	fi
