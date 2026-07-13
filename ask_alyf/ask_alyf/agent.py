@@ -263,14 +263,17 @@ Mode awareness and behavior:
 					),
 					"system_prompt": DOCUMENT_PLANNER_INSTRUCTIONS,
 					"tools": [
-						self.toolset.get_list,
-						self.toolset.get,
-						self.toolset.get_value,
-						self.toolset.get_single_value,
-						self.toolset.get_meta,
-						self.toolset.has_permission,
-						self.toolset.get_doc_permissions,
-						self.toolset.list_accessible_doctypes,
+						clear_messages_on_tool_error(fn)
+						for fn in (
+							self.toolset.get_list,
+							self.toolset.get,
+							self.toolset.get_value,
+							self.toolset.get_single_value,
+							self.toolset.get_meta,
+							self.toolset.has_permission,
+							self.toolset.get_doc_permissions,
+							self.toolset.list_accessible_doctypes,
+						)
 					],
 					"response_format": DocumentPlannerResult,
 				}

@@ -1,6 +1,6 @@
 import asyncio
 from types import SimpleNamespace
-from unittest.mock import patch
+from unittest.mock import MagicMock, patch
 
 import frappe
 from frappe.tests import UnitTestCase
@@ -555,6 +555,48 @@ class UnitTestCodeTools(UnitTestCase):
 		ask_tool_names = {tool.__name__ for tool in ask_runner._build_tools()}
 		self.assertFalse(proposal_tools.intersection(ask_tool_names))
 		self.assertFalse(host_mutation_tools.intersection(ask_tool_names))
+
+	def test_clear_messages_wrapper_connects_without_changing_user(self):
+		inherited_db = frappe.local.db
+		private_db = MagicMock()
+
+		def connect(*, set_admin_as_user):
+			self.assertFalse(set_admin_as_user)
+			frappe.local.db = private_db
+
+		wrapped = clear_messages_on_tool_error(lambda: frappe.session.user)
+		with (
+			patch("ask_alyf.ask_alyf.toolset.frappe.connect", side_effect=connect),
+			patch("ask_alyf.ask_alyf.toolset.frappe.set_user") as set_user,
+		):
+			result = wrapped()
+
+		self.assertEqual(result, frappe.session.user)
+		set_user.assert_not_called()
+		private_db.commit.assert_called_once_with()
+		private_db.close.assert_called_once_with()
+		self.assertIs(frappe.local.db, inherited_db)
+
+	def test_clear_messages_wrapper_propagates_commit_failure(self):
+		inherited_db = frappe.local.db
+		private_db = MagicMock()
+		private_db.commit.side_effect = RuntimeError("commit failed")
+
+		def connect(*, set_admin_as_user):
+			frappe.local.db = private_db
+
+		wrapped = clear_messages_on_tool_error(lambda: "done")
+		with (
+			patch("ask_alyf.ask_alyf.toolset.frappe.connect", side_effect=connect),
+			patch("ask_alyf.ask_alyf.toolset.frappe.clear_messages") as clear_messages,
+			self.assertRaisesRegex(RuntimeError, "commit failed"),
+		):
+			wrapped()
+
+		private_db.rollback.assert_called_once_with()
+		private_db.close.assert_called_once_with()
+		clear_messages.assert_called_once_with()
+		self.assertIs(frappe.local.db, inherited_db)
 
 	def test_clear_messages_wrapper_preserves_async_tools(self):
 		async def fake_tool(file_id):
