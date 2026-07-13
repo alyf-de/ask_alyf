@@ -176,7 +176,7 @@ class ReadOnlySourceBackend(BackendProtocol):
 			try:
 				regex = re.compile(pattern)
 			except re.error as exc:
-				return GrepResult(error=_("Invalid regex pattern: {0}").format(exc))
+				return GrepResult(error=_("Invalid regex pattern: {0}").format(str(exc)))
 			files = self._collect_files(path)
 			matches: list[GrepMatch] = []
 			for _app_root, file_path in files:
