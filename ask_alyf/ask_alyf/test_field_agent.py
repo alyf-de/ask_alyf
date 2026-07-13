@@ -65,7 +65,7 @@ class UnitTestFieldContexts(UnitTestCase):
 
 class UnitTestFieldAgent(UnitTestCase):
 	def _make_fake_agent(self, output: str = "OK"):
-		"""Build a fake stateless agent whose ``invoke`` returns a native message list."""
+		"""Build a fake stateless agent whose `invoke` returns a native message list."""
 		agent = MagicMock()
 		agent.invoke.return_value = {"messages": [SimpleNamespace(content=output)]}
 		return agent

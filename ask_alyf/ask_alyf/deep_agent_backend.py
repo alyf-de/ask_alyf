@@ -43,7 +43,7 @@ ATTACHMENT_READ_ONLY_ERROR = _("Attachments are read-only")
 
 
 def _bench_relative_to_source_path(bench_relative: str) -> str:
-	"""Convert a bench-relative path (``apps/frappe/...``) to a source virtual path (``/frappe/...``)."""
+	"""Convert a bench-relative path (`apps/frappe/...`) to a source virtual path (`/frappe/...`)."""
 	parts = bench_relative.split("/")
 	if parts and parts[0] == "apps":
 		parts = parts[1:]
@@ -51,7 +51,7 @@ def _bench_relative_to_source_path(bench_relative: str) -> str:
 
 
 def _decode_file_bytes(raw: bytes) -> tuple[str, str]:
-	"""Decode bytes into ``(content, encoding)`` for ``FileData``."""
+	"""Decode bytes into `(content, encoding)` for `FileData`."""
 	try:
 		return raw.decode("utf-8"), "utf-8"
 	except UnicodeDecodeError:
@@ -59,7 +59,7 @@ def _decode_file_bytes(raw: bytes) -> tuple[str, str]:
 
 
 def _slice_text(content: str, offset: int, limit: int) -> str | None:
-	"""Return the requested line window or ``None`` if offset exceeds file length."""
+	"""Return the requested line window or `None` if offset exceeds file length."""
 	if not content or content.strip() == "":
 		return content
 	lines = content.splitlines(keepends=True)
@@ -70,21 +70,21 @@ def _slice_text(content: str, offset: int, limit: int) -> str | None:
 
 
 class ReadOnlySourceBackend(BackendProtocol):
-	"""Read-only backend exposing installed app source code under ``/source/``.
+	"""Read-only backend exposing installed app source code under `/source/`.
 
-	The composite router strips the ``/source/`` prefix before dispatching, so
-	methods here receive paths like ``/frappe/frappe/__init__.py``. The first
+	The composite router strips the `/source/` prefix before dispatching, so
+	methods here receive paths like `/frappe/frappe/__init__.py`. The first
 	segment is the installed app name; the remainder (including any same-named
 	package directory) is resolved within that app root via
-	``resolve_installed_app_path``, which confines the target to the app root
+	`resolve_installed_app_path`, which confines the target to the app root
 	and rejects traversal.
 	"""
 
 	def _split_app(self, path: str) -> tuple[str, str]:
-		"""Split a backend path into ``(app_name, full_relative)``.
+		"""Split a backend path into `(app_name, full_relative)`.
 
-		``full_relative`` retains the leading app-name segment so that
-		``resolve_installed_app_path`` strips exactly one app-name prefix.
+		`full_relative` retains the leading app-name segment so that
+		`resolve_installed_app_path` strips exactly one app-name prefix.
 		"""
 		relative = path.lstrip("/")
 		parts = get_path_parts(relative)
@@ -245,12 +245,12 @@ class ReadOnlySourceBackend(BackendProtocol):
 
 
 class ReadOnlyAttachmentBackend(BackendProtocol):
-	"""Read-only backend exposing Frappe **File** attachments under ``/attachments/``.
+	"""Read-only backend exposing Frappe **File** attachments under `/attachments/`.
 
-	The composite router strips the ``/attachments/`` prefix before dispatching,
-	so methods here receive paths like ``/FILE00123`` that resolve to a Frappe
+	The composite router strips the `/attachments/` prefix before dispatching,
+	so methods here receive paths like `/FILE00123` that resolve to a Frappe
 	**File** document by name. Every read enforces existence and read permission
-	via the shared ``_get_accessible_file_doc`` helper.
+	via the shared `_get_accessible_file_doc` helper.
 	"""
 
 	def ls(self, path: str) -> LsResult:
@@ -323,11 +323,11 @@ def build_ask_alyf_backend() -> CompositeBackend:
 	"""Build the restricted composite virtual filesystem for Ask ALYF agents.
 
 	Mounts:
-	  - ``/workspace/`` (default): checkpointed writable scratch space via
-		``StateBackend`` — the only mount that accepts writes.
-	  - ``/source/``: read-only access to installed app source code, confined
-		to installed app roots and gated by ``ensure_code_search_enabled``.
-	  - ``/attachments/``: read-only access to Frappe **File** documents with
+	  - `/workspace/` (default): checkpointed writable scratch space via
+		`StateBackend` — the only mount that accepts writes.
+	  - `/source/`: read-only access to installed app source code, confined
+		to installed app roots and gated by `ensure_code_search_enabled`.
+	  - `/attachments/`: read-only access to Frappe **File** documents with
 		per-read permission checks.
 	"""
 	return CompositeBackend(

@@ -124,8 +124,8 @@ class UnitTestAskALYFVirtualFilesystem(UnitTestCase):
 		self.assertIsNone(result.file_data)
 
 	def test_workspace_scratch_does_not_survive_across_backend_instances(self):
-		"""Each ``build_ask_alyf_backend()`` call produces a fresh, independent
-		``StateBackend``. There is no checkpointer, so scratch written through one
+		"""Each `build_ask_alyf_backend()` call produces a fresh, independent
+		`StateBackend`. There is no checkpointer, so scratch written through one
 		backend instance cannot surface in another.
 		"""
 		backend1 = build_ask_alyf_backend()

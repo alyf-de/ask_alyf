@@ -430,9 +430,9 @@ class UnitTestCodeTools(UnitTestCase):
 		self.assertEqual(perm.mode, "deny")
 
 	def test_coordinator_exposes_built_in_write_todos_tool(self):
-		"""The Deep Agents coordinator must include the built-in ``write_todos``
-		planning tool in its model-visible tool surface. ``write_todos`` is added
-		by ``TodoListMiddleware`` during agent assembly and is the planning
+		"""The Deep Agents coordinator must include the built-in `write_todos`
+		planning tool in its model-visible tool surface. `write_todos` is added
+		by `TodoListMiddleware` during agent assembly and is the planning
 		mechanism (filesystem writes are denied by the harness profile and
 		permissions).
 		"""

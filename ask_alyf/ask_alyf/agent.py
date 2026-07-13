@@ -176,9 +176,9 @@ def _get_model_name_from_settings(settings) -> str:
 
 
 def build_chat_model(settings, *, temperature: float = 0.2) -> ChatOpenAI:
-	"""Build a LangChain ``ChatOpenAI`` from Ask ALYF Settings values.
+	"""Build a LangChain `ChatOpenAI` from Ask ALYF Settings values.
 
-	Supports OpenAI and OpenAI-compatible ``base_url`` configurations by
+	Supports OpenAI and OpenAI-compatible `base_url` configurations by
 	preserving the existing settings-driven model/api_key/base_url resolution.
 	"""
 	return ChatOpenAI(
