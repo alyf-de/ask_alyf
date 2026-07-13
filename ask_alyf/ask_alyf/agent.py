@@ -1,3 +1,4 @@
+import threading
 from collections.abc import Callable
 from typing import Any
 
@@ -39,19 +40,23 @@ from ask_alyf.ask_alyf.toolset import (
 # and operate on the restricted composite VFS (workspace, source, attachments).
 ASK_ALYF_EXCLUDED_TOOLS = frozenset({"write_file", "edit_file", "execute"})
 _ASK_ALYF_PROFILE_REGISTERED = False
+_ASK_ALYF_PROFILE_LOCK = threading.Lock()
 
 
 def _ensure_ask_alyf_harness_profile() -> None:
 	"""Register the Ask ALYF harness profile once per process.
 
-	Registration is additive and idempotent, so concurrent calls are safe.
+	Registration is additive and idempotent, but the check-then-set is guarded
+	by a lock so concurrent ``ask_alyfAgentRunner`` constructions (e.g. two
+	gunicorn threads or RQ jobs in one process) cannot both register.
 	"""
 	global _ASK_ALYF_PROFILE_REGISTERED
-	if _ASK_ALYF_PROFILE_REGISTERED:
-		return
-	profile = HarnessProfile(excluded_tools=ASK_ALYF_EXCLUDED_TOOLS)
-	register_harness_profile("openai", profile)
-	_ASK_ALYF_PROFILE_REGISTERED = True
+	with _ASK_ALYF_PROFILE_LOCK:
+		if _ASK_ALYF_PROFILE_REGISTERED:
+			return
+		profile = HarnessProfile(excluded_tools=ASK_ALYF_EXCLUDED_TOOLS)
+		register_harness_profile("openai", profile)
+		_ASK_ALYF_PROFILE_REGISTERED = True
 
 
 def _get_api_key_from_settings(settings) -> str:
