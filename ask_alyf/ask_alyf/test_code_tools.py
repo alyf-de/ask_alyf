@@ -1,13 +1,16 @@
 import asyncio
 from types import SimpleNamespace
-from unittest.mock import AsyncMock, patch
+from unittest.mock import patch
 
 import frappe
 from frappe.tests import UnitTestCase
+from langchain_core.messages import AIMessage, HumanMessage, SystemMessage
 
 from ask_alyf.ask_alyf import tools
 from ask_alyf.ask_alyf.agent import (
+	_ASK_ALYF_EXCLUDED_TOOLS,
 	_clear_messages_on_tool_error,
+	_history_item_to_native_message,
 	ask_alyfAgentRunner,
 	ask_alyfToolset,
 )
@@ -51,28 +54,38 @@ class UnitTestCodeTools(UnitTestCase):
 		runner.toolset = ask_alyfToolset(runtime, settings=runner.settings)
 		return runner
 
-	def test_build_tools_only_adds_source_code_analyzer_when_enabled(self):
+	def test_subagents_register_source_code_analyzer_only_when_code_search_enabled(self):
 		raw_code_tool_names = {"search_code", "read_code_file", "ls", "find", "grep"}
 
 		disabled_runner = self.make_runner(allow_code_search=False)
+		disabled_subagents = disabled_runner._build_subagents()
+		disabled_names = {sub["name"] for sub in disabled_subagents}
+		self.assertNotIn("source-code-analyzer", disabled_names)
+		# Raw code tools are never exposed as parent tools regardless of setting.
 		disabled_tool_names = {tool.__name__ for tool in disabled_runner._build_tools()}
-		self.assertNotIn("source_code_analyzer", disabled_tool_names)
 		self.assertFalse(raw_code_tool_names.intersection(disabled_tool_names))
 
 		enabled_runner = self.make_runner(allow_code_search=True)
+		enabled_subagents = enabled_runner._build_subagents()
+		enabled_names = {sub["name"] for sub in enabled_subagents}
+		self.assertIn("source-code-analyzer", enabled_names)
+		# Source code tools are not parent-visible; they live inside the subagent.
 		enabled_tool_names = {tool.__name__ for tool in enabled_runner._build_tools()}
-		self.assertIn("source_code_analyzer", enabled_tool_names)
 		self.assertFalse(raw_code_tool_names.intersection(enabled_tool_names))
 
-	def test_build_tools_only_adds_document_planner_in_agent_mode(self):
+	def test_subagents_register_document_planner_only_in_agent_mode(self):
 		ask_runner = self.make_runner(allow_code_search=False, mode="Ask")
+		ask_subagents = ask_runner._build_subagents()
+		ask_names = {sub["name"] for sub in ask_subagents}
+		self.assertNotIn("document-planner", ask_names)
 		ask_tool_names = {tool.__name__ for tool in ask_runner._build_tools()}
-		self.assertNotIn("document_planner", ask_tool_names)
 		self.assertNotIn("batch_insert", ask_tool_names)
 
 		agent_runner = self.make_runner(allow_code_search=False, mode="Agent")
+		agent_subagents = agent_runner._build_subagents()
+		agent_names = {sub["name"] for sub in agent_subagents}
+		self.assertIn("document-planner", agent_names)
 		agent_tool_names = {tool.__name__ for tool in agent_runner._build_tools()}
-		self.assertIn("document_planner", agent_tool_names)
 		self.assertIn("batch_insert", agent_tool_names)
 
 	def test_build_tools_only_adds_write_skill_when_user_can_create_skills(self):
@@ -353,109 +366,199 @@ class UnitTestCodeTools(UnitTestCase):
 		self.assertIn("Created 2 of 3 ToDo records.", result["message"])
 		self.assertIn("row 2: Missing description", result["message"])
 
-	def test_source_code_analyzer_tool_delegates_to_specialist(self):
-		runtime = self.make_runtime(mode="Ask")
-		toolset = ask_alyfToolset(runtime)
-		expected = {
-			"answer": "The main agent runner is in agent.py.",
-			"summary": "Found the main runner.",
-			"evidence": [{"path": "apps/ask_alyf/ask_alyf/ask_alyf/agent.py", "start_line": 989}],
-			"uncertainty": "",
-			"searched_paths": ["apps/ask_alyf/ask_alyf/ask_alyf"],
+	def test_source_code_analyzer_subagent_descriptor_has_empty_tools(self):
+		runner = self.make_runner(allow_code_search=True, mode="Ask")
+		subagents = runner._build_subagents()
+		analyzer = next(sub for sub in subagents if sub["name"] == "source-code-analyzer")
+
+		self.assertEqual(analyzer["tools"], [])
+		# The descriptor must not inherit any parent proposal/mutation tools.
+		self.assertNotIn("insert", {getattr(t, "__name__", "") for t in analyzer["tools"]})
+		self.assertNotIn("save", {getattr(t, "__name__", "") for t in analyzer["tools"]})
+
+	def test_source_code_analyzer_subagent_has_response_format(self):
+		from ask_alyf.ask_alyf.agent import SourceCodeAnalysisResult
+
+		runner = self.make_runner(allow_code_search=True, mode="Ask")
+		analyzer = next(sub for sub in runner._build_subagents() if sub["name"] == "source-code-analyzer")
+		self.assertIs(analyzer["response_format"], SourceCodeAnalysisResult)
+
+	def test_document_planner_subagent_descriptor_has_read_only_tools(self):
+		runner = self.make_runner(allow_code_search=False, mode="Agent")
+		subagents = runner._build_subagents()
+		planner = next(sub for sub in subagents if sub["name"] == "document-planner")
+
+		tool_names = {getattr(t, "__name__", "") for t in planner["tools"]}
+		# Only read-only metadata/tools are allowed.
+		self.assertIn("get_meta", tool_names)
+		self.assertIn("get", tool_names)
+		# No proposal or mutation tools leak into the planner.
+		for forbidden in ("insert", "save", "set_value", "submit", "cancel", "delete", "batch_insert"):
+			self.assertNotIn(forbidden, tool_names)
+		# No frontend action tools either.
+		for forbidden in ("set_route", "new_doc", "show_chart", "frm_set_value"):
+			self.assertNotIn(forbidden, tool_names)
+
+	def test_document_planner_subagent_has_response_format(self):
+		from ask_alyf.ask_alyf.agent import DocumentPlannerResult
+
+		runner = self.make_runner(allow_code_search=False, mode="Agent")
+		planner = next(sub for sub in runner._build_subagents() if sub["name"] == "document-planner")
+		self.assertIs(planner["response_format"], DocumentPlannerResult)
+
+	def test_harness_profile_excludes_write_edit_execute(self):
+		from ask_alyf.ask_alyf.agent import _ensure_ask_alyf_harness_profile
+
+		self.assertEqual(
+			_ASK_ALYF_EXCLUDED_TOOLS,
+			frozenset({"write_file", "edit_file", "execute"}),
+		)
+		# Registration is idempotent and safe to call repeatedly.
+		_ensure_ask_alyf_harness_profile()
+		_ensure_ask_alyf_harness_profile()
+
+	def test_build_permissions_denies_write_everywhere(self):
+		from deepagents import FilesystemPermission
+
+		runner = self.make_runner(allow_code_search=False, mode="Ask")
+		permissions = runner._build_permissions()
+		self.assertEqual(len(permissions), 1)
+		perm = permissions[0]
+		self.assertIsInstance(perm, FilesystemPermission)
+		self.assertEqual(perm.operations, ["write"])
+		self.assertEqual(perm.paths, ["/**"])
+		self.assertEqual(perm.mode, "deny")
+
+	def test_coordinator_exposes_built_in_write_todos_tool(self):
+		"""The Deep Agents coordinator must include the built-in ``write_todos``
+		planning tool in its model-visible tool surface. ``write_todos`` is added
+		by ``TodoListMiddleware`` during agent assembly and is the planning
+		mechanism (filesystem writes are denied by the harness profile and
+		permissions).
+		"""
+		from deepagents import create_deep_agent
+		from langchain_openai import ChatOpenAI
+
+		from ask_alyf.ask_alyf.deep_agent_backend import build_ask_alyf_backend
+
+		runner = self.make_runner(allow_code_search=False, mode="Ask")
+		agent = create_deep_agent(
+			model=ChatOpenAI(model="dummy", api_key="dummy"),
+			tools=runner._build_tools(),
+			system_prompt="dummy",
+			backend=build_ask_alyf_backend(),
+			subagents=runner._build_subagents(),
+			permissions=runner._build_permissions(),
+			name="ask_alyf",
+		)
+		tool_names = set(agent.nodes["tools"].bound.tools_by_name.keys())
+		self.assertIn("write_todos", tool_names)
+
+	def test_history_item_to_native_message_maps_roles(self):
+		self.assertIsInstance(
+			_history_item_to_native_message({"role": "user", "content": "hi"}),
+			HumanMessage,
+		)
+		self.assertIsInstance(
+			_history_item_to_native_message({"role": "assistant", "content": "ok"}),
+			AIMessage,
+		)
+		self.assertIsInstance(
+			_history_item_to_native_message({"role": "system", "content": "note"}),
+			SystemMessage,
+		)
+		self.assertIsNone(_history_item_to_native_message({"role": "user", "content": ""}))
+
+	def test_history_item_to_native_message_appends_extraction_metadata(self):
+		item = {
+			"role": "user",
+			"content": "What is on this invoice?",
+			"metadata": {
+				"files": [{"name": "FILE-0001", "file_name": "invoice.pdf"}],
+				"document_extractions": [
+					{
+						"file_id": "FILE-0001",
+						"file_name": "invoice.pdf",
+						"pages_processed": 2,
+						"total_pages": 2,
+						"extraction_prompt": "Extract line items and totals.",
+						"extracted_data": {"supplier": "ACME", "total": "123.45"},
+					}
+				],
+			},
 		}
-		specialist = SimpleNamespace(analyze=AsyncMock(return_value=expected))
+		message = _history_item_to_native_message(item)
+		self.assertIsInstance(message, HumanMessage)
+		text = message.content
+		self.assertIn("What is on this invoice?", text)
+		self.assertIn("Stored document extraction: id=FILE-0001, name=invoice.pdf", text)
+		self.assertIn("Extraction request: Extract line items and totals.", text)
+		self.assertIn('"supplier": "ACME"', text)
+		self.assertIn('"total": "123.45"', text)
+		# File URLs are never leaked into the native message context.
+		self.assertNotIn("/private/files/", text)
+		self.assertNotIn("/files/", text)
 
-		with patch.object(toolset, "_get_source_code_analyzer", return_value=specialist):
-			result = asyncio.run(
-				toolset.source_code_analyzer(
-					"Where is the main agent runner defined?",
-					relative_path="ask_alyf/ask_alyf",
-				)
-			)
+	def test_build_input_messages_rebuilds_full_history(self):
+		runner = self.make_runner(allow_code_search=False, mode="Ask")
+		runner.runtime.conversation_history = [
+			{"role": "user", "content": "one"},
+			{"role": "assistant", "content": "one-ans"},
+			{"role": "system", "content": "result"},
+		]
+		messages = runner._build_input_messages("two")
+		# Full history is rebuilt as native messages + the new user turn.
+		self.assertEqual(len(messages), 4)
+		self.assertIsInstance(messages[0], HumanMessage)
+		self.assertIsInstance(messages[1], AIMessage)
+		self.assertIsInstance(messages[2], SystemMessage)
+		self.assertIsInstance(messages[-1], HumanMessage)
+		self.assertEqual(messages[-1].content, "two")
 
-		specialist.analyze.assert_awaited_once_with(
-			question="Where is the main agent runner defined?",
-			relative_path="ask_alyf/ask_alyf",
+	def test_run_preserves_result_envelope_and_proposal_shapes(self):
+		runner = self.make_runner(allow_code_search=False, mode="Agent")
+		runner.agent = SimpleNamespace(
+			invoke=lambda _input, config=None: {"messages": [SimpleNamespace(content="Done.")]}
 		)
-		self.assertEqual(result, expected)
+		result = runner.run("do something", conversation_history=[])
+		self.assertEqual(result["response"], "Done.")
+		self.assertEqual(result["pending_operations"], [])
+		self.assertEqual(result["document_extractions"], [])
+		self.assertEqual(result["attached_files"], [])
 
-	def test_source_code_analyzer_initializes_internal_agent_async(self):
-		runtime = self.make_runtime(mode="Ask")
-		toolset = ask_alyfToolset(runtime, settings=FakeSettings(allow_code_search=True))
-		fake_trace = SimpleNamespace(final_output='{"answer":"Verified","summary":"Verified"}')
-		fake_agent = SimpleNamespace(run_async=AsyncMock(return_value=fake_trace))
-		analyzer = toolset._get_source_code_analyzer()
-
-		with patch(
-			"ask_alyf.ask_alyf.agent._create_internal_agent_async",
-			AsyncMock(return_value=fake_agent),
-		) as create_agent:
-			first = asyncio.run(analyzer.analyze("Where is tax logic implemented?", relative_path="erpnext"))
-			second = asyncio.run(analyzer.analyze("Where is tax logic implemented?", relative_path="erpnext"))
-
-		create_agent.assert_awaited_once()
-		self.assertEqual(fake_agent.run_async.await_count, 2)
-		self.assertEqual(first["answer"], "Verified")
-		self.assertEqual(second["summary"], "Verified")
-
-	def test_document_planner_tool_delegates_to_specialist(self):
-		runtime = self.make_runtime(mode="Agent")
-		toolset = ask_alyfToolset(runtime)
-		expected = {
-			"ready": True,
-			"recommended_tool": "insert",
-			"payload": {"doctype": "ToDo", "values": {"description": "Call customer"}},
-			"reason": "The user asked to create a new ToDo.",
-			"missing_information": [],
-			"checks": ["Loaded ToDo metadata."],
-			"warnings": [],
+	def test_agent_mode_tools_include_proposals_but_no_host_mutation_or_shell(self):
+		"""Model-visible tools must contain proposal operations but no direct
+		Frappe mutation, host filesystem, delete-of-host, or shell execution."""
+		host_mutation_tools = {"write_file", "edit_file", "execute", "shell", "run_shell"}
+		proposal_tools = {
+			"insert",
+			"batch_insert",
+			"save",
+			"set_value",
+			"submit",
+			"cancel",
+			"amend",
+			"delete",
+			"rename_doc",
+			"attach_file",
+			"run_whitelisted_method",
 		}
-		specialist = SimpleNamespace(plan=AsyncMock(return_value=expected))
 
-		with patch.object(toolset, "_get_document_planner", return_value=specialist):
-			result = asyncio.run(
-				toolset.document_planner(
-					user_request="Create a ToDo to call the customer.",
-					doctype="ToDo",
-					operation="insert",
-					values_hint={"description": "Call customer"},
-				)
-			)
+		agent_runner = self.make_runner(allow_code_search=False, mode="Agent")
+		agent_tool_names = {tool.__name__ for tool in agent_runner._build_tools()}
+		# Proposal ops are present (they only create pending proposals, never mutate directly).
+		self.assertTrue(proposal_tools.issubset(agent_tool_names))
+		# No host filesystem, shell, or direct execution capability leaks in.
+		self.assertFalse(host_mutation_tools.intersection(agent_tool_names))
 
-		specialist.plan.assert_awaited_once_with(
-			user_request="Create a ToDo to call the customer.",
-			doctype="ToDo",
-			operation="insert",
-			name="",
-			values_hint={"description": "Call customer"},
-		)
-		self.assertEqual(result, expected)
+	def test_ask_mode_tools_exclude_all_write_proposals_and_host_mutation(self):
+		host_mutation_tools = {"write_file", "edit_file", "execute", "shell", "run_shell"}
+		proposal_tools = {"insert", "save", "set_value", "submit", "cancel", "delete", "batch_insert"}
 
-	def test_document_planner_initializes_internal_agent_async(self):
-		runtime = self.make_runtime(mode="Agent")
-		toolset = ask_alyfToolset(runtime, settings=FakeSettings(allow_code_search=False))
-		fake_trace = SimpleNamespace(
-			final_output='{"ready":true,"recommended_tool":"insert","payload":{"doctype":"ToDo","values":{}},"reason":"ok","missing_information":[],"checks":[],"warnings":[]}'
-		)
-		fake_agent = SimpleNamespace(run_async=AsyncMock(return_value=fake_trace))
-		planner = toolset._get_document_planner()
-
-		with patch(
-			"ask_alyf.ask_alyf.agent._create_internal_agent_async",
-			AsyncMock(return_value=fake_agent),
-		) as create_agent:
-			result = asyncio.run(
-				planner.plan(
-					user_request="Create a ToDo.",
-					doctype="ToDo",
-					operation="insert",
-				)
-			)
-
-		create_agent.assert_awaited_once()
-		fake_agent.run_async.assert_awaited_once()
-		self.assertTrue(result["ready"])
-		self.assertEqual(result["recommended_tool"], "insert")
+		ask_runner = self.make_runner(allow_code_search=False, mode="Ask")
+		ask_tool_names = {tool.__name__ for tool in ask_runner._build_tools()}
+		self.assertFalse(proposal_tools.intersection(ask_tool_names))
+		self.assertFalse(host_mutation_tools.intersection(ask_tool_names))
 
 	def test_clear_messages_wrapper_preserves_async_tools(self):
 		async def fake_tool(file_id):

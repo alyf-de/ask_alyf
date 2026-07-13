@@ -104,16 +104,21 @@ class UnitTestAskALYFConversation(UnitTestCase):
 		self.assertEqual(messages[-1]["content"], "I found the supplier and total.")
 		self.assertEqual(messages[-1]["metadata"].get("document_extractions"), document_extractions)
 
-		prompt = agent.build_prompt(
-			"Create the Purchase Invoice from that document.",
-			messages,
+		prompt = agent._history_item_to_native_message(
+			{
+				"role": "user",
+				"content": "Create the Purchase Invoice from that document.",
+				"metadata": {"document_extractions": document_extractions},
+			}
 		)
-		self.assertIn("Stored document extraction:", prompt)
-		self.assertIn("Extraction request: Extract line items and totals.", prompt)
-		self.assertIn("id=FILE-0001", prompt)
-		self.assertNotIn("/private/files/invoice.pdf", prompt)
-		self.assertIn('"supplier": "ACME"', prompt)
-		self.assertIn('"total": "123.45"', prompt)
+		self.assertIsNotNone(prompt)
+		self.assertIn("Create the Purchase Invoice from that document.", prompt.content)
+		self.assertIn("Stored document extraction:", prompt.content)
+		self.assertIn("Extraction request: Extract line items and totals.", prompt.content)
+		self.assertIn("id=FILE-0001", prompt.content)
+		self.assertNotIn("/private/files/invoice.pdf", prompt.content)
+		self.assertIn('"supplier": "ACME"', prompt.content)
+		self.assertIn('"total": "123.45"', prompt.content)
 
 	def test_attach_file_persists_file_url_in_message_metadata(self):
 		conversation = self.make_conversation(messages=[])

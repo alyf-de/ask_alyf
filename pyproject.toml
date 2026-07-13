@@ -10,8 +10,9 @@ readme = "README.md"
 dynamic = ["version"]
 dependencies = [
     # "frappe~=16.0.0" # Installed and managed by bench.
-    "any-agent",
     "any-llm-sdk",
+    "deepagents==0.6.12",
+    "langchain-openai==1.3.5",
     "pymupdf",
 ]
 
