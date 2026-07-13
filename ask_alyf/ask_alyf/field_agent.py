@@ -5,14 +5,10 @@ from dataclasses import dataclass, field
 from typing import Any
 
 import frappe
-from any_agent import AgentConfig, AgentFramework, AnyAgent
 
 from ask_alyf.ask_alyf import field_contexts, tools
-from ask_alyf.ask_alyf.agent import (
-	_build_internal_agent_config,
-	_clear_messages_on_tool_error,
-	ask_alyfToolset,
-)
+from ask_alyf.ask_alyf.agent import build_chat_model, build_stateless_agent
+from ask_alyf.ask_alyf.toolset import ask_alyfToolset, clear_messages_on_tool_error
 
 # Read-only tool method names exposed to the field agent.
 # Excludes: source_code_analyzer (unbounded latency in request thread),
@@ -141,23 +137,26 @@ def run_field_agent(
 	toolset = ask_alyfToolset(runtime=runtime, settings=settings)
 
 	tool_defs = [
-		_clear_messages_on_tool_error(getattr(toolset, method_name)) for method_name in FIELD_AGENT_TOOLS
+		clear_messages_on_tool_error(getattr(toolset, method_name)) for method_name in FIELD_AGENT_TOOLS
 	]
 
-	agent = AnyAgent.create(
-		AgentFramework.TINYAGENT,
-		_build_internal_agent_config(
-			settings=settings,
-			name="Ask ALYF Field Agent",
-			instructions=instructions,
-			tool_defs=tool_defs,
-		),
-	)
+	model = build_chat_model(settings, temperature=0.1)
+	agent = build_stateless_agent(model, tool_defs, system_prompt=instructions)
 
 	try:
-		trace = agent.run(prompt)
+		result = agent.invoke({"messages": [{"role": "user", "content": prompt}]})
 	except Exception:
 		frappe.log_error("Ask ALYF Field Agent Error")
 		raise
 
-	return str(trace.final_output or "").strip()
+	result_messages = result.get("messages") if isinstance(result, dict) else None
+	if result_messages:
+		last = result_messages[-1]
+		content = getattr(last, "content", None)
+		if isinstance(content, str):
+			return content.strip()
+		elif content is not None:
+			# Some providers return content as a list of blocks; coerce to text.
+			return str(content).strip()
+
+	return ""
