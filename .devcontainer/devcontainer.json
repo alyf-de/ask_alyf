@@ -1,0 +1,73 @@
+{
+  "name": "ask_alyf",
+  "forwardPorts": [8000, 9000, 6787],
+  "remoteUser": "frappe",
+  "dockerComposeFile": "./docker-compose.yml",
+  "service": "frappe",
+  "workspaceFolder": "/workspace/frappe-bench",
+  "shutdownAction": "stopCompose",
+  "postCreateCommand": "bash /workspace/ask_alyf/.devcontainer/setup.sh",
+  "mounts": [
+    "source=${localEnv:HOME}${localEnv:USERPROFILE}/.ssh,target=/home/frappe/.ssh,type=bind,consistency=cached"
+  ],
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-python.debugpy",
+        "charliermarsh.ruff",
+        "esbenp.prettier-vscode",
+        "vue.volar",
+        "tamasfe.even-better-toml",
+        "redhat.vscode-xml",
+        "samuelcolvin.jinjahtml",
+        "mechatroner.rainbow-csv",
+        "mrorz.language-gettext",
+        "github.vscode-github-actions",
+        "ms-vscode.live-server",
+        "mtxr.sqltools",
+        "mtxr.sqltools-driver-mysql",
+        "adpyke.vscode-sql-formatter"
+      ],
+      "settings": {
+        "terminal.integrated.profiles.linux": {
+          "frappe bash": {
+            "path": "/bin/bash"
+          }
+        },
+        "terminal.integrated.defaultProfile.linux": "frappe bash",
+        "debug.node.autoAttach": "disabled",
+        "python.defaultInterpreterPath": "${workspaceFolder}/env/bin/python",
+        "files.watcherExclude": {
+          "**/node_modules/**": true,
+          "**/env/**": true,
+          "**/config/**": true,
+          "**/__pycache__/**": true,
+          "**/*.pyc": true
+        },
+        "files.exclude": {
+          "**/__pycache__": true,
+          "**/*.pyc": true,
+          "**/.git": false
+        },
+        "sqltools.connections": [
+          {
+            "mysqlOptions": {
+              "authProtocol": "default",
+              "enableSsl": "Disabled"
+            },
+            "ssh": "Disabled",
+            "previewLimit": 50,
+            "server": "mariadb",
+            "port": 3306,
+            "driver": "MariaDB",
+            "name": "MariaDB",
+            "username": "root",
+            "password": "123",
+            "database": "mysql"
+          }
+        ]
+      }
+    }
+  }
+}

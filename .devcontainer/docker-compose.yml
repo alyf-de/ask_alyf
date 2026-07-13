@@ -1,0 +1,42 @@
+services:
+  mariadb:
+    image: docker.io/mariadb:11.8
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+      - --skip-character-set-client-handshake
+    environment:
+      MYSQL_ROOT_PASSWORD: "123"
+      MARIADB_AUTO_UPGRADE: "1"
+    volumes:
+      - mariadb-data:/var/lib/mysql
+
+  redis-cache:
+    image: docker.io/redis:alpine
+
+  redis-queue:
+    image: docker.io/redis:alpine
+
+  frappe:
+    image: docker.io/frappe/bench:latest
+    command: sleep infinity
+    environment:
+      - SHELL=/bin/bash
+    volumes:
+      # Mount the ask_alyf repo at /workspace/ask_alyf; the bench is created
+      # as its sibling at /workspace/frappe-bench (kept on a named volume so
+      # the container-managed files do not pollute the host working copy).
+      - ..:/workspace/ask_alyf:cached
+      - bench-data:/workspace/frappe-bench
+    working_dir: /workspace/frappe-bench
+    ports:
+      - 8000-8005:8000-8005
+      - 9000-9005:9000-9005
+    depends_on:
+      - mariadb
+      - redis-cache
+      - redis-queue
+
+volumes:
+  mariadb-data:
+  bench-data:
