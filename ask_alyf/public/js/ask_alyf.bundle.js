@@ -10,6 +10,13 @@ import "./field_agent";
 	const ASK_ALYF_FRAPPE_CHART_MIN_HEIGHT = 240;
 	const ASK_ALYF_FRAPPE_CHART_MAX_HEIGHT = 720;
 
+	function getIcon(name, size = "sm", svgClass = "", currentColor = false) {
+		if (typeof frappe.utils?.icon !== "function") {
+			return "";
+		}
+		return frappe.utils.icon(name, size, "", "", svgClass, currentColor);
+	}
+
 	/**
 	 * Frappe Charts divides by labels.length, Y interval range, and (for pie) grand total;
 	 * tiny/negative plot height or zero Y range yields NaN axis lines in draw.js.
@@ -261,7 +268,7 @@ import "./field_agent";
 					.map((f) => this.renderFileLink(f))
 					.filter(Boolean)
 					.join(", ");
-				return `<i class="fa fa-paperclip" aria-hidden="true"></i> ${names}`;
+				return `${getIcon("paperclip", "xs", "", true)} ${names}`;
 			}
 			return this.escapeHtml(message.content || "").replace(/\n/g, "<br>");
 		}
@@ -567,9 +574,7 @@ import "./field_agent";
 							)}" aria-label="${__("New chat")}">${__("New chat")}</button>
 							<a class="ask_alyf-header-button ask_alyf-support-phone btn btn-secondary btn-sm ask_alyf-hidden" href="#" role="button" title="${__(
 								"Call support",
-							)}" aria-label="${__(
-								"Call support",
-							)}"><i class="fa fa-phone" aria-hidden="true"></i></a>
+							)}" aria-label="${__("Call support")}">${getIcon("phone", "sm", "", true)}</a>
 							<button class="ask_alyf-header-button ask_alyf-close btn btn-secondary btn-sm" type="button" title="${__(
 								"Close",
 							)}" aria-label="${__("Close")}">&times;</button>
@@ -600,7 +605,7 @@ import "./field_agent";
 								<div class="ask_alyf-mode-dropdown">
 									<button class="ask_alyf-mode-trigger btn btn-secondary btn-sm" type="button" aria-haspopup="menu" aria-expanded="false">
 										<span class="ask_alyf-mode-trigger-label"></span>
-										<i class="fa fa-chevron-down ask_alyf-mode-trigger-chevron" aria-hidden="true"></i>
+										${getIcon("chevron-down", "xs", "ask_alyf-mode-trigger-chevron", true)}
 									</button>
 									<div class="ask_alyf-mode-menu ask_alyf-hidden" role="menu">
 										<button class="ask_alyf-mode-option btn btn-secondary btn-sm" type="button" role="menuitemradio" data-mode="Ask">${__(
@@ -614,10 +619,15 @@ import "./field_agent";
 								<div class="ask_alyf-composer-actions">
 									<button class="ask_alyf-icon-button ask_alyf-attach btn btn-secondary btn-sm ask_alyf-hidden" type="button" title="${__(
 										"Attach file",
-									)}" aria-label="${__("Attach file")}"><i class="fa fa-paperclip"></i></button>
+									)}" aria-label="${__("Attach file")}">${getIcon(
+										"paperclip",
+										"sm",
+										"",
+										true,
+									)}</button>
 									<button class="ask_alyf-icon-button ask_alyf-mic btn btn-secondary btn-sm" type="button" title="${__(
 										"Voice input",
-									)}" aria-label="${__("Voice input")}"><i class="fa fa-microphone"></i></button>
+									)}" aria-label="${__("Voice input")}">${getIcon("mic", "sm", "", true)}</button>
 									<button class="ask_alyf-send btn btn-primary btn-sm" type="button">${__("Send")}</button>
 								</div>
 							</div>
@@ -2185,8 +2195,7 @@ import "./field_agent";
 				downloadButton.title = downloadLabel;
 				downloadButton.setAttribute("aria-label", downloadLabel);
 				downloadButton.disabled = true;
-				downloadButton.innerHTML =
-					typeof frappe.utils?.icon === "function" ? frappe.utils.icon("download", "xs") : "SVG";
+				downloadButton.innerHTML = getIcon("download", "xs", "", true);
 				downloadButton.addEventListener("click", () => {
 					const chart = this.getTrackedFrappeChart(messageKey, index);
 					if (!chart || typeof chart.export !== "function") {

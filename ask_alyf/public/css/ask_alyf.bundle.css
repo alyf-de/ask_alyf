@@ -841,7 +841,16 @@
 }
 
 .ask_alyf-mode-trigger-chevron {
-	font-size: 0.72rem;
+	flex-shrink: 0;
+}
+
+.ask_alyf-icon-button .icon,
+.ask_alyf-header-button .icon {
+	stroke: currentColor;
+}
+
+.ask_alyf-mic.is-listening .icon {
+	stroke: var(--primary);
 }
 
 .ask_alyf-mode-menu {
