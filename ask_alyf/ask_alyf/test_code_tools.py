@@ -7,13 +7,9 @@ from frappe.tests import UnitTestCase
 from langchain_core.messages import AIMessage, HumanMessage, SystemMessage
 
 from ask_alyf.ask_alyf import tools
-from ask_alyf.ask_alyf.agent import (
-	_ASK_ALYF_EXCLUDED_TOOLS,
-	_clear_messages_on_tool_error,
-	_history_item_to_native_message,
-	ask_alyfAgentRunner,
-	ask_alyfToolset,
-)
+from ask_alyf.ask_alyf.agent import ASK_ALYF_EXCLUDED_TOOLS, ask_alyfAgentRunner
+from ask_alyf.ask_alyf.history import history_item_to_native_message
+from ask_alyf.ask_alyf.toolset import ask_alyfToolset, clear_messages_on_tool_error
 
 
 class FakeSettings(SimpleNamespace):
@@ -377,7 +373,7 @@ class UnitTestCodeTools(UnitTestCase):
 		self.assertNotIn("save", {getattr(t, "__name__", "") for t in analyzer["tools"]})
 
 	def test_source_code_analyzer_subagent_has_response_format(self):
-		from ask_alyf.ask_alyf.agent import SourceCodeAnalysisResult
+		from ask_alyf.ask_alyf.subagents import SourceCodeAnalysisResult
 
 		runner = self.make_runner(allow_code_search=True, mode="Ask")
 		analyzer = next(sub for sub in runner._build_subagents() if sub["name"] == "source-code-analyzer")
@@ -400,7 +396,7 @@ class UnitTestCodeTools(UnitTestCase):
 			self.assertNotIn(forbidden, tool_names)
 
 	def test_document_planner_subagent_has_response_format(self):
-		from ask_alyf.ask_alyf.agent import DocumentPlannerResult
+		from ask_alyf.ask_alyf.subagents import DocumentPlannerResult
 
 		runner = self.make_runner(allow_code_search=False, mode="Agent")
 		planner = next(sub for sub in runner._build_subagents() if sub["name"] == "document-planner")
@@ -410,7 +406,7 @@ class UnitTestCodeTools(UnitTestCase):
 		from ask_alyf.ask_alyf.agent import _ensure_ask_alyf_harness_profile
 
 		self.assertEqual(
-			_ASK_ALYF_EXCLUDED_TOOLS,
+			ASK_ALYF_EXCLUDED_TOOLS,
 			frozenset({"write_file", "edit_file", "execute"}),
 		)
 		# Registration is idempotent and safe to call repeatedly.
@@ -456,18 +452,18 @@ class UnitTestCodeTools(UnitTestCase):
 
 	def test_history_item_to_native_message_maps_roles(self):
 		self.assertIsInstance(
-			_history_item_to_native_message({"role": "user", "content": "hi"}),
+			history_item_to_native_message({"role": "user", "content": "hi"}),
 			HumanMessage,
 		)
 		self.assertIsInstance(
-			_history_item_to_native_message({"role": "assistant", "content": "ok"}),
+			history_item_to_native_message({"role": "assistant", "content": "ok"}),
 			AIMessage,
 		)
 		self.assertIsInstance(
-			_history_item_to_native_message({"role": "system", "content": "note"}),
+			history_item_to_native_message({"role": "system", "content": "note"}),
 			SystemMessage,
 		)
-		self.assertIsNone(_history_item_to_native_message({"role": "user", "content": ""}))
+		self.assertIsNone(history_item_to_native_message({"role": "user", "content": ""}))
 
 	def test_history_item_to_native_message_appends_extraction_metadata(self):
 		item = {
@@ -487,7 +483,7 @@ class UnitTestCodeTools(UnitTestCase):
 				],
 			},
 		}
-		message = _history_item_to_native_message(item)
+		message = history_item_to_native_message(item)
 		self.assertIsInstance(message, HumanMessage)
 		text = message.content
 		self.assertIn("What is on this invoice?", text)
@@ -564,7 +560,7 @@ class UnitTestCodeTools(UnitTestCase):
 		async def fake_tool(file_id):
 			return {"file_id": file_id}
 
-		wrapped = _clear_messages_on_tool_error(fake_tool)
+		wrapped = clear_messages_on_tool_error(fake_tool)
 		result = asyncio.run(wrapped("FILE-0001"))
 
 		self.assertTrue(asyncio.iscoroutinefunction(wrapped))
@@ -574,9 +570,9 @@ class UnitTestCodeTools(UnitTestCase):
 		async def fake_tool():
 			raise RuntimeError("boom")
 
-		wrapped = _clear_messages_on_tool_error(fake_tool)
+		wrapped = clear_messages_on_tool_error(fake_tool)
 
-		with patch("ask_alyf.ask_alyf.agent.frappe.clear_messages") as clear_messages:
+		with patch("ask_alyf.ask_alyf.toolset.frappe.clear_messages") as clear_messages:
 			with self.assertRaisesRegex(RuntimeError, "boom"):
 				asyncio.run(wrapped())
 
