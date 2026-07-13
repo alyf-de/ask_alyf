@@ -15,6 +15,7 @@
       "extensions": [
         "ms-python.python",
         "ms-python.debugpy",
+        "ms-python.vscode-pylance",
         "charliermarsh.ruff",
         "esbenp.prettier-vscode",
         "vue.volar",

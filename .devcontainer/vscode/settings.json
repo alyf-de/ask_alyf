@@ -1,0 +1,50 @@
+{
+  "git.autofetch": true,
+  "git.autoRepositoryDetection": "subFolders",
+  "git.repositoryScanMaxDepth": 3,
+  "editor.renderWhitespace": "all",
+  "editor.rulers": [80, 110],
+  "terminal.integrated.confirmOnExit": "hasChildProcesses",
+  "terminal.integrated.confirmOnKill": "always",
+  "debug.confirmOnExit": "always",
+  "python.defaultInterpreterPath": "${workspaceFolder}/env/bin/python",
+  "python.analysis.extraPaths": [
+    "${workspaceFolder}/apps/frappe",
+    "${workspaceFolder}/apps/ask_alyf"
+  ],
+  "search.exclude": {
+    "**/archived": true,
+    "**/archived_sites": true,
+    "**/sites/assets": true,
+    "**/env": true,
+    "**/node_modules": true,
+    "**/logs": true,
+    "**/apps/*/*/public/dist": true
+  },
+  "files.watcherExclude": {
+    "**/node_modules/**": true,
+    "**/env/**": true,
+    "**/config/**": true,
+    "**/sites/assets/**": true,
+    "**/logs/**": true,
+    "**/__pycache__/**": true,
+    "**/*.pyc": true
+  },
+  "files.exclude": {
+    "**/__pycache__": true,
+    "**/*.pyc": true,
+    "**/.git": false
+  },
+  "prettier.printWidth": 110,
+  "prettier.useTabs": true,
+  "[javascript][css][scss][vue]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[python]": {
+    "editor.defaultFormatter": "charliermarsh.ruff",
+    "editor.detectIndentation": true,
+    "editor.insertSpaces": false,
+    "editor.formatOnPaste": false,
+    "editor.formatOnSave": false
+  }
+}

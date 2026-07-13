@@ -70,6 +70,12 @@ configure_bench() {
 	bench set-config -g serve_default_site true
 }
 
+install_editor_config() {
+	log "Installing bench VS Code configuration"
+	mkdir -p "${BENCH_ROOT}/.vscode"
+	cp "${REPO_PATH}/.devcontainer/vscode/"*.json "${BENCH_ROOT}/.vscode/"
+}
+
 link_app() {
 	local app_link="${BENCH_ROOT}/apps/${REPO_NAME}"
 	if [ -e "${app_link}" ] && [ "$(python3 -c 'import os, sys; print(os.path.realpath(sys.argv[1]))' "${app_link}")" != "${REPO_PATH}" ]; then
@@ -129,6 +135,7 @@ main() {
 
 	ensure_bench
 	configure_bench
+	install_editor_config
 	link_app
 	create_site
 	install_app
