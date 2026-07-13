@@ -19,7 +19,8 @@ from ask_alyf.ask_alyf.utils import parse_newline_list
 # scalars, e.g. [["Customer", "name", "=", "CUST-001"], ["disabled", "=", 0]].
 # Typed (rather than `list[Any]`) so the generated JSON Schema gives the array
 # `items` a concrete `type`, which OpenAI strict function-calling requires.
-FrappeFilterList = list[list[str | int | float | bool | None]]
+Scalar = str | int | float | bool | None
+FrappeFilterList = list[list[Scalar | list[Scalar]]]
 
 
 @dataclass
