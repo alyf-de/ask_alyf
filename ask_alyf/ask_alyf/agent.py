@@ -225,6 +225,16 @@ Mode awareness and behavior:
 		# ``general-purpose`` is auto-added by Deep Agents; we only declare the
 		# two restricted specialists here. Each supplies an explicit minimal
 		# tool list so the parent's proposal/mutation tools are never inherited.
+		#
+		# Note on ``tools: []`` for source-code-analyzer: Deep Agents always
+		# injects ``FilesystemMiddleware`` (and thus the read-only VFS tools
+		# ``ls``, ``read_file``, ``glob``, ``grep``) into every subagent stack
+		# regardless of the ``tools`` field — the ``tools`` list only controls
+		# *extra* tools inherited from the parent. An empty list therefore means
+		# "no parent tools", not "no tools at all"; the analyzer still gets the
+		# ``/source/``-scoped read tools it needs while staying free of mutation
+		# tools. Write tools are stripped by the harness profile + deny
+		# permission, so the VFS remains strictly read-only here.
 		subagents: list[SubAgent] = []
 
 		if self.settings.is_code_search_enabled():
