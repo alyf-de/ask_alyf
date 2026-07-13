@@ -4,7 +4,7 @@ This workspace is a generated Frappe bench. The `ask_alyf` source checkout is
 linked at `apps/ask_alyf`, so edits there are immediately available to the
 bench.
 
-The development site is `test-site-dev`. Its Administrator password is
+The development site is `test_site`. Its Administrator password is
 `admin`.
 
 ## Start the bench
@@ -33,10 +33,10 @@ Open **Run and Debug** and select one of these configurations:
 - **Bench: Web only (stop bench start first)** — starts only the debug web
   server. Use it when the remaining services are already running separately.
 - **Bench: Services (without web)** — starts the non-web services only.
-- **Bench: Console** — opens an interactive console for `test-site-dev`.
+- **Bench: Console** — opens an interactive console for `test_site`.
 - **Bench: Test ask_alyf** — runs the app test suite under debugpy.
 - **Bench: Test module** — prompts for a dotted test module.
-- **Bench: Migrate** — migrates `test-site-dev`.
+- **Bench: Migrate** — migrates `test_site`.
 - **Bench: Worker** — runs a worker under debugpy.
 
 Stop the active terminal or debug session before switching startup modes.

@@ -9,7 +9,7 @@
       "args": [
         "frappe",
         "--site",
-        "test-site-dev",
+        "test_site",
         "serve",
         "--port",
         "8000",
@@ -35,7 +35,7 @@
       "type": "debugpy",
       "request": "launch",
       "program": "${workspaceFolder}/apps/frappe/frappe/utils/bench_helper.py",
-      "args": ["frappe", "--site", "test-site-dev", "console"],
+      "args": ["frappe", "--site", "test_site", "console"],
       "python": "${workspaceFolder}/env/bin/python",
       "cwd": "${workspaceFolder}/sites",
       "console": "integratedTerminal"
@@ -48,7 +48,7 @@
       "args": [
         "frappe",
         "--site",
-        "test-site-dev",
+        "test_site",
         "run-tests",
         "--app",
         "ask_alyf"
@@ -65,7 +65,7 @@
       "args": [
         "frappe",
         "--site",
-        "test-site-dev",
+        "test_site",
         "run-tests",
         "--module",
         "${input:testModule}"
@@ -79,7 +79,7 @@
       "type": "debugpy",
       "request": "launch",
       "program": "${workspaceFolder}/apps/frappe/frappe/utils/bench_helper.py",
-      "args": ["frappe", "--site", "test-site-dev", "migrate"],
+      "args": ["frappe", "--site", "test_site", "migrate"],
       "python": "${workspaceFolder}/env/bin/python",
       "cwd": "${workspaceFolder}/sites"
     },

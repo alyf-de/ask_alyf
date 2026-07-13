@@ -4,7 +4,7 @@ set -euo pipefail
 REPO_NAME="ask_alyf"
 REPO_PATH="/workspace/${REPO_NAME}"
 BENCH_ROOT="/workspace/frappe-bench"
-SITE_NAME="test-site-dev"
+SITE_NAME="test_site"
 FRAPPE_BRANCH="develop"
 DB_ROOT_PASSWORD="123"
 ADMIN_PASSWORD="admin"
