@@ -1,3 +1,4 @@
+import contextlib
 import functools
 import inspect
 from dataclasses import dataclass, field
@@ -1011,17 +1012,74 @@ class ask_alyfToolset:
 		)
 
 
+@contextlib.contextmanager
+def _isolated_db():
+	"""Run a block against a private Frappe DB connection.
+
+	LangGraph runs sync tools via `asyncio.to_thread`, which copies the
+	calling context (contextvars) into the worker thread. Frappe's
+	`frappe.local` is contextvar-backed, so the worker thread inherits the
+	same `frappe.local.db` pymysql connection as the agent's main thread.
+	pymysql connections are not safe for concurrent use, so parallel tool
+	calls (and subagent tool calls) corrupt the shared connection's packet
+	stream — surfacing as `InterfaceError(0, '')` / `Packet sequence number
+	wrong`.
+
+	This opens a fresh connection bound to the current thread/context, runs
+	the block, then closes it and restores the inherited binding. The agent
+	thread's own connection is never touched or closed.
+
+	No-op when Frappe isn't initialized (e.g. direct unit-test calls).
+	"""
+	conf = getattr(frappe.local, "conf", None)
+	if not conf or not getattr(conf, "db_name", None):
+		yield
+		return
+
+	inherited_db = getattr(frappe.local, "db", None)
+	session = getattr(frappe.local, "session", None)
+	session_user = getattr(session, "user", None) if session is not None else None
+
+	frappe.connect()
+	if session_user:
+		frappe.set_user(session_user)
+	try:
+		yield
+	except Exception:
+		try:
+			frappe.db.rollback()
+		except Exception:
+			pass
+		raise
+	else:
+		try:
+			frappe.db.commit()
+		except Exception:
+			pass
+	finally:
+		try:
+			frappe.local.db.close()
+		except Exception:
+			pass
+		frappe.local.db = inherited_db
+
+
 def clear_messages_on_tool_error(func):
-	"""Wrap a tool callable so that queued Frappe messages are discarded on
-	exception.  The error still propagates to the agent framework (so the LLM
-	sees it), but the user won't receive a popup."""
+	"""Wrap a tool so each call runs on a private DB connection and queued
+	Frappe messages are discarded on exception.
+
+	The private connection (see `_isolated_db`) is what makes tool calls
+	safe under LangGraph's threaded tool executor; the error handling keeps
+	user-facing popups from firing when a tool fails inside the agent loop.
+	"""
 
 	if inspect.iscoroutinefunction(func):
 
 		@functools.wraps(func)
 		async def async_wrapper(*args, **kwargs):
 			try:
-				return await func(*args, **kwargs)
+				with _isolated_db():
+					return await func(*args, **kwargs)
 			except Exception:
 				frappe.clear_messages()
 				raise
@@ -1031,9 +1089,14 @@ def clear_messages_on_tool_error(func):
 	@functools.wraps(func)
 	def wrapper(*args, **kwargs):
 		try:
-			return func(*args, **kwargs)
+			return _run_with_isolated_db(func, args, kwargs)
 		except Exception:
 			frappe.clear_messages()
 			raise
 
 	return wrapper
+
+
+def _run_with_isolated_db(func, args, kwargs):
+	with _isolated_db():
+		return func(*args, **kwargs)
