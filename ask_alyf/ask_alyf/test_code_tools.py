@@ -3,12 +3,8 @@ from types import SimpleNamespace
 from unittest.mock import patch
 
 import frappe
-<<<<<<< HEAD
 from frappe.tests.utils import FrappeTestCase
-=======
-from frappe.tests import UnitTestCase
 from langchain_core.messages import AIMessage, HumanMessage, SystemMessage
->>>>>>> e7a2dbd (feat: move from mozilla any-agent to langchain deepagents (#44))
 
 from ask_alyf.ask_alyf import tools
 from ask_alyf.ask_alyf.agent import ASK_ALYF_EXCLUDED_TOOLS, ask_alyfAgentRunner

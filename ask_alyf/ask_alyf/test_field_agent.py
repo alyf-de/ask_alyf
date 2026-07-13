@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from types import SimpleNamespace
-from unittest.mock import AsyncMock, MagicMock, patch
+from unittest.mock import MagicMock, patch
 
 import frappe
 from frappe.tests.utils import FrappeTestCase
@@ -63,14 +63,7 @@ class UnitTestFieldContexts(FrappeTestCase):
 		self.assertIn("Small Text", result["system_prompt"])
 
 
-<<<<<<< HEAD
 class UnitTestFieldAgent(FrappeTestCase):
-	def _make_fake_trace(self, output: str = "OK"):
-		return SimpleNamespace(final_output=output)
-
-=======
-class UnitTestFieldAgent(UnitTestCase):
->>>>>>> e7a2dbd (feat: move from mozilla any-agent to langchain deepagents (#44))
 	def _make_fake_agent(self, output: str = "OK"):
 		"""Build a fake stateless agent whose `invoke` returns a native message list."""
 		agent = MagicMock()
