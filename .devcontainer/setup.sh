@@ -89,6 +89,7 @@ create_site() {
 
 	log "Creating site ${SITE_NAME}"
 	bench new-site \
+		--db-root-username root \
 		--db-root-password "${DB_ROOT_PASSWORD}" \
 		--admin-password "${ADMIN_PASSWORD}" \
 		--mariadb-user-host-login-scope "%" \
