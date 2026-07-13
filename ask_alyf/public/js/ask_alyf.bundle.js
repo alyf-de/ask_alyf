@@ -1615,6 +1615,7 @@ import "./field_agent";
 			this.setActiveTab("chat");
 			await this.applyConversation(response.message);
 			this.setModeToAskDefault();
+			this.setLoading(false);
 			this.refreshConversationList();
 			this.setStatus("");
 		}
