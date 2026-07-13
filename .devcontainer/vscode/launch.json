@@ -2,7 +2,7 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Bench: Serve",
+      "name": "Bench: Web only (stop bench start first)",
       "type": "debugpy",
       "request": "launch",
       "program": "${workspaceFolder}/apps/frappe/frappe/utils/bench_helper.py",
@@ -21,6 +21,14 @@
         "DEV_SERVER": "1"
       },
       "justMyCode": true
+    },
+    {
+      "name": "Bench: Services (without web)",
+      "type": "node-terminal",
+      "request": "launch",
+      "command": "honcho start socketio watch schedule worker",
+      "cwd": "${workspaceFolder}",
+      "postDebugTask": "Stop bench services"
     },
     {
       "name": "Bench: Console",
@@ -84,6 +92,16 @@
       "python": "${workspaceFolder}/env/bin/python",
       "cwd": "${workspaceFolder}/sites",
       "justMyCode": true
+    }
+  ],
+  "compounds": [
+    {
+      "name": "Bench: Full stack (debug web)",
+      "configurations": [
+        "Bench: Web only (stop bench start first)",
+        "Bench: Services (without web)"
+      ],
+      "stopAll": true
     }
   ],
   "inputs": [
