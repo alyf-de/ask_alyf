@@ -2,9 +2,8 @@ from __future__ import annotations
 
 import asyncio
 import base64
-import fnmatch
+import re
 from pathlib import Path
-from typing import Any
 
 import frappe
 import wcmatch.glob as wcglob
@@ -30,16 +29,19 @@ from ask_alyf.ask_alyf.tools import (
 	get_installed_app_roots,
 	get_path_parts,
 	is_hidden_path,
-	is_path_within,
 	iter_scoped_entries,
 	iter_scoped_files,
 	resolve_installed_app_path,
-	to_app_relative_path,
 	to_bench_relative_path,
 )
 
-SOURCE_READ_ONLY_ERROR = _("Source code is read-only")
-ATTACHMENT_READ_ONLY_ERROR = _("Attachments are read-only")
+
+def _source_read_only_error() -> str:
+	return _("Source code is read-only")
+
+
+def _attachment_read_only_error() -> str:
+	return _("Attachments are read-only")
 
 
 def _bench_relative_to_source_path(bench_relative: str) -> str:
@@ -171,18 +173,24 @@ class ReadOnlySourceBackend(BackendProtocol):
 
 	def grep(self, pattern: str, path: str | None = None, glob: str | None = None) -> GrepResult:
 		try:
+			try:
+				regex = re.compile(pattern)
+			except re.error as exc:
+				return GrepResult(error=_("Invalid regex pattern: {0}").format(exc))
 			files = self._collect_files(path)
 			matches: list[GrepMatch] = []
 			for _app_root, file_path in files:
-				if glob and not fnmatch.fnmatch(file_path.name, glob):
-					continue
+				source_path = _bench_relative_to_source_path(to_bench_relative_path(file_path))
+				if glob:
+					relative = source_path.lstrip("/")
+					if not wcglob.globmatch(relative, glob, flags=wcglob.BRACE | wcglob.GLOBSTAR):
+						continue
 				try:
 					content = file_path.read_text(encoding="utf-8")
 				except Exception:
 					continue
-				source_path = _bench_relative_to_source_path(to_bench_relative_path(file_path))
 				for line_num, line in enumerate(content.split("\n"), 1):
-					if pattern in line:
+					if regex.search(line):
 						matches.append(GrepMatch(path=source_path, line=int(line_num), text=line))
 			return GrepResult(matches=matches)
 		except Exception as exc:
@@ -208,7 +216,7 @@ class ReadOnlySourceBackend(BackendProtocol):
 			return GlobResult(error=str(exc))
 
 	def write(self, file_path: str, content: str) -> WriteResult:
-		return WriteResult(error=str(SOURCE_READ_ONLY_ERROR))
+		return WriteResult(error=_source_read_only_error())
 
 	def edit(
 		self,
@@ -217,7 +225,7 @@ class ReadOnlySourceBackend(BackendProtocol):
 		new_string: str,
 		replace_all: bool = False,
 	) -> EditResult:
-		return EditResult(error=str(SOURCE_READ_ONLY_ERROR))
+		return EditResult(error=_source_read_only_error())
 
 	async def als(self, path: str) -> LsResult:
 		return await asyncio.to_thread(self.ls, path)
@@ -232,7 +240,7 @@ class ReadOnlySourceBackend(BackendProtocol):
 		return await asyncio.to_thread(self.glob, pattern, path)
 
 	async def awrite(self, file_path: str, content: str) -> WriteResult:
-		return WriteResult(error=str(SOURCE_READ_ONLY_ERROR))
+		return WriteResult(error=_source_read_only_error())
 
 	async def aedit(
 		self,
@@ -241,7 +249,7 @@ class ReadOnlySourceBackend(BackendProtocol):
 		new_string: str,
 		replace_all: bool = False,
 	) -> EditResult:
-		return EditResult(error=str(SOURCE_READ_ONLY_ERROR))
+		return EditResult(error=_source_read_only_error())
 
 
 class ReadOnlyAttachmentBackend(BackendProtocol):
@@ -283,7 +291,7 @@ class ReadOnlyAttachmentBackend(BackendProtocol):
 		return GlobResult(matches=[])
 
 	def write(self, file_path: str, content: str) -> WriteResult:
-		return WriteResult(error=str(ATTACHMENT_READ_ONLY_ERROR))
+		return WriteResult(error=_attachment_read_only_error())
 
 	def edit(
 		self,
@@ -292,7 +300,7 @@ class ReadOnlyAttachmentBackend(BackendProtocol):
 		new_string: str,
 		replace_all: bool = False,
 	) -> EditResult:
-		return EditResult(error=str(ATTACHMENT_READ_ONLY_ERROR))
+		return EditResult(error=_attachment_read_only_error())
 
 	async def als(self, path: str) -> LsResult:
 		return await asyncio.to_thread(self.ls, path)
@@ -307,7 +315,7 @@ class ReadOnlyAttachmentBackend(BackendProtocol):
 		return await asyncio.to_thread(self.glob, pattern, path)
 
 	async def awrite(self, file_path: str, content: str) -> WriteResult:
-		return WriteResult(error=str(ATTACHMENT_READ_ONLY_ERROR))
+		return WriteResult(error=_attachment_read_only_error())
 
 	async def aedit(
 		self,
@@ -316,7 +324,7 @@ class ReadOnlyAttachmentBackend(BackendProtocol):
 		new_string: str,
 		replace_all: bool = False,
 	) -> EditResult:
-		return EditResult(error=str(ATTACHMENT_READ_ONLY_ERROR))
+		return EditResult(error=_attachment_read_only_error())
 
 
 def build_ask_alyf_backend() -> CompositeBackend:

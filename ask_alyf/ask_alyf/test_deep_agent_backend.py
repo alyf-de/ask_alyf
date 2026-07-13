@@ -10,10 +10,10 @@ from deepagents.backends import StateBackend
 from frappe.tests import UnitTestCase
 
 from ask_alyf.ask_alyf.deep_agent_backend import (
-	ATTACHMENT_READ_ONLY_ERROR,
-	SOURCE_READ_ONLY_ERROR,
 	ReadOnlyAttachmentBackend,
 	ReadOnlySourceBackend,
+	_attachment_read_only_error,
+	_source_read_only_error,
 	build_ask_alyf_backend,
 )
 
@@ -49,26 +49,26 @@ class UnitTestAskALYFVirtualFilesystem(UnitTestCase):
 	def test_source_backend_rejects_writes_and_edits(self):
 		backend = build_ask_alyf_backend()
 		write_result = backend.write("/source/ask_alyf/new_file.py", "print('hi')")
-		self.assertEqual(write_result.error, str(SOURCE_READ_ONLY_ERROR))
+		self.assertEqual(write_result.error, _source_read_only_error())
 
 		edit_result = backend.edit(
 			"/source/ask_alyf/agent.py",
 			"old",
 			"new",
 		)
-		self.assertEqual(edit_result.error, str(SOURCE_READ_ONLY_ERROR))
+		self.assertEqual(edit_result.error, _source_read_only_error())
 
 	def test_attachments_backend_rejects_writes_and_edits(self):
 		backend = build_ask_alyf_backend()
 		write_result = backend.write("/attachments/FILE-0001", "overwrite")
-		self.assertEqual(write_result.error, str(ATTACHMENT_READ_ONLY_ERROR))
+		self.assertEqual(write_result.error, _attachment_read_only_error())
 
 		edit_result = backend.edit(
 			"/attachments/FILE-0001",
 			"old",
 			"new",
 		)
-		self.assertEqual(edit_result.error, str(ATTACHMENT_READ_ONLY_ERROR))
+		self.assertEqual(edit_result.error, _attachment_read_only_error())
 
 	def test_source_backend_blocks_path_traversal(self):
 		backend = build_ask_alyf_backend()

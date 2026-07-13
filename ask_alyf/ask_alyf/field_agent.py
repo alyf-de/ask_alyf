@@ -155,5 +155,8 @@ def run_field_agent(
 		content = getattr(last, "content", None)
 		if isinstance(content, str):
 			return content.strip()
+		elif content is not None:
+			# Some providers return content as a list of blocks; coerce to text.
+			return str(content).strip()
 
 	return ""
