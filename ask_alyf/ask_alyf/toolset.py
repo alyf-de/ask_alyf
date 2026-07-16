@@ -1,6 +1,7 @@
 import contextlib
 import functools
 import inspect
+import threading
 from dataclasses import dataclass, field
 from typing import Any
 from uuid import uuid4
@@ -22,6 +23,7 @@ from ask_alyf.ask_alyf.utils import parse_newline_list
 # `items` a concrete `type`, which OpenAI strict function-calling requires.
 Scalar = str | int | float | bool | None
 FrappeFilterList = list[list[Scalar | list[Scalar]]]
+_TOOL_DB_LOCK = threading.RLock()
 
 
 @dataclass
@@ -1066,8 +1068,9 @@ def clear_messages_on_tool_error(func):
 		@functools.wraps(func)
 		async def async_wrapper(*args, **kwargs):
 			try:
-				with _isolated_db():
-					return await func(*args, **kwargs)
+				with _TOOL_DB_LOCK:
+					with _isolated_db():
+						return await func(*args, **kwargs)
 			except Exception:
 				frappe.clear_messages()
 				raise
@@ -1086,5 +1089,6 @@ def clear_messages_on_tool_error(func):
 
 
 def _run_with_isolated_db(func, args, kwargs):
-	with _isolated_db():
-		return func(*args, **kwargs)
+	with _TOOL_DB_LOCK:
+		with _isolated_db():
+			return func(*args, **kwargs)

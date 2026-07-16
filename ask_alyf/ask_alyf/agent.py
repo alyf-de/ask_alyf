@@ -1,3 +1,4 @@
+import re
 import threading
 from collections.abc import Callable
 from typing import Any
@@ -41,6 +42,51 @@ from ask_alyf.ask_alyf.toolset import (
 ASK_ALYF_EXCLUDED_TOOLS = frozenset({"write_file", "edit_file", "execute"})
 _ASK_ALYF_PROFILE_REGISTERED = False
 _ASK_ALYF_PROFILE_LOCK = threading.Lock()
+USER_CREATION_EMAIL_RE = re.compile(r"[A-Za-z0-9_.+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}")
+USER_CREATION_INTENT_RE = re.compile(r"(新建|创建|新增|create|add).{0,12}(用户|user)", re.IGNORECASE)
+
+
+def try_prepare_direct_user_creation(runtime: ask_alyfRuntime, message: str) -> dict[str, Any] | None:
+	if runtime.mode != "Agent":
+		return None
+
+	clean_message = (message or "").strip()
+	if not USER_CREATION_INTENT_RE.search(clean_message):
+		return None
+
+	match = USER_CREATION_EMAIL_RE.search(clean_message)
+	if not match:
+		return None
+
+	email = match.group(0).strip().lower()
+	existing_user = frappe.db.exists("User", {"email": email}) or frappe.db.exists("User", email)
+	if existing_user:
+		return {
+			"response": _("用户 {0} 已经存在。").format(email),
+			"pending_operations": [],
+			"document_extractions": [],
+			"attached_files": [],
+		}
+
+	local_part = email.split("@", 1)[0]
+	toolset = ask_alyfToolset(runtime)
+	toolset.insert(
+		"User",
+		{
+			"email": email,
+			"first_name": local_part,
+			"enabled": 1,
+			"user_type": "System User",
+			"send_welcome_email": 0,
+		},
+		reason=_("Create user from requested email address."),
+	)
+	return {
+		"response": _("已准备创建用户，请检查并确认。"),
+		"pending_operations": runtime.pending_operations,
+		"document_extractions": [],
+		"attached_files": [],
+	}
 
 
 def _ensure_ask_alyf_harness_profile() -> None:
@@ -335,6 +381,10 @@ def run_message(
 		request_context=request_context,
 		conversation_history=conversation_history,
 	)
+	direct_result = try_prepare_direct_user_creation(runtime, message)
+	if direct_result:
+		return direct_result
+
 	runner = ask_alyfAgentRunner(runtime)
 	return runner.run(message, conversation_history)
 

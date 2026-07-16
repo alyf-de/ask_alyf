@@ -7,7 +7,11 @@ from frappe.tests import UnitTestCase
 from langchain_core.messages import AIMessage, HumanMessage, SystemMessage
 
 from ask_alyf.ask_alyf import tools
-from ask_alyf.ask_alyf.agent import ASK_ALYF_EXCLUDED_TOOLS, ask_alyfAgentRunner
+from ask_alyf.ask_alyf.agent import (
+	ASK_ALYF_EXCLUDED_TOOLS,
+	ask_alyfAgentRunner,
+	try_prepare_direct_user_creation,
+)
 from ask_alyf.ask_alyf.history import history_item_to_native_message
 from ask_alyf.ask_alyf.toolset import ask_alyfToolset, clear_messages_on_tool_error
 
@@ -192,6 +196,38 @@ class UnitTestCodeTools(UnitTestCase):
 			[{"role": "Accounts User"}, {"role": "Employee"}],
 		)
 
+	def test_direct_user_creation_prepares_insert_from_email(self):
+		runtime = self.make_runtime(mode="Agent")
+
+		with patch("ask_alyf.ask_alyf.agent.frappe.db.exists", return_value=None):
+			result = try_prepare_direct_user_creation(runtime, "帮我新建一个用户80360650@qq.com")
+
+		self.assertIsNotNone(result)
+		self.assertEqual(result["response"], "已准备创建用户，请检查并确认。")
+		self.assertEqual(len(result["pending_operations"]), 1)
+		operation = result["pending_operations"][0]
+		self.assertEqual(operation["tool"], "insert")
+		self.assertEqual(operation["payload"]["doctype"], "User")
+		self.assertEqual(
+			operation["payload"]["values"],
+			{
+				"email": "80360650@qq.com",
+				"first_name": "80360650",
+				"enabled": 1,
+				"user_type": "System User",
+				"send_welcome_email": 0,
+			},
+		)
+
+	def test_direct_user_creation_skips_existing_user(self):
+		runtime = self.make_runtime(mode="Agent")
+
+		with patch("ask_alyf.ask_alyf.agent.frappe.db.exists", return_value="80360650@qq.com"):
+			result = try_prepare_direct_user_creation(runtime, "创建用户80360650@qq.com")
+
+		self.assertEqual(result["pending_operations"], [])
+		self.assertIn("已经存在", result["response"])
+
 	def test_code_tools_require_setting_to_be_enabled(self):
 		with patch(
 			"ask_alyf.ask_alyf.tools.get_settings", return_value=FakeSettings(allow_code_search=False)
@@ -362,6 +398,23 @@ class UnitTestCodeTools(UnitTestCase):
 		self.assertIn("Created 2 of 3 ToDo records.", result["message"])
 		self.assertIn("row 2: Missing description", result["message"])
 
+	def test_get_document_returns_not_found_payload_for_filters(self):
+		with patch(
+			"ask_alyf.ask_alyf.tools.client.get",
+			side_effect=frappe.DoesNotExistError("User {'email': '80360650@qq.com'} not found"),
+		):
+			result = tools.get_document("User", filters={"email": "80360650@qq.com"})
+
+		self.assertEqual(
+			result,
+			{
+				"found": False,
+				"doctype": "User",
+				"filters": {"email": "80360650@qq.com"},
+				"message": "User {'email': '80360650@qq.com'} not found",
+			},
+		)
+
 	def test_source_code_analyzer_subagent_descriptor_has_empty_tools(self):
 		runner = self.make_runner(allow_code_search=True, mode="Ask")
 		subagents = runner._build_subagents()
@@ -401,6 +454,13 @@ class UnitTestCodeTools(UnitTestCase):
 		runner = self.make_runner(allow_code_search=False, mode="Agent")
 		planner = next(sub for sub in runner._build_subagents() if sub["name"] == "document-planner")
 		self.assertIs(planner["response_format"], DocumentPlannerResult)
+
+	def test_document_planner_instructions_include_user_creation_defaults(self):
+		from ask_alyf.ask_alyf.subagents import DOCUMENT_PLANNER_INSTRUCTIONS
+
+		self.assertIn("User creation", DOCUMENT_PLANNER_INSTRUCTIONS)
+		self.assertIn("email local part", DOCUMENT_PLANNER_INSTRUCTIONS)
+		self.assertIn("send_welcome_email=0", DOCUMENT_PLANNER_INSTRUCTIONS)
 
 	def test_harness_profile_excludes_write_edit_execute(self):
 		from ask_alyf.ask_alyf.agent import _ensure_ask_alyf_harness_profile

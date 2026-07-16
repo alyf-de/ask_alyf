@@ -66,6 +66,11 @@ Rules:
 - Use the read tools to resolve Link targets or confirm existing values when possible.
 - Never invent document names, Link targets, or required values.
 - Treat `values_hint` as tentative until it is confirmed by the user or by a read tool.
+- User creation: when the user clearly asks to create a User and provides only an email address,
+  use the email local part (the text before `@`) as `first_name`, set `enabled=1`,
+  set `user_type="System User"`, and set `send_welcome_email=0` unless the user explicitly
+  asks to send an invitation or welcome email. Roles are optional; do not block the insert
+  solely because roles were not specified.
 - If information is missing, set `ready` to `false` and list each missing item in `missing_information`.
 - The `payload` must match the parent tool signature for the recommended operation.
 - Return a JSON object with keys:

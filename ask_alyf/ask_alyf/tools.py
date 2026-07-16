@@ -352,7 +352,19 @@ def get_count(doctype: str, filters: dict[str, Any] | list | None = None) -> int
 def get_document(
 	doctype: str, name: str | None = None, filters: dict[str, Any] | None = None
 ) -> dict[str, Any]:
-	return client.get(doctype=doctype, name=name, filters=filters)
+	try:
+		return client.get(doctype=doctype, name=name, filters=filters)
+	except frappe.DoesNotExistError as error:
+		result = {
+			"found": False,
+			"doctype": doctype,
+			"message": str(error).strip() or _("{0} was not found.").format(_(doctype)),
+		}
+		if name:
+			result["name"] = name
+		if filters:
+			result["filters"] = filters
+		return result
 
 
 def get_value(
