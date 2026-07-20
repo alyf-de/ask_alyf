@@ -832,10 +832,10 @@ async def _run_document_extraction_completion(
 		api_key=model_config.api_key,
 		api_base=model_config.api_base,
 	)
+	# Do not pass temperature: gpt-5.x (and similar) reject non-default values.
 	return await client.acompletion(
 		model=model_config.model_id,
 		messages=[{"role": "user", "content": content_parts}],
-		temperature=0.1,
 		response_format={"type": "json_object"},
 	)
 
