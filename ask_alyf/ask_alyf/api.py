@@ -557,10 +557,15 @@ def get_message_job_status(conversation: str, user_message_id: str, job_id: str)
 		doc.reload()
 		messages = get_messages(doc)
 		user_message_index = next(
-			index
-			for index, item in enumerate(messages)
-			if item.get("role") == "user" and item.get("id") == user_message_id
+			(
+				index
+				for index, item in enumerate(messages)
+				if item.get("role") == "user" and item.get("id") == user_message_id
+			),
+			None,
 		)
+		if user_message_index is None:
+			frappe.throw(_("The message could not be found in this conversation."))
 		if any(item.get("role") == "assistant" for item in messages[user_message_index + 1 :]):
 			return {"status": "completed", "conversation": conversation_payload(doc)}
 	if status == JobStatus.FINISHED:
