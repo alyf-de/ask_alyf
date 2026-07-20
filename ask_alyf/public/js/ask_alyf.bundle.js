@@ -865,7 +865,7 @@ import "./field_agent";
 			}
 			this.responseJobPollTimer = setTimeout(
 				() => this.pollResponseJob(version),
-				ASK_ALYF_JOB_POLL_INTERVAL_MS,
+				ASK_ALYF_JOB_POLL_INTERVAL_MS
 			);
 		}
 
@@ -938,7 +938,7 @@ import "./field_agent";
 			this.setStatus(
 				result.status === "failed"
 					? __("Ask ALYF could not finish processing this message. Please try again.")
-					: __("Ask ALYF stopped processing this message. Please try again."),
+					: __("Ask ALYF stopped processing this message. Please try again.")
 			);
 		}
 
