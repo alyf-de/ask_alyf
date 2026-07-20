@@ -559,32 +559,93 @@ class UnitTestCodeTools(UnitTestCase):
 		self.assertFalse(proposal_tools.intersection(ask_tool_names))
 		self.assertFalse(host_mutation_tools.intersection(ask_tool_names))
 
-	def test_clear_messages_wrapper_connects_without_changing_user(self):
-		inherited_db = frappe.local.db
+	def test_tool_wrapper_uses_public_frappe_lifecycle_and_caller_identity(self):
+		parent_db = frappe.local.db
+		parent_message_log = frappe.local.message_log
+		caller = {
+			"site": frappe.local.site,
+			"sites_path": frappe.local.sites_path,
+			"user": frappe.session.user,
+			"language": frappe.local.lang,
+		}
+		parent_local_ids = {
+			"flags": id(frappe.local.flags),
+			"session": id(frappe.local.session),
+			"response": id(frappe.local.response),
+			"message_log": id(parent_message_log),
+		}
 		private_db = MagicMock()
+		events = []
+		original_init = frappe.init
+		original_set_user = frappe.set_user
+		original_destroy = frappe.destroy
+
+		private_db.commit.side_effect = lambda: events.append("commit")
+		private_db.close.side_effect = lambda: events.append("close")
+
+		def init(site, *, sites_path):
+			events.append("init")
+			original_init(site, sites_path=sites_path)
 
 		def connect(*, set_admin_as_user):
+			events.append("connect")
 			self.assertFalse(set_admin_as_user)
 			frappe.local.db = private_db
 
-		wrapped = clear_messages_on_tool_error(lambda: frappe.session.user)
+		def set_user(user):
+			events.append("set_user")
+			original_set_user(user)
+
+		def destroy():
+			events.append("destroy")
+			original_destroy()
+
+		def tool():
+			events.append("tool")
+			return {
+				"site": frappe.local.site,
+				"user": frappe.session.user,
+				"language": frappe.local.lang,
+				"local_ids": {
+					"flags": id(frappe.local.flags),
+					"session": id(frappe.local.session),
+					"response": id(frappe.local.response),
+					"message_log": id(frappe.local.message_log),
+				},
+			}
+
+		wrapped = clear_messages_on_tool_error(tool)
 		with (
-			patch("ask_alyf.ask_alyf.toolset.frappe.connect", side_effect=connect),
-			patch("ask_alyf.ask_alyf.toolset.frappe.set_user") as set_user,
+			patch("ask_alyf.ask_alyf.toolset.frappe.init", side_effect=init) as init_mock,
+			patch("ask_alyf.ask_alyf.toolset.frappe.connect", side_effect=connect) as connect_mock,
+			patch("ask_alyf.ask_alyf.toolset.frappe.set_user", side_effect=set_user) as set_user_mock,
+			patch("ask_alyf.ask_alyf.toolset.frappe.destroy", side_effect=destroy) as destroy_mock,
 		):
 			result = wrapped()
 
-		self.assertEqual(result, frappe.session.user)
-		set_user.assert_not_called()
-		private_db.commit.assert_called_once_with()
-		private_db.close.assert_called_once_with()
-		self.assertIs(frappe.local.db, inherited_db)
+		self.assertEqual(result["site"], caller["site"])
+		self.assertEqual(result["user"], caller["user"])
+		self.assertEqual(result["language"], caller["language"])
+		for key, parent_id in parent_local_ids.items():
+			self.assertNotEqual(result["local_ids"][key], parent_id)
+		self.assertEqual(events, ["init", "connect", "set_user", "tool", "commit", "destroy", "close"])
+		init_mock.assert_called_once_with(caller["site"], sites_path=caller["sites_path"])
+		connect_mock.assert_called_once_with(set_admin_as_user=False)
+		set_user_mock.assert_called_once_with(caller["user"])
+		destroy_mock.assert_called_once_with()
+		self.assertIs(frappe.local.db, parent_db)
+		self.assertIs(frappe.local.message_log, parent_message_log)
 
-	def test_clear_messages_wrapper_isolates_concurrent_copied_contexts(self):
-		inherited_db = frappe.local.db
-		inherited_currently_saving = list(frappe.local.flags.currently_saving)
-		inherited_response_docs = list(frappe.local.response.docs)
-		inherited_message_log = list(frappe.local.message_log)
+	def test_tool_wrapper_isolates_concurrent_copied_contexts(self):
+		parent_db = frappe.local.db
+		parent_flags = frappe.local.flags
+		parent_session = frappe.local.session
+		parent_response = frappe.local.response
+		parent_message_log = frappe.local.message_log
+		parent_currently_saving = list(parent_flags.currently_saving)
+		parent_response_docs = list(parent_response.docs)
+		parent_messages = list(parent_message_log)
+		parent_message_log.append("parent message")
 		connections = []
 		connection_barrier = threading.Barrier(2)
 		tool_barrier = threading.Barrier(2)
@@ -610,6 +671,12 @@ class UnitTestCodeTools(UnitTestCase):
 			tool_barrier.wait(timeout=5)
 			return {
 				"db": bound_db,
+				"local_ids": {
+					"flags": id(frappe.local.flags),
+					"session": id(frappe.local.session),
+					"response": id(frappe.local.response),
+					"message_log": id(frappe.local.message_log),
+				},
 				"currently_saving": list(frappe.local.flags.currently_saving),
 				"response_docs": list(frappe.local.response.docs),
 				"message_log": list(frappe.local.message_log),
@@ -618,83 +685,127 @@ class UnitTestCodeTools(UnitTestCase):
 		wrapped = clear_messages_on_tool_error(tool)
 		contexts = [contextvars.copy_context(), contextvars.copy_context()]
 
-		with (
-			patch("ask_alyf.ask_alyf.toolset.frappe.connect", side_effect=connect),
-			ThreadPoolExecutor(max_workers=2) as executor,
-		):
-			futures = [executor.submit(context.run, wrapped) for context in contexts]
-			results = [future.result(timeout=5) for future in futures]
+		try:
+			with (
+				patch("ask_alyf.ask_alyf.toolset.frappe.connect", side_effect=connect),
+				ThreadPoolExecutor(max_workers=2) as executor,
+			):
+				futures = [executor.submit(context.run, wrapped) for context in contexts]
+				results = [future.result(timeout=5) for future in futures]
 
-		self.assertEqual(
-			{id(result["db"]) for result in results}, {id(connection) for connection in connections}
-		)
-		for result in results:
-			marker = id(result["db"])
-			self.assertEqual(result["currently_saving"], [*inherited_currently_saving, marker])
-			self.assertEqual(result["response_docs"], [*inherited_response_docs, marker])
-			self.assertEqual(result["message_log"], [*inherited_message_log, marker])
-		for connection in connections:
-			connection.commit.assert_called_once_with()
-			connection.close.assert_called_once_with()
-		self.assertIs(frappe.local.db, inherited_db)
-		self.assertNotIn("tool_marker", frappe.local.flags)
-		self.assertNotIn("tool_marker", frappe.local.session)
-		self.assertNotIn("tool_marker", frappe.local.response)
-		self.assertEqual(frappe.local.flags.currently_saving, inherited_currently_saving)
-		self.assertEqual(frappe.local.response.docs, inherited_response_docs)
-		self.assertEqual(frappe.local.message_log, inherited_message_log)
+			self.assertEqual(
+				{id(result["db"]) for result in results}, {id(connection) for connection in connections}
+			)
+			for result in results:
+				marker = id(result["db"])
+				self.assertEqual(result["currently_saving"], [marker])
+				self.assertEqual(result["response_docs"], [marker])
+				self.assertEqual(result["message_log"], [marker])
+			for key in ("flags", "session", "response", "message_log"):
+				self.assertEqual(len({result["local_ids"][key] for result in results}), 2)
+			for connection in connections:
+				connection.commit.assert_called_once_with()
+				connection.close.assert_called_once_with()
+			self.assertIs(frappe.local.db, parent_db)
+			self.assertIs(frappe.local.flags, parent_flags)
+			self.assertIs(frappe.local.session, parent_session)
+			self.assertIs(frappe.local.response, parent_response)
+			self.assertIs(frappe.local.message_log, parent_message_log)
+			self.assertEqual(parent_flags.currently_saving, parent_currently_saving)
+			self.assertEqual(parent_response.docs, parent_response_docs)
+			self.assertEqual(parent_message_log, [*parent_messages, "parent message"])
+		finally:
+			parent_message_log[:] = parent_messages
 
-	def test_clear_messages_wrapper_propagates_commit_failure(self):
-		inherited_db = frappe.local.db
+	def test_tool_wrapper_rolls_back_commit_failure_without_touching_parent_messages(self):
+		parent_db = frappe.local.db
+		parent_message_log = frappe.local.message_log
+		parent_messages = list(parent_message_log)
+		parent_message_log.append("parent message")
 		private_db = MagicMock()
 		private_db.commit.side_effect = RuntimeError("commit failed")
 
 		def connect(*, set_admin_as_user):
+			self.assertFalse(set_admin_as_user)
 			frappe.local.db = private_db
 
 		wrapped = clear_messages_on_tool_error(lambda: "done")
-		with (
-			patch("ask_alyf.ask_alyf.toolset.frappe.connect", side_effect=connect),
-			patch("ask_alyf.ask_alyf.toolset.frappe.clear_messages") as clear_messages,
-			self.assertRaisesRegex(RuntimeError, "commit failed"),
-		):
-			wrapped()
+		try:
+			with (
+				patch("ask_alyf.ask_alyf.toolset.frappe.connect", side_effect=connect),
+				patch(
+					"ask_alyf.ask_alyf.toolset.frappe.clear_messages", wraps=frappe.clear_messages
+				) as clear_messages,
+				self.assertRaisesRegex(RuntimeError, "commit failed"),
+			):
+				wrapped()
 
-		private_db.rollback.assert_called_once_with()
-		private_db.close.assert_called_once_with()
-		clear_messages.assert_called_once_with()
-		self.assertIs(frappe.local.db, inherited_db)
+			private_db.rollback.assert_called_once_with()
+			private_db.close.assert_called_once_with()
+			clear_messages.assert_called_once_with()
+			self.assertIs(frappe.local.db, parent_db)
+			self.assertIs(frappe.local.message_log, parent_message_log)
+			self.assertEqual(parent_message_log, [*parent_messages, "parent message"])
+		finally:
+			parent_message_log[:] = parent_messages
 
-	def test_clear_messages_wrapper_preserves_async_tools(self):
+	def test_tool_wrapper_preserves_async_tools_and_context_across_await(self):
+		parent_db = frappe.local.db
+		private_db = MagicMock()
+
+		def connect(*, set_admin_as_user):
+			self.assertFalse(set_admin_as_user)
+			frappe.local.db = private_db
+
 		async def fake_tool(file_id):
+			private_state = (id(frappe.local.db), id(frappe.local.flags))
+			await asyncio.sleep(0)
+			self.assertEqual((id(frappe.local.db), id(frappe.local.flags)), private_state)
 			return {"file_id": file_id}
 
 		wrapped = clear_messages_on_tool_error(fake_tool)
-		result = asyncio.run(wrapped("FILE-0001"))
+		with patch("ask_alyf.ask_alyf.toolset.frappe.connect", side_effect=connect):
+			result = asyncio.run(wrapped("FILE-0001"))
 
 		self.assertTrue(asyncio.iscoroutinefunction(wrapped))
 		self.assertEqual(result, {"file_id": "FILE-0001"})
+		private_db.commit.assert_called_once_with()
+		private_db.close.assert_called_once_with()
+		self.assertIs(frappe.local.db, parent_db)
 
-	def test_clear_messages_wrapper_clears_messages_for_async_tool_errors(self):
+	def test_tool_wrapper_isolates_async_tool_errors_and_parent_messages(self):
+		parent_db = frappe.local.db
+		parent_message_log = frappe.local.message_log
+		parent_messages = list(parent_message_log)
+		parent_message_log.append("parent message")
+		private_db = MagicMock()
+
+		def connect(*, set_admin_as_user):
+			self.assertFalse(set_admin_as_user)
+			frappe.local.db = private_db
+
 		async def fake_tool():
 			frappe.local.message_log.append("tool message")
+			await asyncio.sleep(0)
 			raise RuntimeError("boom")
 
 		wrapped = clear_messages_on_tool_error(fake_tool)
-		inherited_message_log = frappe.local.message_log
-		original_messages = list(inherited_message_log)
-		inherited_message_log.append("parent message")
-
 		try:
-			with patch(
-				"ask_alyf.ask_alyf.toolset.frappe.clear_messages", wraps=frappe.clear_messages
-			) as clear_messages:
-				with self.assertRaisesRegex(RuntimeError, "boom"):
-					asyncio.run(wrapped())
+			with (
+				patch("ask_alyf.ask_alyf.toolset.frappe.connect", side_effect=connect),
+				patch(
+					"ask_alyf.ask_alyf.toolset.frappe.clear_messages", wraps=frappe.clear_messages
+				) as clear_messages,
+				self.assertRaisesRegex(RuntimeError, "boom"),
+			):
+				asyncio.run(wrapped())
 
+			private_db.commit.assert_not_called()
+			private_db.rollback.assert_called_once_with()
+			private_db.close.assert_called_once_with()
 			clear_messages.assert_called_once_with()
-			self.assertIs(frappe.local.message_log, inherited_message_log)
-			self.assertEqual(inherited_message_log, [*original_messages, "parent message"])
+			self.assertIs(frappe.local.db, parent_db)
+			self.assertIs(frappe.local.message_log, parent_message_log)
+			self.assertEqual(parent_message_log, [*parent_messages, "parent message"])
 		finally:
-			frappe.local.message_log = inherited_message_log
-			inherited_message_log[:] = original_messages
+			parent_message_log[:] = parent_messages

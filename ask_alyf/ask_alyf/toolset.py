@@ -1,5 +1,6 @@
+import asyncio
 import contextlib
-import copy
+import contextvars
 import functools
 import inspect
 from dataclasses import dataclass, field
@@ -16,16 +17,6 @@ from ask_alyf.ask_alyf.history import (
 )
 from ask_alyf.ask_alyf.skill_utils import get_accessible_skill_doc
 from ask_alyf.ask_alyf.utils import parse_newline_list
-
-# Frappe 16+ owns this ContextVar; Frappe 15 stores it inside Werkzeug's Local.
-# Neither version exposes a public API for temporarily rebinding frappe.local.
-try:
-	from frappe.utils.local import _contextvar as frappe_local_context
-except ImportError as exc:
-	try:
-		frappe_local_context = object.__getattribute__(frappe.local, "_Local__storage")
-	except AttributeError:
-		raise RuntimeError("Unsupported Frappe local implementation; update _isolated_db") from exc
 
 # Frappe list filters are a list of filter rows, where each row is a list of
 # scalars, e.g. [["Customer", "name", "=", "CUST-001"], ["disabled", "=", 0]].
@@ -1023,76 +1014,73 @@ class ask_alyfToolset:
 		)
 
 
+@dataclass(frozen=True)
+class _CallerFrappeContext:
+	site: str
+	sites_path: str
+	user: str
+	language: str
+
+
+def _capture_caller_frappe_context() -> _CallerFrappeContext:
+	return _CallerFrappeContext(
+		site=frappe.local.site,
+		sites_path=frappe.local.sites_path,
+		user=frappe.session.user,
+		language=frappe.local.lang,
+	)
+
+
 @contextlib.contextmanager
-def _isolated_db():
-	"""Run a block in a private Frappe local context and DB connection.
-
-	LangGraph runs sync tools via `asyncio.to_thread`, which copies the
-	calling context into the worker thread. Frappe stores one mutable dict
-	in a ContextVar, so copied contexts otherwise still share DB bindings.
-
-	This binds a new local dict and copies the mutable request state tools
-	commonly modify. Other inherited context values must be treated as
-	read-only. A private connection is opened and closed before restoring
-	the caller's ContextVar binding.
-	"""
-	private_local = dict(frappe_local_context.get({}))
-	for key in ("flags", "session", "response", "message_log", "error_log", "debug_log"):
-		if key in private_local:
-			private_local[key] = copy.deepcopy(private_local[key])
-	if "response_headers" in private_local:
-		private_local["response_headers"] = private_local["response_headers"].copy()
-
-	local_token = frappe_local_context.set(private_local)
+def _private_frappe_context(caller: _CallerFrappeContext):
+	"""Initialize and destroy a private Frappe context for one tool call."""
 	private_db = None
 	try:
-		conf = getattr(frappe.local, "conf", None)
-		if not conf or not getattr(conf, "db_name", None):
-			yield
-			return
-
+		frappe.init(caller.site, sites_path=caller.sites_path)
 		frappe.connect(set_admin_as_user=False)
 		private_db = frappe.local.db
+		frappe.set_user(caller.user)
+		frappe.local.lang = caller.language
 		yield
 		private_db.commit()
-	except Exception:
+	except BaseException:
 		if private_db is not None:
 			with contextlib.suppress(Exception):
 				private_db.rollback()
 		frappe.clear_messages()
 		raise
 	finally:
-		if private_db is not None:
-			with contextlib.suppress(Exception):
-				private_db.close()
-		frappe_local_context.reset(local_token)
+		frappe.destroy()
 
 
 def clear_messages_on_tool_error(func):
-	"""Wrap a tool so each call runs on a private DB connection and queued
-	Frappe messages are discarded on exception.
-
-	The private connection (see `_isolated_db`) is what makes tool calls
-	safe under LangGraph's threaded tool executor; the error handling keeps
-	user-facing popups from firing when a tool fails inside the agent loop.
-	"""
+	"""Run each tool call in a fresh Frappe context and DB connection."""
 
 	if inspect.iscoroutinefunction(func):
 
 		@functools.wraps(func)
 		async def async_wrapper(*args, **kwargs):
-			with _isolated_db():
-				return await func(*args, **kwargs)
+			caller = _capture_caller_frappe_context()
+			return await asyncio.create_task(
+				_run_async_with_private_frappe_context(caller, func, args, kwargs),
+				context=contextvars.Context(),
+			)
 
 		return async_wrapper
 
 	@functools.wraps(func)
 	def wrapper(*args, **kwargs):
-		return _run_with_isolated_db(func, args, kwargs)
+		caller = _capture_caller_frappe_context()
+		return contextvars.Context().run(_run_with_private_frappe_context, caller, func, args, kwargs)
 
 	return wrapper
 
 
-def _run_with_isolated_db(func, args, kwargs):
-	with _isolated_db():
+def _run_with_private_frappe_context(caller, func, args, kwargs):
+	with _private_frappe_context(caller):
 		return func(*args, **kwargs)
+
+
+async def _run_async_with_private_frappe_context(caller, func, args, kwargs):
+	with _private_frappe_context(caller):
+		return await func(*args, **kwargs)
