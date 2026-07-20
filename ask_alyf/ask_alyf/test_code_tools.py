@@ -581,7 +581,6 @@ class UnitTestCodeTools(UnitTestCase):
 		original_destroy = frappe.destroy
 
 		private_db.commit.side_effect = lambda: events.append("commit")
-		private_db.close.side_effect = lambda: events.append("close")
 
 		def init(site, *, sites_path):
 			events.append("init")
@@ -628,11 +627,12 @@ class UnitTestCodeTools(UnitTestCase):
 		self.assertEqual(result["language"], caller["language"])
 		for key, parent_id in parent_local_ids.items():
 			self.assertNotEqual(result["local_ids"][key], parent_id)
-		self.assertEqual(events, ["init", "connect", "set_user", "tool", "commit", "destroy", "close"])
+		self.assertEqual(events, ["init", "connect", "set_user", "tool", "commit", "destroy"])
 		init_mock.assert_called_once_with(caller["site"], sites_path=caller["sites_path"])
 		connect_mock.assert_called_once_with(set_admin_as_user=False)
 		set_user_mock.assert_called_once_with(caller["user"])
 		destroy_mock.assert_called_once_with()
+		private_db.close.assert_called_once_with()
 		self.assertIs(frappe.local.db, parent_db)
 		self.assertIs(frappe.local.message_log, parent_message_log)
 
@@ -748,6 +748,34 @@ class UnitTestCodeTools(UnitTestCase):
 			self.assertEqual(parent_message_log, [*parent_messages, "parent message"])
 		finally:
 			parent_message_log[:] = parent_messages
+
+	def test_tool_wrapper_does_not_mask_tool_error_when_destroy_fails(self):
+		parent_db = frappe.local.db
+		private_db = MagicMock()
+		original_destroy = frappe.destroy
+
+		def connect(*, set_admin_as_user):
+			self.assertFalse(set_admin_as_user)
+			frappe.local.db = private_db
+
+		def destroy():
+			original_destroy()
+			raise RuntimeError("destroy failed")
+
+		def tool():
+			raise ValueError("tool failed")
+
+		wrapped = clear_messages_on_tool_error(tool)
+		with (
+			patch("ask_alyf.ask_alyf.toolset.frappe.connect", side_effect=connect),
+			patch("ask_alyf.ask_alyf.toolset.frappe.destroy", side_effect=destroy),
+			self.assertRaisesRegex(ValueError, "tool failed"),
+		):
+			wrapped()
+
+		private_db.rollback.assert_called_once_with()
+		private_db.close.assert_called_once_with()
+		self.assertIs(frappe.local.db, parent_db)
 
 	def test_tool_wrapper_preserves_async_tools_and_context_across_await(self):
 		parent_db = frappe.local.db

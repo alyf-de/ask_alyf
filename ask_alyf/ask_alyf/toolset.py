@@ -1050,7 +1050,8 @@ def _private_frappe_context(caller: _CallerFrappeContext):
 		frappe.clear_messages()
 		raise
 	finally:
-		frappe.destroy()
+		with contextlib.suppress(Exception):
+			frappe.destroy()
 
 
 def clear_messages_on_tool_error(func):
