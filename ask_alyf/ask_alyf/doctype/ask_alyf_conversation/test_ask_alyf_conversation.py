@@ -26,6 +26,95 @@ class UnitTestAskALYFConversation(FrappeTestCase):
 		doc.insert(ignore_permissions=True)
 		return doc
 
+	def test_send_message_returns_and_persists_background_job_id(self):
+		conversation = self.make_conversation()
+
+		with (
+			patch("ask_alyf.ask_alyf.api.can_access_ask_alyf", return_value=True),
+			patch("ask_alyf.ask_alyf.api.enqueue") as enqueue_job,
+		):
+			response = api.send_message(
+				message="Show open invoices",
+				conversation=conversation.name,
+				context={},
+			)
+
+		conversation.reload()
+		user_message = loads(conversation.messages_json, [])[-1]
+		job_id = response["job_id"]
+		self.assertEqual(user_message["metadata"][api.BACKGROUND_JOB_ID_KEY], job_id)
+		self.assertEqual(response["user_message_id"], user_message["id"])
+		self.assertEqual(enqueue_job.call_args.kwargs["job_id"], job_id)
+		self.assertTrue(enqueue_job.call_args.kwargs["enqueue_after_commit"])
+
+	def test_get_message_job_status_maps_rq_terminal_states(self):
+		job_id = "job-123"
+		user_message = api.make_message(
+			"user",
+			"Show open invoices",
+			**{api.BACKGROUND_JOB_ID_KEY: job_id},
+		)
+		conversation = self.make_conversation(messages=[user_message])
+
+		with patch("ask_alyf.ask_alyf.api.can_access_ask_alyf", return_value=True):
+			for rq_status, expected_status in (
+				(api.JobStatus.QUEUED, "pending"),
+				(api.JobStatus.STARTED, "pending"),
+				(api.JobStatus.FINISHED, "completed"),
+				(api.JobStatus.FAILED, "failed"),
+				(api.JobStatus.STOPPED, "failed"),
+				(api.JobStatus.CANCELED, "failed"),
+				(None, "missing"),
+			):
+				with self.subTest(rq_status=rq_status):
+					with patch("ask_alyf.ask_alyf.api.get_job_status", return_value=rq_status):
+						response = api.get_message_job_status(
+							conversation=conversation.name,
+							user_message_id=user_message["id"],
+							job_id=job_id,
+						)
+					self.assertEqual(response["status"], expected_status)
+
+	def test_get_message_job_status_recovers_completed_response_without_rq_result(self):
+		job_id = "expired-job"
+		user_message = api.make_message(
+			"user",
+			"Show open invoices",
+			**{api.BACKGROUND_JOB_ID_KEY: job_id},
+		)
+		assistant_message = api.make_message("assistant", "Here are the open invoices.")
+		conversation = self.make_conversation(messages=[user_message, assistant_message])
+
+		with (
+			patch("ask_alyf.ask_alyf.api.can_access_ask_alyf", return_value=True),
+			patch("ask_alyf.ask_alyf.api.get_job_status") as get_job_status,
+		):
+			response = api.get_message_job_status(
+				conversation=conversation.name,
+				user_message_id=user_message["id"],
+				job_id=job_id,
+			)
+
+		get_job_status.assert_not_called()
+		self.assertEqual(response["status"], "completed")
+		self.assertEqual(response["conversation"]["messages"][-1]["id"], assistant_message["id"])
+
+	def test_get_message_job_status_rejects_job_from_another_message(self):
+		user_message = api.make_message(
+			"user",
+			"Show open invoices",
+			**{api.BACKGROUND_JOB_ID_KEY: "expected-job"},
+		)
+		conversation = self.make_conversation(messages=[user_message])
+
+		with patch("ask_alyf.ask_alyf.api.can_access_ask_alyf", return_value=True):
+			with self.assertRaises(frappe.ValidationError):
+				api.get_message_job_status(
+					conversation=conversation.name,
+					user_message_id=user_message["id"],
+					job_id="different-job",
+				)
+
 	def test_process_message_job_publishes_pending_operations(self):
 		user_message = api.make_message("user", "Open Sales Invoice list", mode=api.MODE_ASK)
 		conversation = self.make_conversation(messages=[user_message])
