@@ -5,6 +5,7 @@ from types import SimpleNamespace
 from unittest.mock import patch
 
 import frappe
+from frappe import _
 from frappe.tests import UnitTestCase
 from langchain_core.messages import ToolMessage
 
@@ -49,7 +50,7 @@ class UnitTestToolErrorMiddleware(UnitTestCase):
 		)
 
 		def handler(_request):
-			frappe.throw("DocType is excluded")
+			frappe.throw(_("DocType is excluded"))
 
 		result = middleware.wrap_tool_call(request, handler)
 
@@ -58,7 +59,7 @@ class UnitTestToolErrorMiddleware(UnitTestCase):
 		self.assertEqual(result.name, "boom")
 		self.assertEqual(result.tool_call_id, "call-1")
 		self.assertIn("ValidationError", result.content)
-		self.assertIn("DocType is excluded", result.content)
+		self.assertIn(_("DocType is excluded"), result.content)
 
 	def test_process_message_job_uses_generic_error_message(self):
 		user_message = api.make_message("user", "Break please", mode=api.MODE_ASK)
@@ -90,6 +91,6 @@ class UnitTestToolErrorMiddleware(UnitTestCase):
 		self.assertEqual(assistant["role"], "assistant")
 		self.assertEqual(
 			assistant["content"],
-			"I hit an error while processing that request. Please try again.",
+			_("I hit an error while processing that request. Please try again."),
 		)
 		self.assertNotIn("secret", assistant["content"])
