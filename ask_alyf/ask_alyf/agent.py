@@ -12,6 +12,8 @@ from deepagents import (
 )
 from frappe import _
 from langchain.agents import create_agent
+from langchain.agents.middleware import ToolErrorMiddleware
+from langchain.agents.middleware.types import ToolCallRequest
 from langchain_core.messages import AnyMessage, HumanMessage
 from langchain_openai import ChatOpenAI
 
@@ -30,6 +32,28 @@ from ask_alyf.ask_alyf.toolset import (
 	ask_alyfToolset,
 	clear_messages_on_tool_error,
 )
+
+
+def _on_tool_error(exc: Exception, request: ToolCallRequest) -> str:
+	"""Convert a tool exception into content for an error ToolMessage.
+
+	Frappe validation/permission messages are intentional and help the model
+	correct course. Unexpected exceptions stay type-only to avoid leaking
+	internal detail (LangChain ToolErrorMiddleware guidance).
+	"""
+	tool_name = request.tool_call.get("name") or "tool"
+	exc_name = type(exc).__name__
+	if isinstance(exc, frappe.ValidationError | frappe.PermissionError):
+		detail = str(exc).strip()
+		if detail:
+			return f"`{tool_name}` failed ({exc_name}): {detail}. Fix the inputs or approach and retry."
+	return f"`{tool_name}` failed with {exc_name}. Fix the inputs or approach and retry."
+
+
+def build_tool_error_middleware() -> ToolErrorMiddleware:
+	"""Build middleware that returns tool failures to the model for retry."""
+	return ToolErrorMiddleware(on_error=_on_tool_error)
+
 
 # Deep Agents exposes built-in filesystem write tools (``write_file``,
 # ``edit_file``) and a shell ``execute`` tool by default. Ask ALYF must never
@@ -106,6 +130,7 @@ class ask_alyfAgentRunner:
 			backend=self.backend,
 			subagents=self._build_subagents(),
 			permissions=self._build_permissions(),
+			middleware=[build_tool_error_middleware()],
 			name="ask_alyf",
 		)
 
@@ -275,6 +300,7 @@ Mode awareness and behavior:
 							self.toolset.list_accessible_doctypes,
 						)
 					],
+					"middleware": [build_tool_error_middleware()],
 					"response_format": DocumentPlannerResult,
 				}
 			)
@@ -351,4 +377,5 @@ def build_stateless_agent(model, tools, *, system_prompt: str):
 		model=model,
 		tools=tools,
 		system_prompt=system_prompt,
+		middleware=[build_tool_error_middleware()],
 	)
