@@ -901,7 +901,7 @@ import "./field_agent";
 			let response;
 			try {
 				response = await frappe.call({
-					method: "ask_alyf.api.get_message_job_status",
+					method: "ask_alyf.ask_alyf.api.get_message_job_status",
 					args: {
 						conversation: activeJob.conversation,
 						job_id: activeJob.jobId,
