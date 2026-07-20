@@ -21,6 +21,7 @@ READ_ONLY_SQL_RE = re.compile(r"^\s*(with|select|show|explain|describe|desc)\b",
 FORBIDDEN_SQL_RE = re.compile(
 	r"\b(insert|update|delete|drop|truncate|alter|create|grant|revoke|replace)\b", re.IGNORECASE
 )
+FrappeSelectField = str | dict[str, str]
 ENGLISH_LANGUAGE_CODES = {"en", "en-us", "en-gb"}
 OPERATION_KIND_BACKEND = "backend_action"
 OPERATION_KIND_FRONTEND = "frontend_action"
@@ -85,26 +86,27 @@ def coerce_int(value: Any, default: int, *, minimum: int | None = None) -> int:
 	return coerced
 
 
-def coerce_field_list(value: str | list[str] | None) -> list[str] | None:
+def coerce_field_list(value: str | list[FrappeSelectField] | None) -> list[FrappeSelectField] | None:
 	if value is None:
 		return None
 
-	if isinstance(value, list):
-		return [str(entry).strip() for entry in value if str(entry).strip()]
+	if isinstance(value, str):
+		stripped = value.strip()
+		if not stripped:
+			return None
 
-	stripped = str(value).strip()
-	if not stripped:
-		return None
+		try:
+			parsed = json.loads(stripped)
+		except json.JSONDecodeError:
+			parsed = None
 
-	try:
-		parsed = json.loads(stripped)
-	except TypeError, json.JSONDecodeError:
-		parsed = None
+		value = parsed if isinstance(parsed, list) else stripped.split(",")
 
-	if isinstance(parsed, list):
-		return [str(entry).strip() for entry in parsed if str(entry).strip()]
-
-	return [part.strip() for part in stripped.split(",") if part.strip()]
+	return [
+		entry if isinstance(entry, dict) else str(entry).strip()
+		for entry in value
+		if (isinstance(entry, dict) and entry) or (not isinstance(entry, dict) and str(entry).strip())
+	]
 
 
 def get_settings():
@@ -327,7 +329,7 @@ def ensure_editable_doctype(doctype: str):
 
 def get_list(
 	doctype: str,
-	fields: str | list[str] | None = None,
+	fields: str | list[FrappeSelectField] | None = None,
 	filters: dict[str, Any] | list | None = None,
 	order_by: str | None = None,
 	limit: int = 20,
