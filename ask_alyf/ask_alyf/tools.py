@@ -104,14 +104,7 @@ def coerce_field_list(value: str | list[FrappeSelectField] | None) -> list[Frapp
 		except json.JSONDecodeError:
 			parsed = None
 
-<<<<<<< HEAD
-	try:
-		parsed = json.loads(stripped)
-	except (TypeError, json.JSONDecodeError):
-		parsed = None
-=======
 		value = parsed if isinstance(parsed, list) else stripped.split(",")
->>>>>>> ab0ca7a (fix: support aggregate field dictionaries in get_list (#65))
 
 	return [
 		entry if isinstance(entry, dict) else str(entry).strip()
