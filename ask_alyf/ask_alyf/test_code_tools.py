@@ -1,4 +1,7 @@
 import asyncio
+import contextvars
+import threading
+from concurrent.futures import ThreadPoolExecutor
 from types import SimpleNamespace
 from unittest.mock import MagicMock, patch
 
@@ -575,6 +578,42 @@ class UnitTestCodeTools(UnitTestCase):
 		set_user.assert_not_called()
 		private_db.commit.assert_called_once_with()
 		private_db.close.assert_called_once_with()
+		self.assertIs(frappe.local.db, inherited_db)
+
+	def test_clear_messages_wrapper_isolates_concurrent_copied_contexts(self):
+		inherited_db = frappe.local.db
+		connections = []
+		connection_barrier = threading.Barrier(2)
+		tool_barrier = threading.Barrier(2)
+		connections_lock = threading.Lock()
+
+		def connect(*, set_admin_as_user):
+			self.assertFalse(set_admin_as_user)
+			private_db = MagicMock()
+			with connections_lock:
+				connections.append(private_db)
+			frappe.local.db = private_db
+			connection_barrier.wait(timeout=5)
+
+		def tool():
+			bound_db = frappe.local.db
+			tool_barrier.wait(timeout=5)
+			return bound_db
+
+		wrapped = clear_messages_on_tool_error(tool)
+		contexts = [contextvars.copy_context(), contextvars.copy_context()]
+
+		with (
+			patch("ask_alyf.ask_alyf.toolset.frappe.connect", side_effect=connect),
+			ThreadPoolExecutor(max_workers=2) as executor,
+		):
+			futures = [executor.submit(context.run, wrapped) for context in contexts]
+			results = [future.result(timeout=5) for future in futures]
+
+		self.assertEqual({id(result) for result in results}, {id(connection) for connection in connections})
+		for connection in connections:
+			connection.commit.assert_called_once_with()
+			connection.close.assert_called_once_with()
 		self.assertIs(frappe.local.db, inherited_db)
 
 	def test_clear_messages_wrapper_propagates_commit_failure(self):

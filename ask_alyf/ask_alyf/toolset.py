@@ -7,6 +7,7 @@ from uuid import uuid4
 
 import frappe
 from frappe import _
+from frappe.utils.local import _contextvar as frappe_local_context
 
 from ask_alyf.ask_alyf import tools
 from ask_alyf.ask_alyf.history import (
@@ -1014,42 +1015,39 @@ class ask_alyfToolset:
 
 @contextlib.contextmanager
 def _isolated_db():
-	"""Run a block against a private Frappe DB connection.
+	"""Run a block in a private Frappe local context and DB connection.
 
 	LangGraph runs sync tools via `asyncio.to_thread`, which copies the
-	calling context (contextvars) into the worker thread. Frappe's
-	`frappe.local` is contextvar-backed, so the worker thread inherits the
-	same `frappe.local.db` pymysql connection as the agent's main thread.
-	pymysql connections are not safe for concurrent use, so parallel tool
-	calls (and subagent tool calls) corrupt the shared connection's packet
-	stream — surfacing as `InterfaceError(0, '')` / `Packet sequence number
-	wrong`.
+	calling context into the worker thread. Frappe stores one mutable dict
+	in a ContextVar, so copied contexts otherwise still share DB bindings.
 
-	This opens a fresh connection bound to the current thread/context, runs
-	the block, then closes it and restores the inherited binding. The agent
-	thread's own connection is never touched or closed.
-
-	No-op when Frappe isn't initialized (e.g. direct unit-test calls).
+	This binds a new local dict containing the caller's site, session,
+	permissions, request/job state, and other context values. It then opens
+	and closes a private connection before restoring the caller's original
+	ContextVar binding. The caller's DB binding is never mutated or closed.
 	"""
-	conf = getattr(frappe.local, "conf", None)
-	if not conf or not getattr(conf, "db_name", None):
-		yield
-		return
-
-	inherited_db = getattr(frappe.local, "db", None)
-
-	frappe.connect(set_admin_as_user=False)
+	local_token = frappe_local_context.set(dict(frappe.local))
+	private_db = None
 	try:
-		yield
-		frappe.db.commit()
-	except Exception:
-		with contextlib.suppress(Exception):
-			frappe.db.rollback()
-		raise
+		conf = getattr(frappe.local, "conf", None)
+		if not conf or not getattr(conf, "db_name", None):
+			yield
+			return
+
+		frappe.connect(set_admin_as_user=False)
+		private_db = frappe.local.db
+		try:
+			yield
+			private_db.commit()
+		except Exception:
+			with contextlib.suppress(Exception):
+				private_db.rollback()
+			raise
 	finally:
-		with contextlib.suppress(Exception):
-			frappe.local.db.close()
-		frappe.local.db = inherited_db
+		if private_db is not None:
+			with contextlib.suppress(Exception):
+				private_db.close()
+		frappe_local_context.reset(local_token)
 
 
 def clear_messages_on_tool_error(func):
