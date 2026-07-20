@@ -546,7 +546,6 @@ def get_message_job_status(conversation: str, user_message_id: str, job_id: str)
 
 	status = get_job_status(job_id)
 	if status in {
-		JobStatus.CREATED,
 		JobStatus.QUEUED,
 		JobStatus.STARTED,
 		JobStatus.DEFERRED,
