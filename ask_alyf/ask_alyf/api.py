@@ -7,8 +7,9 @@ from uuid import uuid4
 import frappe
 from frappe import _
 from frappe.utils import now_datetime
-from frappe.utils.background_jobs import enqueue
+from frappe.utils.background_jobs import enqueue, get_job_status
 from frappe.utils.data import cint
+from rq.job import JobStatus
 
 from ask_alyf.ask_alyf import field_agent
 from ask_alyf.ask_alyf.agent import run_message
@@ -24,6 +25,7 @@ from ask_alyf.ask_alyf.utils import chunk_text, dumps, loads
 MODE_ASK = "Ask"
 MODE_AGENT = "Agent"
 ASK_ALYF_USER_ROLE = "Ask ALYF User"
+BACKGROUND_JOB_ID_KEY = "background_job_id"
 
 
 def _truncate_doc_for_size(
@@ -480,7 +482,13 @@ def send_message(
 	doc = get_or_create_conversation(conversation_name=conversation)
 
 	messages = get_messages(doc)
-	user_message = make_message("user", message, mode=normalized_mode)
+	job_id = uuid4().hex
+	user_message = make_message(
+		"user",
+		message,
+		mode=normalized_mode,
+		**{BACKGROUND_JOB_ID_KEY: job_id},
+	)
 	messages.append(user_message)
 
 	if doc.title == _("New Conversation"):
@@ -495,6 +503,7 @@ def send_message(
 		"ask_alyf.ask_alyf.api.process_message_job",
 		queue="short",
 		enqueue_after_commit=True,
+		job_id=job_id,
 		conversation_name=doc.name,
 		message=message,
 		mode=normalized_mode,
@@ -505,7 +514,60 @@ def send_message(
 	return {
 		"conversation": doc.name,
 		"user_message_id": user_message["id"],
+		"job_id": job_id,
 	}
+
+
+@frappe.whitelist()
+def get_message_job_status(conversation: str, user_message_id: str, job_id: str) -> dict:
+	if not can_access_ask_alyf():
+		frappe.throw(_("You do not have access to Ask ALYF."))
+
+	doc = frappe.get_doc("Ask ALYF Conversation", conversation)
+	doc.check_permission("read")
+	messages = get_messages(doc)
+	user_message_index = next(
+		(
+			index
+			for index, item in enumerate(messages)
+			if item.get("role") == "user" and item.get("id") == user_message_id
+		),
+		None,
+	)
+	if user_message_index is None:
+		frappe.throw(_("The message could not be found in this conversation."))
+
+	user_message = messages[user_message_index]
+	if user_message.get("metadata", {}).get(BACKGROUND_JOB_ID_KEY) != job_id:
+		frappe.throw(_("The background job does not match this message."))
+
+	if any(item.get("role") == "assistant" for item in messages[user_message_index + 1 :]):
+		return {"status": "completed", "conversation": conversation_payload(doc)}
+
+	status = get_job_status(job_id)
+	if status in {
+		JobStatus.CREATED,
+		JobStatus.QUEUED,
+		JobStatus.STARTED,
+		JobStatus.DEFERRED,
+		JobStatus.SCHEDULED,
+	}:
+		return {"status": "pending"}
+	if status in {JobStatus.FINISHED, JobStatus.FAILED, JobStatus.STOPPED, JobStatus.CANCELED}:
+		doc.reload()
+		messages = get_messages(doc)
+		user_message_index = next(
+			index
+			for index, item in enumerate(messages)
+			if item.get("role") == "user" and item.get("id") == user_message_id
+		)
+		if any(item.get("role") == "assistant" for item in messages[user_message_index + 1 :]):
+			return {"status": "completed", "conversation": conversation_payload(doc)}
+	if status == JobStatus.FINISHED:
+		return {"status": "completed", "conversation": conversation_payload(doc)}
+	if status in {JobStatus.FAILED, JobStatus.STOPPED, JobStatus.CANCELED}:
+		return {"status": "failed"}
+	return {"status": "missing"}
 
 
 def process_message_job(
