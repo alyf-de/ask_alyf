@@ -809,6 +809,129 @@ import "./field_agent";
 				this.setLoading(true);
 				this.setStatus(__("Processing..."));
 			}
+<<<<<<< HEAD
+=======
+
+			this.setLoading(true);
+			this.setStatus(__("Processing..."));
+			const jobId = userMessage.metadata?.background_job_id;
+			if (jobId) {
+				this.startResponseJobMonitor({
+					jobId,
+					conversation: this.state.conversation?.name,
+					userMessageId: userMessage.id,
+				});
+			}
+		}
+
+		stopResponseJobMonitor() {
+			this.responseJobMonitorVersion += 1;
+			if (this.responseJobPollTimer) {
+				clearTimeout(this.responseJobPollTimer);
+				this.responseJobPollTimer = null;
+			}
+			this.activeResponseJob = null;
+		}
+
+		startResponseJobMonitor({ jobId, conversation, userMessageId }) {
+			this.stopResponseJobMonitor();
+			if (!jobId || !conversation || !userMessageId) {
+				return;
+			}
+
+			const version = this.responseJobMonitorVersion;
+			this.activeResponseJob = {
+				conversation,
+				jobId,
+				missingChecks: 0,
+				userMessageId,
+				version,
+			};
+			this.scheduleResponseJobPoll(version);
+		}
+
+		scheduleResponseJobPoll(version) {
+			if (this.activeResponseJob?.version !== version) {
+				return;
+			}
+			this.responseJobPollTimer = setTimeout(
+				() => this.pollResponseJob(version),
+				ASK_ALYF_JOB_POLL_INTERVAL_MS,
+			);
+		}
+
+		async pollResponseJob(version) {
+			const activeJob = this.activeResponseJob;
+			this.responseJobPollTimer = null;
+			if (
+				!activeJob ||
+				activeJob.version !== version ||
+				activeJob.conversation !== this.state.conversation?.name
+			) {
+				return;
+			}
+
+			let response;
+			try {
+				response = await frappe.call({
+					method: "ask_alyf.ask_alyf.api.get_message_job_status",
+					args: {
+						conversation: activeJob.conversation,
+						job_id: activeJob.jobId,
+						user_message_id: activeJob.userMessageId,
+					},
+				});
+			} catch {
+				this.scheduleResponseJobPoll(version);
+				return;
+			}
+
+			if (this.activeResponseJob?.version !== version) {
+				return;
+			}
+
+			const result = response.message || {};
+			if (result.status === "pending") {
+				activeJob.missingChecks = 0;
+				this.scheduleResponseJobPoll(version);
+				return;
+			}
+
+			if (result.status === "completed") {
+				this.stopResponseJobMonitor();
+				if (activeJob.conversation !== this.state.conversation?.name) {
+					return;
+				}
+				if (result.conversation) {
+					await this.applyConversation(result.conversation);
+				}
+				this.setLoading(false);
+				this.setStatus("");
+				this.refreshConversationList();
+				this.maybeAutoExecuteFrontendActions();
+				return;
+			}
+
+			if (result.status === "missing") {
+				activeJob.missingChecks += 1;
+				if (activeJob.missingChecks < ASK_ALYF_MISSING_JOB_CHECKS) {
+					this.scheduleResponseJobPoll(version);
+					return;
+				}
+			}
+
+			this.stopResponseJobMonitor();
+			if (activeJob.conversation !== this.state.conversation?.name) {
+				return;
+			}
+			this.pendingStreamMessageId = null;
+			this.setLoading(false);
+			this.setStatus(
+				result.status === "failed"
+					? __("Ask ALYF could not finish processing this message. Please try again.")
+					: __("Ask ALYF stopped processing this message. Please try again."),
+			);
+>>>>>>> 68780f5 (fix: path to whitelisted method (#69))
 		}
 
 		onTabClick(event) {
