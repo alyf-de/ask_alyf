@@ -1,4 +1,7 @@
 import asyncio
+import contextvars
+import threading
+from concurrent.futures import ThreadPoolExecutor
 from types import SimpleNamespace
 from unittest.mock import MagicMock, patch
 
@@ -577,6 +580,70 @@ class UnitTestCodeTools(UnitTestCase):
 		private_db.close.assert_called_once_with()
 		self.assertIs(frappe.local.db, inherited_db)
 
+	def test_clear_messages_wrapper_isolates_concurrent_copied_contexts(self):
+		inherited_db = frappe.local.db
+		inherited_currently_saving = list(frappe.local.flags.currently_saving)
+		inherited_response_docs = list(frappe.local.response.docs)
+		inherited_message_log = list(frappe.local.message_log)
+		connections = []
+		connection_barrier = threading.Barrier(2)
+		tool_barrier = threading.Barrier(2)
+		connections_lock = threading.Lock()
+
+		def connect(*, set_admin_as_user):
+			self.assertFalse(set_admin_as_user)
+			private_db = MagicMock()
+			with connections_lock:
+				connections.append(private_db)
+			frappe.local.db = private_db
+			connection_barrier.wait(timeout=5)
+
+		def tool():
+			bound_db = frappe.local.db
+			marker = id(bound_db)
+			frappe.local.flags.tool_marker = marker
+			frappe.local.flags.currently_saving.append(marker)
+			frappe.local.session.tool_marker = marker
+			frappe.local.response.tool_marker = marker
+			frappe.local.response.docs.append(marker)
+			frappe.local.message_log.append(marker)
+			tool_barrier.wait(timeout=5)
+			return {
+				"db": bound_db,
+				"currently_saving": list(frappe.local.flags.currently_saving),
+				"response_docs": list(frappe.local.response.docs),
+				"message_log": list(frappe.local.message_log),
+			}
+
+		wrapped = clear_messages_on_tool_error(tool)
+		contexts = [contextvars.copy_context(), contextvars.copy_context()]
+
+		with (
+			patch("ask_alyf.ask_alyf.toolset.frappe.connect", side_effect=connect),
+			ThreadPoolExecutor(max_workers=2) as executor,
+		):
+			futures = [executor.submit(context.run, wrapped) for context in contexts]
+			results = [future.result(timeout=5) for future in futures]
+
+		self.assertEqual(
+			{id(result["db"]) for result in results}, {id(connection) for connection in connections}
+		)
+		for result in results:
+			marker = id(result["db"])
+			self.assertEqual(result["currently_saving"], [*inherited_currently_saving, marker])
+			self.assertEqual(result["response_docs"], [*inherited_response_docs, marker])
+			self.assertEqual(result["message_log"], [*inherited_message_log, marker])
+		for connection in connections:
+			connection.commit.assert_called_once_with()
+			connection.close.assert_called_once_with()
+		self.assertIs(frappe.local.db, inherited_db)
+		self.assertNotIn("tool_marker", frappe.local.flags)
+		self.assertNotIn("tool_marker", frappe.local.session)
+		self.assertNotIn("tool_marker", frappe.local.response)
+		self.assertEqual(frappe.local.flags.currently_saving, inherited_currently_saving)
+		self.assertEqual(frappe.local.response.docs, inherited_response_docs)
+		self.assertEqual(frappe.local.message_log, inherited_message_log)
+
 	def test_clear_messages_wrapper_propagates_commit_failure(self):
 		inherited_db = frappe.local.db
 		private_db = MagicMock()
@@ -610,12 +677,24 @@ class UnitTestCodeTools(UnitTestCase):
 
 	def test_clear_messages_wrapper_clears_messages_for_async_tool_errors(self):
 		async def fake_tool():
+			frappe.local.message_log.append("tool message")
 			raise RuntimeError("boom")
 
 		wrapped = clear_messages_on_tool_error(fake_tool)
+		inherited_message_log = frappe.local.message_log
+		original_messages = list(inherited_message_log)
+		inherited_message_log.append("parent message")
 
-		with patch("ask_alyf.ask_alyf.toolset.frappe.clear_messages") as clear_messages:
-			with self.assertRaisesRegex(RuntimeError, "boom"):
-				asyncio.run(wrapped())
+		try:
+			with patch(
+				"ask_alyf.ask_alyf.toolset.frappe.clear_messages", wraps=frappe.clear_messages
+			) as clear_messages:
+				with self.assertRaisesRegex(RuntimeError, "boom"):
+					asyncio.run(wrapped())
 
-		clear_messages.assert_called_once_with()
+			clear_messages.assert_called_once_with()
+			self.assertIs(frappe.local.message_log, inherited_message_log)
+			self.assertEqual(inherited_message_log, [*original_messages, "parent message"])
+		finally:
+			frappe.local.message_log = inherited_message_log
+			inherited_message_log[:] = original_messages
