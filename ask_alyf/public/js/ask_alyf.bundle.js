@@ -9,6 +9,8 @@ import "./field_agent";
 	// Must exceed frappe-charts getExtraHeight (~130) plus drawable area; see tools.MIN_FRAPPE_CHART_HEIGHT.
 	const ASK_ALYF_FRAPPE_CHART_MIN_HEIGHT = 240;
 	const ASK_ALYF_FRAPPE_CHART_MAX_HEIGHT = 720;
+	const ASK_ALYF_JOB_POLL_INTERVAL_MS = 2000;
+	const ASK_ALYF_MISSING_JOB_CHECKS = 3;
 
 	function getIcon(name, size = "sm", svgClass = "", currentColor = false) {
 		if (typeof frappe.utils?.icon !== "function") {
@@ -173,6 +175,9 @@ import "./field_agent";
 			this.statusBodyEl = null;
 			this.pendingOperationsEl = null;
 			this.suggestedPromptsEl = null;
+			this.activeResponseJob = null;
+			this.responseJobPollTimer = null;
+			this.responseJobMonitorVersion = 0;
 		}
 
 		disposeActiveFrappeCharts(messageKey = null) {
@@ -729,6 +734,7 @@ import "./field_agent";
 
 			frappe.realtime.on("ask_alyf_response_complete", async (message) => {
 				if (message.conversation !== this.state.conversation?.name) return;
+				this.stopResponseJobMonitor();
 				this.setLoading(false);
 				this.setStatus("");
 				this.state.pendingOperations = this.normalizePendingOperations(message.pending_operations);
@@ -784,6 +790,7 @@ import "./field_agent";
 		}
 
 		async applyConversation(conversation) {
+			this.stopResponseJobMonitor();
 			this.pendingStreamMessageId = null;
 			this.handledFrontendCallIds = new Set();
 			this.state.conversation = conversation;
@@ -803,30 +810,154 @@ import "./field_agent";
 			this.restoreProcessingState();
 		}
 
-		isAwaitingResponse() {
+		getAwaitingResponseMessage() {
 			const messages = this.state.messages;
 			if (!messages.length || this.state.pendingOperations.length) {
-				return false;
+				return null;
 			}
 			const lastMessage = messages[messages.length - 1];
 			if (lastMessage.role !== "user") {
-				return false;
+				return null;
 			}
 			const createdAt = lastMessage.created_at;
-			if (createdAt) {
+			if (createdAt && !lastMessage.metadata?.background_job_id) {
 				const ageMs = Date.now() - new Date(createdAt).getTime();
 				if (ageMs > 5 * 60 * 1000) {
-					return false;
+					return null;
 				}
 			}
-			return true;
+			return lastMessage;
+		}
+
+		isAwaitingResponse() {
+			return Boolean(this.getAwaitingResponseMessage());
 		}
 
 		restoreProcessingState() {
-			if (this.isAwaitingResponse()) {
-				this.setLoading(true);
-				this.setStatus(__("Processing..."));
+			const userMessage = this.getAwaitingResponseMessage();
+			if (!userMessage) {
+				return;
 			}
+
+			this.setLoading(true);
+			this.setStatus(__("Processing..."));
+			const jobId = userMessage.metadata?.background_job_id;
+			if (jobId) {
+				this.startResponseJobMonitor({
+					jobId,
+					conversation: this.state.conversation?.name,
+					userMessageId: userMessage.id,
+				});
+			}
+		}
+
+		stopResponseJobMonitor() {
+			this.responseJobMonitorVersion += 1;
+			if (this.responseJobPollTimer) {
+				clearTimeout(this.responseJobPollTimer);
+				this.responseJobPollTimer = null;
+			}
+			this.activeResponseJob = null;
+		}
+
+		startResponseJobMonitor({ jobId, conversation, userMessageId }) {
+			this.stopResponseJobMonitor();
+			if (!jobId || !conversation || !userMessageId) {
+				return;
+			}
+
+			const version = this.responseJobMonitorVersion;
+			this.activeResponseJob = {
+				conversation,
+				jobId,
+				missingChecks: 0,
+				userMessageId,
+				version,
+			};
+			this.scheduleResponseJobPoll(version);
+		}
+
+		scheduleResponseJobPoll(version) {
+			if (this.activeResponseJob?.version !== version) {
+				return;
+			}
+			this.responseJobPollTimer = setTimeout(
+				() => this.pollResponseJob(version),
+				ASK_ALYF_JOB_POLL_INTERVAL_MS,
+			);
+		}
+
+		async pollResponseJob(version) {
+			const activeJob = this.activeResponseJob;
+			this.responseJobPollTimer = null;
+			if (
+				!activeJob ||
+				activeJob.version !== version ||
+				activeJob.conversation !== this.state.conversation?.name
+			) {
+				return;
+			}
+
+			let response;
+			try {
+				response = await frappe.call({
+					method: "ask_alyf.api.get_message_job_status",
+					args: {
+						conversation: activeJob.conversation,
+						job_id: activeJob.jobId,
+						user_message_id: activeJob.userMessageId,
+					},
+				});
+			} catch {
+				this.scheduleResponseJobPoll(version);
+				return;
+			}
+
+			if (this.activeResponseJob?.version !== version) {
+				return;
+			}
+
+			const result = response.message || {};
+			if (result.status === "pending") {
+				activeJob.missingChecks = 0;
+				this.scheduleResponseJobPoll(version);
+				return;
+			}
+
+			if (result.status === "completed") {
+				this.stopResponseJobMonitor();
+				if (activeJob.conversation !== this.state.conversation?.name) {
+					return;
+				}
+				if (result.conversation) {
+					await this.applyConversation(result.conversation);
+				}
+				this.setLoading(false);
+				this.setStatus("");
+				this.refreshConversationList();
+				this.maybeAutoExecuteFrontendActions();
+				return;
+			}
+
+			if (result.status === "missing") {
+				activeJob.missingChecks += 1;
+				if (activeJob.missingChecks < ASK_ALYF_MISSING_JOB_CHECKS) {
+					this.scheduleResponseJobPoll(version);
+					return;
+				}
+			}
+
+			this.stopResponseJobMonitor();
+			if (activeJob.conversation !== this.state.conversation?.name) {
+				return;
+			}
+			this.pendingStreamMessageId = null;
+			this.setLoading(false);
+			this.setStatus(
+				result.status === "failed"
+					? __("Ask ALYF could not finish processing this message. Please try again.")
+					: __("Ask ALYF stopped processing this message. Please try again."),
+			);
 		}
 
 		onTabClick(event) {
@@ -1569,6 +1700,7 @@ import "./field_agent";
 			if (!text || this.state.loading) {
 				return;
 			}
+			const requestedConversation = this.state.conversation?.name || null;
 
 			this.setActiveTab("chat");
 			this.toggle(true);
@@ -1597,17 +1729,42 @@ import "./field_agent";
 						context: this.getCurrentContext(),
 					},
 				});
-				if (response.message.conversation) {
+				const responseConversation = response.message.conversation;
+				const currentConversation = this.state.conversation?.name || null;
+				const stillViewingConversation = requestedConversation
+					? currentConversation === requestedConversation
+					: !currentConversation || currentConversation === responseConversation;
+				if (!stillViewingConversation) {
+					this.refreshConversationList();
+					return;
+				}
+
+				if (responseConversation) {
 					this.state.conversation = {
 						...(this.state.conversation || {}),
-						name: response.message.conversation,
+						name: responseConversation,
 					};
 				}
+				optimisticMessage.id = response.message.user_message_id || optimisticMessage.id;
+				optimisticMessage.metadata = {
+					background_job_id: response.message.job_id,
+					mode: this.state.mode,
+				};
+				this.renderMessages();
 				this.refreshConversationList();
-				this.setStatus(__("Waiting for response..."));
+				if (this.state.loading) {
+					this.setStatus(__("Waiting for response..."));
+					this.startResponseJobMonitor({
+						jobId: response.message.job_id,
+						conversation: responseConversation,
+						userMessageId: response.message.user_message_id,
+					});
+				}
 			} catch (error) {
-				this.setLoading(false);
-				this.setStatus("");
+				if (this.state.conversation?.name === requestedConversation) {
+					this.setLoading(false);
+					this.setStatus("");
+				}
 				frappe.msgprint(error.message || __("Failed to send message."));
 			}
 		}
