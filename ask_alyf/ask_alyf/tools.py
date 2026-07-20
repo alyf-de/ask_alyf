@@ -105,7 +105,7 @@ def coerce_field_list(value: str | list[FrappeSelectField] | None) -> list[Frapp
 	return [
 		entry if isinstance(entry, dict) else str(entry).strip()
 		for entry in value
-		if isinstance(entry, dict) or str(entry).strip()
+		if (isinstance(entry, dict) and entry) or (not isinstance(entry, dict) and str(entry).strip())
 	]
 
 

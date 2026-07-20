@@ -150,7 +150,7 @@ class ask_alyfToolset:
 	def get_list(
 		self,
 		doctype: str,
-		fields: str | list[str | dict[str, str]] | None = None,
+		fields: str | list[tools.FrappeSelectField] | None = None,
 		filters: dict[str, Any] | FrappeFilterList | None = None,
 		order_by: str | None = None,
 		limit: int = 20,
