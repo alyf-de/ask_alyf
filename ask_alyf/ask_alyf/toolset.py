@@ -150,7 +150,7 @@ class ask_alyfToolset:
 	def get_list(
 		self,
 		doctype: str,
-		fields: str | list[str] | None = None,
+		fields: str | list[str | dict[str, str]] | None = None,
 		filters: dict[str, Any] | FrappeFilterList | None = None,
 		order_by: str | None = None,
 		limit: int = 20,
@@ -160,7 +160,10 @@ class ask_alyfToolset:
 
 		Args:
 			doctype: The DocType to query.
-			fields: Optional field name or field list to return.
+			fields: Optional field name or field list to return. Use dictionary syntax
+				for aggregate functions, for example
+				[{"SUM": "grand_total", "as": "total"}]. Never pass an aggregate as
+				a string such as "sum(grand_total) as total".
 			filters: Optional Frappe filters.
 			order_by: Optional ordering expression.
 			limit: Maximum number of rows to return.
@@ -439,10 +442,14 @@ class ask_alyfToolset:
 		return file_entry
 
 	def run_read_only_sql(self, query: str) -> list[dict[str, Any]]:
-		"""Run a read-only SQL query when the current user is allowed to do so.
+		"""Run one complete read-only SQL statement when the user is allowed to do so.
+
+		The query must include the statement keyword and all clauses, for example
+		"SELECT SUM(grand_total) AS total FROM `tabSales Invoice`". Do not pass only
+		a SELECT expression such as "sum(grand_total) as total".
 
 		Args:
-			query: A single read-only SQL query.
+			query: One complete SELECT, WITH, SHOW, EXPLAIN, or DESCRIBE statement.
 
 		Returns:
 			The SQL result rows.

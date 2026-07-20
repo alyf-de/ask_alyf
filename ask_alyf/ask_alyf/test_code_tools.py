@@ -256,6 +256,21 @@ class UnitTestCodeTools(UnitTestCase):
 		)
 		self.assertEqual(result, [])
 
+	def test_get_list_preserves_aggregate_field_dict(self):
+		fields = [{"SUM": "grand_total", "as": "total"}]
+		with patch("ask_alyf.ask_alyf.tools.client.get_list", return_value=[]) as get_list:
+			result = tools.get_list("Sales Invoice", fields=fields, filters={"docstatus": 1})
+
+		get_list.assert_called_once_with(
+			doctype="Sales Invoice",
+			fields=fields,
+			filters={"docstatus": 1},
+			order_by=None,
+			limit_page_length=20,
+			group_by=None,
+		)
+		self.assertEqual(result, [])
+
 	def test_get_file_id_uses_reference_filters(self):
 		expected_filters = {
 			"attached_to_doctype": "Sales Invoice",
