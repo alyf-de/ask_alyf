@@ -1,4 +1,5 @@
 import contextlib
+import copy
 import functools
 import inspect
 from dataclasses import dataclass, field
@@ -7,7 +8,6 @@ from uuid import uuid4
 
 import frappe
 from frappe import _
-from frappe.utils.local import _contextvar as frappe_local_context
 
 from ask_alyf.ask_alyf import tools
 from ask_alyf.ask_alyf.history import (
@@ -16,6 +16,16 @@ from ask_alyf.ask_alyf.history import (
 )
 from ask_alyf.ask_alyf.skill_utils import get_accessible_skill_doc
 from ask_alyf.ask_alyf.utils import parse_newline_list
+
+# Frappe 16+ owns this ContextVar; Frappe 15 stores it inside Werkzeug's Local.
+# Neither version exposes a public API for temporarily rebinding frappe.local.
+try:
+	from frappe.utils.local import _contextvar as frappe_local_context
+except ImportError as exc:
+	try:
+		frappe_local_context = object.__getattribute__(frappe.local, "_Local__storage")
+	except AttributeError:
+		raise RuntimeError("Unsupported Frappe local implementation; update _isolated_db") from exc
 
 # Frappe list filters are a list of filter rows, where each row is a list of
 # scalars, e.g. [["Customer", "name", "=", "CUST-001"], ["disabled", "=", 0]].
@@ -1021,12 +1031,19 @@ def _isolated_db():
 	calling context into the worker thread. Frappe stores one mutable dict
 	in a ContextVar, so copied contexts otherwise still share DB bindings.
 
-	This binds a new local dict containing the caller's site, session,
-	permissions, request/job state, and other context values. It then opens
-	and closes a private connection before restoring the caller's original
-	ContextVar binding. The caller's DB binding is never mutated or closed.
+	This binds a new local dict and copies the mutable request state tools
+	commonly modify. Other inherited context values must be treated as
+	read-only. A private connection is opened and closed before restoring
+	the caller's ContextVar binding.
 	"""
-	local_token = frappe_local_context.set(dict(frappe.local))
+	private_local = dict(frappe_local_context.get({}))
+	for key in ("flags", "session", "response", "message_log", "error_log", "debug_log"):
+		if key in private_local:
+			private_local[key] = copy.deepcopy(private_local[key])
+	if "response_headers" in private_local:
+		private_local["response_headers"] = private_local["response_headers"].copy()
+
+	local_token = frappe_local_context.set(private_local)
 	private_db = None
 	try:
 		conf = getattr(frappe.local, "conf", None)
@@ -1036,13 +1053,14 @@ def _isolated_db():
 
 		frappe.connect(set_admin_as_user=False)
 		private_db = frappe.local.db
-		try:
-			yield
-			private_db.commit()
-		except Exception:
+		yield
+		private_db.commit()
+	except Exception:
+		if private_db is not None:
 			with contextlib.suppress(Exception):
 				private_db.rollback()
-			raise
+		frappe.clear_messages()
+		raise
 	finally:
 		if private_db is not None:
 			with contextlib.suppress(Exception):
@@ -1063,22 +1081,14 @@ def clear_messages_on_tool_error(func):
 
 		@functools.wraps(func)
 		async def async_wrapper(*args, **kwargs):
-			try:
-				with _isolated_db():
-					return await func(*args, **kwargs)
-			except Exception:
-				frappe.clear_messages()
-				raise
+			with _isolated_db():
+				return await func(*args, **kwargs)
 
 		return async_wrapper
 
 	@functools.wraps(func)
 	def wrapper(*args, **kwargs):
-		try:
-			return _run_with_isolated_db(func, args, kwargs)
-		except Exception:
-			frappe.clear_messages()
-			raise
+		return _run_with_isolated_db(func, args, kwargs)
 
 	return wrapper
 
