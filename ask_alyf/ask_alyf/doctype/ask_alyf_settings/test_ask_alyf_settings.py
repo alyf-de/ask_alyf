@@ -144,6 +144,86 @@ class UnitTestAskALYFSettings(UnitTestCase):
 			ask_alyf_settings.ModelConfiguration.VISION,
 		)
 
+	def test_validate_rejects_known_chat_model_without_function_calling(self):
+		settings = ask_alyf_settings.AskALYFSettings(
+			{
+				"doctype": "Ask ALYF Settings",
+				"model": "gpt-5-chat",
+			}
+		)
+
+		with patch.object(ask_alyf_settings, "is_available_model", return_value=False):
+			with self.assertRaises(frappe.ValidationError):
+				settings.validate()
+
+	def test_validate_rejects_known_chat_model_without_vision_when_shared(self):
+		settings = ask_alyf_settings.AskALYFSettings(
+			{
+				"doctype": "Ask ALYF Settings",
+				"vision_model_is_chat_model": 1,
+				"model": "gpt-audio",
+			}
+		)
+
+		with patch.object(
+			ask_alyf_settings,
+			"is_available_model",
+			side_effect=lambda model_id, configuration: (
+				configuration == ask_alyf_settings.ModelConfiguration.CHAT
+			),
+		):
+			with self.assertRaises(frappe.ValidationError):
+				settings.validate()
+
+	def test_validate_allows_unknown_chat_model_when_shared(self):
+		settings = ask_alyf_settings.AskALYFSettings(
+			{
+				"doctype": "Ask ALYF Settings",
+				"vision_model_is_chat_model": 1,
+				"model": "custom-local-model",
+			}
+		)
+
+		with patch.object(ask_alyf_settings, "is_available_model", return_value=True):
+			settings.validate()
+
+	def test_validate_rejects_known_vision_model_without_vision_support(self):
+		settings = ask_alyf_settings.AskALYFSettings(
+			{
+				"doctype": "Ask ALYF Settings",
+				"vision_model_is_chat_model": 0,
+				"model": "gpt-4o",
+				"vision_model": "gpt-audio",
+			}
+		)
+
+		with patch.object(
+			ask_alyf_settings,
+			"is_available_model",
+			side_effect=lambda model_id, configuration: (
+				configuration == ask_alyf_settings.ModelConfiguration.CHAT
+			),
+		):
+			with self.assertRaises(frappe.ValidationError):
+				settings.validate()
+
+	def test_validate_skips_vision_model_check_when_separate_vision_model_is_not_set(self):
+		settings = ask_alyf_settings.AskALYFSettings(
+			{
+				"doctype": "Ask ALYF Settings",
+				"vision_model_is_chat_model": 0,
+				"model": "gpt-4o",
+			}
+		)
+
+		with patch.object(ask_alyf_settings, "is_available_model", return_value=True) as availability_check:
+			settings.validate()
+
+		availability_check.assert_called_once_with(
+			"gpt-4o",
+			ask_alyf_settings.ModelConfiguration.CHAT,
+		)
+
 
 class IntegrationTestAskALYFSettings(IntegrationTestCase):
 	"""

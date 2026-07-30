@@ -89,6 +89,29 @@ class AskALYFSettings(Document):
 	def is_code_search_enabled(self) -> bool:
 		return bool(self.allow_code_search)
 
+	def validate(self):
+		validate_model_selection(
+			self.model,
+			ModelConfiguration.CHAT,
+			unsupported_message=_("The selected Chat Model ({0}) does not support function calling."),
+		)
+
+		if self.vision_model_is_chat_model:
+			validate_model_selection(
+				self.model,
+				ModelConfiguration.VISION,
+				unsupported_message=_(
+					"The selected Chat Model ({0}) does not support vision. Choose a vision-capable chat model or configure a separate vision model."
+				),
+			)
+			return
+
+		validate_model_selection(
+			self.vision_model,
+			ModelConfiguration.VISION,
+			unsupported_message=_("The selected Vision Model ({0}) does not support vision."),
+		)
+
 
 @frappe.whitelist()
 def get_available_models(configuration: str = ModelConfiguration.CHAT) -> list[dict[str, str]]:
@@ -166,6 +189,22 @@ def normalize_api_key(api_key: str | None) -> str:
 		return ""
 
 	return api_key
+
+
+def validate_model_selection(
+	model_id: str | None,
+	configuration: ModelConfiguration,
+	*,
+	unsupported_message: str,
+) -> None:
+	model_id = (model_id or "").strip()
+	if not model_id:
+		return
+
+	if is_available_model(model_id, configuration):
+		return
+
+	frappe.throw(unsupported_message.format(model_id))
 
 
 def is_text_generation_model(model_id: str) -> bool:
