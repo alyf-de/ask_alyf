@@ -102,6 +102,42 @@ class UnitTestAskALYFSettings(UnitTestCase):
 		with self.assertRaises(frappe.ValidationError):
 			ask_alyf_settings.get_model_config_fields("audio")
 
+	def test_is_available_model_filters_known_models_without_required_capability(self):
+		with patch.object(ask_alyf_settings, "supports_function_calling", return_value=False):
+			with patch.object(ask_alyf_settings, "is_litellm_mapped_model", return_value=True):
+				self.assertFalse(
+					ask_alyf_settings.is_available_model(
+						"gpt-5-chat", ask_alyf_settings.ModelConfiguration.CHAT
+					)
+				)
+
+	def test_is_available_model_keeps_unknown_models_for_chat_configuration(self):
+		with patch.object(ask_alyf_settings, "supports_function_calling", return_value=False):
+			with patch.object(ask_alyf_settings, "is_litellm_mapped_model", return_value=False):
+				self.assertTrue(
+					ask_alyf_settings.is_available_model(
+						"custom-local-model", ask_alyf_settings.ModelConfiguration.CHAT
+					)
+				)
+
+	def test_is_available_model_requires_vision_capability_for_vision_configuration(self):
+		with patch.object(ask_alyf_settings, "supports_vision", return_value=False):
+			with patch.object(ask_alyf_settings, "is_litellm_mapped_model", return_value=True):
+				self.assertFalse(
+					ask_alyf_settings.is_available_model(
+						"gpt-4.1-mini", ask_alyf_settings.ModelConfiguration.VISION
+					)
+				)
+
+	def test_is_available_model_keeps_unknown_models_for_vision_configuration(self):
+		with patch.object(ask_alyf_settings, "supports_vision", return_value=False):
+			with patch.object(ask_alyf_settings, "is_litellm_mapped_model", return_value=False):
+				self.assertTrue(
+					ask_alyf_settings.is_available_model(
+						"custom-vision-model", ask_alyf_settings.ModelConfiguration.VISION
+					)
+				)
+
 	def test_parse_model_configuration_accepts_string_values(self):
 		self.assertEqual(
 			ask_alyf_settings.parse_model_configuration("vision"),

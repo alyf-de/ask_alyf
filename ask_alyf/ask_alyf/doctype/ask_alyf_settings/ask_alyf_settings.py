@@ -5,6 +5,7 @@ import frappe
 from any_llm import AnyLLM
 from frappe import _
 from frappe.model.document import Document
+from litellm.utils import get_model_info, supports_function_calling, supports_vision
 
 if TYPE_CHECKING:
 	from frappe.core.doctype.has_role.has_role import HasRole
@@ -32,6 +33,8 @@ MODEL_CONFIG_FIELDS = {
 		"api_key_field": "vision_api_key",
 	},
 }
+
+LITELLM_PROVIDER = "openai"
 
 NON_TEXT_MODEL_PATTERNS = (
 	"audio",
@@ -122,7 +125,7 @@ def get_available_models(configuration: str = ModelConfiguration.CHAT) -> list[d
 	)
 	response = client.list_models()
 	models = sorted(
-		[model for model in response if is_text_generation_model(model.id)],
+		[model for model in response if is_available_model(model.id, configuration)],
 		key=lambda model: model.id.lower(),
 	)
 
@@ -171,3 +174,33 @@ def is_text_generation_model(model_id: str) -> bool:
 		return False
 
 	return not any(pattern in model_id for pattern in NON_TEXT_MODEL_PATTERNS)
+
+
+def is_litellm_mapped_model(model_id: str) -> bool:
+	try:
+		get_model_info(model_id, custom_llm_provider=LITELLM_PROVIDER)
+	except Exception:
+		return False
+
+	return True
+
+
+def has_required_capability(model_id: str, configuration: ModelConfiguration) -> bool:
+	match configuration:
+		case ModelConfiguration.CHAT:
+			supported = supports_function_calling(model_id, custom_llm_provider=LITELLM_PROVIDER)
+		case ModelConfiguration.VISION:
+			supported = supports_vision(model_id, custom_llm_provider=LITELLM_PROVIDER)
+
+	if supported:
+		return True
+
+	# LiteLLM returns False for unmapped custom models; keep those selectable.
+	return not is_litellm_mapped_model(model_id)
+
+
+def is_available_model(model_id: str, configuration: str | ModelConfiguration) -> bool:
+	if not is_text_generation_model(model_id):
+		return False
+
+	return has_required_capability(model_id, parse_model_configuration(configuration))
