@@ -4,7 +4,6 @@ from types import SimpleNamespace
 from unittest.mock import MagicMock, patch
 
 import frappe
-
 from frappe.tests.utils import FrappeTestCase
 from langchain_core.messages import AIMessage
 
