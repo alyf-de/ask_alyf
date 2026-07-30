@@ -606,6 +606,7 @@
 	border-radius: 1rem;
 	border: 1px solid var(--border-color);
 	background: white;
+	overflow: auto;
 }
 
 [data-theme="dark"] .ask_alyf-message-body,
