@@ -75,6 +75,8 @@ Common settings include:
 - _Excluded DocTypes_
 - separate vision model settings, if document and image extraction should use a different model
 
+Ask ALYF chat requires the [OpenAI Responses API](https://developers.openai.com/api/reference/resources/responses). OpenAI-compatible _Base URLs_ must implement `POST /v1/responses`. Providers that support only Chat Completions are not supported for chat.
+
 ## Conversation History
 
 Conversations are stored in the **Ask ALYF Conversation** DocType, which keeps messages available across page reloads and provides an audit trail for Agent mode proposals and actions.

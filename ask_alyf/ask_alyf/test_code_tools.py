@@ -10,7 +10,7 @@ from frappe.tests.utils import FrappeTestCase
 from langchain_core.messages import AIMessage, HumanMessage, SystemMessage
 
 from ask_alyf.ask_alyf import tools
-from ask_alyf.ask_alyf.agent import ASK_ALYF_EXCLUDED_TOOLS, ask_alyfAgentRunner
+from ask_alyf.ask_alyf.agent import ASK_ALYF_EXCLUDED_TOOLS, ask_alyfAgentRunner, build_chat_model
 from ask_alyf.ask_alyf.history import history_item_to_native_message
 from ask_alyf.ask_alyf.toolset import ask_alyfToolset, clear_messages_on_tool_error
 
@@ -52,6 +52,11 @@ class UnitTestCodeTools(FrappeTestCase):
 		runner.settings = FakeSettings(allow_code_search=allow_code_search)
 		runner.toolset = ask_alyfToolset(runtime, settings=runner.settings)
 		return runner
+
+	def test_build_chat_model_uses_responses_api_for_any_model(self):
+		model = build_chat_model(FakeSettings(allow_code_search=False))
+
+		self.assertTrue(model.use_responses_api)
 
 	def test_subagents_register_source_code_analyzer_only_when_code_search_enabled(self):
 		raw_code_tool_names = {"search_code", "read_code_file", "ls", "find", "grep"}
@@ -532,13 +537,27 @@ class UnitTestCodeTools(FrappeTestCase):
 	def test_run_preserves_result_envelope_and_proposal_shapes(self):
 		runner = self.make_runner(allow_code_search=False, mode="Agent")
 		runner.agent = SimpleNamespace(
-			invoke=lambda _input, config=None: {"messages": [SimpleNamespace(content="Done.")]}
+			invoke=lambda _input, config=None: {"messages": [AIMessage(content="Done.")]}
 		)
 		result = runner.run("do something", conversation_history=[])
 		self.assertEqual(result["response"], "Done.")
 		self.assertEqual(result["pending_operations"], [])
 		self.assertEqual(result["document_extractions"], [])
 		self.assertEqual(result["attached_files"], [])
+
+	def test_run_extracts_text_from_responses_api_content_blocks(self):
+		runner = self.make_runner(allow_code_search=False)
+		response = AIMessage(
+			content=[
+				{"type": "reasoning", "summary": [], "content": [], "encrypted_content": "secret"},
+				{"type": "text", "text": ":)", "annotations": [], "phase": "final_answer"},
+			]
+		)
+		runner.agent = SimpleNamespace(invoke=lambda _input, config=None: {"messages": [response]})
+
+		result = runner.run("hello", conversation_history=[])
+
+		self.assertEqual(result["response"], ":)")
 
 	def test_agent_mode_tools_include_proposals_but_no_host_mutation_or_shell(self):
 		"""Model-visible tools must contain proposal operations but no direct

@@ -4,7 +4,12 @@ from types import SimpleNamespace
 from unittest.mock import MagicMock, patch
 
 import frappe
+<<<<<<< HEAD
 from frappe.tests.utils import FrappeTestCase
+=======
+from frappe.tests import UnitTestCase
+from langchain_core.messages import AIMessage
+>>>>>>> 05bdd55 (fix: use responses API (#83))
 
 from ask_alyf.ask_alyf import api, field_contexts
 from ask_alyf.ask_alyf.api import _truncate_doc_for_size
@@ -67,7 +72,7 @@ class UnitTestFieldAgent(FrappeTestCase):
 	def _make_fake_agent(self, output: str = "OK"):
 		"""Build a fake stateless agent whose `invoke` returns a native message list."""
 		agent = MagicMock()
-		agent.invoke.return_value = {"messages": [SimpleNamespace(content=output)]}
+		agent.invoke.return_value = {"messages": [AIMessage(content=output)]}
 		return agent
 
 	def test_run_field_agent_creates_no_conversation(self):
