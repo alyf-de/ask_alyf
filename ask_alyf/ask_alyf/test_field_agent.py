@@ -4,12 +4,9 @@ from types import SimpleNamespace
 from unittest.mock import MagicMock, patch
 
 import frappe
-<<<<<<< HEAD
+
 from frappe.tests.utils import FrappeTestCase
-=======
-from frappe.tests import UnitTestCase
 from langchain_core.messages import AIMessage
->>>>>>> 05bdd55 (fix: use responses API (#83))
 
 from ask_alyf.ask_alyf import api, field_contexts
 from ask_alyf.ask_alyf.api import _truncate_doc_for_size
