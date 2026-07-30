@@ -6,7 +6,7 @@ from unittest.mock import patch
 
 import frappe
 from frappe import _
-from frappe.tests import UnitTestCase
+from frappe.tests.utils import FrappeTestCase
 from langchain_core.messages import ToolMessage
 
 from ask_alyf.ask_alyf import api
@@ -18,7 +18,7 @@ def _tool_call_request(tool_name: str = "get_meta"):
 	return SimpleNamespace(tool_call={"name": tool_name, "args": {}, "id": "call-1"})
 
 
-class UnitTestToolErrorMiddleware(UnitTestCase):
+class UnitTestToolErrorMiddleware(FrappeTestCase):
 	def test_on_tool_error_includes_validation_message(self):
 		exc = frappe.ValidationError("DocType 'Secret' is excluded from Agent mode.")
 		content = _on_tool_error(exc, _tool_call_request("get_meta"))
