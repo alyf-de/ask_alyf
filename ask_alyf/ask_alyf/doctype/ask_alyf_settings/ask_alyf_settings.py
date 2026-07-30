@@ -1,3 +1,4 @@
+from enum import StrEnum
 from typing import TYPE_CHECKING
 
 import frappe
@@ -13,13 +14,19 @@ if TYPE_CHECKING:
 		AskALYFExcludedDocType,
 	)
 
+
+class ModelConfiguration(StrEnum):
+	CHAT = "chat"
+	VISION = "vision"
+
+
 MODEL_CONFIG_FIELDS = {
-	"chat": {
+	ModelConfiguration.CHAT: {
 		"provider_field": "llm_provider",
 		"base_url_field": "base_url",
 		"api_key_field": "api_key",
 	},
-	"vision": {
+	ModelConfiguration.VISION: {
 		"provider_field": "vision_llm_provider",
 		"base_url_field": "vision_base_url",
 		"api_key_field": "vision_api_key",
@@ -81,7 +88,8 @@ class AskALYFSettings(Document):
 
 
 @frappe.whitelist()
-def get_available_models(configuration: str = "chat") -> list[dict[str, str]]:
+def get_available_models(configuration: str = ModelConfiguration.CHAT) -> list[dict[str, str]]:
+	configuration = parse_model_configuration(configuration)
 	settings = frappe.get_single("Ask ALYF Settings")
 	settings.check_permission("write")
 
@@ -121,12 +129,20 @@ def get_available_models(configuration: str = "chat") -> list[dict[str, str]]:
 	return [{"id": model.id} for model in models]
 
 
-def get_model_config_fields(configuration: str) -> dict[str, str]:
-	configuration = (configuration or "chat").strip().lower()
-	if configuration not in MODEL_CONFIG_FIELDS:
+def parse_model_configuration(
+	configuration: str | ModelConfiguration | None = None,
+) -> ModelConfiguration:
+	if isinstance(configuration, ModelConfiguration):
+		return configuration
+
+	try:
+		return ModelConfiguration((configuration or ModelConfiguration.CHAT).strip().lower())
+	except ValueError:
 		frappe.throw(_("Unsupported model configuration: {0}").format(configuration))
 
-	return MODEL_CONFIG_FIELDS[configuration]
+
+def get_model_config_fields(configuration: str | ModelConfiguration) -> dict[str, str]:
+	return MODEL_CONFIG_FIELDS[parse_model_configuration(configuration)]
 
 
 def get_any_llm_provider(llm_provider: str) -> str:

@@ -102,6 +102,12 @@ class UnitTestAskALYFSettings(UnitTestCase):
 		with self.assertRaises(frappe.ValidationError):
 			ask_alyf_settings.get_model_config_fields("audio")
 
+	def test_parse_model_configuration_accepts_string_values(self):
+		self.assertEqual(
+			ask_alyf_settings.parse_model_configuration("vision"),
+			ask_alyf_settings.ModelConfiguration.VISION,
+		)
+
 
 class IntegrationTestAskALYFSettings(IntegrationTestCase):
 	"""
