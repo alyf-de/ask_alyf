@@ -61,6 +61,34 @@ class UnitTestToolErrorMiddleware(UnitTestCase):
 		self.assertIn("ValidationError", result.content)
 		self.assertIn(_("DocType is excluded"), result.content)
 
+	def test_process_message_job_preserves_validation_error_message(self):
+		user_message = api.make_message("user", "Hello", mode=api.MODE_ASK)
+		conversation = frappe.get_doc(
+			doctype="Ask ALYF Conversation",
+			title="Configuration Error Test",
+			status="Active",
+			messages_json=dumps([user_message]),
+		)
+		conversation.insert(ignore_permissions=True)
+		error_message = _("Configure an API key in Ask ALYF Settings before sending messages.")
+
+		with patch(
+			"ask_alyf.ask_alyf.api.run_message",
+			side_effect=frappe.ValidationError(error_message),
+		):
+			with patch("ask_alyf.ask_alyf.api.frappe.publish_realtime"):
+				api.process_message_job(
+					conversation_name=conversation.name,
+					message="Hello",
+					mode=api.MODE_ASK,
+					context_data={},
+					user_message_id=user_message["id"],
+				)
+
+		conversation.reload()
+		messages = loads(conversation.messages_json, [])
+		self.assertEqual(messages[-1]["content"], error_message)
+
 	def test_process_message_job_uses_generic_error_message(self):
 		user_message = api.make_message("user", "Break please", mode=api.MODE_ASK)
 		conversation = frappe.get_doc(
