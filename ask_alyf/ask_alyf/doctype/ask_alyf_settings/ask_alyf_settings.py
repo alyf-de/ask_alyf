@@ -1,9 +1,11 @@
+from enum import StrEnum
 from typing import TYPE_CHECKING
 
 import frappe
 from any_llm import AnyLLM
 from frappe import _
 from frappe.model.document import Document
+from litellm.utils import get_model_info, supports_function_calling, supports_vision
 
 if TYPE_CHECKING:
 	from frappe.core.doctype.has_role.has_role import HasRole
@@ -13,18 +15,26 @@ if TYPE_CHECKING:
 		AskALYFExcludedDocType,
 	)
 
+
+class ModelConfiguration(StrEnum):
+	CHAT = "chat"
+	VISION = "vision"
+
+
 MODEL_CONFIG_FIELDS = {
-	"chat": {
+	ModelConfiguration.CHAT: {
 		"provider_field": "llm_provider",
 		"base_url_field": "base_url",
 		"api_key_field": "api_key",
 	},
-	"vision": {
+	ModelConfiguration.VISION: {
 		"provider_field": "vision_llm_provider",
 		"base_url_field": "vision_base_url",
 		"api_key_field": "vision_api_key",
 	},
 }
+
+LITELLM_PROVIDER = "openai"
 
 NON_TEXT_MODEL_PATTERNS = (
 	"audio",
@@ -79,9 +89,33 @@ class AskALYFSettings(Document):
 	def is_code_search_enabled(self) -> bool:
 		return bool(self.allow_code_search)
 
+	def validate(self):
+		validate_model_selection(
+			self.model,
+			ModelConfiguration.CHAT,
+			unsupported_message=_("The selected Chat Model ({0}) does not support function calling."),
+		)
+
+		if self.vision_model_is_chat_model:
+			validate_model_selection(
+				self.model,
+				ModelConfiguration.VISION,
+				unsupported_message=_(
+					"The selected Chat Model ({0}) does not support vision. Choose a vision-capable chat model or configure a separate vision model."
+				),
+			)
+			return
+
+		validate_model_selection(
+			self.vision_model,
+			ModelConfiguration.VISION,
+			unsupported_message=_("The selected Vision Model ({0}) does not support vision."),
+		)
+
 
 @frappe.whitelist()
-def get_available_models(configuration: str = "chat") -> list[dict[str, str]]:
+def get_available_models(configuration: str = ModelConfiguration.CHAT) -> list[dict[str, str]]:
+	configuration = parse_model_configuration(configuration)
 	settings = frappe.get_single("Ask ALYF Settings")
 	settings.check_permission("write")
 
@@ -114,19 +148,27 @@ def get_available_models(configuration: str = "chat") -> list[dict[str, str]]:
 	)
 	response = client.list_models()
 	models = sorted(
-		[model for model in response if is_text_generation_model(model.id)],
+		[model for model in response if is_available_model(model.id, configuration)],
 		key=lambda model: model.id.lower(),
 	)
 
 	return [{"id": model.id} for model in models]
 
 
-def get_model_config_fields(configuration: str) -> dict[str, str]:
-	configuration = (configuration or "chat").strip().lower()
-	if configuration not in MODEL_CONFIG_FIELDS:
+def parse_model_configuration(
+	configuration: str | ModelConfiguration | None = None,
+) -> ModelConfiguration:
+	if isinstance(configuration, ModelConfiguration):
+		return configuration
+
+	try:
+		return ModelConfiguration((configuration or ModelConfiguration.CHAT).strip().lower())
+	except ValueError:
 		frappe.throw(_("Unsupported model configuration: {0}").format(configuration))
 
-	return MODEL_CONFIG_FIELDS[configuration]
+
+def get_model_config_fields(configuration: str | ModelConfiguration) -> dict[str, str]:
+	return MODEL_CONFIG_FIELDS[parse_model_configuration(configuration)]
 
 
 def get_any_llm_provider(llm_provider: str) -> str:
@@ -149,9 +191,55 @@ def normalize_api_key(api_key: str | None) -> str:
 	return api_key
 
 
+def validate_model_selection(
+	model_id: str | None,
+	configuration: ModelConfiguration,
+	*,
+	unsupported_message: str,
+) -> None:
+	model_id = (model_id or "").strip()
+	if not model_id:
+		return
+
+	if is_available_model(model_id, configuration):
+		return
+
+	frappe.throw(unsupported_message.format(model_id))
+
+
 def is_text_generation_model(model_id: str) -> bool:
 	model_id = (model_id or "").strip().lower()
 	if not model_id:
 		return False
 
 	return not any(pattern in model_id for pattern in NON_TEXT_MODEL_PATTERNS)
+
+
+def is_litellm_mapped_model(model_id: str) -> bool:
+	try:
+		get_model_info(model_id, custom_llm_provider=LITELLM_PROVIDER)
+	except Exception:
+		return False
+
+	return True
+
+
+def has_required_capability(model_id: str, configuration: ModelConfiguration) -> bool:
+	match configuration:
+		case ModelConfiguration.CHAT:
+			supported = supports_function_calling(model_id, custom_llm_provider=LITELLM_PROVIDER)
+		case ModelConfiguration.VISION:
+			supported = supports_vision(model_id, custom_llm_provider=LITELLM_PROVIDER)
+
+	if supported:
+		return True
+
+	# LiteLLM returns False for unmapped custom models; keep those selectable.
+	return not is_litellm_mapped_model(model_id)
+
+
+def is_available_model(model_id: str, configuration: str | ModelConfiguration) -> bool:
+	if not is_text_generation_model(model_id):
+		return False
+
+	return has_required_capability(model_id, parse_model_configuration(configuration))
