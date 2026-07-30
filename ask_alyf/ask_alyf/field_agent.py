@@ -151,12 +151,6 @@ def run_field_agent(
 
 	result_messages = result.get("messages") if isinstance(result, dict) else None
 	if result_messages:
-		last = result_messages[-1]
-		content = getattr(last, "content", None)
-		if isinstance(content, str):
-			return content.strip()
-		elif content is not None:
-			# Some providers return content as a list of blocks; coerce to text.
-			return str(content).strip()
+		return result_messages[-1].text.strip()
 
 	return ""

@@ -108,6 +108,7 @@ def build_chat_model(settings, *, temperature: float = 0.2) -> ChatOpenAI:
 		api_key=_get_api_key_from_settings(settings),
 		base_url=(settings.base_url or "").strip() or None,
 		temperature=temperature,
+		use_responses_api=True,
 	)
 
 
@@ -327,18 +328,8 @@ Mode awareness and behavior:
 		self.runtime.conversation_history = conversation_history or []
 		input_messages = self._build_input_messages(message)
 		result = self.agent.invoke({"messages": input_messages})
-		response_text = ""
 		result_messages = result.get("messages") if isinstance(result, dict) else None
-		if result_messages:
-			last = result_messages[-1]
-			content = getattr(last, "content", None)
-			if isinstance(content, str):
-				response_text = content.strip()
-			elif content is None:
-				response_text = ""
-			else:
-				# Some providers return content as a list of blocks; coerce to text.
-				response_text = str(content).strip()
+		response_text = result_messages[-1].text.strip() if result_messages else ""
 
 		return {
 			"response": response_text,
