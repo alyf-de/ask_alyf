@@ -497,7 +497,8 @@
 	}
 }
 
-.ask_alyf-user {
+.ask_alyf-user,
+.ask_alyf-system {
 	justify-content: flex-end;
 }
 
@@ -584,19 +585,8 @@
 	padding: 0.35rem 0;
 }
 
-.ask_alyf-status-message,
-.ask_alyf-system {
+.ask_alyf-status-message {
 	justify-content: center;
-}
-
-.ask_alyf-system .ask_alyf-message-body {
-	max-width: 100%;
-	padding: 0.25rem 0.65rem;
-	border: none;
-	background: transparent;
-	color: var(--text-muted);
-	font-size: 0.78rem;
-	text-align: center;
 }
 
 .ask_alyf-message-body,
@@ -604,25 +594,30 @@
 	max-width: 85%;
 	padding: 0.75rem 0.9rem;
 	border-radius: 1rem;
-	border: 1px solid var(--border-color);
-	background: white;
 	overflow: auto;
 }
 
-[data-theme="dark"] .ask_alyf-message-body,
+.ask_alyf-assistant .ask_alyf-message-body {
+	border: none;
+	background: transparent;
+	padding-left: 0;
+	padding-right: 0;
+}
+
+.ask_alyf-user .ask_alyf-message-body,
+.ask_alyf-system .ask_alyf-message-body,
+.ask_alyf-proposal {
+	border: 1px solid var(--border-color);
+	background: white;
+	color: var(--text-color);
+}
+
+[data-theme="dark"] .ask_alyf-user .ask_alyf-message-body,
+[data-theme="dark"] .ask_alyf-system .ask_alyf-message-body,
 [data-theme="dark"] .ask_alyf-proposal {
 	background: var(--gray-900);
 }
 
-.ask_alyf-user .ask_alyf-message-body {
-	background: color-mix(in srgb, var(--primary), white 88%);
-	color: var(--text-color);
-}
-
-[data-theme="dark"] .ask_alyf-user .ask_alyf-message-body {
-	background: color-mix(in srgb, var(--primary), white 12%);
-	color: var(--text-color);
-}
 
 .ask_alyf-status-message .ask_alyf-message-body {
 	max-width: 100%;
