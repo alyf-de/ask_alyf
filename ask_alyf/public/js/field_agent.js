@@ -277,6 +277,8 @@
 	// ---- Trigger button injection -----------------------------------------------
 
 	function injectTriggerButton(control) {
+		if (control.get_status() !== "Write") return;
+
 		var $clearfix = control.$wrapper && control.$wrapper.find(".clearfix");
 		if (!$clearfix || !$clearfix.length) return;
 
