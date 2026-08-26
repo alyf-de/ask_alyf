@@ -13,8 +13,8 @@ import "./field_agent";
 	const ASK_ALYF_MISSING_JOB_CHECKS = 3;
 
 	/**
-	 * Frappe Charts divides by labels.length, Y interval range, and (for pie) grand total;
-	 * tiny/negative plot height or zero Y range yields NaN axis lines in draw.js.
+	 * Frappe Charts divides by labels.length and (for pie) grand total;
+	 * tiny/negative plot height yields NaN axis lines in draw.js.
 	 */
 	function normalizeStoredFrappeChartOptions(out) {
 		if (!out || typeof out !== "object") {
@@ -72,26 +72,18 @@ import "./field_agent";
 			if (grandTotal <= 0) {
 				return { ok: false };
 			}
-		} else {
-			const allY = [];
-			for (const ds of out.data.datasets) {
-				for (const v of ds.values) {
-					if (Number.isFinite(v)) {
-						allY.push(v);
-					}
-				}
-			}
-			if (allY.length) {
-				const yMin = Math.min(...allY);
-				const yMax = Math.max(...allY);
-				if (yMin === yMax) {
-					const lastDs = out.data.datasets[out.data.datasets.length - 1];
-					const lastIdx = lastDs.values.length - 1;
-					if (lastIdx >= 0) {
-						const bump = yMax === 0 ? 1 : Math.abs(yMax) * 0.01 || 0.01;
-						lastDs.values[lastIdx] = yMax + bump;
-					}
-				}
+		} else if (type === "line") {
+			const allY = out.data.datasets.flatMap((ds) => ds.values);
+			const yMin = Math.min(...allY);
+			const yMax = Math.max(...allY);
+			if (allY.length && yMin === yMax) {
+				// Line charts fit the axis to min/max. A flat series sits on the
+				// x-axis because frappe-charts expands a zero range upward only.
+				const pad = yMax === 0 ? 1 : Math.abs(yMax) * 0.1 || 0.1;
+				out.axisOptions = {
+					...out.axisOptions,
+					yAxisRange: { min: yMax - pad, max: yMax + pad },
+				};
 			}
 		}
 
