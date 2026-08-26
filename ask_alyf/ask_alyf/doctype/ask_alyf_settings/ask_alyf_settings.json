@@ -21,6 +21,7 @@
   "base_url",
   "api_key",
   "model",
+  "reasoning_effort",
   "vision_provider_tab",
   "vision_model_is_chat_model",
   "vision_llm_provider",
@@ -165,13 +166,19 @@
    "fieldname": "vision_model",
    "fieldtype": "Autocomplete",
    "label": "Vision Model"
+  },
+  {
+   "fieldname": "reasoning_effort",
+   "fieldtype": "Select",
+   "label": "Reasoning Effort",
+   "options": "\nlow\nmedium\nhigh\nxhigh\nmax"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2026-04-28 23:26:41.160263",
+ "modified": "2026-08-26 02:47:09.080302",
  "modified_by": "Administrator",
  "module": "Ask ALYF",
  "name": "Ask ALYF Settings",
