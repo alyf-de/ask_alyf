@@ -83,6 +83,7 @@ class UnitTestFieldAgent(FrappeTestCase):
 				model="gpt-test",
 				llm_provider="OpenAI",
 				base_url="",
+				reasoning_effort="",
 				get_password=lambda _f, raise_exception=False: "test-key",
 			)
 			# Snapshot count before
@@ -116,6 +117,7 @@ class UnitTestFieldAgent(FrappeTestCase):
 				model="gpt-test",
 				llm_provider="OpenAI",
 				base_url="",
+				reasoning_effort="",
 				get_password=lambda _f, raise_exception=False: "test-key",
 			)
 
@@ -145,6 +147,7 @@ class UnitTestFieldAgent(FrappeTestCase):
 				model="gpt-test",
 				llm_provider="OpenAI",
 				base_url="",
+				reasoning_effort="",
 				get_password=lambda _f, raise_exception=False: "test-key",
 			)
 			field_agent.run_field_agent(

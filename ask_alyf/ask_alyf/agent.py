@@ -109,6 +109,7 @@ def build_chat_model(settings, *, temperature: float = 0.2) -> ChatOpenAI:
 		base_url=(settings.base_url or "").strip() or None,
 		temperature=temperature,
 		use_responses_api=True,
+		reasoning_effort=(settings.reasoning_effort or "").strip() or None,
 	)
 
 

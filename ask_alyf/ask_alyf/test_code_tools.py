@@ -16,13 +16,14 @@ from ask_alyf.ask_alyf.toolset import ask_alyfToolset, clear_messages_on_tool_er
 
 
 class FakeSettings(SimpleNamespace):
-	def __init__(self, *, allow_code_search: bool):
+	def __init__(self, *, allow_code_search: bool, reasoning_effort: str = ""):
 		super().__init__(
 			allow_code_search=allow_code_search,
 			system_prompt="",
 			model="gpt-test",
 			llm_provider="OpenAI",
 			base_url="",
+			reasoning_effort=reasoning_effort,
 		)
 
 	def is_code_search_enabled(self) -> bool:
@@ -57,6 +58,12 @@ class UnitTestCodeTools(FrappeTestCase):
 		model = build_chat_model(FakeSettings(allow_code_search=False))
 
 		self.assertTrue(model.use_responses_api)
+		self.assertIsNone(model.reasoning_effort)
+
+	def test_build_chat_model_passes_reasoning_effort_when_set(self):
+		model = build_chat_model(FakeSettings(allow_code_search=False, reasoning_effort="high"))
+
+		self.assertEqual(model.reasoning_effort, "high")
 
 	def test_subagents_register_source_code_analyzer_only_when_code_search_enabled(self):
 		raw_code_tool_names = {"search_code", "read_code_file", "ls", "find", "grep"}

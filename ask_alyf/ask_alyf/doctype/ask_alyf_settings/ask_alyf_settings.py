@@ -77,6 +77,7 @@ class AskALYFSettings(Document):
 		excluded_doctypes: DF.TableMultiSelect[AskALYFExcludedDocType]
 		llm_provider: DF.Literal["OpenAI", "OpenAI Compatible"]
 		model: DF.Autocomplete | None
+		reasoning_effort: DF.Literal["", "low", "medium", "high", "xhigh", "max"]
 		support_phone_number: DF.Phone | None
 		system_prompt: DF.Code | None
 		vision_api_key: DF.Password | None
