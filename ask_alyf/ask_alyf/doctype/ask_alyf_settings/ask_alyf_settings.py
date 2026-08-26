@@ -5,6 +5,7 @@ import frappe
 from any_llm import AnyLLM
 from frappe import _
 from frappe.model.document import Document
+from langchain_openai import ChatOpenAI
 from litellm.utils import get_model_info, supports_function_calling, supports_vision
 
 if TYPE_CHECKING:
@@ -96,6 +97,7 @@ class AskALYFSettings(Document):
 			ModelConfiguration.CHAT,
 			unsupported_message=_("The selected Chat Model ({0}) does not support function calling."),
 		)
+		warn_if_unsupported_reasoning_effort(self.model, self.get("reasoning_effort"))
 
 		if self.vision_model_is_chat_model:
 			validate_model_selection(
@@ -206,6 +208,41 @@ def validate_model_selection(
 		return
 
 	frappe.throw(unsupported_message.format(model_id))
+
+
+def get_langchain_reasoning_effort_levels(model_id: str) -> list[str] | None:
+	"""Return LangChain's reasoning effort levels for a model, or None if unknown."""
+	model_id = (model_id or "").strip()
+	if not model_id:
+		return None
+
+	profile = ChatOpenAI(model=model_id, api_key="unused").profile
+	if profile is None:
+		return None
+
+	return list(profile.get("reasoning_effort_levels") or ())
+
+
+def warn_if_unsupported_reasoning_effort(model_id: str | None, reasoning_effort: str | None) -> None:
+	model_id = (model_id or "").strip()
+	reasoning_effort = (reasoning_effort or "").strip()
+	if not model_id or not reasoning_effort:
+		return
+
+	levels = get_langchain_reasoning_effort_levels(model_id)
+	if levels is None or reasoning_effort in levels:
+		return
+
+	if levels:
+		message = _(
+			"The selected Chat Model ({0}) does not support Reasoning Effort ({1}). Supported values: {2}."
+		).format(model_id, reasoning_effort, ", ".join(levels))
+	else:
+		message = _("The selected Chat Model ({0}) does not support Reasoning Effort ({1}).").format(
+			model_id, reasoning_effort
+		)
+
+	frappe.msgprint(message, indicator="orange", alert=True)
 
 
 def is_text_generation_model(model_id: str) -> bool:
