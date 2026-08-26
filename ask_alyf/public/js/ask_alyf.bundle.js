@@ -79,6 +79,19 @@ import "./field_agent";
 			if (grandTotal <= 0) {
 				return { ok: false };
 			}
+		} else if (type === "line") {
+			const allY = out.data.datasets.flatMap((ds) => ds.values);
+			const yMin = Math.min(...allY);
+			const yMax = Math.max(...allY);
+			if (allY.length && yMin === yMax) {
+				// Line charts fit the axis to min/max. A flat series sits on the
+				// x-axis because frappe-charts expands a zero range upward only.
+				const pad = yMax === 0 ? 1 : Math.abs(yMax) * 0.1 || 0.1;
+				out.axisOptions = {
+					...out.axisOptions,
+					yAxisRange: { min: yMax - pad, max: yMax + pad },
+				};
+			}
 		}
 
 		const height = Number(out.height);
