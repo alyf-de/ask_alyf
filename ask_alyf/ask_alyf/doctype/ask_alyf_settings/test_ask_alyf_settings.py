@@ -224,6 +224,84 @@ class UnitTestAskALYFSettings(FrappeTestCase):
 			ask_alyf_settings.ModelConfiguration.CHAT,
 		)
 
+	def test_get_langchain_reasoning_effort_levels_returns_none_for_unknown_model(self):
+		with patch.object(ask_alyf_settings, "ChatOpenAI", return_value=SimpleNamespace(profile=None)):
+			self.assertIsNone(ask_alyf_settings.get_langchain_reasoning_effort_levels("custom-local-model"))
+
+	def test_get_langchain_reasoning_effort_levels_returns_empty_when_profile_has_no_levels(self):
+		with patch.object(
+			ask_alyf_settings, "ChatOpenAI", return_value=SimpleNamespace(profile={"name": "GPT-4o"})
+		):
+			self.assertEqual(ask_alyf_settings.get_langchain_reasoning_effort_levels("gpt-4o"), [])
+
+	def test_warn_if_unsupported_reasoning_effort_skips_unknown_models(self):
+		with (
+			patch.object(ask_alyf_settings, "get_langchain_reasoning_effort_levels", return_value=None),
+			patch.object(ask_alyf_settings.frappe, "msgprint") as msgprint,
+		):
+			ask_alyf_settings.warn_if_unsupported_reasoning_effort("custom-local-model", "high")
+
+		msgprint.assert_not_called()
+
+	def test_warn_if_unsupported_reasoning_effort_skips_supported_values(self):
+		with (
+			patch.object(
+				ask_alyf_settings,
+				"get_langchain_reasoning_effort_levels",
+				return_value=["low", "medium", "high"],
+			),
+			patch.object(ask_alyf_settings.frappe, "msgprint") as msgprint,
+		):
+			ask_alyf_settings.warn_if_unsupported_reasoning_effort("gpt-5", "high")
+
+		msgprint.assert_not_called()
+
+	def test_warn_if_unsupported_reasoning_effort_warns_when_value_is_not_supported(self):
+		with (
+			patch.object(
+				ask_alyf_settings,
+				"get_langchain_reasoning_effort_levels",
+				return_value=["low", "medium", "high"],
+			),
+			patch.object(ask_alyf_settings.frappe, "msgprint") as msgprint,
+		):
+			ask_alyf_settings.warn_if_unsupported_reasoning_effort("gpt-5", "max")
+
+		msgprint.assert_called_once()
+		message, kwargs = msgprint.call_args.args[0], msgprint.call_args.kwargs
+		self.assertIn("gpt-5", message)
+		self.assertIn("max", message)
+		self.assertIn("low, medium, high", message)
+		self.assertEqual(kwargs["indicator"], "orange")
+
+	def test_warn_if_unsupported_reasoning_effort_warns_when_model_has_no_levels(self):
+		with (
+			patch.object(ask_alyf_settings, "get_langchain_reasoning_effort_levels", return_value=[]),
+			patch.object(ask_alyf_settings.frappe, "msgprint") as msgprint,
+		):
+			ask_alyf_settings.warn_if_unsupported_reasoning_effort("gpt-4o", "high")
+
+		msgprint.assert_called_once()
+		self.assertIn("gpt-4o", msgprint.call_args.args[0])
+		self.assertIn("high", msgprint.call_args.args[0])
+
+	def test_validate_warns_for_unsupported_reasoning_effort(self):
+		settings = ask_alyf_settings.AskALYFSettings(
+			{
+				"doctype": "Ask ALYF Settings",
+				"model": "gpt-5",
+				"reasoning_effort": "max",
+			}
+		)
+
+		with (
+			patch.object(ask_alyf_settings, "is_available_model", return_value=True),
+			patch.object(ask_alyf_settings, "warn_if_unsupported_reasoning_effort") as warn,
+		):
+			settings.validate()
+
+		warn.assert_called_once_with("gpt-5", "max")
+
 
 class IntegrationTestAskALYFSettings(FrappeTestCase):
 	"""
