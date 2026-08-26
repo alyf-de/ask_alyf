@@ -2327,7 +2327,9 @@ import "./field_agent";
 				downloadButton.setAttribute("aria-label", downloadLabel);
 				downloadButton.disabled = true;
 				downloadButton.innerHTML =
-					typeof frappe.utils?.icon === "function" ? frappe.utils.icon("download", "xs") : "SVG";
+					typeof frappe.utils?.icon === "function"
+						? frappe.utils.icon("es-line-download", "xs")
+						: "SVG";
 				downloadButton.addEventListener("click", () => {
 					const chart = this.getTrackedFrappeChart(messageKey, index);
 					if (!chart || typeof chart.export !== "function") {
