@@ -495,20 +495,10 @@ def get_message_job_status(conversation: str, user_message_id: str, job_id: str)
 		return {"status": "completed", "conversation": conversation_payload(doc)}
 
 	status = get_job_status(job_id)
-<<<<<<< HEAD
-	if status in {
-		JobStatus.QUEUED,
-		JobStatus.STARTED,
-		JobStatus.DEFERRED,
-		JobStatus.SCHEDULED,
-	}:
-		return {"status": "pending"}
-=======
 	if status in PENDING_JOB_STATUSES:
 		# Steps broadcast while the user was elsewhere cannot be replayed, so
 		# the run's progress so far rides along with the status.
 		return {"status": "pending", "tool_calls": read_running_steps(conversation)}
->>>>>>> aa4468d (feat: Checkpointer (#107))
 	if status in {JobStatus.FINISHED, JobStatus.FAILED, JobStatus.STOPPED, JobStatus.CANCELED}:
 		doc.reload()
 		messages = get_messages(doc)

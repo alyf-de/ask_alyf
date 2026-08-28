@@ -56,9 +56,6 @@ class FakeSettings(SimpleNamespace):
 		return "test-key"
 
 
-<<<<<<< HEAD
-class UnitTestCodeTools(FrappeTestCase):
-=======
 class FakeCheckpointer:
 	"""Stands in for `FrappeCheckpointSaver` so unit tests stay off the database."""
 
@@ -116,8 +113,7 @@ def proposed_operation(call) -> dict:
 	raise AssertionError("the tool returned without proposing an operation")
 
 
-class UnitTestCodeTools(UnitTestCase):
->>>>>>> aa4468d (feat: Checkpointer (#107))
+class UnitTestCodeTools(FrappeTestCase):
 	def make_runtime(self, *, mode: str = "Ask"):
 		return SimpleNamespace(
 			conversation_name="TEST-CONVERSATION",

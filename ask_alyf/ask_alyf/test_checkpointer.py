@@ -9,7 +9,7 @@ from typing import Annotated, TypedDict
 from unittest.mock import patch
 
 import frappe
-from frappe.tests import IntegrationTestCase
+from frappe.tests.utils import FrappeTestCase
 from frappe.utils import add_days, now_datetime
 from langchain.agents import create_agent
 from langchain_core.language_models import FakeMessagesListChatModel
@@ -55,7 +55,7 @@ class _State(TypedDict):
 	messages: Annotated[list[AnyMessage], add_messages]
 
 
-class IntegrationTestFrappeCheckpointSaver(IntegrationTestCase):
+class IntegrationTestFrappeCheckpointSaver(FrappeTestCase):
 	def setUp(self):
 		self.saver = FrappeCheckpointSaver()
 		self.addCleanup(self._clear)

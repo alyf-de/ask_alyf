@@ -5,12 +5,8 @@ from types import SimpleNamespace
 from unittest.mock import patch
 
 import frappe
-<<<<<<< HEAD
 from frappe.tests.utils import FrappeTestCase
-=======
-from frappe.tests import UnitTestCase
 from rq.job import JobStatus
->>>>>>> aa4468d (feat: Checkpointer (#107))
 
 from ask_alyf.ask_alyf import api, tools
 from ask_alyf.ask_alyf.history import history_item_to_native_message
