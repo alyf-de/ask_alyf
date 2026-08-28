@@ -62,12 +62,16 @@ class FakeCheckpointer:
 	def __init__(self, *, stored_state: bool = False):
 		self.stored_state = stored_state
 		self.flush_count = 0
+		self.deleted_threads = []
 
 	def get_tuple(self, _config):
 		return object() if self.stored_state else None
 
 	def flush(self):
 		self.flush_count += 1
+
+	def delete_thread(self, thread_id):
+		self.deleted_threads.append(thread_id)
 
 
 @contextlib.contextmanager
@@ -666,6 +670,8 @@ class UnitTestCodeTools(FrappeTestCase):
 	def test_resume_reports_a_committed_operation_when_follow_up_fails(self):
 		runner = self.make_runner(allow_code_search=False, mode="Agent")
 		runner.runtime.backend_operation_committed = True
+		runner.runtime.document_extractions = [{"supplier": "Example"}]
+		runner.runtime.attached_files = [{"name": "FILE-0001"}]
 		runner.runtime.tool_calls = [{"name": "set_value", "status": "success"}]
 
 		def fail_after_commit(_input, config=None):
@@ -683,7 +689,10 @@ class UnitTestCodeTools(FrappeTestCase):
 
 		self.assertIn("operation was completed", result["response"])
 		self.assertEqual(result["pending_operations"], [])
+		self.assertEqual(result["document_extractions"], runner.runtime.document_extractions)
+		self.assertEqual(result["attached_files"], runner.runtime.attached_files)
 		self.assertEqual(result["tool_calls"], runner.runtime.tool_calls)
+		self.assertEqual(runner.checkpointer.deleted_threads, ["TEST-CONVERSATION"])
 		savepoint.assert_called_once_with("ask_alyf_operation_resume")
 		rollback.assert_called_once_with(save_point="ask_alyf_operation_resume")
 		log_error.assert_called_once_with("Ask ALYF Action Follow-Up Error")
@@ -704,6 +713,7 @@ class UnitTestCodeTools(FrappeTestCase):
 			runner.resume("operation-1", "approved")
 
 		rollback.assert_called_once_with(save_point="ask_alyf_operation_resume")
+		self.assertEqual(runner.checkpointer.deleted_threads, ["TEST-CONVERSATION"])
 
 	def test_run_preserves_result_envelope_and_proposal_shapes(self):
 		runner = self.make_runner(allow_code_search=False, mode="Agent")
