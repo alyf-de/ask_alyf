@@ -22,7 +22,19 @@ class AskALYFConversation(Document):
 		title: DF.Data
 	# end: auto-generated types
 
+	def on_trash(self):
+		# Imported here: the checkpointer pulls in LangGraph, which the desk
+		# requests that merely read conversations should not pay for.
+		from ask_alyf.ask_alyf.checkpointer import delete_checkpoints
+
+		delete_checkpoints([self.name])
+
 	@staticmethod
 	def clear_old_logs(days: int = 90):
+		from ask_alyf.ask_alyf.checkpointer import delete_checkpoints
+
 		table = frappe.qb.DocType("Ask ALYF Conversation")
-		frappe.db.delete(table, filters=(table.creation < (Now() - Interval(days=days))))
+		expired = table.creation < (Now() - Interval(days=days))
+		# A bulk delete skips `on_trash`, so the checkpoints go first.
+		delete_checkpoints(frappe.qb.from_(table).select(table.name).where(expired).run(pluck=True))
+		frappe.db.delete(table, filters=expired)

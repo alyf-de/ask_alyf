@@ -12,12 +12,15 @@ from deepagents import (
 )
 from frappe import _
 from langchain.agents import create_agent
-from langchain.agents.middleware import ToolErrorMiddleware
+from langchain.agents.middleware import AgentMiddleware, ToolErrorMiddleware
 from langchain.agents.middleware.types import ToolCallRequest
 from langchain_core.messages import AnyMessage, HumanMessage
 from langchain_openai import ChatOpenAI
+from langgraph.errors import GraphBubbleUp
+from langgraph.types import Command
 
 from ask_alyf.ask_alyf import tools
+from ask_alyf.ask_alyf.checkpointer import FrappeCheckpointSaver
 from ask_alyf.ask_alyf.deep_agent_backend import build_ask_alyf_backend
 from ask_alyf.ask_alyf.history import history_item_to_native_message
 from ask_alyf.ask_alyf.skill_utils import build_available_skills_instruction
@@ -28,6 +31,7 @@ from ask_alyf.ask_alyf.subagents import (
 	SourceCodeAnalysisResult,
 )
 from ask_alyf.ask_alyf.toolset import (
+	OPERATION_INTERRUPT_KEY,
 	ask_alyfRuntime,
 	ask_alyfToolset,
 	clear_messages_on_tool_error,
@@ -53,6 +57,143 @@ def _on_tool_error(exc: Exception, request: ToolCallRequest) -> str:
 def build_tool_error_middleware() -> ToolErrorMiddleware:
 	"""Build middleware that returns tool failures to the model for retry."""
 	return ToolErrorMiddleware(on_error=_on_tool_error)
+
+
+# Tool arguments are shown to the user, so a large payload (a full document,
+# an extracted PDF) is trimmed to keep the conversation record readable.
+TOOL_CALL_ARGS_LIMIT = 500
+
+
+def _summarize_tool_args(args: Any) -> dict[str, Any]:
+	"""Trim tool arguments down to something worth showing in the chat."""
+	if not isinstance(args, dict):
+		return {}
+
+	summary = {}
+	for key, value in args.items():
+		text = value if isinstance(value, str) else frappe.as_json(value, indent=None)
+		if len(text) > TOOL_CALL_ARGS_LIMIT:
+			text = text[:TOOL_CALL_ARGS_LIMIT] + "…"
+		summary[key] = text
+	return summary
+
+
+def _tool_call_label(name: str, args: Any) -> str:
+	"""Describe a tool call in the user's words, for the step list in the chat.
+
+	Names the record being worked on wherever the arguments carry one, because
+	"Reading Sales Invoice list" tells the user something that `get_list` does
+	not. Anything unmapped falls back to a readable form of the tool name, so a
+	new tool shows up in the list instead of disappearing from it.
+	"""
+	args = args if isinstance(args, dict) else {}
+	doctype = _(args["doctype"]) if isinstance(args.get("doctype"), str) else ""
+	docname = args["name"] if isinstance(args.get("name"), str) else ""
+	target = " ".join(part for part in (doctype, docname) if part)
+
+	if name == "get_list":
+		return _("Reading {0} list").format(doctype)
+	if name == "get_count":
+		return _("Counting {0}").format(doctype)
+	if name in ("get", "get_value", "get_single_value", "get_print"):
+		return _("Reading {0}").format(target or doctype)
+	if name == "get_meta":
+		return _("Checking the {0} form").format(doctype)
+	if name in ("has_permission", "get_doc_permissions"):
+		return _("Checking your permissions on {0}").format(doctype)
+	if name == "list_accessible_doctypes":
+		return _("Looking up what you can access")
+	if name == "list_accessible_reports":
+		return _("Looking up available reports")
+	if name == "translate_ui_labels":
+		return _("Translating labels")
+	if name == "run_read_only_sql":
+		return _("Running a database query")
+	if name in ("read_skill", "write_skill"):
+		return _("Reading instructions") if name == "read_skill" else _("Saving instructions")
+	if name in ("get_file_id", "read_file_record", "extract_document_data"):
+		return _("Reading the attached document")
+	if name in ("get_app_version", "read_github_releases", "read_documentation_page"):
+		return _("Reading documentation")
+	if name in ("ls", "read_file", "glob", "grep"):
+		return _("Searching the source code")
+	if name == "task":
+		return _("Asking the {0} specialist").format(args.get("subagent_type") or _("assistant"))
+	if name == "write_todos":
+		return _("Planning the next steps")
+
+	if name == "insert":
+		return _("Creating {0}").format(doctype)
+	if name == "batch_insert":
+		return _("Creating several {0} records").format(doctype)
+	if name in ("save", "set_value"):
+		return _("Updating {0}").format(target or doctype)
+	if name == "submit":
+		return _("Submitting {0}").format(target or doctype)
+	if name == "cancel":
+		return _("Cancelling {0}").format(target or doctype)
+	if name == "amend":
+		return _("Amending {0}").format(target or doctype)
+	if name == "delete":
+		return _("Deleting {0}").format(target or doctype)
+	if name == "rename_doc":
+		return _("Renaming {0}").format(target or doctype)
+	if name == "attach_file":
+		return _("Attaching a file to {0}").format(target or doctype)
+	if name == "run_whitelisted_method":
+		return _("Running {0}").format(args.get("method") or _("an action"))
+
+	if name == "set_route":
+		return _("Opening a page")
+	if name == "new_doc":
+		return _("Opening a new {0}").format(doctype)
+	if name == "scroll_to_field":
+		return _("Highlighting a field")
+	if name == "show_chart":
+		return _("Preparing a chart")
+	if name in ("frm_set_value", "frm_add_child"):
+		return _("Filling in the open form")
+
+	return name.replace("_", " ").capitalize()
+
+
+class ToolCallLogMiddleware(AgentMiddleware):
+	"""Show the user each tool call as it happens, and keep the list afterwards.
+
+	Every call is announced when it starts and updated when it ends, so the
+	chat builds up a live list of steps instead of a single status line that
+	overwrites itself. The same list is persisted with the assistant message,
+	so reopening the conversation still shows what the agent did.
+	"""
+
+	def __init__(self, runtime: ask_alyfRuntime):
+		super().__init__()
+		self.runtime = runtime
+
+	def wrap_tool_call(self, request: ToolCallRequest, handler: Callable[[ToolCallRequest], Any]) -> Any:
+		call = request.tool_call
+		call_id = call.get("id") or ""
+		self.runtime.begin_tool_call(
+			call_id,
+			call.get("name") or "",
+			_summarize_tool_args(call.get("args")),
+			_tool_call_label(call.get("name") or "", call.get("args")),
+		)
+		try:
+			result = handler(request)
+		except GraphBubbleUp:
+			# A paused proposal has not happened yet: drop it from the list
+			# until the user decides and the tool node runs again.
+			self.runtime.drop_tool_call(call_id)
+			raise
+		except Exception:
+			self.runtime.finish_tool_call(call_id, "failed")
+			raise
+
+		self.runtime.finish_tool_call(
+			call_id, "failed" if getattr(result, "status", None) == "error" else "success"
+		)
+		return result
 
 
 # Deep Agents exposes built-in filesystem write tools (``write_file``,
@@ -125,6 +266,7 @@ class ask_alyfAgentRunner:
 		self.model = build_chat_model(self.settings, temperature=0.2)
 		app_roots = tools.get_installed_app_roots() if self.settings.is_code_search_enabled() else {}
 		self.backend = build_ask_alyf_backend(app_roots)
+		self.checkpointer = FrappeCheckpointSaver()
 		self.agent = create_deep_agent(
 			model=self.model,
 			tools=self._build_tools(),
@@ -132,9 +274,15 @@ class ask_alyfAgentRunner:
 			backend=self.backend,
 			subagents=self._build_subagents(),
 			permissions=self._build_permissions(),
-			middleware=[build_tool_error_middleware()],
+			middleware=[build_tool_error_middleware(), ToolCallLogMiddleware(runtime)],
+			checkpointer=self.checkpointer,
 			name="ask_alyf",
 		)
+
+	@property
+	def thread_config(self) -> dict[str, Any]:
+		"""Graph config that ties this run to the conversation's stored state."""
+		return {"configurable": {"thread_id": self.runtime.conversation_name}}
 
 	def _can_write_skill(self) -> bool:
 		return bool(frappe.has_permission("Ask ALYF Skill", ptype="create"))
@@ -179,7 +327,8 @@ Always follow these rules:
 Mode awareness and behavior:
 - The current mode is `{self.runtime.mode}` and is authoritative for this turn.
 - `Ask` mode is strictly read-only: write tools are unavailable, so if intent is mutation (create, update, submit, cancel, amend, rename, delete, attach, or a write method), immediately recommend switching to `Agent` mode and do not claim anything was done or queued.
-- `Agent` mode supports mutation workflows with write tools while still handling read-only questions with read tools. Every write tool call creates a pending proposal that requires user confirmation before execution. Multiple proposals can be created in a single turn — if the request needs several writes, propose them all now. The user will confirm or reject each one individually.
+- `Agent` mode supports mutation workflows with write tools while still handling read-only questions with read tools. A write tool call pauses and waits for the user to confirm; the tool then returns the real outcome to you, so you learn whether it succeeded before deciding what to do next.
+- Call one write tool at a time and wait for its result. If a request needs several writes, do the first, read its result, then do the next. Never propose two write tools in the same step.
 - Frontend action tools can navigate or adjust the current form in the browser, or display Frappe Charts under the assistant message via `show_chart` (pass `frappe_charts` as a list of chart option objects; validated server-side). See the `show_chart` tool docstring for the options shape.
 - Frontend actions with `requires_confirmation` must be confirmed before the browser executes them.
 - In `Agent` mode, prefer the `document-planner` subagent (via the `task` tool) before non-trivial `insert`, `save`, or `set_value` operations. If it returns `ready=false`, ask the user for the missing information instead of guessing. If it returns `ready=true`, use the matching write tool with the returned payload.
@@ -188,7 +337,8 @@ Mode awareness and behavior:
 - Child table fields (fieldtype Table) must be arrays of row objects, never plain strings.
 - Act on clear intent immediately with sensible defaults. Only ask when required information is truly missing and cannot be inferred.
 - Never repeat the user's data in your response. The UI shows a detailed preview of every pending write. After calling a write tool, confirm readiness in one sentence.
-- When you receive an action result (success, failure, or rejection), confirm the outcome briefly. If a natural follow-up action exists (e.g. submitting a newly created document), proceed with it. Do not ask "would you like me to..." — just do it.
+- A write tool that returns `rejected` means the user declined it. Acknowledge briefly, suggest an alternative if there is one, and never retry the same operation.
+- When a write tool returns a result, confirm the outcome briefly. If a natural follow-up action exists (e.g. submitting a newly created document), proceed with it. Do not ask "would you like me to..." — just do it.
 - Excluded DocTypes for Agent mode: {excluded_doctypes}
 """.strip()
 
@@ -302,7 +452,7 @@ Mode awareness and behavior:
 							self.toolset.list_accessible_doctypes,
 						)
 					],
-					"middleware": [build_tool_error_middleware()],
+					"middleware": [build_tool_error_middleware(), ToolCallLogMiddleware(self.runtime)],
 					"response_format": DocumentPlannerResult,
 				}
 			)
@@ -312,10 +462,17 @@ Mode awareness and behavior:
 	def _build_input_messages(self, message: str) -> list[AnyMessage]:
 		"""Build the native message list for the next invocation.
 
-		Without a checkpointer, the full stored history is rebuilt as native
-		messages each time and the new user message is appended.
+		The checkpointer restores what the agent saw and did in earlier turns,
+		so a conversation with stored state only receives what is new to it:
+		the stored items that follow the last assistant message (an action
+		result, for example) plus the user message of this turn. A conversation
+		without stored state — one from before the checkpointer, or one whose
+		checkpoints were cleared — is seeded once with its full stored history.
 		"""
 		history = self.runtime.conversation_history or []
+		if self.checkpointer.get_tuple(self.thread_config) is not None:
+			history = _history_after_last_assistant_message(history)
+
 		messages: list[AnyMessage] = []
 		for item in history:
 			native = history_item_to_native_message(item)
@@ -328,16 +485,75 @@ Mode awareness and behavior:
 	def run(self, message: str, conversation_history: list[dict[str, Any]]) -> dict[str, Any]:
 		self.runtime.conversation_history = conversation_history or []
 		input_messages = self._build_input_messages(message)
-		result = self.agent.invoke({"messages": input_messages})
+
+		# A proposal the user never answered still holds the graph. Sending a
+		# new message means they moved on, so the proposal counts as rejected
+		# and the new message rides along with the same resume.
+		abandoned = self._pending_operation_call_id()
+		if abandoned:
+			command = Command(
+				resume={"call_id": abandoned, "status": "rejected"},
+				update={"messages": input_messages},
+			)
+			return self._finish(self.agent.invoke(command, config=self.thread_config))
+
+		return self._finish(self.agent.invoke({"messages": input_messages}, config=self.thread_config))
+
+	def resume(self, call_id: str, status: str, **decision: Any) -> dict[str, Any]:
+		"""Continue a run that paused on a proposal, with the user's decision."""
+		command = Command(resume={"call_id": call_id, "status": status, **decision})
+		return self._finish(self.agent.invoke(command, config=self.thread_config))
+
+	def _finish(self, result: Any) -> dict[str, Any]:
+		# LangGraph checkpoints from its background threads, which must not use
+		# this request's database connection. Nothing is stored until we flush
+		# here — and a failed run flushes nothing, so the conversation keeps the
+		# state of its last completed turn.
+		self.checkpointer.flush()
 		result_messages = result.get("messages") if isinstance(result, dict) else None
 		response_text = result_messages[-1].text.strip() if result_messages else ""
 
 		return {
 			"response": response_text,
-			"pending_operations": self.runtime.pending_operations,
+			"pending_operations": [*self.runtime.pending_operations, *_interrupted_operations(result)],
 			"document_extractions": self.runtime.document_extractions,
 			"attached_files": self.runtime.attached_files,
+			"tool_calls": self.runtime.tool_calls,
 		}
+
+	def _pending_operation_call_id(self) -> str:
+		"""Return the call_id of the proposal this thread is paused on, if any."""
+		state = self.agent.get_state(self.thread_config)
+		for operation in _interrupted_operations({"__interrupt__": state.interrupts}):
+			return operation.get("call_id") or ""
+		return ""
+
+
+def _interrupted_operations(result: Any) -> list[dict[str, Any]]:
+	"""Read the operations a paused graph is waiting on out of its interrupts."""
+	operations = []
+	for item in (result.get("__interrupt__") if isinstance(result, dict) else None) or ():
+		value = getattr(item, "value", item)
+		operation = value.get(OPERATION_INTERRUPT_KEY) if isinstance(value, dict) else None
+		if isinstance(operation, dict):
+			operations.append(operation)
+
+	return operations
+
+
+def _history_after_last_assistant_message(
+	history: list[dict[str, Any]],
+) -> list[dict[str, Any]]:
+	"""Return the stored items the agent cannot have seen yet.
+
+	Everything up to and including the last assistant message is already in the
+	checkpointed thread. What follows it was appended by the app afterwards.
+	"""
+	for index in range(len(history) - 1, -1, -1):
+		if (history[index].get("role") or "").lower() == "assistant":
+			return history[index + 1 :]
+
+	return history
 
 
 def run_message(
@@ -355,6 +571,30 @@ def run_message(
 	)
 	runner = ask_alyfAgentRunner(runtime)
 	return runner.run(message, conversation_history)
+
+
+def resume_operation(
+	conversation_name: str,
+	mode: str,
+	request_context: dict[str, Any],
+	*,
+	call_id: str,
+	status: str,
+	**decision: Any,
+) -> dict[str, Any]:
+	"""Continue the paused run of a conversation with the user's decision.
+
+	The agent is holding inside the tool that proposed the operation, so the
+	decision reaches it as that tool's own result — there is no need to
+	replay the conversation or describe the outcome back to the model.
+	"""
+	runtime = ask_alyfRuntime(
+		conversation_name=conversation_name,
+		mode=mode,
+		request_context=request_context,
+	)
+	runner = ask_alyfAgentRunner(runtime)
+	return runner.resume(call_id, status, **decision)
 
 
 # ``create_agent`` is re-exported so the field agent (and any future stateless
