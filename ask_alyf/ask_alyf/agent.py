@@ -509,6 +509,7 @@ Mode awareness and behavior:
 			return self._finish(self.agent.invoke(command, config=self.thread_config))
 		except Exception:
 			frappe.db.rollback(save_point=OPERATION_RESUME_SAVEPOINT)
+			self.checkpointer.delete_thread(self.runtime.conversation_name)
 			if not self.runtime.backend_operation_committed:
 				raise
 
@@ -519,6 +520,8 @@ Mode awareness and behavior:
 					"The operation was completed, but the follow-up response could not be generated."
 				),
 				"pending_operations": [],
+				"document_extractions": self.runtime.document_extractions,
+				"attached_files": self.runtime.attached_files,
 				"tool_calls": self.runtime.tool_calls,
 			}
 
