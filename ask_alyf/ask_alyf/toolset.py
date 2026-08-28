@@ -2,13 +2,16 @@ import asyncio
 import contextlib
 import contextvars
 import functools
+import hashlib
 import inspect
+import json
 from dataclasses import dataclass, field
 from typing import Any
-from uuid import uuid4
 
 import frappe
 from frappe import _
+from langchain_core.runnables.config import var_child_runnable_config
+from langgraph.types import interrupt
 
 from ask_alyf.ask_alyf import tools
 from ask_alyf.ask_alyf.history import (
@@ -25,6 +28,21 @@ from ask_alyf.ask_alyf.utils import parse_newline_list
 Scalar = str | int | float | bool | None
 FrappeFilterList = list[list[Scalar | list[Scalar]]]
 
+# Key under which a paused operation travels inside the LangGraph interrupt
+# value, so the API layer can tell our proposals from any other interrupt.
+OPERATION_INTERRUPT_KEY = "ask_alyf_operation"
+
+
+def operation_call_id(kind: str, tool: str, payload: dict[str, Any]) -> str:
+	"""Identify a proposed operation by what it does.
+
+	Resuming an interrupt re-runs the whole tool node, so the id has to be
+	derived from the operation rather than generated, or the resumed call
+	would no longer recognise the confirmation it is being handed.
+	"""
+	key = json.dumps({"kind": kind, "tool": tool, "payload": payload}, sort_keys=True, default=str)
+	return hashlib.sha1(key.encode(), usedforsecurity=False).hexdigest()
+
 
 @dataclass
 class ask_alyfRuntime:
@@ -35,6 +53,63 @@ class ask_alyfRuntime:
 	pending_operations: list[dict[str, Any]] = field(default_factory=list)
 	document_extractions: list[dict[str, Any]] = field(default_factory=list)
 	attached_files: list[dict[str, Any]] = field(default_factory=list)
+	tool_calls: list[dict[str, Any]] = field(default_factory=list)
+
+	def begin_tool_call(self, call_id: str, name: str, args: dict[str, Any], label: str):
+		"""Announce a tool call that is starting, and log it for the transcript.
+
+		Resuming an interrupt re-runs a whole tool node, so a call that was
+		already logged keeps its entry rather than appearing twice.
+		"""
+		step = self._find_tool_call(call_id)
+		if step is None:
+			step = {"call_id": call_id, "name": name, "args": args, "label": label}
+			self.tool_calls.append(step)
+
+		step["status"] = "running"
+		self.emit_step(step)
+
+	def finish_tool_call(self, call_id: str, status: str):
+		"""Record how a tool call ended and tell the user."""
+		step = self._find_tool_call(call_id)
+		if step is None:
+			return
+
+		step["status"] = status
+		self.emit_step(step)
+
+	def drop_tool_call(self, call_id: str):
+		"""Forget a tool call that never happened, such as a paused proposal."""
+		step = self._find_tool_call(call_id)
+		if step is None:
+			return
+
+		self.tool_calls.remove(step)
+		self.emit_step({"call_id": call_id, "status": "dropped"})
+
+	def _find_tool_call(self, call_id: str) -> dict[str, Any] | None:
+		for entry in self.tool_calls:
+			if entry["call_id"] == call_id:
+				return entry
+		return None
+
+	def emit_step(self, step: dict[str, Any]):
+		"""Send one step of the agent's work to the current user.
+
+		A copy is sent because the logged step keeps being mutated as the call
+		progresses, and the published payload must show the state it had when
+		it was sent.
+
+		Announcing a step is presentation, so a failure here must never take
+		down the tool call it describes: the agent runs tools on threads whose
+		Frappe context we do not control, and the step is logged either way.
+		"""
+		with contextlib.suppress(Exception):
+			frappe.publish_realtime(
+				"ask_alyf_step",
+				{"conversation": self.conversation_name, "step": dict(step)},
+				user=frappe.session.user,
+			)
 
 	def emit_status(self, text: str):
 		"""Send a short status update to the current user."""
@@ -77,7 +152,14 @@ class ask_alyfToolset:
 		requires_confirmation: bool = True,
 		**payload: Any,
 	) -> dict[str, Any]:
-		"""Create a pending operation proposal and append it to the list."""
+		"""Propose an operation, pausing the graph when the user must decide.
+
+		A confirmable proposal calls ``interrupt()``: the graph stops inside
+		this tool and is checkpointed, so resuming returns the user's decision
+		right here and the tool goes on to produce a real tool result. An
+		auto-executed frontend action never blocks — it is handed to the
+		browser through ``runtime.pending_operations`` instead.
+		"""
 		validation_error = tools.validate_pending_operation_payload(kind, tool, payload)
 		if validation_error:
 			self.runtime.emit_status(validation_error_status)
@@ -94,15 +176,55 @@ class ask_alyfToolset:
 			"reason": reason,
 			"requires_confirmation": bool(requires_confirmation),
 			"payload": payload,
-			"call_id": uuid4().hex,
+			"call_id": operation_call_id(kind, tool, payload),
 		}
-		self.runtime.pending_operations.append(proposal)
+
+		if not requires_confirmation:
+			self.runtime.pending_operations.append(proposal)
+			self.runtime.emit_status(prepared_status)
+			return {
+				"success": True,
+				"requires_confirmation": False,
+				"proposal": proposal,
+			}
+
 		self.runtime.emit_status(prepared_status)
-		return {
-			"success": True,
-			"requires_confirmation": bool(requires_confirmation),
-			"proposal": proposal,
-		}
+		return self._apply_decision(proposal, interrupt({OPERATION_INTERRUPT_KEY: proposal}))
+
+	def _apply_decision(self, proposal: dict[str, Any], decision: Any) -> dict[str, Any]:
+		"""Turn the user's decision on a paused proposal into a tool result."""
+		decision = decision if isinstance(decision, dict) else {}
+		if decision.get("call_id") != proposal["call_id"]:
+			# The resume value is matched to this call by ``call_id`` because
+			# LangGraph matches resume values to interrupts positionally, and
+			# a tool node runs its calls in a thread pool — so with two
+			# confirmable proposals in one node the order is not guaranteed.
+			# Refusing here keeps an unapproved write from executing; the
+			# model re-proposes one operation at a time.
+			return {
+				"success": False,
+				"error": _("That confirmation did not match this operation. Propose it again on its own."),
+			}
+
+		status = (decision.get("status") or "").strip().lower()
+		if status == "rejected":
+			return {
+				"success": False,
+				"rejected": True,
+				"error": _("The user rejected this operation."),
+			}
+
+		if proposal["kind"] == tools.OPERATION_KIND_FRONTEND:
+			# Frontend actions run in the browser; the resume value carries
+			# whatever it reported back.
+			if status == "success":
+				return {"success": True, "result": decision.get("result") or {}}
+			return {
+				"success": False,
+				"error": decision.get("error") or _("The action could not be completed."),
+			}
+
+		return {"success": True, "result": tools.execute_pending_operation(proposal)}
 
 	def _backend_proposal(
 		self,
@@ -174,7 +296,6 @@ class ask_alyfToolset:
 		Returns:
 			A list of matching documents.
 		"""
-		self.runtime.emit_status(_("Fetching list..."))
 		return tools.get_list(
 			doctype=doctype,
 			fields=fields,
@@ -198,7 +319,6 @@ class ask_alyfToolset:
 		Returns:
 			The number of matching documents.
 		"""
-		self.runtime.emit_status(_("Counting documents..."))
 		return tools.get_count(doctype=doctype, filters=filters)
 
 	def get(
@@ -217,7 +337,6 @@ class ask_alyfToolset:
 		Returns:
 			The matching document.
 		"""
-		self.runtime.emit_status(_("Fetching document..."))
 		return tools.get_document(doctype=doctype, name=name, filters=filters)
 
 	def get_value(
@@ -236,7 +355,6 @@ class ask_alyfToolset:
 		Returns:
 			The requested value or values.
 		"""
-		self.runtime.emit_status(_("Fetching value..."))
 		return tools.get_value(doctype=doctype, fieldname=fieldname, filters=filters)
 
 	def get_single_value(self, doctype: str, field: str) -> Any:
@@ -249,7 +367,6 @@ class ask_alyfToolset:
 		Returns:
 			The field value.
 		"""
-		self.runtime.emit_status(_("Fetching single value..."))
 		return tools.get_single_value(doctype=doctype, field=field)
 
 	def get_meta(self, doctype: str) -> dict[str, Any]:
@@ -261,7 +378,6 @@ class ask_alyfToolset:
 		Returns:
 			A metadata dictionary for the DocType.
 		"""
-		self.runtime.emit_status(_("Loading metadata..."))
 		return tools.get_meta(doctype=doctype)
 
 	def has_permission(self, doctype: str, docname: str, perm_type: str = "read") -> dict[str, bool]:
@@ -275,7 +391,6 @@ class ask_alyfToolset:
 		Returns:
 			A dictionary containing the boolean permission result.
 		"""
-		self.runtime.emit_status(_("Checking permissions..."))
 		return tools.has_permission(doctype=doctype, docname=docname, perm_type=perm_type)
 
 	def get_doc_permissions(self, doctype: str, docname: str) -> dict[str, Any]:
@@ -288,7 +403,6 @@ class ask_alyfToolset:
 		Returns:
 			The evaluated permission dictionary.
 		"""
-		self.runtime.emit_status(_("Evaluating permissions..."))
 		return tools.get_doc_permissions(doctype=doctype, docname=docname)
 
 	def list_accessible_doctypes(self, permission_type: str = "read") -> list[str]:
@@ -300,7 +414,6 @@ class ask_alyfToolset:
 		Returns:
 			A list of DocType names.
 		"""
-		self.runtime.emit_status(_("Listing accessible DocTypes..."))
 		return tools.list_accessible_doctypes(permission_type=permission_type)
 
 	def list_accessible_reports(self) -> list[dict[str, Any]]:
@@ -309,7 +422,6 @@ class ask_alyfToolset:
 		Returns:
 			A list of report metadata dictionaries.
 		"""
-		self.runtime.emit_status(_("Listing accessible reports..."))
 		return tools.list_accessible_reports()
 
 	def translate_ui_labels(
@@ -329,7 +441,6 @@ class ask_alyfToolset:
 		Returns:
 			A dictionary with the resolved language and translated labels.
 		"""
-		self.runtime.emit_status(_("Translating UI labels..."))
 		request_language = self.runtime.request_context.get("lang") or self.runtime.request_context.get(
 			"locale"
 		)
@@ -355,7 +466,6 @@ class ask_alyfToolset:
 		Returns:
 			The matching File ID.
 		"""
-		self.runtime.emit_status(_("Resolving file ID..."))
 		return tools.get_file_id(
 			reference_doctype=reference_doctype,
 			reference_name=reference_name,
@@ -373,7 +483,6 @@ class ask_alyfToolset:
 		Returns:
 			The file metadata and content.
 		"""
-		self.runtime.emit_status(_("Reading file..."))
 		return tools.read_file_record(file_id=file_id)
 
 	def extract_document_data(self, file_id: str, extraction_prompt: str = "") -> dict[str, Any]:
@@ -394,7 +503,6 @@ class ask_alyfToolset:
 			A dictionary with the file ID, file name, number of pages processed,
 			and the extracted data as a JSON object.
 		"""
-		self.runtime.emit_status(_("Extracting document data..."))
 		import asyncio
 
 		result = asyncio.run(
@@ -431,7 +539,6 @@ class ask_alyfToolset:
 		Returns:
 			A dictionary with the generated file metadata (name, file_name, file_url).
 		"""
-		self.runtime.emit_status(_("Generating print..."))
 		file_entry = tools.get_print(
 			doctype=doctype,
 			name=name,
@@ -456,7 +563,6 @@ class ask_alyfToolset:
 		Returns:
 			The SQL result rows.
 		"""
-		self.runtime.emit_status(_("Running SQL query..."))
 		return tools.run_read_only_sql(query=query)
 
 	def get_app_version(self, app_name: str) -> str:
@@ -468,7 +574,6 @@ class ask_alyfToolset:
 		Returns:
 			The app version string.
 		"""
-		self.runtime.emit_status(_("Reading app version..."))
 		return tools.get_app_version(app_name=app_name)
 
 	def read_github_releases(self, app_name: str, limit: int = 5) -> list[dict[str, Any]]:
@@ -481,7 +586,6 @@ class ask_alyfToolset:
 		Returns:
 			A list of release dictionaries.
 		"""
-		self.runtime.emit_status(_("Reading GitHub releases..."))
 		return tools.read_github_releases(app_name=app_name, limit=limit)
 
 	def read_documentation_page(self, app_name: str, relative_path: str = "") -> dict[str, Any]:
@@ -494,7 +598,6 @@ class ask_alyfToolset:
 		Returns:
 			A documentation payload containing the page content.
 		"""
-		self.runtime.emit_status(_("Reading documentation..."))
 		return tools.read_documentation_page(app_name=app_name, relative_path=relative_path)
 
 	def read_skill(self, name: str) -> dict[str, str]:
@@ -509,7 +612,6 @@ class ask_alyfToolset:
 		Returns:
 			A dictionary containing the skill name, title, and markdown description.
 		"""
-		self.runtime.emit_status(_("Reading skill..."))
 		skill_doc = get_accessible_skill_doc(name)
 		return {
 			"name": skill_doc.name,
@@ -1027,6 +1129,7 @@ class _CallerFrappeContext:
 	sites_path: str
 	user: str
 	language: str
+	runnable_config: Any
 
 
 def _capture_caller_frappe_context() -> _CallerFrappeContext:
@@ -1035,6 +1138,10 @@ def _capture_caller_frappe_context() -> _CallerFrappeContext:
 		sites_path=frappe.local.sites_path,
 		user=frappe.session.user,
 		language=frappe.local.lang,
+		# Tool calls run in an empty context (below), which would otherwise
+		# strip the LangGraph config that ``interrupt()`` reads to pause the
+		# graph and to match a resume value back to its call.
+		runnable_config=var_child_runnable_config.get(),
 	)
 
 
@@ -1042,6 +1149,7 @@ def _capture_caller_frappe_context() -> _CallerFrappeContext:
 def _private_frappe_context(caller: _CallerFrappeContext):
 	"""Initialize and destroy a private Frappe context for one tool call."""
 	private_db = None
+	var_child_runnable_config.set(caller.runnable_config)
 	try:
 		frappe.init(caller.site, sites_path=caller.sites_path)
 		frappe.connect(set_admin_as_user=False)

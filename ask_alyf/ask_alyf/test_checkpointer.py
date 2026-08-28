@@ -6,24 +6,41 @@ from __future__ import annotations
 import operator
 from concurrent.futures import ThreadPoolExecutor
 from typing import Annotated, TypedDict
+from unittest.mock import patch
 
 import frappe
 from frappe.tests import IntegrationTestCase
 from frappe.utils import add_days, now_datetime
-from langchain_core.messages import AIMessage, AnyMessage, HumanMessage
+from langchain.agents import create_agent
+from langchain_core.language_models import FakeMessagesListChatModel
+from langchain_core.messages import AIMessage, AnyMessage, HumanMessage, ToolMessage
 from langgraph.checkpoint.base import empty_checkpoint
 from langgraph.graph import END, START, StateGraph
 from langgraph.graph.message import add_messages
 from langgraph.types import Command, interrupt
 
+from ask_alyf.ask_alyf.agent import ToolCallLogMiddleware
 from ask_alyf.ask_alyf.checkpointer import (
 	CHECKPOINT_DOCTYPE,
 	CHECKPOINT_WRITE_DOCTYPE,
 	FrappeCheckpointSaver,
 )
 from ask_alyf.ask_alyf.doctype.ask_alyf_conversation.ask_alyf_conversation import AskALYFConversation
+from ask_alyf.ask_alyf.toolset import (
+	OPERATION_INTERRUPT_KEY,
+	ask_alyfRuntime,
+	ask_alyfToolset,
+	clear_messages_on_tool_error,
+)
 
 THREAD = "test-checkpointer-thread"
+
+
+class _ScriptedModel(FakeMessagesListChatModel):
+	"""A model that replays fixed replies, so a run is driven by the test."""
+
+	def bind_tools(self, tools, **kwargs):
+		return self
 
 
 def _config(checkpoint_id: str | None = None, thread: str = THREAD) -> dict:
@@ -220,6 +237,72 @@ class IntegrationTestFrappeCheckpointSaver(IntegrationTestCase):
 		resuming_saver.flush()
 
 		self.assertEqual(resumed["steps"], ["before", "answered-yes"])
+
+	def test_a_confirmable_tool_pauses_the_agent_and_resumes_from_the_database(self):
+		"""The whole path: propose, checkpoint, confirm in a later request, execute.
+
+		This is the one that would break silently — the tool runs behind the
+		Frappe context wrapper, inside a real tool node, and the confirmation
+		arrives in a different process with a different saver.
+		"""
+		runtime = ask_alyfRuntime(conversation_name=THREAD, mode="Agent", request_context={})
+		tool = clear_messages_on_tool_error(ask_alyfToolset(runtime).set_value)
+		tool_call = {
+			"name": "set_value",
+			"args": {
+				"doctype": "ToDo",
+				"name": "TODO-0001",
+				"fieldname": "status",
+				"value": "Closed",
+			},
+			"id": "call-1",
+		}
+		config = {"configurable": {"thread_id": THREAD}}
+
+		proposing = create_agent(
+			model=_ScriptedModel(responses=[AIMessage(content="", tool_calls=[tool_call])]),
+			tools=[tool],
+			middleware=[ToolCallLogMiddleware(runtime)],
+			checkpointer=self.saver,
+		)
+		result = proposing.invoke({"messages": [HumanMessage("close TODO-0001")]}, config)
+		self.saver.flush()
+
+		operation = result["__interrupt__"][0].value[OPERATION_INTERRUPT_KEY]
+		self.assertEqual(operation["tool"], "set_value")
+		self.assertEqual(operation["payload"]["value"], "Closed")
+		# Nothing ran yet: the agent is holding inside the tool, so the call is
+		# not in the log either.
+		self.assertFalse(any(isinstance(m, ToolMessage) for m in result["messages"]))
+		self.assertEqual(runtime.tool_calls, [])
+
+		# A later request, with its own saver, reads the pause back from the
+		# database and hands over the confirmation.
+		resuming_saver = FrappeCheckpointSaver()
+		resuming = create_agent(
+			model=_ScriptedModel(responses=[AIMessage(content="Closed TODO-0001.")]),
+			tools=[tool],
+			middleware=[ToolCallLogMiddleware(runtime)],
+			checkpointer=resuming_saver,
+		)
+		with patch(
+			"ask_alyf.ask_alyf.tools.execute_pending_operation",
+			return_value={"name": "TODO-0001"},
+		) as execute_operation:
+			resumed = resuming.invoke(
+				Command(resume={"call_id": operation["call_id"], "status": "approved"}),
+				config,
+			)
+		resuming_saver.flush()
+
+		execute_operation.assert_called_once()
+		self.assertNotIn("__interrupt__", resumed)
+		self.assertEqual(resumed["messages"][-1].text, "Closed TODO-0001.")
+		# The confirmed call is logged once, for the conversation to show.
+		self.assertEqual(
+			[(call["name"], call["status"]) for call in runtime.tool_calls],
+			[("set_value", "success")],
+		)
 
 	def _make_conversation(self):
 		return frappe.get_doc(

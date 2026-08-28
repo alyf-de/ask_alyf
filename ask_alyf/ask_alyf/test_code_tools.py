@@ -1,18 +1,39 @@
 import asyncio
+import contextlib
 import contextvars
+import itertools
 import threading
 from concurrent.futures import ThreadPoolExecutor
 from types import SimpleNamespace
+from typing import Any
 from unittest.mock import MagicMock, patch
 
 import frappe
 from frappe.tests import UnitTestCase
 from langchain_core.messages import AIMessage, HumanMessage, SystemMessage
+from langchain_core.runnables.config import var_child_runnable_config
+from langgraph._internal._constants import (
+	CONFIG_KEY_CHECKPOINT_NS,
+	CONFIG_KEY_SCRATCHPAD,
+	CONFIG_KEY_SEND,
+)
+from langgraph._internal._scratchpad import PregelScratchpad
+from langgraph.errors import GraphInterrupt
 
 from ask_alyf.ask_alyf import tools
-from ask_alyf.ask_alyf.agent import ASK_ALYF_EXCLUDED_TOOLS, ask_alyfAgentRunner, build_chat_model
+from ask_alyf.ask_alyf.agent import (
+	ASK_ALYF_EXCLUDED_TOOLS,
+	_tool_call_label,
+	ask_alyfAgentRunner,
+	build_chat_model,
+)
 from ask_alyf.ask_alyf.history import history_item_to_native_message
-from ask_alyf.ask_alyf.toolset import ask_alyfToolset, clear_messages_on_tool_error
+from ask_alyf.ask_alyf.toolset import (
+	OPERATION_INTERRUPT_KEY,
+	ask_alyfRuntime,
+	ask_alyfToolset,
+	clear_messages_on_tool_error,
+)
 
 
 class FakeSettings(SimpleNamespace):
@@ -47,6 +68,49 @@ class FakeCheckpointer:
 		self.flush_count += 1
 
 
+@contextlib.contextmanager
+def graph_context(resume: Any = None):
+	"""Run a block as if it were a LangGraph node, so tools may call `interrupt()`.
+
+	Without a resume value `interrupt()` raises `GraphInterrupt`; with one it
+	returns that value, which is exactly how a confirmed proposal is resumed.
+	"""
+	counter = itertools.count()
+	scratchpad = PregelScratchpad(
+		step=0,
+		stop=1,
+		call_counter=lambda: next(counter),
+		interrupt_counter=lambda: next(counter),
+		get_null_resume=lambda _consume: resume,
+		resume=[],
+		subgraph_counter=lambda: next(counter),
+	)
+	token = var_child_runnable_config.set(
+		{
+			"configurable": {
+				CONFIG_KEY_SCRATCHPAD: scratchpad,
+				CONFIG_KEY_SEND: lambda _writes: None,
+				CONFIG_KEY_CHECKPOINT_NS: "tools:test",
+			}
+		}
+	)
+	try:
+		yield
+	finally:
+		var_child_runnable_config.reset(token)
+
+
+def proposed_operation(call) -> dict:
+	"""Call a proposal tool and return the operation it paused the graph on."""
+	with graph_context():
+		try:
+			call()
+		except GraphInterrupt as interrupted:
+			return interrupted.args[0][0].value[OPERATION_INTERRUPT_KEY]
+
+	raise AssertionError("the tool returned without proposing an operation")
+
+
 class UnitTestCodeTools(UnitTestCase):
 	def make_runtime(self, *, mode: str = "Ask"):
 		return SimpleNamespace(
@@ -57,7 +121,15 @@ class UnitTestCodeTools(UnitTestCase):
 			pending_operations=[],
 			document_extractions=[],
 			attached_files=[],
+			tool_calls=[],
 			emit_status=lambda _text: None,
+		)
+
+	def make_agent(self, invoke, *, interrupts=()):
+		"""Stand in for the compiled graph, which the runner also asks for state."""
+		return SimpleNamespace(
+			invoke=invoke,
+			get_state=lambda _config: SimpleNamespace(interrupts=interrupts),
 		)
 
 	def make_runner(self, *, allow_code_search: bool, mode: str = "Ask", stored_state: bool = False):
@@ -188,18 +260,19 @@ class UnitTestCodeTools(UnitTestCase):
 		runtime = self.make_runtime(mode="Agent")
 		toolset = ask_alyfToolset(runtime)
 
-		result = toolset.write_skill(
-			title="Expense Guide",
-			description="Use this skill for expense questions.",
-			roles=["Accounts User", "Employee"],
-			reason="Create reusable expense guidance.",
+		operation = proposed_operation(
+			lambda: toolset.write_skill(
+				title="Expense Guide",
+				description="Use this skill for expense questions.",
+				roles=["Accounts User", "Employee"],
+				reason="Create reusable expense guidance.",
+			)
 		)
 
-		self.assertTrue(result["success"])
-		self.assertEqual(result["proposal"]["tool"], "insert")
-		self.assertEqual(result["proposal"]["payload"]["doctype"], "Ask ALYF Skill")
+		self.assertEqual(operation["tool"], "insert")
+		self.assertEqual(operation["payload"]["doctype"], "Ask ALYF Skill")
 		self.assertEqual(
-			result["proposal"]["payload"]["values"],
+			operation["payload"]["values"],
 			{
 				"title": "Expense Guide",
 				"description": "Use this skill for expense questions.",
@@ -211,14 +284,16 @@ class UnitTestCodeTools(UnitTestCase):
 		runtime = self.make_runtime(mode="Agent")
 		toolset = ask_alyfToolset(runtime)
 
-		result = toolset.write_skill(
-			title="Expense Guide",
-			description="Use this skill for expense questions.",
-			roles="Accounts User, Employee",
+		operation = proposed_operation(
+			lambda: toolset.write_skill(
+				title="Expense Guide",
+				description="Use this skill for expense questions.",
+				roles="Accounts User, Employee",
+			)
 		)
 
 		self.assertEqual(
-			result["proposal"]["payload"]["values"]["roles"],
+			operation["payload"]["values"]["roles"],
 			[{"role": "Accounts User"}, {"role": "Employee"}],
 		)
 
@@ -345,25 +420,25 @@ class UnitTestCodeTools(UnitTestCase):
 			}
 		).save()
 
-		result = toolset.attach_file("ToDo", "TODO-0001", file_doc.name)
+		operation = proposed_operation(lambda: toolset.attach_file("ToDo", "TODO-0001", file_doc.name))
 
-		self.assertTrue(result["success"])
-		self.assertEqual(result["proposal"]["payload"]["file_id"], file_doc.name)
-		self.assertIn(f"[{file_doc.file_name}](", result["proposal"]["summary"])
-		self.assertIn(file_doc.file_url, result["proposal"]["summary"])
+		self.assertEqual(operation["payload"]["file_id"], file_doc.name)
+		self.assertIn(f"[{file_doc.file_name}](", operation["summary"])
+		self.assertIn(file_doc.file_url, operation["summary"])
 
 	def test_batch_insert_proposal_uses_record_count_summary(self):
 		runtime = self.make_runtime(mode="Agent")
 		toolset = ask_alyfToolset(runtime)
 		records = [{"description": "Call customer"}, {"description": "Send quotation"}]
 
-		result = toolset.batch_insert("ToDo", records, reason="Imported open tasks.")
+		operation = proposed_operation(
+			lambda: toolset.batch_insert("ToDo", records, reason="Imported open tasks.")
+		)
 
-		self.assertTrue(result["success"])
-		self.assertEqual(result["proposal"]["tool"], "batch_insert")
-		self.assertEqual(result["proposal"]["payload"]["doctype"], "ToDo")
-		self.assertEqual(result["proposal"]["payload"]["records"], records)
-		self.assertEqual(result["proposal"]["summary"], "Create 2 ToDo records")
+		self.assertEqual(operation["tool"], "batch_insert")
+		self.assertEqual(operation["payload"]["doctype"], "ToDo")
+		self.assertEqual(operation["payload"]["records"], records)
+		self.assertEqual(operation["summary"], "Create 2 ToDo records")
 
 	def test_validate_pending_action_payload_rejects_invalid_batch_insert_rows(self):
 		self.assertEqual(
@@ -579,7 +654,7 @@ class UnitTestCodeTools(UnitTestCase):
 			seen["config"] = config
 			return {"messages": [AIMessage(content="Done.")]}
 
-		runner.agent = SimpleNamespace(invoke=invoke)
+		runner.agent = self.make_agent(invoke)
 		runner.run("hello", conversation_history=[])
 
 		self.assertEqual(seen["config"]["configurable"]["thread_id"], "TEST-CONVERSATION")
@@ -587,9 +662,7 @@ class UnitTestCodeTools(UnitTestCase):
 
 	def test_run_preserves_result_envelope_and_proposal_shapes(self):
 		runner = self.make_runner(allow_code_search=False, mode="Agent")
-		runner.agent = SimpleNamespace(
-			invoke=lambda _input, config=None: {"messages": [AIMessage(content="Done.")]}
-		)
+		runner.agent = self.make_agent(lambda _input, config=None: {"messages": [AIMessage(content="Done.")]})
 		result = runner.run("do something", conversation_history=[])
 		self.assertEqual(result["response"], "Done.")
 		self.assertEqual(result["pending_operations"], [])
@@ -604,7 +677,7 @@ class UnitTestCodeTools(UnitTestCase):
 				{"type": "text", "text": ":)", "annotations": [], "phase": "final_answer"},
 			]
 		)
-		runner.agent = SimpleNamespace(invoke=lambda _input, config=None: {"messages": [response]})
+		runner.agent = self.make_agent(lambda _input, config=None: {"messages": [response]})
 
 		result = runner.run("hello", conversation_history=[])
 
@@ -720,6 +793,146 @@ class UnitTestCodeTools(UnitTestCase):
 		private_db.close.assert_called_once_with()
 		self.assertIs(frappe.local.db, parent_db)
 		self.assertIs(frappe.local.message_log, parent_message_log)
+
+	def test_tool_call_labels_name_the_record_being_worked_on(self):
+		cases = [
+			(("get_list", {"doctype": "Sales Invoice"}), "Reading Sales Invoice list"),
+			(("get_count", {"doctype": "ToDo"}), "Counting ToDo"),
+			(("get", {"doctype": "ToDo", "name": "TODO-0001"}), "Reading ToDo TODO-0001"),
+			(("insert", {"doctype": "Sales Invoice"}), "Creating Sales Invoice"),
+			(("set_value", {"doctype": "ToDo", "name": "TODO-0001"}), "Updating ToDo TODO-0001"),
+			(("submit", {"doctype": "Sales Invoice", "name": "SI-0001"}), "Submitting Sales Invoice SI-0001"),
+			(("task", {"subagent_type": "document-planner"}), "Asking the document-planner specialist"),
+			(("grep", {"pattern": "x"}), "Searching the source code"),
+		]
+		for (name, args), expected in cases:
+			with self.subTest(tool=name):
+				self.assertEqual(_tool_call_label(name, args), expected)
+
+	def test_an_unmapped_tool_still_gets_a_readable_label(self):
+		self.assertEqual(_tool_call_label("some_new_tool", {}), "Some new tool")
+
+	def test_steps_are_published_as_they_start_and_finish(self):
+		runtime = ask_alyfRuntime(conversation_name="TEST-CONVERSATION", mode="Agent", request_context={})
+		published = []
+
+		with patch(
+			"ask_alyf.ask_alyf.toolset.frappe.publish_realtime",
+			side_effect=lambda event, payload=None, **kwargs: published.append((event, payload)),
+		):
+			runtime.begin_tool_call("call-1", "get_list", {"doctype": "ToDo"}, "Reading ToDo list")
+			runtime.finish_tool_call("call-1", "success")
+
+		self.assertEqual([event for event, _ in published], ["ask_alyf_step", "ask_alyf_step"])
+		self.assertEqual(
+			[payload["step"]["status"] for _, payload in published],
+			["running", "success"],
+		)
+		self.assertEqual(published[0][1]["step"]["label"], "Reading ToDo list")
+		self.assertEqual(published[0][1]["conversation"], "TEST-CONVERSATION")
+
+	def test_a_failing_step_broadcast_does_not_break_the_tool_call(self):
+		"""Tools run on threads whose Frappe context we do not control."""
+		runtime = ask_alyfRuntime(conversation_name="TEST-CONVERSATION", mode="Agent", request_context={})
+
+		with patch(
+			"ask_alyf.ask_alyf.toolset.frappe.publish_realtime",
+			side_effect=AttributeError("site"),
+		):
+			runtime.begin_tool_call("call-1", "get_list", {"doctype": "ToDo"}, "Reading ToDo list")
+			runtime.finish_tool_call("call-1", "success")
+
+		self.assertEqual([call["status"] for call in runtime.tool_calls], ["success"])
+
+	def test_a_dropped_step_is_removed_from_the_log_and_the_live_list(self):
+		"""A proposal that pauses has not happened, so it must leave no step."""
+		runtime = ask_alyfRuntime(conversation_name="TEST-CONVERSATION", mode="Agent", request_context={})
+		published = []
+
+		with patch(
+			"ask_alyf.ask_alyf.toolset.frappe.publish_realtime",
+			side_effect=lambda event, payload=None, **kwargs: published.append(payload),
+		):
+			runtime.begin_tool_call("call-1", "insert", {"doctype": "ToDo"}, "Creating ToDo")
+			runtime.drop_tool_call("call-1")
+
+		self.assertEqual(runtime.tool_calls, [])
+		self.assertEqual(published[-1]["step"], {"call_id": "call-1", "status": "dropped"})
+
+	def test_a_repeated_tool_call_is_logged_once(self):
+		"""Resuming re-runs a whole tool node, so its calls arrive twice."""
+		runtime = ask_alyfRuntime(conversation_name="TEST-CONVERSATION", mode="Agent", request_context={})
+
+		with patch("ask_alyf.ask_alyf.toolset.frappe.publish_realtime"):
+			runtime.begin_tool_call("call-1", "get_list", {"doctype": "ToDo"}, "Reading ToDo list")
+			runtime.finish_tool_call("call-1", "success")
+			runtime.begin_tool_call("call-1", "get_list", {"doctype": "ToDo"}, "Reading ToDo list")
+			runtime.finish_tool_call("call-1", "success")
+
+		self.assertEqual(len(runtime.tool_calls), 1)
+
+	def test_a_wrapped_tool_can_still_pause_the_graph(self):
+		"""Each tool call runs in a fresh context; the graph config must survive it.
+
+		Without it `interrupt()` cannot see the runnable context, and every
+		confirmable operation would fail instead of asking the user.
+		"""
+		runtime = self.make_runtime(mode="Agent")
+		toolset = ask_alyfToolset(runtime)
+		wrapped = clear_messages_on_tool_error(toolset.set_value)
+
+		operation = proposed_operation(
+			lambda: wrapped("ToDo", "TODO-0001", "status", "Closed", reason="Close it.")
+		)
+
+		self.assertEqual(operation["tool"], "set_value")
+		self.assertEqual(operation["payload"]["value"], "Closed")
+
+	def test_a_confirmed_proposal_executes_and_returns_its_result(self):
+		runtime = self.make_runtime(mode="Agent")
+		toolset = ask_alyfToolset(runtime)
+		call_id = proposed_operation(lambda: toolset.set_value("ToDo", "TODO-0001", "status", "Closed"))[
+			"call_id"
+		]
+
+		with patch(
+			"ask_alyf.ask_alyf.tools.execute_pending_operation",
+			return_value={"name": "TODO-0001"},
+		) as execute_operation:
+			with graph_context(resume={"call_id": call_id, "status": "approved"}):
+				result = toolset.set_value("ToDo", "TODO-0001", "status", "Closed")
+
+		execute_operation.assert_called_once()
+		self.assertTrue(result["success"])
+		self.assertEqual(result["result"], {"name": "TODO-0001"})
+
+	def test_a_rejected_proposal_is_reported_without_executing(self):
+		runtime = self.make_runtime(mode="Agent")
+		toolset = ask_alyfToolset(runtime)
+		call_id = proposed_operation(lambda: toolset.set_value("ToDo", "TODO-0001", "status", "Closed"))[
+			"call_id"
+		]
+
+		with patch("ask_alyf.ask_alyf.tools.execute_pending_operation") as execute_operation:
+			with graph_context(resume={"call_id": call_id, "status": "rejected"}):
+				result = toolset.set_value("ToDo", "TODO-0001", "status", "Closed")
+
+		execute_operation.assert_not_called()
+		self.assertFalse(result["success"])
+		self.assertTrue(result["rejected"])
+
+	def test_a_confirmation_for_another_operation_never_executes(self):
+		"""Resume values are matched positionally by LangGraph, so the call_id decides."""
+		runtime = self.make_runtime(mode="Agent")
+		toolset = ask_alyfToolset(runtime)
+
+		with patch("ask_alyf.ask_alyf.tools.execute_pending_operation") as execute_operation:
+			with graph_context(resume={"call_id": "some-other-operation", "status": "approved"}):
+				result = toolset.set_value("ToDo", "TODO-0001", "status", "Closed")
+
+		execute_operation.assert_not_called()
+		self.assertFalse(result["success"])
+		self.assertIn("did not match", result["error"])
 
 	def test_tool_wrapper_isolates_concurrent_copied_contexts(self):
 		parent_db = frappe.local.db

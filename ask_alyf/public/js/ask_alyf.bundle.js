@@ -150,6 +150,7 @@ import "./field_agent";
 				messages: [],
 				pendingOperations: [],
 				status: "",
+				steps: [],
 				mode: "Ask",
 			};
 			this.pendingStreamMessageId = null;
@@ -165,6 +166,7 @@ import "./field_agent";
 			this.activeFrappeCharts = new Map();
 			this.statusWrapperEl = null;
 			this.statusBodyEl = null;
+			this.liveStepsEl = null;
 			this.pendingOperationsEl = null;
 			this.suggestedPromptsEl = null;
 			this.activeResponseJob = null;
@@ -268,6 +270,165 @@ import "./field_agent";
 				return `${getIcon("paperclip", "xs", "", true)} ${names}`;
 			}
 			return this.escapeHtml(message.content || "").replace(/\n/g, "<br>");
+		}
+
+		getToolCallsFingerprint(message) {
+			const toolCalls = message?.metadata?.tool_calls;
+			if (message?.role !== "assistant" || !Array.isArray(toolCalls) || !toolCalls.length) {
+				return "";
+			}
+			try {
+				return JSON.stringify(toolCalls);
+			} catch {
+				return "";
+			}
+		}
+
+		syncMessageToolCalls(entry, message) {
+			const fingerprint = this.getToolCallsFingerprint(message);
+			if (entry.toolCallsFingerprint === fingerprint) {
+				return;
+			}
+
+			entry.toolCallsFingerprint = fingerprint;
+			if (entry.toolCallsHolder) {
+				entry.toolCallsHolder.remove();
+				entry.toolCallsHolder = null;
+			}
+			if (!fingerprint) {
+				return;
+			}
+
+			entry.toolCallsHolder = this.buildToolCallsElement(message.metadata.tool_calls);
+			// Above the body: the agent did these before it answered.
+			entry.wrapper.insertBefore(entry.toolCallsHolder, entry.body);
+		}
+
+		buildToolCallsElement(toolCalls, { open = false } = {}) {
+			const holder = document.createElement("details");
+			holder.className = "ask_alyf-tool-calls";
+			holder.open = open;
+
+			const summary = document.createElement("summary");
+			summary.textContent =
+				toolCalls.length === 1 ? __("1 step") : __("{0} steps", [toolCalls.length]);
+			holder.appendChild(summary);
+
+			const list = document.createElement("ol");
+			list.className = "ask_alyf-tool-call-list";
+			for (const call of toolCalls) {
+				list.appendChild(this.buildToolCallItem(call));
+			}
+			holder.appendChild(list);
+			return holder;
+		}
+
+		buildToolCallItem(call, { showArgs = true } = {}) {
+			const item = document.createElement("li");
+			if (call?.status === "failed") {
+				item.classList.add("ask_alyf-tool-call-failed");
+			}
+			if (call?.status === "running") {
+				item.classList.add("ask_alyf-tool-call-running");
+			}
+
+			const name = document.createElement("span");
+			name.className = "ask_alyf-tool-call-name";
+			// Older messages predate the server-side label and only carry the
+			// raw tool name.
+			name.textContent = call?.label || (call?.name || "").replace(/_/g, " ");
+			item.appendChild(name);
+
+			const args = showArgs ? this.formatToolCallArgs(call?.args) : "";
+			if (args) {
+				const detail = document.createElement("span");
+				detail.className = "ask_alyf-tool-call-args";
+				detail.textContent = args;
+				item.appendChild(detail);
+			}
+
+			return item;
+		}
+
+		applyStepUpdate(step) {
+			if (!step?.call_id) {
+				return;
+			}
+
+			const index = this.state.steps.findIndex((entry) => entry.call_id === step.call_id);
+			if (step.status === "dropped") {
+				if (index !== -1) {
+					this.state.steps.splice(index, 1);
+				}
+			} else if (index === -1) {
+				this.state.steps.push({ ...step });
+			} else {
+				this.state.steps[index] = { ...this.state.steps[index], ...step };
+			}
+
+			this.renderLiveSteps();
+			this.scrollToBottom();
+		}
+
+		adoptCompletedToolCalls(messageId, toolCalls) {
+			if (!Array.isArray(toolCalls) || !toolCalls.length) {
+				return;
+			}
+			const message = this.state.messages.find((item) => item.id === messageId);
+			if (!message) {
+				return;
+			}
+			// Stored steps are authoritative: they survive a reload, the live
+			// ones do not.
+			message.metadata = { ...(message.metadata || {}), tool_calls: toolCalls };
+		}
+
+		clearLiveSteps() {
+			this.state.steps = [];
+			this.renderLiveSteps();
+		}
+
+		renderLiveSteps() {
+			if (!this.messagesEl) {
+				return;
+			}
+
+			if (!this.state.steps.length) {
+				if (this.liveStepsEl) {
+					this.liveStepsEl.remove();
+					this.liveStepsEl = null;
+				}
+				return;
+			}
+
+			// Rebuilt rather than patched: the list is short and only changes
+			// once per tool call.
+			const wrapper = document.createElement("div");
+			wrapper.className = "ask_alyf-message ask_alyf-assistant ask_alyf-live-steps";
+			const list = document.createElement("ol");
+			list.className = "ask_alyf-tool-call-list";
+			for (const step of this.state.steps) {
+				// Labels only while it runs; the arguments are there to read in
+				// the message once the turn is done.
+				list.appendChild(this.buildToolCallItem(step, { showArgs: false }));
+			}
+			wrapper.appendChild(list);
+
+			if (this.liveStepsEl) {
+				this.liveStepsEl.replaceWith(wrapper);
+			} else {
+				this.messagesEl.insertBefore(wrapper, this.statusWrapperEl || this.pendingOperationsEl || null);
+			}
+			this.liveStepsEl = wrapper;
+		}
+
+		formatToolCallArgs(args) {
+			if (!args || typeof args !== "object") {
+				return "";
+			}
+			return Object.entries(args)
+				.map(([key, value]) => `${key}: ${value}`)
+				.join(", ");
 		}
 
 		renderFileLink(fileEntry) {
@@ -412,6 +573,8 @@ import "./field_agent";
 					chartResizeObserver: null,
 					html: null,
 					role: null,
+					toolCallsFingerprint: "",
+					toolCallsHolder: null,
 					wrapper,
 				};
 				this.messageEntries.set(messageKey, entry);
@@ -434,6 +597,7 @@ import "./field_agent";
 				entry.html = html;
 			}
 
+			this.syncMessageToolCalls(entry, message);
 			this.syncMessageCharts(entry, message, messageKey);
 			return { entry, messageKey };
 		}
@@ -707,7 +871,13 @@ import "./field_agent";
 			frappe.realtime.on("ask_alyf_response_start", (message) => {
 				if (message.conversation !== this.state.conversation?.name) return;
 				this.setLoading(true);
+				this.clearLiveSteps();
 				this.setStatus(__("Thinking..."));
+			});
+
+			frappe.realtime.on("ask_alyf_step", (message) => {
+				if (message.conversation !== this.state.conversation?.name) return;
+				this.applyStepUpdate(message.step);
 			});
 
 			frappe.realtime.on("ask_alyf_file_attachment", (message) => {
@@ -729,6 +899,8 @@ import "./field_agent";
 				this.stopResponseJobMonitor();
 				this.setLoading(false);
 				this.setStatus("");
+				this.adoptCompletedToolCalls(message.message_id, message.tool_calls);
+				this.clearLiveSteps();
 				this.state.pendingOperations = this.normalizePendingOperations(message.pending_operations);
 				this.pendingStreamMessageId = null;
 
@@ -785,6 +957,9 @@ import "./field_agent";
 			this.stopResponseJobMonitor();
 			this.pendingStreamMessageId = null;
 			this.handledFrontendCallIds = new Set();
+			// Steps of the run that just finished are part of its assistant
+			// message now, and steps of another conversation are not ours.
+			this.state.steps = [];
 			this.state.conversation = conversation;
 			this.state.messages = conversation.messages || [];
 			this.state.pendingOperations = this.normalizePendingOperations(
@@ -1764,7 +1939,14 @@ import "./field_agent";
 		appendAssistantChunk(messageId, chunk) {
 			let message = this.state.messages.find((item) => item.id === messageId);
 			if (!message) {
-				message = { id: messageId, role: "assistant", content: "" };
+				// The steps that were streaming live belong to this answer, so
+				// they move into it rather than being dropped and re-appearing
+				// once the message is reloaded.
+				message = { id: messageId, role: "assistant", content: "", metadata: {} };
+				if (this.state.steps.length) {
+					message.metadata.tool_calls = this.state.steps.map((step) => ({ ...step }));
+					this.state.steps = [];
+				}
 				this.state.messages.push(message);
 			}
 
@@ -2263,6 +2445,7 @@ import "./field_agent";
 			}
 
 			this.renderedMessageKeys = nextMessageKeys;
+			this.renderLiveSteps();
 			this.renderStatusMessage();
 			this.renderPendingOperation();
 			this.renderSuggestedPrompts();
