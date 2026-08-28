@@ -650,6 +650,36 @@
 	margin-top: 0.35rem;
 }
 
+.ask_alyf-message-footer {
+	display: flex;
+	align-items: center;
+	gap: 0.4rem;
+	margin-top: 0.15rem;
+	color: var(--text-muted);
+	font-size: 0.75rem;
+	opacity: 0.5;
+	transition: opacity 0.2s ease;
+}
+
+.ask_alyf-message:hover .ask_alyf-message-footer,
+.ask_alyf-message-footer:focus-within {
+	opacity: 1;
+}
+
+.ask_alyf-copy {
+	padding: 0.15rem;
+	border: none;
+	border-radius: 0.35rem;
+	background: transparent;
+	color: inherit;
+	cursor: pointer;
+}
+
+.ask_alyf-copy:hover {
+	background: var(--fg-hover-color, var(--gray-100));
+	color: var(--text-color);
+}
+
 .ask_alyf-icon-button {
 	display: inline-flex;
 	align-items: center;
