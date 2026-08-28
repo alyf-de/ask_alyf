@@ -430,7 +430,10 @@ import "./field_agent";
 			if (this.liveStepsEl) {
 				this.liveStepsEl.replaceWith(wrapper);
 			} else {
-				this.messagesEl.insertBefore(wrapper, this.statusWrapperEl || this.pendingOperationsEl || null);
+				this.messagesEl.insertBefore(
+					wrapper,
+					this.statusWrapperEl || this.pendingOperationsEl || null,
+				);
 			}
 			this.liveStepsEl = wrapper;
 		}
