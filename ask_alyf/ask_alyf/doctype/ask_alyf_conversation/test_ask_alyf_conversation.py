@@ -6,6 +6,7 @@ from unittest.mock import patch
 
 import frappe
 from frappe.tests import UnitTestCase
+from rq.job import JobStatus
 
 from ask_alyf.ask_alyf import api, tools
 from ask_alyf.ask_alyf.history import history_item_to_native_message
@@ -46,6 +47,36 @@ class UnitTestAskALYFConversation(UnitTestCase):
 		self.assertEqual(response["user_message_id"], user_message["id"])
 		self.assertEqual(enqueue_job.call_args.kwargs["job_id"], job_id)
 		self.assertTrue(enqueue_job.call_args.kwargs["enqueue_after_commit"])
+
+	def test_send_message_refuses_a_second_run_while_one_is_in_flight(self):
+		pending = api.make_message("user", "First", **{api.BACKGROUND_JOB_ID_KEY: "job-1"})
+		conversation = self.make_conversation(messages=[pending])
+
+		with (
+			patch("ask_alyf.ask_alyf.api.can_access_ask_alyf", return_value=True),
+			patch("ask_alyf.ask_alyf.api.get_job_status", return_value=JobStatus.STARTED),
+			patch("ask_alyf.ask_alyf.api.enqueue") as enqueue_job,
+		):
+			with self.assertRaises(frappe.ValidationError):
+				api.send_message(message="Second", conversation=conversation.name, context={})
+
+		enqueue_job.assert_not_called()
+
+		# Once the first run has answered, the next message goes through.
+		conversation.reload()
+		messages = loads(conversation.messages_json, [])
+		messages.append(api.make_message("assistant", "Done"))
+		conversation.messages_json = dumps(messages)
+		conversation.save(ignore_permissions=True)
+
+		with (
+			patch("ask_alyf.ask_alyf.api.can_access_ask_alyf", return_value=True),
+			patch("ask_alyf.ask_alyf.api.get_job_status", return_value=JobStatus.STARTED),
+			patch("ask_alyf.ask_alyf.api.enqueue") as enqueue_job,
+		):
+			api.send_message(message="Second", conversation=conversation.name, context={})
+
+		enqueue_job.assert_called_once()
 
 	def test_get_message_job_status_maps_rq_terminal_states(self):
 		job_id = "job-123"
@@ -156,6 +187,48 @@ class UnitTestAskALYFConversation(UnitTestCase):
 		self.assertEqual(len(complete_events), 1)
 		self.assertEqual(complete_events[0]["payload"]["pending_operations"], [expected_with_id])
 
+	def test_process_message_job_publishes_tool_calls_with_the_completion(self):
+		"""The streamed message has no metadata, so the steps ride the completion.
+
+		Without this the summary only appears once the conversation is
+		reloaded from the database.
+		"""
+		user_message = api.make_message("user", "How many open ToDos?", mode=api.MODE_ASK)
+		conversation = self.make_conversation(messages=[user_message])
+		tool_calls = [
+			{
+				"call_id": "call-1",
+				"name": "get_count",
+				"args": {"doctype": "ToDo"},
+				"label": "Counting ToDo",
+				"status": "success",
+			}
+		]
+		realtime_calls = []
+
+		def record_realtime(event, payload=None, user=None, **kwargs):
+			realtime_calls.append({"event": event, "payload": payload})
+
+		with patch(
+			"ask_alyf.ask_alyf.api.run_message",
+			return_value={"response": "Seven.", "pending_operations": [], "tool_calls": tool_calls},
+		):
+			with patch("ask_alyf.ask_alyf.api.frappe.publish_realtime", side_effect=record_realtime):
+				api.process_message_job(
+					conversation_name=conversation.name,
+					message="How many open ToDos?",
+					mode=api.MODE_ASK,
+					context_data={},
+					user_message_id=user_message["id"],
+				)
+
+		complete = [c for c in realtime_calls if c["event"] == "ask_alyf_response_complete"]
+		self.assertEqual(complete[0]["payload"]["tool_calls"], tool_calls)
+
+		conversation.reload()
+		stored = loads(conversation.messages_json, [])[-1]
+		self.assertEqual(stored["metadata"]["tool_calls"], tool_calls)
+
 	def test_process_message_job_persists_document_extractions(self):
 		user_message = api.make_message("user", "What is on this invoice?", mode=api.MODE_ASK)
 		conversation = self.make_conversation(messages=[user_message])
@@ -253,7 +326,7 @@ class UnitTestAskALYFConversation(UnitTestCase):
 				}
 			)
 
-	def test_confirm_pending_operation_executes_backend_path(self):
+	def test_confirm_pending_operation_resumes_the_paused_agent(self):
 		pending_operation = {
 			"kind": "backend_action",
 			"tool": "set_value",
@@ -270,32 +343,28 @@ class UnitTestAskALYFConversation(UnitTestCase):
 
 		with patch("ask_alyf.ask_alyf.api.can_access_ask_alyf", return_value=True):
 			with patch(
-				"ask_alyf.ask_alyf.api.execute_pending_operation",
-				return_value={"name": "TODO-0001", "message": "Updated"},
-			) as execute_operation:
-				with patch(
-					"ask_alyf.ask_alyf.api.run_message",
-					return_value={
-						"response": "The ToDo TODO-0001 was updated successfully.",
-						"pending_operations": [],
-					},
-				) as summarize_call:
-					with patch("ask_alyf.ask_alyf.api.frappe.publish_realtime", side_effect=record_realtime):
-						response = api.confirm_pending_operation(
-							conversation=conversation.name,
-							call_id="call-backend-1",
-							mode=api.MODE_ASK,
-						)
+				"ask_alyf.ask_alyf.api.resume_operation",
+				return_value={
+					"response": "The ToDo TODO-0001 was updated successfully.",
+					"pending_operations": [],
+				},
+			) as resume_call:
+				with patch("ask_alyf.ask_alyf.api.frappe.publish_realtime", side_effect=record_realtime):
+					response = api.confirm_pending_operation(
+						conversation=conversation.name,
+						call_id="call-backend-1",
+						mode=api.MODE_ASK,
+					)
 
-		execute_operation.assert_called_once_with(pending_operation)
-		summarize_call.assert_called_once()
+		# The agent executes the operation itself when it resumes, so the API
+		# only forwards the decision.
+		resume_call.assert_called_once()
+		self.assertEqual(resume_call.call_args.kwargs["call_id"], "call-backend-1")
+		self.assertEqual(resume_call.call_args.kwargs["status"], "approved")
 		status_updates = [
 			call["payload"]["text"] for call in realtime_calls if call["event"] == "ask_alyf_status"
 		]
-		self.assertEqual(status_updates, ["Confirming action...", "Generating response...", ""])
-		system_message = summarize_call.call_args.kwargs["conversation_history"][-1]
-		self.assertEqual(system_message["role"], "system")
-		self.assertIn('"status": "success"', system_message["content"])
+		self.assertEqual(status_updates, ["Confirming action...", ""])
 		self.assertEqual(response["conversation"]["pending_operations"], [])
 
 		conversation.reload()
@@ -303,7 +372,71 @@ class UnitTestAskALYFConversation(UnitTestCase):
 		self.assertTrue(messages)
 		self.assertEqual(messages[-1]["content"], "The ToDo TODO-0001 was updated successfully.")
 
-	def test_frontend_action_result_clears_pending_operation(self):
+	def test_confirming_the_same_operation_twice_resumes_it_once(self):
+		"""A double-click must not execute the backend write twice.
+
+		The `for_update` row lock serialises the two requests; this covers what
+		the second one finds once the first has committed.
+		"""
+		pending_operation = {
+			"kind": "backend_action",
+			"tool": "set_value",
+			"summary": "Set status",
+			"requires_confirmation": True,
+			"payload": {"doctype": "ToDo", "name": "TODO-0001", "fieldname": "status", "value": "Closed"},
+			"call_id": "call-backend-1",
+		}
+		conversation = self.make_conversation(messages=[], pending_operations=[pending_operation])
+
+		with (
+			patch("ask_alyf.ask_alyf.api.can_access_ask_alyf", return_value=True),
+			patch(
+				"ask_alyf.ask_alyf.api.resume_operation",
+				return_value={"response": "Done", "pending_operations": []},
+			) as resume_call,
+			patch("ask_alyf.ask_alyf.api.frappe.publish_realtime"),
+		):
+			api.confirm_pending_operation(
+				conversation=conversation.name, call_id="call-backend-1", mode=api.MODE_ASK
+			)
+			with self.assertRaises(frappe.ValidationError):
+				api.confirm_pending_operation(
+					conversation=conversation.name, call_id="call-backend-1", mode=api.MODE_ASK
+				)
+
+		resume_call.assert_called_once()
+
+	def test_reject_pending_operation_resumes_the_paused_agent(self):
+		pending_operation = {
+			"kind": "backend_action",
+			"tool": "set_value",
+			"summary": "Set status",
+			"requires_confirmation": True,
+			"payload": {"doctype": "ToDo", "name": "TODO-0001", "fieldname": "status", "value": "Closed"},
+			"call_id": "call-backend-1",
+		}
+		conversation = self.make_conversation(messages=[], pending_operations=[pending_operation])
+
+		with patch("ask_alyf.ask_alyf.api.can_access_ask_alyf", return_value=True):
+			with patch(
+				"ask_alyf.ask_alyf.api.resume_operation",
+				return_value={"response": "Cancelled, nothing was changed.", "pending_operations": []},
+			) as resume_call:
+				response = api.reject_pending_operation(
+					conversation=conversation.name,
+					call_id="call-backend-1",
+					mode=api.MODE_ASK,
+				)
+
+		self.assertEqual(resume_call.call_args.kwargs["status"], "rejected")
+		self.assertEqual(response["conversation"]["pending_operations"], [])
+
+		conversation.reload()
+		messages = loads(conversation.messages_json, [])
+		self.assertEqual(messages[-1]["content"], "Cancelled, nothing was changed.")
+		self.assertTrue(messages[-1]["metadata"].get("rejected_action"))
+
+	def test_auto_frontend_action_result_is_recorded_without_resuming(self):
 		pending_operation = {
 			"kind": "frontend_action",
 			"tool": "set_route",
@@ -313,44 +446,57 @@ class UnitTestAskALYFConversation(UnitTestCase):
 			"call_id": "call-frontend-1",
 		}
 		conversation = self.make_conversation(messages=[], pending_operations=[pending_operation])
-		realtime_calls = []
-
-		def record_realtime(event, payload=None, user=None, **kwargs):
-			realtime_calls.append({"event": event, "payload": payload, "user": user, "kwargs": kwargs})
 
 		with patch("ask_alyf.ask_alyf.api.can_access_ask_alyf", return_value=True):
-			with patch(
-				"ask_alyf.ask_alyf.api.run_message",
-				return_value={
-					"response": "Opened the Sales Invoice list view in your browser.",
-					"pending_operations": [],
-				},
-			) as summarize_call:
-				with patch("ask_alyf.ask_alyf.api.frappe.publish_realtime", side_effect=record_realtime):
-					response = api.frontend_action_result(
-						conversation=conversation.name,
-						call_id="call-frontend-1",
-						status="success",
-						mode=api.MODE_ASK,
-						result={"route": ["List", "Sales Invoice"]},
-					)
+			with patch("ask_alyf.ask_alyf.api.resume_operation") as resume_call:
+				response = api.frontend_action_result(
+					conversation=conversation.name,
+					call_id="call-frontend-1",
+					status="success",
+					mode=api.MODE_ASK,
+					result={"route": ["List", "Sales Invoice"]},
+				)
 
-		summarize_call.assert_called_once()
-		status_updates = [
-			call["payload"]["text"] for call in realtime_calls if call["event"] == "ask_alyf_status"
-		]
-		self.assertEqual(status_updates, ["Generating response...", ""])
-		system_message = summarize_call.call_args.kwargs["conversation_history"][-1]
-		self.assertEqual(system_message["role"], "system")
-		self.assertIn('"status": "success"', system_message["content"])
+		# An auto-executed action never paused the graph, so there is nothing
+		# to resume.
+		resume_call.assert_not_called()
 		self.assertEqual(response["conversation"]["pending_operations"], [])
 
 		conversation.reload()
 		messages = loads(conversation.messages_json, [])
-		self.assertTrue(messages)
-		self.assertEqual(messages[-1]["content"], "Opened the Sales Invoice list view in your browser.")
 		self.assertEqual(messages[-1]["metadata"].get("frontend_action_status"), "success")
 		self.assertTrue(messages[-1]["metadata"].get("frontend_action_result"))
+
+	def test_confirmable_frontend_action_result_resumes_the_paused_agent(self):
+		pending_operation = {
+			"kind": "frontend_action",
+			"tool": "frm_set_value",
+			"summary": "Set customer on the open form",
+			"requires_confirmation": True,
+			"payload": {"fieldname": "customer", "value": "ACME"},
+			"call_id": "call-frontend-2",
+		}
+		conversation = self.make_conversation(messages=[], pending_operations=[pending_operation])
+
+		with patch("ask_alyf.ask_alyf.api.can_access_ask_alyf", return_value=True):
+			with patch(
+				"ask_alyf.ask_alyf.api.resume_operation",
+				return_value={"response": "Set the customer to ACME.", "pending_operations": []},
+			) as resume_call:
+				api.frontend_action_result(
+					conversation=conversation.name,
+					call_id="call-frontend-2",
+					status="success",
+					mode=api.MODE_ASK,
+					result={"fieldname": "customer"},
+				)
+
+		self.assertEqual(resume_call.call_args.kwargs["status"], "success")
+		self.assertEqual(resume_call.call_args.kwargs["result"], {"fieldname": "customer"})
+
+		conversation.reload()
+		messages = loads(conversation.messages_json, [])
+		self.assertEqual(messages[-1]["content"], "Set the customer to ACME.")
 
 	def test_show_chart_frontend_action_persists_charts_on_assistant_message(self):
 		assistant_message = api.make_message(

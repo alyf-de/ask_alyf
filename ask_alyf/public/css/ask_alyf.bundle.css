@@ -994,3 +994,94 @@
 		transition: none;
 	}
 }
+
+.ask_alyf-tool-calls,
+.ask_alyf-live-steps {
+	width: 100%;
+	max-width: 100%;
+	font-size: 0.75rem;
+	color: var(--text-muted);
+}
+
+.ask_alyf-tool-calls > summary {
+	cursor: pointer;
+	list-style: none;
+	padding: 0.1rem 0;
+	user-select: none;
+}
+
+.ask_alyf-tool-calls > summary::-webkit-details-marker {
+	display: none;
+}
+
+.ask_alyf-tool-calls > summary::before {
+	content: "▸";
+	display: inline-block;
+	width: 0.9em;
+}
+
+.ask_alyf-tool-calls[open] > summary::before {
+	content: "▾";
+}
+
+.ask_alyf-tool-call-list {
+	margin: 0.2rem 0 0;
+	padding-left: 1.5rem;
+	display: flex;
+	flex-direction: column;
+	gap: 0.15rem;
+}
+
+.ask_alyf-live-steps .ask_alyf-tool-call-list {
+	margin: 0;
+}
+
+.ask_alyf-tool-call-list > li {
+	animation: ask_alyf-step-in 0.18s ease-out;
+}
+
+@keyframes ask_alyf-step-in {
+	from {
+		opacity: 0;
+		transform: translateY(0.25rem);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.ask_alyf-tool-call-name {
+	font-weight: 500;
+}
+
+.ask_alyf-tool-call-args {
+	display: block;
+	overflow-wrap: anywhere;
+	opacity: 0.8;
+}
+
+.ask_alyf-tool-call-running .ask_alyf-tool-call-name {
+	animation: ask_alyf-step-pulse 1.2s ease-in-out infinite;
+}
+
+@keyframes ask_alyf-step-pulse {
+	0%,
+	100% {
+		opacity: 1;
+	}
+	50% {
+		opacity: 0.45;
+	}
+}
+
+.ask_alyf-tool-call-failed .ask_alyf-tool-call-name {
+	color: var(--text-danger, #c0392b);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.ask_alyf-tool-call-list > li,
+	.ask_alyf-tool-call-running .ask_alyf-tool-call-name {
+		animation: none;
+	}
+}

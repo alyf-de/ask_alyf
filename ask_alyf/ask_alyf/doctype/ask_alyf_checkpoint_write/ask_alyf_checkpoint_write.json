@@ -1,0 +1,95 @@
+{
+ "actions": [],
+ "creation": "2026-08-28 12:00:00",
+ "description": "One pending write of a LangGraph checkpoint. Written by FrappeCheckpointSaver, not by users.",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "thread_id",
+  "checkpoint_ns",
+  "checkpoint_id",
+  "task_id",
+  "idx",
+  "channel",
+  "task_path",
+  "value_type",
+  "value_data"
+ ],
+ "fields": [
+  {
+   "fieldname": "thread_id",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Thread ID",
+   "reqd": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "checkpoint_ns",
+   "fieldtype": "Data",
+   "label": "Checkpoint Namespace"
+  },
+  {
+   "fieldname": "checkpoint_id",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Checkpoint ID",
+   "reqd": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "task_id",
+   "fieldtype": "Data",
+   "label": "Task ID",
+   "reqd": 1
+  },
+  {
+   "fieldname": "idx",
+   "fieldtype": "Int",
+   "label": "Index"
+  },
+  {
+   "fieldname": "channel",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Channel"
+  },
+  {
+   "fieldname": "task_path",
+   "fieldtype": "Data",
+   "label": "Task Path"
+  },
+  {
+   "fieldname": "value_type",
+   "fieldtype": "Data",
+   "label": "Value Type"
+  },
+  {
+   "fieldname": "value_data",
+   "fieldtype": "Long Text",
+   "label": "Value Data (base64)"
+  }
+ ],
+ "grid_page_length": 50,
+ "links": [],
+ "modified": "2026-08-28 16:23:58.597993",
+ "modified_by": "Administrator",
+ "module": "Ask ALYF",
+ "name": "Ask ALYF Checkpoint Write",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "delete": 1,
+   "read": 1,
+   "role": "System Manager"
+  }
+ ],
+ "read_only": 1,
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "thread_id"
+}
