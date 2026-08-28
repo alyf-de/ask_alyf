@@ -26,6 +26,15 @@ MODE_ASK = "Ask"
 MODE_AGENT = "Agent"
 ASK_ALYF_USER_ROLE = "Ask ALYF User"
 BACKGROUND_JOB_ID_KEY = "background_job_id"
+PENDING_JOB_STATUSES = frozenset(
+	{
+		JobStatus.CREATED,
+		JobStatus.QUEUED,
+		JobStatus.STARTED,
+		JobStatus.DEFERRED,
+		JobStatus.SCHEDULED,
+	}
+)
 
 
 def _truncate_doc_for_size(
@@ -384,6 +393,21 @@ def start_new_conversation() -> dict:
 	return conversation_payload(doc)
 
 
+def _has_running_job(messages: list[dict]) -> bool:
+	"""Is a background run for this conversation still in flight?
+
+	Walks back to the newest user message that was enqueued. An assistant reply
+	after it means that run already landed.
+	"""
+	for item in reversed(messages):
+		if item.get("role") == "assistant":
+			return False
+		job_id = (item.get("metadata") or {}).get(BACKGROUND_JOB_ID_KEY)
+		if job_id:
+			return get_job_status(job_id) in PENDING_JOB_STATUSES
+	return False
+
+
 @frappe.whitelist(methods=["POST"])
 def send_message(
 	message: str,
@@ -398,7 +422,17 @@ def send_message(
 	context_data = frappe.parse_json(context) if isinstance(context, str) else (context or {})
 	doc = get_or_create_conversation(conversation_name=conversation)
 
+	# Two runs on one conversation would fork the agent's stored graph state and
+	# race on `messages_json`, so a conversation gets one run at a time. The row
+	# lock closes the window between the check and the enqueue; it is released
+	# on commit, which is also when the job is handed to the queue.
+	frappe.db.get_value("Ask ALYF Conversation", doc.name, "name", for_update=True)
+	doc.reload()
+
 	messages = get_messages(doc)
+	if _has_running_job(messages):
+		frappe.throw(_("Ask ALYF is still working on the previous message in this conversation."))
+
 	job_id = uuid4().hex
 	user_message = make_message(
 		"user",
@@ -462,13 +496,7 @@ def get_message_job_status(conversation: str, user_message_id: str, job_id: str)
 		return {"status": "completed", "conversation": conversation_payload(doc)}
 
 	status = get_job_status(job_id)
-	if status in {
-		JobStatus.CREATED,
-		JobStatus.QUEUED,
-		JobStatus.STARTED,
-		JobStatus.DEFERRED,
-		JobStatus.SCHEDULED,
-	}:
+	if status in PENDING_JOB_STATUSES:
 		# Steps broadcast while the user was elsewhere cannot be replayed, so
 		# the run's progress so far rides along with the status.
 		return {"status": "pending", "tool_calls": read_running_steps(conversation)}

@@ -6,6 +6,7 @@ from unittest.mock import patch
 
 import frappe
 from frappe.tests import UnitTestCase
+from rq.job import JobStatus
 
 from ask_alyf.ask_alyf import api, tools
 from ask_alyf.ask_alyf.history import history_item_to_native_message
@@ -46,6 +47,36 @@ class UnitTestAskALYFConversation(UnitTestCase):
 		self.assertEqual(response["user_message_id"], user_message["id"])
 		self.assertEqual(enqueue_job.call_args.kwargs["job_id"], job_id)
 		self.assertTrue(enqueue_job.call_args.kwargs["enqueue_after_commit"])
+
+	def test_send_message_refuses_a_second_run_while_one_is_in_flight(self):
+		pending = api.make_message("user", "First", **{api.BACKGROUND_JOB_ID_KEY: "job-1"})
+		conversation = self.make_conversation(messages=[pending])
+
+		with (
+			patch("ask_alyf.ask_alyf.api.can_access_ask_alyf", return_value=True),
+			patch("ask_alyf.ask_alyf.api.get_job_status", return_value=JobStatus.STARTED),
+			patch("ask_alyf.ask_alyf.api.enqueue") as enqueue_job,
+		):
+			with self.assertRaises(frappe.ValidationError):
+				api.send_message(message="Second", conversation=conversation.name, context={})
+
+		enqueue_job.assert_not_called()
+
+		# Once the first run has answered, the next message goes through.
+		conversation.reload()
+		messages = loads(conversation.messages_json, [])
+		messages.append(api.make_message("assistant", "Done"))
+		conversation.messages_json = dumps(messages)
+		conversation.save(ignore_permissions=True)
+
+		with (
+			patch("ask_alyf.ask_alyf.api.can_access_ask_alyf", return_value=True),
+			patch("ask_alyf.ask_alyf.api.get_job_status", return_value=JobStatus.STARTED),
+			patch("ask_alyf.ask_alyf.api.enqueue") as enqueue_job,
+		):
+			api.send_message(message="Second", conversation=conversation.name, context={})
+
+		enqueue_job.assert_called_once()
 
 	def test_get_message_job_status_maps_rq_terminal_states(self):
 		job_id = "job-123"

@@ -348,9 +348,12 @@ class FrappeCheckpointSaver(BaseCheckpointSaver[int]):
 		]
 
 	def _upsert(self, doctype: str, name: str, values: dict[str, Any]) -> None:
-		# ponytail: check-then-insert, not an atomic upsert. Two workers writing
-		# the same checkpoint row would need INSERT ... ON DUPLICATE KEY; one
-		# conversation is handled by one worker, so this is enough.
+		# ponytail: check-then-insert, not an atomic upsert. Safe because a
+		# conversation only ever has one run in flight — `send_message` takes a
+		# row lock on the conversation and refuses to enqueue a second job while
+		# one is pending. Concurrent runs would fork the thread's stored state
+		# long before they collided on a row, so that guard is the fix, not
+		# INSERT ... ON DUPLICATE KEY here.
 		if frappe.db.exists(doctype, name):
 			frappe.db.set_value(doctype, name, values, update_modified=False)
 			return
