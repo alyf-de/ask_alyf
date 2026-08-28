@@ -383,6 +383,19 @@ import "./field_agent";
 			message.metadata = { ...(message.metadata || {}), tool_calls: toolCalls };
 		}
 
+		adoptRunningSteps(steps) {
+			// Catches up a view that missed the broadcasts — after switching
+			// conversations, or after a reload. Only a longer list is adopted,
+			// so a poll that lags behind the live stream never rewinds it.
+			if (!Array.isArray(steps) || steps.length <= this.state.steps.length) {
+				return;
+			}
+
+			this.state.steps = steps.map((step) => ({ ...step }));
+			this.renderLiveSteps();
+			this.scrollToBottom();
+		}
+
 		clearLiveSteps() {
 			this.state.steps = [];
 			this.renderLiveSteps();
@@ -1087,6 +1100,7 @@ import "./field_agent";
 			const result = response.message || {};
 			if (result.status === "pending") {
 				activeJob.missingChecks = 0;
+				this.adoptRunningSteps(result.tool_calls);
 				this.scheduleResponseJobPoll(version);
 				return;
 			}

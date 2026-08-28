@@ -32,6 +32,25 @@ FrappeFilterList = list[list[Scalar | list[Scalar]]]
 # value, so the API layer can tell our proposals from any other interrupt.
 OPERATION_INTERRUPT_KEY = "ask_alyf_operation"
 
+# Steps of a run in progress are parked in the cache so a viewer that was not
+# watching when they were broadcast can still pick them up. Long enough to
+# outlive any run, short enough that a crashed run leaves nothing behind.
+RUNNING_STEPS_TTL = 60 * 60
+
+
+def running_steps_key(conversation_name: str) -> str:
+	return f"ask_alyf_running_steps:{conversation_name}"
+
+
+def read_running_steps(conversation_name: str) -> list[dict[str, Any]]:
+	"""Return the steps of the run currently working on this conversation."""
+	return frappe.cache().get_value(running_steps_key(conversation_name)) or []
+
+
+def clear_running_steps(conversation_name: str) -> None:
+	"""Forget the steps of a run that is over."""
+	frappe.cache().delete_value(running_steps_key(conversation_name))
+
 
 def operation_call_id(kind: str, tool: str, payload: dict[str, Any]) -> str:
 	"""Identify a proposed operation by what it does.
@@ -109,6 +128,16 @@ class ask_alyfRuntime:
 				"ask_alyf_step",
 				{"conversation": self.conversation_name, "step": dict(step)},
 				user=frappe.session.user,
+			)
+
+		# A broadcast only reaches whoever is looking. The list is also parked
+		# in the cache so a viewer who was in another conversation, or who
+		# reloaded, can pick the run up where it is.
+		with contextlib.suppress(Exception):
+			frappe.cache().set_value(
+				running_steps_key(self.conversation_name),
+				list(self.tool_calls),
+				expires_in_sec=RUNNING_STEPS_TTL,
 			)
 
 	def emit_status(self, text: str):

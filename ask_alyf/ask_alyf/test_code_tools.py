@@ -33,6 +33,8 @@ from ask_alyf.ask_alyf.toolset import (
 	ask_alyfRuntime,
 	ask_alyfToolset,
 	clear_messages_on_tool_error,
+	clear_running_steps,
+	read_running_steps,
 )
 
 
@@ -830,6 +832,36 @@ class UnitTestCodeTools(UnitTestCase):
 		)
 		self.assertEqual(published[0][1]["step"]["label"], "Reading ToDo list")
 		self.assertEqual(published[0][1]["conversation"], "TEST-CONVERSATION")
+
+	def test_running_steps_are_readable_while_the_run_is_in_progress(self):
+		"""A viewer elsewhere cannot replay broadcasts, so steps are also cached."""
+		runtime = ask_alyfRuntime(conversation_name="TEST-CONVERSATION", mode="Agent", request_context={})
+		self.addCleanup(clear_running_steps, "TEST-CONVERSATION")
+
+		runtime.begin_tool_call("call-1", "get_list", {"doctype": "ToDo"}, "Reading ToDo list")
+		self.assertEqual(
+			[(step["label"], step["status"]) for step in read_running_steps("TEST-CONVERSATION")],
+			[("Reading ToDo list", "running")],
+		)
+
+		runtime.finish_tool_call("call-1", "success")
+		runtime.begin_tool_call("call-2", "insert", {"doctype": "ToDo"}, "Creating ToDo")
+		self.assertEqual(
+			[(step["label"], step["status"]) for step in read_running_steps("TEST-CONVERSATION")],
+			[("Reading ToDo list", "success"), ("Creating ToDo", "running")],
+		)
+
+		clear_running_steps("TEST-CONVERSATION")
+		self.assertEqual(read_running_steps("TEST-CONVERSATION"), [])
+
+	def test_a_dropped_step_leaves_the_cached_list(self):
+		runtime = ask_alyfRuntime(conversation_name="TEST-CONVERSATION", mode="Agent", request_context={})
+		self.addCleanup(clear_running_steps, "TEST-CONVERSATION")
+
+		runtime.begin_tool_call("call-1", "insert", {"doctype": "ToDo"}, "Creating ToDo")
+		runtime.drop_tool_call("call-1")
+
+		self.assertEqual(read_running_steps("TEST-CONVERSATION"), [])
 
 	def test_a_failing_step_broadcast_does_not_break_the_tool_call(self):
 		"""Tools run on threads whose Frappe context we do not control."""

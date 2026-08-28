@@ -19,6 +19,7 @@ from ask_alyf.ask_alyf.tools import (
 	get_settings,
 	validate_frappe_charts_payload,
 )
+from ask_alyf.ask_alyf.toolset import clear_running_steps, read_running_steps
 from ask_alyf.ask_alyf.utils import chunk_text, dumps, loads
 
 MODE_ASK = "Ask"
@@ -468,7 +469,9 @@ def get_message_job_status(conversation: str, user_message_id: str, job_id: str)
 		JobStatus.DEFERRED,
 		JobStatus.SCHEDULED,
 	}:
-		return {"status": "pending"}
+		# Steps broadcast while the user was elsewhere cannot be replayed, so
+		# the run's progress so far rides along with the status.
+		return {"status": "pending", "tool_calls": read_running_steps(conversation)}
 	if status in {JobStatus.FINISHED, JobStatus.FAILED, JobStatus.STOPPED, JobStatus.CANCELED}:
 		doc.reload()
 		messages = get_messages(doc)
@@ -502,6 +505,7 @@ def process_message_job(
 	messages = get_messages(doc)
 	history = messages[:-1] if messages and messages[-1].get("id") == user_message_id else messages
 
+	clear_running_steps(conversation_name)
 	frappe.publish_realtime(
 		"ask_alyf_response_start",
 		{"conversation": conversation_name},
@@ -572,6 +576,9 @@ def process_message_job(
 			},
 			user=doc.owner,
 		)
+
+	# The steps live on the assistant message now.
+	clear_running_steps(conversation_name)
 
 	for chunk in chunk_text(response or " "):
 		frappe.publish_realtime(
