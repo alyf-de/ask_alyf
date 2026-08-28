@@ -1993,7 +1993,13 @@ import "./field_agent";
 				// The steps that were streaming live belong to this answer, so
 				// they move into it rather than being dropped and re-appearing
 				// once the message is reloaded.
-				message = { id: messageId, role: "assistant", content: "", metadata: {} };
+				message = {
+					id: messageId,
+					role: "assistant",
+					content: "",
+					created_at: frappe.datetime.now_datetime(),
+					metadata: {},
+				};
 				if (this.state.steps.length) {
 					message.metadata.tool_calls = this.state.steps.map((step) => ({ ...step }));
 					this.state.steps = [];
