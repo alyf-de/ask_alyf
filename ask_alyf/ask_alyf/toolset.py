@@ -73,6 +73,7 @@ class ask_alyfRuntime:
 	document_extractions: list[dict[str, Any]] = field(default_factory=list)
 	attached_files: list[dict[str, Any]] = field(default_factory=list)
 	tool_calls: list[dict[str, Any]] = field(default_factory=list)
+	backend_operation_committed: bool = False
 
 	def begin_tool_call(self, call_id: str, name: str, args: dict[str, Any], label: str):
 		"""Announce a tool call that is starting, and log it for the transcript.
@@ -157,6 +158,11 @@ class ask_alyfRuntime:
 	def remember_attached_file(self, file_entry: dict[str, Any]):
 		"""Store a file attachment to be shown in the conversation history."""
 		self.attached_files.append(file_entry)
+
+
+_private_context_backend_runtime: contextvars.ContextVar[ask_alyfRuntime | None] = contextvars.ContextVar(
+	"private_context_backend_runtime", default=None
+)
 
 
 class ask_alyfToolset:
@@ -253,7 +259,9 @@ class ask_alyfToolset:
 				"error": decision.get("error") or _("The action could not be completed."),
 			}
 
-		return {"success": True, "result": tools.execute_pending_operation(proposal)}
+		result = tools.execute_pending_operation(proposal)
+		_private_context_backend_runtime.set(self.runtime)
+		return {"success": True, "result": result}
 
 	def _backend_proposal(
 		self,
@@ -1178,6 +1186,7 @@ def _capture_caller_frappe_context() -> _CallerFrappeContext:
 def _private_frappe_context(caller: _CallerFrappeContext):
 	"""Initialize and destroy a private Frappe context for one tool call."""
 	private_db = None
+	pending_runtime_token = _private_context_backend_runtime.set(None)
 	var_child_runnable_config.set(caller.runnable_config)
 	try:
 		frappe.init(caller.site, sites_path=caller.sites_path)
@@ -1187,6 +1196,8 @@ def _private_frappe_context(caller: _CallerFrappeContext):
 		frappe.local.lang = caller.language
 		yield
 		private_db.commit()
+		if runtime := _private_context_backend_runtime.get():
+			runtime.backend_operation_committed = True
 	except BaseException:
 		if private_db is not None:
 			with contextlib.suppress(Exception):
@@ -1194,6 +1205,7 @@ def _private_frappe_context(caller: _CallerFrappeContext):
 		frappe.clear_messages()
 		raise
 	finally:
+		_private_context_backend_runtime.reset(pending_runtime_token)
 		with contextlib.suppress(Exception):
 			frappe.destroy()
 

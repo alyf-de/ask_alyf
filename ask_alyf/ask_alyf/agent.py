@@ -37,6 +37,8 @@ from ask_alyf.ask_alyf.toolset import (
 	clear_messages_on_tool_error,
 )
 
+OPERATION_RESUME_SAVEPOINT = "ask_alyf_operation_resume"
+
 
 def _on_tool_error(exc: Exception, request: ToolCallRequest) -> str:
 	"""Convert a tool exception into content for an error ToolMessage.
@@ -502,7 +504,23 @@ Mode awareness and behavior:
 	def resume(self, call_id: str, status: str, **decision: Any) -> dict[str, Any]:
 		"""Continue a run that paused on a proposal, with the user's decision."""
 		command = Command(resume={"call_id": call_id, "status": status, **decision})
-		return self._finish(self.agent.invoke(command, config=self.thread_config))
+		frappe.db.savepoint(OPERATION_RESUME_SAVEPOINT)
+		try:
+			return self._finish(self.agent.invoke(command, config=self.thread_config))
+		except Exception:
+			frappe.db.rollback(save_point=OPERATION_RESUME_SAVEPOINT)
+			if not self.runtime.backend_operation_committed:
+				raise
+
+			frappe.log_error("Ask ALYF Action Follow-Up Error")
+			frappe.clear_messages()
+			return {
+				"response": _(
+					"The operation was completed, but the follow-up response could not be generated."
+				),
+				"pending_operations": [],
+				"tool_calls": self.runtime.tool_calls,
+			}
 
 	def _finish(self, result: Any) -> dict[str, Any]:
 		# LangGraph checkpoints from its background threads, which must not use
