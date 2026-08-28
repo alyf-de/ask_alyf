@@ -65,6 +65,15 @@ def _row_name(*parts: Any) -> str:
 	return hashlib.sha1(key.encode(), usedforsecurity=False).hexdigest()
 
 
+def delete_checkpoints(thread_ids: Sequence[str]) -> None:
+	"""Delete every checkpoint and pending write of the given threads."""
+	if not thread_ids:
+		return
+
+	for doctype in (CHECKPOINT_DOCTYPE, CHECKPOINT_WRITE_DOCTYPE):
+		frappe.db.delete(doctype, {"thread_id": ("in", tuple(thread_ids))})
+
+
 def checkpoint_row_name(thread_id: str, checkpoint_ns: str | None, checkpoint_id: str) -> str:
 	"""Name of the `Ask ALYF Checkpoint` row for one checkpoint."""
 	return _row_name(thread_id, checkpoint_ns or "", checkpoint_id)
@@ -272,8 +281,7 @@ class FrappeCheckpointSaver(BaseCheckpointSaver[int]):
 			for key in [key for key, values in self._buffer.items() if values["thread_id"] == thread_id]:
 				del self._buffer[key]
 
-		frappe.db.delete(CHECKPOINT_DOCTYPE, {"thread_id": thread_id})
-		frappe.db.delete(CHECKPOINT_WRITE_DOCTYPE, {"thread_id": thread_id})
+		delete_checkpoints([thread_id])
 
 	# --- internals ----------------------------------------------------------
 

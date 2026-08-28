@@ -18,6 +18,7 @@ from langchain_core.messages import AnyMessage, HumanMessage
 from langchain_openai import ChatOpenAI
 
 from ask_alyf.ask_alyf import tools
+from ask_alyf.ask_alyf.checkpointer import FrappeCheckpointSaver
 from ask_alyf.ask_alyf.deep_agent_backend import build_ask_alyf_backend
 from ask_alyf.ask_alyf.history import history_item_to_native_message
 from ask_alyf.ask_alyf.skill_utils import build_available_skills_instruction
@@ -125,6 +126,7 @@ class ask_alyfAgentRunner:
 		self.model = build_chat_model(self.settings, temperature=0.2)
 		app_roots = tools.get_installed_app_roots() if self.settings.is_code_search_enabled() else {}
 		self.backend = build_ask_alyf_backend(app_roots)
+		self.checkpointer = FrappeCheckpointSaver()
 		self.agent = create_deep_agent(
 			model=self.model,
 			tools=self._build_tools(),
@@ -133,8 +135,14 @@ class ask_alyfAgentRunner:
 			subagents=self._build_subagents(),
 			permissions=self._build_permissions(),
 			middleware=[build_tool_error_middleware()],
+			checkpointer=self.checkpointer,
 			name="ask_alyf",
 		)
+
+	@property
+	def thread_config(self) -> dict[str, Any]:
+		"""Graph config that ties this run to the conversation's stored state."""
+		return {"configurable": {"thread_id": self.runtime.conversation_name}}
 
 	def _can_write_skill(self) -> bool:
 		return bool(frappe.has_permission("Ask ALYF Skill", ptype="create"))
@@ -312,10 +320,17 @@ Mode awareness and behavior:
 	def _build_input_messages(self, message: str) -> list[AnyMessage]:
 		"""Build the native message list for the next invocation.
 
-		Without a checkpointer, the full stored history is rebuilt as native
-		messages each time and the new user message is appended.
+		The checkpointer restores what the agent saw and did in earlier turns,
+		so a conversation with stored state only receives what is new to it:
+		the stored items that follow the last assistant message (an action
+		result, for example) plus the user message of this turn. A conversation
+		without stored state — one from before the checkpointer, or one whose
+		checkpoints were cleared — is seeded once with its full stored history.
 		"""
 		history = self.runtime.conversation_history or []
+		if self.checkpointer.get_tuple(self.thread_config) is not None:
+			history = _history_after_last_assistant_message(history)
+
 		messages: list[AnyMessage] = []
 		for item in history:
 			native = history_item_to_native_message(item)
@@ -328,7 +343,12 @@ Mode awareness and behavior:
 	def run(self, message: str, conversation_history: list[dict[str, Any]]) -> dict[str, Any]:
 		self.runtime.conversation_history = conversation_history or []
 		input_messages = self._build_input_messages(message)
-		result = self.agent.invoke({"messages": input_messages})
+		result = self.agent.invoke({"messages": input_messages}, config=self.thread_config)
+		# LangGraph checkpoints from its background threads, which must not use
+		# this request's database connection. Nothing is stored until we flush
+		# here — and a failed run flushes nothing, so the conversation keeps the
+		# state of its last completed turn.
+		self.checkpointer.flush()
 		result_messages = result.get("messages") if isinstance(result, dict) else None
 		response_text = result_messages[-1].text.strip() if result_messages else ""
 
@@ -338,6 +358,21 @@ Mode awareness and behavior:
 			"document_extractions": self.runtime.document_extractions,
 			"attached_files": self.runtime.attached_files,
 		}
+
+
+def _history_after_last_assistant_message(
+	history: list[dict[str, Any]],
+) -> list[dict[str, Any]]:
+	"""Return the stored items the agent cannot have seen yet.
+
+	Everything up to and including the last assistant message is already in the
+	checkpointed thread. What follows it was appended by the app afterwards.
+	"""
+	for index in range(len(history) - 1, -1, -1):
+		if (history[index].get("role") or "").lower() == "assistant":
+			return history[index + 1 :]
+
+	return history
 
 
 def run_message(

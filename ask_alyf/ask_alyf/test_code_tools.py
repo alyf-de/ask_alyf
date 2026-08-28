@@ -33,6 +33,20 @@ class FakeSettings(SimpleNamespace):
 		return "test-key"
 
 
+class FakeCheckpointer:
+	"""Stands in for `FrappeCheckpointSaver` so unit tests stay off the database."""
+
+	def __init__(self, *, stored_state: bool = False):
+		self.stored_state = stored_state
+		self.flush_count = 0
+
+	def get_tuple(self, _config):
+		return object() if self.stored_state else None
+
+	def flush(self):
+		self.flush_count += 1
+
+
 class UnitTestCodeTools(UnitTestCase):
 	def make_runtime(self, *, mode: str = "Ask"):
 		return SimpleNamespace(
@@ -46,12 +60,13 @@ class UnitTestCodeTools(UnitTestCase):
 			emit_status=lambda _text: None,
 		)
 
-	def make_runner(self, *, allow_code_search: bool, mode: str = "Ask"):
+	def make_runner(self, *, allow_code_search: bool, mode: str = "Ask", stored_state: bool = False):
 		runtime = self.make_runtime(mode=mode)
 		runner = object.__new__(ask_alyfAgentRunner)
 		runner.runtime = runtime
 		runner.settings = FakeSettings(allow_code_search=allow_code_search)
 		runner.toolset = ask_alyfToolset(runtime, settings=runner.settings)
+		runner.checkpointer = FakeCheckpointer(stored_state=stored_state)
 		return runner
 
 	def test_build_chat_model_uses_responses_api_for_any_model(self):
@@ -525,7 +540,7 @@ class UnitTestCodeTools(UnitTestCase):
 		self.assertNotIn("/private/files/", text)
 		self.assertNotIn("/files/", text)
 
-	def test_build_input_messages_rebuilds_full_history(self):
+	def test_build_input_messages_rebuilds_full_history_without_stored_state(self):
 		runner = self.make_runner(allow_code_search=False, mode="Ask")
 		runner.runtime.conversation_history = [
 			{"role": "user", "content": "one"},
@@ -540,6 +555,35 @@ class UnitTestCodeTools(UnitTestCase):
 		self.assertIsInstance(messages[2], SystemMessage)
 		self.assertIsInstance(messages[-1], HumanMessage)
 		self.assertEqual(messages[-1].content, "two")
+
+	def test_build_input_messages_sends_only_unseen_items_with_stored_state(self):
+		runner = self.make_runner(allow_code_search=False, mode="Agent", stored_state=True)
+		runner.runtime.conversation_history = [
+			{"role": "user", "content": "one"},
+			{"role": "assistant", "content": "one-ans"},
+			# Appended by the app after the agent's turn, e.g. an action result.
+			{"role": "system", "content": "result"},
+		]
+		messages = runner._build_input_messages("two")
+		# The checkpointed thread already holds everything up to "one-ans".
+		self.assertEqual(len(messages), 2)
+		self.assertIsInstance(messages[0], SystemMessage)
+		self.assertEqual(messages[0].content, "result")
+		self.assertEqual(messages[-1].content, "two")
+
+	def test_run_flushes_checkpoints_and_passes_the_conversation_thread(self):
+		runner = self.make_runner(allow_code_search=False, mode="Ask", stored_state=True)
+		seen = {}
+
+		def invoke(_input, config=None):
+			seen["config"] = config
+			return {"messages": [AIMessage(content="Done.")]}
+
+		runner.agent = SimpleNamespace(invoke=invoke)
+		runner.run("hello", conversation_history=[])
+
+		self.assertEqual(seen["config"]["configurable"]["thread_id"], "TEST-CONVERSATION")
+		self.assertEqual(runner.checkpointer.flush_count, 1)
 
 	def test_run_preserves_result_envelope_and_proposal_shapes(self):
 		runner = self.make_runner(allow_code_search=False, mode="Agent")

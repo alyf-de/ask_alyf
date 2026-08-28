@@ -9,8 +9,11 @@ from typing import Annotated, TypedDict
 
 import frappe
 from frappe.tests import IntegrationTestCase
+from frappe.utils import add_days, now_datetime
+from langchain_core.messages import AIMessage, AnyMessage, HumanMessage
 from langgraph.checkpoint.base import empty_checkpoint
 from langgraph.graph import END, START, StateGraph
+from langgraph.graph.message import add_messages
 from langgraph.types import Command, interrupt
 
 from ask_alyf.ask_alyf.checkpointer import (
@@ -18,6 +21,7 @@ from ask_alyf.ask_alyf.checkpointer import (
 	CHECKPOINT_WRITE_DOCTYPE,
 	FrappeCheckpointSaver,
 )
+from ask_alyf.ask_alyf.doctype.ask_alyf_conversation.ask_alyf_conversation import AskALYFConversation
 
 THREAD = "test-checkpointer-thread"
 
@@ -31,6 +35,7 @@ def _config(checkpoint_id: str | None = None, thread: str = THREAD) -> dict:
 
 class _State(TypedDict):
 	steps: Annotated[list[str], operator.add]
+	messages: Annotated[list[AnyMessage], add_messages]
 
 
 class IntegrationTestFrappeCheckpointSaver(IntegrationTestCase):
@@ -154,7 +159,8 @@ class IntegrationTestFrappeCheckpointSaver(IntegrationTestCase):
 
 	def test_graph_resumes_state_from_the_database_across_invocations(self):
 		def append(state: _State) -> _State:
-			return {"steps": [f"step-{len(state['steps']) + 1}"]}
+			step = f"step-{len(state['steps']) + 1}"
+			return {"steps": [step], "messages": [AIMessage(content=step, id=step)]}
 
 		builder = StateGraph(_State)
 		builder.add_node("append", append)
@@ -163,7 +169,7 @@ class IntegrationTestFrappeCheckpointSaver(IntegrationTestCase):
 		graph = builder.compile(checkpointer=self.saver)
 
 		config = {"configurable": {"thread_id": THREAD}}
-		graph.invoke({"steps": []}, config)
+		graph.invoke({"steps": [], "messages": [HumanMessage(content="go", id="user-1")]}, config)
 		self.saver.flush()
 
 		# A fresh saver proves the state came back from the database, not memory.
@@ -172,6 +178,9 @@ class IntegrationTestFrappeCheckpointSaver(IntegrationTestCase):
 		second_saver.flush()
 
 		self.assertEqual(resumed["steps"], ["step-1", "step-2"])
+		# LangChain messages survive the round trip unchanged, IDs included.
+		self.assertEqual([m.id for m in resumed["messages"]], ["user-1", "step-1", "step-2"])
+		self.assertIsInstance(resumed["messages"][0], HumanMessage)
 		self.assertEqual(self.saver.get_tuple(config).checkpoint["channel_values"]["steps"], resumed["steps"])
 
 	def test_writes_from_a_background_thread_are_persisted_by_the_flushing_thread(self):
@@ -211,3 +220,58 @@ class IntegrationTestFrappeCheckpointSaver(IntegrationTestCase):
 		resuming_saver.flush()
 
 		self.assertEqual(resumed["steps"], ["before", "answered-yes"])
+
+	def _make_conversation(self):
+		return frappe.get_doc(
+			doctype="Ask ALYF Conversation",
+			title="Checkpointer Test",
+			status="Active",
+			messages_json="[]",
+		).insert(ignore_permissions=True)
+
+	def _store_state_for(self, conversation_name: str) -> None:
+		checkpoint_id = "00000000-0000-6000-8000-000000000001"
+		self._put(checkpoint_id, thread=conversation_name)
+		self.saver.put_writes(_config(checkpoint_id, thread=conversation_name), [("steps", "x")], "task-1")
+		self.saver.flush()
+		self.assertEqual(frappe.db.count(CHECKPOINT_DOCTYPE, {"thread_id": conversation_name}), 1)
+
+	def _assert_no_state_for(self, conversation_name: str) -> None:
+		for doctype in (CHECKPOINT_DOCTYPE, CHECKPOINT_WRITE_DOCTYPE):
+			self.assertEqual(frappe.db.count(doctype, {"thread_id": conversation_name}), 0)
+
+	def test_deleting_a_conversation_deletes_its_stored_state(self):
+		conversation = self._make_conversation()
+		self._store_state_for(conversation.name)
+
+		conversation.delete(ignore_permissions=True)
+
+		self._assert_no_state_for(conversation.name)
+
+	def test_clearing_old_conversations_deletes_their_stored_state(self):
+		conversation = self._make_conversation()
+		self._store_state_for(conversation.name)
+		frappe.db.set_value(
+			"Ask ALYF Conversation",
+			conversation.name,
+			"creation",
+			add_days(now_datetime(), -120),
+			update_modified=False,
+		)
+
+		AskALYFConversation.clear_old_logs(days=90)
+
+		self.assertFalse(frappe.db.exists("Ask ALYF Conversation", conversation.name))
+		self._assert_no_state_for(conversation.name)
+
+	def test_a_serializer_clone_writes_into_the_same_buffer(self):
+		# LangGraph may swap the saver for a `with_allowlist` clone. Only the
+		# original is flushed by the runner, so both must share one buffer.
+		clone = self.saver.with_allowlist([("ask_alyf", "Thing")])
+		checkpoint = empty_checkpoint()
+		checkpoint["id"] = "00000000-0000-6000-8000-000000000001"
+		clone.put(_config(), checkpoint, {"source": "loop", "step": 0}, {})
+
+		self.saver.flush()
+
+		self.assertEqual(frappe.db.count(CHECKPOINT_DOCTYPE, {"thread_id": THREAD}), 1)
