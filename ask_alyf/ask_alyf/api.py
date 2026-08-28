@@ -426,8 +426,7 @@ def send_message(
 	# race on `messages_json`, so a conversation gets one run at a time. The row
 	# lock closes the window between the check and the enqueue; it is released
 	# on commit, which is also when the job is handed to the queue.
-	frappe.db.get_value("Ask ALYF Conversation", doc.name, "name", for_update=True)
-	doc.reload()
+	doc = frappe.get_doc("Ask ALYF Conversation", doc.name, for_update=True)
 
 	messages = get_messages(doc)
 	if _has_running_job(messages):
@@ -638,7 +637,11 @@ def confirm_pending_operation(conversation: str, call_id: str = "", mode: str = 
 	if not can_access_ask_alyf():
 		frappe.throw(_("You do not have access to Ask ALYF."))
 
-	doc = frappe.get_doc("Ask ALYF Conversation", conversation)
+	# Locked: the removal below is only persisted once the resumed run returns,
+	# so two overlapping requests would both see the operation as pending and
+	# both resume the same checkpoint, executing the write twice. The second
+	# request waits here and then finds the operation already gone.
+	doc = frappe.get_doc("Ask ALYF Conversation", conversation, for_update=True)
 	doc.check_permission("write")
 	all_operations = load_pending_operations(doc.pending_operation_json)
 	if not all_operations:
@@ -699,7 +702,7 @@ def reject_pending_operation(conversation: str, call_id: str = "", mode: str = M
 	if not can_access_ask_alyf():
 		frappe.throw(_("You do not have access to Ask ALYF."))
 
-	doc = frappe.get_doc("Ask ALYF Conversation", conversation)
+	doc = frappe.get_doc("Ask ALYF Conversation", conversation, for_update=True)
 	doc.check_permission("write")
 	all_operations = load_pending_operations(doc.pending_operation_json)
 	if not all_operations:
@@ -804,7 +807,7 @@ def frontend_action_result(
 	if not can_access_ask_alyf():
 		frappe.throw(_("You do not have access to Ask ALYF."))
 
-	doc = frappe.get_doc("Ask ALYF Conversation", conversation)
+	doc = frappe.get_doc("Ask ALYF Conversation", conversation, for_update=True)
 	doc.check_permission("write")
 	all_operations = load_pending_operations(doc.pending_operation_json)
 	if not all_operations:

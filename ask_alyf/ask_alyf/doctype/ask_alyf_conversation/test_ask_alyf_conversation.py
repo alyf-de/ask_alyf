@@ -372,6 +372,40 @@ class UnitTestAskALYFConversation(UnitTestCase):
 		self.assertTrue(messages)
 		self.assertEqual(messages[-1]["content"], "The ToDo TODO-0001 was updated successfully.")
 
+	def test_confirming_the_same_operation_twice_resumes_it_once(self):
+		"""A double-click must not execute the backend write twice.
+
+		The `for_update` row lock serialises the two requests; this covers what
+		the second one finds once the first has committed.
+		"""
+		pending_operation = {
+			"kind": "backend_action",
+			"tool": "set_value",
+			"summary": "Set status",
+			"requires_confirmation": True,
+			"payload": {"doctype": "ToDo", "name": "TODO-0001", "fieldname": "status", "value": "Closed"},
+			"call_id": "call-backend-1",
+		}
+		conversation = self.make_conversation(messages=[], pending_operations=[pending_operation])
+
+		with (
+			patch("ask_alyf.ask_alyf.api.can_access_ask_alyf", return_value=True),
+			patch(
+				"ask_alyf.ask_alyf.api.resume_operation",
+				return_value={"response": "Done", "pending_operations": []},
+			) as resume_call,
+			patch("ask_alyf.ask_alyf.api.frappe.publish_realtime"),
+		):
+			api.confirm_pending_operation(
+				conversation=conversation.name, call_id="call-backend-1", mode=api.MODE_ASK
+			)
+			with self.assertRaises(frappe.ValidationError):
+				api.confirm_pending_operation(
+					conversation=conversation.name, call_id="call-backend-1", mode=api.MODE_ASK
+				)
+
+		resume_call.assert_called_once()
+
 	def test_reject_pending_operation_resumes_the_paused_agent(self):
 		pending_operation = {
 			"kind": "backend_action",
