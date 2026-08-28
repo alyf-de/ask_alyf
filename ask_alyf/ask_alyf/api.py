@@ -28,7 +28,6 @@ ASK_ALYF_USER_ROLE = "Ask ALYF User"
 BACKGROUND_JOB_ID_KEY = "background_job_id"
 PENDING_JOB_STATUSES = frozenset(
 	{
-		JobStatus.CREATED,
 		JobStatus.QUEUED,
 		JobStatus.STARTED,
 		JobStatus.DEFERRED,
