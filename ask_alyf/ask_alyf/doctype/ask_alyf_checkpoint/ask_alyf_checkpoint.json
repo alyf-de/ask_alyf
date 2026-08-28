@@ -1,0 +1,86 @@
+{
+ "actions": [],
+ "creation": "2026-08-28 16:00:32.062637",
+ "description": "One LangGraph checkpoint. Written by FrappeCheckpointSaver, not by users.",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "thread_id",
+  "checkpoint_ns",
+  "checkpoint_id",
+  "parent_checkpoint_id",
+  "checkpoint_type",
+  "checkpoint_data",
+  "metadata_type",
+  "metadata_data"
+ ],
+ "fields": [
+  {
+   "fieldname": "thread_id",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Thread ID",
+   "reqd": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "checkpoint_ns",
+   "fieldtype": "Data",
+   "label": "Checkpoint Namespace"
+  },
+  {
+   "fieldname": "checkpoint_id",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Checkpoint ID",
+   "reqd": 1
+  },
+  {
+   "fieldname": "parent_checkpoint_id",
+   "fieldtype": "Data",
+   "label": "Parent Checkpoint ID"
+  },
+  {
+   "fieldname": "checkpoint_type",
+   "fieldtype": "Data",
+   "label": "Checkpoint Type"
+  },
+  {
+   "fieldname": "checkpoint_data",
+   "fieldtype": "Long Text",
+   "label": "Checkpoint Data (base64)"
+  },
+  {
+   "fieldname": "metadata_type",
+   "fieldtype": "Data",
+   "label": "Metadata Type"
+  },
+  {
+   "fieldname": "metadata_data",
+   "fieldtype": "Long Text",
+   "label": "Metadata Data (base64)"
+  }
+ ],
+ "grid_page_length": 50,
+ "links": [],
+ "modified": "2026-08-28 16:00:32.062637",
+ "modified_by": "Administrator",
+ "module": "Ask ALYF",
+ "name": "Ask ALYF Checkpoint",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "delete": 1,
+   "read": 1,
+   "role": "System Manager"
+  }
+ ],
+ "read_only": 1,
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "thread_id"
+}
