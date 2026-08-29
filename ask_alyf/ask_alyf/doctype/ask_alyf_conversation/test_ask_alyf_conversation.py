@@ -187,6 +187,36 @@ class UnitTestAskALYFConversation(UnitTestCase):
 		self.assertEqual(len(complete_events), 1)
 		self.assertEqual(complete_events[0]["payload"]["pending_operations"], [expected_with_id])
 
+	def test_stopped_run_with_a_pending_operation_reports_the_stop(self):
+		"""A stop is the user's own action, so it words the message, not the proposal."""
+		user_message = api.make_message("user", "Open Sales Invoice list", mode=api.MODE_ASK)
+		conversation = self.make_conversation(messages=[user_message])
+		operation = {
+			"kind": "frontend_action",
+			"tool": "set_route",
+			"summary": "Navigate to Sales Invoice list",
+			"requires_confirmation": False,
+			"payload": {"route": ["List", "Sales Invoice"]},
+			"call_id": "call-123",
+		}
+
+		with patch(
+			"ask_alyf.ask_alyf.api.run_message",
+			return_value={"response": "", "stopped": True, "pending_operations": [operation]},
+		):
+			with patch("ask_alyf.ask_alyf.api.frappe.publish_realtime"):
+				api.process_message_job(
+					conversation_name=conversation.name,
+					message="Open Sales Invoice list",
+					mode=api.MODE_ASK,
+					context_data={},
+					user_message_id=user_message["id"],
+				)
+
+		conversation.reload()
+		assistant = api.conversation_payload(conversation)["messages"][-1]
+		self.assertIn("Stopped", assistant["content"])
+
 	def test_process_message_job_publishes_tool_calls_with_the_completion(self):
 		"""The streamed message has no metadata, so the steps ride the completion.
 

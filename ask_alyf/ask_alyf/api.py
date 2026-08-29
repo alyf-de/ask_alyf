@@ -598,10 +598,10 @@ def process_message_job(
 		document_extractions = result.get("document_extractions")
 		attached_files = result.get("attached_files")
 		tool_calls = result.get("tool_calls")
-		if pending_operations and not response:
-			response = _("I've prepared the operation. Please review and confirm.")
 		if result.get("stopped") and not response:
 			response = _("Stopped. Send a message to pick up from here.")
+		if pending_operations and not response:
+			response = _("I've prepared the operation. Please review and confirm.")
 	except frappe.ValidationError as exc:
 		frappe.clear_messages()
 		response = str(exc)
