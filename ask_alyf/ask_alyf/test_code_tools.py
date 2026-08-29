@@ -713,7 +713,8 @@ class UnitTestCodeTools(FrappeTestCase):
 			runner.resume("operation-1", "approved")
 
 		rollback.assert_called_once_with(save_point="ask_alyf_operation_resume")
-		self.assertEqual(runner.checkpointer.deleted_threads, ["TEST-CONVERSATION"])
+		# The proposal is still pending in the thread, so it can be confirmed again.
+		self.assertEqual(runner.checkpointer.deleted_threads, [])
 
 	def test_run_preserves_result_envelope_and_proposal_shapes(self):
 		runner = self.make_runner(allow_code_search=False, mode="Agent")
