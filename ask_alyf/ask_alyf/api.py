@@ -656,7 +656,6 @@ def confirm_pending_operation(conversation: str, call_id: str = "", mode: str = 
 		frappe.throw(_("Only backend actions can be confirmed by this endpoint."))
 
 	remaining = [op for op in all_operations if op.get("call_id") != pending_operation.get("call_id")]
-	doc.pending_operation_json = dumps(remaining) if remaining else ""
 
 	publish_status_update(doc.name, doc.owner, _("Confirming action..."))
 	try:
@@ -672,6 +671,10 @@ def confirm_pending_operation(conversation: str, call_id: str = "", mode: str = 
 		ack_meta = {"confirmed_action": True, "action_status": "success" if agent_result else "failed"}
 
 		if agent_result:
+			# Only a resume that returned took the proposal off the agent; no
+			# result means nothing was written and the operation stays pending
+			# so the user can confirm again.
+			doc.pending_operation_json = dumps(remaining) if remaining else ""
 			apply_agent_result_to_conversation(
 				doc,
 				messages,
