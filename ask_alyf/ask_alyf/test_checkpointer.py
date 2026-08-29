@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import operator
 from concurrent.futures import ThreadPoolExecutor
+from types import SimpleNamespace
 from typing import Annotated, TypedDict
 from unittest.mock import patch
 
@@ -18,8 +19,9 @@ from langgraph.checkpoint.base import empty_checkpoint
 from langgraph.graph import END, START, StateGraph
 from langgraph.graph.message import add_messages
 from langgraph.types import Command, interrupt
+from rq.timeouts import JobTimeoutException
 
-from ask_alyf.ask_alyf.agent import ToolCallLogMiddleware
+from ask_alyf.ask_alyf.agent import ToolCallLogMiddleware, ask_alyfAgentRunner
 from ask_alyf.ask_alyf.checkpointer import (
 	CHECKPOINT_DOCTYPE,
 	CHECKPOINT_WRITE_DOCTYPE,
@@ -346,6 +348,35 @@ class IntegrationTestFrappeCheckpointSaver(FrappeTestCase):
 
 		self.assertFalse(frappe.db.exists("Ask ALYF Conversation", conversation.name))
 		self._assert_no_state_for(conversation.name)
+
+	def test_a_run_killed_mid_flight_keeps_the_steps_it_finished(self):
+		# RQ's death penalty lands wherever the run happens to be. The steps
+		# that completed before it must survive, so the retry does not pay for
+		# them a second time.
+		def first(state: _State) -> _State:
+			return {"steps": ["step-1"]}
+
+		def killed(state: _State) -> _State:
+			raise JobTimeoutException("job exceeded maximum timeout value")
+
+		builder = StateGraph(_State)
+		builder.add_node("first", first)
+		builder.add_node("killed", killed)
+		builder.add_edge(START, "first")
+		builder.add_edge("first", "killed")
+		builder.add_edge("killed", END)
+
+		runner = ask_alyfAgentRunner.__new__(ask_alyfAgentRunner)
+		runner.agent = builder.compile(checkpointer=self.saver)
+		runner.checkpointer = self.saver
+		runner.runtime = SimpleNamespace(conversation_name=THREAD)
+
+		with self.assertRaises(JobTimeoutException):
+			runner._run_graph({"steps": []})
+
+		# A fresh saver proves the flush reached the database, not just memory.
+		stored = FrappeCheckpointSaver().get_tuple(_config())
+		self.assertEqual(stored.checkpoint["channel_values"]["steps"], ["step-1"])
 
 	def test_a_serializer_clone_writes_into_the_same_buffer(self):
 		# LangGraph may swap the saver for a `with_allowlist` clone. Only the

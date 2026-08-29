@@ -305,6 +305,11 @@ class ask_alyfAgentRunner:
 				"\n- When code search is enabled, delegate code questions to the "
 				"`source-code-analyzer` subagent via the `task` tool instead of "
 				"reasoning from memory."
+				"\n- Never call `read_file`, `glob`, or `grep` on `/source/` yourself. Anything "
+				"that needs app source — field semantics, defaults, validation logic — goes to "
+				"`source-code-analyzer` in a single delegation carrying the full question. For "
+				"document fields, use `get_meta` and `document-planner` first and reach for "
+				"source only when those cannot answer it."
 			)
 
 		base_instructions = f"""
@@ -497,9 +502,28 @@ Mode awareness and behavior:
 				resume={"call_id": abandoned, "status": "rejected"},
 				update={"messages": input_messages},
 			)
-			return self._finish(self.agent.invoke(command, config=self.thread_config))
+			return self._run_graph(command)
 
-		return self._finish(self.agent.invoke({"messages": input_messages}, config=self.thread_config))
+		return self._run_graph({"messages": input_messages})
+
+	def _run_graph(self, payload: Any) -> dict[str, Any]:
+		"""Invoke the graph, keeping the run's checkpoints even if it dies.
+
+		A run killed mid-flight — RQ's death penalty, a provider error — has
+		already completed super-steps whose checkpoints exist only in this
+		process's memory. Storing them lets the next turn continue from the
+		work the user already paid for instead of repeating it. The rows ride
+		the job's transaction, which the caller commits along with the error it
+		reports to the user.
+
+		``resume`` deliberately does not go through here: a failed resume needs
+		the stored pause left exactly as it was, so it owns its own handling.
+		"""
+		try:
+			return self._finish(self.agent.invoke(payload, config=self.thread_config))
+		except Exception:
+			self.checkpointer.flush()
+			raise
 
 	def resume(self, call_id: str, status: str, **decision: Any) -> dict[str, Any]:
 		"""Continue a run that paused on a proposal, with the user's decision."""
@@ -535,8 +559,7 @@ Mode awareness and behavior:
 	def _finish(self, result: Any) -> dict[str, Any]:
 		# LangGraph checkpoints from its background threads, which must not use
 		# this request's database connection. Nothing is stored until we flush
-		# here — and a failed run flushes nothing, so the conversation keeps the
-		# state of its last completed turn.
+		# here, or — for a run that died mid-flight — in `_run_graph`.
 		self.checkpointer.flush()
 		result_messages = result.get("messages") if isinstance(result, dict) else None
 		response_text = result_messages[-1].text.strip() if result_messages else ""
