@@ -372,6 +372,34 @@ class UnitTestAskALYFConversation(UnitTestCase):
 		self.assertTrue(messages)
 		self.assertEqual(messages[-1]["content"], "The ToDo TODO-0001 was updated successfully.")
 
+	def test_a_failed_confirmation_keeps_the_operation_pending(self):
+		"""Nothing was written, so the proposal must survive for a second try."""
+		pending_operation = {
+			"kind": "backend_action",
+			"tool": "set_value",
+			"summary": "Set status",
+			"requires_confirmation": True,
+			"payload": {"doctype": "ToDo", "name": "TODO-0001", "fieldname": "status", "value": "Closed"},
+			"call_id": "call-backend-1",
+		}
+		conversation = self.make_conversation(messages=[], pending_operations=[pending_operation])
+
+		with (
+			patch("ask_alyf.ask_alyf.api.can_access_ask_alyf", return_value=True),
+			patch("ask_alyf.ask_alyf.api.resume_operation", side_effect=RuntimeError("boom")),
+			patch("ask_alyf.ask_alyf.api.frappe.log_error"),
+			patch("ask_alyf.ask_alyf.api.frappe.publish_realtime"),
+		):
+			response = api.confirm_pending_operation(
+				conversation=conversation.name, call_id="call-backend-1", mode=api.MODE_ASK
+			)
+
+		self.assertEqual(len(response["conversation"]["pending_operations"]), 1)
+		conversation.reload()
+		self.assertEqual(loads(conversation.pending_operation_json, [])[0]["call_id"], "call-backend-1")
+		messages = loads(conversation.messages_json, [])
+		self.assertIn("Could not complete the operation", messages[-1]["content"])
+
 	def test_confirming_the_same_operation_twice_resumes_it_once(self):
 		"""A double-click must not execute the backend write twice.
 

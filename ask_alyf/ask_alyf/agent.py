@@ -509,10 +509,17 @@ Mode awareness and behavior:
 			return self._finish(self.agent.invoke(command, config=self.thread_config))
 		except Exception:
 			frappe.db.rollback(save_point=OPERATION_RESUME_SAVEPOINT)
-			self.checkpointer.delete_thread(self.runtime.conversation_name)
 			if not self.runtime.backend_operation_committed:
+				# Nothing was written and nothing was flushed, so the thread is
+				# still paused on this proposal: keep it, so a confirmation that
+				# failed on the way to the backend can be tried again.
 				raise
 
+			# The write landed on the tool's own connection while the thread
+			# never recorded its outcome. Resuming that stale pause would run
+			# the write a second time, so the thread goes and the next turn is
+			# seeded from the stored conversation history instead.
+			self.checkpointer.delete_thread(self.runtime.conversation_name)
 			frappe.log_error("Ask ALYF Action Follow-Up Error")
 			frappe.clear_messages()
 			return {
