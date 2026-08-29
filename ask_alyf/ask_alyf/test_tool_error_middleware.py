@@ -10,7 +10,12 @@ from frappe.tests import UnitTestCase
 from langchain_core.messages import ToolMessage
 
 from ask_alyf.ask_alyf import api
-from ask_alyf.ask_alyf.agent import _on_tool_error, build_tool_error_middleware
+from ask_alyf.ask_alyf.agent import (
+	ToolCallLogMiddleware,
+	_on_tool_error,
+	build_tool_error_middleware,
+)
+from ask_alyf.ask_alyf.toolset import ask_alyfRuntime
 from ask_alyf.ask_alyf.utils import dumps, loads
 
 
@@ -41,6 +46,32 @@ class UnitTestToolErrorMiddleware(UnitTestCase):
 		self.assertIn("RuntimeError", content)
 		self.assertNotIn("secret", content)
 		self.assertNotIn("postgres://", content)
+
+	def test_a_stopped_run_skips_the_rest_of_the_planned_tool_calls(self):
+		# The model plans several calls at once. Once the user has pressed stop,
+		# none of the ones that have not started yet may run.
+		runtime = ask_alyfRuntime(
+			conversation_name="TEST-CONVERSATION", mode="Ask", request_context={}, run_id="run-1"
+		)
+		middleware = ToolCallLogMiddleware(runtime)
+		request = SimpleNamespace(
+			tool=SimpleNamespace(name="get_meta"),
+			tool_call={"name": "get_meta", "args": {}, "id": "call-1"},
+		)
+
+		def handler(_request):
+			raise AssertionError("the tool ran after the user pressed stop")
+
+		with patch("ask_alyf.ask_alyf.agent.is_stop_requested", return_value=True):
+			result = middleware.wrap_tool_call(request, handler)
+
+		# The call still gets its answer, so the stored thread stays valid.
+		self.assertIsInstance(result, ToolMessage)
+		self.assertEqual(result.tool_call_id, "call-1")
+		self.assertIn("Stopped", result.content)
+		self.assertTrue(runtime.stop_requested)
+		# A call that never ran is not a step worth showing.
+		self.assertEqual(runtime.tool_calls, [])
 
 	def test_tool_error_middleware_returns_error_tool_message_instead_of_raising(self):
 		middleware = build_tool_error_middleware()

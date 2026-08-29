@@ -14,7 +14,7 @@ from frappe import _
 from langchain.agents import create_agent
 from langchain.agents.middleware import AgentMiddleware, ToolErrorMiddleware, hook_config
 from langchain.agents.middleware.types import ToolCallRequest
-from langchain_core.messages import AnyMessage, HumanMessage
+from langchain_core.messages import AnyMessage, HumanMessage, ToolMessage
 from langchain_openai import ChatOpenAI
 from langgraph.errors import GraphBubbleUp
 from langgraph.types import Command
@@ -191,6 +191,19 @@ class ToolCallLogMiddleware(AgentMiddleware):
 	def wrap_tool_call(self, request: ToolCallRequest, handler: Callable[[ToolCallRequest], Any]) -> Any:
 		call = request.tool_call
 		call_id = call.get("id") or ""
+		# The model plans a whole batch of calls at once and the graph runs the
+		# batch in one step, so ending the run at the next model call would
+		# still pay for every call in it. Skipping them here keeps the answer
+		# each one owes, so the thread stays valid for the next turn, and costs
+		# nothing but the cache read.
+		if is_stop_requested(self.runtime.run_id):
+			self.runtime.stop_requested = True
+			return ToolMessage(
+				content="Stopped by the user before this ran.",
+				name=call.get("name") or "",
+				tool_call_id=call_id,
+			)
+
 		self.runtime.begin_tool_call(
 			call_id,
 			call.get("name") or "",
