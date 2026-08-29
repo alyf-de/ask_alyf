@@ -875,17 +875,10 @@ import "./field_agent";
 
 			root.querySelector(".ask_alyf-bubble").addEventListener("click", () => this.toggle(true));
 			root.querySelector(".ask_alyf-close").addEventListener("click", () => this.toggle(false));
-<<<<<<< HEAD
-			root.querySelector(".ask_alyf-send").addEventListener("click", () => this.sendMessage());
+			root.querySelector(".ask_alyf-send").addEventListener("click", () => this.handleSendClick());
 			root.querySelector(".ask_alyf-new-chat").addEventListener("click", () =>
 				this.startNewConversation()
 			);
-=======
-			root.querySelector(".ask_alyf-send").addEventListener("click", () => this.handleSendClick());
-			root
-				.querySelector(".ask_alyf-new-chat")
-				.addEventListener("click", () => this.startNewConversation());
->>>>>>> 02474b7 (feat: allow stopping requests (#118))
 			this.attachEl.addEventListener("click", () => this.openFileUploader());
 			this.micEl.addEventListener("click", () => this.startVoiceInput());
 			this.resizeHandleEl.addEventListener("pointerdown", (event) => this.startPanelResize(event));
