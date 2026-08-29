@@ -575,9 +575,11 @@ import "./field_agent";
 				copyButton.title = label;
 				copyButton.setAttribute("aria-label", label);
 				copyButton.innerHTML =
-					typeof frappe.utils?.icon === "function" ? frappe.utils.icon("es-line-copy", "xs") : "Copy";
+					typeof frappe.utils?.icon === "function"
+						? frappe.utils.icon("es-line-copy", "xs")
+						: "Copy";
 				copyButton.addEventListener("click", () =>
-					frappe.utils.copy_to_clipboard(entry.copyText || ""),
+					frappe.utils.copy_to_clipboard(entry.copyText || "")
 				);
 				entry.timestampEl = document.createElement("span");
 				entry.timestampEl.className = "ask_alyf-message-time";
