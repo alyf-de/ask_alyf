@@ -62,12 +62,17 @@ def is_stop_requested(run_id: str) -> bool:
 	context look the same: either way the answer is "keep going", so a flaky
 	read can only delay the stop to the next step, never invent one. A run
 	without an id — a resume, which the browser waits on — cannot be stopped.
+
+	`expires` keeps the value out of the per-request local cache. The whole run
+	is one job, so without it the first read — a miss, before the user can have
+	pressed anything — would answer every later read for the rest of the run,
+	and the stop would never arrive.
 	"""
 	if not run_id:
 		return False
 
 	with contextlib.suppress(Exception):
-		return bool(frappe.cache().get_value(stop_request_key(run_id)))
+		return bool(frappe.cache().get_value(stop_request_key(run_id), expires=True))
 	return False
 
 

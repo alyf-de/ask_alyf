@@ -34,6 +34,7 @@ from ask_alyf.ask_alyf.toolset import (
 	ask_alyfToolset,
 	clear_messages_on_tool_error,
 	clear_stop_request,
+	is_stop_requested,
 	request_stop,
 )
 
@@ -408,6 +409,16 @@ class IntegrationTestFrappeCheckpointSaver(FrappeTestCase):
 		resumed = agent.invoke({"messages": [HumanMessage("go on")]}, config)
 		self.saver.flush()
 		self.assertEqual(resumed["messages"][-1].content, "the answer")
+
+	def test_a_stop_pressed_mid_run_is_seen_by_the_next_check(self):
+		# The whole run is one job, so the misses before the user presses stop
+		# must not settle into the per-request local cache and answer every
+		# later check for the rest of the run.
+		self.addCleanup(clear_stop_request, RUN)
+
+		self.assertFalse(is_stop_requested(RUN))
+		request_stop(RUN)
+		self.assertTrue(is_stop_requested(RUN))
 
 	def test_a_serializer_clone_writes_into_the_same_buffer(self):
 		# LangGraph may swap the saver for a `with_allowlist` clone. Only the
