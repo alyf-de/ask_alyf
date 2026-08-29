@@ -299,8 +299,7 @@ import "./field_agent";
 			holder.open = open;
 
 			const summary = document.createElement("summary");
-			summary.textContent =
-				toolCalls.length === 1 ? __("1 step") : __("{0} steps", [toolCalls.length]);
+			summary.textContent = toolCalls.length === 1 ? __("1 step") : __("{0} steps", [toolCalls.length]);
 			holder.appendChild(summary);
 
 			const list = document.createElement("ol");
@@ -421,7 +420,7 @@ import "./field_agent";
 			} else {
 				this.messagesEl.insertBefore(
 					wrapper,
-					this.statusWrapperEl || this.pendingOperationsEl || null,
+					this.statusWrapperEl || this.pendingOperationsEl || null
 				);
 			}
 			this.liveStepsEl = wrapper;
