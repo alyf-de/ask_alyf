@@ -19,7 +19,12 @@ from ask_alyf.ask_alyf.tools import (
 	get_settings,
 	validate_frappe_charts_payload,
 )
-from ask_alyf.ask_alyf.toolset import clear_running_steps, read_running_steps
+from ask_alyf.ask_alyf.toolset import (
+	clear_running_steps,
+	clear_stop_request,
+	read_running_steps,
+	request_stop,
+)
 from ask_alyf.ask_alyf.utils import chunk_text, dumps, loads
 
 MODE_ASK = "Ask"
@@ -472,6 +477,39 @@ def send_message(
 	}
 
 
+@frappe.whitelist(methods=["POST"])
+def stop_message(conversation: str, user_message_id: str, job_id: str) -> dict:
+	"""Ask the run started by this message to stop at its next step.
+
+	Cooperative on purpose: the run ends between two model calls, so it keeps
+	the steps it finished and the conversation stays usable. Killing the worker
+	would be immediate and would throw all of that away.
+
+	The stop names the run it means. Two runs that overlap on one conversation
+	carry different messages and different jobs, so neither can stop the other.
+	"""
+	if not can_access_ask_alyf():
+		frappe.throw(_("You do not have access to Ask ALYF."))
+
+	doc = frappe.get_doc("Ask ALYF Conversation", conversation)
+	doc.check_permission("read")
+	user_message = next(
+		(
+			item
+			for item in get_messages(doc)
+			if item.get("role") == "user" and item.get("id") == user_message_id
+		),
+		None,
+	)
+	if user_message is None:
+		frappe.throw(_("The message could not be found in this conversation."))
+	if (user_message.get("metadata") or {}).get(BACKGROUND_JOB_ID_KEY) != job_id:
+		frappe.throw(_("The background job does not match this message."))
+
+	request_stop(user_message_id)
+	return {"stopping": True}
+
+
 @frappe.whitelist()
 def get_message_job_status(conversation: str, user_message_id: str, job_id: str) -> dict:
 	if not can_access_ask_alyf():
@@ -550,6 +588,7 @@ def process_message_job(
 			mode=mode,
 			request_context=context_data,
 			conversation_history=history,
+			run_id=user_message_id or "",
 		)
 		response = result.get("response") or ""
 		pending_operations = result.get("pending_operations") or []
@@ -560,6 +599,8 @@ def process_message_job(
 		tool_calls = result.get("tool_calls")
 		if pending_operations and not response:
 			response = _("I've prepared the operation. Please review and confirm.")
+		if result.get("stopped") and not response:
+			response = _("Stopped. Send a message to pick up from here.")
 	except frappe.ValidationError as exc:
 		frappe.clear_messages()
 		response = str(exc)
@@ -575,6 +616,8 @@ def process_message_job(
 		document_extractions = None
 		attached_files = None
 		tool_calls = None
+	finally:
+		clear_stop_request(user_message_id or "")
 
 	file_message = None
 	if isinstance(attached_files, list) and attached_files:

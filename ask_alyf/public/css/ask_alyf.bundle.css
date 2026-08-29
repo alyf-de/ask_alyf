@@ -919,9 +919,12 @@
 }
 
 .ask_alyf-loading .ask_alyf-send {
+	gap: 0.35rem;
+}
+
+.ask_alyf-send:disabled {
 	opacity: 0.72;
 	pointer-events: none;
-	gap: 0.35rem;
 }
 
 .ask_alyf-composer .ask_alyf-send {

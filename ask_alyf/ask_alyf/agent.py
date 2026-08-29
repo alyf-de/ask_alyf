@@ -12,9 +12,9 @@ from deepagents import (
 )
 from frappe import _
 from langchain.agents import create_agent
-from langchain.agents.middleware import AgentMiddleware, ToolErrorMiddleware
+from langchain.agents.middleware import AgentMiddleware, ToolErrorMiddleware, hook_config
 from langchain.agents.middleware.types import ToolCallRequest
-from langchain_core.messages import AnyMessage, HumanMessage
+from langchain_core.messages import AnyMessage, HumanMessage, ToolMessage
 from langchain_openai import ChatOpenAI
 from langgraph.errors import GraphBubbleUp
 from langgraph.types import Command
@@ -35,6 +35,7 @@ from ask_alyf.ask_alyf.toolset import (
 	ask_alyfRuntime,
 	ask_alyfToolset,
 	clear_messages_on_tool_error,
+	is_stop_requested,
 )
 
 OPERATION_RESUME_SAVEPOINT = "ask_alyf_operation_resume"
@@ -172,9 +173,37 @@ class ToolCallLogMiddleware(AgentMiddleware):
 		super().__init__()
 		self.runtime = runtime
 
+	@hook_config(can_jump_to=["end"])
+	def before_model(self, state: Any, runtime: Any) -> dict[str, Any] | None:
+		"""End the run here if the user pressed stop.
+
+		Between two model calls every tool call already has its result, so the
+		thread stays valid for the next turn and the checkpoint keeps the work
+		done so far. A stop pressed during a long tool call — a subagent
+		delegation, say — therefore lands once that call returns.
+		"""
+		if not is_stop_requested(self.runtime.run_id):
+			return None
+
+		self.runtime.stop_requested = True
+		return {"jump_to": "end"}
+
 	def wrap_tool_call(self, request: ToolCallRequest, handler: Callable[[ToolCallRequest], Any]) -> Any:
 		call = request.tool_call
 		call_id = call.get("id") or ""
+		# The model plans a whole batch of calls at once and the graph runs the
+		# batch in one step, so ending the run at the next model call would
+		# still pay for every call in it. Skipping them here keeps the answer
+		# each one owes, so the thread stays valid for the next turn, and costs
+		# nothing but the cache read.
+		if is_stop_requested(self.runtime.run_id):
+			self.runtime.stop_requested = True
+			return ToolMessage(
+				content="Stopped by the user before this ran.",
+				name=call.get("name") or "",
+				tool_call_id=call_id,
+			)
+
 		self.runtime.begin_tool_call(
 			call_id,
 			call.get("name") or "",
@@ -432,6 +461,11 @@ Mode awareness and behavior:
 					),
 					"system_prompt": SOURCE_CODE_ANALYZER_INSTRUCTIONS,
 					"tools": [],
+					# Reading source is where a run spends the most, so this
+					# specialist carries the log middleware too: its reads show
+					# up as steps, and a stop reaches it instead of waiting for
+					# the whole delegation to finish.
+					"middleware": [build_tool_error_middleware(), ToolCallLogMiddleware(self.runtime)],
 					"response_format": SourceCodeAnalysisResult,
 				}
 			)
@@ -562,10 +596,15 @@ Mode awareness and behavior:
 		# here, or — for a run that died mid-flight — in `_run_graph`.
 		self.checkpointer.flush()
 		result_messages = result.get("messages") if isinstance(result, dict) else None
-		response_text = result_messages[-1].text.strip() if result_messages else ""
+		# A stopped run ends wherever it stood, so its last message is whatever
+		# happened to be there — a tool result, or the user's own text. Nothing
+		# in it is an answer, so the caller words the outcome instead.
+		stopped = self.runtime.stop_requested
+		response_text = "" if stopped else (result_messages[-1].text.strip() if result_messages else "")
 
 		return {
 			"response": response_text,
+			"stopped": stopped,
 			"pending_operations": [*self.runtime.pending_operations, *_interrupted_operations(result)],
 			"document_extractions": self.runtime.document_extractions,
 			"attached_files": self.runtime.attached_files,
@@ -613,12 +652,14 @@ def run_message(
 	mode: str,
 	request_context: dict[str, Any],
 	conversation_history: list[dict[str, Any]],
+	run_id: str = "",
 ) -> dict[str, Any]:
 	runtime = ask_alyfRuntime(
 		conversation_name=conversation_name,
 		mode=mode,
 		request_context=request_context,
 		conversation_history=conversation_history,
+		run_id=run_id,
 	)
 	runner = ask_alyfAgentRunner(runtime)
 	return runner.run(message, conversation_history)

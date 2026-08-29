@@ -875,10 +875,17 @@ import "./field_agent";
 
 			root.querySelector(".ask_alyf-bubble").addEventListener("click", () => this.toggle(true));
 			root.querySelector(".ask_alyf-close").addEventListener("click", () => this.toggle(false));
+<<<<<<< HEAD
 			root.querySelector(".ask_alyf-send").addEventListener("click", () => this.sendMessage());
 			root.querySelector(".ask_alyf-new-chat").addEventListener("click", () =>
 				this.startNewConversation()
 			);
+=======
+			root.querySelector(".ask_alyf-send").addEventListener("click", () => this.handleSendClick());
+			root
+				.querySelector(".ask_alyf-new-chat")
+				.addEventListener("click", () => this.startNewConversation());
+>>>>>>> 02474b7 (feat: allow stopping requests (#118))
 			this.attachEl.addEventListener("click", () => this.openFileUploader());
 			this.micEl.addEventListener("click", () => this.startVoiceInput());
 			this.resizeHandleEl.addEventListener("pointerdown", (event) => this.startPanelResize(event));
@@ -1076,6 +1083,7 @@ import "./field_agent";
 				version,
 			};
 			this.scheduleResponseJobPoll(version);
+			this.updateSendButton();
 		}
 
 		scheduleResponseJobPoll(version) {
@@ -1710,11 +1718,69 @@ import "./field_agent";
 
 		setLoading(value) {
 			this.state.loading = value;
+			if (!value) {
+				this.state.stopping = false;
+			}
 			this.root.classList.toggle("ask_alyf-loading", value);
 			if (this.sendEl) {
 				this.sendEl.setAttribute("aria-busy", value ? "true" : "false");
 			}
+			this.updateSendButton();
 			this.renderStatusMessage();
+		}
+
+		updateSendButton() {
+			if (!this.sendEl) {
+				return;
+			}
+			// While a run is in flight the same button stops it, so the user is
+			// never left watching a spinner with no way out.
+			this.sendEl.textContent = this.state.loading ? __("Stop") : __("Send");
+			// Until the run reports its job there is nothing to name in a stop,
+			// so the button waits rather than dropping the click.
+			this.sendEl.disabled =
+				Boolean(this.state.stopping) || (this.state.loading && !this.activeResponseJob);
+			this.sendEl.title = this.state.loading ? __("Stop this run") : "";
+		}
+
+		handleSendClick() {
+			if (this.state.loading) {
+				this.stopMessage();
+				return;
+			}
+			this.sendMessage();
+		}
+
+		async stopMessage() {
+			// The stop names the run it means, so it cannot reach a later run
+			// that started on the same conversation in the meantime.
+			const activeJob = this.activeResponseJob;
+			if (!activeJob || this.state.stopping) {
+				return;
+			}
+
+			this.state.stopping = true;
+			this.updateSendButton();
+			this.setStatus(__("Stopping..."));
+
+			try {
+				// The run ends at its next step and writes its own closing
+				// message, which the job monitor picks up like any other reply.
+				await frappe.call({
+					method: "ask_alyf.ask_alyf.api.stop_message",
+					type: "POST",
+					args: {
+						conversation: activeJob.conversation,
+						user_message_id: activeJob.userMessageId,
+						job_id: activeJob.jobId,
+					},
+				});
+			} catch (error) {
+				this.state.stopping = false;
+				this.updateSendButton();
+				this.setStatus(__("Processing..."));
+				frappe.msgprint(error.message || __("Failed to stop the run."));
+			}
 		}
 
 		setStatus(text) {
