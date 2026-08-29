@@ -454,7 +454,6 @@ def send_message(
 	doc.last_context_json = dumps(context_data)
 	doc.pending_operation_json = ""
 	save_messages(doc, messages)
-	clear_stop_request(doc.name)
 
 	# An agent turn runs many model round trips and can read source, so the
 	# short queue's 300s death penalty kills it mid-run and the turn's
@@ -480,19 +479,35 @@ def send_message(
 
 
 @frappe.whitelist(methods=["POST"])
-def stop_message(conversation: str) -> dict:
-	"""Ask the run working on this conversation to stop at its next step.
+def stop_message(conversation: str, user_message_id: str, job_id: str) -> dict:
+	"""Ask the run started by this message to stop at its next step.
 
 	Cooperative on purpose: the run ends between two model calls, so it keeps
 	the steps it finished and the conversation stays usable. Killing the worker
 	would be immediate and would throw all of that away.
+
+	The stop names the run it means. Two runs that overlap on one conversation
+	carry different messages and different jobs, so neither can stop the other.
 	"""
 	if not can_access_ask_alyf():
 		frappe.throw(_("You do not have access to Ask ALYF."))
 
 	doc = frappe.get_doc("Ask ALYF Conversation", conversation)
 	doc.check_permission("read")
-	request_stop(doc.name)
+	user_message = next(
+		(
+			item
+			for item in get_messages(doc)
+			if item.get("role") == "user" and item.get("id") == user_message_id
+		),
+		None,
+	)
+	if user_message is None:
+		frappe.throw(_("The message could not be found in this conversation."))
+	if (user_message.get("metadata") or {}).get(BACKGROUND_JOB_ID_KEY) != job_id:
+		frappe.throw(_("The background job does not match this message."))
+
+	request_stop(user_message_id)
 	return {"stopping": True}
 
 
@@ -574,6 +589,7 @@ def process_message_job(
 			mode=mode,
 			request_context=context_data,
 			conversation_history=history,
+			run_id=user_message_id or "",
 		)
 		response = result.get("response") or ""
 		pending_operations = result.get("pending_operations") or []
@@ -602,7 +618,7 @@ def process_message_job(
 		attached_files = None
 		tool_calls = None
 	finally:
-		clear_stop_request(conversation_name)
+		clear_stop_request(user_message_id or "")
 
 	file_message = None
 	if isinstance(attached_files, list) and attached_files:

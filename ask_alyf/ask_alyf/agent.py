@@ -182,7 +182,7 @@ class ToolCallLogMiddleware(AgentMiddleware):
 		done so far. A stop pressed during a long tool call — a subagent
 		delegation, say — therefore lands once that call returns.
 		"""
-		if not is_stop_requested(self.runtime.conversation_name):
+		if not is_stop_requested(self.runtime.run_id):
 			return None
 
 		self.runtime.stop_requested = True
@@ -634,12 +634,14 @@ def run_message(
 	mode: str,
 	request_context: dict[str, Any],
 	conversation_history: list[dict[str, Any]],
+	run_id: str = "",
 ) -> dict[str, Any]:
 	runtime = ask_alyfRuntime(
 		conversation_name=conversation_name,
 		mode=mode,
 		request_context=request_context,
 		conversation_history=conversation_history,
+		run_id=run_id,
 	)
 	runner = ask_alyfAgentRunner(runtime)
 	return runner.run(message, conversation_history)

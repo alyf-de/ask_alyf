@@ -42,29 +42,38 @@ def running_steps_key(conversation_name: str) -> str:
 	return f"ask_alyf_running_steps:{conversation_name}"
 
 
-def stop_request_key(conversation_name: str) -> str:
-	return f"ask_alyf_stop_requested:{conversation_name}"
+# A stop belongs to one run, never to the conversation: two runs that overlap
+# on one conversation must not read or clear each other's flag. The run is
+# identified by the user message that started it, which is unique per run and
+# already known to the browser, the job and the stored history.
+def stop_request_key(run_id: str) -> str:
+	return f"ask_alyf_stop_requested:{run_id}"
 
 
-def request_stop(conversation_name: str) -> None:
-	"""Ask the run working on this conversation to end at its next step."""
-	frappe.cache().set_value(stop_request_key(conversation_name), 1, expires_in_sec=RUNNING_STEPS_TTL)
+def request_stop(run_id: str) -> None:
+	"""Ask one run to end at its next step."""
+	frappe.cache().set_value(stop_request_key(run_id), 1, expires_in_sec=RUNNING_STEPS_TTL)
 
 
-def is_stop_requested(conversation_name: str) -> bool:
-	"""Has the user pressed stop on the run working on this conversation?
+def is_stop_requested(run_id: str) -> bool:
+	"""Has the user pressed stop on this run?
 
 	Read from the agent's own threads, where a cache miss and a broken Frappe
 	context look the same: either way the answer is "keep going", so a flaky
-	read can only delay the stop to the next step, never invent one.
+	read can only delay the stop to the next step, never invent one. A run
+	without an id — a resume, which the browser waits on — cannot be stopped.
 	"""
+	if not run_id:
+		return False
+
 	with contextlib.suppress(Exception):
-		return bool(frappe.cache().get_value(stop_request_key(conversation_name)))
+		return bool(frappe.cache().get_value(stop_request_key(run_id)))
 	return False
 
 
-def clear_stop_request(conversation_name: str) -> None:
-	frappe.cache().delete_value(stop_request_key(conversation_name))
+def clear_stop_request(run_id: str) -> None:
+	if run_id:
+		frappe.cache().delete_value(stop_request_key(run_id))
 
 
 def read_running_steps(conversation_name: str) -> list[dict[str, Any]]:
@@ -99,6 +108,7 @@ class ask_alyfRuntime:
 	attached_files: list[dict[str, Any]] = field(default_factory=list)
 	tool_calls: list[dict[str, Any]] = field(default_factory=list)
 	backend_operation_committed: bool = False
+	run_id: str = ""
 	stop_requested: bool = False
 
 	def begin_tool_call(self, call_id: str, name: str, args: dict[str, Any], label: str):

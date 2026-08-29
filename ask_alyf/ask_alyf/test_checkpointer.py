@@ -38,6 +38,7 @@ from ask_alyf.ask_alyf.toolset import (
 )
 
 THREAD = "test-checkpointer-thread"
+RUN = "test-checkpointer-run"
 
 
 class _ScriptedModel(FakeMessagesListChatModel):
@@ -381,7 +382,7 @@ class IntegrationTestFrappeCheckpointSaver(IntegrationTestCase):
 		self.assertEqual(stored.checkpoint["channel_values"]["steps"], ["step-1"])
 
 	def test_pressing_stop_ends_the_run_before_the_next_model_call(self):
-		runtime = ask_alyfRuntime(conversation_name=THREAD, mode="Ask", request_context={})
+		runtime = ask_alyfRuntime(conversation_name=THREAD, mode="Ask", request_context={}, run_id=RUN)
 		agent = create_agent(
 			model=_ScriptedModel(responses=[AIMessage(content="the answer")]),
 			tools=[],
@@ -389,9 +390,9 @@ class IntegrationTestFrappeCheckpointSaver(IntegrationTestCase):
 			checkpointer=self.saver,
 		)
 		config = {"configurable": {"thread_id": THREAD}}
-		self.addCleanup(clear_stop_request, THREAD)
+		self.addCleanup(clear_stop_request, RUN)
 
-		request_stop(THREAD)
+		request_stop(RUN)
 		stopped = agent.invoke({"messages": [HumanMessage("something slow")]}, config)
 		self.saver.flush()
 
@@ -402,7 +403,7 @@ class IntegrationTestFrappeCheckpointSaver(IntegrationTestCase):
 		self.assertIsNotNone(FrappeCheckpointSaver().get_tuple(_config()))
 
 		# Once the flag is gone the same agent runs normally again.
-		clear_stop_request(THREAD)
+		clear_stop_request(RUN)
 		runtime.stop_requested = False
 		resumed = agent.invoke({"messages": [HumanMessage("go on")]}, config)
 		self.saver.flush()

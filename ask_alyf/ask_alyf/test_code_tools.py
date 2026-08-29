@@ -119,18 +119,12 @@ def proposed_operation(call) -> dict:
 
 class UnitTestCodeTools(UnitTestCase):
 	def make_runtime(self, *, mode: str = "Ask"):
-		return SimpleNamespace(
-			conversation_name="TEST-CONVERSATION",
-			mode=mode,
-			request_context={},
-			conversation_history=[],
-			pending_operations=[],
-			document_extractions=[],
-			attached_files=[],
-			tool_calls=[],
-			backend_operation_committed=False,
-			emit_status=lambda _text: None,
-		)
+		# The real dataclass, so a new field on it cannot break these tests
+		# without breaking the code they cover.
+		runtime = ask_alyfRuntime(conversation_name="TEST-CONVERSATION", mode=mode, request_context={})
+		# Status updates would go to a browser that is not there.
+		runtime.emit_status = lambda _text: None
+		return runtime
 
 	def make_agent(self, invoke, *, interrupts=()):
 		"""Stand in for the compiled graph, which the runner also asks for state."""

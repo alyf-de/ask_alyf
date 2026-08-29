@@ -1092,6 +1092,7 @@ import "./field_agent";
 				version,
 			};
 			this.scheduleResponseJobPoll(version);
+			this.updateSendButton();
 		}
 
 		scheduleResponseJobPoll(version) {
@@ -1744,7 +1745,10 @@ import "./field_agent";
 			// While a run is in flight the same button stops it, so the user is
 			// never left watching a spinner with no way out.
 			this.sendEl.textContent = this.state.loading ? __("Stop") : __("Send");
-			this.sendEl.disabled = Boolean(this.state.stopping);
+			// Until the run reports its job there is nothing to name in a stop,
+			// so the button waits rather than dropping the click.
+			this.sendEl.disabled =
+				Boolean(this.state.stopping) || (this.state.loading && !this.activeResponseJob);
 			this.sendEl.title = this.state.loading ? __("Stop this run") : "";
 		}
 
@@ -1757,8 +1761,10 @@ import "./field_agent";
 		}
 
 		async stopMessage() {
-			const conversation = this.state.conversation?.name;
-			if (!conversation || this.state.stopping) {
+			// The stop names the run it means, so it cannot reach a later run
+			// that started on the same conversation in the meantime.
+			const activeJob = this.activeResponseJob;
+			if (!activeJob || this.state.stopping) {
 				return;
 			}
 
@@ -1772,7 +1778,11 @@ import "./field_agent";
 				await frappe.call({
 					method: "ask_alyf.ask_alyf.api.stop_message",
 					type: "POST",
-					args: { conversation },
+					args: {
+						conversation: activeJob.conversation,
+						user_message_id: activeJob.userMessageId,
+						job_id: activeJob.jobId,
+					},
 				});
 			} catch (error) {
 				this.state.stopping = false;
