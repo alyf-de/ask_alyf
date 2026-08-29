@@ -26,6 +26,7 @@ MODE_ASK = "Ask"
 MODE_AGENT = "Agent"
 ASK_ALYF_USER_ROLE = "Ask ALYF User"
 BACKGROUND_JOB_ID_KEY = "background_job_id"
+AGENT_JOB_TIMEOUT = 1500
 PENDING_JOB_STATUSES = frozenset(
 	{
 		JobStatus.CREATED,
@@ -449,9 +450,13 @@ def send_message(
 	doc.pending_operation_json = ""
 	save_messages(doc, messages)
 
+	# An agent turn runs many model round trips and can read source, so the
+	# short queue's 300s death penalty kills it mid-run and the turn's
+	# checkpoint is lost with it. The long queue is the one meant for slow work.
 	enqueue(
 		"ask_alyf.ask_alyf.api.process_message_job",
-		queue="short",
+		queue="long",
+		timeout=AGENT_JOB_TIMEOUT,
 		enqueue_after_commit=True,
 		job_id=job_id,
 		conversation_name=doc.name,
