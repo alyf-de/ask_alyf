@@ -461,6 +461,11 @@ Mode awareness and behavior:
 					),
 					"system_prompt": SOURCE_CODE_ANALYZER_INSTRUCTIONS,
 					"tools": [],
+					# Reading source is where a run spends the most, so this
+					# specialist carries the log middleware too: its reads show
+					# up as steps, and a stop reaches it instead of waiting for
+					# the whole delegation to finish.
+					"middleware": [build_tool_error_middleware(), ToolCallLogMiddleware(self.runtime)],
 					"response_format": SourceCodeAnalysisResult,
 				}
 			)
