@@ -411,13 +411,19 @@ class IntegrationTestFrappeCheckpointSaver(FrappeTestCase):
 		self.assertEqual(resumed["messages"][-1].content, "the answer")
 
 	def test_a_stop_pressed_mid_run_is_seen_by_the_next_check(self):
-		# The whole run is one job, so the misses before the user presses stop
-		# must not settle into the per-request local cache and answer every
-		# later check for the rest of the run.
+		# `request_stop` runs in the web request, `is_stop_requested` in the
+		# worker. The two share redis but never `frappe.local.cache`, so the
+		# worker keeps whatever its own first read put there. Restoring that
+		# cache around the stop is what makes this the two processes it really
+		# is: without it the write would tidy up after itself in-process and
+		# the check below would pass even unfixed.
 		self.addCleanup(clear_stop_request, RUN)
 
 		self.assertFalse(is_stop_requested(RUN))
+		worker_cache = dict(frappe.local.cache)
 		request_stop(RUN)
+		frappe.local.cache = worker_cache
+
 		self.assertTrue(is_stop_requested(RUN))
 
 	def test_a_serializer_clone_writes_into_the_same_buffer(self):
