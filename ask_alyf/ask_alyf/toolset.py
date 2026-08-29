@@ -43,8 +43,13 @@ def running_steps_key(conversation_name: str) -> str:
 
 
 def read_running_steps(conversation_name: str) -> list[dict[str, Any]]:
-	"""Return the steps of the run currently working on this conversation."""
-	return frappe.cache().get_value(running_steps_key(conversation_name)) or []
+	"""Return the steps of the run currently working on this conversation.
+
+	`expires` keeps the value out of the per-request local cache, which would
+	otherwise serve the first read for the rest of the request while the run
+	keeps moving on.
+	"""
+	return frappe.cache().get_value(running_steps_key(conversation_name), expires=True) or []
 
 
 def clear_running_steps(conversation_name: str) -> None:
