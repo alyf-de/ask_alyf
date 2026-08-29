@@ -19,7 +19,12 @@ from ask_alyf.ask_alyf.tools import (
 	get_settings,
 	validate_frappe_charts_payload,
 )
-from ask_alyf.ask_alyf.toolset import clear_running_steps, read_running_steps
+from ask_alyf.ask_alyf.toolset import (
+	clear_running_steps,
+	clear_stop_request,
+	read_running_steps,
+	request_stop,
+)
 from ask_alyf.ask_alyf.utils import chunk_text, dumps, loads
 
 MODE_ASK = "Ask"
@@ -449,6 +454,7 @@ def send_message(
 	doc.last_context_json = dumps(context_data)
 	doc.pending_operation_json = ""
 	save_messages(doc, messages)
+	clear_stop_request(doc.name)
 
 	# An agent turn runs many model round trips and can read source, so the
 	# short queue's 300s death penalty kills it mid-run and the turn's
@@ -471,6 +477,23 @@ def send_message(
 		"user_message_id": user_message["id"],
 		"job_id": job_id,
 	}
+
+
+@frappe.whitelist(methods=["POST"])
+def stop_message(conversation: str) -> dict:
+	"""Ask the run working on this conversation to stop at its next step.
+
+	Cooperative on purpose: the run ends between two model calls, so it keeps
+	the steps it finished and the conversation stays usable. Killing the worker
+	would be immediate and would throw all of that away.
+	"""
+	if not can_access_ask_alyf():
+		frappe.throw(_("You do not have access to Ask ALYF."))
+
+	doc = frappe.get_doc("Ask ALYF Conversation", conversation)
+	doc.check_permission("read")
+	request_stop(doc.name)
+	return {"stopping": True}
 
 
 @frappe.whitelist()
@@ -561,6 +584,8 @@ def process_message_job(
 		tool_calls = result.get("tool_calls")
 		if pending_operations and not response:
 			response = _("I've prepared the operation. Please review and confirm.")
+		if result.get("stopped") and not response:
+			response = _("Stopped. Send a message to pick up from here.")
 	except frappe.ValidationError as exc:
 		frappe.clear_messages()
 		response = str(exc)
@@ -576,6 +601,8 @@ def process_message_job(
 		document_extractions = None
 		attached_files = None
 		tool_calls = None
+	finally:
+		clear_stop_request(conversation_name)
 
 	file_message = None
 	if isinstance(attached_files, list) and attached_files:

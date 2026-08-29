@@ -889,7 +889,7 @@ import "./field_agent";
 
 			root.querySelector(".ask_alyf-bubble").addEventListener("click", () => this.toggle(true));
 			root.querySelector(".ask_alyf-close").addEventListener("click", () => this.toggle(false));
-			root.querySelector(".ask_alyf-send").addEventListener("click", () => this.sendMessage());
+			root.querySelector(".ask_alyf-send").addEventListener("click", () => this.handleSendClick());
 			root
 				.querySelector(".ask_alyf-new-chat")
 				.addEventListener("click", () => this.startNewConversation());
@@ -1726,11 +1726,60 @@ import "./field_agent";
 
 		setLoading(value) {
 			this.state.loading = value;
+			if (!value) {
+				this.state.stopping = false;
+			}
 			this.root.classList.toggle("ask_alyf-loading", value);
 			if (this.sendEl) {
 				this.sendEl.setAttribute("aria-busy", value ? "true" : "false");
 			}
+			this.updateSendButton();
 			this.renderStatusMessage();
+		}
+
+		updateSendButton() {
+			if (!this.sendEl) {
+				return;
+			}
+			// While a run is in flight the same button stops it, so the user is
+			// never left watching a spinner with no way out.
+			this.sendEl.textContent = this.state.loading ? __("Stop") : __("Send");
+			this.sendEl.disabled = Boolean(this.state.stopping);
+			this.sendEl.title = this.state.loading ? __("Stop this run") : "";
+		}
+
+		handleSendClick() {
+			if (this.state.loading) {
+				this.stopMessage();
+				return;
+			}
+			this.sendMessage();
+		}
+
+		async stopMessage() {
+			const conversation = this.state.conversation?.name;
+			if (!conversation || this.state.stopping) {
+				return;
+			}
+
+			this.state.stopping = true;
+			this.updateSendButton();
+			this.setStatus(__("Stopping..."));
+
+			try {
+				// The run ends at its next step and writes its own closing
+				// message, which the job monitor picks up like any other reply.
+				await frappe.call({
+					method: "ask_alyf.ask_alyf.api.stop_message",
+					type: "POST",
+					args: { conversation },
+				});
+			} catch (error) {
+				this.state.stopping = false;
+				this.updateSendButton();
+				this.setStatus(__("Processing..."));
+				frappe.msgprint(error.message || __("Failed to stop the run."));
+			}
 		}
 
 		setStatus(text) {

@@ -42,6 +42,31 @@ def running_steps_key(conversation_name: str) -> str:
 	return f"ask_alyf_running_steps:{conversation_name}"
 
 
+def stop_request_key(conversation_name: str) -> str:
+	return f"ask_alyf_stop_requested:{conversation_name}"
+
+
+def request_stop(conversation_name: str) -> None:
+	"""Ask the run working on this conversation to end at its next step."""
+	frappe.cache().set_value(stop_request_key(conversation_name), 1, expires_in_sec=RUNNING_STEPS_TTL)
+
+
+def is_stop_requested(conversation_name: str) -> bool:
+	"""Has the user pressed stop on the run working on this conversation?
+
+	Read from the agent's own threads, where a cache miss and a broken Frappe
+	context look the same: either way the answer is "keep going", so a flaky
+	read can only delay the stop to the next step, never invent one.
+	"""
+	with contextlib.suppress(Exception):
+		return bool(frappe.cache().get_value(stop_request_key(conversation_name)))
+	return False
+
+
+def clear_stop_request(conversation_name: str) -> None:
+	frappe.cache().delete_value(stop_request_key(conversation_name))
+
+
 def read_running_steps(conversation_name: str) -> list[dict[str, Any]]:
 	"""Return the steps of the run currently working on this conversation."""
 	return frappe.cache().get_value(running_steps_key(conversation_name)) or []
@@ -74,6 +99,7 @@ class ask_alyfRuntime:
 	attached_files: list[dict[str, Any]] = field(default_factory=list)
 	tool_calls: list[dict[str, Any]] = field(default_factory=list)
 	backend_operation_committed: bool = False
+	stop_requested: bool = False
 
 	def begin_tool_call(self, call_id: str, name: str, args: dict[str, Any], label: str):
 		"""Announce a tool call that is starting, and log it for the transcript.
