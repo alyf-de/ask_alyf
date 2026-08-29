@@ -574,7 +574,8 @@ import "./field_agent";
 				copyButton.type = "button";
 				copyButton.title = label;
 				copyButton.setAttribute("aria-label", label);
-				copyButton.innerHTML = getIcon("copy", "xs", "", true);
+				copyButton.innerHTML =
+					typeof frappe.utils?.icon === "function" ? frappe.utils.icon("es-line-copy", "xs") : "Copy";
 				copyButton.addEventListener("click", () =>
 					frappe.utils.copy_to_clipboard(entry.copyText || ""),
 				);
