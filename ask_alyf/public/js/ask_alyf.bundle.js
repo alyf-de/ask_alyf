@@ -572,6 +572,37 @@ import "./field_agent";
 			chart.draw(false);
 		}
 
+		syncMessageFooter(entry, message) {
+			if (message.role !== "assistant" || !message.content) {
+				entry.footer?.remove();
+				entry.footer = null;
+				return;
+			}
+
+			if (!entry.footer) {
+				const label = __("Copy as Markdown");
+				const copyButton = document.createElement("button");
+				copyButton.className = "ask_alyf-copy ask_alyf-icon-button";
+				copyButton.type = "button";
+				copyButton.title = label;
+				copyButton.setAttribute("aria-label", label);
+				copyButton.innerHTML = getIcon("copy", "xs", "", true);
+				copyButton.addEventListener("click", () =>
+					frappe.utils.copy_to_clipboard(entry.copyText || ""),
+				);
+				entry.timestampEl = document.createElement("span");
+				entry.timestampEl.className = "ask_alyf-message-time";
+				entry.footer = document.createElement("div");
+				entry.footer.className = "ask_alyf-message-footer";
+				entry.footer.append(copyButton, entry.timestampEl);
+			}
+
+			entry.copyText = message.content;
+			entry.timestampEl.textContent = frappe.datetime.prettyDate(message.created_at);
+			// Keep it last: charts and tool calls are inserted around the body.
+			entry.wrapper.appendChild(entry.footer);
+		}
+
 		syncMessageElement(message, index, previousMessageKeys) {
 			const messageKey = this.getMessageRenderKey(message, index);
 			let entry = this.messageEntries.get(messageKey);
@@ -587,8 +618,10 @@ import "./field_agent";
 					chartPaintVersion: 0,
 					chartResizeFrame: 0,
 					chartResizeObserver: null,
+					footer: null,
 					html: null,
 					role: null,
+					timestampEl: null,
 					toolCallsFingerprint: "",
 					toolCallsHolder: null,
 					wrapper,
@@ -615,6 +648,7 @@ import "./field_agent";
 
 			this.syncMessageToolCalls(entry, message);
 			this.syncMessageCharts(entry, message, messageKey);
+			this.syncMessageFooter(entry, message);
 			return { entry, messageKey };
 		}
 
@@ -1959,7 +1993,13 @@ import "./field_agent";
 				// The steps that were streaming live belong to this answer, so
 				// they move into it rather than being dropped and re-appearing
 				// once the message is reloaded.
-				message = { id: messageId, role: "assistant", content: "", metadata: {} };
+				message = {
+					id: messageId,
+					role: "assistant",
+					content: "",
+					created_at: frappe.datetime.now_datetime(),
+					metadata: {},
+				};
 				if (this.state.steps.length) {
 					message.metadata.tool_calls = this.state.steps.map((step) => ({ ...step }));
 					this.state.steps = [];
