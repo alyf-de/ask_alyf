@@ -34,7 +34,7 @@ from ask_alyf.ask_alyf.toolset import (
 	OPERATION_INTERRUPT_KEY,
 	ask_alyfRuntime,
 	ask_alyfToolset,
-	clear_messages_on_tool_error,
+	in_private_frappe_context,
 	is_stop_requested,
 )
 
@@ -432,7 +432,7 @@ Mode awareness and behavior:
 				]
 			)
 
-		return [clear_messages_on_tool_error(fn) for fn in tool_defs]
+		return [in_private_frappe_context(fn) for fn in tool_defs]
 
 	def _build_subagents(self) -> list[SubAgent]:
 		# ``general-purpose`` is auto-added by Deep Agents; we only declare the
@@ -481,7 +481,7 @@ Mode awareness and behavior:
 					),
 					"system_prompt": DOCUMENT_PLANNER_INSTRUCTIONS,
 					"tools": [
-						clear_messages_on_tool_error(fn)
+						in_private_frappe_context(fn)
 						for fn in (
 							self.toolset.get_list,
 							self.toolset.get,
