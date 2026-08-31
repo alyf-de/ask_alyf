@@ -32,8 +32,8 @@ from ask_alyf.ask_alyf.toolset import (
 	OPERATION_INTERRUPT_KEY,
 	ask_alyfRuntime,
 	ask_alyfToolset,
-	clear_messages_on_tool_error,
 	clear_running_steps,
+	in_private_frappe_context,
 	read_running_steps,
 )
 
@@ -821,7 +821,7 @@ class UnitTestCodeTools(FrappeTestCase):
 				},
 			}
 
-		wrapped = clear_messages_on_tool_error(tool)
+		wrapped = in_private_frappe_context(tool)
 		with (
 			patch("ask_alyf.ask_alyf.toolset.frappe.init", side_effect=init) as init_mock,
 			patch("ask_alyf.ask_alyf.toolset.frappe.connect", side_effect=connect) as connect_mock,
@@ -959,7 +959,7 @@ class UnitTestCodeTools(FrappeTestCase):
 		"""
 		runtime = self.make_runtime(mode="Agent")
 		toolset = ask_alyfToolset(runtime)
-		wrapped = clear_messages_on_tool_error(toolset.set_value)
+		wrapped = in_private_frappe_context(toolset.set_value)
 
 		operation = proposed_operation(
 			lambda: wrapped("ToDo", "TODO-0001", "status", "Closed", reason="Close it.")
@@ -971,7 +971,7 @@ class UnitTestCodeTools(FrappeTestCase):
 	def test_a_confirmed_proposal_executes_and_returns_its_result(self):
 		runtime = self.make_runtime(mode="Agent")
 		toolset = ask_alyfToolset(runtime)
-		wrapped = clear_messages_on_tool_error(toolset.set_value)
+		wrapped = in_private_frappe_context(toolset.set_value)
 		call_id = proposed_operation(lambda: wrapped("ToDo", "TODO-0001", "status", "Closed"))["call_id"]
 		self.assertFalse(getattr(runtime, "backend_operation_committed", False))
 
@@ -1061,7 +1061,7 @@ class UnitTestCodeTools(FrappeTestCase):
 				"message_log": list(frappe.local.message_log),
 			}
 
-		wrapped = clear_messages_on_tool_error(tool)
+		wrapped = in_private_frappe_context(tool)
 		contexts = [contextvars.copy_context(), contextvars.copy_context()]
 
 		try:
@@ -1108,7 +1108,7 @@ class UnitTestCodeTools(FrappeTestCase):
 			self.assertFalse(set_admin_as_user)
 			frappe.local.db = private_db
 
-		wrapped = clear_messages_on_tool_error(lambda: "done")
+		wrapped = in_private_frappe_context(lambda: "done")
 		try:
 			with (
 				patch("ask_alyf.ask_alyf.toolset.frappe.connect", side_effect=connect),
@@ -1144,7 +1144,7 @@ class UnitTestCodeTools(FrappeTestCase):
 		def tool():
 			raise ValueError("tool failed")
 
-		wrapped = clear_messages_on_tool_error(tool)
+		wrapped = in_private_frappe_context(tool)
 		with (
 			patch("ask_alyf.ask_alyf.toolset.frappe.connect", side_effect=connect),
 			patch("ask_alyf.ask_alyf.toolset.frappe.destroy", side_effect=destroy),
@@ -1170,7 +1170,7 @@ class UnitTestCodeTools(FrappeTestCase):
 			self.assertEqual((id(frappe.local.db), id(frappe.local.flags)), private_state)
 			return {"file_id": file_id}
 
-		wrapped = clear_messages_on_tool_error(fake_tool)
+		wrapped = in_private_frappe_context(fake_tool)
 		with patch("ask_alyf.ask_alyf.toolset.frappe.connect", side_effect=connect):
 			result = asyncio.run(wrapped("FILE-0001"))
 
@@ -1196,7 +1196,7 @@ class UnitTestCodeTools(FrappeTestCase):
 			await asyncio.sleep(0)
 			raise RuntimeError("boom")
 
-		wrapped = clear_messages_on_tool_error(fake_tool)
+		wrapped = in_private_frappe_context(fake_tool)
 		try:
 			with (
 				patch("ask_alyf.ask_alyf.toolset.frappe.connect", side_effect=connect),
