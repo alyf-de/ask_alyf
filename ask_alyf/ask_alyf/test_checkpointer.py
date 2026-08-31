@@ -32,8 +32,8 @@ from ask_alyf.ask_alyf.toolset import (
 	OPERATION_INTERRUPT_KEY,
 	ask_alyfRuntime,
 	ask_alyfToolset,
-	clear_messages_on_tool_error,
 	clear_stop_request,
+	in_private_frappe_context,
 	is_stop_requested,
 	request_stop,
 )
@@ -252,7 +252,7 @@ class IntegrationTestFrappeCheckpointSaver(IntegrationTestCase):
 		arrives in a different process with a different saver.
 		"""
 		runtime = ask_alyfRuntime(conversation_name=THREAD, mode="Agent", request_context={})
-		tool = clear_messages_on_tool_error(ask_alyfToolset(runtime).set_value)
+		tool = in_private_frappe_context(ask_alyfToolset(runtime).set_value)
 		tool_call = {
 			"name": "set_value",
 			"args": {

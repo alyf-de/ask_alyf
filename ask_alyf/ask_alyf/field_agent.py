@@ -8,7 +8,7 @@ import frappe
 
 from ask_alyf.ask_alyf import field_contexts, tools
 from ask_alyf.ask_alyf.agent import build_chat_model, build_stateless_agent
-from ask_alyf.ask_alyf.toolset import ask_alyfToolset, clear_messages_on_tool_error
+from ask_alyf.ask_alyf.toolset import ask_alyfToolset, in_private_frappe_context
 
 # Read-only tool method names exposed to the field agent.
 # Excludes: source_code_analyzer (unbounded latency in request thread),
@@ -137,7 +137,7 @@ def run_field_agent(
 	toolset = ask_alyfToolset(runtime=runtime, settings=settings)
 
 	tool_defs = [
-		clear_messages_on_tool_error(getattr(toolset, method_name)) for method_name in FIELD_AGENT_TOOLS
+		in_private_frappe_context(getattr(toolset, method_name)) for method_name in FIELD_AGENT_TOOLS
 	]
 
 	model = build_chat_model(settings, temperature=0.1)

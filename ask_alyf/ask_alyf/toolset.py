@@ -1,3 +1,28 @@
+"""The tools the agent calls, and the Frappe context each call runs in.
+
+Two invariants hold for every tool call, and most of the surrounding
+machinery exists to keep them:
+
+* **Each tool call owns its Frappe context and database connection.**
+  LangGraph fans tasks out over a background executor with the parent
+  context *copied*, and `frappe.local` is contextvar-backed — so worker
+  threads would otherwise share one pymysql connection, which is not safe
+  for concurrent use (`Packet sequence number wrong`). Hence the empty
+  `contextvars.Context()` plus a private `frappe.init`/`connect` per call
+  (see `in_private_frappe_context`).
+
+* **Each tool call is therefore its own transaction.** A private connection
+  cannot join the job's transaction, so a tool commits when it returns and
+  rolls back when it raises. That also matches how an agent turn works: the
+  model is told a write succeeded and reasons on from there, and the turn
+  can pause on `interrupt()` and resume in a later request. What the model
+  was told stays true.
+
+The cost of the second invariant is paid in `agent.py` — the resume
+savepoint, `backend_operation_committed`, and dropping a thread whose write
+landed but whose follow-up died.
+"""
+
 import asyncio
 import contextlib
 import contextvars
@@ -1251,7 +1276,7 @@ def _private_frappe_context(caller: _CallerFrappeContext):
 			frappe.destroy()
 
 
-def clear_messages_on_tool_error(func):
+def in_private_frappe_context(func):
 	"""Run each tool call in a fresh Frappe context and DB connection."""
 
 	if inspect.iscoroutinefunction(func):
