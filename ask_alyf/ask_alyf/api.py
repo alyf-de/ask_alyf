@@ -99,6 +99,7 @@ def get_ask_alyf_boot_payload() -> dict:
 	agent_mode_enabled = False
 	field_agent_enabled = False
 	file_upload_enabled = False
+	conversation_deletion_enabled = False
 	support_phone_number = ""
 	support_phone_uri = ""
 
@@ -107,6 +108,7 @@ def get_ask_alyf_boot_payload() -> dict:
 		agent_mode_enabled = bool(settings.allow_agent_mode)
 		field_agent_enabled = bool(settings.allow_field_agent)
 		file_upload_enabled = bool(settings.allow_file_upload)
+		conversation_deletion_enabled = bool(settings.allow_conversation_deletion)
 		api_key = (settings.get_password("api_key", raise_exception=False) or "").strip()
 		configured = bool(api_key and (settings.model or "").strip())
 		support_phone_number = (settings.support_phone_number or "").strip()
@@ -120,6 +122,7 @@ def get_ask_alyf_boot_payload() -> dict:
 		"agent_mode_enabled": agent_mode_enabled,
 		"field_agent_enabled": field_agent_enabled,
 		"file_upload_enabled": file_upload_enabled,
+		"conversation_deletion_enabled": conversation_deletion_enabled,
 		"support_phone_number": support_phone_number,
 		"support_phone_uri": support_phone_uri,
 		"default_mode": MODE_ASK,
@@ -412,6 +415,20 @@ def _has_running_job(messages: list[dict]) -> bool:
 		if job_id:
 			return get_job_status(job_id) in PENDING_JOB_STATUSES
 	return False
+
+
+@frappe.whitelist(methods=["POST"])
+def delete_conversation(conversation: str) -> dict:
+	if not can_access_ask_alyf():
+		frappe.throw(_("You do not have access to Ask ALYF."))
+
+	if not get_settings().allow_conversation_deletion:
+		frappe.throw(_("Conversation deletion is not allowed."))
+
+	doc = frappe.get_doc("Ask ALYF Conversation", conversation)
+	doc.check_permission("delete")
+	doc.delete()
+	return {"success": True}
 
 
 @frappe.whitelist(methods=["POST"])

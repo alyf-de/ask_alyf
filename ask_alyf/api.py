@@ -11,6 +11,7 @@ from ask_alyf.ask_alyf.api import (
 	reject_pending_operation,
 	send_message,
 	start_new_conversation,
+	delete_conversation,
 )
 
 __all__ = [
@@ -26,4 +27,5 @@ __all__ = [
 	"reject_pending_operation",
 	"send_message",
 	"start_new_conversation",
+	"delete_conversation",
 ]

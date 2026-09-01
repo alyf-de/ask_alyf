@@ -16,6 +16,7 @@
   "allow_code_search",
   "allow_file_upload",
   "allow_field_agent",
+  "allow_conversation_deletion",
   "chat_provider_tab",
   "llm_provider",
   "base_url",
@@ -106,6 +107,12 @@
    "fieldname": "allow_file_upload",
    "fieldtype": "Check",
    "label": "Allow File Upload"
+  },
+  {
+   "default": "0",
+   "fieldname": "allow_conversation_deletion",
+   "fieldtype": "Check",
+   "label": "Allow Conversation Deletion"
   },
   {
    "fieldname": "chat_provider_tab",
