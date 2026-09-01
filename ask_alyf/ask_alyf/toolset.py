@@ -708,6 +708,37 @@ class ask_alyfToolset:
 		"""
 		return tools.read_documentation_page(app_name=app_name, relative_path=relative_path)
 
+	def search_compendium(self, query: str, limit: int = 10) -> list[dict[str, Any]]:
+		"""Search the documentation this site serves through the Compendium app.
+
+		Prefer this over `read_documentation_page` for how-to and configuration
+		questions: it searches the docs shipped with all installed apps. Read the
+		promising hits with `read_compendium_page`.
+
+		Args:
+			query: Free text to search for.
+			limit: Maximum number of hits to return.
+
+		Returns:
+			A list of hits, best match first, each with its path, title, a short
+			snippet, and the Desk route the page can be opened at.
+		"""
+		return tools.search_compendium(query=query, limit=limit)
+
+	def read_compendium_page(self, path: str, offset: int = 0) -> dict[str, Any]:
+		"""Read a documentation page found with `search_compendium`.
+
+		Args:
+			path: The page path as returned by `search_compendium`.
+			offset: Character offset to read from. Pass the `next_offset` of the
+				previous read to continue through a page that did not fit.
+
+		Returns:
+			The page title and a slice of its content, with the offset to continue
+			at in `next_offset` (None when the page ends here).
+		"""
+		return tools.read_compendium_page(path=path, offset=offset)
+
 	def read_skill(self, name: str) -> dict[str, str]:
 		"""Read the full content of an Ask ALYF skill available to the current user.
 
