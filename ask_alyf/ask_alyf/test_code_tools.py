@@ -1,8 +1,10 @@
 import asyncio
 import contextlib
 import contextvars
+import importlib.util
 import itertools
 import threading
+import unittest
 from concurrent.futures import ThreadPoolExecutor
 from types import SimpleNamespace
 from typing import Any
@@ -757,6 +759,72 @@ class UnitTestCodeTools(UnitTestCase):
 		self.assertTrue(proposal_tools.issubset(agent_tool_names))
 		# No host filesystem, shell, or direct execution capability leaks in.
 		self.assertFalse(host_mutation_tools.intersection(agent_tool_names))
+
+	def test_compendium_tools_are_registered_only_when_the_app_is_installed(self):
+		compendium_tools = {"search_compendium", "read_compendium_page"}
+		runner = self.make_runner(allow_code_search=False)
+
+		with patch("frappe.get_installed_apps", return_value=["frappe"]):
+			names = {tool.__name__ for tool in runner._build_tools()}
+			self.assertFalse(compendium_tools.intersection(names))
+
+		with patch("frappe.get_installed_apps", return_value=["frappe", "compendium"]):
+			names = {tool.__name__ for tool in runner._build_tools()}
+			self.assertTrue(compendium_tools.issubset(names))
+
+	@unittest.skipUnless(importlib.util.find_spec("compendium"), "compendium is not installed")
+	def test_compendium_search_returns_the_best_hits_up_to_the_limit(self):
+		hits = [("setup", "Setup", "…set up…"), ("billing", "Billing", "…"), ("faq", "FAQ", "…")]
+
+		with (
+			patch("frappe.get_installed_apps", return_value=["frappe", "compendium"]),
+			patch("compendium.docs.normalize_locale", return_value="en"),
+			patch("compendium.search.search", return_value=hits) as search,
+		):
+			found = tools.search_compendium("how do I set up billing", limit=2)
+
+		self.assertEqual([hit["title"] for hit in found], ["Setup", "Billing"])
+		self.assertEqual(found[0]["snippet"], "…set up…")
+		self.assertEqual(found[0]["route"], "/app/docs/en/setup")
+		# a wider snippet than the Awesome Bar's, because the model picks from it
+		self.assertEqual(search.call_args.kwargs["snippet_tokens"], tools.COMPENDIUM_SNIPPET_TOKENS)
+
+	def test_compendium_search_without_searchable_words_finds_nothing(self):
+		with (
+			patch("frappe.get_installed_apps", return_value=["frappe", "compendium"]),
+			patch("compendium.docs.normalize_locale", return_value="en"),
+		):
+			self.assertEqual(tools.search_compendium("   "), [])
+
+	@unittest.skipUnless(importlib.util.find_spec("compendium"), "compendium is not installed")
+	def test_a_long_compendium_page_is_read_out_in_slices(self):
+		body = "x" * (tools.MAX_COMPENDIUM_PAGE_CHARS + 10)
+		page = frappe._dict(path="setup", title="Setup", body=body)
+
+		with (
+			patch("frappe.get_installed_apps", return_value=["frappe", "compendium"]),
+			patch("compendium.docs.normalize_locale", return_value="en"),
+			patch("compendium.docs.get_page_record", return_value=page) as get_page_record,
+		):
+			first = tools.read_compendium_page("setup")
+			rest = tools.read_compendium_page("setup", offset=first["next_offset"])
+
+		self.assertEqual(len(first["content"]), tools.MAX_COMPENDIUM_PAGE_CHARS)
+		self.assertEqual(first["next_offset"], tools.MAX_COMPENDIUM_PAGE_CHARS)
+		self.assertEqual(len(rest["content"]), 10)
+		self.assertIsNone(rest["next_offset"])
+		self.assertEqual(rest["total_chars"], len(body))
+		# the body is read out here, so permission is checked here
+		self.assertTrue(all(call.kwargs["check_permission"] for call in get_page_record.call_args_list))
+
+	@unittest.skipUnless(importlib.util.find_spec("compendium"), "compendium is not installed")
+	def test_a_compendium_path_that_escapes_the_docs_folder_is_rejected(self):
+		with (
+			patch("frappe.get_installed_apps", return_value=["frappe", "compendium"]),
+			patch("compendium.docs.normalize_locale", return_value="en"),
+			self.assertRaises(frappe.ValidationError),
+		):
+			tools.read_compendium_page("../../../etc/passwd")
 
 	def test_ask_mode_tools_exclude_all_write_proposals_and_host_mutation(self):
 		host_mutation_tools = {"write_file", "edit_file", "execute", "shell", "run_shell"}
