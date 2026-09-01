@@ -116,8 +116,15 @@ def _tool_call_label(name: str, args: Any) -> str:
 		return _("Reading instructions") if name == "read_skill" else _("Saving instructions")
 	if name in ("get_file_id", "read_file_record", "extract_document_data"):
 		return _("Reading the attached document")
-	if name in ("get_app_version", "read_github_releases", "read_documentation_page"):
+	if name in (
+		"get_app_version",
+		"read_github_releases",
+		"read_documentation_page",
+		"read_compendium_page",
+	):
 		return _("Reading documentation")
+	if name == "search_compendium":
+		return _("Searching the documentation")
 	if name in ("ls", "read_file", "glob", "grep"):
 		return _("Searching the source code")
 	if name == "task":
@@ -410,6 +417,9 @@ Mode awareness and behavior:
 			self.toolset.read_github_releases,
 			self.toolset.read_documentation_page,
 		]
+
+		if "compendium" in frappe.get_installed_apps():
+			tool_defs.extend([self.toolset.search_compendium, self.toolset.read_compendium_page])
 
 		if self.runtime.mode == "Agent":
 			if self._can_write_skill():
