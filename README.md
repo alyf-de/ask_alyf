@@ -167,6 +167,7 @@ Optional tools:
 
 - `run_read_only_sql` runs read-only SQL for Administrator and System Manager users
 - `get_app_version`, `read_github_releases`, and `read_documentation_page` help answer app and documentation questions
+- `search_compendium` and `read_compendium_page` are registered only when the **Compendium** app is installed. They search the docs of all installed apps and read out the pages the user may read
 
 ### Subagents
 

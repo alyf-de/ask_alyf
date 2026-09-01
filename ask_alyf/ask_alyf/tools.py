@@ -57,6 +57,12 @@ VISION_MIME_TYPES = {
 }
 MAX_VISION_PAGES = 10
 VISION_DPI = 200
+# How much of a docs page one read returns. A longer page is read on in a
+# second call, from the offset the first one reported.
+MAX_COMPENDIUM_PAGE_CHARS = 6000
+# Wider than the Awesome Bar's snippet: the model picks which page to read
+# from it, where a user picks from the title.
+COMPENDIUM_SNIPPET_TOKENS = 60
 DEFAULT_DOCUMENT_EXTRACTION_PROMPT = (
 	"Extract all structured data from this document. "
 	"Use clearly labeled fields and include all text, tables, amounts, dates, names, "
@@ -1096,6 +1102,62 @@ def read_github_releases(app_name: str, limit: int = 5) -> list[dict[str, Any]]:
 		}
 		for item in payload
 	]
+
+
+def get_compendium_locale() -> str:
+	"""The docs locale for this request, and the guard that Compendium is installed."""
+	if "compendium" not in frappe.get_installed_apps():
+		frappe.throw(_("The Compendium app is not installed."))
+
+	from compendium import docs
+
+	return docs.normalize_locale(frappe.local.lang or docs.DEFAULT_LANG)
+
+
+def search_compendium(query: str, limit: int = 10) -> list[dict[str, Any]]:
+	locale = get_compendium_locale()
+
+	from compendium import search
+
+	match_query = search.build_match_query(query)
+	if not match_query:
+		return []
+
+	limit = coerce_int(limit, 10, minimum=1)
+
+	# `search` returns only pages this user may read, best match first.
+	return [
+		{
+			"path": path,
+			"title": title,
+			"snippet": snippet,
+			"route": f"/app/docs/{locale}/{path}" if path else f"/app/docs/{locale}",
+		}
+		for path, title, snippet in search.search(
+			locale, match_query, snippet_tokens=COMPENDIUM_SNIPPET_TOKENS
+		)[:limit]
+	]
+
+
+def read_compendium_page(path: str, offset: int = 0) -> dict[str, Any]:
+	locale = get_compendium_locale()
+
+	from compendium import docs
+
+	# `normalize_path` rejects the traversal a model could put in `path`.
+	page = docs.get_page_record(docs.normalize_path(path), locale=locale, check_permission=True)
+	body = page.body or ""
+	offset = coerce_int(offset, 0, minimum=0)
+	content = body[offset : offset + MAX_COMPENDIUM_PAGE_CHARS]
+
+	return {
+		"path": page.path,
+		"title": page.title,
+		"content": content,
+		"offset": offset,
+		"next_offset": offset + len(content) if offset + len(content) < len(body) else None,
+		"total_chars": len(body),
+	}
 
 
 def read_documentation_page(app_name: str, relative_path: str = "") -> dict[str, Any]:
