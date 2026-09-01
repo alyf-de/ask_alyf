@@ -4,6 +4,7 @@ from ask_alyf.ask_alyf.api import (
 	can_access_ask_alyf,
 	can_use_agent_mode,
 	confirm_pending_operation,
+	delete_conversation,
 	frontend_action_result,
 	get_ask_alyf_boot_payload,
 	list_conversations,
@@ -11,7 +12,6 @@ from ask_alyf.ask_alyf.api import (
 	reject_pending_operation,
 	send_message,
 	start_new_conversation,
-	delete_conversation,
 )
 
 __all__ = [
@@ -20,6 +20,7 @@ __all__ = [
 	"can_access_ask_alyf",
 	"can_use_agent_mode",
 	"confirm_pending_operation",
+	"delete_conversation",
 	"frontend_action_result",
 	"get_ask_alyf_boot_payload",
 	"list_conversations",
@@ -27,5 +28,4 @@ __all__ = [
 	"reject_pending_operation",
 	"send_message",
 	"start_new_conversation",
-	"delete_conversation",
 ]

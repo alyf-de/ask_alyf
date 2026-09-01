@@ -62,14 +62,12 @@ class AskALYFSettings(Document):
 	from typing import TYPE_CHECKING
 
 	if TYPE_CHECKING:
+		from ask_alyf.ask_alyf.doctype.ask_alyf_excluded_doctype.ask_alyf_excluded_doctype import AskALYFExcludedDocType
 		from frappe.types import DF
-
-		from ask_alyf.ask_alyf.doctype.ask_alyf_excluded_doctype.ask_alyf_excluded_doctype import (
-			AskALYFExcludedDocType,
-		)
 
 		allow_agent_mode: DF.Check
 		allow_code_search: DF.Check
+		allow_conversation_deletion: DF.Check
 		allow_field_agent: DF.Check
 		allow_file_upload: DF.Check
 		api_key: DF.Password | None

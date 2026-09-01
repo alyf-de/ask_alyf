@@ -425,8 +425,13 @@ def delete_conversation(conversation: str) -> dict:
 	if not get_settings().allow_conversation_deletion:
 		frappe.throw(_("Conversation deletion is not allowed."))
 
-	doc = frappe.get_doc("Ask ALYF Conversation", conversation)
+	doc = frappe.get_doc("Ask ALYF Conversation", conversation, for_update=True)
 	doc.check_permission("delete")
+	if _has_running_job(get_messages(doc)):
+		frappe.throw(
+			_("Ask ALYF is still working on a message in this conversation. Stop it or wait for it to finish before deleting.")
+		)
+
 	doc.delete()
 	return {"success": True}
 
@@ -636,6 +641,10 @@ def process_message_job(
 		tool_calls = None
 	finally:
 		clear_stop_request(user_message_id or "")
+
+	if not frappe.db.exists("Ask ALYF Conversation", conversation_name):
+		clear_running_steps(conversation_name)
+		return
 
 	file_message = None
 	if isinstance(attached_files, list) and attached_files:
