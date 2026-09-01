@@ -87,6 +87,12 @@ msgstr "允许代理模式"
 msgid "Allow Code Search"
 msgstr "允许代码搜索"
 
+#. Label of the allow_conversation_deletion (Check) field in DocType 'Ask ALYF
+#. Settings'
+#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.json
+msgid "Allow Conversation Deletion"
+msgstr "允许删除对话"
+
 #. Label of the allow_field_agent (Check) field in DocType 'Ask ALYF Settings'
 #: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.json
 msgid "Allow Field Agent"

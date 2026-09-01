@@ -87,6 +87,12 @@ msgstr "एजेंट मोड की अनुमति दें"
 msgid "Allow Code Search"
 msgstr "कोड खोज की अनुमति दें"
 
+#. Label of the allow_conversation_deletion (Check) field in DocType 'Ask ALYF
+#. Settings'
+#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.json
+msgid "Allow Conversation Deletion"
+msgstr "वार्तालाप हटाने की अनुमति दें"
+
 #. Label of the allow_field_agent (Check) field in DocType 'Ask ALYF Settings'
 #: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.json
 msgid "Allow Field Agent"
