@@ -429,7 +429,9 @@ def delete_conversation(conversation: str) -> dict:
 	doc.check_permission("delete")
 	if _has_running_job(get_messages(doc)):
 		frappe.throw(
-			_("Ask ALYF is still working on a message in this conversation. Stop it or wait for it to finish before deleting.")
+			_(
+				"Ask ALYF is still working on a message in this conversation. Stop it or wait for it to finish before deleting."
+			)
 		)
 
 	doc.delete()
