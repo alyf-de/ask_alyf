@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Ask ALYF VERSION\n"
 "Report-Msgid-Bugs-To: hallo@alyf.de\n"
-"POT-Creation-Date: 2026-05-02 19:04+0053\n"
+"POT-Creation-Date: 2026-09-02 01:33+0053\n"
 "PO-Revision-Date: 2026-05-02 19:04+0053\n"
 "Last-Translator: hallo@alyf.de\n"
 "Language: ja\n"
@@ -16,122 +16,154 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.18.0\n"
+"Generated-By: Babel 2.13.1\n"
 
-#. Label of the access_tab (Tab Break) field in DocType 'Ask ALYF Settings'
-#. Label of the access_tab (Tab Break) field in DocType 'Ask ALYF Skill'
+#: ask_alyf/public/js/ask_alyf.bundle.js:302
+msgid "1 step"
+msgstr "1 ステップ"
+
+#. Label of a Tab Break field in DocType 'Ask ALYF Settings'
+#. Label of a Tab Break field in DocType 'Ask ALYF Skill'
 #: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.json
 #: ask_alyf/ask_alyf/doctype/ask_alyf_skill/ask_alyf_skill.json
 msgid "Access"
-msgstr "アクセス"
+msgstr ""
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1120
+#: ask_alyf/ask_alyf/deep_agent_backend.py:163
+msgid "Access to hidden paths is not allowed"
+msgstr "隠しパスへのアクセスは許可されていません"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1443
 msgid "Accounts"
 msgstr "会計"
 
-#: ask_alyf/ask_alyf/tools.py:1409
+#: ask_alyf/ask_alyf/tools.py:1477
 msgid "Action field 'args' must be an object."
 msgstr "アクションフィールド 'args' はオブジェクトである必要があります。"
 
-#: ask_alyf/ask_alyf/tools.py:1375 ask_alyf/ask_alyf/tools.py:1386
+#: ask_alyf/ask_alyf/tools.py:1443 ask_alyf/ask_alyf/tools.py:1454
 msgid "Action field 'doctype' is required."
 msgstr "アクションフィールド 'doctype' は必須です。"
 
-#: ask_alyf/ask_alyf/tools.py:1404
+#: ask_alyf/ask_alyf/tools.py:1472
 msgid "Action field 'file_id' is required."
 msgstr "アクションフィールド 'file_id' は必須です。"
 
-#: ask_alyf/ask_alyf/tools.py:1390
+#: ask_alyf/ask_alyf/tools.py:1458
 msgid "Action field 'records' must be a non-empty list."
 msgstr "アクションフィールド 'records' は空でないリストである必要があります。"
 
-#: ask_alyf/ask_alyf/tools.py:1394
+#: ask_alyf/ask_alyf/tools.py:1462
 #, python-brace-format
 msgid "Action field 'records' row #{0} must be an object."
 msgstr "アクションフィールド 'records' の行 #{0} はオブジェクトである必要があります。"
 
-#: ask_alyf/ask_alyf/tools.py:1379
+#: ask_alyf/ask_alyf/tools.py:1447
 msgid "Action field 'values' must be an object."
 msgstr "アクションフィールド 'values' はオブジェクトである必要があります。"
 
-#: ask_alyf/ask_alyf/tools.py:1319
+#: ask_alyf/ask_alyf/tools.py:1387
 #, python-brace-format
 msgid "Action field '{0}' must be an object."
 msgstr "アクションフィールド '{0}' はオブジェクトである必要があります。"
 
-#: ask_alyf/ask_alyf/agent.py:1434
+#: ask_alyf/ask_alyf/toolset.py:1220
 #, python-brace-format
 msgid "Add a row to {0} on current form"
 msgstr "現在のフォームの {0} に行を追加します"
 
-#: ask_alyf/ask_alyf/agent.py:1436
+#: ask_alyf/ask_alyf/toolset.py:1222
 msgid "Add child row action needs correction."
 msgstr "子行追加アクションには修正が必要です。"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:612
-#: ask_alyf/public/js/ask_alyf.bundle.js:1032
+#: ask_alyf/public/js/ask_alyf.bundle.js:812
+#: ask_alyf/public/js/ask_alyf.bundle.js:1355
 msgid "Agent"
 msgstr "エージェント"
 
-#: ask_alyf/ask_alyf/api.py:137
+#: ask_alyf/ask_alyf/api.py:153
 msgid "Agent mode is disabled or not available for your user."
 msgstr "エージェントモードは無効化されているか、お使いのユーザーでは利用できません。"
 
-#. Label of the allow_agent_mode (Check) field in DocType 'Ask ALYF Settings'
+#. Label of a Check field in DocType 'Ask ALYF Settings'
 #: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.json
 msgid "Allow Agent Mode"
 msgstr "エージェントモードを許可"
 
-#. Label of the allow_code_search (Check) field in DocType 'Ask ALYF Settings'
+#. Label of a Check field in DocType 'Ask ALYF Settings'
 #: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.json
 msgid "Allow Code Search"
 msgstr "コード検索を許可"
 
-#. Label of the allow_field_agent (Check) field in DocType 'Ask ALYF Settings'
+#. Label of a Check field in DocType 'Ask ALYF Settings'
 #: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.json
 msgid "Allow Field Agent"
 msgstr "フィールドエージェントを許可"
 
-#. Label of the allow_file_upload (Check) field in DocType 'Ask ALYF Settings'
+#. Label of a Check field in DocType 'Ask ALYF Settings'
 #: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.json
 msgid "Allow File Upload"
 msgstr "ファイルアップロードを許可"
 
-#: ask_alyf/ask_alyf/agent.py:1187
+#: ask_alyf/ask_alyf/toolset.py:973
 msgid "Amend proposal needs correction."
 msgstr "修正提案には訂正が必要です。"
 
-#: ask_alyf/ask_alyf/agent.py:1185
+#: ask_alyf/ask_alyf/toolset.py:971
 #, python-brace-format
 msgid "Amend {0} {1}"
 msgstr "{0} {1} を修正"
 
-#: ask_alyf/ask_alyf/tools.py:1367
+#: ask_alyf/ask_alyf/agent.py:146
+#, python-brace-format
+msgid "Amending {0}"
+msgstr "{0} を修正中"
+
+#: ask_alyf/ask_alyf/tools.py:1435
 #, python-brace-format
 msgid "And {0} more."
 msgstr "他に {0} 件。"
 
-#: ask_alyf/ask_alyf/tools.py:146 ask_alyf/ask_alyf/tools.py:1043
+#: ask_alyf/ask_alyf/deep_agent_backend.py:100 ask_alyf/ask_alyf/tools.py:158
+#: ask_alyf/ask_alyf/tools.py:1055
 #, python-brace-format
 msgid "App '{0}' is not installed."
 msgstr "アプリ '{0}' はインストールされていません。"
 
-#: ask_alyf/ask_alyf/tools.py:142 ask_alyf/ask_alyf/tools.py:1040
+#: ask_alyf/ask_alyf/tools.py:154 ask_alyf/ask_alyf/tools.py:1052
 msgid "App name is required."
-msgstr "アプリ名は必須です。"
+msgstr ""
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2013
+#: ask_alyf/public/js/ask_alyf.bundle.js:2420
 msgid "Applying action..."
 msgstr "アクションを適用しています..."
 
-#. Label of a Desktop Icon
-#. Title of a Workspace Sidebar
-#: ask_alyf/desktop_icon/ask_alyf.json ask_alyf/workspace_sidebar/ask_alyf.json
+#: ask_alyf/public/js/ask_alyf.bundle.js:809
+#: ask_alyf/public/js/ask_alyf.bundle.js:1355
+msgid "Ask"
+msgstr ""
+
+#. Name of a Workspace
+#. Label of a Card Break in the Ask ALYF Workspace
+#: ask_alyf/ask_alyf/workspace/ask_alyf/ask_alyf.json
+#: ask_alyf/config/desktop.py:5
 msgid "Ask ALYF"
 msgstr "Ask ALYF"
 
 #. Name of a DocType
+#: ask_alyf/ask_alyf/doctype/ask_alyf_checkpoint/ask_alyf_checkpoint.json
+msgid "Ask ALYF Checkpoint"
+msgstr "Ask ALYF チェックポイント"
+
+#. Name of a DocType
+#: ask_alyf/ask_alyf/doctype/ask_alyf_checkpoint_write/ask_alyf_checkpoint_write.json
+msgid "Ask ALYF Checkpoint Write"
+msgstr "Ask ALYF チェックポイント書き込み"
+
+#. Name of a DocType
+#. Label of a Link in the Ask ALYF Workspace
 #: ask_alyf/ask_alyf/doctype/ask_alyf_conversation/ask_alyf_conversation.json
+#: ask_alyf/ask_alyf/workspace/ask_alyf/ask_alyf.json
 msgid "Ask ALYF Conversation"
 msgstr "Ask ALYF 会話"
 
@@ -146,14 +178,16 @@ msgid "Ask ALYF Onboarding"
 msgstr "Ask ALYF オンボーディング"
 
 #. Name of a DocType
-#. Label of a Workspace Sidebar Item
+#. Label of a Link in the Ask ALYF Workspace
 #: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.json
-#: ask_alyf/workspace_sidebar/ask_alyf.json
+#: ask_alyf/ask_alyf/workspace/ask_alyf/ask_alyf.json
 msgid "Ask ALYF Settings"
 msgstr "Ask ALYF 設定"
 
 #. Name of a DocType
+#. Label of a Link in the Ask ALYF Workspace
 #: ask_alyf/ask_alyf/doctype/ask_alyf_skill/ask_alyf_skill.json
+#: ask_alyf/ask_alyf/workspace/ask_alyf/ask_alyf.json
 msgid "Ask ALYF Skill"
 msgstr "Ask ALYF スキル"
 
@@ -162,739 +196,785 @@ msgstr "Ask ALYF スキル"
 msgid "Ask ALYF User"
 msgstr "Ask ALYF ユーザー"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:631
+#: ask_alyf/public/js/ask_alyf.bundle.js:1161
+msgid "Ask ALYF could not finish processing this message. Please try again."
+msgstr "Ask ALYF はこのメッセージの処理を完了できませんでした。もう一度お試しください。"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:831
 msgid "Ask ALYF is an AI and can make mistakes, including with numbers and information about people."
 msgstr "Ask ALYF は AI であり、数値や人物に関する情報を含めて誤りを犯す可能性があります。"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:779
+#: ask_alyf/ask_alyf/api.py:438
+msgid "Ask ALYF is still working on the previous message in this conversation."
+msgstr "Ask ALYF はこの会話の前のメッセージをまだ処理中です。"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:976
 msgid "Ask ALYF is visible, but no API key/model is configured yet in Ask ALYF Settings."
 msgstr "Ask ALYF は表示されていますが、Ask ALYF 設定でまだ API キー/モデルが構成されていません。"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:582
+#: ask_alyf/public/js/ask_alyf.bundle.js:784
 msgid "Ask ALYF sections"
 msgstr "Ask ALYF セクション"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:600
+#: ask_alyf/public/js/ask_alyf.bundle.js:1162
+msgid "Ask ALYF stopped processing this message. Please try again."
+msgstr "Ask ALYF はこのメッセージの処理を停止しました。もう一度お試しください。"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:802
 msgid "Ask about this ERPNext instance"
 msgstr "この ERPNext インスタンスについて質問してください"
 
-#: ask_alyf/ask_alyf/agent.py:974
+#: ask_alyf/ask_alyf/agent.py:131
+#, python-brace-format
+msgid "Asking the {0} specialist"
+msgstr "{0} スペシャリストに問い合わせています"
+
+#: ask_alyf/ask_alyf/toolset.py:792
 msgid "At least one role is required."
 msgstr "少なくとも 1 つのロールが必要です。"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:618
-#: ask_alyf/public/js/ask_alyf.bundle.js:620
+#: ask_alyf/public/js/ask_alyf.bundle.js:818
+#: ask_alyf/public/js/ask_alyf.bundle.js:820
 msgid "Attach file"
 msgstr "ファイルを添付"
 
-#: ask_alyf/ask_alyf/agent.py:1273
+#: ask_alyf/ask_alyf/toolset.py:1059
 msgid "Attach file proposal needs correction."
 msgstr "ファイル添付の提案に修正が必要です。"
 
-#: ask_alyf/ask_alyf/agent.py:1267
+#: ask_alyf/ask_alyf/toolset.py:1053
 #, python-brace-format
 msgid "Attach file {0} to {1} {2}"
 msgstr "ファイル {0} を {1} {2} に添付"
 
-#: ask_alyf/ask_alyf/agent.py:1062
+#: ask_alyf/ask_alyf/agent.py:152
+#, python-brace-format
+msgid "Attaching a file to {0}"
+msgstr "{0} にファイルを添付しています"
+
+#: ask_alyf/ask_alyf/deep_agent_backend.py:274
+msgid "Attachment name is required"
+msgstr "添付ファイル名は必須です"
+
+#: ask_alyf/ask_alyf/deep_agent_backend.py:43
+msgid "Attachments are read-only"
+msgstr "添付ファイルは読み取り専用です"
+
+#: ask_alyf/ask_alyf/toolset.py:848
 msgid "Batch create proposal needs correction."
 msgstr "一括作成の提案に修正が必要です。"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1111
+#: ask_alyf/public/js/ask_alyf.bundle.js:1434
 msgid "Buying"
 msgstr "購買"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:571
-#: ask_alyf/public/js/ask_alyf.bundle.js:573
-#: ask_alyf/public/js/ask_alyf.bundle.js:989
+#: ask_alyf/public/js/ask_alyf.bundle.js:773
+#: ask_alyf/public/js/ask_alyf.bundle.js:775
+#: ask_alyf/public/js/ask_alyf.bundle.js:1312
 msgid "Call support"
 msgstr "サポートに電話する"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:988
+#: ask_alyf/public/js/ask_alyf.bundle.js:1311
 #, python-brace-format
 msgid "Call support: {0}"
 msgstr "サポートに電話する: {0}"
 
-#: ask_alyf/ask_alyf/agent.py:1298
+#: ask_alyf/ask_alyf/toolset.py:1084
 #, python-brace-format
 msgid "Call {0}"
 msgstr "{0} を呼び出す"
 
-#: ask_alyf/ask_alyf/agent.py:1166
+#: ask_alyf/ask_alyf/toolset.py:952
 msgid "Cancel proposal needs correction."
 msgstr "キャンセル提案を修正する必要があります。"
 
-#: ask_alyf/ask_alyf/agent.py:1164
+#: ask_alyf/ask_alyf/toolset.py:950
 #, python-brace-format
 msgid "Cancel {0} {1}"
 msgstr "{0} {1} をキャンセル"
 
-#: ask_alyf/ask_alyf/api.py:871 ask_alyf/ask_alyf/api.py:900
+#: ask_alyf/ask_alyf/api.py:936
 #, python-brace-format
 msgid "Cancelled frontend action: {0}"
 msgstr "フロントエンドアクションをキャンセルしました: {0}"
 
-#: ask_alyf/ask_alyf/api.py:785
+#: ask_alyf/ask_alyf/api.py:829
 #, python-brace-format
 msgid "Cancelled showing chart: {0}."
 msgstr "グラフの表示をキャンセルしました: {0}。"
 
-#: ask_alyf/ask_alyf/api.py:721 ask_alyf/ask_alyf/api.py:748
+#: ask_alyf/ask_alyf/api.py:790
 #, python-brace-format
 msgid "Cancelled the pending operation: {0}."
 msgstr "保留中の操作をキャンセルしました: {0}。"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1711
+#: ask_alyf/public/js/ask_alyf.bundle.js:2136
 msgid "Changes preview"
 msgstr "変更のプレビュー"
 
-#: ask_alyf/ask_alyf/agent.py:1472
+#: ask_alyf/ask_alyf/toolset.py:1258
 msgid "Chart action needs correction."
 msgstr "グラフアクションを修正する必要があります。"
 
-#: ask_alyf/ask_alyf/tools.py:1541
+#: ask_alyf/ask_alyf/tools.py:1609
 msgid "Chart data must be an object."
 msgstr "グラフデータはオブジェクトである必要があります。"
 
-#: ask_alyf/ask_alyf/tools.py:1467
+#: ask_alyf/ask_alyf/tools.py:1535
 msgid "Chart data requires a non-empty datasets array."
 msgstr "グラフデータには空でないデータセット配列が必要です。"
 
-#: ask_alyf/ask_alyf/tools.py:1448
+#: ask_alyf/ask_alyf/tools.py:1516
 msgid "Chart data requires a non-empty labels array."
 msgstr "グラフデータには空でないラベル配列が必要です。"
 
-#: ask_alyf/ask_alyf/tools.py:1527
+#: ask_alyf/ask_alyf/tools.py:1595
 msgid "Chart height is out of range."
 msgstr "グラフの高さが範囲外です。"
 
-#: ask_alyf/ask_alyf/tools.py:1457
+#: ask_alyf/ask_alyf/tools.py:1525
 msgid "Chart labels must be numbers or strings."
 msgstr "グラフラベルは数値または文字列である必要があります。"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1122
+#: ask_alyf/public/js/ask_alyf.bundle.js:1445
 msgid "Chart monthly expenses by cost center"
 msgstr "コストセンター別の月次経費をグラフ化"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1104
+#: ask_alyf/public/js/ask_alyf.bundle.js:1427
 msgid "Chart my monthly sales revenue for the last 6 months"
 msgstr "過去 6 ヶ月の月次売上収益をグラフ化"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1167
+#: ask_alyf/public/js/ask_alyf.bundle.js:1490
 msgid "Chart open issues by priority"
 msgstr "優先度別の未解決の課題をグラフ化"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1149
+#: ask_alyf/public/js/ask_alyf.bundle.js:1472
 msgid "Chart production output by item this week"
 msgstr "今週のアイテム別生産量をグラフ化"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1113
+#: ask_alyf/public/js/ask_alyf.bundle.js:1436
 msgid "Chart spending by supplier for this quarter"
 msgstr "今四半期のサプライヤー別支出をグラフ化"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1140
+#: ask_alyf/public/js/ask_alyf.bundle.js:1463
 msgid "Chart stock value by warehouse"
 msgstr "倉庫別の在庫価値をチャート化"
 
-#. Label of the model (Autocomplete) field in DocType 'Ask ALYF Settings'
+#. Label of a Autocomplete field in DocType 'Ask ALYF Settings'
 #: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.json
 msgid "Chat Model"
 msgstr "チャットモデル"
 
-#. Label of the chat_provider_tab (Tab Break) field in DocType 'Ask ALYF
-#. Settings'
+#. Label of a Tab Break field in DocType 'Ask ALYF Settings'
 #: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.json
 msgid "Chat Provider"
 msgstr "チャットプロバイダー"
 
-#: ask_alyf/ask_alyf/agent.py:566
-msgid "Checking permissions..."
-msgstr "権限を確認しています..."
+#: ask_alyf/ask_alyf/agent.py:104
+#, python-brace-format
+msgid "Checking the {0} form"
+msgstr "{0} フォームを確認しています"
 
-#: ask_alyf/ask_alyf/tools.py:175
+#: ask_alyf/ask_alyf/agent.py:106
+#, python-brace-format
+msgid "Checking your permissions on {0}"
+msgstr "{0} に対する権限を確認しています"
+
+#. Label of a Long Text field in DocType 'Ask ALYF Checkpoint'
+#: ask_alyf/ask_alyf/doctype/ask_alyf_checkpoint/ask_alyf_checkpoint.json
+msgid "Checkpoint Data (base64)"
+msgstr "チェックポイントデータ (base64)"
+
+#. Label of a Data field in DocType 'Ask ALYF Checkpoint'
+#. Label of a Data field in DocType 'Ask ALYF Checkpoint Write'
+#: ask_alyf/ask_alyf/doctype/ask_alyf_checkpoint/ask_alyf_checkpoint.json
+#: ask_alyf/ask_alyf/doctype/ask_alyf_checkpoint_write/ask_alyf_checkpoint_write.json
+msgid "Checkpoint ID"
+msgstr "チェックポイント ID"
+
+#. Label of a Data field in DocType 'Ask ALYF Checkpoint'
+#. Label of a Data field in DocType 'Ask ALYF Checkpoint Write'
+#: ask_alyf/ask_alyf/doctype/ask_alyf_checkpoint/ask_alyf_checkpoint.json
+#: ask_alyf/ask_alyf/doctype/ask_alyf_checkpoint_write/ask_alyf_checkpoint_write.json
+msgid "Checkpoint Namespace"
+msgstr "チェックポイント名前空間"
+
+#. Label of a Data field in DocType 'Ask ALYF Checkpoint'
+#: ask_alyf/ask_alyf/doctype/ask_alyf_checkpoint/ask_alyf_checkpoint.json
+msgid "Checkpoint Type"
+msgstr "チェックポイントタイプ"
+
+#: ask_alyf/ask_alyf/deep_agent_backend.py:104 ask_alyf/ask_alyf/tools.py:187
 msgid "Code access is restricted to installed app directories."
 msgstr "コードアクセスはインストール済みアプリのディレクトリに制限されています。"
 
-#: ask_alyf/ask_alyf/tools.py:117
+#: ask_alyf/ask_alyf/tools.py:129
 msgid "Code search is disabled in Ask ALYF Settings."
 msgstr "Ask ALYF 設定でコード検索が無効になっています。"
 
-#: ask_alyf/ask_alyf/agent.py:70
+#: ask_alyf/ask_alyf/agent.py:275
 msgid "Configure a model in Ask ALYF Settings before sending messages."
 msgstr "メッセージを送信する前に、Ask ALYF 設定でモデルを構成してください。"
 
-#: ask_alyf/ask_alyf/tools.py:771
+#: ask_alyf/ask_alyf/tools.py:783
 msgid "Configure a vision model API key in Ask ALYF Settings."
 msgstr "Ask ALYF 設定でビジョンモデルの API キーを構成してください。"
 
-#: ask_alyf/ask_alyf/tools.py:773
+#: ask_alyf/ask_alyf/tools.py:785
 msgid "Configure a vision model in Ask ALYF Settings."
 msgstr "Ask ALYF 設定でビジョンモデルを構成してください。"
 
-#: ask_alyf/ask_alyf/agent.py:63
+#: ask_alyf/ask_alyf/agent.py:268
+#: ask_alyf/ask_alyf/test_tool_error_middleware.py:104
 msgid "Configure an API key in Ask ALYF Settings before sending messages."
 msgstr "メッセージを送信する前に、Ask ALYF 設定で API キーを構成してください。"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:513
+#: ask_alyf/public/js/ask_alyf.bundle.js:719
 msgid "Confirm all"
 msgstr "すべて確認"
 
-#: ask_alyf/ask_alyf/api.py:297
-#, python-brace-format
-msgid "Confirmed operation: {0}"
-msgstr "確認済みの操作: {0}"
-
-#: ask_alyf/ask_alyf/api.py:627 ask_alyf/public/js/ask_alyf.bundle.js:2014
+#: ask_alyf/ask_alyf/api.py:707 ask_alyf/public/js/ask_alyf.bundle.js:2420
 msgid "Confirming action..."
 msgstr "アクションを確認しています..."
 
-#: ask_alyf/ask_alyf/tools.py:983
+#: ask_alyf/ask_alyf/tools.py:995
 msgid "Conversation name is required."
 msgstr "会話名は必須です。"
 
-#: ask_alyf/ask_alyf/api.py:779
+#: ask_alyf/public/js/ask_alyf.bundle.js:571
+msgid "Copy as Markdown"
+msgstr "Markdown としてコピー"
+
+#: ask_alyf/ask_alyf/api.py:823
 msgid "Could not attach charts to the assistant message."
 msgstr "アシスタントメッセージにチャートを添付できませんでした。"
 
-#: ask_alyf/ask_alyf/api.py:295
+#: ask_alyf/ask_alyf/api.py:737
 #, python-brace-format
-msgid "Could not confirm operation: {0}"
-msgstr "操作を確認できませんでした: {0}"
+msgid "Could not complete the operation: {0}."
+msgstr "操作を完了できませんでした: {0}。"
 
-#: ask_alyf/ask_alyf/api.py:787
+#: ask_alyf/ask_alyf/api.py:831
 msgid "Could not display chart."
 msgstr "チャートを表示できませんでした。"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2239
+#: ask_alyf/public/js/ask_alyf.bundle.js:2642
 msgid "Could not download chart."
 msgstr "チャートをダウンロードできませんでした。"
 
-#: ask_alyf/ask_alyf/tools.py:685
+#: ask_alyf/ask_alyf/tools.py:697
 msgid "Could not extract visual content from the file."
 msgstr "ファイルからビジュアルコンテンツを抽出できませんでした。"
 
-#: ask_alyf/public/js/field_agent.js:232
+#: ask_alyf/public/js/field_agent.js:226
 msgid "Could not generate content."
 msgstr "コンテンツを生成できませんでした。"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2310
+#: ask_alyf/public/js/ask_alyf.bundle.js:2709
 msgid "Could not render chart."
 msgstr "チャートを表示できませんでした。"
 
-#: ask_alyf/ask_alyf/agent.py:489
-msgid "Counting documents..."
-msgstr "ドキュメントを数えています..."
+#: ask_alyf/ask_alyf/agent.py:100
+#, python-brace-format
+msgid "Counting {0}"
+msgstr "{0} を集計しています"
 
-#: ask_alyf/ask_alyf/agent.py:1038
+#: ask_alyf/ask_alyf/toolset.py:824
 msgid "Create proposal needs correction."
 msgstr "作成提案に修正が必要です。"
 
-#: ask_alyf/ask_alyf/agent.py:978
+#: ask_alyf/ask_alyf/toolset.py:796
 #, python-brace-format
 msgid "Create skill '{0}'"
 msgstr "スキル '{0}' を作成"
 
-#: ask_alyf/ask_alyf/agent.py:1036
+#: ask_alyf/ask_alyf/toolset.py:822
 #, python-brace-format
 msgid "Create {0}"
 msgstr "{0} を作成"
 
-#: ask_alyf/ask_alyf/agent.py:1060
+#: ask_alyf/ask_alyf/toolset.py:846
 #, python-brace-format
 msgid "Create {0} {1} records"
 msgstr "{0} 件の {1} レコードを作成"
 
-#: ask_alyf/ask_alyf/tools.py:1331
+#: ask_alyf/ask_alyf/tools.py:1399
 #, python-brace-format
 msgid "Created {0} of {1} {2} records."
 msgstr "{1} 件中 {0} 件の {2} レコードを作成しました。"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1869
+#: ask_alyf/ask_alyf/agent.py:138
+#, python-brace-format
+msgid "Creating several {0} records"
+msgstr "複数の {0} レコードを作成しています"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:2284
 #, python-brace-format
 msgid "Current document is {0}, expected {1}."
 msgstr "現在のドキュメントは {0} ですが、{1} が想定されています。"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1861
+#: ask_alyf/public/js/ask_alyf.bundle.js:2277
 #, python-brace-format
 msgid "Current form is {0}, expected {1}."
 msgstr "現在のフォームは {0} ですが、{1} が想定されています。"
 
-#: ask_alyf/ask_alyf/tools.py:1485 ask_alyf/ask_alyf/tools.py:1488
-#: ask_alyf/ask_alyf/tools.py:1491
+#: ask_alyf/ask_alyf/tools.py:1553 ask_alyf/ask_alyf/tools.py:1556
+#: ask_alyf/ask_alyf/tools.py:1559
 msgid "Dataset values must be numeric."
 msgstr "データセットの値は数値でなければなりません。"
 
-#: ask_alyf/ask_alyf/tools.py:1480
+#: ask_alyf/ask_alyf/tools.py:1548
 msgid "Dataset values must match labels length."
 msgstr "データセットの値はラベルの長さと一致する必要があります。"
 
-#: ask_alyf/ask_alyf/agent.py:763
-msgid "Delegating code analysis..."
-msgstr "コード解析を委任しています..."
-
-#: ask_alyf/ask_alyf/agent.py:1208
+#: ask_alyf/ask_alyf/toolset.py:994
 msgid "Delete proposal needs correction."
 msgstr "削除提案に修正が必要です。"
 
-#: ask_alyf/ask_alyf/agent.py:1206
+#: ask_alyf/ask_alyf/toolset.py:992
 #, python-brace-format
 msgid "Delete {0} {1}"
 msgstr "{0} {1} を削除"
 
-#: ask_alyf/ask_alyf/tools.py:1265
+#: ask_alyf/ask_alyf/tools.py:1333
 #, python-brace-format
 msgid "Deleted {0} {1}"
 msgstr "{0} {1} を削除しました"
 
-#: ask_alyf/public/js/field_agent.js:85
+#: ask_alyf/public/js/field_agent.js:83
 msgid "Describe what you want..."
 msgstr "ご希望の内容を記述してください..."
 
-#: ask_alyf/ask_alyf/tools.py:325
+#: ask_alyf/ask_alyf/tools.py:337
 #, python-brace-format
 msgid "DocType '{0}' is excluded from Agent mode."
 msgstr "DocType '{0}' はエージェントモードから除外されています。"
 
-#: ask_alyf/ask_alyf/tools.py:979
+#: ask_alyf/ask_alyf/test_tool_error_middleware.py:84
+#: ask_alyf/ask_alyf/test_tool_error_middleware.py:93
+msgid "DocType is excluded"
+msgstr "DocType は除外されています"
+
+#: ask_alyf/ask_alyf/tools.py:991
 msgid "DocType is required."
 msgstr "DocType は必須です。"
 
-#: ask_alyf/ask_alyf/tools.py:896
+#: ask_alyf/ask_alyf/tools.py:908
 msgid "Document extraction did not return text."
 msgstr "ドキュメント抽出はテキストを返しませんでした。"
 
-#: ask_alyf/ask_alyf/tools.py:920
+#: ask_alyf/ask_alyf/tools.py:932
 msgid "Document extraction did not return valid JSON."
 msgstr "ドキュメント抽出は有効な JSON を返しませんでした。"
 
-#: ask_alyf/ask_alyf/tools.py:900
+#: ask_alyf/ask_alyf/tools.py:912
 msgid "Document extraction returned an empty response."
 msgstr "ドキュメント抽出から空のレスポンスが返されました。"
 
-#: ask_alyf/ask_alyf/tools.py:845
+#: ask_alyf/ask_alyf/tools.py:857
 msgid "Document extraction returned no choices."
 msgstr "ドキュメント抽出から選択肢が返されませんでした。"
 
-#: ask_alyf/ask_alyf/tools.py:850
+#: ask_alyf/ask_alyf/tools.py:862
 msgid "Document extraction returned no content."
 msgstr "ドキュメント抽出からコンテンツが返されませんでした。"
 
-#: ask_alyf/ask_alyf/tools.py:981
+#: ask_alyf/ask_alyf/tools.py:993
 msgid "Document name is required."
 msgstr "ドキュメント名は必須です。"
 
-#: ask_alyf/ask_alyf/api.py:301
-#, python-brace-format
-msgid "Document: {0} {1}"
-msgstr "ドキュメント: {0} {1}"
-
-#: ask_alyf/public/js/ask_alyf.bundle.js:2221
+#: ask_alyf/public/js/ask_alyf.bundle.js:2624
 msgid "Download chart as SVG"
 msgstr "チャートをSVGとしてダウンロード"
 
-#: ask_alyf/public/js/field_agent.js:202
+#: ask_alyf/public/js/field_agent.js:197
 msgid "Drafting..."
 msgstr "下書き中..."
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:565
+#: ask_alyf/public/js/ask_alyf.bundle.js:767
 msgid "ERPNext assistant"
 msgstr "ERPNext アシスタント"
 
-#: ask_alyf/ask_alyf/tools.py:1507
+#: ask_alyf/ask_alyf/tools.py:1575
 msgid "Each chart must be an object."
 msgstr "各チャートはオブジェクトである必要があります。"
 
-#: ask_alyf/ask_alyf/tools.py:1475
+#: ask_alyf/ask_alyf/tools.py:1543
 msgid "Each dataset must be an object."
 msgstr "各データセットはオブジェクトである必要があります。"
 
-#: ask_alyf/ask_alyf/tools.py:1478
+#: ask_alyf/ask_alyf/tools.py:1546
 msgid "Each dataset needs a values array."
 msgstr "各データセットには値の配列が必要です。"
 
-#: ask_alyf/ask_alyf/tools.py:464
+#: ask_alyf/ask_alyf/tools.py:476
 msgid "Each label must be a string."
 msgstr "各ラベルは文字列である必要があります。"
 
-#: ask_alyf/ask_alyf/tools.py:580
+#: ask_alyf/ask_alyf/tools.py:592
 msgid "Entry type must be one of any, file, or directory."
 msgstr "エントリタイプは any、file、または directory のいずれかである必要があります。"
 
-#: ask_alyf/ask_alyf/agent.py:579
-msgid "Evaluating permissions..."
-msgstr "権限を評価中..."
-
-#. Label of the excluded_doctype (Link) field in DocType 'Ask ALYF Excluded
-#. DocType'
+#. Label of a Link field in DocType 'Ask ALYF Excluded DocType'
 #: ask_alyf/ask_alyf/doctype/ask_alyf_excluded_doctype/ask_alyf_excluded_doctype.json
 msgid "Excluded DocType"
 msgstr "除外された DocType"
 
-#. Label of the excluded_doctypes (Table MultiSelect) field in DocType 'Ask
-#. ALYF Settings'
+#. Label of a Table MultiSelect field in DocType 'Ask ALYF Settings'
 #: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.json
 msgid "Excluded DocTypes"
 msgstr "除外された DocTypes"
 
-#: ask_alyf/ask_alyf/api.py:869 ask_alyf/ask_alyf/api.py:898
+#: ask_alyf/ask_alyf/api.py:934
 #, python-brace-format
 msgid "Executed frontend action: {0}"
 msgstr "フロントエンドアクションを実行しました: {0}"
 
-#: ask_alyf/ask_alyf/agent.py:828
-msgid "Extracting document data..."
-msgstr "ドキュメントデータを抽出中..."
-
-#: ask_alyf/ask_alyf/tools.py:1364
+#: ask_alyf/ask_alyf/tools.py:1432
 #, python-brace-format
 msgid "Failed rows: {0}"
 msgstr "失敗した行: {0}"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:964
+#: ask_alyf/public/js/ask_alyf.bundle.js:1289
 msgid "Failed to attach file to conversation."
 msgstr "会話へのファイルの添付に失敗しました。"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2041
+#: ask_alyf/public/js/ask_alyf.bundle.js:2447
 msgid "Failed to confirm pending operation."
 msgstr "保留中の操作の確認に失敗しました。"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1977
+#: ask_alyf/public/js/ask_alyf.bundle.js:2385
 msgid "Failed to execute frontend action."
 msgstr "フロントエンドアクションの実行に失敗しました。"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1366
+#: ask_alyf/public/js/ask_alyf.bundle.js:1687
 msgid "Failed to open conversation."
 msgstr "会話を開けませんでした。"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2079
+#: ask_alyf/public/js/ask_alyf.bundle.js:2485
 msgid "Failed to reject pending operation."
 msgstr "保留中の操作の拒否に失敗しました。"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1612
+#: ask_alyf/public/js/ask_alyf.bundle.js:2029
 msgid "Failed to send message."
 msgstr "メッセージの送信に失敗しました。"
 
-#: ask_alyf/ask_alyf/agent.py:508
-msgid "Fetching document..."
-msgstr "ドキュメントを取得しています..."
+#: ask_alyf/public/js/ask_alyf.bundle.js:1775
+msgid "Failed to stop the run."
+msgstr "実行を停止できませんでした。"
 
-#: ask_alyf/ask_alyf/agent.py:465
-msgid "Fetching list..."
-msgstr "リストを取得しています..."
-
-#: ask_alyf/ask_alyf/agent.py:540
-msgid "Fetching single value..."
-msgstr "single の値を取得しています..."
-
-#: ask_alyf/ask_alyf/agent.py:527
-msgid "Fetching value..."
-msgstr "値を取得しています..."
-
-#: ask_alyf/ask_alyf/tools.py:1697
+#: ask_alyf/ask_alyf/tools.py:1765
 #, python-brace-format
 msgid "Field '{0}' in {1} is a child table ({2}) and must be a list of row objects."
 msgstr "{1} のフィールド '{0}' は子テーブル ({2}) であり、行オブジェクトのリストでなければなりません。"
 
-#: ask_alyf/ask_alyf/tools.py:1705
+#: ask_alyf/ask_alyf/tools.py:1773
 #, python-brace-format
 msgid "Field '{0}' row #{1} in {2} must be an object."
 msgstr "{2} のフィールド '{0}' の行 #{1} はオブジェクトでなければなりません。"
 
-#: ask_alyf/ask_alyf/api.py:945
+#: ask_alyf/ask_alyf/api.py:981
 msgid "Field Agent is not enabled."
 msgstr "フィールド Agent が有効になっていません。"
 
-#: ask_alyf/public/js/field_agent.js:267
+#: ask_alyf/public/js/field_agent.js:261
 msgid "Field updated."
 msgstr "フィールドを更新しました。"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1903
-#: ask_alyf/public/js/ask_alyf.bundle.js:1914
+#: ask_alyf/public/js/ask_alyf.bundle.js:2314
+#: ask_alyf/public/js/ask_alyf.bundle.js:2323
 #, python-brace-format
 msgid "Field {0} does not exist on this form."
 msgstr "フィールド {0} はこのフォームに存在しません。"
 
-#: ask_alyf/ask_alyf/api.py:998 ask_alyf/ask_alyf/tools.py:711
+#: ask_alyf/ask_alyf/api.py:1034 ask_alyf/ask_alyf/tools.py:723
 #, python-brace-format
 msgid "File '{0}' was not found."
 msgstr "ファイル '{0}' が見つかりませんでした。"
 
-#: ask_alyf/ask_alyf/tools.py:709
+#: ask_alyf/ask_alyf/tools.py:721
 msgid "File ID is required."
 msgstr "File ID は必須です。"
 
-#: ask_alyf/ask_alyf/api.py:983
+#: ask_alyf/ask_alyf/api.py:1019
 msgid "File upload is not enabled."
 msgstr "ファイルのアップロードが有効になっていません。"
 
-#: ask_alyf/ask_alyf/agent.py:705
-msgid "Finding code paths..."
-msgstr "コードパスを検索しています..."
+#: ask_alyf/ask_alyf/agent.py:165
+msgid "Filling in the open form"
+msgstr "開いているフォームに入力しています"
 
-#: ask_alyf/ask_alyf/tools.py:1668
+#: ask_alyf/ask_alyf/tools.py:1736
 msgid "Frontend action 'frm_add_child' field 'docname' must be a string."
 msgstr "フロントエンドアクション 'frm_add_child' のフィールド 'docname' は文字列でなければなりません。"
 
-#: ask_alyf/ask_alyf/tools.py:1666
+#: ask_alyf/ask_alyf/tools.py:1734
 msgid "Frontend action 'frm_add_child' field 'doctype' must be a string."
 msgstr "フロントエンドアクション 'frm_add_child' のフィールド 'doctype' は文字列でなければなりません。"
 
-#: ask_alyf/ask_alyf/tools.py:1662
+#: ask_alyf/ask_alyf/tools.py:1730
 msgid "Frontend action 'frm_add_child' field 'values' must be an object."
 msgstr "フロントエンドアクション 'frm_add_child' のフィールド 'values' はオブジェクトである必要があります。"
 
-#: ask_alyf/ask_alyf/tools.py:1659
+#: ask_alyf/ask_alyf/tools.py:1727
 msgid "Frontend action 'frm_add_child' requires a fieldname."
 msgstr "フロントエンドアクション 'frm_add_child' には fieldname が必要です。"
 
-#: ask_alyf/ask_alyf/tools.py:1653
+#: ask_alyf/ask_alyf/tools.py:1721
 msgid "Frontend action 'frm_set_value' field 'docname' must be a string."
 msgstr "フロントエンドアクション 'frm_set_value' のフィールド 'docname' は文字列である必要があります。"
 
-#: ask_alyf/ask_alyf/tools.py:1651
+#: ask_alyf/ask_alyf/tools.py:1719
 msgid "Frontend action 'frm_set_value' field 'doctype' must be a string."
 msgstr "フロントエンドアクション 'frm_set_value' のフィールド 'doctype' は文字列である必要があります。"
 
-#: ask_alyf/ask_alyf/tools.py:1647
+#: ask_alyf/ask_alyf/tools.py:1715
 msgid "Frontend action 'frm_set_value' requires a fieldname."
 msgstr "フロントエンドアクション 'frm_set_value' には fieldname が必要です。"
 
-#: ask_alyf/ask_alyf/tools.py:1635
+#: ask_alyf/ask_alyf/tools.py:1703
 msgid "Frontend action 'new_doc' field 'route_options' must be an object."
 msgstr "フロントエンドアクション 'new_doc' のフィールド 'route_options' はオブジェクトである必要があります。"
 
-#: ask_alyf/ask_alyf/tools.py:1632
+#: ask_alyf/ask_alyf/tools.py:1700
 msgid "Frontend action 'new_doc' requires a DocType."
 msgstr "フロントエンドアクション 'new_doc' には DocType が必要です。"
 
-#: ask_alyf/ask_alyf/tools.py:1641
+#: ask_alyf/ask_alyf/tools.py:1709
 msgid "Frontend action 'scroll_to_field' requires a fieldname."
 msgstr "フロントエンドアクション 'scroll_to_field' には fieldname が必要です。"
 
-#: ask_alyf/ask_alyf/tools.py:1623
+#: ask_alyf/ask_alyf/tools.py:1691
 msgid "Frontend action 'set_route' requires a non-empty route list."
 msgstr "フロントエンドアクション 'set_route' には空でない Route のリストが必要です。"
 
-#: ask_alyf/ask_alyf/api.py:873 ask_alyf/ask_alyf/api.py:902
+#: ask_alyf/ask_alyf/api.py:938
 #, python-brace-format
 msgid "Frontend action failed: {0}"
 msgstr "フロントエンドアクションが失敗しました: {0}"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1964
+#: ask_alyf/public/js/ask_alyf.bundle.js:2372
 msgid "Frontend action is missing a call ID."
 msgstr "フロントエンドアクションに通話 ID がありません。"
 
-#: ask_alyf/ask_alyf/tools.py:1618
+#: ask_alyf/ask_alyf/tools.py:1686
 msgid "Frontend action payload contains an unsafe key."
 msgstr "フロントエンドアクションのペイロードに安全でないキーが含まれています。"
 
-#: ask_alyf/ask_alyf/tools.py:1615
+#: ask_alyf/ask_alyf/tools.py:1683
 msgid "Frontend action payload must be an object."
 msgstr "フロントエンドアクションのペイロードはオブジェクトである必要があります。"
 
-#: ask_alyf/ask_alyf/tools.py:1160
+#: ask_alyf/ask_alyf/tools.py:1228
 msgid "Frontend actions must be executed in the browser."
 msgstr "フロントエンドアクションはブラウザで実行する必要があります。"
 
-#: ask_alyf/public/js/field_agent.js:100
+#: ask_alyf/public/js/field_agent.js:97
 msgid "Generate"
 msgstr "生成"
 
-#: ask_alyf/public/js/field_agent.js:294
+#: ask_alyf/public/js/field_agent.js:290
 msgid "Generate with AI"
 msgstr "AI で生成"
 
-#: ask_alyf/ask_alyf/agent.py:861
-msgid "Generating print..."
-msgstr "印刷を生成中..."
-
-#: ask_alyf/ask_alyf/api.py:661 ask_alyf/ask_alyf/api.py:728
-#: ask_alyf/ask_alyf/api.py:843
+#: ask_alyf/ask_alyf/api.py:770 ask_alyf/ask_alyf/api.py:887
 msgid "Generating response..."
 msgstr "応答を生成中..."
 
-#: ask_alyf/public/js/field_agent.js:190
+#: ask_alyf/public/js/field_agent.js:185
 msgid "Generating..."
 msgstr "生成中..."
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1129
+#: ask_alyf/public/js/ask_alyf.bundle.js:1452
 msgid "HR"
 msgstr "人事"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:589
+#: ask_alyf/ask_alyf/agent.py:161
+msgid "Highlighting a field"
+msgstr "フィールドを強調表示しています"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:791
 msgid "History"
 msgstr "履歴"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1151
+#: ask_alyf/public/js/ask_alyf.bundle.js:1474
 msgid "How many Work Orders are behind schedule?"
 msgstr "予定より遅れている作業指示はいくつありますか?"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1133
+#: ask_alyf/public/js/ask_alyf.bundle.js:1456
 msgid "How many leave applications are pending approval?"
 msgstr "承認待ちの休暇申請はいくつありますか?"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1115
+#: ask_alyf/public/js/ask_alyf.bundle.js:1438
 msgid "How many pending purchase receipts do I have?"
 msgstr "保留中の購入領収書はいくつありますか?"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1106
+#: ask_alyf/public/js/ask_alyf.bundle.js:1429
 msgid "How many quotations were sent this month?"
 msgstr "今月送信された見積書はいくつありますか?"
 
-#: ask_alyf/ask_alyf/api.py:547
+#: ask_alyf/ask_alyf/api.py:614
+#: ask_alyf/ask_alyf/test_tool_error_middleware.py:153
 msgid "I hit an error while processing that request. Please try again."
 msgstr "そのリクエストの処理中にエラーが発生しました。もう一度お試しください。"
 
-#: ask_alyf/ask_alyf/api.py:189 ask_alyf/ask_alyf/api.py:543
+#: ask_alyf/ask_alyf/api.py:208 ask_alyf/ask_alyf/api.py:603
 msgid "I've prepared the operation. Please review and confirm."
 msgstr "操作の準備ができました。ご確認の上、承認してください。"
 
-#: ask_alyf/ask_alyf/tools.py:1167
+#: ask_alyf/ask_alyf/tools.py:1235
 msgid "Invalid action payload."
 msgstr "無効なアクションペイロードです。"
 
-#: ask_alyf/ask_alyf/tools.py:1545 ask_alyf/public/js/ask_alyf.bundle.js:2280
+#: ask_alyf/ask_alyf/tools.py:1613 ask_alyf/public/js/ask_alyf.bundle.js:2679
 msgid "Invalid chart data."
 msgstr "無効なチャートデータです。"
 
-#: ask_alyf/ask_alyf/tools.py:1603
+#: ask_alyf/ask_alyf/tools.py:1671
 msgid "Invalid chart specification."
 msgstr "無効なチャート仕様です。"
 
-#: ask_alyf/ask_alyf/tools.py:1147
+#: ask_alyf/ask_alyf/tools.py:1215
 msgid "Invalid pending operation payload."
 msgstr "無効な保留中の操作ペイロードです。"
 
-#. Label of the llm_provider (Select) field in DocType 'Ask ALYF Settings'
+#: ask_alyf/ask_alyf/deep_agent_backend.py:182
+#, python-brace-format
+msgid "Invalid regex pattern: {0}"
+msgstr "無効な正規表現パターンです: {0}"
+
+#. Label of a Select field in DocType 'Ask ALYF Settings'
 #: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.json
 msgid "LLM Provider"
 msgstr "LLMプロバイダー"
 
-#: ask_alyf/ask_alyf/tools.py:459
+#: ask_alyf/ask_alyf/tools.py:471
 msgid "Labels must be provided as a list of strings."
 msgstr "ラベルは文字列のリストとして指定する必要があります。"
 
-#. Label of the last_context_json (Code) field in DocType 'Ask ALYF
-#. Conversation'
+#. Label of a Code field in DocType 'Ask ALYF Conversation'
 #: ask_alyf/ask_alyf/doctype/ask_alyf_conversation/ask_alyf_conversation.json
 msgid "Last Context JSON"
 msgstr "最終コンテキストJSON"
 
-#. Label of the last_message_at (Datetime) field in DocType 'Ask ALYF
-#. Conversation'
+#. Label of a Datetime field in DocType 'Ask ALYF Conversation'
 #: ask_alyf/ask_alyf/doctype/ask_alyf_conversation/ask_alyf_conversation.json
 msgid "Last Message At"
 msgstr "最終メッセージ日時"
 
-#: ask_alyf/ask_alyf/agent.py:591
-msgid "Listing accessible DocTypes..."
-msgstr "アクセス可能なDocTypesを一覧表示しています..."
+#: ask_alyf/ask_alyf/deep_agent_backend.py:172
+#: ask_alyf/ask_alyf/deep_agent_backend.py:285
+#, python-brace-format
+msgid "Line offset {0} exceeds file length"
+msgstr "行オフセット {0} がファイルの長さを超えています"
 
-#: ask_alyf/ask_alyf/agent.py:600
-msgid "Listing accessible reports..."
-msgstr "アクセス可能なレポートを一覧表示しています..."
-
-#: ask_alyf/ask_alyf/agent.py:674
-msgid "Listing code files..."
-msgstr "コードファイルを一覧表示しています..."
-
-#: ask_alyf/public/js/ask_alyf.bundle.js:1351
+#: ask_alyf/public/js/ask_alyf.bundle.js:1672
 msgid "Loading conversation..."
 msgstr "会話を読み込んでいます..."
 
-#: ask_alyf/ask_alyf/agent.py:552
-msgid "Loading metadata..."
-msgstr "メタデータを読み込んでいます..."
+#: ask_alyf/ask_alyf/agent.py:110
+msgid "Looking up available reports"
+msgstr "利用可能なレポートを検索しています"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1147
+#: ask_alyf/ask_alyf/agent.py:108
+msgid "Looking up what you can access"
+msgstr "アクセス可能な対象を確認しています"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1470
 msgid "Manufacturing"
 msgstr "製造"
 
-#. Label of the messages_json (Code) field in DocType 'Ask ALYF Conversation'
+#. Label of a Code field in DocType 'Ask ALYF Conversation'
 #: ask_alyf/ask_alyf/doctype/ask_alyf_conversation/ask_alyf_conversation.json
 msgid "Messages JSON"
 msgstr "メッセージ JSON"
 
-#: ask_alyf/ask_alyf/agent.py:1300
+#. Label of a Long Text field in DocType 'Ask ALYF Checkpoint'
+#: ask_alyf/ask_alyf/doctype/ask_alyf_checkpoint/ask_alyf_checkpoint.json
+msgid "Metadata Data (base64)"
+msgstr "メタデータのデータ (base64)"
+
+#. Label of a Data field in DocType 'Ask ALYF Checkpoint'
+#: ask_alyf/ask_alyf/doctype/ask_alyf_checkpoint/ask_alyf_checkpoint.json
+msgid "Metadata Type"
+msgstr "メタデータの種類"
+
+#: ask_alyf/ask_alyf/toolset.py:1086
 msgid "Method call proposal needs correction."
 msgstr "メソッド呼び出しの提案を修正する必要があります。"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1034
+#: ask_alyf/public/js/ask_alyf.bundle.js:1357
 #, python-brace-format
 msgid "Mode: {0}"
 msgstr "モード: {0}"
 
-#: ask_alyf/ask_alyf/tools.py:449
+#: ask_alyf/ask_alyf/tools.py:461
 msgid "Multiple matching files were found. Provide reference_field, file_url, or file_name."
 msgstr "一致するファイルが複数見つかりました。reference_field、file_url、または file_name を指定してください。"
 
-#: ask_alyf/ask_alyf/agent.py:1319
+#: ask_alyf/ask_alyf/toolset.py:1105
 #, python-brace-format
 msgid "Navigate to {0}"
 msgstr "{0} に移動"
 
-#: ask_alyf/ask_alyf/api.py:271 ask_alyf/ask_alyf/api.py:460
-#: ask_alyf/ask_alyf/api.py:486
+#: ask_alyf/ask_alyf/api.py:291 ask_alyf/ask_alyf/api.py:393
+#: ask_alyf/ask_alyf/api.py:449
 msgid "New Conversation"
 msgstr "新しい会話"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:570
+#: ask_alyf/public/js/ask_alyf.bundle.js:772
 msgid "New chat"
 msgstr "新しいチャット"
 
-#: ask_alyf/ask_alyf/agent.py:1346
+#: ask_alyf/ask_alyf/toolset.py:1132
 msgid "New document action needs correction."
 msgstr "新規ドキュメントアクションを修正する必要があります。"
 
-#: ask_alyf/public/js/field_agent.js:174
+#: ask_alyf/public/js/field_agent.js:169
 msgid "No active form found."
 msgstr "アクティブなフォームが見つかりません。"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1302
+#: ask_alyf/public/js/ask_alyf.bundle.js:1625
 msgid "No conversations yet."
 msgstr "まだ会話はありません。"
 
-#: ask_alyf/ask_alyf/tools.py:1099
+#: ask_alyf/ask_alyf/tools.py:1167
 #, python-brace-format
 msgid "No documentation URL was found for app '{0}'."
 msgstr "アプリ '{0}' のドキュメント URL が見つかりませんでした。"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1853
+#: ask_alyf/public/js/ask_alyf.bundle.js:2271
 msgid "No form is currently open."
 msgstr "現在開いているフォームはありません。"
 
-#: ask_alyf/ask_alyf/tools.py:184
+#: ask_alyf/ask_alyf/tools.py:196
 msgid "No installed app code roots were found."
 msgstr "インストール済みアプリのコードルートが見つかりませんでした。"
 
-#: ask_alyf/ask_alyf/tools.py:445
+#: ask_alyf/ask_alyf/tools.py:457
 msgid "No matching file was found."
 msgstr "一致するファイルが見つかりませんでした。"
 
-#: ask_alyf/ask_alyf/api.py:224
+#: ask_alyf/ask_alyf/api.py:244
 #, python-brace-format
 msgid "No pending operation matches call_id '{0}'."
 msgstr "call_id '{0}' に一致する保留中の操作はありません。"
 
-#: ask_alyf/ask_alyf/tools.py:1116
+#: ask_alyf/ask_alyf/tools.py:1184
 #, python-brace-format
 msgid "No pyproject.toml was found for app '{0}'."
 msgstr "アプリ '{0}' の pyproject.toml が見つかりませんでした。"
 
-#: ask_alyf/ask_alyf/agent.py:1542 ask_alyf/ask_alyf/agent.py:1651
-msgid "No recent conversation context."
-msgstr "最近の会話コンテキストはありません。"
-
-#: ask_alyf/ask_alyf/tools.py:1070
+#: ask_alyf/ask_alyf/tools.py:1082
 #, python-brace-format
 msgid "No repository URL was found for app '{0}'."
 msgstr "アプリ '{0}' のリポジトリ URL が見つかりませんでした。"
 
-#: ask_alyf/ask_alyf/api.py:996
+#: ask_alyf/ask_alyf/api.py:1032
 msgid "No valid file provided."
 msgstr "有効なファイルが指定されていません。"
 
-#: ask_alyf/ask_alyf/tools.py:1060
+#: ask_alyf/ask_alyf/tools.py:1072
 #, python-brace-format
 msgid "No version was found for app '{0}'."
 msgstr "アプリ '{0}' のバージョンが見つかりませんでした。"
@@ -905,31 +985,41 @@ msgstr "アプリ '{0}' のバージョンが見つかりませんでした。"
 msgid "One DocType per line. These DocTypes stay read-only in Agent mode."
 msgstr "1行につき1つのDocType。これらのDocTypesはAgent modeでは読み取り専用のままです。"
 
-#: ask_alyf/ask_alyf/tools.py:1026
+#. Description of a DocType
+#: ask_alyf/ask_alyf/doctype/ask_alyf_checkpoint/ask_alyf_checkpoint.json
+msgid "One LangGraph checkpoint. Written by FrappeCheckpointSaver, not by users."
+msgstr "1 つの LangGraph チェックポイントです。ユーザーではなく FrappeCheckpointSaver によって書き込まれます。"
+
+#. Description of a DocType
+#: ask_alyf/ask_alyf/doctype/ask_alyf_checkpoint_write/ask_alyf_checkpoint_write.json
+msgid "One pending write of a LangGraph checkpoint. Written by FrappeCheckpointSaver, not by users."
+msgstr "LangGraph チェックポイントの保留中の書き込み 1 件です。ユーザーではなく FrappeCheckpointSaver によって書き込まれます。"
+
+#: ask_alyf/ask_alyf/tools.py:1038
 msgid "Only Administrator and System Manager can run SQL queries."
 msgstr "AdministratorとSystem ManagerのみがSQLクエリを実行できます。"
 
-#: ask_alyf/ask_alyf/tools.py:1075
+#: ask_alyf/ask_alyf/tools.py:1087
 msgid "Only GitHub repositories are supported for release lookup."
 msgstr "リリース検索ではGitHubリポジトリのみがサポートされています。"
 
-#: ask_alyf/ask_alyf/tools.py:1029
+#: ask_alyf/ask_alyf/tools.py:1041
 msgid "Only a single read-only SQL statement is allowed."
 msgstr "読み取り専用のSQLステートメントは1つのみ許可されます。"
 
-#: ask_alyf/ask_alyf/api.py:622
+#: ask_alyf/ask_alyf/api.py:703
 msgid "Only backend actions can be confirmed by this endpoint."
 msgstr "このエンドポイントではbackend actionsのみ確認できます。"
 
-#: ask_alyf/ask_alyf/tools.py:1032
+#: ask_alyf/ask_alyf/tools.py:1044
 msgid "Only read-only SQL statements are allowed."
 msgstr "読み取り専用のSQLステートメントのみ許可されます。"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:557
+#: ask_alyf/public/js/ask_alyf.bundle.js:759
 msgid "Open Ask ALYF"
 msgstr "Ask ALYFを開く"
 
-#: ask_alyf/ask_alyf/agent.py:1344
+#: ask_alyf/ask_alyf/toolset.py:1130
 #, python-brace-format
 msgid "Open new {0}"
 msgstr "新しい{0}を開く"
@@ -948,6 +1038,15 @@ msgstr "OpenAI"
 msgid "OpenAI Compatible"
 msgstr "OpenAI互換"
 
+#: ask_alyf/ask_alyf/agent.py:159
+#, python-brace-format
+msgid "Opening a new {0}"
+msgstr "新しい {0} を開いています"
+
+#: ask_alyf/ask_alyf/agent.py:157
+msgid "Opening a page"
+msgstr "ページを開いています"
+
 #. Description of the 'Base URL' (Data) field in DocType 'Ask ALYF Settings'
 #. Description of the 'Vision Base URL' (Data) field in DocType 'Ask ALYF
 #. Settings'
@@ -955,301 +1054,317 @@ msgstr "OpenAI互換"
 msgid "Optional for OpenAI. Required for OpenAI-compatible providers."
 msgstr "OpenAIではオプション。OpenAI互換プロバイダーでは必須です。"
 
-#: ask_alyf/ask_alyf/tools.py:526
+#. Label of a Data field in DocType 'Ask ALYF Checkpoint'
+#: ask_alyf/ask_alyf/doctype/ask_alyf_checkpoint/ask_alyf_checkpoint.json
+msgid "Parent Checkpoint ID"
+msgstr "親チェックポイント ID"
+
+#: ask_alyf/ask_alyf/tools.py:538
 #, python-brace-format
 msgid "Path '{0}' must point to a file inside an installed app."
 msgstr "パス '{0}' はインストール済みアプリ内のファイルを指す必要があります。"
 
-#: ask_alyf/ask_alyf/tools.py:257
+#: ask_alyf/ask_alyf/tools.py:269
 #, python-brace-format
 msgid "Path '{0}' was not found in app '{1}'."
 msgstr "パス '{0}' はアプリ '{1}' に見つかりませんでした。"
 
-#: ask_alyf/ask_alyf/tools.py:206
+#: ask_alyf/ask_alyf/deep_agent_backend.py:165
+#, python-brace-format
+msgid "Path is not a file: {0}"
+msgstr "パスがファイルではありません: {0}"
+
+#: ask_alyf/ask_alyf/deep_agent_backend.py:93 ask_alyf/ask_alyf/tools.py:218
 msgid "Path must start with an installed app name."
 msgstr "パスはインストール済みアプリ名で始まる必要があります。"
 
-#. Label of the pending_operation_json (Code) field in DocType 'Ask ALYF
-#. Conversation'
+#. Label of a Code field in DocType 'Ask ALYF Conversation'
 #: ask_alyf/ask_alyf/doctype/ask_alyf_conversation/ask_alyf_conversation.json
 msgid "Pending Operation JSON"
 msgstr "保留中の操作 JSON"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1659
+#: ask_alyf/public/js/ask_alyf.bundle.js:2090
 msgid "Pending operation"
 msgstr "保留中の操作"
 
-#: ask_alyf/ask_alyf/agent.py:1013
-msgid "Planning document change..."
-msgstr "ドキュメント変更を計画中..."
+#: ask_alyf/ask_alyf/agent.py:133
+msgid "Planning the next steps"
+msgstr "次のステップを計画しています"
 
-#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.py:105
+#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.py:142
 msgid "Please configure a Base URL first and save the settings, then we can fetch available models."
 msgstr "最初にベースURLを設定して設定を保存してください。その後、利用可能なモデルを取得できます。"
 
-#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.py:98
+#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.py:135
 msgid "Please configure an API key first and save the settings, then we can fetch available models."
 msgstr "最初にAPIキーを設定して設定を保存してください。その後、利用可能なモデルを取得できます。"
 
-#: ask_alyf/ask_alyf/agent.py:1437
+#: ask_alyf/ask_alyf/toolset.py:1223
 msgid "Prepared add child row action."
 msgstr "子行追加アクションを準備しました。"
 
-#: ask_alyf/ask_alyf/agent.py:1188
+#: ask_alyf/ask_alyf/toolset.py:974
 msgid "Prepared amend proposal."
 msgstr "修正提案を準備しました。"
 
-#: ask_alyf/ask_alyf/agent.py:1274
+#: ask_alyf/ask_alyf/toolset.py:1060
 msgid "Prepared attach file proposal."
 msgstr "ファイル添付提案を準備しました。"
 
-#: ask_alyf/ask_alyf/agent.py:1063
+#: ask_alyf/ask_alyf/toolset.py:849
 msgid "Prepared batch create proposal."
 msgstr "一括作成提案を準備しました。"
 
-#: ask_alyf/ask_alyf/agent.py:1167
+#: ask_alyf/ask_alyf/toolset.py:953
 msgid "Prepared cancel proposal."
 msgstr "キャンセル提案を準備しました。"
 
-#: ask_alyf/ask_alyf/agent.py:1473
+#: ask_alyf/ask_alyf/toolset.py:1259
 msgid "Prepared chart display."
 msgstr "グラフ表示を準備しました。"
 
-#: ask_alyf/ask_alyf/agent.py:1039
+#: ask_alyf/ask_alyf/toolset.py:825
 msgid "Prepared create proposal."
 msgstr "作成提案を準備しました。"
 
-#: ask_alyf/ask_alyf/agent.py:1209
+#: ask_alyf/ask_alyf/toolset.py:995
 msgid "Prepared delete proposal."
 msgstr "削除提案を準備しました。"
 
-#: ask_alyf/ask_alyf/agent.py:1301
+#: ask_alyf/ask_alyf/toolset.py:1087
 msgid "Prepared method call proposal."
 msgstr "メソッド呼び出し提案を準備しました。"
 
-#: ask_alyf/ask_alyf/agent.py:1347
+#: ask_alyf/ask_alyf/toolset.py:1133
 msgid "Prepared new document action."
 msgstr "新規ドキュメントアクションを準備しました。"
 
-#: ask_alyf/ask_alyf/agent.py:1239
+#: ask_alyf/ask_alyf/toolset.py:1025
 msgid "Prepared rename proposal."
 msgstr "名前変更提案を準備しました。"
 
-#: ask_alyf/ask_alyf/agent.py:1322
+#: ask_alyf/ask_alyf/toolset.py:1108
 msgid "Prepared route action."
 msgstr "ルートアクションを準備しました。"
 
-#: ask_alyf/ask_alyf/agent.py:1367
+#: ask_alyf/ask_alyf/toolset.py:1153
 msgid "Prepared scroll action."
 msgstr "スクロールアクションを準備しました。"
 
-#: ask_alyf/ask_alyf/agent.py:1402
+#: ask_alyf/ask_alyf/toolset.py:1188
 msgid "Prepared set field action."
 msgstr "フィールド設定アクションを準備しました。"
 
-#: ask_alyf/ask_alyf/agent.py:1123
+#: ask_alyf/ask_alyf/toolset.py:909
 msgid "Prepared set value proposal."
 msgstr "値設定提案を準備しました。"
 
-#: ask_alyf/ask_alyf/agent.py:981
+#: ask_alyf/ask_alyf/toolset.py:799
 msgid "Prepared skill proposal."
 msgstr "スキル提案を準備しました。"
 
-#: ask_alyf/ask_alyf/agent.py:1146
+#: ask_alyf/ask_alyf/toolset.py:932
 msgid "Prepared submit proposal."
 msgstr "提出提案を準備しました。"
 
-#: ask_alyf/ask_alyf/agent.py:1092
+#: ask_alyf/ask_alyf/toolset.py:878
 msgid "Prepared update proposal."
 msgstr "更新提案を準備しました。"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1156
+#: ask_alyf/ask_alyf/agent.py:163
+msgid "Preparing a chart"
+msgstr "チャートを準備しています"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1479
 msgid "Projects"
 msgstr "プロジェクト"
 
-#: ask_alyf/ask_alyf/tools.py:1594
+#: ask_alyf/ask_alyf/tools.py:1662
 msgid "Provide at least one chart in frappe_charts."
 msgstr "frappe_chartsに少なくとも1つのグラフを指定してください。"
 
-#: ask_alyf/ask_alyf/tools.py:470
+#: ask_alyf/ask_alyf/tools.py:482
 msgid "Provide at least one label to translate."
 msgstr "翻訳するラベルを少なくとも1つ指定してください。"
 
-#: ask_alyf/ask_alyf/tools.py:489 ask_alyf/ask_alyf/tools.py:626
+#: ask_alyf/ask_alyf/tools.py:501 ask_alyf/ask_alyf/tools.py:638
 msgid "Query is required."
 msgstr "クエリは必須です。"
 
-#: ask_alyf/ask_alyf/agent.py:907
-msgid "Reading GitHub releases..."
-msgstr "GitHub リリースを読み込んでいます..."
+#: ask_alyf/ask_alyf/agent.py:125
+msgid "Reading documentation"
+msgstr "ドキュメントを読み込み中"
 
-#: ask_alyf/ask_alyf/agent.py:894
-msgid "Reading app version..."
-msgstr "アプリのバージョンを読み込んでいます..."
+#: ask_alyf/ask_alyf/agent.py:116
+msgid "Reading instructions"
+msgstr "指示を読み込み中"
 
-#: ask_alyf/ask_alyf/agent.py:651
-msgid "Reading code file..."
-msgstr "コードファイルを読み込んでいます..."
+#: ask_alyf/ask_alyf/agent.py:118
+msgid "Reading the attached document"
+msgstr "添付ドキュメントを読み込み中"
 
-#: ask_alyf/ask_alyf/agent.py:920
-msgid "Reading documentation..."
-msgstr "ドキュメントを読み込んでいます..."
+#: ask_alyf/ask_alyf/agent.py:102
+#, python-brace-format
+msgid "Reading {0}"
+msgstr "{0} を読み込み中"
 
-#: ask_alyf/ask_alyf/agent.py:807
-msgid "Reading file..."
-msgstr "ファイルを読み込んでいます..."
+#: ask_alyf/ask_alyf/agent.py:98
+#, python-brace-format
+msgid "Reading {0} list"
+msgstr "{0} の一覧を読み込み中"
 
-#: ask_alyf/ask_alyf/agent.py:935
-msgid "Reading skill..."
-msgstr "スキルを読み込んでいます..."
-
-#: ask_alyf/ask_alyf/api.py:789 ask_alyf/ask_alyf/api.py:875
-#: ask_alyf/ask_alyf/api.py:904
+#: ask_alyf/ask_alyf/api.py:833 ask_alyf/ask_alyf/api.py:940
 #, python-brace-format
 msgid "Reason: {0}"
 msgstr "理由: {0}"
 
-#: ask_alyf/ask_alyf/agent.py:125
-msgid "Recent conversation context:"
-msgstr "最近の会話のコンテキスト:"
+#. Label of a Select field in DocType 'Ask ALYF Settings'
+#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.json
+msgid "Reasoning Effort"
+msgstr "推論の労力"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1762
+#: ask_alyf/public/js/ask_alyf.bundle.js:2183
 #, python-brace-format
 msgid "Records to create ({0})"
 msgstr "作成するレコード ({0})"
 
-#: ask_alyf/ask_alyf/tools.py:729
+#: ask_alyf/ask_alyf/tools.py:741
 msgid "Reference doctype is required."
 msgstr "参照 DocType は必須です。"
 
-#: ask_alyf/ask_alyf/tools.py:733
+#: ask_alyf/ask_alyf/tools.py:745
 msgid "Reference name is required."
 msgstr "参照名は必須です。"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:497
+#: ask_alyf/public/js/ask_alyf.bundle.js:703
 msgid "Reject"
 msgstr "拒否"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:516
+#: ask_alyf/public/js/ask_alyf.bundle.js:720
 msgid "Reject all"
 msgstr "すべて拒否"
 
-#: ask_alyf/ask_alyf/agent.py:1238
+#: ask_alyf/ask_alyf/toolset.py:1024
 msgid "Rename proposal needs correction."
 msgstr "名前変更の提案には修正が必要です。"
 
-#: ask_alyf/ask_alyf/agent.py:1236
+#: ask_alyf/ask_alyf/toolset.py:1022
 #, python-brace-format
 msgid "Rename {0} {1} to {2}"
 msgstr "{0} {1} の名前を {2} に変更"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:561
+#: ask_alyf/ask_alyf/agent.py:150
+#, python-brace-format
+msgid "Renaming {0}"
+msgstr "{0} の名前を変更中"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:763
 msgid "Resize chat window"
 msgstr "チャットウィンドウのサイズを変更"
 
-#: ask_alyf/ask_alyf/agent.py:789
-msgid "Resolving file ID..."
-msgstr "File ID を解決しています..."
-
-#: ask_alyf/public/js/field_agent.js:278
+#: ask_alyf/public/js/field_agent.js:272
 msgid "Reverted."
 msgstr "元に戻しました。"
 
-#: ask_alyf/ask_alyf/agent.py:1321
+#: ask_alyf/ask_alyf/toolset.py:1107
 msgid "Route action needs correction."
 msgstr "ルートアクションを修正する必要があります。"
 
-#: ask_alyf/ask_alyf/tools.py:1626
+#: ask_alyf/ask_alyf/tools.py:1694
 #, python-brace-format
 msgid "Route part #{0} must be a non-empty string."
 msgstr "ルート部分 #{0} は空でない文字列である必要があります。"
 
-#: ask_alyf/ask_alyf/agent.py:882
-msgid "Running SQL query..."
-msgstr "SQL クエリを実行しています..."
+#: ask_alyf/ask_alyf/agent.py:114
+msgid "Running a database query"
+msgstr "データベースクエリを実行中"
 
-#. Label of the vision_model_is_chat_model (Check) field in DocType 'Ask ALYF
-#. Settings'
+#: ask_alyf/ask_alyf/agent.py:154
+#, python-brace-format
+msgid "Running {0}"
+msgstr "{0} を実行中"
+
+#. Label of a Check field in DocType 'Ask ALYF Settings'
 #: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.json
 msgid "Same as Chat"
 msgstr "チャットと同じ"
 
-#: ask_alyf/ask_alyf/agent.py:1366
+#: ask_alyf/ask_alyf/agent.py:116
+msgid "Saving instructions"
+msgstr "指示を保存中"
+
+#: ask_alyf/ask_alyf/toolset.py:1152
 msgid "Scroll action needs correction."
 msgstr "スクロールアクションを修正する必要があります。"
 
-#: ask_alyf/ask_alyf/agent.py:1364
+#: ask_alyf/ask_alyf/toolset.py:1150
 #, python-brace-format
 msgid "Scroll to field {0}"
 msgstr "フィールド {0} へスクロール"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1893
+#: ask_alyf/public/js/ask_alyf.bundle.js:2305
 msgid "Scrolling to fields is not available on this form."
 msgstr "このフォームではフィールドへのスクロールは利用できません。"
 
-#: ask_alyf/ask_alyf/agent.py:637
-msgid "Searching code..."
-msgstr "コードを検索しています..."
+#: ask_alyf/ask_alyf/agent.py:127
+msgid "Searching the documentation"
+msgstr "ドキュメントを検索中"
 
-#: ask_alyf/ask_alyf/agent.py:739
-msgid "Searching file contents..."
-msgstr "ファイルの内容を検索しています..."
+#: ask_alyf/ask_alyf/agent.py:129
+msgid "Searching the source code"
+msgstr "ソースコードを検索中"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1102
+#: ask_alyf/public/js/ask_alyf.bundle.js:1425
 msgid "Selling"
 msgstr "販売"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1577
-msgid "Sending..."
-msgstr "送信中..."
-
-#: ask_alyf/ask_alyf/agent.py:1401
+#: ask_alyf/ask_alyf/toolset.py:1187
 msgid "Set field action needs correction."
 msgstr "フィールド設定アクションを修正する必要があります。"
 
-#: ask_alyf/ask_alyf/agent.py:1399
+#: ask_alyf/ask_alyf/toolset.py:1185
 #, python-brace-format
 msgid "Set field {0} on current form"
 msgstr "現在のフォームでフィールド {0} を設定"
 
-#: ask_alyf/ask_alyf/agent.py:1122
+#: ask_alyf/ask_alyf/toolset.py:908
 msgid "Set value proposal needs correction."
 msgstr "値設定の提案を修正する必要があります。"
 
-#: ask_alyf/ask_alyf/agent.py:1120
+#: ask_alyf/ask_alyf/toolset.py:906
 #, python-brace-format
 msgid "Set {0} on {1} {2}"
 msgstr "{1} {2} に {0} を設定"
 
-#: ask_alyf/ask_alyf/agent.py:1467
+#: ask_alyf/ask_alyf/toolset.py:1253
 msgid "Show chart"
 msgstr "チャートを表示"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1131
+#: ask_alyf/public/js/ask_alyf.bundle.js:1454
 msgid "Show employee headcount by department as a chart"
 msgstr "部門別の従業員数をチャートで表示"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1150
+#: ask_alyf/public/js/ask_alyf.bundle.js:1473
 msgid "Show me open Work Orders and their status"
 msgstr "オープンな作業指示とそのステータスを表示"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1176
+#: ask_alyf/public/js/ask_alyf.bundle.js:1499
 msgid "Show me the top 10 DocTypes by record count"
 msgstr "レコード数順の上位 10 件の DocTypes を表示"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1123
+#: ask_alyf/public/js/ask_alyf.bundle.js:1446
 msgid "Show me unpaid Sales Invoices older than 30 days"
 msgstr "30 日以上経過した未払いの販売請求書を表示"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1168
+#: ask_alyf/public/js/ask_alyf.bundle.js:1491
 msgid "Show me unresolved issues from this week"
 msgstr "今週の未解決の問題を表示してください"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1158
+#: ask_alyf/public/js/ask_alyf.bundle.js:1481
 msgid "Show project progress as a chart"
 msgstr "プロジェクトの進捗をチャートで表示してください"
 
-#: ask_alyf/ask_alyf/agent.py:1467
+#: ask_alyf/ask_alyf/toolset.py:1253
 #, python-brace-format
 msgid "Show {0} charts"
 msgstr "{0} 件のチャートを表示"
@@ -1264,7 +1379,7 @@ msgstr "スキル「{0}」は現在のユーザーでは利用できません。
 msgid "Skill '{0}' was not found."
 msgstr "スキル「{0}」が見つかりませんでした。"
 
-#: ask_alyf/ask_alyf/agent.py:972
+#: ask_alyf/ask_alyf/toolset.py:790
 msgid "Skill description is required."
 msgstr "スキルの説明は必須です。"
 
@@ -1272,19 +1387,27 @@ msgstr "スキルの説明は必須です。"
 msgid "Skill name is required."
 msgstr "スキル名は必須です。"
 
-#: ask_alyf/ask_alyf/agent.py:980
+#: ask_alyf/ask_alyf/toolset.py:798
 msgid "Skill proposal needs correction."
 msgstr "スキルの提案には修正が必要です。"
 
-#: ask_alyf/ask_alyf/agent.py:970
+#: ask_alyf/ask_alyf/toolset.py:788
 msgid "Skill title is required."
 msgstr "スキルのタイトルは必須です。"
 
-#: ask_alyf/ask_alyf/tools.py:1362
+#: ask_alyf/ask_alyf/tools.py:1430
 msgid "Some rows failed."
 msgstr "一部の行が失敗しました。"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:568
+#: ask_alyf/ask_alyf/deep_agent_backend.py:39
+msgid "Source code is read-only"
+msgstr "ソースコードは読み取り専用です"
+
+#: ask_alyf/ask_alyf/deep_agent_backend.py:160
+msgid "Source file path is required"
+msgstr "ソースファイルのパスは必須です"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:770
 msgid "Start a new conversation"
 msgstr "新しい会話を開始"
 
@@ -1294,122 +1417,204 @@ msgstr "新しい会話を開始"
 msgid "Start typing to choose a model. Available models are loaded from the configured provider."
 msgstr "モデルを選択するには入力を開始してください。利用可能なモデルは設定されたプロバイダーから読み込まれます。"
 
-#: ask_alyf/ask_alyf/api.py:832
+#: ask_alyf/ask_alyf/api.py:876
 msgid "Status must be one of success, failed, or rejected."
 msgstr "ステータスは success、failed、rejected のいずれかである必要があります。"
 
-#: ask_alyf/public/js/field_agent.js:205
+#: ask_alyf/public/js/field_agent.js:200
 msgid "Still generating..."
 msgstr "生成中..."
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1138
+#: ask_alyf/public/js/ask_alyf.bundle.js:1461
 msgid "Stock"
 msgstr "在庫"
 
-#: ask_alyf/ask_alyf/agent.py:1145
+#: ask_alyf/public/js/ask_alyf.bundle.js:1736
+msgid "Stop this run"
+msgstr "この実行を停止"
+
+#: ask_alyf/ask_alyf/api.py:601
+msgid "Stopped. Send a message to pick up from here."
+msgstr "停止しました。ここから再開するにはメッセージを送信してください。"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1757
+msgid "Stopping..."
+msgstr "停止中..."
+
+#: ask_alyf/ask_alyf/toolset.py:931
 msgid "Submit proposal needs correction."
 msgstr "送信の提案には修正が必要です。"
 
-#: ask_alyf/ask_alyf/agent.py:1143
+#: ask_alyf/ask_alyf/toolset.py:929
 #, python-brace-format
 msgid "Submit {0} {1}"
 msgstr "{0} {1} を送信"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1165
+#: ask_alyf/public/js/ask_alyf.bundle.js:1488
 msgid "Support"
 msgstr "サポート"
 
-#. Label of the support_phone_number (Phone) field in DocType 'Ask ALYF
-#. Settings'
+#. Label of a Phone field in DocType 'Ask ALYF Settings'
 #: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.json
 msgid "Support Phone Number"
 msgstr "サポート電話番号"
 
-#. Label of the system_prompt (Code) field in DocType 'Ask ALYF Settings'
+#. Label of a Code field in DocType 'Ask ALYF Settings'
 #: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.json
 msgid "System Prompt"
 msgstr "システムプロンプト"
 
-#: ask_alyf/ask_alyf/api.py:826
+#. Label of a Data field in DocType 'Ask ALYF Checkpoint Write'
+#: ask_alyf/ask_alyf/doctype/ask_alyf_checkpoint_write/ask_alyf_checkpoint_write.json
+msgid "Task ID"
+msgstr ""
+
+#. Label of a Data field in DocType 'Ask ALYF Checkpoint Write'
+#: ask_alyf/ask_alyf/doctype/ask_alyf_checkpoint_write/ask_alyf_checkpoint_write.json
+msgid "Task Path"
+msgstr "タスクパス"
+
+#: ask_alyf/ask_alyf/toolset.py:312
+msgid "That confirmation did not match this operation. Propose it again on its own."
+msgstr "その確認はこの操作と一致しませんでした。単独で再度提案してください。"
+
+#: ask_alyf/ask_alyf/tools.py:1110
+msgid "The Compendium app is not installed."
+msgstr "Compendium アプリがインストールされていません。"
+
+#: ask_alyf/ask_alyf/toolset.py:330
+msgid "The action could not be completed."
+msgstr "アクションを完了できませんでした。"
+
+#: ask_alyf/ask_alyf/api.py:507 ask_alyf/ask_alyf/api.py:534
+msgid "The background job does not match this message."
+msgstr "バックグラウンドジョブがこのメッセージと一致しません。"
+
+#: ask_alyf/ask_alyf/api.py:505 ask_alyf/ask_alyf/api.py:530
+#: ask_alyf/ask_alyf/api.py:556
+msgid "The message could not be found in this conversation."
+msgstr "この会話内にメッセージが見つかりませんでした。"
+
+#: ask_alyf/ask_alyf/agent.py:594
+msgid "The operation was completed, but the follow-up response could not be generated."
+msgstr "操作は完了しましたが、後続の応答を生成できませんでした。"
+
+#: ask_alyf/ask_alyf/api.py:870
 msgid "The pending operation is not a frontend action."
 msgstr "保留中の操作はフロントエンドアクションではありません。"
 
-#: ask_alyf/ask_alyf/api.py:820
+#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.py:241
+#, python-brace-format
+msgid "The selected Chat Model ({0}) does not support Reasoning Effort ({1})."
+msgstr "選択されたチャットモデル ({0}) は推論の強度 ({1}) をサポートしていません。"
+
+#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.py:237
+#, python-brace-format
+msgid "The selected Chat Model ({0}) does not support Reasoning Effort ({1}). Supported values: {2}."
+msgstr "選択されたチャットモデル ({0}) は推論の強度 ({1}) をサポートしていません。サポートされている値: {2}。"
+
+#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.py:98
+#, python-brace-format
+msgid "The selected Chat Model ({0}) does not support function calling."
+msgstr "選択されたチャットモデル ({0}) は関数呼び出しをサポートしていません。"
+
+#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.py:106
+#, python-brace-format
+msgid "The selected Chat Model ({0}) does not support vision. Choose a vision-capable chat model or configure a separate vision model."
+msgstr "選択されたチャットモデル ({0}) は画像認識をサポートしていません。画像認識に対応したチャットモデルを選択するか、別のビジョンモデルを設定してください。"
+
+#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.py:115
+#, python-brace-format
+msgid "The selected Vision Model ({0}) does not support vision."
+msgstr "選択されたビジョンモデル ({0}) は画像認識をサポートしていません。"
+
+#: ask_alyf/ask_alyf/toolset.py:320
+msgid "The user rejected this operation."
+msgstr "ユーザーがこの操作を拒否しました。"
+
+#: ask_alyf/ask_alyf/api.py:864
 msgid "There is no pending frontend action to resolve."
 msgstr "解決すべき保留中のフロントエンドアクションはありません。"
 
-#: ask_alyf/ask_alyf/api.py:614
+#: ask_alyf/ask_alyf/api.py:695
 msgid "There is no pending operation to confirm."
 msgstr "確認すべき保留中の操作はありません。"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:720
+#: ask_alyf/public/js/ask_alyf.bundle.js:911
 msgid "Thinking..."
 msgstr "考えています..."
 
-#: ask_alyf/public/js/field_agent.js:208
+#: ask_alyf/public/js/field_agent.js:203
 msgid "This is taking a moment..."
 msgstr "少し時間がかかっています..."
 
-#: ask_alyf/ask_alyf/tools.py:1470
+#. Label of a Data field in DocType 'Ask ALYF Checkpoint'
+#. Label of a Data field in DocType 'Ask ALYF Checkpoint Write'
+#: ask_alyf/ask_alyf/doctype/ask_alyf_checkpoint/ask_alyf_checkpoint.json
+#: ask_alyf/ask_alyf/doctype/ask_alyf_checkpoint_write/ask_alyf_checkpoint_write.json
+msgid "Thread ID"
+msgstr "スレッドID"
+
+#: ask_alyf/ask_alyf/tools.py:1538
 msgid "Too many chart datasets."
 msgstr "チャートのデータセットが多すぎます。"
 
-#: ask_alyf/ask_alyf/tools.py:1451
+#: ask_alyf/ask_alyf/tools.py:1519
 msgid "Too many chart labels."
 msgstr "チャートのラベルが多すぎます。"
 
-#: ask_alyf/ask_alyf/tools.py:1597
+#: ask_alyf/ask_alyf/tools.py:1665
 msgid "Too many charts in one request."
 msgstr "1つのリクエストにチャートが多すぎます。"
 
-#: ask_alyf/ask_alyf/agent.py:620
-msgid "Translating UI labels..."
-msgstr "UIラベルを翻訳しています..."
+#: ask_alyf/ask_alyf/agent.py:112
+msgid "Translating labels"
+msgstr "ラベルを翻訳しています"
 
-#: ask_alyf/ask_alyf/tools.py:1200
+#: ask_alyf/ask_alyf/tools.py:1268
 msgid "Unknown error."
 msgstr "不明なエラー。"
 
-#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.py:137
+#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.py:182
 #, python-brace-format
 msgid "Unsupported LLM provider: {0}"
 msgstr "サポートされていないLLMプロバイダー: {0}"
 
-#: ask_alyf/ask_alyf/tools.py:1301
+#: ask_alyf/ask_alyf/tools.py:1369
 #, python-brace-format
 msgid "Unsupported action '{0}'."
 msgstr "サポートされていないアクション '{0}'。"
 
-#: ask_alyf/ask_alyf/tools.py:933
+#: ask_alyf/ask_alyf/tools.py:945
 #, python-brace-format
 msgid "Unsupported file type '{0}'. Supported types: PDF, PNG, JPG, GIF, WebP."
 msgstr "サポートされていないファイルタイプ '{0}'。サポートされるタイプ: PDF、PNG、JPG、GIF、WebP。"
 
-#: ask_alyf/ask_alyf/tools.py:1612 ask_alyf/ask_alyf/tools.py:1675
+#: ask_alyf/ask_alyf/tools.py:1680 ask_alyf/ask_alyf/tools.py:1743
 #, python-brace-format
 msgid "Unsupported frontend action '{0}'."
 msgstr "サポートされていないフロントエンドアクション '{0}'。"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1926
+#: ask_alyf/public/js/ask_alyf.bundle.js:2334
 #, python-brace-format
 msgid "Unsupported frontend action: {0}"
 msgstr "サポートされていないフロントエンドアクション: {0}"
 
-#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.py:127
+#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.py:170
 #, python-brace-format
 msgid "Unsupported model configuration: {0}"
 msgstr "サポートされていないモデル構成: {0}"
 
-#: ask_alyf/ask_alyf/tools.py:1142 ask_alyf/ask_alyf/tools.py:1162
+#: ask_alyf/ask_alyf/tools.py:1210 ask_alyf/ask_alyf/tools.py:1230
 #, python-brace-format
 msgid "Unsupported operation kind '{0}'."
 msgstr "サポートされていない操作の種類 '{0}'。"
 
-#: ask_alyf/ask_alyf/tools.py:1511
+#: ask_alyf/ask_alyf/tools.py:1579
 msgid "Unsupported or missing chart type."
 msgstr "サポートされていない、または不足しているチャートタイプ。"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1077
+#: ask_alyf/public/js/ask_alyf.bundle.js:1400
 msgid "Untitled conversation"
 msgstr "無題の会話"
 
@@ -1418,165 +1623,210 @@ msgstr "無題の会話"
 msgid "Update Ask ALYF Settings"
 msgstr "Ask ALYF 設定を更新"
 
-#: ask_alyf/ask_alyf/agent.py:1091
+#: ask_alyf/ask_alyf/toolset.py:877
 msgid "Update proposal needs correction."
 msgstr "更新提案には修正が必要です。"
 
-#: ask_alyf/ask_alyf/agent.py:1089
+#: ask_alyf/ask_alyf/toolset.py:875
 #, python-brace-format
 msgid "Update {0} {1}"
 msgstr "{0} {1} を更新"
 
-#. Label of the vision_api_key (Password) field in DocType 'Ask ALYF Settings'
+#. Label of a Long Text field in DocType 'Ask ALYF Checkpoint Write'
+#: ask_alyf/ask_alyf/doctype/ask_alyf_checkpoint_write/ask_alyf_checkpoint_write.json
+msgid "Value Data (base64)"
+msgstr "値データ (base64)"
+
+#. Label of a Data field in DocType 'Ask ALYF Checkpoint Write'
+#: ask_alyf/ask_alyf/doctype/ask_alyf_checkpoint_write/ask_alyf_checkpoint_write.json
+msgid "Value Type"
+msgstr "値の型"
+
+#. Label of a Password field in DocType 'Ask ALYF Settings'
 #: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.json
 msgid "Vision API Key"
 msgstr "Vision API キー"
 
-#. Label of the vision_base_url (Data) field in DocType 'Ask ALYF Settings'
+#. Label of a Data field in DocType 'Ask ALYF Settings'
 #: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.json
 msgid "Vision Base URL"
 msgstr "Vision ベース URL"
 
-#. Label of the vision_llm_provider (Select) field in DocType 'Ask ALYF
-#. Settings'
+#. Label of a Select field in DocType 'Ask ALYF Settings'
 #: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.json
 msgid "Vision LLM Provider"
 msgstr "Vision LLM プロバイダー"
 
-#. Label of the vision_model (Autocomplete) field in DocType 'Ask ALYF
-#. Settings'
+#. Label of a Autocomplete field in DocType 'Ask ALYF Settings'
 #: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.json
 msgid "Vision Model"
 msgstr "Vision モデル"
 
-#. Label of the vision_provider_tab (Tab Break) field in DocType 'Ask ALYF
-#. Settings'
+#. Label of a Tab Break field in DocType 'Ask ALYF Settings'
 #: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.json
 msgid "Vision Provider"
 msgstr "Vision プロバイダー"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:623
-#: ask_alyf/public/js/ask_alyf.bundle.js:625
+#: ask_alyf/public/js/ask_alyf.bundle.js:823
+#: ask_alyf/public/js/ask_alyf.bundle.js:825
 msgid "Voice input"
 msgstr "音声入力"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2432
+#: ask_alyf/public/js/ask_alyf.bundle.js:2831
 #, python-brace-format
 msgid "Voice input language: {0}"
 msgstr "音声入力言語: {0}"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1608
+#: ask_alyf/public/js/ask_alyf.bundle.js:2017
 msgid "Waiting for response..."
 msgstr "応答を待っています..."
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1105
+#: ask_alyf/public/js/ask_alyf.bundle.js:1428
 msgid "What Sales Orders are pending delivery?"
 msgstr "配送待ちの販売オーダーは何ですか？"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1177
+#: ask_alyf/public/js/ask_alyf.bundle.js:1500
 msgid "What are the recent Error Logs?"
 msgstr "最近の Error Logs は何ですか？"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1159
+#: ask_alyf/public/js/ask_alyf.bundle.js:1482
 msgid "What open tasks are assigned to me?"
 msgstr "私に割り当てられているオープンなタスクは何ですか？"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1142
+#: ask_alyf/public/js/ask_alyf.bundle.js:1465
 msgid "What were the top 10 most moved items this month?"
 msgstr "今月最も動いた上位10アイテムは何でしたか？"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1169
+#: ask_alyf/public/js/ask_alyf.bundle.js:1492
 msgid "What's the average resolution time for issues?"
 msgstr "Issues の平均解決時間はどれくらいですか？"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1124
+#: ask_alyf/public/js/ask_alyf.bundle.js:1447
 msgid "What's the total outstanding receivables?"
 msgstr "未収金の合計はいくらですか？"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1114
+#: ask_alyf/public/js/ask_alyf.bundle.js:1437
 msgid "Which Purchase Orders are overdue?"
 msgstr "期限超過の購買オーダーはどれですか？"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1132
+#: ask_alyf/public/js/ask_alyf.bundle.js:1455
 msgid "Which employees are on leave today?"
 msgstr "今日休暇中の従業員は誰ですか？"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1141
+#: ask_alyf/public/js/ask_alyf.bundle.js:1464
 msgid "Which items are below their reorder level?"
 msgstr "再発注レベルを下回っているアイテムはどれですか？"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1160
+#: ask_alyf/public/js/ask_alyf.bundle.js:1483
 msgid "Which project tasks are overdue?"
 msgstr "期限超過のプロジェクトタスクはどれですか？"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1178
+#: ask_alyf/public/js/ask_alyf.bundle.js:1501
 msgid "Which users logged in today?"
 msgstr "本日ログインしたユーザーは誰ですか？"
 
-#: ask_alyf/ask_alyf/api.py:427 ask_alyf/ask_alyf/api.py:439
-#: ask_alyf/ask_alyf/api.py:456 ask_alyf/ask_alyf/api.py:476
-#: ask_alyf/ask_alyf/api.py:608 ask_alyf/ask_alyf/api.py:697
-#: ask_alyf/ask_alyf/api.py:814 ask_alyf/ask_alyf/api.py:941
-#: ask_alyf/ask_alyf/api.py:979
+#: ask_alyf/ask_alyf/api.py:360 ask_alyf/ask_alyf/api.py:372
+#: ask_alyf/ask_alyf/api.py:389 ask_alyf/ask_alyf/api.py:424
+#: ask_alyf/ask_alyf/api.py:492 ask_alyf/ask_alyf/api.py:516
+#: ask_alyf/ask_alyf/api.py:685 ask_alyf/ask_alyf/api.py:753
+#: ask_alyf/ask_alyf/api.py:858 ask_alyf/ask_alyf/api.py:977
+#: ask_alyf/ask_alyf/api.py:1015
 msgid "You do not have access to Ask ALYF."
 msgstr "Ask ALYF へのアクセス権限がありません。"
 
-#: ask_alyf/ask_alyf/api.py:948
+#: ask_alyf/ask_alyf/api.py:984
 #, python-brace-format
 msgid "You do not have read permission on {0}."
 msgstr "{0} に対する読み取り権限がありません。"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2373
+#: ask_alyf/public/js/ask_alyf.bundle.js:2772
 msgid "Your browser does not support voice input."
 msgstr "お使いのブラウザは音声入力に対応していません。"
 
-#: ask_alyf/ask_alyf/agent.py:1531
-msgid "all installed app code roots available to you"
-msgstr "利用可能なすべてのインストール済みアプリのコードルート"
+#: ask_alyf/ask_alyf/agent.py:154
+msgid "an action"
+msgstr "アクション"
 
-#: ask_alyf/ask_alyf/api.py:785
+#: ask_alyf/ask_alyf/agent.py:131
+msgid "assistant"
+msgstr "アシスタント"
+
+#: ask_alyf/ask_alyf/api.py:829
 msgid "chart"
-msgstr "チャート"
+msgstr ""
 
 #. Description of a DocType
 #: ask_alyf/ask_alyf/doctype/ask_alyf_skill/ask_alyf_skill.json
 msgid "debug session"
 msgstr "デバッグセッション"
 
-#: ask_alyf/ask_alyf/api.py:302
+#: ask_alyf/ask_alyf/agent.py:93
 msgid "doctype"
 msgstr "DocType"
 
-#: ask_alyf/ask_alyf/api.py:865
+#: ask_alyf/ask_alyf/api.py:909
 msgid "frontend action"
 msgstr "フロントエンドアクション"
 
-#: ask_alyf/ask_alyf/tools.py:1357
-#, python-brace-format
-msgid "row {0}"
-msgstr "行 {0}"
+#. Option for the 'Reasoning Effort' (Select) field in DocType 'Ask ALYF
+#. Settings'
+#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.json
+msgid "high"
+msgstr "高"
 
-#: ask_alyf/ask_alyf/tools.py:1355
+#. Option for the 'Reasoning Effort' (Select) field in DocType 'Ask ALYF
+#. Settings'
+#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.json
+msgid "low"
+msgstr "低"
+
+#. Option for the 'Reasoning Effort' (Select) field in DocType 'Ask ALYF
+#. Settings'
+#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.json
+msgid "max"
+msgstr "最大"
+
+#. Option for the 'Reasoning Effort' (Select) field in DocType 'Ask ALYF
+#. Settings'
+#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.json
+msgid "medium"
+msgstr "中"
+
+#: ask_alyf/ask_alyf/tools.py:1425
+msgid "row {0}"
+msgstr ""
+
+#: ask_alyf/ask_alyf/tools.py:1423
 #, python-brace-format
 msgid "row {0}: {1}"
 msgstr "行 {0}: {1}"
 
-#: ask_alyf/ask_alyf/agent.py:1319
+#: ask_alyf/ask_alyf/toolset.py:1105
 msgid "target route"
 msgstr "ターゲットルート"
 
-#: ask_alyf/ask_alyf/tools.py:985
+#. Option for the 'Reasoning Effort' (Select) field in DocType 'Ask ALYF
+#. Settings'
+#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.json
+msgid "xhigh"
+msgstr "超高"
+
+#: ask_alyf/ask_alyf/tools.py:997
 #, python-brace-format
 msgid "{0} '{1}' was not found."
 msgstr "{0} '{1}' は見つかりませんでした。"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1821
-#, python-brace-format
+#: ask_alyf/public/js/ask_alyf.bundle.js:2242
 msgid "{0} items"
-msgstr "{0} 件"
+msgstr ""
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1815
+#: ask_alyf/public/js/ask_alyf.bundle.js:2236
 #, python-brace-format
 msgid "{0} rows"
 msgstr "{0} 行"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:302
+#, python-brace-format
+msgid "{0} steps"
+msgstr "{0} ステップ"
 

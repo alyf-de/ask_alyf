@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Ask ALYF VERSION\n"
 "Report-Msgid-Bugs-To: hallo@alyf.de\n"
-"POT-Creation-Date: 2026-05-02 19:04+0053\n"
+"POT-Creation-Date: 2026-09-02 01:33+0053\n"
 "PO-Revision-Date: 2026-05-02 19:04+0053\n"
 "Last-Translator: hallo@alyf.de\n"
 "Language: zh_CN\n"
@@ -16,122 +16,154 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.18.0\n"
+"Generated-By: Babel 2.13.1\n"
 
-#. Label of the access_tab (Tab Break) field in DocType 'Ask ALYF Settings'
-#. Label of the access_tab (Tab Break) field in DocType 'Ask ALYF Skill'
+#: ask_alyf/public/js/ask_alyf.bundle.js:302
+msgid "1 step"
+msgstr "1 个步骤"
+
+#. Label of a Tab Break field in DocType 'Ask ALYF Settings'
+#. Label of a Tab Break field in DocType 'Ask ALYF Skill'
 #: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.json
 #: ask_alyf/ask_alyf/doctype/ask_alyf_skill/ask_alyf_skill.json
 msgid "Access"
-msgstr "访问"
+msgstr ""
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1120
+#: ask_alyf/ask_alyf/deep_agent_backend.py:163
+msgid "Access to hidden paths is not allowed"
+msgstr "不允许访问隐藏路径"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1443
 msgid "Accounts"
 msgstr "会计"
 
-#: ask_alyf/ask_alyf/tools.py:1409
+#: ask_alyf/ask_alyf/tools.py:1477
 msgid "Action field 'args' must be an object."
 msgstr "操作字段 'args' 必须是一个对象。"
 
-#: ask_alyf/ask_alyf/tools.py:1375 ask_alyf/ask_alyf/tools.py:1386
+#: ask_alyf/ask_alyf/tools.py:1443 ask_alyf/ask_alyf/tools.py:1454
 msgid "Action field 'doctype' is required."
 msgstr "操作字段 'doctype' 为必填项。"
 
-#: ask_alyf/ask_alyf/tools.py:1404
+#: ask_alyf/ask_alyf/tools.py:1472
 msgid "Action field 'file_id' is required."
 msgstr "操作字段 'file_id' 为必填项。"
 
-#: ask_alyf/ask_alyf/tools.py:1390
+#: ask_alyf/ask_alyf/tools.py:1458
 msgid "Action field 'records' must be a non-empty list."
 msgstr "操作字段 'records' 必须是非空列表。"
 
-#: ask_alyf/ask_alyf/tools.py:1394
+#: ask_alyf/ask_alyf/tools.py:1462
 #, python-brace-format
 msgid "Action field 'records' row #{0} must be an object."
 msgstr "操作字段 'records' 第 #{0} 行必须是一个对象。"
 
-#: ask_alyf/ask_alyf/tools.py:1379
+#: ask_alyf/ask_alyf/tools.py:1447
 msgid "Action field 'values' must be an object."
 msgstr "操作字段 'values' 必须是一个对象。"
 
-#: ask_alyf/ask_alyf/tools.py:1319
+#: ask_alyf/ask_alyf/tools.py:1387
 #, python-brace-format
 msgid "Action field '{0}' must be an object."
 msgstr "操作字段 '{0}' 必须是一个对象。"
 
-#: ask_alyf/ask_alyf/agent.py:1434
+#: ask_alyf/ask_alyf/toolset.py:1220
 #, python-brace-format
 msgid "Add a row to {0} on current form"
 msgstr "在当前表单的 {0} 中添加一行"
 
-#: ask_alyf/ask_alyf/agent.py:1436
+#: ask_alyf/ask_alyf/toolset.py:1222
 msgid "Add child row action needs correction."
 msgstr "添加子行操作需要修正。"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:612
-#: ask_alyf/public/js/ask_alyf.bundle.js:1032
+#: ask_alyf/public/js/ask_alyf.bundle.js:812
+#: ask_alyf/public/js/ask_alyf.bundle.js:1355
 msgid "Agent"
 msgstr "代理"
 
-#: ask_alyf/ask_alyf/api.py:137
+#: ask_alyf/ask_alyf/api.py:153
 msgid "Agent mode is disabled or not available for your user."
 msgstr "代理模式已停用或对您的用户不可用。"
 
-#. Label of the allow_agent_mode (Check) field in DocType 'Ask ALYF Settings'
+#. Label of a Check field in DocType 'Ask ALYF Settings'
 #: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.json
 msgid "Allow Agent Mode"
 msgstr "允许代理模式"
 
-#. Label of the allow_code_search (Check) field in DocType 'Ask ALYF Settings'
+#. Label of a Check field in DocType 'Ask ALYF Settings'
 #: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.json
 msgid "Allow Code Search"
 msgstr "允许代码搜索"
 
-#. Label of the allow_field_agent (Check) field in DocType 'Ask ALYF Settings'
+#. Label of a Check field in DocType 'Ask ALYF Settings'
 #: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.json
 msgid "Allow Field Agent"
 msgstr "允许字段代理"
 
-#. Label of the allow_file_upload (Check) field in DocType 'Ask ALYF Settings'
+#. Label of a Check field in DocType 'Ask ALYF Settings'
 #: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.json
 msgid "Allow File Upload"
 msgstr "允许文件上传"
 
-#: ask_alyf/ask_alyf/agent.py:1187
+#: ask_alyf/ask_alyf/toolset.py:973
 msgid "Amend proposal needs correction."
 msgstr "修订提案需要修正。"
 
-#: ask_alyf/ask_alyf/agent.py:1185
+#: ask_alyf/ask_alyf/toolset.py:971
 #, python-brace-format
 msgid "Amend {0} {1}"
 msgstr "修订 {0} {1}"
 
-#: ask_alyf/ask_alyf/tools.py:1367
+#: ask_alyf/ask_alyf/agent.py:146
+#, python-brace-format
+msgid "Amending {0}"
+msgstr "正在修订 {0}"
+
+#: ask_alyf/ask_alyf/tools.py:1435
 #, python-brace-format
 msgid "And {0} more."
 msgstr "还有 {0} 个。"
 
-#: ask_alyf/ask_alyf/tools.py:146 ask_alyf/ask_alyf/tools.py:1043
+#: ask_alyf/ask_alyf/deep_agent_backend.py:100 ask_alyf/ask_alyf/tools.py:158
+#: ask_alyf/ask_alyf/tools.py:1055
 #, python-brace-format
 msgid "App '{0}' is not installed."
 msgstr "应用 '{0}' 未安装。"
 
-#: ask_alyf/ask_alyf/tools.py:142 ask_alyf/ask_alyf/tools.py:1040
+#: ask_alyf/ask_alyf/tools.py:154 ask_alyf/ask_alyf/tools.py:1052
 msgid "App name is required."
-msgstr "应用名称为必填项。"
+msgstr ""
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2013
+#: ask_alyf/public/js/ask_alyf.bundle.js:2420
 msgid "Applying action..."
 msgstr "正在应用操作..."
 
-#. Label of a Desktop Icon
-#. Title of a Workspace Sidebar
-#: ask_alyf/desktop_icon/ask_alyf.json ask_alyf/workspace_sidebar/ask_alyf.json
+#: ask_alyf/public/js/ask_alyf.bundle.js:809
+#: ask_alyf/public/js/ask_alyf.bundle.js:1355
+msgid "Ask"
+msgstr ""
+
+#. Name of a Workspace
+#. Label of a Card Break in the Ask ALYF Workspace
+#: ask_alyf/ask_alyf/workspace/ask_alyf/ask_alyf.json
+#: ask_alyf/config/desktop.py:5
 msgid "Ask ALYF"
 msgstr "询问 ALYF"
 
 #. Name of a DocType
+#: ask_alyf/ask_alyf/doctype/ask_alyf_checkpoint/ask_alyf_checkpoint.json
+msgid "Ask ALYF Checkpoint"
+msgstr "Ask ALYF 检查点"
+
+#. Name of a DocType
+#: ask_alyf/ask_alyf/doctype/ask_alyf_checkpoint_write/ask_alyf_checkpoint_write.json
+msgid "Ask ALYF Checkpoint Write"
+msgstr "Ask ALYF 检查点写入"
+
+#. Name of a DocType
+#. Label of a Link in the Ask ALYF Workspace
 #: ask_alyf/ask_alyf/doctype/ask_alyf_conversation/ask_alyf_conversation.json
+#: ask_alyf/ask_alyf/workspace/ask_alyf/ask_alyf.json
 msgid "Ask ALYF Conversation"
 msgstr "Ask ALYF 对话"
 
@@ -146,14 +178,16 @@ msgid "Ask ALYF Onboarding"
 msgstr "Ask ALYF 入门引导"
 
 #. Name of a DocType
-#. Label of a Workspace Sidebar Item
+#. Label of a Link in the Ask ALYF Workspace
 #: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.json
-#: ask_alyf/workspace_sidebar/ask_alyf.json
+#: ask_alyf/ask_alyf/workspace/ask_alyf/ask_alyf.json
 msgid "Ask ALYF Settings"
 msgstr "Ask ALYF 设置"
 
 #. Name of a DocType
+#. Label of a Link in the Ask ALYF Workspace
 #: ask_alyf/ask_alyf/doctype/ask_alyf_skill/ask_alyf_skill.json
+#: ask_alyf/ask_alyf/workspace/ask_alyf/ask_alyf.json
 msgid "Ask ALYF Skill"
 msgstr "Ask ALYF 技能"
 
@@ -162,739 +196,785 @@ msgstr "Ask ALYF 技能"
 msgid "Ask ALYF User"
 msgstr "Ask ALYF 用户"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:631
+#: ask_alyf/public/js/ask_alyf.bundle.js:1161
+msgid "Ask ALYF could not finish processing this message. Please try again."
+msgstr "Ask ALYF 无法完成此消息的处理。请重试。"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:831
 msgid "Ask ALYF is an AI and can make mistakes, including with numbers and information about people."
 msgstr "Ask ALYF 是一个 AI，可能会出错，包括关于数字和人员信息的内容。"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:779
+#: ask_alyf/ask_alyf/api.py:438
+msgid "Ask ALYF is still working on the previous message in this conversation."
+msgstr "Ask ALYF 仍在处理此对话中的上一条消息。"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:976
 msgid "Ask ALYF is visible, but no API key/model is configured yet in Ask ALYF Settings."
 msgstr "Ask ALYF 可见，但尚未在 Ask ALYF 设置中配置 API 密钥/模型。"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:582
+#: ask_alyf/public/js/ask_alyf.bundle.js:784
 msgid "Ask ALYF sections"
 msgstr "Ask ALYF 部分"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:600
+#: ask_alyf/public/js/ask_alyf.bundle.js:1162
+msgid "Ask ALYF stopped processing this message. Please try again."
+msgstr "Ask ALYF 已停止处理此消息。请重试。"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:802
 msgid "Ask about this ERPNext instance"
 msgstr "询问此 ERPNext 实例相关问题"
 
-#: ask_alyf/ask_alyf/agent.py:974
+#: ask_alyf/ask_alyf/agent.py:131
+#, python-brace-format
+msgid "Asking the {0} specialist"
+msgstr "正在询问 {0} 专家"
+
+#: ask_alyf/ask_alyf/toolset.py:792
 msgid "At least one role is required."
 msgstr "至少需要一个角色。"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:618
-#: ask_alyf/public/js/ask_alyf.bundle.js:620
+#: ask_alyf/public/js/ask_alyf.bundle.js:818
+#: ask_alyf/public/js/ask_alyf.bundle.js:820
 msgid "Attach file"
 msgstr "附加文件"
 
-#: ask_alyf/ask_alyf/agent.py:1273
+#: ask_alyf/ask_alyf/toolset.py:1059
 msgid "Attach file proposal needs correction."
 msgstr "附加文件提案需要更正。"
 
-#: ask_alyf/ask_alyf/agent.py:1267
+#: ask_alyf/ask_alyf/toolset.py:1053
 #, python-brace-format
 msgid "Attach file {0} to {1} {2}"
 msgstr "将文件 {0} 附加到 {1} {2}"
 
-#: ask_alyf/ask_alyf/agent.py:1062
+#: ask_alyf/ask_alyf/agent.py:152
+#, python-brace-format
+msgid "Attaching a file to {0}"
+msgstr "正在将文件附加到 {0}"
+
+#: ask_alyf/ask_alyf/deep_agent_backend.py:274
+msgid "Attachment name is required"
+msgstr "附件名称为必填项"
+
+#: ask_alyf/ask_alyf/deep_agent_backend.py:43
+msgid "Attachments are read-only"
+msgstr "附件为只读"
+
+#: ask_alyf/ask_alyf/toolset.py:848
 msgid "Batch create proposal needs correction."
 msgstr "批量创建提案需要更正。"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1111
+#: ask_alyf/public/js/ask_alyf.bundle.js:1434
 msgid "Buying"
 msgstr "采购"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:571
-#: ask_alyf/public/js/ask_alyf.bundle.js:573
-#: ask_alyf/public/js/ask_alyf.bundle.js:989
+#: ask_alyf/public/js/ask_alyf.bundle.js:773
+#: ask_alyf/public/js/ask_alyf.bundle.js:775
+#: ask_alyf/public/js/ask_alyf.bundle.js:1312
 msgid "Call support"
 msgstr "联系支持"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:988
+#: ask_alyf/public/js/ask_alyf.bundle.js:1311
 #, python-brace-format
 msgid "Call support: {0}"
 msgstr "联系支持：{0}"
 
-#: ask_alyf/ask_alyf/agent.py:1298
+#: ask_alyf/ask_alyf/toolset.py:1084
 #, python-brace-format
 msgid "Call {0}"
 msgstr "调用 {0}"
 
-#: ask_alyf/ask_alyf/agent.py:1166
+#: ask_alyf/ask_alyf/toolset.py:952
 msgid "Cancel proposal needs correction."
 msgstr "取消提案需要修正。"
 
-#: ask_alyf/ask_alyf/agent.py:1164
+#: ask_alyf/ask_alyf/toolset.py:950
 #, python-brace-format
 msgid "Cancel {0} {1}"
 msgstr "取消 {0} {1}"
 
-#: ask_alyf/ask_alyf/api.py:871 ask_alyf/ask_alyf/api.py:900
+#: ask_alyf/ask_alyf/api.py:936
 #, python-brace-format
 msgid "Cancelled frontend action: {0}"
 msgstr "已取消前端操作：{0}"
 
-#: ask_alyf/ask_alyf/api.py:785
+#: ask_alyf/ask_alyf/api.py:829
 #, python-brace-format
 msgid "Cancelled showing chart: {0}."
 msgstr "已取消显示图表：{0}。"
 
-#: ask_alyf/ask_alyf/api.py:721 ask_alyf/ask_alyf/api.py:748
+#: ask_alyf/ask_alyf/api.py:790
 #, python-brace-format
 msgid "Cancelled the pending operation: {0}."
 msgstr "已取消挂起的操作：{0}。"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1711
+#: ask_alyf/public/js/ask_alyf.bundle.js:2136
 msgid "Changes preview"
 msgstr "变更预览"
 
-#: ask_alyf/ask_alyf/agent.py:1472
+#: ask_alyf/ask_alyf/toolset.py:1258
 msgid "Chart action needs correction."
 msgstr "图表操作需要修正。"
 
-#: ask_alyf/ask_alyf/tools.py:1541
+#: ask_alyf/ask_alyf/tools.py:1609
 msgid "Chart data must be an object."
 msgstr "图表数据必须是一个对象。"
 
-#: ask_alyf/ask_alyf/tools.py:1467
+#: ask_alyf/ask_alyf/tools.py:1535
 msgid "Chart data requires a non-empty datasets array."
 msgstr "图表数据需要一个非空的数据集数组。"
 
-#: ask_alyf/ask_alyf/tools.py:1448
+#: ask_alyf/ask_alyf/tools.py:1516
 msgid "Chart data requires a non-empty labels array."
 msgstr "图表数据需要一个非空的标签数组。"
 
-#: ask_alyf/ask_alyf/tools.py:1527
+#: ask_alyf/ask_alyf/tools.py:1595
 msgid "Chart height is out of range."
 msgstr "图表高度超出范围。"
 
-#: ask_alyf/ask_alyf/tools.py:1457
+#: ask_alyf/ask_alyf/tools.py:1525
 msgid "Chart labels must be numbers or strings."
 msgstr "图表标签必须是数字或字符串。"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1122
+#: ask_alyf/public/js/ask_alyf.bundle.js:1445
 msgid "Chart monthly expenses by cost center"
 msgstr "按成本中心绘制每月支出图表"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1104
+#: ask_alyf/public/js/ask_alyf.bundle.js:1427
 msgid "Chart my monthly sales revenue for the last 6 months"
 msgstr "绘制过去 6 个月每月销售收入图表"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1167
+#: ask_alyf/public/js/ask_alyf.bundle.js:1490
 msgid "Chart open issues by priority"
 msgstr "按优先级绘制未解决问题图表"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1149
+#: ask_alyf/public/js/ask_alyf.bundle.js:1472
 msgid "Chart production output by item this week"
 msgstr "绘制本周按项目划分的生产产量图表"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1113
+#: ask_alyf/public/js/ask_alyf.bundle.js:1436
 msgid "Chart spending by supplier for this quarter"
 msgstr "绘制本季度按供应商划分的支出图表"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1140
+#: ask_alyf/public/js/ask_alyf.bundle.js:1463
 msgid "Chart stock value by warehouse"
 msgstr "按仓库绘制库存价值图表"
 
-#. Label of the model (Autocomplete) field in DocType 'Ask ALYF Settings'
+#. Label of a Autocomplete field in DocType 'Ask ALYF Settings'
 #: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.json
 msgid "Chat Model"
 msgstr "聊天模型"
 
-#. Label of the chat_provider_tab (Tab Break) field in DocType 'Ask ALYF
-#. Settings'
+#. Label of a Tab Break field in DocType 'Ask ALYF Settings'
 #: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.json
 msgid "Chat Provider"
 msgstr "聊天提供商"
 
-#: ask_alyf/ask_alyf/agent.py:566
-msgid "Checking permissions..."
-msgstr "正在检查权限..."
+#: ask_alyf/ask_alyf/agent.py:104
+#, python-brace-format
+msgid "Checking the {0} form"
+msgstr "正在检查 {0} 表单"
 
-#: ask_alyf/ask_alyf/tools.py:175
+#: ask_alyf/ask_alyf/agent.py:106
+#, python-brace-format
+msgid "Checking your permissions on {0}"
+msgstr "正在检查您对 {0} 的权限"
+
+#. Label of a Long Text field in DocType 'Ask ALYF Checkpoint'
+#: ask_alyf/ask_alyf/doctype/ask_alyf_checkpoint/ask_alyf_checkpoint.json
+msgid "Checkpoint Data (base64)"
+msgstr "检查点数据 (base64)"
+
+#. Label of a Data field in DocType 'Ask ALYF Checkpoint'
+#. Label of a Data field in DocType 'Ask ALYF Checkpoint Write'
+#: ask_alyf/ask_alyf/doctype/ask_alyf_checkpoint/ask_alyf_checkpoint.json
+#: ask_alyf/ask_alyf/doctype/ask_alyf_checkpoint_write/ask_alyf_checkpoint_write.json
+msgid "Checkpoint ID"
+msgstr "检查点 ID"
+
+#. Label of a Data field in DocType 'Ask ALYF Checkpoint'
+#. Label of a Data field in DocType 'Ask ALYF Checkpoint Write'
+#: ask_alyf/ask_alyf/doctype/ask_alyf_checkpoint/ask_alyf_checkpoint.json
+#: ask_alyf/ask_alyf/doctype/ask_alyf_checkpoint_write/ask_alyf_checkpoint_write.json
+msgid "Checkpoint Namespace"
+msgstr "检查点命名空间"
+
+#. Label of a Data field in DocType 'Ask ALYF Checkpoint'
+#: ask_alyf/ask_alyf/doctype/ask_alyf_checkpoint/ask_alyf_checkpoint.json
+msgid "Checkpoint Type"
+msgstr "检查点类型"
+
+#: ask_alyf/ask_alyf/deep_agent_backend.py:104 ask_alyf/ask_alyf/tools.py:187
 msgid "Code access is restricted to installed app directories."
 msgstr "代码访问仅限于已安装的应用目录。"
 
-#: ask_alyf/ask_alyf/tools.py:117
+#: ask_alyf/ask_alyf/tools.py:129
 msgid "Code search is disabled in Ask ALYF Settings."
 msgstr "代码搜索在 Ask ALYF 设置中已禁用。"
 
-#: ask_alyf/ask_alyf/agent.py:70
+#: ask_alyf/ask_alyf/agent.py:275
 msgid "Configure a model in Ask ALYF Settings before sending messages."
 msgstr "发送消息前，请在 Ask ALYF 设置中配置模型。"
 
-#: ask_alyf/ask_alyf/tools.py:771
+#: ask_alyf/ask_alyf/tools.py:783
 msgid "Configure a vision model API key in Ask ALYF Settings."
 msgstr "请在 Ask ALYF 设置中配置视觉模型 API 密钥。"
 
-#: ask_alyf/ask_alyf/tools.py:773
+#: ask_alyf/ask_alyf/tools.py:785
 msgid "Configure a vision model in Ask ALYF Settings."
 msgstr "请在 Ask ALYF 设置中配置视觉模型。"
 
-#: ask_alyf/ask_alyf/agent.py:63
+#: ask_alyf/ask_alyf/agent.py:268
+#: ask_alyf/ask_alyf/test_tool_error_middleware.py:104
 msgid "Configure an API key in Ask ALYF Settings before sending messages."
 msgstr "发送消息前，请在 Ask ALYF 设置中配置 API 密钥。"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:513
+#: ask_alyf/public/js/ask_alyf.bundle.js:719
 msgid "Confirm all"
 msgstr "全部确认"
 
-#: ask_alyf/ask_alyf/api.py:297
-#, python-brace-format
-msgid "Confirmed operation: {0}"
-msgstr "已确认的操作：{0}"
-
-#: ask_alyf/ask_alyf/api.py:627 ask_alyf/public/js/ask_alyf.bundle.js:2014
+#: ask_alyf/ask_alyf/api.py:707 ask_alyf/public/js/ask_alyf.bundle.js:2420
 msgid "Confirming action..."
 msgstr "正在确认操作..."
 
-#: ask_alyf/ask_alyf/tools.py:983
+#: ask_alyf/ask_alyf/tools.py:995
 msgid "Conversation name is required."
 msgstr "对话名称为必填项。"
 
-#: ask_alyf/ask_alyf/api.py:779
+#: ask_alyf/public/js/ask_alyf.bundle.js:571
+msgid "Copy as Markdown"
+msgstr "复制为 Markdown"
+
+#: ask_alyf/ask_alyf/api.py:823
 msgid "Could not attach charts to the assistant message."
 msgstr "无法将图表附加到助手消息。"
 
-#: ask_alyf/ask_alyf/api.py:295
+#: ask_alyf/ask_alyf/api.py:737
 #, python-brace-format
-msgid "Could not confirm operation: {0}"
-msgstr "无法确认操作：{0}"
+msgid "Could not complete the operation: {0}."
+msgstr "无法完成操作：{0}。"
 
-#: ask_alyf/ask_alyf/api.py:787
+#: ask_alyf/ask_alyf/api.py:831
 msgid "Could not display chart."
 msgstr "无法显示图表。"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2239
+#: ask_alyf/public/js/ask_alyf.bundle.js:2642
 msgid "Could not download chart."
 msgstr "无法下载图表。"
 
-#: ask_alyf/ask_alyf/tools.py:685
+#: ask_alyf/ask_alyf/tools.py:697
 msgid "Could not extract visual content from the file."
 msgstr "无法从文件中提取视觉内容。"
 
-#: ask_alyf/public/js/field_agent.js:232
+#: ask_alyf/public/js/field_agent.js:226
 msgid "Could not generate content."
 msgstr "无法生成内容。"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2310
+#: ask_alyf/public/js/ask_alyf.bundle.js:2709
 msgid "Could not render chart."
 msgstr "无法渲染图表。"
 
-#: ask_alyf/ask_alyf/agent.py:489
-msgid "Counting documents..."
-msgstr "正在统计单据..."
+#: ask_alyf/ask_alyf/agent.py:100
+#, python-brace-format
+msgid "Counting {0}"
+msgstr "正在统计 {0}"
 
-#: ask_alyf/ask_alyf/agent.py:1038
+#: ask_alyf/ask_alyf/toolset.py:824
 msgid "Create proposal needs correction."
 msgstr "创建提案需要更正。"
 
-#: ask_alyf/ask_alyf/agent.py:978
+#: ask_alyf/ask_alyf/toolset.py:796
 #, python-brace-format
 msgid "Create skill '{0}'"
 msgstr "创建技能 '{0}'"
 
-#: ask_alyf/ask_alyf/agent.py:1036
+#: ask_alyf/ask_alyf/toolset.py:822
 #, python-brace-format
 msgid "Create {0}"
 msgstr "创建 {0}"
 
-#: ask_alyf/ask_alyf/agent.py:1060
+#: ask_alyf/ask_alyf/toolset.py:846
 #, python-brace-format
 msgid "Create {0} {1} records"
 msgstr "创建 {0} 条 {1} 记录"
 
-#: ask_alyf/ask_alyf/tools.py:1331
+#: ask_alyf/ask_alyf/tools.py:1399
 #, python-brace-format
 msgid "Created {0} of {1} {2} records."
 msgstr "已创建 {1} 条 {2} 记录中的 {0} 条。"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1869
+#: ask_alyf/ask_alyf/agent.py:138
+#, python-brace-format
+msgid "Creating several {0} records"
+msgstr "正在创建多条 {0} 记录"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:2284
 #, python-brace-format
 msgid "Current document is {0}, expected {1}."
 msgstr "当前单据为 {0},预期为 {1}。"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1861
+#: ask_alyf/public/js/ask_alyf.bundle.js:2277
 #, python-brace-format
 msgid "Current form is {0}, expected {1}."
 msgstr "当前表单为 {0},预期为 {1}。"
 
-#: ask_alyf/ask_alyf/tools.py:1485 ask_alyf/ask_alyf/tools.py:1488
-#: ask_alyf/ask_alyf/tools.py:1491
+#: ask_alyf/ask_alyf/tools.py:1553 ask_alyf/ask_alyf/tools.py:1556
+#: ask_alyf/ask_alyf/tools.py:1559
 msgid "Dataset values must be numeric."
 msgstr "数据集的值必须为数字。"
 
-#: ask_alyf/ask_alyf/tools.py:1480
+#: ask_alyf/ask_alyf/tools.py:1548
 msgid "Dataset values must match labels length."
 msgstr "数据集的值必须与标签长度匹配。"
 
-#: ask_alyf/ask_alyf/agent.py:763
-msgid "Delegating code analysis..."
-msgstr "正在委派代码分析..."
-
-#: ask_alyf/ask_alyf/agent.py:1208
+#: ask_alyf/ask_alyf/toolset.py:994
 msgid "Delete proposal needs correction."
 msgstr "删除提案需要更正。"
 
-#: ask_alyf/ask_alyf/agent.py:1206
+#: ask_alyf/ask_alyf/toolset.py:992
 #, python-brace-format
 msgid "Delete {0} {1}"
 msgstr "删除 {0} {1}"
 
-#: ask_alyf/ask_alyf/tools.py:1265
+#: ask_alyf/ask_alyf/tools.py:1333
 #, python-brace-format
 msgid "Deleted {0} {1}"
 msgstr "已删除 {0} {1}"
 
-#: ask_alyf/public/js/field_agent.js:85
+#: ask_alyf/public/js/field_agent.js:83
 msgid "Describe what you want..."
 msgstr "描述您想要的内容..."
 
-#: ask_alyf/ask_alyf/tools.py:325
+#: ask_alyf/ask_alyf/tools.py:337
 #, python-brace-format
 msgid "DocType '{0}' is excluded from Agent mode."
 msgstr "单据类型 '{0}' 已从代理模式中排除。"
 
-#: ask_alyf/ask_alyf/tools.py:979
+#: ask_alyf/ask_alyf/test_tool_error_middleware.py:84
+#: ask_alyf/ask_alyf/test_tool_error_middleware.py:93
+msgid "DocType is excluded"
+msgstr "单据类型已被排除"
+
+#: ask_alyf/ask_alyf/tools.py:991
 msgid "DocType is required."
 msgstr "单据类型是必填的。"
 
-#: ask_alyf/ask_alyf/tools.py:896
+#: ask_alyf/ask_alyf/tools.py:908
 msgid "Document extraction did not return text."
 msgstr "单据提取未返回文本。"
 
-#: ask_alyf/ask_alyf/tools.py:920
+#: ask_alyf/ask_alyf/tools.py:932
 msgid "Document extraction did not return valid JSON."
 msgstr "单据提取未返回有效的 JSON。"
 
-#: ask_alyf/ask_alyf/tools.py:900
+#: ask_alyf/ask_alyf/tools.py:912
 msgid "Document extraction returned an empty response."
 msgstr "单据提取返回了空响应。"
 
-#: ask_alyf/ask_alyf/tools.py:845
+#: ask_alyf/ask_alyf/tools.py:857
 msgid "Document extraction returned no choices."
 msgstr "单据提取未返回任何选项。"
 
-#: ask_alyf/ask_alyf/tools.py:850
+#: ask_alyf/ask_alyf/tools.py:862
 msgid "Document extraction returned no content."
 msgstr "单据提取未返回任何内容。"
 
-#: ask_alyf/ask_alyf/tools.py:981
+#: ask_alyf/ask_alyf/tools.py:993
 msgid "Document name is required."
 msgstr "单据编号为必填项。"
 
-#: ask_alyf/ask_alyf/api.py:301
-#, python-brace-format
-msgid "Document: {0} {1}"
-msgstr "单据:{0} {1}"
-
-#: ask_alyf/public/js/ask_alyf.bundle.js:2221
+#: ask_alyf/public/js/ask_alyf.bundle.js:2624
 msgid "Download chart as SVG"
 msgstr "将图表下载为 SVG"
 
-#: ask_alyf/public/js/field_agent.js:202
+#: ask_alyf/public/js/field_agent.js:197
 msgid "Drafting..."
 msgstr "正在起草..."
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:565
+#: ask_alyf/public/js/ask_alyf.bundle.js:767
 msgid "ERPNext assistant"
 msgstr "ERPNext 助手"
 
-#: ask_alyf/ask_alyf/tools.py:1507
+#: ask_alyf/ask_alyf/tools.py:1575
 msgid "Each chart must be an object."
 msgstr "每个图表必须是一个对象。"
 
-#: ask_alyf/ask_alyf/tools.py:1475
+#: ask_alyf/ask_alyf/tools.py:1543
 msgid "Each dataset must be an object."
 msgstr "每个数据集必须是一个对象。"
 
-#: ask_alyf/ask_alyf/tools.py:1478
+#: ask_alyf/ask_alyf/tools.py:1546
 msgid "Each dataset needs a values array."
 msgstr "每个数据集需要一个值数组。"
 
-#: ask_alyf/ask_alyf/tools.py:464
+#: ask_alyf/ask_alyf/tools.py:476
 msgid "Each label must be a string."
 msgstr "每个标签必须是字符串。"
 
-#: ask_alyf/ask_alyf/tools.py:580
+#: ask_alyf/ask_alyf/tools.py:592
 msgid "Entry type must be one of any, file, or directory."
 msgstr "条目类型必须是 any、file 或 directory 之一。"
 
-#: ask_alyf/ask_alyf/agent.py:579
-msgid "Evaluating permissions..."
-msgstr "正在评估权限..."
-
-#. Label of the excluded_doctype (Link) field in DocType 'Ask ALYF Excluded
-#. DocType'
+#. Label of a Link field in DocType 'Ask ALYF Excluded DocType'
 #: ask_alyf/ask_alyf/doctype/ask_alyf_excluded_doctype/ask_alyf_excluded_doctype.json
 msgid "Excluded DocType"
 msgstr "已排除的单据类型"
 
-#. Label of the excluded_doctypes (Table MultiSelect) field in DocType 'Ask
-#. ALYF Settings'
+#. Label of a Table MultiSelect field in DocType 'Ask ALYF Settings'
 #: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.json
 msgid "Excluded DocTypes"
 msgstr "已排除的单据类型"
 
-#: ask_alyf/ask_alyf/api.py:869 ask_alyf/ask_alyf/api.py:898
+#: ask_alyf/ask_alyf/api.py:934
 #, python-brace-format
 msgid "Executed frontend action: {0}"
 msgstr "已执行前端操作:{0}"
 
-#: ask_alyf/ask_alyf/agent.py:828
-msgid "Extracting document data..."
-msgstr "正在提取单据数据..."
-
-#: ask_alyf/ask_alyf/tools.py:1364
+#: ask_alyf/ask_alyf/tools.py:1432
 #, python-brace-format
 msgid "Failed rows: {0}"
 msgstr "失败的行:{0}"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:964
+#: ask_alyf/public/js/ask_alyf.bundle.js:1289
 msgid "Failed to attach file to conversation."
 msgstr "未能将文件附加到对话。"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2041
+#: ask_alyf/public/js/ask_alyf.bundle.js:2447
 msgid "Failed to confirm pending operation."
 msgstr "确认待处理操作失败。"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1977
+#: ask_alyf/public/js/ask_alyf.bundle.js:2385
 msgid "Failed to execute frontend action."
 msgstr "执行前端操作失败。"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1366
+#: ask_alyf/public/js/ask_alyf.bundle.js:1687
 msgid "Failed to open conversation."
 msgstr "打开对话失败。"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2079
+#: ask_alyf/public/js/ask_alyf.bundle.js:2485
 msgid "Failed to reject pending operation."
 msgstr "拒绝待处理操作失败。"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1612
+#: ask_alyf/public/js/ask_alyf.bundle.js:2029
 msgid "Failed to send message."
 msgstr "发送消息失败。"
 
-#: ask_alyf/ask_alyf/agent.py:508
-msgid "Fetching document..."
-msgstr "正在获取单据..."
+#: ask_alyf/public/js/ask_alyf.bundle.js:1775
+msgid "Failed to stop the run."
+msgstr "无法停止本次运行。"
 
-#: ask_alyf/ask_alyf/agent.py:465
-msgid "Fetching list..."
-msgstr "正在获取列表..."
-
-#: ask_alyf/ask_alyf/agent.py:540
-msgid "Fetching single value..."
-msgstr "正在获取 single 值..."
-
-#: ask_alyf/ask_alyf/agent.py:527
-msgid "Fetching value..."
-msgstr "正在获取值..."
-
-#: ask_alyf/ask_alyf/tools.py:1697
+#: ask_alyf/ask_alyf/tools.py:1765
 #, python-brace-format
 msgid "Field '{0}' in {1} is a child table ({2}) and must be a list of row objects."
 msgstr "{1} 中的字段 '{0}' 是子表 ({2})，必须是行对象的列表。"
 
-#: ask_alyf/ask_alyf/tools.py:1705
+#: ask_alyf/ask_alyf/tools.py:1773
 #, python-brace-format
 msgid "Field '{0}' row #{1} in {2} must be an object."
 msgstr "{2} 中字段 '{0}' 的第 {1} 行必须是对象。"
 
-#: ask_alyf/ask_alyf/api.py:945
+#: ask_alyf/ask_alyf/api.py:981
 msgid "Field Agent is not enabled."
 msgstr "字段 Agent 未启用。"
 
-#: ask_alyf/public/js/field_agent.js:267
+#: ask_alyf/public/js/field_agent.js:261
 msgid "Field updated."
 msgstr "字段已更新。"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1903
-#: ask_alyf/public/js/ask_alyf.bundle.js:1914
+#: ask_alyf/public/js/ask_alyf.bundle.js:2314
+#: ask_alyf/public/js/ask_alyf.bundle.js:2323
 #, python-brace-format
 msgid "Field {0} does not exist on this form."
 msgstr "此表单上不存在字段 {0}。"
 
-#: ask_alyf/ask_alyf/api.py:998 ask_alyf/ask_alyf/tools.py:711
+#: ask_alyf/ask_alyf/api.py:1034 ask_alyf/ask_alyf/tools.py:723
 #, python-brace-format
 msgid "File '{0}' was not found."
 msgstr "未找到文件 '{0}'。"
 
-#: ask_alyf/ask_alyf/tools.py:709
+#: ask_alyf/ask_alyf/tools.py:721
 msgid "File ID is required."
 msgstr "需要 File ID。"
 
-#: ask_alyf/ask_alyf/api.py:983
+#: ask_alyf/ask_alyf/api.py:1019
 msgid "File upload is not enabled."
 msgstr "文件上传未启用。"
 
-#: ask_alyf/ask_alyf/agent.py:705
-msgid "Finding code paths..."
-msgstr "正在查找代码路径..."
+#: ask_alyf/ask_alyf/agent.py:165
+msgid "Filling in the open form"
+msgstr "正在填写打开的表单"
 
-#: ask_alyf/ask_alyf/tools.py:1668
+#: ask_alyf/ask_alyf/tools.py:1736
 msgid "Frontend action 'frm_add_child' field 'docname' must be a string."
 msgstr "前端操作 'frm_add_child' 的字段 'docname' 必须是字符串。"
 
-#: ask_alyf/ask_alyf/tools.py:1666
+#: ask_alyf/ask_alyf/tools.py:1734
 msgid "Frontend action 'frm_add_child' field 'doctype' must be a string."
 msgstr "前端操作 'frm_add_child' 的字段 'doctype' 必须是字符串。"
 
-#: ask_alyf/ask_alyf/tools.py:1662
+#: ask_alyf/ask_alyf/tools.py:1730
 msgid "Frontend action 'frm_add_child' field 'values' must be an object."
 msgstr "前端操作 'frm_add_child' 的字段 'values' 必须是一个对象。"
 
-#: ask_alyf/ask_alyf/tools.py:1659
+#: ask_alyf/ask_alyf/tools.py:1727
 msgid "Frontend action 'frm_add_child' requires a fieldname."
 msgstr "前端操作 'frm_add_child' 需要一个字段名称。"
 
-#: ask_alyf/ask_alyf/tools.py:1653
+#: ask_alyf/ask_alyf/tools.py:1721
 msgid "Frontend action 'frm_set_value' field 'docname' must be a string."
 msgstr "前端操作 'frm_set_value' 的字段 'docname' 必须是字符串。"
 
-#: ask_alyf/ask_alyf/tools.py:1651
+#: ask_alyf/ask_alyf/tools.py:1719
 msgid "Frontend action 'frm_set_value' field 'doctype' must be a string."
 msgstr "前端操作 'frm_set_value' 的字段 'doctype' 必须是字符串。"
 
-#: ask_alyf/ask_alyf/tools.py:1647
+#: ask_alyf/ask_alyf/tools.py:1715
 msgid "Frontend action 'frm_set_value' requires a fieldname."
 msgstr "前端操作 'frm_set_value' 需要一个字段名称。"
 
-#: ask_alyf/ask_alyf/tools.py:1635
+#: ask_alyf/ask_alyf/tools.py:1703
 msgid "Frontend action 'new_doc' field 'route_options' must be an object."
 msgstr "前端操作 'new_doc' 的字段 'route_options' 必须是一个对象。"
 
-#: ask_alyf/ask_alyf/tools.py:1632
+#: ask_alyf/ask_alyf/tools.py:1700
 msgid "Frontend action 'new_doc' requires a DocType."
 msgstr "前端操作 'new_doc' 需要一个单据类型。"
 
-#: ask_alyf/ask_alyf/tools.py:1641
+#: ask_alyf/ask_alyf/tools.py:1709
 msgid "Frontend action 'scroll_to_field' requires a fieldname."
 msgstr "前端操作 'scroll_to_field' 需要一个字段名称。"
 
-#: ask_alyf/ask_alyf/tools.py:1623
+#: ask_alyf/ask_alyf/tools.py:1691
 msgid "Frontend action 'set_route' requires a non-empty route list."
 msgstr "前端操作 'set_route' 需要一个非空的路由列表。"
 
-#: ask_alyf/ask_alyf/api.py:873 ask_alyf/ask_alyf/api.py:902
+#: ask_alyf/ask_alyf/api.py:938
 #, python-brace-format
 msgid "Frontend action failed: {0}"
 msgstr "前端操作失败:{0}"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1964
+#: ask_alyf/public/js/ask_alyf.bundle.js:2372
 msgid "Frontend action is missing a call ID."
 msgstr "前端操作缺少通话 ID。"
 
-#: ask_alyf/ask_alyf/tools.py:1618
+#: ask_alyf/ask_alyf/tools.py:1686
 msgid "Frontend action payload contains an unsafe key."
 msgstr "前端操作负载包含不安全的键。"
 
-#: ask_alyf/ask_alyf/tools.py:1615
+#: ask_alyf/ask_alyf/tools.py:1683
 msgid "Frontend action payload must be an object."
 msgstr "前端操作负载必须是一个对象。"
 
-#: ask_alyf/ask_alyf/tools.py:1160
+#: ask_alyf/ask_alyf/tools.py:1228
 msgid "Frontend actions must be executed in the browser."
 msgstr "前端操作必须在浏览器中执行。"
 
-#: ask_alyf/public/js/field_agent.js:100
+#: ask_alyf/public/js/field_agent.js:97
 msgid "Generate"
 msgstr "生成"
 
-#: ask_alyf/public/js/field_agent.js:294
+#: ask_alyf/public/js/field_agent.js:290
 msgid "Generate with AI"
 msgstr "使用 AI 生成"
 
-#: ask_alyf/ask_alyf/agent.py:861
-msgid "Generating print..."
-msgstr "正在生成打印..."
-
-#: ask_alyf/ask_alyf/api.py:661 ask_alyf/ask_alyf/api.py:728
-#: ask_alyf/ask_alyf/api.py:843
+#: ask_alyf/ask_alyf/api.py:770 ask_alyf/ask_alyf/api.py:887
 msgid "Generating response..."
 msgstr "正在生成回复..."
 
-#: ask_alyf/public/js/field_agent.js:190
+#: ask_alyf/public/js/field_agent.js:185
 msgid "Generating..."
 msgstr "正在生成..."
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1129
+#: ask_alyf/public/js/ask_alyf.bundle.js:1452
 msgid "HR"
 msgstr "人力资源"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:589
+#: ask_alyf/ask_alyf/agent.py:161
+msgid "Highlighting a field"
+msgstr "正在高亮显示字段"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:791
 msgid "History"
 msgstr "历史记录"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1151
+#: ask_alyf/public/js/ask_alyf.bundle.js:1474
 msgid "How many Work Orders are behind schedule?"
 msgstr "有多少工单落后于计划?"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1133
+#: ask_alyf/public/js/ask_alyf.bundle.js:1456
 msgid "How many leave applications are pending approval?"
 msgstr "有多少请假申请待批准?"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1115
+#: ask_alyf/public/js/ask_alyf.bundle.js:1438
 msgid "How many pending purchase receipts do I have?"
 msgstr "我有多少待处理的采购收据?"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1106
+#: ask_alyf/public/js/ask_alyf.bundle.js:1429
 msgid "How many quotations were sent this month?"
 msgstr "本月发送了多少报价单?"
 
-#: ask_alyf/ask_alyf/api.py:547
+#: ask_alyf/ask_alyf/api.py:614
+#: ask_alyf/ask_alyf/test_tool_error_middleware.py:153
 msgid "I hit an error while processing that request. Please try again."
 msgstr "处理该请求时遇到错误。请重试。"
 
-#: ask_alyf/ask_alyf/api.py:189 ask_alyf/ask_alyf/api.py:543
+#: ask_alyf/ask_alyf/api.py:208 ask_alyf/ask_alyf/api.py:603
 msgid "I've prepared the operation. Please review and confirm."
 msgstr "我已准备好该操作。请审核并确认。"
 
-#: ask_alyf/ask_alyf/tools.py:1167
+#: ask_alyf/ask_alyf/tools.py:1235
 msgid "Invalid action payload."
 msgstr "无效的操作负载。"
 
-#: ask_alyf/ask_alyf/tools.py:1545 ask_alyf/public/js/ask_alyf.bundle.js:2280
+#: ask_alyf/ask_alyf/tools.py:1613 ask_alyf/public/js/ask_alyf.bundle.js:2679
 msgid "Invalid chart data."
 msgstr "无效的图表数据。"
 
-#: ask_alyf/ask_alyf/tools.py:1603
+#: ask_alyf/ask_alyf/tools.py:1671
 msgid "Invalid chart specification."
 msgstr "无效的图表规范。"
 
-#: ask_alyf/ask_alyf/tools.py:1147
+#: ask_alyf/ask_alyf/tools.py:1215
 msgid "Invalid pending operation payload."
 msgstr "无效的待处理操作负载。"
 
-#. Label of the llm_provider (Select) field in DocType 'Ask ALYF Settings'
+#: ask_alyf/ask_alyf/deep_agent_backend.py:182
+#, python-brace-format
+msgid "Invalid regex pattern: {0}"
+msgstr "无效的正则表达式模式：{0}"
+
+#. Label of a Select field in DocType 'Ask ALYF Settings'
 #: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.json
 msgid "LLM Provider"
 msgstr "LLM 提供商"
 
-#: ask_alyf/ask_alyf/tools.py:459
+#: ask_alyf/ask_alyf/tools.py:471
 msgid "Labels must be provided as a list of strings."
 msgstr "标签必须以字符串列表形式提供。"
 
-#. Label of the last_context_json (Code) field in DocType 'Ask ALYF
-#. Conversation'
+#. Label of a Code field in DocType 'Ask ALYF Conversation'
 #: ask_alyf/ask_alyf/doctype/ask_alyf_conversation/ask_alyf_conversation.json
 msgid "Last Context JSON"
 msgstr "最后上下文 JSON"
 
-#. Label of the last_message_at (Datetime) field in DocType 'Ask ALYF
-#. Conversation'
+#. Label of a Datetime field in DocType 'Ask ALYF Conversation'
 #: ask_alyf/ask_alyf/doctype/ask_alyf_conversation/ask_alyf_conversation.json
 msgid "Last Message At"
 msgstr "最后消息时间"
 
-#: ask_alyf/ask_alyf/agent.py:591
-msgid "Listing accessible DocTypes..."
-msgstr "正在列出可访问的 DocTypes..."
+#: ask_alyf/ask_alyf/deep_agent_backend.py:172
+#: ask_alyf/ask_alyf/deep_agent_backend.py:285
+#, python-brace-format
+msgid "Line offset {0} exceeds file length"
+msgstr "行偏移 {0} 超出文件长度"
 
-#: ask_alyf/ask_alyf/agent.py:600
-msgid "Listing accessible reports..."
-msgstr "正在列出可访问的报表..."
-
-#: ask_alyf/ask_alyf/agent.py:674
-msgid "Listing code files..."
-msgstr "正在列出代码文件..."
-
-#: ask_alyf/public/js/ask_alyf.bundle.js:1351
+#: ask_alyf/public/js/ask_alyf.bundle.js:1672
 msgid "Loading conversation..."
 msgstr "正在加载对话..."
 
-#: ask_alyf/ask_alyf/agent.py:552
-msgid "Loading metadata..."
-msgstr "正在加载元数据..."
+#: ask_alyf/ask_alyf/agent.py:110
+msgid "Looking up available reports"
+msgstr "正在查找可用的报表"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1147
+#: ask_alyf/ask_alyf/agent.py:108
+msgid "Looking up what you can access"
+msgstr "正在查找您可以访问的内容"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1470
 msgid "Manufacturing"
 msgstr "制造"
 
-#. Label of the messages_json (Code) field in DocType 'Ask ALYF Conversation'
+#. Label of a Code field in DocType 'Ask ALYF Conversation'
 #: ask_alyf/ask_alyf/doctype/ask_alyf_conversation/ask_alyf_conversation.json
 msgid "Messages JSON"
 msgstr "消息 JSON"
 
-#: ask_alyf/ask_alyf/agent.py:1300
+#. Label of a Long Text field in DocType 'Ask ALYF Checkpoint'
+#: ask_alyf/ask_alyf/doctype/ask_alyf_checkpoint/ask_alyf_checkpoint.json
+msgid "Metadata Data (base64)"
+msgstr "元数据数据 (base64)"
+
+#. Label of a Data field in DocType 'Ask ALYF Checkpoint'
+#: ask_alyf/ask_alyf/doctype/ask_alyf_checkpoint/ask_alyf_checkpoint.json
+msgid "Metadata Type"
+msgstr "元数据类型"
+
+#: ask_alyf/ask_alyf/toolset.py:1086
 msgid "Method call proposal needs correction."
 msgstr "方法调用提案需要更正。"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1034
+#: ask_alyf/public/js/ask_alyf.bundle.js:1357
 #, python-brace-format
 msgid "Mode: {0}"
 msgstr "模式：{0}"
 
-#: ask_alyf/ask_alyf/tools.py:449
+#: ask_alyf/ask_alyf/tools.py:461
 msgid "Multiple matching files were found. Provide reference_field, file_url, or file_name."
 msgstr "找到多个匹配的文件。请提供 reference_field、file_url 或 file_name。"
 
-#: ask_alyf/ask_alyf/agent.py:1319
+#: ask_alyf/ask_alyf/toolset.py:1105
 #, python-brace-format
 msgid "Navigate to {0}"
 msgstr "导航至 {0}"
 
-#: ask_alyf/ask_alyf/api.py:271 ask_alyf/ask_alyf/api.py:460
-#: ask_alyf/ask_alyf/api.py:486
+#: ask_alyf/ask_alyf/api.py:291 ask_alyf/ask_alyf/api.py:393
+#: ask_alyf/ask_alyf/api.py:449
 msgid "New Conversation"
 msgstr "新对话"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:570
+#: ask_alyf/public/js/ask_alyf.bundle.js:772
 msgid "New chat"
 msgstr "新聊天"
 
-#: ask_alyf/ask_alyf/agent.py:1346
+#: ask_alyf/ask_alyf/toolset.py:1132
 msgid "New document action needs correction."
 msgstr "新建文档操作需要更正。"
 
-#: ask_alyf/public/js/field_agent.js:174
+#: ask_alyf/public/js/field_agent.js:169
 msgid "No active form found."
 msgstr "未找到活动表单。"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1302
+#: ask_alyf/public/js/ask_alyf.bundle.js:1625
 msgid "No conversations yet."
 msgstr "暂无对话。"
 
-#: ask_alyf/ask_alyf/tools.py:1099
+#: ask_alyf/ask_alyf/tools.py:1167
 #, python-brace-format
 msgid "No documentation URL was found for app '{0}'."
 msgstr "未找到应用 '{0}' 的文档URL。"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1853
+#: ask_alyf/public/js/ask_alyf.bundle.js:2271
 msgid "No form is currently open."
 msgstr "当前没有打开的表单。"
 
-#: ask_alyf/ask_alyf/tools.py:184
+#: ask_alyf/ask_alyf/tools.py:196
 msgid "No installed app code roots were found."
 msgstr "未找到已安装应用的代码根目录。"
 
-#: ask_alyf/ask_alyf/tools.py:445
+#: ask_alyf/ask_alyf/tools.py:457
 msgid "No matching file was found."
 msgstr "未找到匹配的文件。"
 
-#: ask_alyf/ask_alyf/api.py:224
+#: ask_alyf/ask_alyf/api.py:244
 #, python-brace-format
 msgid "No pending operation matches call_id '{0}'."
 msgstr "没有待处理操作匹配 call_id '{0}'。"
 
-#: ask_alyf/ask_alyf/tools.py:1116
+#: ask_alyf/ask_alyf/tools.py:1184
 #, python-brace-format
 msgid "No pyproject.toml was found for app '{0}'."
 msgstr "未找到应用 '{0}' 的 pyproject.toml。"
 
-#: ask_alyf/ask_alyf/agent.py:1542 ask_alyf/ask_alyf/agent.py:1651
-msgid "No recent conversation context."
-msgstr "没有最近的对话上下文。"
-
-#: ask_alyf/ask_alyf/tools.py:1070
+#: ask_alyf/ask_alyf/tools.py:1082
 #, python-brace-format
 msgid "No repository URL was found for app '{0}'."
 msgstr "未找到应用 '{0}' 的仓库URL。"
 
-#: ask_alyf/ask_alyf/api.py:996
+#: ask_alyf/ask_alyf/api.py:1032
 msgid "No valid file provided."
 msgstr "未提供有效的文件。"
 
-#: ask_alyf/ask_alyf/tools.py:1060
+#: ask_alyf/ask_alyf/tools.py:1072
 #, python-brace-format
 msgid "No version was found for app '{0}'."
 msgstr "未找到应用 '{0}' 的版本。"
@@ -905,31 +985,41 @@ msgstr "未找到应用 '{0}' 的版本。"
 msgid "One DocType per line. These DocTypes stay read-only in Agent mode."
 msgstr "每行一个 DocType。这些 DocTypes 在 Agent 模式下保持只读。"
 
-#: ask_alyf/ask_alyf/tools.py:1026
+#. Description of a DocType
+#: ask_alyf/ask_alyf/doctype/ask_alyf_checkpoint/ask_alyf_checkpoint.json
+msgid "One LangGraph checkpoint. Written by FrappeCheckpointSaver, not by users."
+msgstr "单个 LangGraph 检查点。由 FrappeCheckpointSaver 写入，而非由用户写入。"
+
+#. Description of a DocType
+#: ask_alyf/ask_alyf/doctype/ask_alyf_checkpoint_write/ask_alyf_checkpoint_write.json
+msgid "One pending write of a LangGraph checkpoint. Written by FrappeCheckpointSaver, not by users."
+msgstr "LangGraph 检查点的一次待处理写入。由 FrappeCheckpointSaver 写入，而非由用户写入。"
+
+#: ask_alyf/ask_alyf/tools.py:1038
 msgid "Only Administrator and System Manager can run SQL queries."
 msgstr "只有管理员和系统经理才能运行 SQL 查询。"
 
-#: ask_alyf/ask_alyf/tools.py:1075
+#: ask_alyf/ask_alyf/tools.py:1087
 msgid "Only GitHub repositories are supported for release lookup."
 msgstr "版本查找仅支持 GitHub 仓库。"
 
-#: ask_alyf/ask_alyf/tools.py:1029
+#: ask_alyf/ask_alyf/tools.py:1041
 msgid "Only a single read-only SQL statement is allowed."
 msgstr "仅允许单个只读 SQL 语句。"
 
-#: ask_alyf/ask_alyf/api.py:622
+#: ask_alyf/ask_alyf/api.py:703
 msgid "Only backend actions can be confirmed by this endpoint."
 msgstr "此端点仅可确认 backend actions。"
 
-#: ask_alyf/ask_alyf/tools.py:1032
+#: ask_alyf/ask_alyf/tools.py:1044
 msgid "Only read-only SQL statements are allowed."
 msgstr "仅允许只读 SQL 语句。"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:557
+#: ask_alyf/public/js/ask_alyf.bundle.js:759
 msgid "Open Ask ALYF"
 msgstr "打开 Ask ALYF"
 
-#: ask_alyf/ask_alyf/agent.py:1344
+#: ask_alyf/ask_alyf/toolset.py:1130
 #, python-brace-format
 msgid "Open new {0}"
 msgstr "打开新的 {0}"
@@ -948,6 +1038,15 @@ msgstr "OpenAI"
 msgid "OpenAI Compatible"
 msgstr "OpenAI 兼容"
 
+#: ask_alyf/ask_alyf/agent.py:159
+#, python-brace-format
+msgid "Opening a new {0}"
+msgstr "正在打开新的 {0}"
+
+#: ask_alyf/ask_alyf/agent.py:157
+msgid "Opening a page"
+msgstr "正在打开页面"
+
 #. Description of the 'Base URL' (Data) field in DocType 'Ask ALYF Settings'
 #. Description of the 'Vision Base URL' (Data) field in DocType 'Ask ALYF
 #. Settings'
@@ -955,301 +1054,317 @@ msgstr "OpenAI 兼容"
 msgid "Optional for OpenAI. Required for OpenAI-compatible providers."
 msgstr "对 OpenAI 可选。对 OpenAI 兼容的提供商必填。"
 
-#: ask_alyf/ask_alyf/tools.py:526
+#. Label of a Data field in DocType 'Ask ALYF Checkpoint'
+#: ask_alyf/ask_alyf/doctype/ask_alyf_checkpoint/ask_alyf_checkpoint.json
+msgid "Parent Checkpoint ID"
+msgstr "父检查点 ID"
+
+#: ask_alyf/ask_alyf/tools.py:538
 #, python-brace-format
 msgid "Path '{0}' must point to a file inside an installed app."
 msgstr "路径 '{0}' 必须指向已安装应用内的文件。"
 
-#: ask_alyf/ask_alyf/tools.py:257
+#: ask_alyf/ask_alyf/tools.py:269
 #, python-brace-format
 msgid "Path '{0}' was not found in app '{1}'."
 msgstr "在应用 '{1}' 中未找到路径 '{0}'。"
 
-#: ask_alyf/ask_alyf/tools.py:206
+#: ask_alyf/ask_alyf/deep_agent_backend.py:165
+#, python-brace-format
+msgid "Path is not a file: {0}"
+msgstr "路径不是文件：{0}"
+
+#: ask_alyf/ask_alyf/deep_agent_backend.py:93 ask_alyf/ask_alyf/tools.py:218
 msgid "Path must start with an installed app name."
 msgstr "路径必须以已安装的应用名称开头。"
 
-#. Label of the pending_operation_json (Code) field in DocType 'Ask ALYF
-#. Conversation'
+#. Label of a Code field in DocType 'Ask ALYF Conversation'
 #: ask_alyf/ask_alyf/doctype/ask_alyf_conversation/ask_alyf_conversation.json
 msgid "Pending Operation JSON"
 msgstr "待处理操作 JSON"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1659
+#: ask_alyf/public/js/ask_alyf.bundle.js:2090
 msgid "Pending operation"
 msgstr "待处理操作"
 
-#: ask_alyf/ask_alyf/agent.py:1013
-msgid "Planning document change..."
-msgstr "正在规划文档更改..."
+#: ask_alyf/ask_alyf/agent.py:133
+msgid "Planning the next steps"
+msgstr "正在规划后续步骤"
 
-#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.py:105
+#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.py:142
 msgid "Please configure a Base URL first and save the settings, then we can fetch available models."
 msgstr "请先配置基础 URL 并保存设置，然后我们才能获取可用的模型。"
 
-#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.py:98
+#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.py:135
 msgid "Please configure an API key first and save the settings, then we can fetch available models."
 msgstr "请先配置 API 密钥并保存设置，然后我们才能获取可用的模型。"
 
-#: ask_alyf/ask_alyf/agent.py:1437
+#: ask_alyf/ask_alyf/toolset.py:1223
 msgid "Prepared add child row action."
 msgstr "已准备添加子行操作。"
 
-#: ask_alyf/ask_alyf/agent.py:1188
+#: ask_alyf/ask_alyf/toolset.py:974
 msgid "Prepared amend proposal."
 msgstr "已准备修订提案。"
 
-#: ask_alyf/ask_alyf/agent.py:1274
+#: ask_alyf/ask_alyf/toolset.py:1060
 msgid "Prepared attach file proposal."
 msgstr "已准备附加文件提案。"
 
-#: ask_alyf/ask_alyf/agent.py:1063
+#: ask_alyf/ask_alyf/toolset.py:849
 msgid "Prepared batch create proposal."
 msgstr "已准备批量创建提案。"
 
-#: ask_alyf/ask_alyf/agent.py:1167
+#: ask_alyf/ask_alyf/toolset.py:953
 msgid "Prepared cancel proposal."
 msgstr "已准备取消提案。"
 
-#: ask_alyf/ask_alyf/agent.py:1473
+#: ask_alyf/ask_alyf/toolset.py:1259
 msgid "Prepared chart display."
 msgstr "已准备图表显示。"
 
-#: ask_alyf/ask_alyf/agent.py:1039
+#: ask_alyf/ask_alyf/toolset.py:825
 msgid "Prepared create proposal."
 msgstr "已准备创建提案。"
 
-#: ask_alyf/ask_alyf/agent.py:1209
+#: ask_alyf/ask_alyf/toolset.py:995
 msgid "Prepared delete proposal."
 msgstr "已准备删除提案。"
 
-#: ask_alyf/ask_alyf/agent.py:1301
+#: ask_alyf/ask_alyf/toolset.py:1087
 msgid "Prepared method call proposal."
 msgstr "已准备方法调用提案。"
 
-#: ask_alyf/ask_alyf/agent.py:1347
+#: ask_alyf/ask_alyf/toolset.py:1133
 msgid "Prepared new document action."
 msgstr "已准备新建文档操作。"
 
-#: ask_alyf/ask_alyf/agent.py:1239
+#: ask_alyf/ask_alyf/toolset.py:1025
 msgid "Prepared rename proposal."
 msgstr "已准备重命名提案。"
 
-#: ask_alyf/ask_alyf/agent.py:1322
+#: ask_alyf/ask_alyf/toolset.py:1108
 msgid "Prepared route action."
 msgstr "已准备路由操作。"
 
-#: ask_alyf/ask_alyf/agent.py:1367
+#: ask_alyf/ask_alyf/toolset.py:1153
 msgid "Prepared scroll action."
 msgstr "已准备滚动操作。"
 
-#: ask_alyf/ask_alyf/agent.py:1402
+#: ask_alyf/ask_alyf/toolset.py:1188
 msgid "Prepared set field action."
 msgstr "已准备设置字段操作。"
 
-#: ask_alyf/ask_alyf/agent.py:1123
+#: ask_alyf/ask_alyf/toolset.py:909
 msgid "Prepared set value proposal."
 msgstr "已准备设置值提案。"
 
-#: ask_alyf/ask_alyf/agent.py:981
+#: ask_alyf/ask_alyf/toolset.py:799
 msgid "Prepared skill proposal."
 msgstr "已准备技能提案。"
 
-#: ask_alyf/ask_alyf/agent.py:1146
+#: ask_alyf/ask_alyf/toolset.py:932
 msgid "Prepared submit proposal."
 msgstr "已准备提交提案。"
 
-#: ask_alyf/ask_alyf/agent.py:1092
+#: ask_alyf/ask_alyf/toolset.py:878
 msgid "Prepared update proposal."
 msgstr "已准备更新提案。"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1156
+#: ask_alyf/ask_alyf/agent.py:163
+msgid "Preparing a chart"
+msgstr "正在准备图表"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1479
 msgid "Projects"
 msgstr "项目"
 
-#: ask_alyf/ask_alyf/tools.py:1594
+#: ask_alyf/ask_alyf/tools.py:1662
 msgid "Provide at least one chart in frappe_charts."
 msgstr "请在 frappe_charts 中至少提供一个图表。"
 
-#: ask_alyf/ask_alyf/tools.py:470
+#: ask_alyf/ask_alyf/tools.py:482
 msgid "Provide at least one label to translate."
 msgstr "请至少提供一个要翻译的标签。"
 
-#: ask_alyf/ask_alyf/tools.py:489 ask_alyf/ask_alyf/tools.py:626
+#: ask_alyf/ask_alyf/tools.py:501 ask_alyf/ask_alyf/tools.py:638
 msgid "Query is required."
 msgstr "查询为必填项。"
 
-#: ask_alyf/ask_alyf/agent.py:907
-msgid "Reading GitHub releases..."
-msgstr "正在读取 GitHub 发布版本..."
+#: ask_alyf/ask_alyf/agent.py:125
+msgid "Reading documentation"
+msgstr "正在阅读文档"
 
-#: ask_alyf/ask_alyf/agent.py:894
-msgid "Reading app version..."
-msgstr "正在读取应用版本..."
+#: ask_alyf/ask_alyf/agent.py:116
+msgid "Reading instructions"
+msgstr "正在读取说明"
 
-#: ask_alyf/ask_alyf/agent.py:651
-msgid "Reading code file..."
-msgstr "正在读取代码文件..."
+#: ask_alyf/ask_alyf/agent.py:118
+msgid "Reading the attached document"
+msgstr "正在读取附加的单据"
 
-#: ask_alyf/ask_alyf/agent.py:920
-msgid "Reading documentation..."
-msgstr "正在读取文档..."
+#: ask_alyf/ask_alyf/agent.py:102
+#, python-brace-format
+msgid "Reading {0}"
+msgstr "正在读取 {0}"
 
-#: ask_alyf/ask_alyf/agent.py:807
-msgid "Reading file..."
-msgstr "正在读取文件..."
+#: ask_alyf/ask_alyf/agent.py:98
+#, python-brace-format
+msgid "Reading {0} list"
+msgstr "正在读取 {0} 列表"
 
-#: ask_alyf/ask_alyf/agent.py:935
-msgid "Reading skill..."
-msgstr "正在读取技能..."
-
-#: ask_alyf/ask_alyf/api.py:789 ask_alyf/ask_alyf/api.py:875
-#: ask_alyf/ask_alyf/api.py:904
+#: ask_alyf/ask_alyf/api.py:833 ask_alyf/ask_alyf/api.py:940
 #, python-brace-format
 msgid "Reason: {0}"
 msgstr "原因：{0}"
 
-#: ask_alyf/ask_alyf/agent.py:125
-msgid "Recent conversation context:"
-msgstr "最近的对话上下文："
+#. Label of a Select field in DocType 'Ask ALYF Settings'
+#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.json
+msgid "Reasoning Effort"
+msgstr "推理强度"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1762
+#: ask_alyf/public/js/ask_alyf.bundle.js:2183
 #, python-brace-format
 msgid "Records to create ({0})"
 msgstr "要创建的记录 ({0})"
 
-#: ask_alyf/ask_alyf/tools.py:729
+#: ask_alyf/ask_alyf/tools.py:741
 msgid "Reference doctype is required."
 msgstr "源单据类型为必填项。"
 
-#: ask_alyf/ask_alyf/tools.py:733
+#: ask_alyf/ask_alyf/tools.py:745
 msgid "Reference name is required."
 msgstr "源单据为必填项。"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:497
+#: ask_alyf/public/js/ask_alyf.bundle.js:703
 msgid "Reject"
 msgstr "拒绝"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:516
+#: ask_alyf/public/js/ask_alyf.bundle.js:720
 msgid "Reject all"
 msgstr "全部拒绝"
 
-#: ask_alyf/ask_alyf/agent.py:1238
+#: ask_alyf/ask_alyf/toolset.py:1024
 msgid "Rename proposal needs correction."
 msgstr "重命名提案需要修正。"
 
-#: ask_alyf/ask_alyf/agent.py:1236
+#: ask_alyf/ask_alyf/toolset.py:1022
 #, python-brace-format
 msgid "Rename {0} {1} to {2}"
 msgstr "将 {0} {1} 重命名为 {2}"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:561
+#: ask_alyf/ask_alyf/agent.py:150
+#, python-brace-format
+msgid "Renaming {0}"
+msgstr "正在重命名 {0}"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:763
 msgid "Resize chat window"
 msgstr "调整聊天窗口大小"
 
-#: ask_alyf/ask_alyf/agent.py:789
-msgid "Resolving file ID..."
-msgstr "正在解析 File ID..."
-
-#: ask_alyf/public/js/field_agent.js:278
+#: ask_alyf/public/js/field_agent.js:272
 msgid "Reverted."
 msgstr "已还原。"
 
-#: ask_alyf/ask_alyf/agent.py:1321
+#: ask_alyf/ask_alyf/toolset.py:1107
 msgid "Route action needs correction."
 msgstr "路由操作需要更正。"
 
-#: ask_alyf/ask_alyf/tools.py:1626
+#: ask_alyf/ask_alyf/tools.py:1694
 #, python-brace-format
 msgid "Route part #{0} must be a non-empty string."
 msgstr "路由部分 #{0} 必须是非空字符串。"
 
-#: ask_alyf/ask_alyf/agent.py:882
-msgid "Running SQL query..."
-msgstr "正在运行 SQL 查询..."
+#: ask_alyf/ask_alyf/agent.py:114
+msgid "Running a database query"
+msgstr "正在运行数据库查询"
 
-#. Label of the vision_model_is_chat_model (Check) field in DocType 'Ask ALYF
-#. Settings'
+#: ask_alyf/ask_alyf/agent.py:154
+#, python-brace-format
+msgid "Running {0}"
+msgstr "正在运行 {0}"
+
+#. Label of a Check field in DocType 'Ask ALYF Settings'
 #: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.json
 msgid "Same as Chat"
 msgstr "与聊天相同"
 
-#: ask_alyf/ask_alyf/agent.py:1366
+#: ask_alyf/ask_alyf/agent.py:116
+msgid "Saving instructions"
+msgstr "正在保存说明"
+
+#: ask_alyf/ask_alyf/toolset.py:1152
 msgid "Scroll action needs correction."
 msgstr "滚动操作需要更正。"
 
-#: ask_alyf/ask_alyf/agent.py:1364
+#: ask_alyf/ask_alyf/toolset.py:1150
 #, python-brace-format
 msgid "Scroll to field {0}"
 msgstr "滚动到字段 {0}"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1893
+#: ask_alyf/public/js/ask_alyf.bundle.js:2305
 msgid "Scrolling to fields is not available on this form."
 msgstr "此表单不支持滚动到字段。"
 
-#: ask_alyf/ask_alyf/agent.py:637
-msgid "Searching code..."
-msgstr "正在搜索代码..."
+#: ask_alyf/ask_alyf/agent.py:127
+msgid "Searching the documentation"
+msgstr "正在搜索文档"
 
-#: ask_alyf/ask_alyf/agent.py:739
-msgid "Searching file contents..."
-msgstr "正在搜索文件内容..."
+#: ask_alyf/ask_alyf/agent.py:129
+msgid "Searching the source code"
+msgstr "正在搜索源代码"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1102
+#: ask_alyf/public/js/ask_alyf.bundle.js:1425
 msgid "Selling"
 msgstr "销售"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1577
-msgid "Sending..."
-msgstr "正在发送..."
-
-#: ask_alyf/ask_alyf/agent.py:1401
+#: ask_alyf/ask_alyf/toolset.py:1187
 msgid "Set field action needs correction."
 msgstr "设置字段操作需要更正。"
 
-#: ask_alyf/ask_alyf/agent.py:1399
+#: ask_alyf/ask_alyf/toolset.py:1185
 #, python-brace-format
 msgid "Set field {0} on current form"
 msgstr "在当前表单中设置字段 {0}"
 
-#: ask_alyf/ask_alyf/agent.py:1122
+#: ask_alyf/ask_alyf/toolset.py:908
 msgid "Set value proposal needs correction."
 msgstr "设置值提案需要更正。"
 
-#: ask_alyf/ask_alyf/agent.py:1120
+#: ask_alyf/ask_alyf/toolset.py:906
 #, python-brace-format
 msgid "Set {0} on {1} {2}"
 msgstr "在 {1} {2} 上设置 {0}"
 
-#: ask_alyf/ask_alyf/agent.py:1467
+#: ask_alyf/ask_alyf/toolset.py:1253
 msgid "Show chart"
 msgstr "显示图表"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1131
+#: ask_alyf/public/js/ask_alyf.bundle.js:1454
 msgid "Show employee headcount by department as a chart"
 msgstr "以图表形式显示按部门划分的员工人数"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1150
+#: ask_alyf/public/js/ask_alyf.bundle.js:1473
 msgid "Show me open Work Orders and their status"
 msgstr "显示打开的工单及其状态"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1176
+#: ask_alyf/public/js/ask_alyf.bundle.js:1499
 msgid "Show me the top 10 DocTypes by record count"
 msgstr "按记录计数显示前 10 个 DocTypes"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1123
+#: ask_alyf/public/js/ask_alyf.bundle.js:1446
 msgid "Show me unpaid Sales Invoices older than 30 days"
 msgstr "显示超过 30 天未付的销售发票"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1168
+#: ask_alyf/public/js/ask_alyf.bundle.js:1491
 msgid "Show me unresolved issues from this week"
 msgstr "显示本周未解决的问题"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1158
+#: ask_alyf/public/js/ask_alyf.bundle.js:1481
 msgid "Show project progress as a chart"
 msgstr "以图表形式显示项目进展"
 
-#: ask_alyf/ask_alyf/agent.py:1467
+#: ask_alyf/ask_alyf/toolset.py:1253
 #, python-brace-format
 msgid "Show {0} charts"
 msgstr "显示 {0} 个图表"
@@ -1264,7 +1379,7 @@ msgstr "技能 '{0}' 对当前用户不可用。"
 msgid "Skill '{0}' was not found."
 msgstr "未找到技能 '{0}'。"
 
-#: ask_alyf/ask_alyf/agent.py:972
+#: ask_alyf/ask_alyf/toolset.py:790
 msgid "Skill description is required."
 msgstr "技能描述为必填项。"
 
@@ -1272,19 +1387,27 @@ msgstr "技能描述为必填项。"
 msgid "Skill name is required."
 msgstr "技能名称为必填项。"
 
-#: ask_alyf/ask_alyf/agent.py:980
+#: ask_alyf/ask_alyf/toolset.py:798
 msgid "Skill proposal needs correction."
 msgstr "技能提案需要修正。"
 
-#: ask_alyf/ask_alyf/agent.py:970
+#: ask_alyf/ask_alyf/toolset.py:788
 msgid "Skill title is required."
 msgstr "技能标题为必填项。"
 
-#: ask_alyf/ask_alyf/tools.py:1362
+#: ask_alyf/ask_alyf/tools.py:1430
 msgid "Some rows failed."
 msgstr "部分行失败。"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:568
+#: ask_alyf/ask_alyf/deep_agent_backend.py:39
+msgid "Source code is read-only"
+msgstr "源代码为只读"
+
+#: ask_alyf/ask_alyf/deep_agent_backend.py:160
+msgid "Source file path is required"
+msgstr "必须提供源文件路径"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:770
 msgid "Start a new conversation"
 msgstr "开始新的对话"
 
@@ -1294,122 +1417,204 @@ msgstr "开始新的对话"
 msgid "Start typing to choose a model. Available models are loaded from the configured provider."
 msgstr "开始输入以选择模型。可用模型从已配置的供应商加载。"
 
-#: ask_alyf/ask_alyf/api.py:832
+#: ask_alyf/ask_alyf/api.py:876
 msgid "Status must be one of success, failed, or rejected."
 msgstr "状态必须是 success、failed 或 rejected 之一。"
 
-#: ask_alyf/public/js/field_agent.js:205
+#: ask_alyf/public/js/field_agent.js:200
 msgid "Still generating..."
 msgstr "仍在生成中..."
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1138
+#: ask_alyf/public/js/ask_alyf.bundle.js:1461
 msgid "Stock"
 msgstr "库存"
 
-#: ask_alyf/ask_alyf/agent.py:1145
+#: ask_alyf/public/js/ask_alyf.bundle.js:1736
+msgid "Stop this run"
+msgstr "停止本次运行"
+
+#: ask_alyf/ask_alyf/api.py:601
+msgid "Stopped. Send a message to pick up from here."
+msgstr "已停止。发送消息即可从此处继续。"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1757
+msgid "Stopping..."
+msgstr "正在停止..."
+
+#: ask_alyf/ask_alyf/toolset.py:931
 msgid "Submit proposal needs correction."
 msgstr "提交提案需要修正。"
 
-#: ask_alyf/ask_alyf/agent.py:1143
+#: ask_alyf/ask_alyf/toolset.py:929
 #, python-brace-format
 msgid "Submit {0} {1}"
 msgstr "提交 {0} {1}"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1165
+#: ask_alyf/public/js/ask_alyf.bundle.js:1488
 msgid "Support"
 msgstr "支持"
 
-#. Label of the support_phone_number (Phone) field in DocType 'Ask ALYF
-#. Settings'
+#. Label of a Phone field in DocType 'Ask ALYF Settings'
 #: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.json
 msgid "Support Phone Number"
 msgstr "支持电话号码"
 
-#. Label of the system_prompt (Code) field in DocType 'Ask ALYF Settings'
+#. Label of a Code field in DocType 'Ask ALYF Settings'
 #: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.json
 msgid "System Prompt"
 msgstr "系统提示"
 
-#: ask_alyf/ask_alyf/api.py:826
+#. Label of a Data field in DocType 'Ask ALYF Checkpoint Write'
+#: ask_alyf/ask_alyf/doctype/ask_alyf_checkpoint_write/ask_alyf_checkpoint_write.json
+msgid "Task ID"
+msgstr ""
+
+#. Label of a Data field in DocType 'Ask ALYF Checkpoint Write'
+#: ask_alyf/ask_alyf/doctype/ask_alyf_checkpoint_write/ask_alyf_checkpoint_write.json
+msgid "Task Path"
+msgstr "任务路径"
+
+#: ask_alyf/ask_alyf/toolset.py:312
+msgid "That confirmation did not match this operation. Propose it again on its own."
+msgstr "该确认与此操作不匹配。请单独重新提出该操作。"
+
+#: ask_alyf/ask_alyf/tools.py:1110
+msgid "The Compendium app is not installed."
+msgstr "未安装 Compendium 应用。"
+
+#: ask_alyf/ask_alyf/toolset.py:330
+msgid "The action could not be completed."
+msgstr "无法完成该操作。"
+
+#: ask_alyf/ask_alyf/api.py:507 ask_alyf/ask_alyf/api.py:534
+msgid "The background job does not match this message."
+msgstr "后台作业与此消息不匹配。"
+
+#: ask_alyf/ask_alyf/api.py:505 ask_alyf/ask_alyf/api.py:530
+#: ask_alyf/ask_alyf/api.py:556
+msgid "The message could not be found in this conversation."
+msgstr "在此对话中找不到该消息。"
+
+#: ask_alyf/ask_alyf/agent.py:594
+msgid "The operation was completed, but the follow-up response could not be generated."
+msgstr "操作已完成，但无法生成后续回复。"
+
+#: ask_alyf/ask_alyf/api.py:870
 msgid "The pending operation is not a frontend action."
 msgstr "待处理操作不是前端操作。"
 
-#: ask_alyf/ask_alyf/api.py:820
+#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.py:241
+#, python-brace-format
+msgid "The selected Chat Model ({0}) does not support Reasoning Effort ({1})."
+msgstr "所选聊天模型（{0}）不支持推理强度（{1}）。"
+
+#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.py:237
+#, python-brace-format
+msgid "The selected Chat Model ({0}) does not support Reasoning Effort ({1}). Supported values: {2}."
+msgstr "所选聊天模型（{0}）不支持推理强度（{1}）。支持的值：{2}。"
+
+#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.py:98
+#, python-brace-format
+msgid "The selected Chat Model ({0}) does not support function calling."
+msgstr "所选聊天模型（{0}）不支持函数调用。"
+
+#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.py:106
+#, python-brace-format
+msgid "The selected Chat Model ({0}) does not support vision. Choose a vision-capable chat model or configure a separate vision model."
+msgstr "所选聊天模型（{0}）不支持视觉功能。请选择支持视觉的聊天模型，或配置单独的视觉模型。"
+
+#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.py:115
+#, python-brace-format
+msgid "The selected Vision Model ({0}) does not support vision."
+msgstr "所选视觉模型（{0}）不支持视觉功能。"
+
+#: ask_alyf/ask_alyf/toolset.py:320
+msgid "The user rejected this operation."
+msgstr "用户拒绝了此操作。"
+
+#: ask_alyf/ask_alyf/api.py:864
 msgid "There is no pending frontend action to resolve."
 msgstr "没有待解决的前端操作。"
 
-#: ask_alyf/ask_alyf/api.py:614
+#: ask_alyf/ask_alyf/api.py:695
 msgid "There is no pending operation to confirm."
 msgstr "没有待确认的待处理操作。"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:720
+#: ask_alyf/public/js/ask_alyf.bundle.js:911
 msgid "Thinking..."
 msgstr "思考中..."
 
-#: ask_alyf/public/js/field_agent.js:208
+#: ask_alyf/public/js/field_agent.js:203
 msgid "This is taking a moment..."
 msgstr "这需要一点时间..."
 
-#: ask_alyf/ask_alyf/tools.py:1470
+#. Label of a Data field in DocType 'Ask ALYF Checkpoint'
+#. Label of a Data field in DocType 'Ask ALYF Checkpoint Write'
+#: ask_alyf/ask_alyf/doctype/ask_alyf_checkpoint/ask_alyf_checkpoint.json
+#: ask_alyf/ask_alyf/doctype/ask_alyf_checkpoint_write/ask_alyf_checkpoint_write.json
+msgid "Thread ID"
+msgstr "线程 ID"
+
+#: ask_alyf/ask_alyf/tools.py:1538
 msgid "Too many chart datasets."
 msgstr "图表数据集过多。"
 
-#: ask_alyf/ask_alyf/tools.py:1451
+#: ask_alyf/ask_alyf/tools.py:1519
 msgid "Too many chart labels."
 msgstr "图表标签过多。"
 
-#: ask_alyf/ask_alyf/tools.py:1597
+#: ask_alyf/ask_alyf/tools.py:1665
 msgid "Too many charts in one request."
 msgstr "一个请求中的图表过多。"
 
-#: ask_alyf/ask_alyf/agent.py:620
-msgid "Translating UI labels..."
-msgstr "正在翻译界面标签..."
+#: ask_alyf/ask_alyf/agent.py:112
+msgid "Translating labels"
+msgstr "正在翻译标签"
 
-#: ask_alyf/ask_alyf/tools.py:1200
+#: ask_alyf/ask_alyf/tools.py:1268
 msgid "Unknown error."
 msgstr "未知错误。"
 
-#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.py:137
+#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.py:182
 #, python-brace-format
 msgid "Unsupported LLM provider: {0}"
 msgstr "不支持的 LLM 提供商：{0}"
 
-#: ask_alyf/ask_alyf/tools.py:1301
+#: ask_alyf/ask_alyf/tools.py:1369
 #, python-brace-format
 msgid "Unsupported action '{0}'."
 msgstr "不支持的操作 '{0}'。"
 
-#: ask_alyf/ask_alyf/tools.py:933
+#: ask_alyf/ask_alyf/tools.py:945
 #, python-brace-format
 msgid "Unsupported file type '{0}'. Supported types: PDF, PNG, JPG, GIF, WebP."
 msgstr "不支持的文件类型 '{0}'。支持的类型：PDF、PNG、JPG、GIF、WebP。"
 
-#: ask_alyf/ask_alyf/tools.py:1612 ask_alyf/ask_alyf/tools.py:1675
+#: ask_alyf/ask_alyf/tools.py:1680 ask_alyf/ask_alyf/tools.py:1743
 #, python-brace-format
 msgid "Unsupported frontend action '{0}'."
 msgstr "不支持的前端操作 '{0}'。"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1926
+#: ask_alyf/public/js/ask_alyf.bundle.js:2334
 #, python-brace-format
 msgid "Unsupported frontend action: {0}"
 msgstr "不支持的前端操作：{0}"
 
-#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.py:127
+#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.py:170
 #, python-brace-format
 msgid "Unsupported model configuration: {0}"
 msgstr "不支持的模型配置：{0}"
 
-#: ask_alyf/ask_alyf/tools.py:1142 ask_alyf/ask_alyf/tools.py:1162
+#: ask_alyf/ask_alyf/tools.py:1210 ask_alyf/ask_alyf/tools.py:1230
 #, python-brace-format
 msgid "Unsupported operation kind '{0}'."
 msgstr "不支持的操作类型 '{0}'。"
 
-#: ask_alyf/ask_alyf/tools.py:1511
+#: ask_alyf/ask_alyf/tools.py:1579
 msgid "Unsupported or missing chart type."
 msgstr "不支持或缺少的图表类型。"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1077
+#: ask_alyf/public/js/ask_alyf.bundle.js:1400
 msgid "Untitled conversation"
 msgstr "无标题对话"
 
@@ -1418,165 +1623,210 @@ msgstr "无标题对话"
 msgid "Update Ask ALYF Settings"
 msgstr "更新 Ask ALYF 设置"
 
-#: ask_alyf/ask_alyf/agent.py:1091
+#: ask_alyf/ask_alyf/toolset.py:877
 msgid "Update proposal needs correction."
 msgstr "更新提案需要更正。"
 
-#: ask_alyf/ask_alyf/agent.py:1089
+#: ask_alyf/ask_alyf/toolset.py:875
 #, python-brace-format
 msgid "Update {0} {1}"
 msgstr "更新 {0} {1}"
 
-#. Label of the vision_api_key (Password) field in DocType 'Ask ALYF Settings'
+#. Label of a Long Text field in DocType 'Ask ALYF Checkpoint Write'
+#: ask_alyf/ask_alyf/doctype/ask_alyf_checkpoint_write/ask_alyf_checkpoint_write.json
+msgid "Value Data (base64)"
+msgstr "值数据（base64）"
+
+#. Label of a Data field in DocType 'Ask ALYF Checkpoint Write'
+#: ask_alyf/ask_alyf/doctype/ask_alyf_checkpoint_write/ask_alyf_checkpoint_write.json
+msgid "Value Type"
+msgstr "值类型"
+
+#. Label of a Password field in DocType 'Ask ALYF Settings'
 #: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.json
 msgid "Vision API Key"
 msgstr "Vision API 密钥"
 
-#. Label of the vision_base_url (Data) field in DocType 'Ask ALYF Settings'
+#. Label of a Data field in DocType 'Ask ALYF Settings'
 #: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.json
 msgid "Vision Base URL"
 msgstr "Vision 基础 URL"
 
-#. Label of the vision_llm_provider (Select) field in DocType 'Ask ALYF
-#. Settings'
+#. Label of a Select field in DocType 'Ask ALYF Settings'
 #: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.json
 msgid "Vision LLM Provider"
 msgstr "Vision LLM 提供商"
 
-#. Label of the vision_model (Autocomplete) field in DocType 'Ask ALYF
-#. Settings'
+#. Label of a Autocomplete field in DocType 'Ask ALYF Settings'
 #: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.json
 msgid "Vision Model"
 msgstr "Vision 模型"
 
-#. Label of the vision_provider_tab (Tab Break) field in DocType 'Ask ALYF
-#. Settings'
+#. Label of a Tab Break field in DocType 'Ask ALYF Settings'
 #: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.json
 msgid "Vision Provider"
 msgstr "Vision 提供商"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:623
-#: ask_alyf/public/js/ask_alyf.bundle.js:625
+#: ask_alyf/public/js/ask_alyf.bundle.js:823
+#: ask_alyf/public/js/ask_alyf.bundle.js:825
 msgid "Voice input"
 msgstr "语音输入"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2432
+#: ask_alyf/public/js/ask_alyf.bundle.js:2831
 #, python-brace-format
 msgid "Voice input language: {0}"
 msgstr "语音输入语言：{0}"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1608
+#: ask_alyf/public/js/ask_alyf.bundle.js:2017
 msgid "Waiting for response..."
 msgstr "正在等待回复..."
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1105
+#: ask_alyf/public/js/ask_alyf.bundle.js:1428
 msgid "What Sales Orders are pending delivery?"
 msgstr "哪些销售订单待发货？"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1177
+#: ask_alyf/public/js/ask_alyf.bundle.js:1500
 msgid "What are the recent Error Logs?"
 msgstr "最近的错误日志有哪些？"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1159
+#: ask_alyf/public/js/ask_alyf.bundle.js:1482
 msgid "What open tasks are assigned to me?"
 msgstr "分派给我的未完成任务有哪些？"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1142
+#: ask_alyf/public/js/ask_alyf.bundle.js:1465
 msgid "What were the top 10 most moved items this month?"
 msgstr "本月移动次数最多的前 10 个项目是哪些？"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1169
+#: ask_alyf/public/js/ask_alyf.bundle.js:1492
 msgid "What's the average resolution time for issues?"
 msgstr "问题的平均解决时间是多少？"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1124
+#: ask_alyf/public/js/ask_alyf.bundle.js:1447
 msgid "What's the total outstanding receivables?"
 msgstr "未收账款总额是多少？"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1114
+#: ask_alyf/public/js/ask_alyf.bundle.js:1437
 msgid "Which Purchase Orders are overdue?"
 msgstr "哪些采购订单已逾期？"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1132
+#: ask_alyf/public/js/ask_alyf.bundle.js:1455
 msgid "Which employees are on leave today?"
 msgstr "今天哪些员工休假？"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1141
+#: ask_alyf/public/js/ask_alyf.bundle.js:1464
 msgid "Which items are below their reorder level?"
 msgstr "哪些项目低于其再订货水平？"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1160
+#: ask_alyf/public/js/ask_alyf.bundle.js:1483
 msgid "Which project tasks are overdue?"
 msgstr "哪些项目任务已逾期？"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1178
+#: ask_alyf/public/js/ask_alyf.bundle.js:1501
 msgid "Which users logged in today?"
 msgstr "今天哪些用户已登录？"
 
-#: ask_alyf/ask_alyf/api.py:427 ask_alyf/ask_alyf/api.py:439
-#: ask_alyf/ask_alyf/api.py:456 ask_alyf/ask_alyf/api.py:476
-#: ask_alyf/ask_alyf/api.py:608 ask_alyf/ask_alyf/api.py:697
-#: ask_alyf/ask_alyf/api.py:814 ask_alyf/ask_alyf/api.py:941
-#: ask_alyf/ask_alyf/api.py:979
+#: ask_alyf/ask_alyf/api.py:360 ask_alyf/ask_alyf/api.py:372
+#: ask_alyf/ask_alyf/api.py:389 ask_alyf/ask_alyf/api.py:424
+#: ask_alyf/ask_alyf/api.py:492 ask_alyf/ask_alyf/api.py:516
+#: ask_alyf/ask_alyf/api.py:685 ask_alyf/ask_alyf/api.py:753
+#: ask_alyf/ask_alyf/api.py:858 ask_alyf/ask_alyf/api.py:977
+#: ask_alyf/ask_alyf/api.py:1015
 msgid "You do not have access to Ask ALYF."
 msgstr "您无权访问 Ask ALYF。"
 
-#: ask_alyf/ask_alyf/api.py:948
+#: ask_alyf/ask_alyf/api.py:984
 #, python-brace-format
 msgid "You do not have read permission on {0}."
 msgstr "您没有 {0} 的读取权限。"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2373
+#: ask_alyf/public/js/ask_alyf.bundle.js:2772
 msgid "Your browser does not support voice input."
 msgstr "您的浏览器不支持语音输入。"
 
-#: ask_alyf/ask_alyf/agent.py:1531
-msgid "all installed app code roots available to you"
-msgstr "您可访问的所有已安装应用代码根目录"
+#: ask_alyf/ask_alyf/agent.py:154
+msgid "an action"
+msgstr "操作"
 
-#: ask_alyf/ask_alyf/api.py:785
+#: ask_alyf/ask_alyf/agent.py:131
+msgid "assistant"
+msgstr "助手"
+
+#: ask_alyf/ask_alyf/api.py:829
 msgid "chart"
-msgstr "图表"
+msgstr ""
 
 #. Description of a DocType
 #: ask_alyf/ask_alyf/doctype/ask_alyf_skill/ask_alyf_skill.json
 msgid "debug session"
 msgstr "调试会话"
 
-#: ask_alyf/ask_alyf/api.py:302
+#: ask_alyf/ask_alyf/agent.py:93
 msgid "doctype"
 msgstr "单据类型"
 
-#: ask_alyf/ask_alyf/api.py:865
+#: ask_alyf/ask_alyf/api.py:909
 msgid "frontend action"
 msgstr "前端操作"
 
-#: ask_alyf/ask_alyf/tools.py:1357
-#, python-brace-format
-msgid "row {0}"
-msgstr "第 {0} 行"
+#. Option for the 'Reasoning Effort' (Select) field in DocType 'Ask ALYF
+#. Settings'
+#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.json
+msgid "high"
+msgstr "高"
 
-#: ask_alyf/ask_alyf/tools.py:1355
+#. Option for the 'Reasoning Effort' (Select) field in DocType 'Ask ALYF
+#. Settings'
+#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.json
+msgid "low"
+msgstr "低"
+
+#. Option for the 'Reasoning Effort' (Select) field in DocType 'Ask ALYF
+#. Settings'
+#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.json
+msgid "max"
+msgstr "最高"
+
+#. Option for the 'Reasoning Effort' (Select) field in DocType 'Ask ALYF
+#. Settings'
+#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.json
+msgid "medium"
+msgstr "中"
+
+#: ask_alyf/ask_alyf/tools.py:1425
+msgid "row {0}"
+msgstr ""
+
+#: ask_alyf/ask_alyf/tools.py:1423
 #, python-brace-format
 msgid "row {0}: {1}"
 msgstr "第 {0} 行：{1}"
 
-#: ask_alyf/ask_alyf/agent.py:1319
+#: ask_alyf/ask_alyf/toolset.py:1105
 msgid "target route"
 msgstr "目标路由"
 
-#: ask_alyf/ask_alyf/tools.py:985
+#. Option for the 'Reasoning Effort' (Select) field in DocType 'Ask ALYF
+#. Settings'
+#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.json
+msgid "xhigh"
+msgstr "超高"
+
+#: ask_alyf/ask_alyf/tools.py:997
 #, python-brace-format
 msgid "{0} '{1}' was not found."
 msgstr "未找到 {0} '{1}'。"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1821
-#, python-brace-format
+#: ask_alyf/public/js/ask_alyf.bundle.js:2242
 msgid "{0} items"
-msgstr "{0} 个项目"
+msgstr ""
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1815
+#: ask_alyf/public/js/ask_alyf.bundle.js:2236
 #, python-brace-format
 msgid "{0} rows"
 msgstr "{0} 行"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:302
+#, python-brace-format
+msgid "{0} steps"
+msgstr "{0} 步"
 
