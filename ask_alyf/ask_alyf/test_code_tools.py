@@ -789,6 +789,7 @@ class UnitTestCodeTools(UnitTestCase):
 		# a wider snippet than the Awesome Bar's, because the model picks from it
 		self.assertEqual(search.call_args.kwargs["snippet_tokens"], tools.COMPENDIUM_SNIPPET_TOKENS)
 
+	@unittest.skipUnless(importlib.util.find_spec("compendium"), "compendium is not installed")
 	def test_compendium_search_without_searchable_words_finds_nothing(self):
 		with (
 			patch("frappe.get_installed_apps", return_value=["frappe", "compendium"]),
