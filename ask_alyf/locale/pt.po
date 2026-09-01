@@ -1586,6 +1586,11 @@ msgstr "{0} itens"
 msgid "{0} rows"
 msgstr "{0} linhas"
 
+#: ask_alyf/public/js/ask_alyf.bundle.js:1701
+#: ask_alyf/public/js/ask_alyf.bundle.js:1702
+msgid "Delete conversation"
+msgstr "Excluir conversa"
+
 #: ask_alyf/public/js/ask_alyf.bundle.js:1234
 msgid "Delete this conversation?"
 msgstr "Excluir esta conversa?"

@@ -1586,6 +1586,11 @@ msgstr "{0} элементов"
 msgid "{0} rows"
 msgstr "{0} строк"
 
+#: ask_alyf/public/js/ask_alyf.bundle.js:1701
+#: ask_alyf/public/js/ask_alyf.bundle.js:1702
+msgid "Delete conversation"
+msgstr "Удалить разговор"
+
 #: ask_alyf/public/js/ask_alyf.bundle.js:1234
 msgid "Delete this conversation?"
 msgstr "Удалить этот разговор?"

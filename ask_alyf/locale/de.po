@@ -1518,6 +1518,11 @@ msgstr "{0} Einträge"
 msgid "{0} rows"
 msgstr "{0} Zeilen"
 
+#: ask_alyf/public/js/ask_alyf.bundle.js:1701
+#: ask_alyf/public/js/ask_alyf.bundle.js:1702
+msgid "Delete conversation"
+msgstr "Konversation löschen"
+
 #: ask_alyf/public/js/ask_alyf.bundle.js:1234
 msgid "Delete this conversation?"
 msgstr "Diese Konversation löschen?"
