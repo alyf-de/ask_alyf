@@ -1580,3 +1580,11 @@ msgstr "{0} আইটেম"
 msgid "{0} rows"
 msgstr "{0} সারি"
 
+#: ask_alyf/public/js/ask_alyf.bundle.js:1234
+msgid "Delete this conversation?"
+msgstr "এই কথোপকথন মুছে ফেলবেন?"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1238
+msgid "Failed to delete conversation."
+msgstr "কথোপকথন মুছতে ব্যর্থ হয়েছে।"
+

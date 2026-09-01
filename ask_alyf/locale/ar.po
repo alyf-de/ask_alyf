@@ -1580,3 +1580,11 @@ msgstr "{0} عنصر"
 msgid "{0} rows"
 msgstr "{0} صفوف"
 
+#: ask_alyf/public/js/ask_alyf.bundle.js:1234
+msgid "Delete this conversation?"
+msgstr "هل تريد حذف هذه المحادثة؟"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1238
+msgid "Failed to delete conversation."
+msgstr "فشل حذف المحادثة."
+

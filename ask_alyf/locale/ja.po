@@ -1580,3 +1580,11 @@ msgstr "{0} 件"
 msgid "{0} rows"
 msgstr "{0} 行"
 
+#: ask_alyf/public/js/ask_alyf.bundle.js:1234
+msgid "Delete this conversation?"
+msgstr "この会話を削除しますか？"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1238
+msgid "Failed to delete conversation."
+msgstr "会話を削除できませんでした。"
+
