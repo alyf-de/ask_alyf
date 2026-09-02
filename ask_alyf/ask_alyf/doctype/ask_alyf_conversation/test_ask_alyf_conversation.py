@@ -121,7 +121,7 @@ class UnitTestAskALYFConversation(UnitTestCase):
 			return {"response": "Done", "pending_operations": []}
 
 		with patch("ask_alyf.ask_alyf.api.run_message", side_effect=delete_conversation_mid_run):
-			with patch("ask_alyf.ask_alyf.api.frappe.publish_realtime"):
+			with patch("ask_alyf.ask_alyf.api.frappe.publish_realtime") as publish:
 				api.process_message_job(
 					conversation_name=conversation.name,
 					message="Open Sales Invoice list",
@@ -130,7 +130,7 @@ class UnitTestAskALYFConversation(UnitTestCase):
 					user_message_id=user_message["id"],
 				)
 
-		self.assertFalse(frappe.db.exists("Ask ALYF Conversation", conversation.name))
+		self.assertNotIn("ask_alyf_response_complete", [call.args[0] for call in publish.call_args_list])
 
 	def test_get_message_job_status_maps_rq_terminal_states(self):
 		job_id = "job-123"

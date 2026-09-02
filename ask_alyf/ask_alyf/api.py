@@ -13,6 +13,7 @@ from rq.job import JobStatus
 
 from ask_alyf.ask_alyf import field_agent
 from ask_alyf.ask_alyf.agent import resume_operation, run_message
+from ask_alyf.ask_alyf.checkpointer import delete_checkpoints
 from ask_alyf.ask_alyf.tools import (
 	OPERATION_KIND_BACKEND,
 	OPERATION_KIND_FRONTEND,
@@ -646,6 +647,7 @@ def process_message_job(
 
 	if not frappe.db.exists("Ask ALYF Conversation", conversation_name):
 		clear_running_steps(conversation_name)
+		delete_checkpoints([conversation_name])
 		return
 
 	file_message = None
