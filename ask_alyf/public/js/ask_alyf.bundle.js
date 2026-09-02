@@ -1696,8 +1696,7 @@ import "./field_agent";
 				if (deletionEnabled) {
 					const deleteEl = document.createElement("button");
 					deleteEl.type = "button";
-					deleteEl.className =
-						"ask_alyf-history-item-delete ask_alyf-icon-button btn btn-sm";
+					deleteEl.className = "ask_alyf-history-item-delete ask_alyf-icon-button btn btn-sm";
 					if (conversation.name === currentName) {
 						deleteEl.classList.add("btn-primary");
 					} else {
