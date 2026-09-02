@@ -1697,7 +1697,12 @@ import "./field_agent";
 					const deleteEl = document.createElement("button");
 					deleteEl.type = "button";
 					deleteEl.className =
-						"ask_alyf-history-item-delete ask_alyf-icon-button btn btn-secondary btn-sm";
+						"ask_alyf-history-item-delete ask_alyf-icon-button btn btn-sm";
+					if (conversation.name === currentName) {
+						deleteEl.classList.add("btn-primary");
+					} else {
+						deleteEl.classList.add("btn-secondary");
+					}
 					deleteEl.title = __("Delete conversation");
 					deleteEl.setAttribute("aria-label", __("Delete conversation"));
 					deleteEl.innerHTML = getIcon("trash", "sm", "", true);
