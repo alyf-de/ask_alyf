@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Ask ALYF VERSION\n"
 "Report-Msgid-Bugs-To: hallo@alyf.de\n"
-"POT-Creation-Date: 2026-09-02 01:38+0053\n"
+"POT-Creation-Date: 2026-09-02 11:03+0053\n"
 "PO-Revision-Date: 2026-05-02 19:04+0053\n"
 "Last-Translator: hallo@alyf.de\n"
 "Language: ja\n"
@@ -129,7 +129,7 @@ msgstr "他に {0} 件。"
 msgid "App '{0}' is not installed."
 msgstr "アプリ '{0}' はインストールされていません。"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2501
+#: ask_alyf/public/js/ask_alyf.bundle.js:2506
 msgid "Applying action..."
 msgstr "アクションを適用しています..."
 
@@ -191,7 +191,7 @@ msgstr "Ask ALYF は AI であり、数値や人物に関する情報を含め�
 
 #: ask_alyf/ask_alyf/api.py:432
 msgid "Ask ALYF is still working on a message in this conversation. Stop it or wait for it to finish before deleting."
-msgstr ""
+msgstr "Ask ALYF はこの会話でメッセージをまだ処理中です。削除する前に処理を停止するか、完了するまでお待ちください。"
 
 #: ask_alyf/ask_alyf/api.py:463
 msgid "Ask ALYF is still working on the previous message in this conversation."
@@ -297,7 +297,7 @@ msgstr "グラフの表示をキャンセルしました: {0}。"
 msgid "Cancelled the pending operation: {0}."
 msgstr "保留中の操作をキャンセルしました: {0}。"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2217
+#: ask_alyf/public/js/ask_alyf.bundle.js:2222
 msgid "Changes preview"
 msgstr "変更のプレビュー"
 
@@ -426,13 +426,13 @@ msgstr "メッセージを送信する前に、Ask ALYF 設定で API キーを�
 msgid "Confirm all"
 msgstr "すべて確認"
 
-#: ask_alyf/ask_alyf/api.py:736 ask_alyf/public/js/ask_alyf.bundle.js:2501
+#: ask_alyf/ask_alyf/api.py:736 ask_alyf/public/js/ask_alyf.bundle.js:2506
 msgid "Confirming action..."
 msgstr "アクションを確認しています..."
 
 #: ask_alyf/ask_alyf/api.py:426
 msgid "Conversation deletion is not allowed."
-msgstr ""
+msgstr "会話の削除は許可されていません。"
 
 #: ask_alyf/ask_alyf/tools.py:991
 msgid "Conversation name is required."
@@ -455,7 +455,7 @@ msgstr "操作を完了できませんでした: {0}。"
 msgid "Could not display chart."
 msgstr "チャートを表示できませんでした。"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2720
+#: ask_alyf/public/js/ask_alyf.bundle.js:2725
 msgid "Could not download chart."
 msgstr "チャートをダウンロードできませんでした。"
 
@@ -467,7 +467,7 @@ msgstr "ファイルからビジュアルコンテンツを抽出できません
 msgid "Could not generate content."
 msgstr "コンテンツを生成できませんでした。"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2791
+#: ask_alyf/public/js/ask_alyf.bundle.js:2796
 msgid "Could not render chart."
 msgstr "チャートを表示できませんでした。"
 
@@ -505,12 +505,12 @@ msgstr "{1} 件中 {0} 件の {2} レコードを作成しました。"
 msgid "Creating several {0} records"
 msgstr "複数の {0} レコードを作成しています"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2365
+#: ask_alyf/public/js/ask_alyf.bundle.js:2370
 #, python-brace-format
 msgid "Current document is {0}, expected {1}."
 msgstr "現在のドキュメントは {0} ですが、{1} が想定されています。"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2358
+#: ask_alyf/public/js/ask_alyf.bundle.js:2363
 #, python-brace-format
 msgid "Current form is {0}, expected {1}."
 msgstr "現在のフォームは {0} ですが、{1} が想定されています。"
@@ -524,8 +524,8 @@ msgstr "データセットの値は数値でなければなりません。"
 msgid "Dataset values must match labels length."
 msgstr "データセットの値はラベルの長さと一致する必要があります。"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1701
-#: ask_alyf/public/js/ask_alyf.bundle.js:1702
+#: ask_alyf/public/js/ask_alyf.bundle.js:1706
+#: ask_alyf/public/js/ask_alyf.bundle.js:1707
 msgid "Delete conversation"
 msgstr "会話を削除"
 
@@ -589,7 +589,7 @@ msgstr "ドキュメント抽出からコンテンツが返されませんでし
 msgid "Document name is required."
 msgstr "ドキュメント名は必須です。"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2705
+#: ask_alyf/public/js/ask_alyf.bundle.js:2710
 msgid "Download chart as SVG"
 msgstr "チャートをSVGとしてダウンロード"
 
@@ -647,7 +647,7 @@ msgstr "失敗した行: {0}"
 msgid "Failed to attach file to conversation."
 msgstr "会話へのファイルの添付に失敗しました。"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2528
+#: ask_alyf/public/js/ask_alyf.bundle.js:2533
 msgid "Failed to confirm pending operation."
 msgstr "保留中の操作の確認に失敗しました。"
 
@@ -655,23 +655,23 @@ msgstr "保留中の操作の確認に失敗しました。"
 msgid "Failed to delete conversation."
 msgstr "会話を削除できませんでした。"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2466
+#: ask_alyf/public/js/ask_alyf.bundle.js:2471
 msgid "Failed to execute frontend action."
 msgstr "フロントエンドアクションの実行に失敗しました。"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1744
+#: ask_alyf/public/js/ask_alyf.bundle.js:1749
 msgid "Failed to open conversation."
 msgstr "会話を開けませんでした。"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2566
+#: ask_alyf/public/js/ask_alyf.bundle.js:2571
 msgid "Failed to reject pending operation."
 msgstr "保留中の操作の拒否に失敗しました。"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2086
+#: ask_alyf/public/js/ask_alyf.bundle.js:2091
 msgid "Failed to send message."
 msgstr "メッセージの送信に失敗しました。"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1832
+#: ask_alyf/public/js/ask_alyf.bundle.js:1837
 msgid "Failed to stop the run."
 msgstr "実行を停止できませんでした。"
 
@@ -693,8 +693,8 @@ msgstr "フィールド Agent が有効になっていません。"
 msgid "Field updated."
 msgstr "フィールドを更新しました。"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2395
-#: ask_alyf/public/js/ask_alyf.bundle.js:2404
+#: ask_alyf/public/js/ask_alyf.bundle.js:2400
+#: ask_alyf/public/js/ask_alyf.bundle.js:2409
 #, python-brace-format
 msgid "Field {0} does not exist on this form."
 msgstr "フィールド {0} はこのフォームに存在しません。"
@@ -765,7 +765,7 @@ msgstr "フロントエンドアクション 'set_route' には空でない Rout
 msgid "Frontend action failed: {0}"
 msgstr "フロントエンドアクションが失敗しました: {0}"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2453
+#: ask_alyf/public/js/ask_alyf.bundle.js:2458
 msgid "Frontend action is missing a call ID."
 msgstr "フロントエンドアクションに通話 ID がありません。"
 
@@ -838,7 +838,7 @@ msgstr "操作の準備ができました。ご確認の上、承認してくだ
 msgid "Invalid action payload."
 msgstr "無効なアクションペイロードです。"
 
-#: ask_alyf/ask_alyf/tools.py:1609 ask_alyf/public/js/ask_alyf.bundle.js:2761
+#: ask_alyf/ask_alyf/tools.py:1609 ask_alyf/public/js/ask_alyf.bundle.js:2766
 msgid "Invalid chart data."
 msgstr "無効なチャートデータです。"
 
@@ -882,7 +882,7 @@ msgstr "最終メッセージ日時"
 msgid "Line offset {0} exceeds file length"
 msgstr "行オフセット {0} がファイルの長さを超えています"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1729
+#: ask_alyf/public/js/ask_alyf.bundle.js:1734
 msgid "Loading conversation..."
 msgstr "会話を読み込んでいます..."
 
@@ -958,7 +958,7 @@ msgstr "まだ会話はありません。"
 msgid "No documentation URL was found for app '{0}'."
 msgstr "アプリ '{0}' のドキュメント URL が見つかりませんでした。"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2352
+#: ask_alyf/public/js/ask_alyf.bundle.js:2357
 msgid "No form is currently open."
 msgstr "現在開いているフォームはありません。"
 
@@ -1100,7 +1100,7 @@ msgstr "パスはインストール済みアプリ名で始まる必要があり
 msgid "Pending Operation JSON"
 msgstr "保留中の操作 JSON"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2171
+#: ask_alyf/public/js/ask_alyf.bundle.js:2176
 msgid "Pending operation"
 msgstr "保留中の操作"
 
@@ -1240,7 +1240,7 @@ msgstr "理由: {0}"
 msgid "Reasoning Effort"
 msgstr "推論の労力"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2264
+#: ask_alyf/public/js/ask_alyf.bundle.js:2269
 #, python-brace-format
 msgid "Records to create ({0})"
 msgstr "作成するレコード ({0})"
@@ -1320,7 +1320,7 @@ msgstr "スクロールアクションを修正する必要があります。"
 msgid "Scroll to field {0}"
 msgstr "フィールド {0} へスクロール"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2386
+#: ask_alyf/public/js/ask_alyf.bundle.js:2391
 msgid "Scrolling to fields is not available on this form."
 msgstr "このフォームではフィールドへのスクロールは利用できません。"
 
@@ -1336,7 +1336,7 @@ msgstr "ソースコードを検索中"
 msgid "Selling"
 msgstr "販売"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2026
+#: ask_alyf/public/js/ask_alyf.bundle.js:2031
 msgid "Sending..."
 msgstr "送信中..."
 
@@ -1451,7 +1451,7 @@ msgstr "生成中..."
 msgid "Stock"
 msgstr "在庫"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1793
+#: ask_alyf/public/js/ask_alyf.bundle.js:1798
 msgid "Stop this run"
 msgstr "この実行を停止"
 
@@ -1459,7 +1459,7 @@ msgstr "この実行を停止"
 msgid "Stopped. Send a message to pick up from here."
 msgstr "停止しました。ここから再開するにはメッセージを送信してください。"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1814
+#: ask_alyf/public/js/ask_alyf.bundle.js:1819
 msgid "Stopping..."
 msgstr "停止中..."
 
@@ -1613,7 +1613,7 @@ msgstr "サポートされていないファイルタイプ '{0}'。サポート
 msgid "Unsupported frontend action '{0}'."
 msgstr "サポートされていないフロントエンドアクション '{0}'。"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2415
+#: ask_alyf/public/js/ask_alyf.bundle.js:2420
 #, python-brace-format
 msgid "Unsupported frontend action: {0}"
 msgstr "サポートされていないフロントエンドアクション: {0}"
@@ -1694,12 +1694,12 @@ msgstr "Vision プロバイダー"
 msgid "Voice input"
 msgstr "音声入力"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2913
+#: ask_alyf/public/js/ask_alyf.bundle.js:2918
 #, python-brace-format
 msgid "Voice input language: {0}"
 msgstr "音声入力言語: {0}"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2074
+#: ask_alyf/public/js/ask_alyf.bundle.js:2079
 msgid "Waiting for response..."
 msgstr "応答を待っています..."
 
@@ -1761,7 +1761,7 @@ msgstr "Ask ALYF へのアクセス権限がありません。"
 msgid "You do not have read permission on {0}."
 msgstr "{0} に対する読み取り権限がありません。"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2854
+#: ask_alyf/public/js/ask_alyf.bundle.js:2859
 msgid "Your browser does not support voice input."
 msgstr "お使いのブラウザは音声入力に対応していません。"
 
@@ -1830,7 +1830,7 @@ msgstr "超高"
 msgid "{0} '{1}' was not found."
 msgstr "{0} '{1}' は見つかりませんでした。"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2317
+#: ask_alyf/public/js/ask_alyf.bundle.js:2322
 #, python-brace-format
 msgid "{0} rows"
 msgstr "{0} 行"

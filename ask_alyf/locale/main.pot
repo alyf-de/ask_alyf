@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Ask ALYF VERSION\n"
 "Report-Msgid-Bugs-To: hallo@alyf.de\n"
-"POT-Creation-Date: 2026-09-02 01:38+0053\n"
-"PO-Revision-Date: 2026-09-02 01:38+0053\n"
+"POT-Creation-Date: 2026-09-02 11:03+0053\n"
+"PO-Revision-Date: 2026-09-02 11:03+0053\n"
 "Last-Translator: hallo@alyf.de\n"
 "Language-Team: hallo@alyf.de\n"
 "MIME-Version: 1.0\n"
@@ -120,7 +120,7 @@ msgstr ""
 msgid "App '{0}' is not installed."
 msgstr ""
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2501
+#: ask_alyf/public/js/ask_alyf.bundle.js:2506
 msgid "Applying action..."
 msgstr ""
 
@@ -279,7 +279,7 @@ msgstr ""
 msgid "Cancelled the pending operation: {0}."
 msgstr ""
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2217
+#: ask_alyf/public/js/ask_alyf.bundle.js:2222
 msgid "Changes preview"
 msgstr ""
 
@@ -406,7 +406,7 @@ msgstr ""
 msgid "Confirm all"
 msgstr ""
 
-#: ask_alyf/ask_alyf/api.py:736 ask_alyf/public/js/ask_alyf.bundle.js:2501
+#: ask_alyf/ask_alyf/api.py:736 ask_alyf/public/js/ask_alyf.bundle.js:2506
 msgid "Confirming action..."
 msgstr ""
 
@@ -434,7 +434,7 @@ msgstr ""
 msgid "Could not display chart."
 msgstr ""
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2720
+#: ask_alyf/public/js/ask_alyf.bundle.js:2725
 msgid "Could not download chart."
 msgstr ""
 
@@ -446,7 +446,7 @@ msgstr ""
 msgid "Could not generate content."
 msgstr ""
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2791
+#: ask_alyf/public/js/ask_alyf.bundle.js:2796
 msgid "Could not render chart."
 msgstr ""
 
@@ -478,11 +478,11 @@ msgstr ""
 msgid "Creating several {0} records"
 msgstr ""
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2365
+#: ask_alyf/public/js/ask_alyf.bundle.js:2370
 msgid "Current document is {0}, expected {1}."
 msgstr ""
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2358
+#: ask_alyf/public/js/ask_alyf.bundle.js:2363
 msgid "Current form is {0}, expected {1}."
 msgstr ""
 
@@ -495,8 +495,8 @@ msgstr ""
 msgid "Dataset values must match labels length."
 msgstr ""
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1701
-#: ask_alyf/public/js/ask_alyf.bundle.js:1702
+#: ask_alyf/public/js/ask_alyf.bundle.js:1706
+#: ask_alyf/public/js/ask_alyf.bundle.js:1707
 msgid "Delete conversation"
 msgstr ""
 
@@ -557,7 +557,7 @@ msgstr ""
 msgid "Document name is required."
 msgstr ""
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2705
+#: ask_alyf/public/js/ask_alyf.bundle.js:2710
 msgid "Download chart as SVG"
 msgstr ""
 
@@ -613,7 +613,7 @@ msgstr ""
 msgid "Failed to attach file to conversation."
 msgstr ""
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2528
+#: ask_alyf/public/js/ask_alyf.bundle.js:2533
 msgid "Failed to confirm pending operation."
 msgstr ""
 
@@ -621,23 +621,23 @@ msgstr ""
 msgid "Failed to delete conversation."
 msgstr ""
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2466
+#: ask_alyf/public/js/ask_alyf.bundle.js:2471
 msgid "Failed to execute frontend action."
 msgstr ""
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1744
+#: ask_alyf/public/js/ask_alyf.bundle.js:1749
 msgid "Failed to open conversation."
 msgstr ""
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2566
+#: ask_alyf/public/js/ask_alyf.bundle.js:2571
 msgid "Failed to reject pending operation."
 msgstr ""
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2086
+#: ask_alyf/public/js/ask_alyf.bundle.js:2091
 msgid "Failed to send message."
 msgstr ""
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1832
+#: ask_alyf/public/js/ask_alyf.bundle.js:1837
 msgid "Failed to stop the run."
 msgstr ""
 
@@ -657,8 +657,8 @@ msgstr ""
 msgid "Field updated."
 msgstr ""
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2395
-#: ask_alyf/public/js/ask_alyf.bundle.js:2404
+#: ask_alyf/public/js/ask_alyf.bundle.js:2400
+#: ask_alyf/public/js/ask_alyf.bundle.js:2409
 msgid "Field {0} does not exist on this form."
 msgstr ""
 
@@ -726,7 +726,7 @@ msgstr ""
 msgid "Frontend action failed: {0}"
 msgstr ""
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2453
+#: ask_alyf/public/js/ask_alyf.bundle.js:2458
 msgid "Frontend action is missing a call ID."
 msgstr ""
 
@@ -799,7 +799,7 @@ msgstr ""
 msgid "Invalid action payload."
 msgstr ""
 
-#: ask_alyf/ask_alyf/tools.py:1609 ask_alyf/public/js/ask_alyf.bundle.js:2761
+#: ask_alyf/ask_alyf/tools.py:1609 ask_alyf/public/js/ask_alyf.bundle.js:2766
 msgid "Invalid chart data."
 msgstr ""
 
@@ -841,7 +841,7 @@ msgstr ""
 msgid "Line offset {0} exceeds file length"
 msgstr ""
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1729
+#: ask_alyf/public/js/ask_alyf.bundle.js:1734
 msgid "Loading conversation..."
 msgstr ""
 
@@ -914,7 +914,7 @@ msgstr ""
 msgid "No documentation URL was found for app '{0}'."
 msgstr ""
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2352
+#: ask_alyf/public/js/ask_alyf.bundle.js:2357
 msgid "No form is currently open."
 msgstr ""
 
@@ -1047,7 +1047,7 @@ msgstr ""
 msgid "Pending Operation JSON"
 msgstr ""
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2171
+#: ask_alyf/public/js/ask_alyf.bundle.js:2176
 msgid "Pending operation"
 msgstr ""
 
@@ -1184,7 +1184,7 @@ msgstr ""
 msgid "Reasoning Effort"
 msgstr ""
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2264
+#: ask_alyf/public/js/ask_alyf.bundle.js:2269
 msgid "Records to create ({0})"
 msgstr ""
 
@@ -1258,7 +1258,7 @@ msgstr ""
 msgid "Scroll to field {0}"
 msgstr ""
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2386
+#: ask_alyf/public/js/ask_alyf.bundle.js:2391
 msgid "Scrolling to fields is not available on this form."
 msgstr ""
 
@@ -1274,7 +1274,7 @@ msgstr ""
 msgid "Selling"
 msgstr ""
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2026
+#: ask_alyf/public/js/ask_alyf.bundle.js:2031
 msgid "Sending..."
 msgstr ""
 
@@ -1384,7 +1384,7 @@ msgstr ""
 msgid "Stock"
 msgstr ""
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1793
+#: ask_alyf/public/js/ask_alyf.bundle.js:1798
 msgid "Stop this run"
 msgstr ""
 
@@ -1392,7 +1392,7 @@ msgstr ""
 msgid "Stopped. Send a message to pick up from here."
 msgstr ""
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1814
+#: ask_alyf/public/js/ask_alyf.bundle.js:1819
 msgid "Stopping..."
 msgstr ""
 
@@ -1536,7 +1536,7 @@ msgstr ""
 msgid "Unsupported frontend action '{0}'."
 msgstr ""
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2415
+#: ask_alyf/public/js/ask_alyf.bundle.js:2420
 msgid "Unsupported frontend action: {0}"
 msgstr ""
 
@@ -1613,11 +1613,11 @@ msgstr ""
 msgid "Voice input"
 msgstr ""
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2913
+#: ask_alyf/public/js/ask_alyf.bundle.js:2918
 msgid "Voice input language: {0}"
 msgstr ""
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2074
+#: ask_alyf/public/js/ask_alyf.bundle.js:2079
 msgid "Waiting for response..."
 msgstr ""
 
@@ -1678,7 +1678,7 @@ msgstr ""
 msgid "You do not have read permission on {0}."
 msgstr ""
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2854
+#: ask_alyf/public/js/ask_alyf.bundle.js:2859
 msgid "Your browser does not support voice input."
 msgstr ""
 
@@ -1745,7 +1745,7 @@ msgstr ""
 msgid "{0} '{1}' was not found."
 msgstr ""
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2317
+#: ask_alyf/public/js/ask_alyf.bundle.js:2322
 msgid "{0} rows"
 msgstr ""
 

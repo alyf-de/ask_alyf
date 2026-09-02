@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Ask ALYF VERSION\n"
 "Report-Msgid-Bugs-To: hallo@alyf.de\n"
-"POT-Creation-Date: 2026-09-02 01:38+0053\n"
+"POT-Creation-Date: 2026-09-02 11:03+0053\n"
 "PO-Revision-Date: 2026-05-02 19:04+0053\n"
 "Last-Translator: hallo@alyf.de\n"
 "Language: pt\n"
@@ -129,7 +129,7 @@ msgstr "E mais {0}."
 msgid "App '{0}' is not installed."
 msgstr "A aplicação '{0}' não está instalada."
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2501
+#: ask_alyf/public/js/ask_alyf.bundle.js:2506
 msgid "Applying action..."
 msgstr "A aplicar ação..."
 
@@ -191,7 +191,7 @@ msgstr "O Ask ALYF é uma IA e pode cometer erros, incluindo com números e info
 
 #: ask_alyf/ask_alyf/api.py:432
 msgid "Ask ALYF is still working on a message in this conversation. Stop it or wait for it to finish before deleting."
-msgstr ""
+msgstr "O Ask ALYF ainda está a trabalhar numa mensagem nesta conversa. Pare ou aguarde até que termine antes de eliminar."
 
 #: ask_alyf/ask_alyf/api.py:463
 msgid "Ask ALYF is still working on the previous message in this conversation."
@@ -297,7 +297,7 @@ msgstr "Exibição do gráfico cancelada: {0}."
 msgid "Cancelled the pending operation: {0}."
 msgstr "Operação pendente cancelada: {0}."
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2217
+#: ask_alyf/public/js/ask_alyf.bundle.js:2222
 msgid "Changes preview"
 msgstr "Pré-visualização das alterações"
 
@@ -426,13 +426,13 @@ msgstr "Configure uma chave de API nas Definições do Ask ALYF antes de enviar 
 msgid "Confirm all"
 msgstr "Confirmar tudo"
 
-#: ask_alyf/ask_alyf/api.py:736 ask_alyf/public/js/ask_alyf.bundle.js:2501
+#: ask_alyf/ask_alyf/api.py:736 ask_alyf/public/js/ask_alyf.bundle.js:2506
 msgid "Confirming action..."
 msgstr "A confirmar ação..."
 
 #: ask_alyf/ask_alyf/api.py:426
 msgid "Conversation deletion is not allowed."
-msgstr ""
+msgstr "Não é permitido eliminar conversas."
 
 #: ask_alyf/ask_alyf/tools.py:991
 msgid "Conversation name is required."
@@ -455,7 +455,7 @@ msgstr "Não foi possível concluir a operação: {0}."
 msgid "Could not display chart."
 msgstr "Não foi possível exibir o gráfico."
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2720
+#: ask_alyf/public/js/ask_alyf.bundle.js:2725
 msgid "Could not download chart."
 msgstr "Não foi possível descarregar o gráfico."
 
@@ -467,7 +467,7 @@ msgstr "Não foi possível extrair o conteúdo visual do ficheiro."
 msgid "Could not generate content."
 msgstr "Não foi possível gerar o conteúdo."
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2791
+#: ask_alyf/public/js/ask_alyf.bundle.js:2796
 msgid "Could not render chart."
 msgstr "Não foi possível apresentar o gráfico."
 
@@ -505,12 +505,12 @@ msgstr "Criados {0} de {1} registos de {2}."
 msgid "Creating several {0} records"
 msgstr "A criar vários registos de {0}"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2365
+#: ask_alyf/public/js/ask_alyf.bundle.js:2370
 #, python-brace-format
 msgid "Current document is {0}, expected {1}."
 msgstr "O documento atual é {0}, esperado {1}."
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2358
+#: ask_alyf/public/js/ask_alyf.bundle.js:2363
 #, python-brace-format
 msgid "Current form is {0}, expected {1}."
 msgstr "O formulário atual é {0}, esperado {1}."
@@ -524,8 +524,8 @@ msgstr "Os valores do conjunto de dados devem ser numéricos."
 msgid "Dataset values must match labels length."
 msgstr "Os valores do conjunto de dados devem corresponder ao comprimento das etiquetas."
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1701
-#: ask_alyf/public/js/ask_alyf.bundle.js:1702
+#: ask_alyf/public/js/ask_alyf.bundle.js:1706
+#: ask_alyf/public/js/ask_alyf.bundle.js:1707
 msgid "Delete conversation"
 msgstr "Excluir conversa"
 
@@ -589,7 +589,7 @@ msgstr "A extração do documento não retornou conteúdo."
 msgid "Document name is required."
 msgstr "O nome do documento é obrigatório."
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2705
+#: ask_alyf/public/js/ask_alyf.bundle.js:2710
 msgid "Download chart as SVG"
 msgstr "Baixar gráfico como SVG"
 
@@ -647,7 +647,7 @@ msgstr "Linhas falhadas: {0}"
 msgid "Failed to attach file to conversation."
 msgstr "Falha ao anexar o ficheiro à conversa."
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2528
+#: ask_alyf/public/js/ask_alyf.bundle.js:2533
 msgid "Failed to confirm pending operation."
 msgstr "Falha ao confirmar operação pendente."
 
@@ -655,23 +655,23 @@ msgstr "Falha ao confirmar operação pendente."
 msgid "Failed to delete conversation."
 msgstr "Falha ao excluir conversa."
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2466
+#: ask_alyf/public/js/ask_alyf.bundle.js:2471
 msgid "Failed to execute frontend action."
 msgstr "Falha ao executar ação de frontend."
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1744
+#: ask_alyf/public/js/ask_alyf.bundle.js:1749
 msgid "Failed to open conversation."
 msgstr "Falha ao abrir conversa."
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2566
+#: ask_alyf/public/js/ask_alyf.bundle.js:2571
 msgid "Failed to reject pending operation."
 msgstr "Falha ao rejeitar operação pendente."
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2086
+#: ask_alyf/public/js/ask_alyf.bundle.js:2091
 msgid "Failed to send message."
 msgstr "Falha ao enviar mensagem."
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1832
+#: ask_alyf/public/js/ask_alyf.bundle.js:1837
 msgid "Failed to stop the run."
 msgstr "Não foi possível parar a execução."
 
@@ -693,8 +693,8 @@ msgstr "O Agent de campo não está ativado."
 msgid "Field updated."
 msgstr "Campo atualizado."
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2395
-#: ask_alyf/public/js/ask_alyf.bundle.js:2404
+#: ask_alyf/public/js/ask_alyf.bundle.js:2400
+#: ask_alyf/public/js/ask_alyf.bundle.js:2409
 #, python-brace-format
 msgid "Field {0} does not exist on this form."
 msgstr "O campo {0} não existe neste formulário."
@@ -765,7 +765,7 @@ msgstr "A ação de frontend 'set_route' requer uma lista de Rota não vazia."
 msgid "Frontend action failed: {0}"
 msgstr "Ação de frontend falhada: {0}"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2453
+#: ask_alyf/public/js/ask_alyf.bundle.js:2458
 msgid "Frontend action is missing a call ID."
 msgstr "Falta um ID de Chamada na ação de frontend."
 
@@ -838,7 +838,7 @@ msgstr "Preparei a operação. Por favor, reveja e confirme."
 msgid "Invalid action payload."
 msgstr "Carga útil de ação inválida."
 
-#: ask_alyf/ask_alyf/tools.py:1609 ask_alyf/public/js/ask_alyf.bundle.js:2761
+#: ask_alyf/ask_alyf/tools.py:1609 ask_alyf/public/js/ask_alyf.bundle.js:2766
 msgid "Invalid chart data."
 msgstr "Dados de gráfico inválidos."
 
@@ -882,7 +882,7 @@ msgstr "Última mensagem em"
 msgid "Line offset {0} exceeds file length"
 msgstr "O deslocamento de linha {0} excede o comprimento do ficheiro"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1729
+#: ask_alyf/public/js/ask_alyf.bundle.js:1734
 msgid "Loading conversation..."
 msgstr "A carregar conversa..."
 
@@ -958,7 +958,7 @@ msgstr "Ainda não há conversas."
 msgid "No documentation URL was found for app '{0}'."
 msgstr "Nenhuma URL de documentação foi encontrada para a aplicação '{0}'."
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2352
+#: ask_alyf/public/js/ask_alyf.bundle.js:2357
 msgid "No form is currently open."
 msgstr "Nenhum formulário está aberto no momento."
 
@@ -1100,7 +1100,7 @@ msgstr "O caminho deve começar com o nome de uma aplicação instalada."
 msgid "Pending Operation JSON"
 msgstr "JSON de operação pendente"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2171
+#: ask_alyf/public/js/ask_alyf.bundle.js:2176
 msgid "Pending operation"
 msgstr "Operação pendente"
 
@@ -1240,7 +1240,7 @@ msgstr "Motivo: {0}"
 msgid "Reasoning Effort"
 msgstr "Esforço de raciocínio"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2264
+#: ask_alyf/public/js/ask_alyf.bundle.js:2269
 #, python-brace-format
 msgid "Records to create ({0})"
 msgstr "Registos a criar ({0})"
@@ -1320,7 +1320,7 @@ msgstr "A ação de rolagem precisa de correção."
 msgid "Scroll to field {0}"
 msgstr "Rolar até o campo {0}"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2386
+#: ask_alyf/public/js/ask_alyf.bundle.js:2391
 msgid "Scrolling to fields is not available on this form."
 msgstr "A rolagem para campos não está disponível neste formulário."
 
@@ -1336,7 +1336,7 @@ msgstr "A pesquisar no código fonte"
 msgid "Selling"
 msgstr "Vendas"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2026
+#: ask_alyf/public/js/ask_alyf.bundle.js:2031
 msgid "Sending..."
 msgstr "Enviando..."
 
@@ -1451,7 +1451,7 @@ msgstr "Ainda a gerar..."
 msgid "Stock"
 msgstr "Stock"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1793
+#: ask_alyf/public/js/ask_alyf.bundle.js:1798
 msgid "Stop this run"
 msgstr "Parar esta execução"
 
@@ -1459,7 +1459,7 @@ msgstr "Parar esta execução"
 msgid "Stopped. Send a message to pick up from here."
 msgstr "Parado. Envie uma mensagem para continuar a partir daqui."
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1814
+#: ask_alyf/public/js/ask_alyf.bundle.js:1819
 msgid "Stopping..."
 msgstr "A parar..."
 
@@ -1613,7 +1613,7 @@ msgstr "Tipo de ficheiro não suportado '{0}'. Tipos suportados: PDF, PNG, JPG, 
 msgid "Unsupported frontend action '{0}'."
 msgstr "Ação de frontend não suportada '{0}'."
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2415
+#: ask_alyf/public/js/ask_alyf.bundle.js:2420
 #, python-brace-format
 msgid "Unsupported frontend action: {0}"
 msgstr "Ação de frontend não suportada: {0}"
@@ -1694,12 +1694,12 @@ msgstr "Provedor de Vision"
 msgid "Voice input"
 msgstr "Entrada de voz"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2913
+#: ask_alyf/public/js/ask_alyf.bundle.js:2918
 #, python-brace-format
 msgid "Voice input language: {0}"
 msgstr "Idioma da entrada de voz: {0}"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2074
+#: ask_alyf/public/js/ask_alyf.bundle.js:2079
 msgid "Waiting for response..."
 msgstr "Aguardando resposta..."
 
@@ -1761,7 +1761,7 @@ msgstr "Você não tem acesso ao Ask ALYF."
 msgid "You do not have read permission on {0}."
 msgstr "Você não tem permissão de leitura em {0}."
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2854
+#: ask_alyf/public/js/ask_alyf.bundle.js:2859
 msgid "Your browser does not support voice input."
 msgstr "O seu navegador não suporta entrada de voz."
 
@@ -1830,7 +1830,7 @@ msgstr "Muito alto"
 msgid "{0} '{1}' was not found."
 msgstr "{0} '{1}' não foi encontrado."
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2317
+#: ask_alyf/public/js/ask_alyf.bundle.js:2322
 #, python-brace-format
 msgid "{0} rows"
 msgstr "{0} linhas"

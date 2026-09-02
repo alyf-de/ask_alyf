@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Ask ALYF VERSION\n"
 "Report-Msgid-Bugs-To: hallo@alyf.de\n"
-"POT-Creation-Date: 2026-09-02 01:38+0053\n"
+"POT-Creation-Date: 2026-09-02 11:03+0053\n"
 "PO-Revision-Date: 2026-05-02 19:04+0053\n"
 "Last-Translator: hallo@alyf.de\n"
 "Language: bn\n"
@@ -129,7 +129,7 @@ msgstr "এবং আরও {0} টি।"
 msgid "App '{0}' is not installed."
 msgstr "অ্যাপ '{0}' ইনস্টল করা নেই।"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2501
+#: ask_alyf/public/js/ask_alyf.bundle.js:2506
 msgid "Applying action..."
 msgstr "অ্যাকশন প্রয়োগ করা হচ্ছে..."
 
@@ -191,7 +191,7 @@ msgstr "Ask ALYF একটি AI এবং সংখ্যা এবং ব্�
 
 #: ask_alyf/ask_alyf/api.py:432
 msgid "Ask ALYF is still working on a message in this conversation. Stop it or wait for it to finish before deleting."
-msgstr ""
+msgstr "Ask ALYF এই কথোপকথনে একটি বার্তা নিয়ে এখনও কাজ করছে। মুছে ফেলার আগে এটি থামান অথবা শেষ হওয়ার জন্য অপেক্ষা করুন।"
 
 #: ask_alyf/ask_alyf/api.py:463
 msgid "Ask ALYF is still working on the previous message in this conversation."
@@ -297,7 +297,7 @@ msgstr "চার্ট দেখানো বাতিল করা হয়�
 msgid "Cancelled the pending operation: {0}."
 msgstr "মুলতুবি অপারেশন বাতিল করা হয়েছে: {0}।"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2217
+#: ask_alyf/public/js/ask_alyf.bundle.js:2222
 msgid "Changes preview"
 msgstr "পরিবর্তনের প্রিভিউ"
 
@@ -426,13 +426,13 @@ msgstr "বার্তা পাঠানোর আগে Ask ALYF সেটি
 msgid "Confirm all"
 msgstr "সব নিশ্চিত করুন"
 
-#: ask_alyf/ask_alyf/api.py:736 ask_alyf/public/js/ask_alyf.bundle.js:2501
+#: ask_alyf/ask_alyf/api.py:736 ask_alyf/public/js/ask_alyf.bundle.js:2506
 msgid "Confirming action..."
 msgstr "অ্যাকশন নিশ্চিত করা হচ্ছে..."
 
 #: ask_alyf/ask_alyf/api.py:426
 msgid "Conversation deletion is not allowed."
-msgstr ""
+msgstr "কথোপকথন মুছে ফেলার অনুমতি নেই।"
 
 #: ask_alyf/ask_alyf/tools.py:991
 msgid "Conversation name is required."
@@ -455,7 +455,7 @@ msgstr "অপারেশন সম্পন্ন করা যায়নি
 msgid "Could not display chart."
 msgstr "চার্ট প্রদর্শন করা যায়নি।"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2720
+#: ask_alyf/public/js/ask_alyf.bundle.js:2725
 msgid "Could not download chart."
 msgstr "চার্ট ডাউনলোড করা যায়নি।"
 
@@ -467,7 +467,7 @@ msgstr "ফাইল থেকে ভিজ্যুয়াল কন্টে
 msgid "Could not generate content."
 msgstr "কন্টেন্ট তৈরি করা যায়নি।"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2791
+#: ask_alyf/public/js/ask_alyf.bundle.js:2796
 msgid "Could not render chart."
 msgstr "চার্ট রেন্ডার করা যায়নি।"
 
@@ -505,12 +505,12 @@ msgstr "{1} টির মধ্যে {0} টি {2} রেকর্ড তৈ�
 msgid "Creating several {0} records"
 msgstr "একাধিক {0} রেকর্ড তৈরি করা হচ্ছে"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2365
+#: ask_alyf/public/js/ask_alyf.bundle.js:2370
 #, python-brace-format
 msgid "Current document is {0}, expected {1}."
 msgstr "বর্তমান নথি হল {0}, প্রত্যাশিত {1}।"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2358
+#: ask_alyf/public/js/ask_alyf.bundle.js:2363
 #, python-brace-format
 msgid "Current form is {0}, expected {1}."
 msgstr "বর্তমান ফর্ম হল {0}, প্রত্যাশিত {1}।"
@@ -524,8 +524,8 @@ msgstr "ডেটাসেটের মান অবশ্যই সংখ্য
 msgid "Dataset values must match labels length."
 msgstr "ডেটাসেটের মানগুলি অবশ্যই লেবেলের দৈর্ঘ্যের সাথে মিলতে হবে।"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1701
-#: ask_alyf/public/js/ask_alyf.bundle.js:1702
+#: ask_alyf/public/js/ask_alyf.bundle.js:1706
+#: ask_alyf/public/js/ask_alyf.bundle.js:1707
 msgid "Delete conversation"
 msgstr "কথোপকথন মুছুন"
 
@@ -589,7 +589,7 @@ msgstr "ডকুমেন্ট নিষ্কাশন কোনও বিষ
 msgid "Document name is required."
 msgstr "ডকুমেন্টের নাম প্রয়োজন।"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2705
+#: ask_alyf/public/js/ask_alyf.bundle.js:2710
 msgid "Download chart as SVG"
 msgstr "চার্ট SVG হিসাবে ডাউনলোড করুন"
 
@@ -647,7 +647,7 @@ msgstr "ব্যর্থ সারি: {0}"
 msgid "Failed to attach file to conversation."
 msgstr "কথোপকথনে ফাইল সংযুক্ত করতে ব্যর্থ।"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2528
+#: ask_alyf/public/js/ask_alyf.bundle.js:2533
 msgid "Failed to confirm pending operation."
 msgstr "মুলতুবি অপারেশন নিশ্চিত করতে ব্যর্থ হয়েছে।"
 
@@ -655,23 +655,23 @@ msgstr "মুলতুবি অপারেশন নিশ্চিত কর
 msgid "Failed to delete conversation."
 msgstr "কথোপকথন মুছতে ব্যর্থ হয়েছে।"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2466
+#: ask_alyf/public/js/ask_alyf.bundle.js:2471
 msgid "Failed to execute frontend action."
 msgstr "ফ্রন্টএন্ড অ্যাকশন কার্যকর করতে ব্যর্থ হয়েছে।"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1744
+#: ask_alyf/public/js/ask_alyf.bundle.js:1749
 msgid "Failed to open conversation."
 msgstr "কথোপকথন খুলতে ব্যর্থ হয়েছে।"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2566
+#: ask_alyf/public/js/ask_alyf.bundle.js:2571
 msgid "Failed to reject pending operation."
 msgstr "মুলতুবি অপারেশন প্রত্যাখ্যান করতে ব্যর্থ হয়েছে।"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2086
+#: ask_alyf/public/js/ask_alyf.bundle.js:2091
 msgid "Failed to send message."
 msgstr "বার্তা পাঠাতে ব্যর্থ হয়েছে।"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1832
+#: ask_alyf/public/js/ask_alyf.bundle.js:1837
 msgid "Failed to stop the run."
 msgstr "রান বন্ধ করা যায়নি।"
 
@@ -693,8 +693,8 @@ msgstr "ফিল্ড Agent সক্ষম নয়।"
 msgid "Field updated."
 msgstr "ফিল্ড আপডেট করা হয়েছে।"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2395
-#: ask_alyf/public/js/ask_alyf.bundle.js:2404
+#: ask_alyf/public/js/ask_alyf.bundle.js:2400
+#: ask_alyf/public/js/ask_alyf.bundle.js:2409
 #, python-brace-format
 msgid "Field {0} does not exist on this form."
 msgstr "এই ফর্মে {0} ফিল্ড বিদ্যমান নেই।"
@@ -765,7 +765,7 @@ msgstr "ফ্রন্টএন্ড অ্যাকশন 'set_route'-এর 
 msgid "Frontend action failed: {0}"
 msgstr "ফ্রন্টএন্ড অ্যাকশন ব্যর্থ হয়েছে: {0}"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2453
+#: ask_alyf/public/js/ask_alyf.bundle.js:2458
 msgid "Frontend action is missing a call ID."
 msgstr "ফ্রন্টএন্ড অ্যাকশনে একটি কল ID অনুপস্থিত।"
 
@@ -838,7 +838,7 @@ msgstr "আমি অপারেশনটি প্রস্তুত করে
 msgid "Invalid action payload."
 msgstr "অবৈধ অ্যাকশন পেলোড।"
 
-#: ask_alyf/ask_alyf/tools.py:1609 ask_alyf/public/js/ask_alyf.bundle.js:2761
+#: ask_alyf/ask_alyf/tools.py:1609 ask_alyf/public/js/ask_alyf.bundle.js:2766
 msgid "Invalid chart data."
 msgstr "অবৈধ চার্ট ডেটা।"
 
@@ -882,7 +882,7 @@ msgstr "সর্বশেষ বার্তা প্রাপ্তির স
 msgid "Line offset {0} exceeds file length"
 msgstr "লাইন অফসেট {0} ফাইলের দৈর্ঘ্য অতিক্রম করেছে"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1729
+#: ask_alyf/public/js/ask_alyf.bundle.js:1734
 msgid "Loading conversation..."
 msgstr "কথোপকথন লোড হচ্ছে..."
 
@@ -958,7 +958,7 @@ msgstr "এখনও কোনো কথোপকথন নেই।"
 msgid "No documentation URL was found for app '{0}'."
 msgstr "'{0}' অ্যাপের জন্য কোনো ডকুমেন্টেশন URL পাওয়া যায়নি।"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2352
+#: ask_alyf/public/js/ask_alyf.bundle.js:2357
 msgid "No form is currently open."
 msgstr "বর্তমানে কোনো ফর্ম খোলা নেই।"
 
@@ -1100,7 +1100,7 @@ msgstr "Path অবশ্যই একটি ইনস্টল করা অ্
 msgid "Pending Operation JSON"
 msgstr "Pending Operation JSON"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2171
+#: ask_alyf/public/js/ask_alyf.bundle.js:2176
 msgid "Pending operation"
 msgstr "মুলতুবি কার্যক্রম"
 
@@ -1240,7 +1240,7 @@ msgstr "কারণ: {0}"
 msgid "Reasoning Effort"
 msgstr "রিজনিং প্রচেষ্টা"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2264
+#: ask_alyf/public/js/ask_alyf.bundle.js:2269
 #, python-brace-format
 msgid "Records to create ({0})"
 msgstr "তৈরি করার রেকর্ড ({0})"
@@ -1320,7 +1320,7 @@ msgstr "স্ক্রল অ্যাকশন সংশোধন প্রয
 msgid "Scroll to field {0}"
 msgstr "{0} ফিল্ডে স্ক্রল করুন"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2386
+#: ask_alyf/public/js/ask_alyf.bundle.js:2391
 msgid "Scrolling to fields is not available on this form."
 msgstr "এই ফর্মে ফিল্ডে স্ক্রল করা উপলব্ধ নয়।"
 
@@ -1336,7 +1336,7 @@ msgstr "সোর্স কোডে অনুসন্ধান করা হ�
 msgid "Selling"
 msgstr "বিক্রয়"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2026
+#: ask_alyf/public/js/ask_alyf.bundle.js:2031
 msgid "Sending..."
 msgstr "পাঠানো হচ্ছে..."
 
@@ -1451,7 +1451,7 @@ msgstr "এখনও তৈরি হচ্ছে..."
 msgid "Stock"
 msgstr "স্টক"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1793
+#: ask_alyf/public/js/ask_alyf.bundle.js:1798
 msgid "Stop this run"
 msgstr "এই রানটি থামান"
 
@@ -1459,7 +1459,7 @@ msgstr "এই রানটি থামান"
 msgid "Stopped. Send a message to pick up from here."
 msgstr "থামানো হয়েছে। এখান থেকে চালিয়ে যেতে একটি বার্তা পাঠান।"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1814
+#: ask_alyf/public/js/ask_alyf.bundle.js:1819
 msgid "Stopping..."
 msgstr "থামানো হচ্ছে..."
 
@@ -1613,7 +1613,7 @@ msgstr "অসমর্থিত ফাইল প্রকার '{0}'। সম
 msgid "Unsupported frontend action '{0}'."
 msgstr "অসমর্থিত ফ্রন্টএন্ড অ্যাকশন '{0}'।"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2415
+#: ask_alyf/public/js/ask_alyf.bundle.js:2420
 #, python-brace-format
 msgid "Unsupported frontend action: {0}"
 msgstr "অসমর্থিত ফ্রন্টএন্ড অ্যাকশন: {0}"
@@ -1694,12 +1694,12 @@ msgstr "Vision প্রদানকারী"
 msgid "Voice input"
 msgstr "ভয়েস ইনপুট"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2913
+#: ask_alyf/public/js/ask_alyf.bundle.js:2918
 #, python-brace-format
 msgid "Voice input language: {0}"
 msgstr "ভয়েস ইনপুট ভাষা: {0}"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2074
+#: ask_alyf/public/js/ask_alyf.bundle.js:2079
 msgid "Waiting for response..."
 msgstr "প্রতিক্রিয়ার জন্য অপেক্ষা করা হচ্ছে..."
 
@@ -1761,7 +1761,7 @@ msgstr "Ask ALYF-এ আপনার অ্যাক্সেস নেই।"
 msgid "You do not have read permission on {0}."
 msgstr "{0}-এ আপনার পড়ার অনুমতি নেই।"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2854
+#: ask_alyf/public/js/ask_alyf.bundle.js:2859
 msgid "Your browser does not support voice input."
 msgstr "আপনার ব্রাউজার ভয়েস ইনপুট সমর্থন করে না।"
 
@@ -1830,7 +1830,7 @@ msgstr "অতি উচ্চ"
 msgid "{0} '{1}' was not found."
 msgstr "{0} '{1}' পাওয়া যায়নি।"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2317
+#: ask_alyf/public/js/ask_alyf.bundle.js:2322
 #, python-brace-format
 msgid "{0} rows"
 msgstr "{0} সারি"
