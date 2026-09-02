@@ -78,6 +78,60 @@ class UnitTestAskALYFConversation(UnitTestCase):
 
 		enqueue_job.assert_called_once()
 
+	def test_delete_conversation_refuses_while_job_is_running(self):
+		pending = api.make_message("user", "First", **{api.BACKGROUND_JOB_ID_KEY: "job-1"})
+		conversation = self.make_conversation(messages=[pending])
+
+		with (
+			patch("ask_alyf.ask_alyf.api.can_access_ask_alyf", return_value=True),
+			patch(
+				"ask_alyf.ask_alyf.api.get_settings",
+				return_value=SimpleNamespace(allow_conversation_deletion=True),
+			),
+			patch("ask_alyf.ask_alyf.api.get_job_status", return_value=JobStatus.STARTED),
+		):
+			with self.assertRaises(frappe.ValidationError):
+				api.delete_conversation(conversation=conversation.name)
+
+		self.assertTrue(frappe.db.exists("Ask ALYF Conversation", conversation.name))
+
+	def test_delete_conversation_succeeds_when_idle(self):
+		conversation = self.make_conversation(
+			messages=[api.make_message("user", "Hi"), api.make_message("assistant", "Hello")]
+		)
+
+		with (
+			patch("ask_alyf.ask_alyf.api.can_access_ask_alyf", return_value=True),
+			patch(
+				"ask_alyf.ask_alyf.api.get_settings",
+				return_value=SimpleNamespace(allow_conversation_deletion=True),
+			),
+		):
+			response = api.delete_conversation(conversation=conversation.name)
+
+		self.assertEqual(response, {"success": True})
+		self.assertFalse(frappe.db.exists("Ask ALYF Conversation", conversation.name))
+
+	def test_process_message_job_skips_save_when_conversation_was_deleted(self):
+		user_message = api.make_message("user", "Open Sales Invoice list", mode=api.MODE_ASK)
+		conversation = self.make_conversation(messages=[user_message])
+
+		def delete_conversation_mid_run(**kwargs):
+			frappe.delete_doc("Ask ALYF Conversation", conversation.name, force=True)
+			return {"response": "Done", "pending_operations": []}
+
+		with patch("ask_alyf.ask_alyf.api.run_message", side_effect=delete_conversation_mid_run):
+			with patch("ask_alyf.ask_alyf.api.frappe.publish_realtime") as publish:
+				api.process_message_job(
+					conversation_name=conversation.name,
+					message="Open Sales Invoice list",
+					mode=api.MODE_ASK,
+					context_data={},
+					user_message_id=user_message["id"],
+				)
+
+		self.assertNotIn("ask_alyf_response_complete", [call.args[0] for call in publish.call_args_list])
+
 	def test_get_message_job_status_maps_rq_terminal_states(self):
 		job_id = "job-123"
 		user_message = api.make_message(

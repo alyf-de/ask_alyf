@@ -13,6 +13,7 @@ from rq.job import JobStatus
 
 from ask_alyf.ask_alyf import field_agent
 from ask_alyf.ask_alyf.agent import resume_operation, run_message
+from ask_alyf.ask_alyf.checkpointer import delete_checkpoints
 from ask_alyf.ask_alyf.tools import (
 	OPERATION_KIND_BACKEND,
 	OPERATION_KIND_FRONTEND,
@@ -99,6 +100,7 @@ def get_ask_alyf_boot_payload() -> dict:
 	agent_mode_enabled = False
 	field_agent_enabled = False
 	file_upload_enabled = False
+	conversation_deletion_enabled = False
 	support_phone_number = ""
 	support_phone_uri = ""
 
@@ -107,6 +109,7 @@ def get_ask_alyf_boot_payload() -> dict:
 		agent_mode_enabled = bool(settings.allow_agent_mode)
 		field_agent_enabled = bool(settings.allow_field_agent)
 		file_upload_enabled = bool(settings.allow_file_upload)
+		conversation_deletion_enabled = bool(settings.allow_conversation_deletion)
 		api_key = (settings.get_password("api_key", raise_exception=False) or "").strip()
 		configured = bool(api_key and (settings.model or "").strip())
 		support_phone_number = (settings.support_phone_number or "").strip()
@@ -120,6 +123,7 @@ def get_ask_alyf_boot_payload() -> dict:
 		"agent_mode_enabled": agent_mode_enabled,
 		"field_agent_enabled": field_agent_enabled,
 		"file_upload_enabled": file_upload_enabled,
+		"conversation_deletion_enabled": conversation_deletion_enabled,
 		"support_phone_number": support_phone_number,
 		"support_phone_uri": support_phone_uri,
 		"default_mode": MODE_ASK,
@@ -415,6 +419,27 @@ def _has_running_job(messages: list[dict]) -> bool:
 
 
 @frappe.whitelist(methods=["POST"])
+def delete_conversation(conversation: str) -> dict:
+	if not can_access_ask_alyf():
+		frappe.throw(_("You do not have access to Ask ALYF."))
+
+	if not get_settings().allow_conversation_deletion:
+		frappe.throw(_("Conversation deletion is not allowed."))
+
+	doc = frappe.get_doc("Ask ALYF Conversation", conversation, for_update=True)
+	doc.check_permission("delete")
+	if _has_running_job(get_messages(doc)):
+		frappe.throw(
+			_(
+				"Ask ALYF is still working on a message in this conversation. Stop it or wait for it to finish before deleting."
+			)
+		)
+
+	doc.delete()
+	return {"success": True}
+
+
+@frappe.whitelist(methods=["POST"])
 def send_message(
 	message: str,
 	mode: str = MODE_ASK,
@@ -619,6 +644,11 @@ def process_message_job(
 		tool_calls = None
 	finally:
 		clear_stop_request(user_message_id or "")
+
+	if not frappe.db.exists("Ask ALYF Conversation", conversation_name):
+		clear_running_steps(conversation_name)
+		delete_checkpoints([conversation_name])
+		return
 
 	file_message = None
 	if isinstance(attached_files, list) and attached_files:

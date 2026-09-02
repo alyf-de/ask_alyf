@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Ask ALYF VERSION\n"
 "Report-Msgid-Bugs-To: hallo@alyf.de\n"
-"POT-Creation-Date: 2026-09-02 01:21+0053\n"
+"POT-Creation-Date: 2026-09-02 11:03+0053\n"
 "PO-Revision-Date: 2026-05-02 19:04+0053\n"
 "Last-Translator: hallo@alyf.de\n"
 "Language: zh_CN\n"
@@ -26,7 +26,7 @@ msgstr "1 个步骤"
 msgid "Access to hidden paths is not allowed"
 msgstr "不允许访问隐藏路径"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1459
+#: ask_alyf/public/js/ask_alyf.bundle.js:1479
 msgid "Accounts"
 msgstr "会计"
 
@@ -70,11 +70,11 @@ msgid "Add child row action needs correction."
 msgstr "添加子行操作需要修正。"
 
 #: ask_alyf/public/js/ask_alyf.bundle.js:825
-#: ask_alyf/public/js/ask_alyf.bundle.js:1371
+#: ask_alyf/public/js/ask_alyf.bundle.js:1391
 msgid "Agent"
 msgstr "代理"
 
-#: ask_alyf/ask_alyf/api.py:154
+#: ask_alyf/ask_alyf/api.py:157
 msgid "Agent mode is disabled or not available for your user."
 msgstr "代理模式已停用或对您的用户不可用。"
 
@@ -87,6 +87,12 @@ msgstr "允许代理模式"
 #: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.json
 msgid "Allow Code Search"
 msgstr "允许代码搜索"
+
+#. Label of the allow_conversation_deletion (Check) field in DocType 'Ask ALYF
+#. Settings'
+#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.json
+msgid "Allow Conversation Deletion"
+msgstr "允许删除对话"
 
 #. Label of the allow_field_agent (Check) field in DocType 'Ask ALYF Settings'
 #: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.json
@@ -123,7 +129,7 @@ msgstr "还有 {0} 个。"
 msgid "App '{0}' is not installed."
 msgstr "应用 '{0}' 未安装。"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2436
+#: ask_alyf/public/js/ask_alyf.bundle.js:2506
 msgid "Applying action..."
 msgstr "正在应用操作..."
 
@@ -183,7 +189,11 @@ msgstr "Ask ALYF 无法完成此消息的处理。请重试。"
 msgid "Ask ALYF is an AI and can make mistakes, including with numbers and information about people."
 msgstr "Ask ALYF 是一个 AI，可能会出错，包括关于数字和人员信息的内容。"
 
-#: ask_alyf/ask_alyf/api.py:439
+#: ask_alyf/ask_alyf/api.py:432
+msgid "Ask ALYF is still working on a message in this conversation. Stop it or wait for it to finish before deleting."
+msgstr "Ask ALYF 仍在处理此对话中的一条消息。删除前请先停止或等待其完成。"
+
+#: ask_alyf/ask_alyf/api.py:463
 msgid "Ask ALYF is still working on the previous message in this conversation."
 msgstr "Ask ALYF 仍在处理此对话中的上一条消息。"
 
@@ -243,17 +253,17 @@ msgstr "附件为只读"
 msgid "Batch create proposal needs correction."
 msgstr "批量创建提案需要更正。"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1450
+#: ask_alyf/public/js/ask_alyf.bundle.js:1470
 msgid "Buying"
 msgstr "采购"
 
 #: ask_alyf/public/js/ask_alyf.bundle.js:786
 #: ask_alyf/public/js/ask_alyf.bundle.js:788
-#: ask_alyf/public/js/ask_alyf.bundle.js:1328
+#: ask_alyf/public/js/ask_alyf.bundle.js:1348
 msgid "Call support"
 msgstr "联系支持"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1327
+#: ask_alyf/public/js/ask_alyf.bundle.js:1347
 #, python-brace-format
 msgid "Call support: {0}"
 msgstr "联系支持：{0}"
@@ -272,22 +282,22 @@ msgstr "取消提案需要修正。"
 msgid "Cancel {0} {1}"
 msgstr "取消 {0} {1}"
 
-#: ask_alyf/ask_alyf/api.py:937
+#: ask_alyf/ask_alyf/api.py:965
 #, python-brace-format
 msgid "Cancelled frontend action: {0}"
 msgstr "已取消前端操作：{0}"
 
-#: ask_alyf/ask_alyf/api.py:830
+#: ask_alyf/ask_alyf/api.py:858
 #, python-brace-format
 msgid "Cancelled showing chart: {0}."
 msgstr "已取消显示图表：{0}。"
 
-#: ask_alyf/ask_alyf/api.py:791
+#: ask_alyf/ask_alyf/api.py:819
 #, python-brace-format
 msgid "Cancelled the pending operation: {0}."
 msgstr "已取消挂起的操作：{0}。"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2152
+#: ask_alyf/public/js/ask_alyf.bundle.js:2222
 msgid "Changes preview"
 msgstr "变更预览"
 
@@ -315,27 +325,27 @@ msgstr "图表高度超出范围。"
 msgid "Chart labels must be numbers or strings."
 msgstr "图表标签必须是数字或字符串。"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1461
+#: ask_alyf/public/js/ask_alyf.bundle.js:1481
 msgid "Chart monthly expenses by cost center"
 msgstr "按成本中心绘制每月支出图表"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1443
+#: ask_alyf/public/js/ask_alyf.bundle.js:1463
 msgid "Chart my monthly sales revenue for the last 6 months"
 msgstr "绘制过去 6 个月每月销售收入图表"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1506
+#: ask_alyf/public/js/ask_alyf.bundle.js:1526
 msgid "Chart open issues by priority"
 msgstr "按优先级绘制未解决问题图表"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1488
+#: ask_alyf/public/js/ask_alyf.bundle.js:1508
 msgid "Chart production output by item this week"
 msgstr "绘制本周按项目划分的生产产量图表"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1452
+#: ask_alyf/public/js/ask_alyf.bundle.js:1472
 msgid "Chart spending by supplier for this quarter"
 msgstr "绘制本季度按供应商划分的支出图表"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1479
+#: ask_alyf/public/js/ask_alyf.bundle.js:1499
 msgid "Chart stock value by warehouse"
 msgstr "按仓库绘制库存价值图表"
 
@@ -416,9 +426,13 @@ msgstr "发送消息前，请在 Ask ALYF 设置中配置 API 密钥。"
 msgid "Confirm all"
 msgstr "全部确认"
 
-#: ask_alyf/ask_alyf/api.py:708 ask_alyf/public/js/ask_alyf.bundle.js:2436
+#: ask_alyf/ask_alyf/api.py:736 ask_alyf/public/js/ask_alyf.bundle.js:2506
 msgid "Confirming action..."
 msgstr "正在确认操作..."
+
+#: ask_alyf/ask_alyf/api.py:426
+msgid "Conversation deletion is not allowed."
+msgstr "不允许删除对话。"
 
 #: ask_alyf/ask_alyf/tools.py:991
 msgid "Conversation name is required."
@@ -428,20 +442,20 @@ msgstr "对话名称为必填项。"
 msgid "Copy as Markdown"
 msgstr "复制为 Markdown"
 
-#: ask_alyf/ask_alyf/api.py:824
+#: ask_alyf/ask_alyf/api.py:852
 msgid "Could not attach charts to the assistant message."
 msgstr "无法将图表附加到助手消息。"
 
-#: ask_alyf/ask_alyf/api.py:738
+#: ask_alyf/ask_alyf/api.py:766
 #, python-brace-format
 msgid "Could not complete the operation: {0}."
 msgstr "无法完成操作：{0}。"
 
-#: ask_alyf/ask_alyf/api.py:832
+#: ask_alyf/ask_alyf/api.py:860
 msgid "Could not display chart."
 msgstr "无法显示图表。"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2655
+#: ask_alyf/public/js/ask_alyf.bundle.js:2725
 msgid "Could not download chart."
 msgstr "无法下载图表。"
 
@@ -453,7 +467,7 @@ msgstr "无法从文件中提取视觉内容。"
 msgid "Could not generate content."
 msgstr "无法生成内容。"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2726
+#: ask_alyf/public/js/ask_alyf.bundle.js:2796
 msgid "Could not render chart."
 msgstr "无法渲染图表。"
 
@@ -491,12 +505,12 @@ msgstr "已创建 {1} 条 {2} 记录中的 {0} 条。"
 msgid "Creating several {0} records"
 msgstr "正在创建多条 {0} 记录"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2300
+#: ask_alyf/public/js/ask_alyf.bundle.js:2370
 #, python-brace-format
 msgid "Current document is {0}, expected {1}."
 msgstr "当前单据为 {0},预期为 {1}。"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2293
+#: ask_alyf/public/js/ask_alyf.bundle.js:2363
 #, python-brace-format
 msgid "Current form is {0}, expected {1}."
 msgstr "当前表单为 {0},预期为 {1}。"
@@ -510,9 +524,18 @@ msgstr "数据集的值必须为数字。"
 msgid "Dataset values must match labels length."
 msgstr "数据集的值必须与标签长度匹配。"
 
+#: ask_alyf/public/js/ask_alyf.bundle.js:1706
+#: ask_alyf/public/js/ask_alyf.bundle.js:1707
+msgid "Delete conversation"
+msgstr "删除对话"
+
 #: ask_alyf/ask_alyf/toolset.py:989
 msgid "Delete proposal needs correction."
 msgstr "删除提案需要更正。"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1234
+msgid "Delete this conversation?"
+msgstr "删除此对话？"
 
 #: ask_alyf/ask_alyf/toolset.py:987
 #, python-brace-format
@@ -566,7 +589,7 @@ msgstr "单据提取未返回任何内容。"
 msgid "Document name is required."
 msgstr "单据编号为必填项。"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2640
+#: ask_alyf/public/js/ask_alyf.bundle.js:2710
 msgid "Download chart as SVG"
 msgstr "将图表下载为 SVG"
 
@@ -610,7 +633,7 @@ msgstr "已排除的单据类型"
 msgid "Excluded DocTypes"
 msgstr "已排除的单据类型"
 
-#: ask_alyf/ask_alyf/api.py:935
+#: ask_alyf/ask_alyf/api.py:963
 #, python-brace-format
 msgid "Executed frontend action: {0}"
 msgstr "已执行前端操作:{0}"
@@ -620,31 +643,35 @@ msgstr "已执行前端操作:{0}"
 msgid "Failed rows: {0}"
 msgstr "失败的行:{0}"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1305
+#: ask_alyf/public/js/ask_alyf.bundle.js:1325
 msgid "Failed to attach file to conversation."
 msgstr "未能将文件附加到对话。"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2463
+#: ask_alyf/public/js/ask_alyf.bundle.js:2533
 msgid "Failed to confirm pending operation."
 msgstr "确认待处理操作失败。"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2401
+#: ask_alyf/public/js/ask_alyf.bundle.js:1238
+msgid "Failed to delete conversation."
+msgstr "删除对话失败。"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:2471
 msgid "Failed to execute frontend action."
 msgstr "执行前端操作失败。"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1703
+#: ask_alyf/public/js/ask_alyf.bundle.js:1749
 msgid "Failed to open conversation."
 msgstr "打开对话失败。"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2501
+#: ask_alyf/public/js/ask_alyf.bundle.js:2571
 msgid "Failed to reject pending operation."
 msgstr "拒绝待处理操作失败。"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2045
+#: ask_alyf/public/js/ask_alyf.bundle.js:2091
 msgid "Failed to send message."
 msgstr "发送消息失败。"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1791
+#: ask_alyf/public/js/ask_alyf.bundle.js:1837
 msgid "Failed to stop the run."
 msgstr "无法停止本次运行。"
 
@@ -658,7 +685,7 @@ msgstr "{1} 中的字段 '{0}' 是子表 ({2})，必须是行对象的列表。"
 msgid "Field '{0}' row #{1} in {2} must be an object."
 msgstr "{2} 中字段 '{0}' 的第 {1} 行必须是对象。"
 
-#: ask_alyf/ask_alyf/api.py:982
+#: ask_alyf/ask_alyf/api.py:1010
 msgid "Field Agent is not enabled."
 msgstr "字段 Agent 未启用。"
 
@@ -666,13 +693,13 @@ msgstr "字段 Agent 未启用。"
 msgid "Field updated."
 msgstr "字段已更新。"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2330
-#: ask_alyf/public/js/ask_alyf.bundle.js:2339
+#: ask_alyf/public/js/ask_alyf.bundle.js:2400
+#: ask_alyf/public/js/ask_alyf.bundle.js:2409
 #, python-brace-format
 msgid "Field {0} does not exist on this form."
 msgstr "此表单上不存在字段 {0}。"
 
-#: ask_alyf/ask_alyf/api.py:1035 ask_alyf/ask_alyf/tools.py:719
+#: ask_alyf/ask_alyf/api.py:1063 ask_alyf/ask_alyf/tools.py:719
 #, python-brace-format
 msgid "File '{0}' was not found."
 msgstr "未找到文件 '{0}'。"
@@ -681,7 +708,7 @@ msgstr "未找到文件 '{0}'。"
 msgid "File ID is required."
 msgstr "需要 File ID。"
 
-#: ask_alyf/ask_alyf/api.py:1020
+#: ask_alyf/ask_alyf/api.py:1048
 msgid "File upload is not enabled."
 msgstr "文件上传未启用。"
 
@@ -733,12 +760,12 @@ msgstr "前端操作 'scroll_to_field' 需要一个字段名称。"
 msgid "Frontend action 'set_route' requires a non-empty route list."
 msgstr "前端操作 'set_route' 需要一个非空的路由列表。"
 
-#: ask_alyf/ask_alyf/api.py:939
+#: ask_alyf/ask_alyf/api.py:967
 #, python-brace-format
 msgid "Frontend action failed: {0}"
 msgstr "前端操作失败:{0}"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2388
+#: ask_alyf/public/js/ask_alyf.bundle.js:2458
 msgid "Frontend action is missing a call ID."
 msgstr "前端操作缺少通话 ID。"
 
@@ -762,7 +789,7 @@ msgstr "生成"
 msgid "Generate with AI"
 msgstr "使用 AI 生成"
 
-#: ask_alyf/ask_alyf/api.py:771 ask_alyf/ask_alyf/api.py:888
+#: ask_alyf/ask_alyf/api.py:799 ask_alyf/ask_alyf/api.py:916
 msgid "Generating response..."
 msgstr "正在生成回复..."
 
@@ -770,7 +797,7 @@ msgstr "正在生成回复..."
 msgid "Generating..."
 msgstr "正在生成..."
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1468
+#: ask_alyf/public/js/ask_alyf.bundle.js:1488
 msgid "HR"
 msgstr "人力资源"
 
@@ -782,28 +809,28 @@ msgstr "正在高亮显示字段"
 msgid "History"
 msgstr "历史记录"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1490
+#: ask_alyf/public/js/ask_alyf.bundle.js:1510
 msgid "How many Work Orders are behind schedule?"
 msgstr "有多少工单落后于计划?"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1472
+#: ask_alyf/public/js/ask_alyf.bundle.js:1492
 msgid "How many leave applications are pending approval?"
 msgstr "有多少请假申请待批准?"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1454
+#: ask_alyf/public/js/ask_alyf.bundle.js:1474
 msgid "How many pending purchase receipts do I have?"
 msgstr "我有多少待处理的采购收据?"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1445
+#: ask_alyf/public/js/ask_alyf.bundle.js:1465
 msgid "How many quotations were sent this month?"
 msgstr "本月发送了多少报价单?"
 
-#: ask_alyf/ask_alyf/api.py:615
+#: ask_alyf/ask_alyf/api.py:639
 #: ask_alyf/ask_alyf/test_tool_error_middleware.py:153
 msgid "I hit an error while processing that request. Please try again."
 msgstr "处理该请求时遇到错误。请重试。"
 
-#: ask_alyf/ask_alyf/api.py:209 ask_alyf/ask_alyf/api.py:604
+#: ask_alyf/ask_alyf/api.py:212 ask_alyf/ask_alyf/api.py:628
 msgid "I've prepared the operation. Please review and confirm."
 msgstr "我已准备好该操作。请审核并确认。"
 
@@ -811,7 +838,7 @@ msgstr "我已准备好该操作。请审核并确认。"
 msgid "Invalid action payload."
 msgstr "无效的操作负载。"
 
-#: ask_alyf/ask_alyf/tools.py:1609 ask_alyf/public/js/ask_alyf.bundle.js:2696
+#: ask_alyf/ask_alyf/tools.py:1609 ask_alyf/public/js/ask_alyf.bundle.js:2766
 msgid "Invalid chart data."
 msgstr "无效的图表数据。"
 
@@ -855,7 +882,7 @@ msgstr "最后消息时间"
 msgid "Line offset {0} exceeds file length"
 msgstr "行偏移 {0} 超出文件长度"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1688
+#: ask_alyf/public/js/ask_alyf.bundle.js:1734
 msgid "Loading conversation..."
 msgstr "正在加载对话..."
 
@@ -867,7 +894,7 @@ msgstr "正在查找可用的报表"
 msgid "Looking up what you can access"
 msgstr "正在查找您可以访问的内容"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1486
+#: ask_alyf/public/js/ask_alyf.bundle.js:1506
 msgid "Manufacturing"
 msgstr "制造"
 
@@ -891,7 +918,7 @@ msgstr "元数据类型"
 msgid "Method call proposal needs correction."
 msgstr "方法调用提案需要更正。"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1373
+#: ask_alyf/public/js/ask_alyf.bundle.js:1393
 #, python-brace-format
 msgid "Mode: {0}"
 msgstr "模式：{0}"
@@ -905,8 +932,8 @@ msgstr "找到多个匹配的文件。请提供 reference_field、file_url 或 f
 msgid "Navigate to {0}"
 msgstr "导航至 {0}"
 
-#: ask_alyf/ask_alyf/api.py:292 ask_alyf/ask_alyf/api.py:394
-#: ask_alyf/ask_alyf/api.py:450
+#: ask_alyf/ask_alyf/api.py:295 ask_alyf/ask_alyf/api.py:397
+#: ask_alyf/ask_alyf/api.py:474
 msgid "New Conversation"
 msgstr "新对话"
 
@@ -922,7 +949,7 @@ msgstr "新建文档操作需要更正。"
 msgid "No active form found."
 msgstr "未找到活动表单。"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1641
+#: ask_alyf/public/js/ask_alyf.bundle.js:1661
 msgid "No conversations yet."
 msgstr "暂无对话。"
 
@@ -931,7 +958,7 @@ msgstr "暂无对话。"
 msgid "No documentation URL was found for app '{0}'."
 msgstr "未找到应用 '{0}' 的文档URL。"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2287
+#: ask_alyf/public/js/ask_alyf.bundle.js:2357
 msgid "No form is currently open."
 msgstr "当前没有打开的表单。"
 
@@ -943,7 +970,7 @@ msgstr "未找到已安装应用的代码根目录。"
 msgid "No matching file was found."
 msgstr "未找到匹配的文件。"
 
-#: ask_alyf/ask_alyf/api.py:245
+#: ask_alyf/ask_alyf/api.py:248
 #, python-brace-format
 msgid "No pending operation matches call_id '{0}'."
 msgstr "没有待处理操作匹配 call_id '{0}'。"
@@ -958,7 +985,7 @@ msgstr "未找到应用 '{0}' 的 pyproject.toml。"
 msgid "No repository URL was found for app '{0}'."
 msgstr "未找到应用 '{0}' 的仓库URL。"
 
-#: ask_alyf/ask_alyf/api.py:1033
+#: ask_alyf/ask_alyf/api.py:1061
 msgid "No valid file provided."
 msgstr "未提供有效的文件。"
 
@@ -995,7 +1022,7 @@ msgstr "版本查找仅支持 GitHub 仓库。"
 msgid "Only a single read-only SQL statement is allowed."
 msgstr "仅允许单个只读 SQL 语句。"
 
-#: ask_alyf/ask_alyf/api.py:704
+#: ask_alyf/ask_alyf/api.py:732
 msgid "Only backend actions can be confirmed by this endpoint."
 msgstr "此端点仅可确认 backend actions。"
 
@@ -1073,7 +1100,7 @@ msgstr "路径必须以已安装的应用名称开头。"
 msgid "Pending Operation JSON"
 msgstr "待处理操作 JSON"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2106
+#: ask_alyf/public/js/ask_alyf.bundle.js:2176
 msgid "Pending operation"
 msgstr "待处理操作"
 
@@ -1081,11 +1108,11 @@ msgstr "待处理操作"
 msgid "Planning the next steps"
 msgstr "正在规划后续步骤"
 
-#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.py:142
+#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.py:143
 msgid "Please configure a Base URL first and save the settings, then we can fetch available models."
 msgstr "请先配置基础 URL 并保存设置，然后我们才能获取可用的模型。"
 
-#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.py:135
+#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.py:136
 msgid "Please configure an API key first and save the settings, then we can fetch available models."
 msgstr "请先配置 API 密钥并保存设置，然后我们才能获取可用的模型。"
 
@@ -1165,7 +1192,7 @@ msgstr "已准备更新提案。"
 msgid "Preparing a chart"
 msgstr "正在准备图表"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1495
+#: ask_alyf/public/js/ask_alyf.bundle.js:1515
 msgid "Projects"
 msgstr "项目"
 
@@ -1203,7 +1230,7 @@ msgstr "正在读取 {0}"
 msgid "Reading {0} list"
 msgstr "正在读取 {0} 列表"
 
-#: ask_alyf/ask_alyf/api.py:834 ask_alyf/ask_alyf/api.py:941
+#: ask_alyf/ask_alyf/api.py:862 ask_alyf/ask_alyf/api.py:969
 #, python-brace-format
 msgid "Reason: {0}"
 msgstr "原因：{0}"
@@ -1213,7 +1240,7 @@ msgstr "原因：{0}"
 msgid "Reasoning Effort"
 msgstr "推理强度"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2199
+#: ask_alyf/public/js/ask_alyf.bundle.js:2269
 #, python-brace-format
 msgid "Records to create ({0})"
 msgstr "要创建的记录 ({0})"
@@ -1293,7 +1320,7 @@ msgstr "滚动操作需要更正。"
 msgid "Scroll to field {0}"
 msgstr "滚动到字段 {0}"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2321
+#: ask_alyf/public/js/ask_alyf.bundle.js:2391
 msgid "Scrolling to fields is not available on this form."
 msgstr "此表单不支持滚动到字段。"
 
@@ -1305,11 +1332,11 @@ msgstr "正在搜索文档"
 msgid "Searching the source code"
 msgstr "正在搜索源代码"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1441
+#: ask_alyf/public/js/ask_alyf.bundle.js:1461
 msgid "Selling"
 msgstr "销售"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1985
+#: ask_alyf/public/js/ask_alyf.bundle.js:2031
 msgid "Sending..."
 msgstr "正在发送..."
 
@@ -1335,27 +1362,27 @@ msgstr "在 {1} {2} 上设置 {0}"
 msgid "Show chart"
 msgstr "显示图表"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1470
+#: ask_alyf/public/js/ask_alyf.bundle.js:1490
 msgid "Show employee headcount by department as a chart"
 msgstr "以图表形式显示按部门划分的员工人数"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1489
+#: ask_alyf/public/js/ask_alyf.bundle.js:1509
 msgid "Show me open Work Orders and their status"
 msgstr "显示打开的工单及其状态"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1515
+#: ask_alyf/public/js/ask_alyf.bundle.js:1535
 msgid "Show me the top 10 DocTypes by record count"
 msgstr "按记录计数显示前 10 个 DocTypes"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1462
+#: ask_alyf/public/js/ask_alyf.bundle.js:1482
 msgid "Show me unpaid Sales Invoices older than 30 days"
 msgstr "显示超过 30 天未付的销售发票"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1507
+#: ask_alyf/public/js/ask_alyf.bundle.js:1527
 msgid "Show me unresolved issues from this week"
 msgstr "显示本周未解决的问题"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1497
+#: ask_alyf/public/js/ask_alyf.bundle.js:1517
 msgid "Show project progress as a chart"
 msgstr "以图表形式显示项目进展"
 
@@ -1412,7 +1439,7 @@ msgstr "开始新的对话"
 msgid "Start typing to choose a model. Available models are loaded from the configured provider."
 msgstr "开始输入以选择模型。可用模型从已配置的供应商加载。"
 
-#: ask_alyf/ask_alyf/api.py:877
+#: ask_alyf/ask_alyf/api.py:905
 msgid "Status must be one of success, failed, or rejected."
 msgstr "状态必须是 success、failed 或 rejected 之一。"
 
@@ -1420,19 +1447,19 @@ msgstr "状态必须是 success、failed 或 rejected 之一。"
 msgid "Still generating..."
 msgstr "仍在生成中..."
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1477
+#: ask_alyf/public/js/ask_alyf.bundle.js:1497
 msgid "Stock"
 msgstr "库存"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1752
+#: ask_alyf/public/js/ask_alyf.bundle.js:1798
 msgid "Stop this run"
 msgstr "停止本次运行"
 
-#: ask_alyf/ask_alyf/api.py:602
+#: ask_alyf/ask_alyf/api.py:626
 msgid "Stopped. Send a message to pick up from here."
 msgstr "已停止。发送消息即可从此处继续。"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1773
+#: ask_alyf/public/js/ask_alyf.bundle.js:1819
 msgid "Stopping..."
 msgstr "正在停止..."
 
@@ -1445,7 +1472,7 @@ msgstr "提交提案需要修正。"
 msgid "Submit {0} {1}"
 msgstr "提交 {0} {1}"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1504
+#: ask_alyf/public/js/ask_alyf.bundle.js:1524
 msgid "Support"
 msgstr "支持"
 
@@ -1477,12 +1504,12 @@ msgstr "未安装 Compendium 应用。"
 msgid "The action could not be completed."
 msgstr "无法完成该操作。"
 
-#: ask_alyf/ask_alyf/api.py:508 ask_alyf/ask_alyf/api.py:535
+#: ask_alyf/ask_alyf/api.py:532 ask_alyf/ask_alyf/api.py:559
 msgid "The background job does not match this message."
 msgstr "后台作业与此消息不匹配。"
 
-#: ask_alyf/ask_alyf/api.py:506 ask_alyf/ask_alyf/api.py:531
-#: ask_alyf/ask_alyf/api.py:557
+#: ask_alyf/ask_alyf/api.py:530 ask_alyf/ask_alyf/api.py:555
+#: ask_alyf/ask_alyf/api.py:581
 msgid "The message could not be found in this conversation."
 msgstr "在此对话中找不到该消息。"
 
@@ -1490,31 +1517,31 @@ msgstr "在此对话中找不到该消息。"
 msgid "The operation was completed, but the follow-up response could not be generated."
 msgstr "操作已完成，但无法生成后续回复。"
 
-#: ask_alyf/ask_alyf/api.py:871
+#: ask_alyf/ask_alyf/api.py:899
 msgid "The pending operation is not a frontend action."
 msgstr "待处理操作不是前端操作。"
 
-#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.py:241
+#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.py:242
 #, python-brace-format
 msgid "The selected Chat Model ({0}) does not support Reasoning Effort ({1})."
 msgstr "所选聊天模型（{0}）不支持推理强度（{1}）。"
 
-#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.py:237
+#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.py:238
 #, python-brace-format
 msgid "The selected Chat Model ({0}) does not support Reasoning Effort ({1}). Supported values: {2}."
 msgstr "所选聊天模型（{0}）不支持推理强度（{1}）。支持的值：{2}。"
 
-#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.py:98
+#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.py:99
 #, python-brace-format
 msgid "The selected Chat Model ({0}) does not support function calling."
 msgstr "所选聊天模型（{0}）不支持函数调用。"
 
-#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.py:106
+#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.py:107
 #, python-brace-format
 msgid "The selected Chat Model ({0}) does not support vision. Choose a vision-capable chat model or configure a separate vision model."
 msgstr "所选聊天模型（{0}）不支持视觉功能。请选择支持视觉的聊天模型，或配置单独的视觉模型。"
 
-#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.py:115
+#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.py:116
 #, python-brace-format
 msgid "The selected Vision Model ({0}) does not support vision."
 msgstr "所选视觉模型（{0}）不支持视觉功能。"
@@ -1523,11 +1550,11 @@ msgstr "所选视觉模型（{0}）不支持视觉功能。"
 msgid "The user rejected this operation."
 msgstr "用户拒绝了此操作。"
 
-#: ask_alyf/ask_alyf/api.py:865
+#: ask_alyf/ask_alyf/api.py:893
 msgid "There is no pending frontend action to resolve."
 msgstr "没有待解决的前端操作。"
 
-#: ask_alyf/ask_alyf/api.py:696
+#: ask_alyf/ask_alyf/api.py:724
 msgid "There is no pending operation to confirm."
 msgstr "没有待确认的待处理操作。"
 
@@ -1566,7 +1593,7 @@ msgstr "正在翻译标签"
 msgid "Unknown error."
 msgstr "未知错误。"
 
-#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.py:182
+#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.py:183
 #, python-brace-format
 msgid "Unsupported LLM provider: {0}"
 msgstr "不支持的 LLM 提供商：{0}"
@@ -1586,12 +1613,12 @@ msgstr "不支持的文件类型 '{0}'。支持的类型：PDF、PNG、JPG、GIF
 msgid "Unsupported frontend action '{0}'."
 msgstr "不支持的前端操作 '{0}'。"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2350
+#: ask_alyf/public/js/ask_alyf.bundle.js:2420
 #, python-brace-format
 msgid "Unsupported frontend action: {0}"
 msgstr "不支持的前端操作：{0}"
 
-#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.py:170
+#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.py:171
 #, python-brace-format
 msgid "Unsupported model configuration: {0}"
 msgstr "不支持的模型配置：{0}"
@@ -1605,7 +1632,7 @@ msgstr "不支持的操作类型 '{0}'。"
 msgid "Unsupported or missing chart type."
 msgstr "不支持或缺少的图表类型。"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1416
+#: ask_alyf/public/js/ask_alyf.bundle.js:1436
 msgid "Untitled conversation"
 msgstr "无标题对话"
 
@@ -1667,74 +1694,74 @@ msgstr "Vision 提供商"
 msgid "Voice input"
 msgstr "语音输入"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2848
+#: ask_alyf/public/js/ask_alyf.bundle.js:2918
 #, python-brace-format
 msgid "Voice input language: {0}"
 msgstr "语音输入语言：{0}"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2033
+#: ask_alyf/public/js/ask_alyf.bundle.js:2079
 msgid "Waiting for response..."
 msgstr "正在等待回复..."
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1444
+#: ask_alyf/public/js/ask_alyf.bundle.js:1464
 msgid "What Sales Orders are pending delivery?"
 msgstr "哪些销售订单待发货？"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1516
+#: ask_alyf/public/js/ask_alyf.bundle.js:1536
 msgid "What are the recent Error Logs?"
 msgstr "最近的错误日志有哪些？"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1498
+#: ask_alyf/public/js/ask_alyf.bundle.js:1518
 msgid "What open tasks are assigned to me?"
 msgstr "分派给我的未完成任务有哪些？"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1481
+#: ask_alyf/public/js/ask_alyf.bundle.js:1501
 msgid "What were the top 10 most moved items this month?"
 msgstr "本月移动次数最多的前 10 个项目是哪些？"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1508
+#: ask_alyf/public/js/ask_alyf.bundle.js:1528
 msgid "What's the average resolution time for issues?"
 msgstr "问题的平均解决时间是多少？"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1463
+#: ask_alyf/public/js/ask_alyf.bundle.js:1483
 msgid "What's the total outstanding receivables?"
 msgstr "未收账款总额是多少？"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1453
+#: ask_alyf/public/js/ask_alyf.bundle.js:1473
 msgid "Which Purchase Orders are overdue?"
 msgstr "哪些采购订单已逾期？"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1471
+#: ask_alyf/public/js/ask_alyf.bundle.js:1491
 msgid "Which employees are on leave today?"
 msgstr "今天哪些员工休假？"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1480
+#: ask_alyf/public/js/ask_alyf.bundle.js:1500
 msgid "Which items are below their reorder level?"
 msgstr "哪些项目低于其再订货水平？"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1499
+#: ask_alyf/public/js/ask_alyf.bundle.js:1519
 msgid "Which project tasks are overdue?"
 msgstr "哪些项目任务已逾期？"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1517
+#: ask_alyf/public/js/ask_alyf.bundle.js:1537
 msgid "Which users logged in today?"
 msgstr "今天哪些用户已登录？"
 
-#: ask_alyf/ask_alyf/api.py:361 ask_alyf/ask_alyf/api.py:373
-#: ask_alyf/ask_alyf/api.py:390 ask_alyf/ask_alyf/api.py:425
-#: ask_alyf/ask_alyf/api.py:493 ask_alyf/ask_alyf/api.py:517
-#: ask_alyf/ask_alyf/api.py:686 ask_alyf/ask_alyf/api.py:754
-#: ask_alyf/ask_alyf/api.py:859 ask_alyf/ask_alyf/api.py:978
-#: ask_alyf/ask_alyf/api.py:1016
+#: ask_alyf/ask_alyf/api.py:364 ask_alyf/ask_alyf/api.py:376
+#: ask_alyf/ask_alyf/api.py:393 ask_alyf/ask_alyf/api.py:423
+#: ask_alyf/ask_alyf/api.py:449 ask_alyf/ask_alyf/api.py:517
+#: ask_alyf/ask_alyf/api.py:541 ask_alyf/ask_alyf/api.py:714
+#: ask_alyf/ask_alyf/api.py:782 ask_alyf/ask_alyf/api.py:887
+#: ask_alyf/ask_alyf/api.py:1006 ask_alyf/ask_alyf/api.py:1044
 msgid "You do not have access to Ask ALYF."
 msgstr "您无权访问 Ask ALYF。"
 
-#: ask_alyf/ask_alyf/api.py:985
+#: ask_alyf/ask_alyf/api.py:1013
 #, python-brace-format
 msgid "You do not have read permission on {0}."
 msgstr "您没有 {0} 的读取权限。"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2789
+#: ask_alyf/public/js/ask_alyf.bundle.js:2859
 msgid "Your browser does not support voice input."
 msgstr "您的浏览器不支持语音输入。"
 
@@ -1755,7 +1782,7 @@ msgstr "调试会话"
 msgid "doctype"
 msgstr "单据类型"
 
-#: ask_alyf/ask_alyf/api.py:910
+#: ask_alyf/ask_alyf/api.py:938
 msgid "frontend action"
 msgstr "前端操作"
 
@@ -1803,7 +1830,7 @@ msgstr "超高"
 msgid "{0} '{1}' was not found."
 msgstr "未找到 {0} '{1}'。"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2252
+#: ask_alyf/public/js/ask_alyf.bundle.js:2322
 #, python-brace-format
 msgid "{0} rows"
 msgstr "{0} 行"

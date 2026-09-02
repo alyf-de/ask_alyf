@@ -443,12 +443,8 @@
 }
 
 .ask_alyf-history-item {
+	position: relative;
 	width: 100%;
-	text-align: left;
-	display: flex;
-	flex-direction: column;
-	align-items: flex-start;
-	gap: 0.2rem;
 	transition: transform 0.16s cubic-bezier(0.25, 1, 0.5, 1),
 		box-shadow 0.2s ease;
 }
@@ -457,10 +453,44 @@
 	transform: translateY(-1px);
 }
 
+.ask_alyf-history-item-main {
+	width: 100%;
+	min-width: 0;
+	text-align: left;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 0.2rem;
+}
+
+.ask_alyf-history-item-delete {
+	position: absolute;
+	top: 50%;
+	right: 0.3rem;
+	transform: translateY(-50%);
+	opacity: 0;
+	pointer-events: none;
+	border: none;
+}
+
+.ask_alyf-history-item-delete:not(:hover) {
+	background: transparent;
+}
+
+.ask_alyf-history-item:hover .ask_alyf-history-item-delete {
+	opacity: 1;
+	pointer-events: auto;
+}
+
 .ask_alyf-history-item-title {
 	font-size: 0.86rem;
 	font-weight: 600;
 	line-height: 1.3;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	width: 100%;
+	padding-right: 2rem;
 }
 
 .ask_alyf-history-item-meta {
