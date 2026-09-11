@@ -541,6 +541,9 @@ def get_message_job_status(conversation: str, user_message_id: str, job_id: str)
 	if not can_access_ask_alyf():
 		frappe.throw(_("You do not have access to Ask ALYF."))
 
+	if not frappe.db.exists("Ask ALYF Conversation", conversation):
+		return {"status": "conversation_not_found"}
+
 	doc = frappe.get_doc("Ask ALYF Conversation", conversation)
 	doc.check_permission("read")
 	messages = get_messages(doc)

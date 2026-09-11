@@ -438,6 +438,10 @@ msgstr "不允许删除对话。"
 msgid "Conversation name is required."
 msgstr "对话名称为必填项。"
 
+#: ask_alyf/public/js/ask_alyf.bundle.js:1172
+msgid "Conversation not found. Please start a new conversation."
+msgstr "未找到对话。请开始新的对话。"
+
 #: ask_alyf/public/js/ask_alyf.bundle.js:583
 msgid "Copy as Markdown"
 msgstr "复制为 Markdown"

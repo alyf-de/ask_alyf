@@ -1166,6 +1166,13 @@ import "./field_agent";
 				}
 			}
 
+			if (result.status === "conversation_not_found") {
+				this.stopResponseJobMonitor();
+				this.setLoading(false);
+				this.setStatus(__("Conversation not found. Please start a new conversation."));
+				return;
+			}
+
 			this.stopResponseJobMonitor();
 			if (activeJob.conversation !== this.state.conversation?.name) {
 				return;

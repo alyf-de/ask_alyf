@@ -438,6 +438,10 @@ msgstr "会話の削除は許可されていません。"
 msgid "Conversation name is required."
 msgstr "会話名は必須です。"
 
+#: ask_alyf/public/js/ask_alyf.bundle.js:1172
+msgid "Conversation not found. Please start a new conversation."
+msgstr "会話が見つかりません。新しい会話を開始してください。"
+
 #: ask_alyf/public/js/ask_alyf.bundle.js:583
 msgid "Copy as Markdown"
 msgstr "Markdown としてコピー"

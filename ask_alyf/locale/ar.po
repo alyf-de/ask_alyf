@@ -438,6 +438,10 @@ msgstr "لا يُسمح بحذف المحادثات."
 msgid "Conversation name is required."
 msgstr "اسم المحادثة مطلوب."
 
+#: ask_alyf/public/js/ask_alyf.bundle.js:1172
+msgid "Conversation not found. Please start a new conversation."
+msgstr "لم يتم العثور على المحادثة. يُرجى بدء محادثة جديدة."
+
 #: ask_alyf/public/js/ask_alyf.bundle.js:583
 msgid "Copy as Markdown"
 msgstr "نسخ بصيغة Markdown"

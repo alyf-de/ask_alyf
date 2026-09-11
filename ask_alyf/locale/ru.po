@@ -438,6 +438,10 @@ msgstr "Удаление бесед не разрешено."
 msgid "Conversation name is required."
 msgstr "Имя беседы обязательно."
 
+#: ask_alyf/public/js/ask_alyf.bundle.js:1172
+msgid "Conversation not found. Please start a new conversation."
+msgstr "Беседа не найдена. Начните новую беседу."
+
 #: ask_alyf/public/js/ask_alyf.bundle.js:583
 msgid "Copy as Markdown"
 msgstr "Копировать как Markdown"

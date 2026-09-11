@@ -418,6 +418,10 @@ msgstr ""
 msgid "Conversation name is required."
 msgstr ""
 
+#: ask_alyf/public/js/ask_alyf.bundle.js:1172
+msgid "Conversation not found. Please start a new conversation."
+msgstr ""
+
 #: ask_alyf/public/js/ask_alyf.bundle.js:583
 msgid "Copy as Markdown"
 msgstr ""

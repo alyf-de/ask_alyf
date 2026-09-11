@@ -438,6 +438,10 @@ msgstr "वार्तालाप हटाने की अनुमति �
 msgid "Conversation name is required."
 msgstr "वार्तालाप का नाम आवश्यक है।"
 
+#: ask_alyf/public/js/ask_alyf.bundle.js:1172
+msgid "Conversation not found. Please start a new conversation."
+msgstr "बातचीत नहीं मिली। कृपया एक नई बातचीत शुरू करें।"
+
 #: ask_alyf/public/js/ask_alyf.bundle.js:583
 msgid "Copy as Markdown"
 msgstr "Markdown के रूप में कॉपी करें"

@@ -438,6 +438,10 @@ msgstr "কথোপকথন মুছে ফেলার অনুমতি �
 msgid "Conversation name is required."
 msgstr "কথোপকথনের নাম প্রয়োজন।"
 
+#: ask_alyf/public/js/ask_alyf.bundle.js:1172
+msgid "Conversation not found. Please start a new conversation."
+msgstr "কথোপকথন পাওয়া যায়নি। অনুগ্রহ করে একটি নতুন কথোপকথন শুরু করুন।"
+
 #: ask_alyf/public/js/ask_alyf.bundle.js:583
 msgid "Copy as Markdown"
 msgstr "Markdown হিসেবে কপি করুন"

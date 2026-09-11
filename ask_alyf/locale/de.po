@@ -438,6 +438,10 @@ msgstr "Das Löschen von Konversationen ist nicht erlaubt."
 msgid "Conversation name is required."
 msgstr "Konversationsname ist erforderlich."
 
+#: ask_alyf/public/js/ask_alyf.bundle.js:1172
+msgid "Conversation not found. Please start a new conversation."
+msgstr "Konversation nicht gefunden. Bitte starten Sie eine neue Konversation."
+
 #: ask_alyf/public/js/ask_alyf.bundle.js:583
 msgid "Copy as Markdown"
 msgstr "Als Markdown kopieren"
