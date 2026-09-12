@@ -1231,14 +1231,14 @@ import "./field_agent";
 			this.openConversation(conversationName);
 		}
 
-		onHistoryConversationDeleteClick(event, conversationName) {
+		onHistoryConversationDeleteClick(event, conversationName, title) {
 			event.preventDefault();
 			event.stopPropagation();
 			if (!conversationName || !this.isConversationDeletionEnabled()) {
 				return;
 			}
 
-			frappe.confirm(__("Delete this conversation?"), async () => {
+			frappe.confirm(__("Delete conversation '{0}'?", [title]), async () => {
 				try {
 					await this.deleteConversation(conversationName);
 				} catch (error) {
@@ -1687,8 +1687,9 @@ import "./field_agent";
 				}
 
 				const titleEl = document.createElement("div");
+				const title = this.formatConversationLabel(conversation);
 				titleEl.className = "ask_alyf-history-item-title";
-				titleEl.textContent = this.formatConversationLabel(conversation);
+				titleEl.textContent = title;
 
 				const metaEl = document.createElement("div");
 				metaEl.className = "ask_alyf-history-item-meta";
@@ -1713,7 +1714,7 @@ import "./field_agent";
 					deleteEl.setAttribute("aria-label", __("Delete conversation"));
 					deleteEl.innerHTML = getIcon("trash", "sm", "", true);
 					deleteEl.addEventListener("click", (event) =>
-						this.onHistoryConversationDeleteClick(event, conversation.name),
+						this.onHistoryConversationDeleteClick(event, conversation.name, title),
 					);
 					itemEl.appendChild(deleteEl);
 				}
