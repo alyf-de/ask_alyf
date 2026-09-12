@@ -1703,7 +1703,10 @@ import "./field_agent";
 					}
 					deleteEl.title = __("Delete conversation");
 					deleteEl.setAttribute("aria-label", __("Delete conversation"));
-					deleteEl.innerHTML = getIcon("trash", "sm", "", true);
+					deleteEl.innerHTML =
+						typeof frappe.utils?.icon === "function"
+							? frappe.utils.icon("trash", "sm", "", "", "", true)
+							: "\u00d7";
 					deleteEl.addEventListener("click", (event) =>
 						this.onHistoryConversationDeleteClick(event, conversation.name, title),
 					);
