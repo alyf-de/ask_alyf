@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Ask ALYF VERSION\n"
 "Report-Msgid-Bugs-To: hallo@alyf.de\n"
-"POT-Creation-Date: 2026-09-02 01:33+0053\n"
+"POT-Creation-Date: 2026-09-12 22:19+0053\n"
 "PO-Revision-Date: 2026-05-02 19:04+0053\n"
 "Last-Translator: hallo@alyf.de\n"
 "Language: ru\n"
@@ -27,13 +27,13 @@ msgstr "1 шаг"
 #: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.json
 #: ask_alyf/ask_alyf/doctype/ask_alyf_skill/ask_alyf_skill.json
 msgid "Access"
-msgstr ""
+msgstr "Доступ"
 
 #: ask_alyf/ask_alyf/deep_agent_backend.py:163
 msgid "Access to hidden paths is not allowed"
 msgstr "Доступ к скрытым путям не разрешён"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1443
+#: ask_alyf/public/js/ask_alyf.bundle.js:1470
 msgid "Accounts"
 msgstr "Учёт"
 
@@ -77,11 +77,11 @@ msgid "Add child row action needs correction."
 msgstr "Действие добавления дочерней строки требует исправления."
 
 #: ask_alyf/public/js/ask_alyf.bundle.js:812
-#: ask_alyf/public/js/ask_alyf.bundle.js:1355
+#: ask_alyf/public/js/ask_alyf.bundle.js:1382
 msgid "Agent"
 msgstr "Агент"
 
-#: ask_alyf/ask_alyf/api.py:153
+#: ask_alyf/ask_alyf/api.py:157
 msgid "Agent mode is disabled or not available for your user."
 msgstr "Режим агента отключён или недоступен для вашего пользователя."
 
@@ -94,6 +94,11 @@ msgstr "Разрешить режим агента"
 #: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.json
 msgid "Allow Code Search"
 msgstr "Разрешить поиск по коду"
+
+#. Label of a Check field in DocType 'Ask ALYF Settings'
+#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.json
+msgid "Allow Conversation Deletion"
+msgstr "Разрешить удаление разговора"
 
 #. Label of a Check field in DocType 'Ask ALYF Settings'
 #: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.json
@@ -132,16 +137,16 @@ msgstr "Приложение '{0}' не установлено."
 
 #: ask_alyf/ask_alyf/tools.py:154 ask_alyf/ask_alyf/tools.py:1052
 msgid "App name is required."
-msgstr ""
+msgstr "Необходимо указать название приложения."
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2420
+#: ask_alyf/public/js/ask_alyf.bundle.js:2500
 msgid "Applying action..."
 msgstr "Применение действия..."
 
 #: ask_alyf/public/js/ask_alyf.bundle.js:809
-#: ask_alyf/public/js/ask_alyf.bundle.js:1355
+#: ask_alyf/public/js/ask_alyf.bundle.js:1382
 msgid "Ask"
-msgstr ""
+msgstr "Вопрос"
 
 #. Name of a Workspace
 #. Label of a Card Break in the Ask ALYF Workspace
@@ -196,7 +201,7 @@ msgstr "Навык Ask ALYF"
 msgid "Ask ALYF User"
 msgstr "Пользователь Ask ALYF"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1161
+#: ask_alyf/public/js/ask_alyf.bundle.js:1168
 msgid "Ask ALYF could not finish processing this message. Please try again."
 msgstr "Ask ALYF не смог завершить обработку этого сообщения. Пожалуйста, попробуйте ещё раз."
 
@@ -204,7 +209,11 @@ msgstr "Ask ALYF не смог завершить обработку этого 
 msgid "Ask ALYF is an AI and can make mistakes, including with numbers and information about people."
 msgstr "Ask ALYF — это ИИ, и он может ошибаться, в том числе в цифрах и информации о людях."
 
-#: ask_alyf/ask_alyf/api.py:438
+#: ask_alyf/ask_alyf/api.py:432
+msgid "Ask ALYF is still working on a message in this conversation. Stop it or wait for it to finish before deleting."
+msgstr "Ask ALYF всё ещё обрабатывает сообщение в этой беседе. Остановите его или дождитесь завершения перед удалением."
+
+#: ask_alyf/ask_alyf/api.py:463
 msgid "Ask ALYF is still working on the previous message in this conversation."
 msgstr "Ask ALYF всё ещё обрабатывает предыдущее сообщение в этой беседе."
 
@@ -216,7 +225,7 @@ msgstr "Ask ALYF виден, но в настройках Ask ALYF ещё не �
 msgid "Ask ALYF sections"
 msgstr "Разделы Ask ALYF"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1162
+#: ask_alyf/public/js/ask_alyf.bundle.js:1169
 msgid "Ask ALYF stopped processing this message. Please try again."
 msgstr "Ask ALYF приостановил обработку этого сообщения. Пожалуйста, попробуйте ещё раз."
 
@@ -264,17 +273,17 @@ msgstr "Приложения доступны только для чтения"
 msgid "Batch create proposal needs correction."
 msgstr "Предложение по пакетному созданию требует исправления."
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1434
+#: ask_alyf/public/js/ask_alyf.bundle.js:1461
 msgid "Buying"
 msgstr "Закупки"
 
 #: ask_alyf/public/js/ask_alyf.bundle.js:773
 #: ask_alyf/public/js/ask_alyf.bundle.js:775
-#: ask_alyf/public/js/ask_alyf.bundle.js:1312
+#: ask_alyf/public/js/ask_alyf.bundle.js:1339
 msgid "Call support"
 msgstr "Позвонить в службу поддержки"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1311
+#: ask_alyf/public/js/ask_alyf.bundle.js:1338
 #, python-brace-format
 msgid "Call support: {0}"
 msgstr "Позвонить в службу поддержки: {0}"
@@ -293,22 +302,22 @@ msgstr "Предложение об отмене требует исправле
 msgid "Cancel {0} {1}"
 msgstr "Отменить {0} {1}"
 
-#: ask_alyf/ask_alyf/api.py:936
+#: ask_alyf/ask_alyf/api.py:969
 #, python-brace-format
 msgid "Cancelled frontend action: {0}"
 msgstr "Действие интерфейса отменено: {0}"
 
-#: ask_alyf/ask_alyf/api.py:829
+#: ask_alyf/ask_alyf/api.py:862
 #, python-brace-format
 msgid "Cancelled showing chart: {0}."
 msgstr "Отображение диаграммы отменено: {0}."
 
-#: ask_alyf/ask_alyf/api.py:790
+#: ask_alyf/ask_alyf/api.py:823
 #, python-brace-format
 msgid "Cancelled the pending operation: {0}."
 msgstr "Ожидающая операция отменена: {0}."
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2136
+#: ask_alyf/public/js/ask_alyf.bundle.js:2216
 msgid "Changes preview"
 msgstr "Предпросмотр изменений"
 
@@ -336,27 +345,27 @@ msgstr "Высота диаграммы вне допустимого диапа
 msgid "Chart labels must be numbers or strings."
 msgstr "Метки диаграммы должны быть числами или строками."
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1445
+#: ask_alyf/public/js/ask_alyf.bundle.js:1472
 msgid "Chart monthly expenses by cost center"
 msgstr "Построить график ежемесячных расходов по центрам затрат"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1427
+#: ask_alyf/public/js/ask_alyf.bundle.js:1454
 msgid "Chart my monthly sales revenue for the last 6 months"
 msgstr "Построить график ежемесячной выручки от продаж за последние 6 месяцев"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1490
+#: ask_alyf/public/js/ask_alyf.bundle.js:1517
 msgid "Chart open issues by priority"
 msgstr "Построить график открытых задач по приоритету"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1472
+#: ask_alyf/public/js/ask_alyf.bundle.js:1499
 msgid "Chart production output by item this week"
 msgstr "Построить график производства за эту неделю по позициям"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1436
+#: ask_alyf/public/js/ask_alyf.bundle.js:1463
 msgid "Chart spending by supplier for this quarter"
 msgstr "Построить график расходов по поставщикам за этот квартал"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1463
+#: ask_alyf/public/js/ask_alyf.bundle.js:1490
 msgid "Chart stock value by warehouse"
 msgstr "Диаграмма стоимости запасов по складам"
 
@@ -433,32 +442,40 @@ msgstr "Настройте API-ключ в настройках Ask ALYF пер�
 msgid "Confirm all"
 msgstr "Подтвердить все"
 
-#: ask_alyf/ask_alyf/api.py:707 ask_alyf/public/js/ask_alyf.bundle.js:2420
+#: ask_alyf/ask_alyf/api.py:740 ask_alyf/public/js/ask_alyf.bundle.js:2500
 msgid "Confirming action..."
 msgstr "Подтверждение действия..."
+
+#: ask_alyf/ask_alyf/api.py:426
+msgid "Conversation deletion is not allowed."
+msgstr "Удаление бесед не разрешено."
 
 #: ask_alyf/ask_alyf/tools.py:995
 msgid "Conversation name is required."
 msgstr "Имя беседы обязательно."
 
+#: ask_alyf/public/js/ask_alyf.bundle.js:1156
+msgid "Conversation not found. Please start a new conversation."
+msgstr "Беседа не найдена. Начните новую беседу."
+
 #: ask_alyf/public/js/ask_alyf.bundle.js:571
 msgid "Copy as Markdown"
 msgstr "Копировать как Markdown"
 
-#: ask_alyf/ask_alyf/api.py:823
+#: ask_alyf/ask_alyf/api.py:856
 msgid "Could not attach charts to the assistant message."
 msgstr "Не удалось прикрепить диаграммы к сообщению ассистента."
 
-#: ask_alyf/ask_alyf/api.py:737
+#: ask_alyf/ask_alyf/api.py:770
 #, python-brace-format
 msgid "Could not complete the operation: {0}."
 msgstr "Не удалось завершить операцию: {0}."
 
-#: ask_alyf/ask_alyf/api.py:831
+#: ask_alyf/ask_alyf/api.py:864
 msgid "Could not display chart."
 msgstr "Не удалось отобразить диаграмму."
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2642
+#: ask_alyf/public/js/ask_alyf.bundle.js:2722
 msgid "Could not download chart."
 msgstr "Не удалось скачать диаграмму."
 
@@ -470,7 +487,7 @@ msgstr "Не удалось извлечь визуальное содержим
 msgid "Could not generate content."
 msgstr "Не удалось сгенерировать содержимое."
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2709
+#: ask_alyf/public/js/ask_alyf.bundle.js:2789
 msgid "Could not render chart."
 msgstr "Не удалось отобразить диаграмму."
 
@@ -508,12 +525,12 @@ msgstr "Создано {0} из {1} записей {2}."
 msgid "Creating several {0} records"
 msgstr "Создание нескольких записей {0}"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2284
+#: ask_alyf/public/js/ask_alyf.bundle.js:2364
 #, python-brace-format
 msgid "Current document is {0}, expected {1}."
 msgstr "Текущий документ — {0}, ожидался {1}."
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2277
+#: ask_alyf/public/js/ask_alyf.bundle.js:2357
 #, python-brace-format
 msgid "Current form is {0}, expected {1}."
 msgstr "Текущая форма — {0}, ожидалась {1}."
@@ -526,6 +543,16 @@ msgstr "Значения набора данных должны быть чис�
 #: ask_alyf/ask_alyf/tools.py:1548
 msgid "Dataset values must match labels length."
 msgstr "Значения набора данных должны соответствовать длине меток."
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1697
+#: ask_alyf/public/js/ask_alyf.bundle.js:1698
+msgid "Delete conversation"
+msgstr "Удалить разговор"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1225
+#, python-brace-format
+msgid "Delete conversation '{0}'?"
+msgstr "Удалить разговор '{0}'?"
 
 #: ask_alyf/ask_alyf/toolset.py:994
 msgid "Delete proposal needs correction."
@@ -583,7 +610,7 @@ msgstr "Извлечение документа не вернуло содерж
 msgid "Document name is required."
 msgstr "Название документа обязательно."
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2624
+#: ask_alyf/public/js/ask_alyf.bundle.js:2704
 msgid "Download chart as SVG"
 msgstr "Скачать диаграмму в формате SVG"
 
@@ -625,7 +652,7 @@ msgstr "Исключенный DocType"
 msgid "Excluded DocTypes"
 msgstr "Исключенные DocTypes"
 
-#: ask_alyf/ask_alyf/api.py:934
+#: ask_alyf/ask_alyf/api.py:967
 #, python-brace-format
 msgid "Executed frontend action: {0}"
 msgstr "Выполнено действие фронтенда: {0}"
@@ -635,31 +662,35 @@ msgstr "Выполнено действие фронтенда: {0}"
 msgid "Failed rows: {0}"
 msgstr "Неуспешные строки: {0}"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1289
+#: ask_alyf/public/js/ask_alyf.bundle.js:1316
 msgid "Failed to attach file to conversation."
 msgstr "Не удалось прикрепить файл к беседе."
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2447
+#: ask_alyf/public/js/ask_alyf.bundle.js:2527
 msgid "Failed to confirm pending operation."
 msgstr "Не удалось подтвердить ожидающую операцию."
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2385
+#: ask_alyf/public/js/ask_alyf.bundle.js:1229
+msgid "Failed to delete conversation."
+msgstr "Не удалось удалить разговор."
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:2465
 msgid "Failed to execute frontend action."
 msgstr "Не удалось выполнить действие интерфейса."
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1687
+#: ask_alyf/public/js/ask_alyf.bundle.js:1743
 msgid "Failed to open conversation."
 msgstr "Не удалось открыть разговор."
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2485
+#: ask_alyf/public/js/ask_alyf.bundle.js:2565
 msgid "Failed to reject pending operation."
 msgstr "Не удалось отклонить ожидающую операцию."
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2029
+#: ask_alyf/public/js/ask_alyf.bundle.js:2085
 msgid "Failed to send message."
 msgstr "Не удалось отправить сообщение."
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1775
+#: ask_alyf/public/js/ask_alyf.bundle.js:1831
 msgid "Failed to stop the run."
 msgstr "Не удалось остановить выполнение."
 
@@ -673,7 +704,7 @@ msgstr "Поле '{0}' в {1} является дочерней таблицей
 msgid "Field '{0}' row #{1} in {2} must be an object."
 msgstr "Поле '{0}' строка №{1} в {2} должно быть объектом."
 
-#: ask_alyf/ask_alyf/api.py:981
+#: ask_alyf/ask_alyf/api.py:1014
 msgid "Field Agent is not enabled."
 msgstr "Полевой Agent не включён."
 
@@ -681,13 +712,13 @@ msgstr "Полевой Agent не включён."
 msgid "Field updated."
 msgstr "Поле обновлено."
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2314
-#: ask_alyf/public/js/ask_alyf.bundle.js:2323
+#: ask_alyf/public/js/ask_alyf.bundle.js:2394
+#: ask_alyf/public/js/ask_alyf.bundle.js:2403
 #, python-brace-format
 msgid "Field {0} does not exist on this form."
 msgstr "Поле {0} не существует в этой форме."
 
-#: ask_alyf/ask_alyf/api.py:1034 ask_alyf/ask_alyf/tools.py:723
+#: ask_alyf/ask_alyf/api.py:1067 ask_alyf/ask_alyf/tools.py:723
 #, python-brace-format
 msgid "File '{0}' was not found."
 msgstr "Файл '{0}' не найден."
@@ -696,7 +727,7 @@ msgstr "Файл '{0}' не найден."
 msgid "File ID is required."
 msgstr "Требуется File ID."
 
-#: ask_alyf/ask_alyf/api.py:1019
+#: ask_alyf/ask_alyf/api.py:1052
 msgid "File upload is not enabled."
 msgstr "Загрузка файлов не включена."
 
@@ -748,12 +779,12 @@ msgstr "Фронтенд-действию 'scroll_to_field' требуется �
 msgid "Frontend action 'set_route' requires a non-empty route list."
 msgstr "Фронтенд-действию 'set_route' требуется непустой список маршрутов."
 
-#: ask_alyf/ask_alyf/api.py:938
+#: ask_alyf/ask_alyf/api.py:971
 #, python-brace-format
 msgid "Frontend action failed: {0}"
 msgstr "Фронтенд-действие не выполнено: {0}"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2372
+#: ask_alyf/public/js/ask_alyf.bundle.js:2452
 msgid "Frontend action is missing a call ID."
 msgstr "У фронтенд-действия отсутствует идентификатор звонка (Call ID)."
 
@@ -777,7 +808,7 @@ msgstr "Сгенерировать"
 msgid "Generate with AI"
 msgstr "Сгенерировать с помощью ИИ"
 
-#: ask_alyf/ask_alyf/api.py:770 ask_alyf/ask_alyf/api.py:887
+#: ask_alyf/ask_alyf/api.py:803 ask_alyf/ask_alyf/api.py:920
 msgid "Generating response..."
 msgstr "Создание ответа..."
 
@@ -785,7 +816,7 @@ msgstr "Создание ответа..."
 msgid "Generating..."
 msgstr "Создание..."
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1452
+#: ask_alyf/public/js/ask_alyf.bundle.js:1479
 msgid "HR"
 msgstr "HR"
 
@@ -797,28 +828,28 @@ msgstr "Выделение поля"
 msgid "History"
 msgstr "История"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1474
+#: ask_alyf/public/js/ask_alyf.bundle.js:1501
 msgid "How many Work Orders are behind schedule?"
 msgstr "Сколько производственных заданий отстают от графика?"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1456
+#: ask_alyf/public/js/ask_alyf.bundle.js:1483
 msgid "How many leave applications are pending approval?"
 msgstr "Сколько заявлений на отпуск ожидают утверждения?"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1438
+#: ask_alyf/public/js/ask_alyf.bundle.js:1465
 msgid "How many pending purchase receipts do I have?"
 msgstr "Сколько у меня ожидающих приходных накладных?"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1429
+#: ask_alyf/public/js/ask_alyf.bundle.js:1456
 msgid "How many quotations were sent this month?"
 msgstr "Сколько коммерческих предложений было отправлено в этом месяце?"
 
-#: ask_alyf/ask_alyf/api.py:614
+#: ask_alyf/ask_alyf/api.py:642
 #: ask_alyf/ask_alyf/test_tool_error_middleware.py:153
 msgid "I hit an error while processing that request. Please try again."
 msgstr "Произошла ошибка при обработке этого запроса. Пожалуйста, попробуйте ещё раз."
 
-#: ask_alyf/ask_alyf/api.py:208 ask_alyf/ask_alyf/api.py:603
+#: ask_alyf/ask_alyf/api.py:212 ask_alyf/ask_alyf/api.py:631
 msgid "I've prepared the operation. Please review and confirm."
 msgstr "Я подготовил операцию. Пожалуйста, проверьте и подтвердите."
 
@@ -826,7 +857,7 @@ msgstr "Я подготовил операцию. Пожалуйста, пров
 msgid "Invalid action payload."
 msgstr "Недопустимые данные действия."
 
-#: ask_alyf/ask_alyf/tools.py:1613 ask_alyf/public/js/ask_alyf.bundle.js:2679
+#: ask_alyf/ask_alyf/tools.py:1613 ask_alyf/public/js/ask_alyf.bundle.js:2759
 msgid "Invalid chart data."
 msgstr "Недопустимые данные диаграммы."
 
@@ -868,7 +899,7 @@ msgstr "Последнее сообщение в"
 msgid "Line offset {0} exceeds file length"
 msgstr "Смещение строки {0} превышает длину файла"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1672
+#: ask_alyf/public/js/ask_alyf.bundle.js:1728
 msgid "Loading conversation..."
 msgstr "Загрузка беседы..."
 
@@ -880,7 +911,7 @@ msgstr "Поиск доступных отчетов"
 msgid "Looking up what you can access"
 msgstr "Определение доступных вам объектов"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1470
+#: ask_alyf/public/js/ask_alyf.bundle.js:1497
 msgid "Manufacturing"
 msgstr "Производство"
 
@@ -903,7 +934,7 @@ msgstr "Тип метаданных"
 msgid "Method call proposal needs correction."
 msgstr "Предложение вызова метода требует исправления."
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1357
+#: ask_alyf/public/js/ask_alyf.bundle.js:1384
 #, python-brace-format
 msgid "Mode: {0}"
 msgstr "Режим: {0}"
@@ -917,8 +948,8 @@ msgstr "Найдено несколько совпадающих файлов. �
 msgid "Navigate to {0}"
 msgstr "Перейти к {0}"
 
-#: ask_alyf/ask_alyf/api.py:291 ask_alyf/ask_alyf/api.py:393
-#: ask_alyf/ask_alyf/api.py:449
+#: ask_alyf/ask_alyf/api.py:295 ask_alyf/ask_alyf/api.py:397
+#: ask_alyf/ask_alyf/api.py:474
 msgid "New Conversation"
 msgstr "Новый разговор"
 
@@ -934,7 +965,7 @@ msgstr "Действие создания нового документа тре
 msgid "No active form found."
 msgstr "Активная форма не найдена."
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1625
+#: ask_alyf/public/js/ask_alyf.bundle.js:1652
 msgid "No conversations yet."
 msgstr "Пока нет разговоров."
 
@@ -943,7 +974,7 @@ msgstr "Пока нет разговоров."
 msgid "No documentation URL was found for app '{0}'."
 msgstr "URL-адрес документации для приложения '{0}' не найден."
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2271
+#: ask_alyf/public/js/ask_alyf.bundle.js:2351
 msgid "No form is currently open."
 msgstr "В настоящее время ни одна форма не открыта."
 
@@ -955,7 +986,7 @@ msgstr "Корни кода установленных приложений не
 msgid "No matching file was found."
 msgstr "Совпадающий файл не найден."
 
-#: ask_alyf/ask_alyf/api.py:244
+#: ask_alyf/ask_alyf/api.py:248
 #, python-brace-format
 msgid "No pending operation matches call_id '{0}'."
 msgstr "Ни одна ожидающая операция не соответствует call_id '{0}'."
@@ -970,7 +1001,7 @@ msgstr "pyproject.toml для приложения '{0}' не найден."
 msgid "No repository URL was found for app '{0}'."
 msgstr "URL-адрес репозитория для приложения '{0}' не найден."
 
-#: ask_alyf/ask_alyf/api.py:1032
+#: ask_alyf/ask_alyf/api.py:1065
 msgid "No valid file provided."
 msgstr "Не предоставлен действительный файл."
 
@@ -1007,7 +1038,7 @@ msgstr "Для поиска релизов поддерживаются толь
 msgid "Only a single read-only SQL statement is allowed."
 msgstr "Разрешено только одно SQL-выражение только для чтения."
 
-#: ask_alyf/ask_alyf/api.py:703
+#: ask_alyf/ask_alyf/api.py:736
 msgid "Only backend actions can be confirmed by this endpoint."
 msgstr "Этой конечной точкой могут быть подтверждены только backend actions."
 
@@ -1083,7 +1114,7 @@ msgstr "Путь должен начинаться с имени установ�
 msgid "Pending Operation JSON"
 msgstr "JSON ожидающей операции"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2090
+#: ask_alyf/public/js/ask_alyf.bundle.js:2170
 msgid "Pending operation"
 msgstr "Ожидающая операция"
 
@@ -1091,11 +1122,11 @@ msgstr "Ожидающая операция"
 msgid "Planning the next steps"
 msgstr "Планирование следующих шагов"
 
-#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.py:142
+#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.py:143
 msgid "Please configure a Base URL first and save the settings, then we can fetch available models."
 msgstr "Сначала настройте базовый URL и сохраните настройки, затем мы сможем получить доступные модели."
 
-#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.py:135
+#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.py:136
 msgid "Please configure an API key first and save the settings, then we can fetch available models."
 msgstr "Сначала настройте API-ключ и сохраните настройки, затем мы сможем получить доступные модели."
 
@@ -1175,7 +1206,7 @@ msgstr "Предложение об обновлении подготовлен�
 msgid "Preparing a chart"
 msgstr "Подготовка диаграммы"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1479
+#: ask_alyf/public/js/ask_alyf.bundle.js:1506
 msgid "Projects"
 msgstr "Проекты"
 
@@ -1213,7 +1244,7 @@ msgstr "Чтение {0}"
 msgid "Reading {0} list"
 msgstr "Чтение списка {0}"
 
-#: ask_alyf/ask_alyf/api.py:833 ask_alyf/ask_alyf/api.py:940
+#: ask_alyf/ask_alyf/api.py:866 ask_alyf/ask_alyf/api.py:973
 #, python-brace-format
 msgid "Reason: {0}"
 msgstr "Причина: {0}"
@@ -1223,7 +1254,7 @@ msgstr "Причина: {0}"
 msgid "Reasoning Effort"
 msgstr "Уровень рассуждений"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2183
+#: ask_alyf/public/js/ask_alyf.bundle.js:2263
 #, python-brace-format
 msgid "Records to create ({0})"
 msgstr "Записи для создания ({0})"
@@ -1302,7 +1333,7 @@ msgstr "Действие прокрутки требует исправлени�
 msgid "Scroll to field {0}"
 msgstr "Прокрутить к полю {0}"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2305
+#: ask_alyf/public/js/ask_alyf.bundle.js:2385
 msgid "Scrolling to fields is not available on this form."
 msgstr "Прокрутка к полям недоступна на этой форме."
 
@@ -1314,7 +1345,7 @@ msgstr "Поиск в документации"
 msgid "Searching the source code"
 msgstr "Поиск в исходном коде"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1425
+#: ask_alyf/public/js/ask_alyf.bundle.js:1452
 msgid "Selling"
 msgstr "Продажи"
 
@@ -1340,27 +1371,27 @@ msgstr "Установить {0} в {1} {2}"
 msgid "Show chart"
 msgstr "Показать диаграмму"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1454
+#: ask_alyf/public/js/ask_alyf.bundle.js:1481
 msgid "Show employee headcount by department as a chart"
 msgstr "Показать численность сотрудников по отделам в виде диаграммы"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1473
+#: ask_alyf/public/js/ask_alyf.bundle.js:1500
 msgid "Show me open Work Orders and their status"
 msgstr "Показать открытые рабочие заказы и их статус"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1499
+#: ask_alyf/public/js/ask_alyf.bundle.js:1526
 msgid "Show me the top 10 DocTypes by record count"
 msgstr "Показать топ-10 DocTypes по количеству записей"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1446
+#: ask_alyf/public/js/ask_alyf.bundle.js:1473
 msgid "Show me unpaid Sales Invoices older than 30 days"
 msgstr "Показать неоплаченные счета продаж старше 30 дней"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1491
+#: ask_alyf/public/js/ask_alyf.bundle.js:1518
 msgid "Show me unresolved issues from this week"
 msgstr "Показать нерешённые проблемы за эту неделю"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1481
+#: ask_alyf/public/js/ask_alyf.bundle.js:1508
 msgid "Show project progress as a chart"
 msgstr "Показать прогресс проекта в виде диаграммы"
 
@@ -1417,7 +1448,7 @@ msgstr "Начать новый разговор"
 msgid "Start typing to choose a model. Available models are loaded from the configured provider."
 msgstr "Начните вводить, чтобы выбрать модель. Доступные модели загружаются из настроенного провайдера."
 
-#: ask_alyf/ask_alyf/api.py:876
+#: ask_alyf/ask_alyf/api.py:909
 msgid "Status must be one of success, failed, or rejected."
 msgstr "Статус должен быть одним из: success, failed или rejected."
 
@@ -1425,19 +1456,19 @@ msgstr "Статус должен быть одним из: success, failed ил
 msgid "Still generating..."
 msgstr "Всё ещё создаётся..."
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1461
+#: ask_alyf/public/js/ask_alyf.bundle.js:1488
 msgid "Stock"
 msgstr "Склад"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1736
+#: ask_alyf/public/js/ask_alyf.bundle.js:1792
 msgid "Stop this run"
 msgstr "Остановить этот запуск"
 
-#: ask_alyf/ask_alyf/api.py:601
+#: ask_alyf/ask_alyf/api.py:629
 msgid "Stopped. Send a message to pick up from here."
 msgstr "Приостановлено. Отправьте сообщение, чтобы продолжить с этого места."
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1757
+#: ask_alyf/public/js/ask_alyf.bundle.js:1813
 msgid "Stopping..."
 msgstr "Остановка..."
 
@@ -1450,7 +1481,7 @@ msgstr "Предложение об отправке требует исправ
 msgid "Submit {0} {1}"
 msgstr "Отправить {0} {1}"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1488
+#: ask_alyf/public/js/ask_alyf.bundle.js:1515
 msgid "Support"
 msgstr "Поддержка"
 
@@ -1467,7 +1498,7 @@ msgstr "Системный промпт"
 #. Label of a Data field in DocType 'Ask ALYF Checkpoint Write'
 #: ask_alyf/ask_alyf/doctype/ask_alyf_checkpoint_write/ask_alyf_checkpoint_write.json
 msgid "Task ID"
-msgstr ""
+msgstr "ID задачи"
 
 #. Label of a Data field in DocType 'Ask ALYF Checkpoint Write'
 #: ask_alyf/ask_alyf/doctype/ask_alyf_checkpoint_write/ask_alyf_checkpoint_write.json
@@ -1486,12 +1517,12 @@ msgstr "Приложение Compendium не установлено."
 msgid "The action could not be completed."
 msgstr "Не удалось завершить действие."
 
-#: ask_alyf/ask_alyf/api.py:507 ask_alyf/ask_alyf/api.py:534
+#: ask_alyf/ask_alyf/api.py:532 ask_alyf/ask_alyf/api.py:562
 msgid "The background job does not match this message."
 msgstr "Фоновое задание не соответствует этому сообщению."
 
-#: ask_alyf/ask_alyf/api.py:505 ask_alyf/ask_alyf/api.py:530
-#: ask_alyf/ask_alyf/api.py:556
+#: ask_alyf/ask_alyf/api.py:530 ask_alyf/ask_alyf/api.py:558
+#: ask_alyf/ask_alyf/api.py:584
 msgid "The message could not be found in this conversation."
 msgstr "Сообщение не найдено в этой беседе."
 
@@ -1499,31 +1530,31 @@ msgstr "Сообщение не найдено в этой беседе."
 msgid "The operation was completed, but the follow-up response could not be generated."
 msgstr "Операция завершена, но не удалось сформировать последующий ответ."
 
-#: ask_alyf/ask_alyf/api.py:870
+#: ask_alyf/ask_alyf/api.py:903
 msgid "The pending operation is not a frontend action."
 msgstr "Ожидающая операция не является действием фронтенда."
 
-#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.py:241
+#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.py:242
 #, python-brace-format
 msgid "The selected Chat Model ({0}) does not support Reasoning Effort ({1})."
 msgstr "Выбранная модель чата ({0}) не поддерживает интенсивность рассуждений ({1})."
 
-#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.py:237
+#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.py:238
 #, python-brace-format
 msgid "The selected Chat Model ({0}) does not support Reasoning Effort ({1}). Supported values: {2}."
 msgstr "Выбранная модель чата ({0}) не поддерживает интенсивность рассуждений ({1}). Поддерживаемые значения: {2}."
 
-#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.py:98
+#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.py:99
 #, python-brace-format
 msgid "The selected Chat Model ({0}) does not support function calling."
 msgstr "Выбранная модель чата ({0}) не поддерживает вызов функций."
 
-#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.py:106
+#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.py:107
 #, python-brace-format
 msgid "The selected Chat Model ({0}) does not support vision. Choose a vision-capable chat model or configure a separate vision model."
 msgstr "Выбранная модель чата ({0}) не поддерживает распознавание изображений. Выберите модель чата с поддержкой изображений или настройте отдельную модель зрения."
 
-#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.py:115
+#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.py:116
 #, python-brace-format
 msgid "The selected Vision Model ({0}) does not support vision."
 msgstr "Выбранная модель зрения ({0}) не поддерживает распознавание изображений."
@@ -1532,11 +1563,11 @@ msgstr "Выбранная модель зрения ({0}) не поддержи
 msgid "The user rejected this operation."
 msgstr "Пользователь отклонил эту операцию."
 
-#: ask_alyf/ask_alyf/api.py:864
+#: ask_alyf/ask_alyf/api.py:897
 msgid "There is no pending frontend action to resolve."
 msgstr "Нет ожидающих действий фронтенда для разрешения."
 
-#: ask_alyf/ask_alyf/api.py:695
+#: ask_alyf/ask_alyf/api.py:728
 msgid "There is no pending operation to confirm."
 msgstr "Нет ожидающих операций для подтверждения."
 
@@ -1575,7 +1606,7 @@ msgstr "Перевод меток"
 msgid "Unknown error."
 msgstr "Неизвестная ошибка."
 
-#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.py:182
+#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.py:183
 #, python-brace-format
 msgid "Unsupported LLM provider: {0}"
 msgstr "Неподдерживаемый поставщик LLM: {0}"
@@ -1595,12 +1626,12 @@ msgstr "Неподдерживаемый тип файла '{0}'. Поддерж
 msgid "Unsupported frontend action '{0}'."
 msgstr "Неподдерживаемое действие фронтенда '{0}'."
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2334
+#: ask_alyf/public/js/ask_alyf.bundle.js:2414
 #, python-brace-format
 msgid "Unsupported frontend action: {0}"
 msgstr "Неподдерживаемое действие фронтенда: {0}"
 
-#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.py:170
+#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.py:171
 #, python-brace-format
 msgid "Unsupported model configuration: {0}"
 msgstr "Неподдерживаемая конфигурация модели: {0}"
@@ -1614,7 +1645,7 @@ msgstr "Неподдерживаемый вид операции '{0}'."
 msgid "Unsupported or missing chart type."
 msgstr "Неподдерживаемый или отсутствующий тип диаграммы."
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1400
+#: ask_alyf/public/js/ask_alyf.bundle.js:1427
 msgid "Untitled conversation"
 msgstr "Беседа без названия"
 
@@ -1672,74 +1703,74 @@ msgstr "Провайдер Vision"
 msgid "Voice input"
 msgstr "Голосовой ввод"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2831
+#: ask_alyf/public/js/ask_alyf.bundle.js:2911
 #, python-brace-format
 msgid "Voice input language: {0}"
 msgstr "Язык голосового ввода: {0}"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2017
+#: ask_alyf/public/js/ask_alyf.bundle.js:2073
 msgid "Waiting for response..."
 msgstr "Ожидание ответа..."
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1428
+#: ask_alyf/public/js/ask_alyf.bundle.js:1455
 msgid "What Sales Orders are pending delivery?"
 msgstr "Какие заказы на продажу ожидают доставки?"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1500
+#: ask_alyf/public/js/ask_alyf.bundle.js:1527
 msgid "What are the recent Error Logs?"
 msgstr "Какие последние записи Error Logs?"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1482
+#: ask_alyf/public/js/ask_alyf.bundle.js:1509
 msgid "What open tasks are assigned to me?"
 msgstr "Какие открытые задачи назначены мне?"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1465
+#: ask_alyf/public/js/ask_alyf.bundle.js:1492
 msgid "What were the top 10 most moved items this month?"
 msgstr "Какие 10 товаров чаще всего перемещались в этом месяце?"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1492
+#: ask_alyf/public/js/ask_alyf.bundle.js:1519
 msgid "What's the average resolution time for issues?"
 msgstr "Каково среднее время решения Issues?"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1447
+#: ask_alyf/public/js/ask_alyf.bundle.js:1474
 msgid "What's the total outstanding receivables?"
 msgstr "Какова общая сумма непогашенной дебиторской задолженности?"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1437
+#: ask_alyf/public/js/ask_alyf.bundle.js:1464
 msgid "Which Purchase Orders are overdue?"
 msgstr "Какие заказы на покупку просрочены?"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1455
+#: ask_alyf/public/js/ask_alyf.bundle.js:1482
 msgid "Which employees are on leave today?"
 msgstr "Какие сотрудники сегодня в отпуске?"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1464
+#: ask_alyf/public/js/ask_alyf.bundle.js:1491
 msgid "Which items are below their reorder level?"
 msgstr "Какие товары ниже уровня дозаказа?"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1483
+#: ask_alyf/public/js/ask_alyf.bundle.js:1510
 msgid "Which project tasks are overdue?"
 msgstr "Какие задачи проекта просрочены?"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1501
+#: ask_alyf/public/js/ask_alyf.bundle.js:1528
 msgid "Which users logged in today?"
 msgstr "Какие пользователи вошли в систему сегодня?"
 
-#: ask_alyf/ask_alyf/api.py:360 ask_alyf/ask_alyf/api.py:372
-#: ask_alyf/ask_alyf/api.py:389 ask_alyf/ask_alyf/api.py:424
-#: ask_alyf/ask_alyf/api.py:492 ask_alyf/ask_alyf/api.py:516
-#: ask_alyf/ask_alyf/api.py:685 ask_alyf/ask_alyf/api.py:753
-#: ask_alyf/ask_alyf/api.py:858 ask_alyf/ask_alyf/api.py:977
-#: ask_alyf/ask_alyf/api.py:1015
+#: ask_alyf/ask_alyf/api.py:364 ask_alyf/ask_alyf/api.py:376
+#: ask_alyf/ask_alyf/api.py:393 ask_alyf/ask_alyf/api.py:423
+#: ask_alyf/ask_alyf/api.py:449 ask_alyf/ask_alyf/api.py:517
+#: ask_alyf/ask_alyf/api.py:541 ask_alyf/ask_alyf/api.py:718
+#: ask_alyf/ask_alyf/api.py:786 ask_alyf/ask_alyf/api.py:891
+#: ask_alyf/ask_alyf/api.py:1010 ask_alyf/ask_alyf/api.py:1048
 msgid "You do not have access to Ask ALYF."
 msgstr "У вас нет доступа к Ask ALYF."
 
-#: ask_alyf/ask_alyf/api.py:984
+#: ask_alyf/ask_alyf/api.py:1017
 #, python-brace-format
 msgid "You do not have read permission on {0}."
 msgstr "У вас нет разрешения на чтение для {0}."
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2772
+#: ask_alyf/public/js/ask_alyf.bundle.js:2852
 msgid "Your browser does not support voice input."
 msgstr "Ваш браузер не поддерживает голосовой ввод."
 
@@ -1751,9 +1782,9 @@ msgstr "действие"
 msgid "assistant"
 msgstr "ассистент"
 
-#: ask_alyf/ask_alyf/api.py:829
+#: ask_alyf/ask_alyf/api.py:862
 msgid "chart"
-msgstr ""
+msgstr "диаграмма"
 
 #. Description of a DocType
 #: ask_alyf/ask_alyf/doctype/ask_alyf_skill/ask_alyf_skill.json
@@ -1764,7 +1795,7 @@ msgstr "сеанс отладки"
 msgid "doctype"
 msgstr "тип документа"
 
-#: ask_alyf/ask_alyf/api.py:909
+#: ask_alyf/ask_alyf/api.py:942
 msgid "frontend action"
 msgstr "действие интерфейса"
 
@@ -1793,8 +1824,9 @@ msgid "medium"
 msgstr "Средний"
 
 #: ask_alyf/ask_alyf/tools.py:1425
+#, python-brace-format
 msgid "row {0}"
-msgstr ""
+msgstr "строка {0}"
 
 #: ask_alyf/ask_alyf/tools.py:1423
 #, python-brace-format
@@ -1816,11 +1848,12 @@ msgstr "Очень высокий"
 msgid "{0} '{1}' was not found."
 msgstr "{0} «{1}» не найден."
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2242
+#: ask_alyf/public/js/ask_alyf.bundle.js:2322
+#, python-brace-format
 msgid "{0} items"
-msgstr ""
+msgstr "{0} элементов"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2236
+#: ask_alyf/public/js/ask_alyf.bundle.js:2316
 #, python-brace-format
 msgid "{0} rows"
 msgstr "{0} строк"
