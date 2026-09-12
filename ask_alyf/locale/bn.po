@@ -7,7 +7,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Ask ALYF VERSION\n"
 "Report-Msgid-Bugs-To: hallo@alyf.de\n"
+<<<<<<< HEAD
 "POT-Creation-Date: 2026-09-02 01:33+0053\n"
+=======
+"POT-Creation-Date: 2026-09-12 20:11+0053\n"
+>>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 "PO-Revision-Date: 2026-05-02 19:04+0053\n"
 "Last-Translator: hallo@alyf.de\n"
 "Language: bn\n"
@@ -33,7 +37,11 @@ msgstr ""
 msgid "Access to hidden paths is not allowed"
 msgstr "লুকানো পাথে অ্যাক্সেস অনুমোদিত নয়"
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:1443
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:1486
+>>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 msgid "Accounts"
 msgstr "অ্যাকাউন্টস"
 
@@ -76,12 +84,21 @@ msgstr "বর্তমান ফর্মে {0}-এ একটি সারি 
 msgid "Add child row action needs correction."
 msgstr "চাইল্ড সারি যোগ করার অ্যাকশনের সংশোধন প্রয়োজন।"
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:812
 #: ask_alyf/public/js/ask_alyf.bundle.js:1355
 msgid "Agent"
 msgstr "এজেন্ট"
 
 #: ask_alyf/ask_alyf/api.py:153
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:825
+#: ask_alyf/public/js/ask_alyf.bundle.js:1398
+msgid "Agent"
+msgstr "এজেন্ট"
+
+#: ask_alyf/ask_alyf/api.py:158
+>>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 msgid "Agent mode is disabled or not available for your user."
 msgstr "এজেন্ট মোড নিষ্ক্রিয় বা আপনার ব্যবহারকারীর জন্য উপলব্ধ নয়।"
 
@@ -95,7 +112,17 @@ msgstr "এজেন্ট মোড অনুমোদন করুন"
 msgid "Allow Code Search"
 msgstr "কোড অনুসন্ধান অনুমোদন করুন"
 
+<<<<<<< HEAD
 #. Label of a Check field in DocType 'Ask ALYF Settings'
+=======
+#. Label of the allow_conversation_deletion (Check) field in DocType 'Ask ALYF
+#. Settings'
+#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.json
+msgid "Allow Conversation Deletion"
+msgstr "কথোপকথন মুছে ফেলার অনুমতি দিন"
+
+#. Label of the allow_field_agent (Check) field in DocType 'Ask ALYF Settings'
+>>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 #: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.json
 msgid "Allow Field Agent"
 msgstr "ফিল্ড এজেন্ট অনুমোদন করুন"
@@ -130,11 +157,15 @@ msgstr "এবং আরও {0} টি।"
 msgid "App '{0}' is not installed."
 msgstr "অ্যাপ '{0}' ইনস্টল করা নেই।"
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/tools.py:154 ask_alyf/ask_alyf/tools.py:1052
 msgid "App name is required."
 msgstr ""
 
 #: ask_alyf/public/js/ask_alyf.bundle.js:2420
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:2513
+>>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 msgid "Applying action..."
 msgstr "অ্যাকশন প্রয়োগ করা হচ্ছে..."
 
@@ -196,7 +227,11 @@ msgstr "Ask ALYF দক্ষতা"
 msgid "Ask ALYF User"
 msgstr "Ask ALYF ব্যবহারকারী"
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:1161
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:1184
+>>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 msgid "Ask ALYF could not finish processing this message. Please try again."
 msgstr "Ask ALYF এই বার্তাটির প্রক্রিয়াকরণ শেষ করতে পারেনি। অনুগ্রহ করে আবার চেষ্টা করুন।"
 
@@ -204,7 +239,15 @@ msgstr "Ask ALYF এই বার্তাটির প্রক্রিয়�
 msgid "Ask ALYF is an AI and can make mistakes, including with numbers and information about people."
 msgstr "Ask ALYF একটি AI এবং সংখ্যা এবং ব্যক্তিদের সম্পর্কে তথ্য সহ ভুল করতে পারে।"
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/api.py:438
+=======
+#: ask_alyf/ask_alyf/api.py:433
+msgid "Ask ALYF is still working on a message in this conversation. Stop it or wait for it to finish before deleting."
+msgstr "Ask ALYF এই কথোপকথনে একটি বার্তা নিয়ে এখনও কাজ করছে। মুছে ফেলার আগে এটি থামান অথবা শেষ হওয়ার জন্য অপেক্ষা করুন।"
+
+#: ask_alyf/ask_alyf/api.py:464
+>>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 msgid "Ask ALYF is still working on the previous message in this conversation."
 msgstr "Ask ALYF এই কথোপকথনের পূর্ববর্তী বার্তাটি নিয়ে এখনও কাজ করছে।"
 
@@ -216,7 +259,11 @@ msgstr "Ask ALYF দৃশ্যমান, কিন্তু Ask ALYF সেট
 msgid "Ask ALYF sections"
 msgstr "Ask ALYF বিভাগ"
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:1162
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:1185
+>>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 msgid "Ask ALYF stopped processing this message. Please try again."
 msgstr "Ask ALYF এই বার্তাটির প্রক্রিয়াকরণ বন্ধ করেছে। অনুগ্রহ করে আবার চেষ্টা করুন।"
 
@@ -264,6 +311,7 @@ msgstr "সংযুক্তিগুলি কেবল-পাঠযোগ্�
 msgid "Batch create proposal needs correction."
 msgstr "ব্যাচ তৈরির প্রস্তাব সংশোধন প্রয়োজন।"
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:1434
 msgid "Buying"
 msgstr "ক্রয়"
@@ -275,6 +323,19 @@ msgid "Call support"
 msgstr "সাপোর্টে কল করুন"
 
 #: ask_alyf/public/js/ask_alyf.bundle.js:1311
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:1477
+msgid "Buying"
+msgstr "ক্রয়"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:786
+#: ask_alyf/public/js/ask_alyf.bundle.js:788
+#: ask_alyf/public/js/ask_alyf.bundle.js:1355
+msgid "Call support"
+msgstr "সাপোর্টে কল করুন"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1354
+>>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 #, python-brace-format
 msgid "Call support: {0}"
 msgstr "সাপোর্টে কল করুন: {0}"
@@ -293,22 +354,38 @@ msgstr "বাতিলের প্রস্তাব সংশোধন প্
 msgid "Cancel {0} {1}"
 msgstr "{0} {1} বাতিল করুন"
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/api.py:936
+=======
+#: ask_alyf/ask_alyf/api.py:970
+>>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 #, python-brace-format
 msgid "Cancelled frontend action: {0}"
 msgstr "ফ্রন্টএন্ড অ্যাকশন বাতিল করা হয়েছে: {0}"
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/api.py:829
+=======
+#: ask_alyf/ask_alyf/api.py:863
+>>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 #, python-brace-format
 msgid "Cancelled showing chart: {0}."
 msgstr "চার্ট দেখানো বাতিল করা হয়েছে: {0}।"
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/api.py:790
+=======
+#: ask_alyf/ask_alyf/api.py:824
+>>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 #, python-brace-format
 msgid "Cancelled the pending operation: {0}."
 msgstr "মুলতুবি অপারেশন বাতিল করা হয়েছে: {0}।"
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:2136
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:2229
+>>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 msgid "Changes preview"
 msgstr "পরিবর্তনের প্রিভিউ"
 
@@ -336,6 +413,7 @@ msgstr "চার্টের উচ্চতা সীমার বাইরে
 msgid "Chart labels must be numbers or strings."
 msgstr "চার্ট লেবেল অবশ্যই সংখ্যা বা স্ট্রিং হতে হবে।"
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:1445
 msgid "Chart monthly expenses by cost center"
 msgstr "ব্যয় কেন্দ্র অনুযায়ী মাসিক ব্যয় চার্টে দেখান"
@@ -357,6 +435,29 @@ msgid "Chart spending by supplier for this quarter"
 msgstr "এই ত্রৈমাসিকের সরবরাহকারী অনুযায়ী ব্যয় চার্টে দেখান"
 
 #: ask_alyf/public/js/ask_alyf.bundle.js:1463
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:1488
+msgid "Chart monthly expenses by cost center"
+msgstr "ব্যয় কেন্দ্র অনুযায়ী মাসিক ব্যয় চার্টে দেখান"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1470
+msgid "Chart my monthly sales revenue for the last 6 months"
+msgstr "গত ৬ মাসের আমার মাসিক বিক্রয় রাজস্ব চার্টে দেখান"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1533
+msgid "Chart open issues by priority"
+msgstr "অগ্রাধিকার অনুযায়ী খোলা ইস্যুগুলি চার্টে দেখান"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1515
+msgid "Chart production output by item this week"
+msgstr "এই সপ্তাহে পণ্য অনুযায়ী উৎপাদন আউটপুট চার্টে দেখান"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1479
+msgid "Chart spending by supplier for this quarter"
+msgstr "এই ত্রৈমাসিকের সরবরাহকারী অনুযায়ী ব্যয় চার্টে দেখান"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1506
+>>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 msgid "Chart stock value by warehouse"
 msgstr "গুদাম অনুযায়ী স্টক মূল্যের চার্ট"
 
@@ -433,6 +534,7 @@ msgstr "বার্তা পাঠানোর আগে Ask ALYF সেটি
 msgid "Confirm all"
 msgstr "সব নিশ্চিত করুন"
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/api.py:707 ask_alyf/public/js/ask_alyf.bundle.js:2420
 msgid "Confirming action..."
 msgstr "অ্যাকশন নিশ্চিত করা হচ্ছে..."
@@ -450,15 +552,50 @@ msgid "Could not attach charts to the assistant message."
 msgstr "সহকারী বার্তায় চার্ট সংযুক্ত করা যায়নি।"
 
 #: ask_alyf/ask_alyf/api.py:737
+=======
+#: ask_alyf/ask_alyf/api.py:741 ask_alyf/public/js/ask_alyf.bundle.js:2513
+msgid "Confirming action..."
+msgstr "অ্যাকশন নিশ্চিত করা হচ্ছে..."
+
+#: ask_alyf/ask_alyf/api.py:427
+msgid "Conversation deletion is not allowed."
+msgstr "কথোপকথন মুছে ফেলার অনুমতি নেই।"
+
+#: ask_alyf/ask_alyf/tools.py:991
+msgid "Conversation name is required."
+msgstr "কথোপকথনের নাম প্রয়োজন।"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1172
+msgid "Conversation not found. Please start a new conversation."
+msgstr "কথোপকথন পাওয়া যায়নি। অনুগ্রহ করে একটি নতুন কথোপকথন শুরু করুন।"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:583
+msgid "Copy as Markdown"
+msgstr "Markdown হিসেবে কপি করুন"
+
+#: ask_alyf/ask_alyf/api.py:857
+msgid "Could not attach charts to the assistant message."
+msgstr "সহকারী বার্তায় চার্ট সংযুক্ত করা যায়নি।"
+
+#: ask_alyf/ask_alyf/api.py:771
+>>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 #, python-brace-format
 msgid "Could not complete the operation: {0}."
 msgstr "অপারেশন সম্পন্ন করা যায়নি: {0}।"
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/api.py:831
 msgid "Could not display chart."
 msgstr "চার্ট প্রদর্শন করা যায়নি।"
 
 #: ask_alyf/public/js/ask_alyf.bundle.js:2642
+=======
+#: ask_alyf/ask_alyf/api.py:865
+msgid "Could not display chart."
+msgstr "চার্ট প্রদর্শন করা যায়নি।"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:2732
+>>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 msgid "Could not download chart."
 msgstr "চার্ট ডাউনলোড করা যায়নি।"
 
@@ -470,7 +607,11 @@ msgstr "ফাইল থেকে ভিজ্যুয়াল কন্টে
 msgid "Could not generate content."
 msgstr "কন্টেন্ট তৈরি করা যায়নি।"
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:2709
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:2803
+>>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 msgid "Could not render chart."
 msgstr "চার্ট রেন্ডার করা যায়নি।"
 
@@ -508,12 +649,20 @@ msgstr "{1} টির মধ্যে {0} টি {2} রেকর্ড তৈ�
 msgid "Creating several {0} records"
 msgstr "একাধিক {0} রেকর্ড তৈরি করা হচ্ছে"
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:2284
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:2377
+>>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 #, python-brace-format
 msgid "Current document is {0}, expected {1}."
 msgstr "বর্তমান নথি হল {0}, প্রত্যাশিত {1}।"
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:2277
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:2370
+>>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 #, python-brace-format
 msgid "Current form is {0}, expected {1}."
 msgstr "বর্তমান ফর্ম হল {0}, প্রত্যাশিত {1}।"
@@ -527,7 +676,20 @@ msgstr "ডেটাসেটের মান অবশ্যই সংখ্য
 msgid "Dataset values must match labels length."
 msgstr "ডেটাসেটের মানগুলি অবশ্যই লেবেলের দৈর্ঘ্যের সাথে মিলতে হবে।"
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/toolset.py:994
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:1713
+#: ask_alyf/public/js/ask_alyf.bundle.js:1714
+msgid "Delete conversation"
+msgstr "কথোপকথন মুছুন"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1241
+msgid "Delete conversation '{0}'?"
+msgstr "কথোপকথন '{0}' মুছে ফেলা হবে?"
+
+#: ask_alyf/ask_alyf/toolset.py:989
+>>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 msgid "Delete proposal needs correction."
 msgstr "মুছে ফেলার প্রস্তাবনায় সংশোধন প্রয়োজন।"
 
@@ -583,7 +745,11 @@ msgstr "ডকুমেন্ট নিষ্কাশন কোনও বিষ
 msgid "Document name is required."
 msgstr "ডকুমেন্টের নাম প্রয়োজন।"
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:2624
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:2717
+>>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 msgid "Download chart as SVG"
 msgstr "চার্ট SVG হিসাবে ডাউনলোড করুন"
 
@@ -625,7 +791,11 @@ msgstr "বাদ দেওয়া DocType"
 msgid "Excluded DocTypes"
 msgstr "বাদ দেওয়া DocTypes"
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/api.py:934
+=======
+#: ask_alyf/ask_alyf/api.py:968
+>>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 #, python-brace-format
 msgid "Executed frontend action: {0}"
 msgstr "ফ্রন্টএন্ড অ্যাকশন কার্যকর করা হয়েছে: {0}"
@@ -635,6 +805,7 @@ msgstr "ফ্রন্টএন্ড অ্যাকশন কার্যক�
 msgid "Failed rows: {0}"
 msgstr "ব্যর্থ সারি: {0}"
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:1289
 msgid "Failed to attach file to conversation."
 msgstr "কথোপকথনে ফাইল সংযুক্ত করতে ব্যর্থ।"
@@ -660,6 +831,37 @@ msgid "Failed to send message."
 msgstr "বার্তা পাঠাতে ব্যর্থ হয়েছে।"
 
 #: ask_alyf/public/js/ask_alyf.bundle.js:1775
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:1332
+msgid "Failed to attach file to conversation."
+msgstr "কথোপকথনে ফাইল সংযুক্ত করতে ব্যর্থ।"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:2540
+msgid "Failed to confirm pending operation."
+msgstr "মুলতুবি অপারেশন নিশ্চিত করতে ব্যর্থ হয়েছে।"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1245
+msgid "Failed to delete conversation."
+msgstr "কথোপকথন মুছতে ব্যর্থ হয়েছে।"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:2478
+msgid "Failed to execute frontend action."
+msgstr "ফ্রন্টএন্ড অ্যাকশন কার্যকর করতে ব্যর্থ হয়েছে।"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1756
+msgid "Failed to open conversation."
+msgstr "কথোপকথন খুলতে ব্যর্থ হয়েছে।"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:2578
+msgid "Failed to reject pending operation."
+msgstr "মুলতুবি অপারেশন প্রত্যাখ্যান করতে ব্যর্থ হয়েছে।"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:2098
+msgid "Failed to send message."
+msgstr "বার্তা পাঠাতে ব্যর্থ হয়েছে।"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1844
+>>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 msgid "Failed to stop the run."
 msgstr "রান বন্ধ করা যায়নি।"
 
@@ -673,7 +875,11 @@ msgstr "{1}-এ '{0}' ফিল্ডটি একটি চাইল্ড ট�
 msgid "Field '{0}' row #{1} in {2} must be an object."
 msgstr "{2}-এ '{0}' ফিল্ডের সারি #{1} অবশ্যই একটি অবজেক্ট হতে হবে।"
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/api.py:981
+=======
+#: ask_alyf/ask_alyf/api.py:1015
+>>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 msgid "Field Agent is not enabled."
 msgstr "ফিল্ড Agent সক্ষম নয়।"
 
@@ -681,13 +887,22 @@ msgstr "ফিল্ড Agent সক্ষম নয়।"
 msgid "Field updated."
 msgstr "ফিল্ড আপডেট করা হয়েছে।"
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:2314
 #: ask_alyf/public/js/ask_alyf.bundle.js:2323
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:2407
+#: ask_alyf/public/js/ask_alyf.bundle.js:2416
+>>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 #, python-brace-format
 msgid "Field {0} does not exist on this form."
 msgstr "এই ফর্মে {0} ফিল্ড বিদ্যমান নেই।"
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/api.py:1034 ask_alyf/ask_alyf/tools.py:723
+=======
+#: ask_alyf/ask_alyf/api.py:1068 ask_alyf/ask_alyf/tools.py:719
+>>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 #, python-brace-format
 msgid "File '{0}' was not found."
 msgstr "'{0}' ফাইলটি পাওয়া যায়নি।"
@@ -696,7 +911,11 @@ msgstr "'{0}' ফাইলটি পাওয়া যায়নি।"
 msgid "File ID is required."
 msgstr "File ID প্রয়োজন।"
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/api.py:1019
+=======
+#: ask_alyf/ask_alyf/api.py:1053
+>>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 msgid "File upload is not enabled."
 msgstr "ফাইল আপলোড সক্ষম নয়।"
 
@@ -748,12 +967,20 @@ msgstr "ফ্রন্টএন্ড অ্যাকশন 'scroll_to_field'-�
 msgid "Frontend action 'set_route' requires a non-empty route list."
 msgstr "ফ্রন্টএন্ড অ্যাকশন 'set_route'-এর জন্য একটি অ-খালি রুট তালিকা প্রয়োজন।"
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/api.py:938
+=======
+#: ask_alyf/ask_alyf/api.py:972
+>>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 #, python-brace-format
 msgid "Frontend action failed: {0}"
 msgstr "ফ্রন্টএন্ড অ্যাকশন ব্যর্থ হয়েছে: {0}"
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:2372
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:2465
+>>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 msgid "Frontend action is missing a call ID."
 msgstr "ফ্রন্টএন্ড অ্যাকশনে একটি কল ID অনুপস্থিত।"
 
@@ -777,7 +1004,11 @@ msgstr "তৈরি করুন"
 msgid "Generate with AI"
 msgstr "AI দিয়ে তৈরি করুন"
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/api.py:770 ask_alyf/ask_alyf/api.py:887
+=======
+#: ask_alyf/ask_alyf/api.py:804 ask_alyf/ask_alyf/api.py:921
+>>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 msgid "Generating response..."
 msgstr "প্রতিক্রিয়া তৈরি করা হচ্ছে..."
 
@@ -785,7 +1016,11 @@ msgstr "প্রতিক্রিয়া তৈরি করা হচ্ছ
 msgid "Generating..."
 msgstr "তৈরি করা হচ্ছে..."
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:1452
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:1495
+>>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 msgid "HR"
 msgstr "HR"
 
@@ -797,6 +1032,7 @@ msgstr "একটি ফিল্ড হাইলাইট করা হচ্�
 msgid "History"
 msgstr "ইতিহাস"
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:1474
 msgid "How many Work Orders are behind schedule?"
 msgstr "কতগুলি Work Orders সময়সূচির পিছনে রয়েছে?"
@@ -814,11 +1050,34 @@ msgid "How many quotations were sent this month?"
 msgstr "এই মাসে কতগুলি কোটেশন পাঠানো হয়েছে?"
 
 #: ask_alyf/ask_alyf/api.py:614
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:1517
+msgid "How many Work Orders are behind schedule?"
+msgstr "কতগুলি Work Orders সময়সূচির পিছনে রয়েছে?"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1499
+msgid "How many leave applications are pending approval?"
+msgstr "কতগুলি ছুটির আবেদন অনুমোদনের জন্য অপেক্ষমাণ?"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1481
+msgid "How many pending purchase receipts do I have?"
+msgstr "আমার কতগুলি ক্রয় রসিদ অপেক্ষমাণ রয়েছে?"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1472
+msgid "How many quotations were sent this month?"
+msgstr "এই মাসে কতগুলি কোটেশন পাঠানো হয়েছে?"
+
+#: ask_alyf/ask_alyf/api.py:643
+>>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 #: ask_alyf/ask_alyf/test_tool_error_middleware.py:153
 msgid "I hit an error while processing that request. Please try again."
 msgstr "সেই অনুরোধটি প্রক্রিয়া করার সময় আমি একটি ত্রুটির সম্মুখীন হয়েছি। অনুগ্রহ করে আবার চেষ্টা করুন।"
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/api.py:208 ask_alyf/ask_alyf/api.py:603
+=======
+#: ask_alyf/ask_alyf/api.py:213 ask_alyf/ask_alyf/api.py:632
+>>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 msgid "I've prepared the operation. Please review and confirm."
 msgstr "আমি অপারেশনটি প্রস্তুত করেছি। অনুগ্রহ করে পর্যালোচনা করে নিশ্চিত করুন।"
 
@@ -826,7 +1085,11 @@ msgstr "আমি অপারেশনটি প্রস্তুত করে
 msgid "Invalid action payload."
 msgstr "অবৈধ অ্যাকশন পেলোড।"
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/tools.py:1613 ask_alyf/public/js/ask_alyf.bundle.js:2679
+=======
+#: ask_alyf/ask_alyf/tools.py:1609 ask_alyf/public/js/ask_alyf.bundle.js:2773
+>>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 msgid "Invalid chart data."
 msgstr "অবৈধ চার্ট ডেটা।"
 
@@ -868,7 +1131,11 @@ msgstr "সর্বশেষ বার্তা প্রাপ্তির স
 msgid "Line offset {0} exceeds file length"
 msgstr "লাইন অফসেট {0} ফাইলের দৈর্ঘ্য অতিক্রম করেছে"
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:1672
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:1741
+>>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 msgid "Loading conversation..."
 msgstr "কথোপকথন লোড হচ্ছে..."
 
@@ -880,7 +1147,11 @@ msgstr "উপলব্ধ রিপোর্ট খোঁজা হচ্ছে
 msgid "Looking up what you can access"
 msgstr "আপনি কী অ্যাক্সেস করতে পারেন তা খোঁজা হচ্ছে"
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:1470
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:1513
+>>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 msgid "Manufacturing"
 msgstr "উৎপাদন"
 
@@ -903,7 +1174,11 @@ msgstr "মেটাডেটা টাইপ"
 msgid "Method call proposal needs correction."
 msgstr "পদ্ধতি কল প্রস্তাবটির সংশোধন প্রয়োজন।"
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:1357
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:1400
+>>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 #, python-brace-format
 msgid "Mode: {0}"
 msgstr "মোড: {0}"
@@ -917,8 +1192,13 @@ msgstr "একাধিক মিলে যাওয়া ফাইল পা�
 msgid "Navigate to {0}"
 msgstr "{0}-এ নেভিগেট করুন"
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/api.py:291 ask_alyf/ask_alyf/api.py:393
 #: ask_alyf/ask_alyf/api.py:449
+=======
+#: ask_alyf/ask_alyf/api.py:296 ask_alyf/ask_alyf/api.py:398
+#: ask_alyf/ask_alyf/api.py:475
+>>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 msgid "New Conversation"
 msgstr "নতুন কথোপকথন"
 
@@ -934,7 +1214,11 @@ msgstr "নতুন ডকুমেন্ট অ্যাকশনের সং
 msgid "No active form found."
 msgstr "কোনো সক্রিয় ফর্ম পাওয়া যায়নি।"
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:1625
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:1668
+>>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 msgid "No conversations yet."
 msgstr "এখনও কোনো কথোপকথন নেই।"
 
@@ -943,7 +1227,11 @@ msgstr "এখনও কোনো কথোপকথন নেই।"
 msgid "No documentation URL was found for app '{0}'."
 msgstr "'{0}' অ্যাপের জন্য কোনো ডকুমেন্টেশন URL পাওয়া যায়নি।"
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:2271
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:2364
+>>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 msgid "No form is currently open."
 msgstr "বর্তমানে কোনো ফর্ম খোলা নেই।"
 
@@ -955,7 +1243,11 @@ msgstr "কোনো ইনস্টল করা অ্যাপ কোড র�
 msgid "No matching file was found."
 msgstr "কোনো মিলে যাওয়া ফাইল পাওয়া যায়নি।"
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/api.py:244
+=======
+#: ask_alyf/ask_alyf/api.py:249
+>>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 #, python-brace-format
 msgid "No pending operation matches call_id '{0}'."
 msgstr "call_id '{0}' এর সাথে মিলে এমন কোনো মুলতুবি অপারেশন নেই।"
@@ -970,7 +1262,11 @@ msgstr "'{0}' অ্যাপের জন্য কোনো pyproject.toml প
 msgid "No repository URL was found for app '{0}'."
 msgstr "'{0}' অ্যাপের জন্য কোনো রিপোজিটরি URL পাওয়া যায়নি।"
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/api.py:1032
+=======
+#: ask_alyf/ask_alyf/api.py:1066
+>>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 msgid "No valid file provided."
 msgstr "কোনো বৈধ ফাইল প্রদান করা হয়নি।"
 
@@ -1007,7 +1303,11 @@ msgstr "release lookup-এর জন্য শুধুমাত্র GitHub re
 msgid "Only a single read-only SQL statement is allowed."
 msgstr "শুধুমাত্র একটি একক read-only SQL statement অনুমোদিত।"
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/api.py:703
+=======
+#: ask_alyf/ask_alyf/api.py:737
+>>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 msgid "Only backend actions can be confirmed by this endpoint."
 msgstr "এই endpoint দ্বারা শুধুমাত্র backend actions নিশ্চিত করা যেতে পারে।"
 
@@ -1083,7 +1383,11 @@ msgstr "Path অবশ্যই একটি ইনস্টল করা অ্
 msgid "Pending Operation JSON"
 msgstr "Pending Operation JSON"
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:2090
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:2183
+>>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 msgid "Pending operation"
 msgstr "মুলতুবি কার্যক্রম"
 
@@ -1091,11 +1395,11 @@ msgstr "মুলতুবি কার্যক্রম"
 msgid "Planning the next steps"
 msgstr "পরবর্তী পদক্ষেপগুলির পরিকল্পনা করা হচ্ছে"
 
-#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.py:142
+#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.py:143
 msgid "Please configure a Base URL first and save the settings, then we can fetch available models."
 msgstr "অনুগ্রহ করে প্রথমে একটি Base URL কনফিগার করুন এবং সেটিংস সংরক্ষণ করুন, তারপর আমরা উপলব্ধ মডেলগুলি আনতে পারি।"
 
-#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.py:135
+#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.py:136
 msgid "Please configure an API key first and save the settings, then we can fetch available models."
 msgstr "অনুগ্রহ করে প্রথমে একটি API key কনফিগার করুন এবং সেটিংস সংরক্ষণ করুন, তারপর আমরা উপলব্ধ মডেলগুলি আনতে পারি।"
 
@@ -1175,7 +1479,11 @@ msgstr "আপডেট প্রস্তাব প্রস্তুত কর
 msgid "Preparing a chart"
 msgstr "একটি চার্ট প্রস্তুত করা হচ্ছে"
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:1479
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:1522
+>>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 msgid "Projects"
 msgstr "প্রকল্পসমূহ"
 
@@ -1213,7 +1521,11 @@ msgstr "{0} পড়া হচ্ছে"
 msgid "Reading {0} list"
 msgstr "{0} তালিকা পড়া হচ্ছে"
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/api.py:833 ask_alyf/ask_alyf/api.py:940
+=======
+#: ask_alyf/ask_alyf/api.py:867 ask_alyf/ask_alyf/api.py:974
+>>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 #, python-brace-format
 msgid "Reason: {0}"
 msgstr "কারণ: {0}"
@@ -1223,7 +1535,11 @@ msgstr "কারণ: {0}"
 msgid "Reasoning Effort"
 msgstr "রিজনিং প্রচেষ্টা"
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:2183
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:2276
+>>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 #, python-brace-format
 msgid "Records to create ({0})"
 msgstr "তৈরি করার রেকর্ড ({0})"
@@ -1302,7 +1618,11 @@ msgstr "স্ক্রল অ্যাকশন সংশোধন প্রয
 msgid "Scroll to field {0}"
 msgstr "{0} ফিল্ডে স্ক্রল করুন"
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:2305
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:2398
+>>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 msgid "Scrolling to fields is not available on this form."
 msgstr "এই ফর্মে ফিল্ডে স্ক্রল করা উপলব্ধ নয়।"
 
@@ -1314,11 +1634,23 @@ msgstr "ডকুমেন্টেশনে অনুসন্ধান কর�
 msgid "Searching the source code"
 msgstr "সোর্স কোডে অনুসন্ধান করা হচ্ছে"
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:1425
 msgid "Selling"
 msgstr "বিক্রয়"
 
 #: ask_alyf/ask_alyf/toolset.py:1187
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:1468
+msgid "Selling"
+msgstr "বিক্রয়"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:2038
+msgid "Sending..."
+msgstr "পাঠানো হচ্ছে..."
+
+#: ask_alyf/ask_alyf/toolset.py:1182
+>>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 msgid "Set field action needs correction."
 msgstr "ফিল্ড সেট অ্যাকশন সংশোধন প্রয়োজন।"
 
@@ -1340,6 +1672,7 @@ msgstr "{1} {2}-এ {0} সেট করুন"
 msgid "Show chart"
 msgstr "চার্ট দেখান"
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:1454
 msgid "Show employee headcount by department as a chart"
 msgstr "বিভাগ অনুযায়ী কর্মচারী সংখ্যা চার্ট হিসেবে দেখান"
@@ -1361,6 +1694,29 @@ msgid "Show me unresolved issues from this week"
 msgstr "এই সপ্তাহের অমীমাংসিত সমস্যাগুলি দেখান"
 
 #: ask_alyf/public/js/ask_alyf.bundle.js:1481
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:1497
+msgid "Show employee headcount by department as a chart"
+msgstr "বিভাগ অনুযায়ী কর্মচারী সংখ্যা চার্ট হিসেবে দেখান"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1516
+msgid "Show me open Work Orders and their status"
+msgstr "খোলা ওয়ার্ক অর্ডার এবং তাদের স্ট্যাটাস দেখান"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1542
+msgid "Show me the top 10 DocTypes by record count"
+msgstr "রেকর্ড সংখ্যা অনুসারে শীর্ষ ১০টি DocTypes দেখান"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1489
+msgid "Show me unpaid Sales Invoices older than 30 days"
+msgstr "৩০ দিনের চেয়ে পুরনো অপরিশোধিত বিক্রয় চালান দেখান"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1534
+msgid "Show me unresolved issues from this week"
+msgstr "এই সপ্তাহের অমীমাংসিত সমস্যাগুলি দেখান"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1524
+>>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 msgid "Show project progress as a chart"
 msgstr "প্রকল্পের অগ্রগতি একটি চার্ট হিসেবে দেখান"
 
@@ -1417,7 +1773,11 @@ msgstr "একটি নতুন কথোপকথন শুরু করু�
 msgid "Start typing to choose a model. Available models are loaded from the configured provider."
 msgstr "একটি মডেল বেছে নিতে টাইপ করা শুরু করুন। উপলব্ধ মডেলগুলি কনফিগার করা প্রোভাইডার থেকে লোড করা হয়।"
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/api.py:876
+=======
+#: ask_alyf/ask_alyf/api.py:910
+>>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 msgid "Status must be one of success, failed, or rejected."
 msgstr "স্ট্যাটাস অবশ্যই success, failed, বা rejected এর মধ্যে একটি হতে হবে।"
 
@@ -1425,6 +1785,7 @@ msgstr "স্ট্যাটাস অবশ্যই success, failed, বা r
 msgid "Still generating..."
 msgstr "এখনও তৈরি হচ্ছে..."
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:1461
 msgid "Stock"
 msgstr "স্টক"
@@ -1438,6 +1799,21 @@ msgid "Stopped. Send a message to pick up from here."
 msgstr "থামানো হয়েছে। এখান থেকে চালিয়ে যেতে একটি বার্তা পাঠান।"
 
 #: ask_alyf/public/js/ask_alyf.bundle.js:1757
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:1504
+msgid "Stock"
+msgstr "স্টক"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1805
+msgid "Stop this run"
+msgstr "এই রানটি থামান"
+
+#: ask_alyf/ask_alyf/api.py:630
+msgid "Stopped. Send a message to pick up from here."
+msgstr "থামানো হয়েছে। এখান থেকে চালিয়ে যেতে একটি বার্তা পাঠান।"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1826
+>>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 msgid "Stopping..."
 msgstr "থামানো হচ্ছে..."
 
@@ -1450,7 +1826,11 @@ msgstr "সাবমিট প্রস্তাবনাটি সংশোধ�
 msgid "Submit {0} {1}"
 msgstr "{0} {1} সাবমিট করুন"
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:1488
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:1531
+>>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 msgid "Support"
 msgstr "সাপোর্ট"
 
@@ -1486,12 +1866,21 @@ msgstr "Compendium অ্যাপটি ইনস্টল করা নেই�
 msgid "The action could not be completed."
 msgstr "অ্যাকশনটি সম্পন্ন করা যায়নি।"
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/api.py:507 ask_alyf/ask_alyf/api.py:534
 msgid "The background job does not match this message."
 msgstr "ব্যাকগ্রাউন্ড জবটি এই মেসেজের সাথে মেলে না।"
 
 #: ask_alyf/ask_alyf/api.py:505 ask_alyf/ask_alyf/api.py:530
 #: ask_alyf/ask_alyf/api.py:556
+=======
+#: ask_alyf/ask_alyf/api.py:533 ask_alyf/ask_alyf/api.py:563
+msgid "The background job does not match this message."
+msgstr "ব্যাকগ্রাউন্ড জবটি এই মেসেজের সাথে মেলে না।"
+
+#: ask_alyf/ask_alyf/api.py:531 ask_alyf/ask_alyf/api.py:559
+#: ask_alyf/ask_alyf/api.py:585
+>>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 msgid "The message could not be found in this conversation."
 msgstr "এই কথোপকথনে মেসেজটি খুঁজে পাওয়া যায়নি।"
 
@@ -1499,31 +1888,35 @@ msgstr "এই কথোপকথনে মেসেজটি খুঁজে �
 msgid "The operation was completed, but the follow-up response could not be generated."
 msgstr "অপারেশনটি সম্পন্ন হয়েছে, তবে ফলো-আপ রেসপন্স তৈরি করা যায়নি।"
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/api.py:870
+=======
+#: ask_alyf/ask_alyf/api.py:904
+>>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 msgid "The pending operation is not a frontend action."
 msgstr "মুলতুবি থাকা অপারেশনটি একটি ফ্রন্টএন্ড অ্যাকশন নয়।"
 
-#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.py:241
+#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.py:242
 #, python-brace-format
 msgid "The selected Chat Model ({0}) does not support Reasoning Effort ({1})."
 msgstr "নির্বাচিত চ্যাট মডেল ({0}) রিজনিং এফোর্ট ({1}) সমর্থন করে না।"
 
-#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.py:237
+#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.py:238
 #, python-brace-format
 msgid "The selected Chat Model ({0}) does not support Reasoning Effort ({1}). Supported values: {2}."
 msgstr "নির্বাচিত চ্যাট মডেল ({0}) রিজনিং এফোর্ট ({1}) সমর্থন করে না। সমর্থিত মান: {2}।"
 
-#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.py:98
+#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.py:99
 #, python-brace-format
 msgid "The selected Chat Model ({0}) does not support function calling."
 msgstr "নির্বাচিত চ্যাট মডেল ({0}) ফাংশন কলিং সমর্থন করে না।"
 
-#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.py:106
+#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.py:107
 #, python-brace-format
 msgid "The selected Chat Model ({0}) does not support vision. Choose a vision-capable chat model or configure a separate vision model."
 msgstr "নির্বাচিত চ্যাট মডেল ({0}) ভিশন সমর্থন করে না। ভিশন-সক্ষম একটি চ্যাট মডেল বেছে নিন অথবা একটি পৃথক ভিশন মডেল কনফিগার করুন।"
 
-#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.py:115
+#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.py:116
 #, python-brace-format
 msgid "The selected Vision Model ({0}) does not support vision."
 msgstr "নির্বাচিত ভিশন মডেল ({0}) ভিশন সমর্থন করে না।"
@@ -1532,11 +1925,19 @@ msgstr "নির্বাচিত ভিশন মডেল ({0}) ভিশন
 msgid "The user rejected this operation."
 msgstr "ব্যবহারকারী এই অপারেশনটি প্রত্যাখ্যান করেছেন।"
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/api.py:864
 msgid "There is no pending frontend action to resolve."
 msgstr "সমাধান করার জন্য কোনো মুলতুবি ফ্রন্টএন্ড অ্যাকশন নেই।"
 
 #: ask_alyf/ask_alyf/api.py:695
+=======
+#: ask_alyf/ask_alyf/api.py:898
+msgid "There is no pending frontend action to resolve."
+msgstr "সমাধান করার জন্য কোনো মুলতুবি ফ্রন্টএন্ড অ্যাকশন নেই।"
+
+#: ask_alyf/ask_alyf/api.py:729
+>>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 msgid "There is no pending operation to confirm."
 msgstr "নিশ্চিত করার জন্য কোনো মুলতুবি অপারেশন নেই।"
 
@@ -1575,7 +1976,7 @@ msgstr "লেবেল অনুবাদ করা হচ্ছে"
 msgid "Unknown error."
 msgstr "অজানা ত্রুটি।"
 
-#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.py:182
+#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.py:183
 #, python-brace-format
 msgid "Unsupported LLM provider: {0}"
 msgstr "অসমর্থিত LLM প্রদানকারী: {0}"
@@ -1595,12 +1996,16 @@ msgstr "অসমর্থিত ফাইল প্রকার '{0}'। সম
 msgid "Unsupported frontend action '{0}'."
 msgstr "অসমর্থিত ফ্রন্টএন্ড অ্যাকশন '{0}'।"
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:2334
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:2427
+>>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 #, python-brace-format
 msgid "Unsupported frontend action: {0}"
 msgstr "অসমর্থিত ফ্রন্টএন্ড অ্যাকশন: {0}"
 
-#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.py:170
+#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.py:171
 #, python-brace-format
 msgid "Unsupported model configuration: {0}"
 msgstr "অসমর্থিত মডেল কনফিগারেশন: {0}"
@@ -1614,7 +2019,11 @@ msgstr "অসমর্থিত অপারেশন প্রকার '{0}'�
 msgid "Unsupported or missing chart type."
 msgstr "অসমর্থিত বা অনুপস্থিত চার্ট প্রকার।"
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:1400
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:1443
+>>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 msgid "Untitled conversation"
 msgstr "শিরোনামহীন কথোপকথন"
 
@@ -1672,11 +2081,16 @@ msgstr "Vision প্রদানকারী"
 msgid "Voice input"
 msgstr "ভয়েস ইনপুট"
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:2831
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:2925
+>>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 #, python-brace-format
 msgid "Voice input language: {0}"
 msgstr "ভয়েস ইনপুট ভাষা: {0}"
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:2017
 msgid "Waiting for response..."
 msgstr "প্রতিক্রিয়ার জন্য অপেক্ষা করা হচ্ছে..."
@@ -1735,11 +2149,75 @@ msgid "You do not have access to Ask ALYF."
 msgstr "Ask ALYF-এ আপনার অ্যাক্সেস নেই।"
 
 #: ask_alyf/ask_alyf/api.py:984
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:2086
+msgid "Waiting for response..."
+msgstr "প্রতিক্রিয়ার জন্য অপেক্ষা করা হচ্ছে..."
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1471
+msgid "What Sales Orders are pending delivery?"
+msgstr "কোন বিক্রয় আদেশগুলি ডেলিভারির জন্য মুলতুবি রয়েছে?"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1543
+msgid "What are the recent Error Logs?"
+msgstr "সাম্প্রতিক Error Logs কী কী?"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1525
+msgid "What open tasks are assigned to me?"
+msgstr "আমাকে কোন খোলা কাজগুলি বরাদ্দ করা হয়েছে?"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1508
+msgid "What were the top 10 most moved items this month?"
+msgstr "এই মাসে সবচেয়ে বেশি স্থানান্তরিত শীর্ষ ১০টি আইটেম কী কী ছিল?"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1535
+msgid "What's the average resolution time for issues?"
+msgstr "ইস্যুগুলির জন্য গড় সমাধানের সময় কত?"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1490
+msgid "What's the total outstanding receivables?"
+msgstr "মোট বকেয়া প্রাপ্য কত?"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1480
+msgid "Which Purchase Orders are overdue?"
+msgstr "কোন ক্রয় আদেশগুলি অতিরিক্ত সময়সীমা অতিক্রম করেছে?"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1498
+msgid "Which employees are on leave today?"
+msgstr "আজ কোন কর্মচারীরা ছুটিতে আছেন?"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1507
+msgid "Which items are below their reorder level?"
+msgstr "কোন আইটেমগুলি তাদের পুনরায় অর্ডার স্তরের নিচে রয়েছে?"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1526
+msgid "Which project tasks are overdue?"
+msgstr "কোন প্রকল্পের কাজগুলি অতিরিক্ত সময়সীমা অতিক্রম করেছে?"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1544
+msgid "Which users logged in today?"
+msgstr "আজ কোন ব্যবহারকারীরা লগ ইন করেছেন?"
+
+#: ask_alyf/ask_alyf/api.py:365 ask_alyf/ask_alyf/api.py:377
+#: ask_alyf/ask_alyf/api.py:394 ask_alyf/ask_alyf/api.py:424
+#: ask_alyf/ask_alyf/api.py:450 ask_alyf/ask_alyf/api.py:518
+#: ask_alyf/ask_alyf/api.py:542 ask_alyf/ask_alyf/api.py:719
+#: ask_alyf/ask_alyf/api.py:787 ask_alyf/ask_alyf/api.py:892
+#: ask_alyf/ask_alyf/api.py:1011 ask_alyf/ask_alyf/api.py:1049
+msgid "You do not have access to Ask ALYF."
+msgstr "Ask ALYF-এ আপনার অ্যাক্সেস নেই।"
+
+#: ask_alyf/ask_alyf/api.py:1018
+>>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 #, python-brace-format
 msgid "You do not have read permission on {0}."
 msgstr "{0}-এ আপনার পড়ার অনুমতি নেই।"
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:2772
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:2866
+>>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 msgid "Your browser does not support voice input."
 msgstr "আপনার ব্রাউজার ভয়েস ইনপুট সমর্থন করে না।"
 
@@ -1764,7 +2242,11 @@ msgstr "ডিবাগ সেশন"
 msgid "doctype"
 msgstr "ডকটাইপ"
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/api.py:909
+=======
+#: ask_alyf/ask_alyf/api.py:943
+>>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 msgid "frontend action"
 msgstr "ফ্রন্টএন্ড অ্যাকশন"
 
@@ -1816,11 +2298,15 @@ msgstr "অতি উচ্চ"
 msgid "{0} '{1}' was not found."
 msgstr "{0} '{1}' পাওয়া যায়নি।"
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:2242
 msgid "{0} items"
 msgstr ""
 
 #: ask_alyf/public/js/ask_alyf.bundle.js:2236
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:2329
+>>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 #, python-brace-format
 msgid "{0} rows"
 msgstr "{0} সারি"

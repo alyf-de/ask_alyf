@@ -1150,6 +1150,13 @@ import "./field_agent";
 				}
 			}
 
+			if (result.status === "conversation_not_found") {
+				this.stopResponseJobMonitor();
+				this.setLoading(false);
+				this.setStatus(__("Conversation not found. Please start a new conversation."));
+				return;
+			}
+
 			this.stopResponseJobMonitor();
 			if (activeJob.conversation !== this.state.conversation?.name) {
 				return;
@@ -1208,6 +1215,22 @@ import "./field_agent";
 			this.openConversation(conversationName);
 		}
 
+		onHistoryConversationDeleteClick(event, conversationName, title) {
+			event.preventDefault();
+			event.stopPropagation();
+			if (!conversationName || !this.isConversationDeletionEnabled()) {
+				return;
+			}
+
+			frappe.confirm(__("Delete conversation '{0}'?", [title]), async () => {
+				try {
+					await this.deleteConversation(conversationName);
+				} catch (error) {
+					frappe.msgprint(error.message || __("Failed to delete conversation."));
+				}
+			});
+		}
+
 		onModeOptionClick(event) {
 			const option = event.currentTarget;
 			const selectedMode = option?.dataset?.mode;
@@ -1246,6 +1269,10 @@ import "./field_agent";
 
 		isFileUploadEnabled() {
 			return Boolean(frappe?.boot?.ask_alyf?.file_upload_enabled);
+		}
+
+		isConversationDeletionEnabled() {
+			return Boolean(frappe?.boot?.ask_alyf?.conversation_deletion_enabled);
 		}
 
 		syncFileUploadButton() {
@@ -1627,29 +1654,55 @@ import "./field_agent";
 				return;
 			}
 
+			const deletionEnabled = this.isConversationDeletionEnabled();
+
 			recentConversations.forEach((conversation) => {
-				const itemEl = document.createElement("button");
-				itemEl.type = "button";
-				itemEl.className = "ask_alyf-history-item btn btn-secondary btn-sm";
-				itemEl.dataset.conversation = conversation.name;
+				const itemEl = document.createElement("div");
+				itemEl.className = "ask_alyf-history-item";
+
+				const mainEl = document.createElement("button");
+				mainEl.type = "button";
+				mainEl.className = "ask_alyf-history-item-main btn btn-secondary btn-sm";
+				mainEl.dataset.conversation = conversation.name;
 
 				if (conversation.name === currentName) {
-					itemEl.classList.remove("btn-secondary");
-					itemEl.classList.add("btn-primary");
+					mainEl.classList.remove("btn-secondary");
+					mainEl.classList.add("btn-primary");
 				}
 
 				const titleEl = document.createElement("div");
+				const title = this.formatConversationLabel(conversation);
 				titleEl.className = "ask_alyf-history-item-title";
-				titleEl.textContent = this.formatConversationLabel(conversation);
+				titleEl.textContent = title;
 
 				const metaEl = document.createElement("div");
 				metaEl.className = "ask_alyf-history-item-meta";
 				const timestampLabel = this.formatConversationTimestamp(conversation);
 				metaEl.textContent = timestampLabel || "";
 
-				itemEl.appendChild(titleEl);
-				itemEl.appendChild(metaEl);
-				itemEl.addEventListener("click", (event) => this.onHistoryConversationClick(event));
+				mainEl.appendChild(titleEl);
+				mainEl.appendChild(metaEl);
+				mainEl.addEventListener("click", (event) => this.onHistoryConversationClick(event));
+				itemEl.appendChild(mainEl);
+
+				if (deletionEnabled) {
+					const deleteEl = document.createElement("button");
+					deleteEl.type = "button";
+					deleteEl.className = "ask_alyf-history-item-delete ask_alyf-icon-button btn btn-sm";
+					if (conversation.name === currentName) {
+						deleteEl.classList.add("btn-primary");
+					} else {
+						deleteEl.classList.add("btn-secondary");
+					}
+					deleteEl.title = __("Delete conversation");
+					deleteEl.setAttribute("aria-label", __("Delete conversation"));
+					deleteEl.innerHTML = getIcon("trash", "sm", "", true);
+					deleteEl.addEventListener("click", (event) =>
+						this.onHistoryConversationDeleteClick(event, conversation.name, title),
+					);
+					itemEl.appendChild(deleteEl);
+				}
+
 				this.historyListEl.appendChild(itemEl);
 			});
 		}
@@ -2067,6 +2120,30 @@ import "./field_agent";
 			this.setLoading(false);
 			this.refreshConversationList();
 			this.setStatus("");
+		}
+
+		async deleteConversation(conversationName) {
+			if (!this.isConversationDeletionEnabled()) {
+				return;
+			}
+
+			const name = (conversationName || this.state.conversation?.name || "").toString();
+			if (!name) {
+				return;
+			}
+
+			await frappe.call({
+				method: "ask_alyf.api.delete_conversation",
+				type: "POST",
+				args: { conversation: name },
+			});
+
+			if (name === this.state.conversation?.name) {
+				await this.startNewConversation();
+				return;
+			}
+
+			this.refreshConversationList();
 		}
 
 		isFrontendAction(operation) {
