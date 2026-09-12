@@ -7,11 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Ask ALYF VERSION\n"
 "Report-Msgid-Bugs-To: hallo@alyf.de\n"
-<<<<<<< HEAD
 "POT-Creation-Date: 2026-09-02 01:31+0053\n"
-=======
-"POT-Creation-Date: 2026-09-12 20:11+0053\n"
->>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 "PO-Revision-Date: 2026-05-02 19:04+0053\n"
 "Last-Translator: hallo@alyf.de\n"
 "Language: pt\n"
@@ -37,11 +33,7 @@ msgstr ""
 msgid "Access to hidden paths is not allowed"
 msgstr "O acesso a caminhos ocultos não é permitido"
 
-<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:1450
-=======
-#: ask_alyf/public/js/ask_alyf.bundle.js:1486
->>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 msgid "Accounts"
 msgstr "Contas"
 
@@ -84,13 +76,8 @@ msgstr "Adicionar uma linha a {0} no formulário atual"
 msgid "Add child row action needs correction."
 msgstr "A ação de adicionar linha secundária precisa de correção."
 
-<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:821
 #: ask_alyf/public/js/ask_alyf.bundle.js:1362
-=======
-#: ask_alyf/public/js/ask_alyf.bundle.js:825
-#: ask_alyf/public/js/ask_alyf.bundle.js:1398
->>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 msgid "Agent"
 msgstr "Agente"
 
@@ -149,11 +136,7 @@ msgstr "E mais {0}."
 msgid "App '{0}' is not installed."
 msgstr "A aplicação '{0}' não está instalada."
 
-<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:2427
-=======
-#: ask_alyf/public/js/ask_alyf.bundle.js:2513
->>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 msgid "Applying action..."
 msgstr "A aplicar ação..."
 
@@ -205,11 +188,7 @@ msgstr "Competência do Ask ALYF"
 msgid "Ask ALYF User"
 msgstr "Utilizador do Ask ALYF"
 
-<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:1168
-=======
-#: ask_alyf/public/js/ask_alyf.bundle.js:1184
->>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 msgid "Ask ALYF could not finish processing this message. Please try again."
 msgstr "O Ask ALYF não conseguiu terminar de processar esta mensagem. Tente novamente."
 
@@ -233,11 +212,7 @@ msgstr "O Ask ALYF está visível, mas ainda não há nenhuma chave de API/model
 msgid "Ask ALYF sections"
 msgstr "Secções do Ask ALYF"
 
-<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:1169
-=======
-#: ask_alyf/public/js/ask_alyf.bundle.js:1185
->>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 msgid "Ask ALYF stopped processing this message. Please try again."
 msgstr "O Ask ALYF parou o processamento desta mensagem. Tente novamente."
 
@@ -285,7 +260,6 @@ msgstr "Os anexos são somente leitura"
 msgid "Batch create proposal needs correction."
 msgstr "A proposta de criação em lote precisa de correção."
 
-<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:1441
 msgid "Buying"
 msgstr "Compras"
@@ -297,19 +271,6 @@ msgid "Call support"
 msgstr "Chamar o suporte"
 
 #: ask_alyf/public/js/ask_alyf.bundle.js:1318
-=======
-#: ask_alyf/public/js/ask_alyf.bundle.js:1477
-msgid "Buying"
-msgstr "Compras"
-
-#: ask_alyf/public/js/ask_alyf.bundle.js:786
-#: ask_alyf/public/js/ask_alyf.bundle.js:788
-#: ask_alyf/public/js/ask_alyf.bundle.js:1355
-msgid "Call support"
-msgstr "Chamar o suporte"
-
-#: ask_alyf/public/js/ask_alyf.bundle.js:1354
->>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 #, python-brace-format
 msgid "Call support: {0}"
 msgstr "Chamar o suporte: {0}"
@@ -343,11 +304,7 @@ msgstr "Exibição do gráfico cancelada: {0}."
 msgid "Cancelled the pending operation: {0}."
 msgstr "Operação pendente cancelada: {0}."
 
-<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:2143
-=======
-#: ask_alyf/public/js/ask_alyf.bundle.js:2229
->>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 msgid "Changes preview"
 msgstr "Pré-visualização das alterações"
 
@@ -375,7 +332,6 @@ msgstr "A altura do gráfico está fora do intervalo."
 msgid "Chart labels must be numbers or strings."
 msgstr "As etiquetas do gráfico devem ser números ou strings."
 
-<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:1452
 msgid "Chart monthly expenses by cost center"
 msgstr "Gerar gráfico das despesas mensais por centro de custo"
@@ -397,29 +353,6 @@ msgid "Chart spending by supplier for this quarter"
 msgstr "Gerar gráfico de gastos por fornecedor para este trimestre"
 
 #: ask_alyf/public/js/ask_alyf.bundle.js:1470
-=======
-#: ask_alyf/public/js/ask_alyf.bundle.js:1488
-msgid "Chart monthly expenses by cost center"
-msgstr "Gerar gráfico das despesas mensais por centro de custo"
-
-#: ask_alyf/public/js/ask_alyf.bundle.js:1470
-msgid "Chart my monthly sales revenue for the last 6 months"
-msgstr "Gerar gráfico da minha receita mensal de vendas dos últimos 6 meses"
-
-#: ask_alyf/public/js/ask_alyf.bundle.js:1533
-msgid "Chart open issues by priority"
-msgstr "Gerar gráfico de issues abertas por prioridade"
-
-#: ask_alyf/public/js/ask_alyf.bundle.js:1515
-msgid "Chart production output by item this week"
-msgstr "Gerar gráfico da produção desta semana por item"
-
-#: ask_alyf/public/js/ask_alyf.bundle.js:1479
-msgid "Chart spending by supplier for this quarter"
-msgstr "Gerar gráfico de gastos por fornecedor para este trimestre"
-
-#: ask_alyf/public/js/ask_alyf.bundle.js:1506
->>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 msgid "Chart stock value by warehouse"
 msgstr "Gráfico do valor do stock por armazém"
 
@@ -500,11 +433,7 @@ msgstr "Configure uma chave de API nas Definições do Ask ALYF antes de enviar 
 msgid "Confirm all"
 msgstr "Confirmar tudo"
 
-<<<<<<< HEAD
 #: ask_alyf/ask_alyf/api.py:708 ask_alyf/public/js/ask_alyf.bundle.js:2427
-=======
-#: ask_alyf/ask_alyf/api.py:741 ask_alyf/public/js/ask_alyf.bundle.js:2513
->>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 msgid "Confirming action..."
 msgstr "A confirmar ação..."
 
@@ -516,15 +445,11 @@ msgstr "Não é permitido eliminar conversas."
 msgid "Conversation name is required."
 msgstr "O nome da conversa é obrigatório."
 
-<<<<<<< HEAD
-#: ask_alyf/public/js/ask_alyf.bundle.js:576
-=======
-#: ask_alyf/public/js/ask_alyf.bundle.js:1172
+#: ask_alyf/public/js/ask_alyf.bundle.js:1163
 msgid "Conversation not found. Please start a new conversation."
 msgstr "Conversa não encontrada. Inicie uma nova conversa."
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:583
->>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
+#: ask_alyf/public/js/ask_alyf.bundle.js:576
 msgid "Copy as Markdown"
 msgstr "Copiar como Markdown"
 
@@ -541,11 +466,7 @@ msgstr "Não foi possível concluir a operação: {0}."
 msgid "Could not display chart."
 msgstr "Não foi possível exibir o gráfico."
 
-<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:2647
-=======
-#: ask_alyf/public/js/ask_alyf.bundle.js:2732
->>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 msgid "Could not download chart."
 msgstr "Não foi possível descarregar o gráfico."
 
@@ -557,11 +478,7 @@ msgstr "Não foi possível extrair o conteúdo visual do ficheiro."
 msgid "Could not generate content."
 msgstr "Não foi possível gerar o conteúdo."
 
-<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:2718
-=======
-#: ask_alyf/public/js/ask_alyf.bundle.js:2803
->>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 msgid "Could not render chart."
 msgstr "Não foi possível apresentar o gráfico."
 
@@ -599,20 +516,12 @@ msgstr "Criados {0} de {1} registos de {2}."
 msgid "Creating several {0} records"
 msgstr "A criar vários registos de {0}"
 
-<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:2291
-=======
-#: ask_alyf/public/js/ask_alyf.bundle.js:2377
->>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 #, python-brace-format
 msgid "Current document is {0}, expected {1}."
 msgstr "O documento atual é {0}, esperado {1}."
 
-<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:2284
-=======
-#: ask_alyf/public/js/ask_alyf.bundle.js:2370
->>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 #, python-brace-format
 msgid "Current form is {0}, expected {1}."
 msgstr "O formulário atual é {0}, esperado {1}."
@@ -691,11 +600,7 @@ msgstr "A extração do documento não retornou conteúdo."
 msgid "Document name is required."
 msgstr "O nome do documento é obrigatório."
 
-<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:2631
-=======
-#: ask_alyf/public/js/ask_alyf.bundle.js:2717
->>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 msgid "Download chart as SVG"
 msgstr "Baixar gráfico como SVG"
 
@@ -749,7 +654,6 @@ msgstr "Ação de frontend executada: {0}"
 msgid "Failed rows: {0}"
 msgstr "Linhas falhadas: {0}"
 
-<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:1296
 msgid "Failed to attach file to conversation."
 msgstr "Falha ao anexar o ficheiro à conversa."
@@ -757,6 +661,10 @@ msgstr "Falha ao anexar o ficheiro à conversa."
 #: ask_alyf/public/js/ask_alyf.bundle.js:2454
 msgid "Failed to confirm pending operation."
 msgstr "Falha ao confirmar operação pendente."
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1236
+msgid "Failed to delete conversation."
+msgstr "Falha ao excluir conversa."
 
 #: ask_alyf/public/js/ask_alyf.bundle.js:2392
 msgid "Failed to execute frontend action."
@@ -775,37 +683,6 @@ msgid "Failed to send message."
 msgstr "Falha ao enviar mensagem."
 
 #: ask_alyf/public/js/ask_alyf.bundle.js:1782
-=======
-#: ask_alyf/public/js/ask_alyf.bundle.js:1332
-msgid "Failed to attach file to conversation."
-msgstr "Falha ao anexar o ficheiro à conversa."
-
-#: ask_alyf/public/js/ask_alyf.bundle.js:2540
-msgid "Failed to confirm pending operation."
-msgstr "Falha ao confirmar operação pendente."
-
-#: ask_alyf/public/js/ask_alyf.bundle.js:1245
-msgid "Failed to delete conversation."
-msgstr "Falha ao excluir conversa."
-
-#: ask_alyf/public/js/ask_alyf.bundle.js:2478
-msgid "Failed to execute frontend action."
-msgstr "Falha ao executar ação de frontend."
-
-#: ask_alyf/public/js/ask_alyf.bundle.js:1756
-msgid "Failed to open conversation."
-msgstr "Falha ao abrir conversa."
-
-#: ask_alyf/public/js/ask_alyf.bundle.js:2578
-msgid "Failed to reject pending operation."
-msgstr "Falha ao rejeitar operação pendente."
-
-#: ask_alyf/public/js/ask_alyf.bundle.js:2098
-msgid "Failed to send message."
-msgstr "Falha ao enviar mensagem."
-
-#: ask_alyf/public/js/ask_alyf.bundle.js:1844
->>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 msgid "Failed to stop the run."
 msgstr "Não foi possível parar a execução."
 
@@ -827,13 +704,8 @@ msgstr "O Agent de campo não está ativado."
 msgid "Field updated."
 msgstr "Campo atualizado."
 
-<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:2321
 #: ask_alyf/public/js/ask_alyf.bundle.js:2330
-=======
-#: ask_alyf/public/js/ask_alyf.bundle.js:2407
-#: ask_alyf/public/js/ask_alyf.bundle.js:2416
->>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 #, python-brace-format
 msgid "Field {0} does not exist on this form."
 msgstr "O campo {0} não existe neste formulário."
@@ -904,11 +776,7 @@ msgstr "A ação de frontend 'set_route' requer uma lista de Rota não vazia."
 msgid "Frontend action failed: {0}"
 msgstr "Ação de frontend falhada: {0}"
 
-<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:2379
-=======
-#: ask_alyf/public/js/ask_alyf.bundle.js:2465
->>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 msgid "Frontend action is missing a call ID."
 msgstr "Falta um ID de Chamada na ação de frontend."
 
@@ -940,11 +808,7 @@ msgstr "A gerar resposta..."
 msgid "Generating..."
 msgstr "A gerar..."
 
-<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:1459
-=======
-#: ask_alyf/public/js/ask_alyf.bundle.js:1495
->>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 msgid "HR"
 msgstr "RH"
 
@@ -956,7 +820,6 @@ msgstr "A destacar um campo"
 msgid "History"
 msgstr "Histórico"
 
-<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:1481
 msgid "How many Work Orders are behind schedule?"
 msgstr "Quantas Ordens de Trabalho estão atrasadas em relação ao cronograma?"
@@ -970,21 +833,6 @@ msgid "How many pending purchase receipts do I have?"
 msgstr "Quantos recibos de compra pendentes tenho?"
 
 #: ask_alyf/public/js/ask_alyf.bundle.js:1436
-=======
-#: ask_alyf/public/js/ask_alyf.bundle.js:1517
-msgid "How many Work Orders are behind schedule?"
-msgstr "Quantas Ordens de Trabalho estão atrasadas em relação ao cronograma?"
-
-#: ask_alyf/public/js/ask_alyf.bundle.js:1499
-msgid "How many leave applications are pending approval?"
-msgstr "Quantos pedidos de licença estão pendentes de aprovação?"
-
-#: ask_alyf/public/js/ask_alyf.bundle.js:1481
-msgid "How many pending purchase receipts do I have?"
-msgstr "Quantos recibos de compra pendentes tenho?"
-
-#: ask_alyf/public/js/ask_alyf.bundle.js:1472
->>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 msgid "How many quotations were sent this month?"
 msgstr "Quantas cotações foram enviadas este mês?"
 
@@ -1001,11 +849,7 @@ msgstr "Preparei a operação. Por favor, reveja e confirme."
 msgid "Invalid action payload."
 msgstr "Carga útil de ação inválida."
 
-<<<<<<< HEAD
 #: ask_alyf/ask_alyf/tools.py:1609 ask_alyf/public/js/ask_alyf.bundle.js:2688
-=======
-#: ask_alyf/ask_alyf/tools.py:1609 ask_alyf/public/js/ask_alyf.bundle.js:2773
->>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 msgid "Invalid chart data."
 msgstr "Dados de gráfico inválidos."
 
@@ -1049,11 +893,7 @@ msgstr "Última mensagem em"
 msgid "Line offset {0} exceeds file length"
 msgstr "O deslocamento de linha {0} excede o comprimento do ficheiro"
 
-<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:1679
-=======
-#: ask_alyf/public/js/ask_alyf.bundle.js:1741
->>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 msgid "Loading conversation..."
 msgstr "A carregar conversa..."
 
@@ -1065,11 +905,7 @@ msgstr "A procurar relatórios disponíveis"
 msgid "Looking up what you can access"
 msgstr "A verificar a que pode aceder"
 
-<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:1477
-=======
-#: ask_alyf/public/js/ask_alyf.bundle.js:1513
->>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 msgid "Manufacturing"
 msgstr "Fabricação"
 
@@ -1093,11 +929,7 @@ msgstr "Tipo de metadados"
 msgid "Method call proposal needs correction."
 msgstr "A proposta de chamada de método precisa de correção."
 
-<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:1364
-=======
-#: ask_alyf/public/js/ask_alyf.bundle.js:1400
->>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 #, python-brace-format
 msgid "Mode: {0}"
 msgstr "Modo: {0}"
@@ -1128,11 +960,7 @@ msgstr "A ação de novo documento precisa de correção."
 msgid "No active form found."
 msgstr "Nenhum formulário ativo encontrado."
 
-<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:1632
-=======
-#: ask_alyf/public/js/ask_alyf.bundle.js:1668
->>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 msgid "No conversations yet."
 msgstr "Ainda não há conversas."
 
@@ -1141,11 +969,7 @@ msgstr "Ainda não há conversas."
 msgid "No documentation URL was found for app '{0}'."
 msgstr "Nenhuma URL de documentação foi encontrada para a aplicação '{0}'."
 
-<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:2278
-=======
-#: ask_alyf/public/js/ask_alyf.bundle.js:2364
->>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 msgid "No form is currently open."
 msgstr "Nenhum formulário está aberto no momento."
 
@@ -1287,11 +1111,7 @@ msgstr "O caminho deve começar com o nome de uma aplicação instalada."
 msgid "Pending Operation JSON"
 msgstr "JSON de operação pendente"
 
-<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:2097
-=======
-#: ask_alyf/public/js/ask_alyf.bundle.js:2183
->>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 msgid "Pending operation"
 msgstr "Operação pendente"
 
@@ -1383,11 +1203,7 @@ msgstr "Proposta de atualização preparada."
 msgid "Preparing a chart"
 msgstr "A preparar um gráfico"
 
-<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:1486
-=======
-#: ask_alyf/public/js/ask_alyf.bundle.js:1522
->>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 msgid "Projects"
 msgstr "Projetos"
 
@@ -1435,11 +1251,7 @@ msgstr "Motivo: {0}"
 msgid "Reasoning Effort"
 msgstr "Esforço de raciocínio"
 
-<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:2190
-=======
-#: ask_alyf/public/js/ask_alyf.bundle.js:2276
->>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 #, python-brace-format
 msgid "Records to create ({0})"
 msgstr "Registos a criar ({0})"
@@ -1519,11 +1331,7 @@ msgstr "A ação de rolagem precisa de correção."
 msgid "Scroll to field {0}"
 msgstr "Rolar até o campo {0}"
 
-<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:2312
-=======
-#: ask_alyf/public/js/ask_alyf.bundle.js:2398
->>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 msgid "Scrolling to fields is not available on this form."
 msgstr "A rolagem para campos não está disponível neste formulário."
 
@@ -1535,19 +1343,11 @@ msgstr "A pesquisar na documentação"
 msgid "Searching the source code"
 msgstr "A pesquisar no código fonte"
 
-<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:1432
 msgid "Selling"
 msgstr "Vendas"
 
 #: ask_alyf/public/js/ask_alyf.bundle.js:1976
-=======
-#: ask_alyf/public/js/ask_alyf.bundle.js:1468
-msgid "Selling"
-msgstr "Vendas"
-
-#: ask_alyf/public/js/ask_alyf.bundle.js:2038
->>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 msgid "Sending..."
 msgstr "Enviando..."
 
@@ -1573,7 +1373,6 @@ msgstr "Definir {0} em {1} {2}"
 msgid "Show chart"
 msgstr "Mostrar gráfico"
 
-<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:1461
 msgid "Show employee headcount by department as a chart"
 msgstr "Mostrar o número de funcionários por departamento como um gráfico"
@@ -1595,29 +1394,6 @@ msgid "Show me unresolved issues from this week"
 msgstr "Mostrar as questões não resolvidas desta semana"
 
 #: ask_alyf/public/js/ask_alyf.bundle.js:1488
-=======
-#: ask_alyf/public/js/ask_alyf.bundle.js:1497
-msgid "Show employee headcount by department as a chart"
-msgstr "Mostrar o número de funcionários por departamento como um gráfico"
-
-#: ask_alyf/public/js/ask_alyf.bundle.js:1516
-msgid "Show me open Work Orders and their status"
-msgstr "Mostrar as Ordens de Trabalho abertas e o seu estado"
-
-#: ask_alyf/public/js/ask_alyf.bundle.js:1542
-msgid "Show me the top 10 DocTypes by record count"
-msgstr "Mostrar os 10 principais DocTypes por contagem de registros"
-
-#: ask_alyf/public/js/ask_alyf.bundle.js:1489
-msgid "Show me unpaid Sales Invoices older than 30 days"
-msgstr "Mostrar as faturas de venda não pagas há mais de 30 dias"
-
-#: ask_alyf/public/js/ask_alyf.bundle.js:1534
-msgid "Show me unresolved issues from this week"
-msgstr "Mostrar as questões não resolvidas desta semana"
-
-#: ask_alyf/public/js/ask_alyf.bundle.js:1524
->>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 msgid "Show project progress as a chart"
 msgstr "Mostrar o progresso do projeto como um gráfico"
 
@@ -1682,19 +1458,11 @@ msgstr "O estado deve ser um dos seguintes: success, failed ou rejected."
 msgid "Still generating..."
 msgstr "Ainda a gerar..."
 
-<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:1468
 msgid "Stock"
 msgstr "Stock"
 
 #: ask_alyf/public/js/ask_alyf.bundle.js:1743
-=======
-#: ask_alyf/public/js/ask_alyf.bundle.js:1504
-msgid "Stock"
-msgstr "Stock"
-
-#: ask_alyf/public/js/ask_alyf.bundle.js:1805
->>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 msgid "Stop this run"
 msgstr "Parar esta execução"
 
@@ -1702,11 +1470,7 @@ msgstr "Parar esta execução"
 msgid "Stopped. Send a message to pick up from here."
 msgstr "Parado. Envie uma mensagem para continuar a partir daqui."
 
-<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:1764
-=======
-#: ask_alyf/public/js/ask_alyf.bundle.js:1826
->>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 msgid "Stopping..."
 msgstr "A parar..."
 
@@ -1719,11 +1483,7 @@ msgstr "A proposta de submissão necessita de correção."
 msgid "Submit {0} {1}"
 msgstr "Submeter {0} {1}"
 
-<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:1495
-=======
-#: ask_alyf/public/js/ask_alyf.bundle.js:1531
->>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 msgid "Support"
 msgstr "Suporte"
 
@@ -1869,11 +1629,7 @@ msgstr "Tipo de ficheiro não suportado '{0}'. Tipos suportados: PDF, PNG, JPG, 
 msgid "Unsupported frontend action '{0}'."
 msgstr "Ação de frontend não suportada '{0}'."
 
-<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:2341
-=======
-#: ask_alyf/public/js/ask_alyf.bundle.js:2427
->>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 #, python-brace-format
 msgid "Unsupported frontend action: {0}"
 msgstr "Ação de frontend não suportada: {0}"
@@ -1892,11 +1648,7 @@ msgstr "Tipo de operação não suportado '{0}'."
 msgid "Unsupported or missing chart type."
 msgstr "Tipo de gráfico não suportado ou em falta."
 
-<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:1407
-=======
-#: ask_alyf/public/js/ask_alyf.bundle.js:1443
->>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 msgid "Untitled conversation"
 msgstr "Conversa sem título"
 
@@ -1958,16 +1710,11 @@ msgstr "Provedor de Vision"
 msgid "Voice input"
 msgstr "Entrada de voz"
 
-<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:2840
-=======
-#: ask_alyf/public/js/ask_alyf.bundle.js:2925
->>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 #, python-brace-format
 msgid "Voice input language: {0}"
 msgstr "Idioma da entrada de voz: {0}"
 
-<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:2024
 msgid "Waiting for response..."
 msgstr "Aguardando resposta..."
@@ -2013,53 +1760,6 @@ msgid "Which project tasks are overdue?"
 msgstr "Quais tarefas de projeto estão em atraso?"
 
 #: ask_alyf/public/js/ask_alyf.bundle.js:1508
-=======
-#: ask_alyf/public/js/ask_alyf.bundle.js:2086
-msgid "Waiting for response..."
-msgstr "Aguardando resposta..."
-
-#: ask_alyf/public/js/ask_alyf.bundle.js:1471
-msgid "What Sales Orders are pending delivery?"
-msgstr "Quais Pedidos de Venda estão pendentes de entrega?"
-
-#: ask_alyf/public/js/ask_alyf.bundle.js:1543
-msgid "What are the recent Error Logs?"
-msgstr "Quais são os Error Logs recentes?"
-
-#: ask_alyf/public/js/ask_alyf.bundle.js:1525
-msgid "What open tasks are assigned to me?"
-msgstr "Quais tarefas abertas estão atribuídas a mim?"
-
-#: ask_alyf/public/js/ask_alyf.bundle.js:1508
-msgid "What were the top 10 most moved items this month?"
-msgstr "Quais foram os 10 itens mais movimentados este mês?"
-
-#: ask_alyf/public/js/ask_alyf.bundle.js:1535
-msgid "What's the average resolution time for issues?"
-msgstr "Qual é o tempo médio de resolução de Issues?"
-
-#: ask_alyf/public/js/ask_alyf.bundle.js:1490
-msgid "What's the total outstanding receivables?"
-msgstr "Qual é o total de contas a receber em aberto?"
-
-#: ask_alyf/public/js/ask_alyf.bundle.js:1480
-msgid "Which Purchase Orders are overdue?"
-msgstr "Quais Pedidos de Compra estão em atraso?"
-
-#: ask_alyf/public/js/ask_alyf.bundle.js:1498
-msgid "Which employees are on leave today?"
-msgstr "Quais funcionários estão de licença hoje?"
-
-#: ask_alyf/public/js/ask_alyf.bundle.js:1507
-msgid "Which items are below their reorder level?"
-msgstr "Quais itens estão abaixo do seu nível de reposição?"
-
-#: ask_alyf/public/js/ask_alyf.bundle.js:1526
-msgid "Which project tasks are overdue?"
-msgstr "Quais tarefas de projeto estão em atraso?"
-
-#: ask_alyf/public/js/ask_alyf.bundle.js:1544
->>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 msgid "Which users logged in today?"
 msgstr "Que utilizadores iniciaram sessão hoje?"
 
@@ -2077,11 +1777,7 @@ msgstr "Você não tem acesso ao Ask ALYF."
 msgid "You do not have read permission on {0}."
 msgstr "Você não tem permissão de leitura em {0}."
 
-<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:2781
-=======
-#: ask_alyf/public/js/ask_alyf.bundle.js:2866
->>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 msgid "Your browser does not support voice input."
 msgstr "O seu navegador não suporta entrada de voz."
 
@@ -2158,15 +1854,11 @@ msgstr "Muito alto"
 msgid "{0} '{1}' was not found."
 msgstr "{0} '{1}' não foi encontrado."
 
-<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:2249
 msgid "{0} items"
 msgstr ""
 
 #: ask_alyf/public/js/ask_alyf.bundle.js:2243
-=======
-#: ask_alyf/public/js/ask_alyf.bundle.js:2329
->>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 #, python-brace-format
 msgid "{0} rows"
 msgstr "{0} linhas"

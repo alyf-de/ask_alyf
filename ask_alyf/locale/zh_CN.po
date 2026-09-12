@@ -7,11 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Ask ALYF VERSION\n"
 "Report-Msgid-Bugs-To: hallo@alyf.de\n"
-<<<<<<< HEAD
 "POT-Creation-Date: 2026-09-02 01:31+0053\n"
-=======
-"POT-Creation-Date: 2026-09-12 20:11+0053\n"
->>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 "PO-Revision-Date: 2026-05-02 19:04+0053\n"
 "Last-Translator: hallo@alyf.de\n"
 "Language: zh_CN\n"
@@ -37,11 +33,7 @@ msgstr ""
 msgid "Access to hidden paths is not allowed"
 msgstr "不允许访问隐藏路径"
 
-<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:1450
-=======
-#: ask_alyf/public/js/ask_alyf.bundle.js:1486
->>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 msgid "Accounts"
 msgstr "会计"
 
@@ -84,13 +76,8 @@ msgstr "在当前表单的 {0} 中添加一行"
 msgid "Add child row action needs correction."
 msgstr "添加子行操作需要修正。"
 
-<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:821
 #: ask_alyf/public/js/ask_alyf.bundle.js:1362
-=======
-#: ask_alyf/public/js/ask_alyf.bundle.js:825
-#: ask_alyf/public/js/ask_alyf.bundle.js:1398
->>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 msgid "Agent"
 msgstr "代理"
 
@@ -149,11 +136,7 @@ msgstr "还有 {0} 个。"
 msgid "App '{0}' is not installed."
 msgstr "应用 '{0}' 未安装。"
 
-<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:2427
-=======
-#: ask_alyf/public/js/ask_alyf.bundle.js:2513
->>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 msgid "Applying action..."
 msgstr "正在应用操作..."
 
@@ -205,11 +188,7 @@ msgstr "Ask ALYF 技能"
 msgid "Ask ALYF User"
 msgstr "Ask ALYF 用户"
 
-<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:1168
-=======
-#: ask_alyf/public/js/ask_alyf.bundle.js:1184
->>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 msgid "Ask ALYF could not finish processing this message. Please try again."
 msgstr "Ask ALYF 无法完成此消息的处理。请重试。"
 
@@ -233,11 +212,7 @@ msgstr "Ask ALYF 可见，但尚未在 Ask ALYF 设置中配置 API 密钥/模�
 msgid "Ask ALYF sections"
 msgstr "Ask ALYF 部分"
 
-<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:1169
-=======
-#: ask_alyf/public/js/ask_alyf.bundle.js:1185
->>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 msgid "Ask ALYF stopped processing this message. Please try again."
 msgstr "Ask ALYF 已停止处理此消息。请重试。"
 
@@ -285,7 +260,6 @@ msgstr "附件为只读"
 msgid "Batch create proposal needs correction."
 msgstr "批量创建提案需要更正。"
 
-<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:1441
 msgid "Buying"
 msgstr "采购"
@@ -297,19 +271,6 @@ msgid "Call support"
 msgstr "联系支持"
 
 #: ask_alyf/public/js/ask_alyf.bundle.js:1318
-=======
-#: ask_alyf/public/js/ask_alyf.bundle.js:1477
-msgid "Buying"
-msgstr "采购"
-
-#: ask_alyf/public/js/ask_alyf.bundle.js:786
-#: ask_alyf/public/js/ask_alyf.bundle.js:788
-#: ask_alyf/public/js/ask_alyf.bundle.js:1355
-msgid "Call support"
-msgstr "联系支持"
-
-#: ask_alyf/public/js/ask_alyf.bundle.js:1354
->>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 #, python-brace-format
 msgid "Call support: {0}"
 msgstr "联系支持：{0}"
@@ -343,11 +304,7 @@ msgstr "已取消显示图表：{0}。"
 msgid "Cancelled the pending operation: {0}."
 msgstr "已取消挂起的操作：{0}。"
 
-<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:2143
-=======
-#: ask_alyf/public/js/ask_alyf.bundle.js:2229
->>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 msgid "Changes preview"
 msgstr "变更预览"
 
@@ -375,7 +332,6 @@ msgstr "图表高度超出范围。"
 msgid "Chart labels must be numbers or strings."
 msgstr "图表标签必须是数字或字符串。"
 
-<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:1452
 msgid "Chart monthly expenses by cost center"
 msgstr "按成本中心绘制每月支出图表"
@@ -397,29 +353,6 @@ msgid "Chart spending by supplier for this quarter"
 msgstr "绘制本季度按供应商划分的支出图表"
 
 #: ask_alyf/public/js/ask_alyf.bundle.js:1470
-=======
-#: ask_alyf/public/js/ask_alyf.bundle.js:1488
-msgid "Chart monthly expenses by cost center"
-msgstr "按成本中心绘制每月支出图表"
-
-#: ask_alyf/public/js/ask_alyf.bundle.js:1470
-msgid "Chart my monthly sales revenue for the last 6 months"
-msgstr "绘制过去 6 个月每月销售收入图表"
-
-#: ask_alyf/public/js/ask_alyf.bundle.js:1533
-msgid "Chart open issues by priority"
-msgstr "按优先级绘制未解决问题图表"
-
-#: ask_alyf/public/js/ask_alyf.bundle.js:1515
-msgid "Chart production output by item this week"
-msgstr "绘制本周按项目划分的生产产量图表"
-
-#: ask_alyf/public/js/ask_alyf.bundle.js:1479
-msgid "Chart spending by supplier for this quarter"
-msgstr "绘制本季度按供应商划分的支出图表"
-
-#: ask_alyf/public/js/ask_alyf.bundle.js:1506
->>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 msgid "Chart stock value by warehouse"
 msgstr "按仓库绘制库存价值图表"
 
@@ -500,11 +433,7 @@ msgstr "发送消息前，请在 Ask ALYF 设置中配置 API 密钥。"
 msgid "Confirm all"
 msgstr "全部确认"
 
-<<<<<<< HEAD
 #: ask_alyf/ask_alyf/api.py:708 ask_alyf/public/js/ask_alyf.bundle.js:2427
-=======
-#: ask_alyf/ask_alyf/api.py:741 ask_alyf/public/js/ask_alyf.bundle.js:2513
->>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 msgid "Confirming action..."
 msgstr "正在确认操作..."
 
@@ -516,15 +445,11 @@ msgstr "不允许删除对话。"
 msgid "Conversation name is required."
 msgstr "对话名称为必填项。"
 
-<<<<<<< HEAD
-#: ask_alyf/public/js/ask_alyf.bundle.js:576
-=======
-#: ask_alyf/public/js/ask_alyf.bundle.js:1172
+#: ask_alyf/public/js/ask_alyf.bundle.js:1163
 msgid "Conversation not found. Please start a new conversation."
 msgstr "未找到对话。请开始新的对话。"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:583
->>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
+#: ask_alyf/public/js/ask_alyf.bundle.js:576
 msgid "Copy as Markdown"
 msgstr "复制为 Markdown"
 
@@ -541,11 +466,7 @@ msgstr "无法完成操作：{0}。"
 msgid "Could not display chart."
 msgstr "无法显示图表。"
 
-<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:2647
-=======
-#: ask_alyf/public/js/ask_alyf.bundle.js:2732
->>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 msgid "Could not download chart."
 msgstr "无法下载图表。"
 
@@ -557,11 +478,7 @@ msgstr "无法从文件中提取视觉内容。"
 msgid "Could not generate content."
 msgstr "无法生成内容。"
 
-<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:2718
-=======
-#: ask_alyf/public/js/ask_alyf.bundle.js:2803
->>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 msgid "Could not render chart."
 msgstr "无法渲染图表。"
 
@@ -599,20 +516,12 @@ msgstr "已创建 {1} 条 {2} 记录中的 {0} 条。"
 msgid "Creating several {0} records"
 msgstr "正在创建多条 {0} 记录"
 
-<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:2291
-=======
-#: ask_alyf/public/js/ask_alyf.bundle.js:2377
->>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 #, python-brace-format
 msgid "Current document is {0}, expected {1}."
 msgstr "当前单据为 {0},预期为 {1}。"
 
-<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:2284
-=======
-#: ask_alyf/public/js/ask_alyf.bundle.js:2370
->>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 #, python-brace-format
 msgid "Current form is {0}, expected {1}."
 msgstr "当前表单为 {0},预期为 {1}。"
@@ -691,11 +600,7 @@ msgstr "单据提取未返回任何内容。"
 msgid "Document name is required."
 msgstr "单据编号为必填项。"
 
-<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:2631
-=======
-#: ask_alyf/public/js/ask_alyf.bundle.js:2717
->>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 msgid "Download chart as SVG"
 msgstr "将图表下载为 SVG"
 
@@ -749,7 +654,6 @@ msgstr "已执行前端操作:{0}"
 msgid "Failed rows: {0}"
 msgstr "失败的行:{0}"
 
-<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:1296
 msgid "Failed to attach file to conversation."
 msgstr "未能将文件附加到对话。"
@@ -757,6 +661,10 @@ msgstr "未能将文件附加到对话。"
 #: ask_alyf/public/js/ask_alyf.bundle.js:2454
 msgid "Failed to confirm pending operation."
 msgstr "确认待处理操作失败。"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1236
+msgid "Failed to delete conversation."
+msgstr "删除对话失败。"
 
 #: ask_alyf/public/js/ask_alyf.bundle.js:2392
 msgid "Failed to execute frontend action."
@@ -775,37 +683,6 @@ msgid "Failed to send message."
 msgstr "发送消息失败。"
 
 #: ask_alyf/public/js/ask_alyf.bundle.js:1782
-=======
-#: ask_alyf/public/js/ask_alyf.bundle.js:1332
-msgid "Failed to attach file to conversation."
-msgstr "未能将文件附加到对话。"
-
-#: ask_alyf/public/js/ask_alyf.bundle.js:2540
-msgid "Failed to confirm pending operation."
-msgstr "确认待处理操作失败。"
-
-#: ask_alyf/public/js/ask_alyf.bundle.js:1245
-msgid "Failed to delete conversation."
-msgstr "删除对话失败。"
-
-#: ask_alyf/public/js/ask_alyf.bundle.js:2478
-msgid "Failed to execute frontend action."
-msgstr "执行前端操作失败。"
-
-#: ask_alyf/public/js/ask_alyf.bundle.js:1756
-msgid "Failed to open conversation."
-msgstr "打开对话失败。"
-
-#: ask_alyf/public/js/ask_alyf.bundle.js:2578
-msgid "Failed to reject pending operation."
-msgstr "拒绝待处理操作失败。"
-
-#: ask_alyf/public/js/ask_alyf.bundle.js:2098
-msgid "Failed to send message."
-msgstr "发送消息失败。"
-
-#: ask_alyf/public/js/ask_alyf.bundle.js:1844
->>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 msgid "Failed to stop the run."
 msgstr "无法停止本次运行。"
 
@@ -827,13 +704,8 @@ msgstr "字段 Agent 未启用。"
 msgid "Field updated."
 msgstr "字段已更新。"
 
-<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:2321
 #: ask_alyf/public/js/ask_alyf.bundle.js:2330
-=======
-#: ask_alyf/public/js/ask_alyf.bundle.js:2407
-#: ask_alyf/public/js/ask_alyf.bundle.js:2416
->>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 #, python-brace-format
 msgid "Field {0} does not exist on this form."
 msgstr "此表单上不存在字段 {0}。"
@@ -904,11 +776,7 @@ msgstr "前端操作 'set_route' 需要一个非空的路由列表。"
 msgid "Frontend action failed: {0}"
 msgstr "前端操作失败:{0}"
 
-<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:2379
-=======
-#: ask_alyf/public/js/ask_alyf.bundle.js:2465
->>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 msgid "Frontend action is missing a call ID."
 msgstr "前端操作缺少通话 ID。"
 
@@ -940,11 +808,7 @@ msgstr "正在生成回复..."
 msgid "Generating..."
 msgstr "正在生成..."
 
-<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:1459
-=======
-#: ask_alyf/public/js/ask_alyf.bundle.js:1495
->>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 msgid "HR"
 msgstr "人力资源"
 
@@ -956,7 +820,6 @@ msgstr "正在高亮显示字段"
 msgid "History"
 msgstr "历史记录"
 
-<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:1481
 msgid "How many Work Orders are behind schedule?"
 msgstr "有多少工单落后于计划?"
@@ -970,21 +833,6 @@ msgid "How many pending purchase receipts do I have?"
 msgstr "我有多少待处理的采购收据?"
 
 #: ask_alyf/public/js/ask_alyf.bundle.js:1436
-=======
-#: ask_alyf/public/js/ask_alyf.bundle.js:1517
-msgid "How many Work Orders are behind schedule?"
-msgstr "有多少工单落后于计划?"
-
-#: ask_alyf/public/js/ask_alyf.bundle.js:1499
-msgid "How many leave applications are pending approval?"
-msgstr "有多少请假申请待批准?"
-
-#: ask_alyf/public/js/ask_alyf.bundle.js:1481
-msgid "How many pending purchase receipts do I have?"
-msgstr "我有多少待处理的采购收据?"
-
-#: ask_alyf/public/js/ask_alyf.bundle.js:1472
->>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 msgid "How many quotations were sent this month?"
 msgstr "本月发送了多少报价单?"
 
@@ -1001,11 +849,7 @@ msgstr "我已准备好该操作。请审核并确认。"
 msgid "Invalid action payload."
 msgstr "无效的操作负载。"
 
-<<<<<<< HEAD
 #: ask_alyf/ask_alyf/tools.py:1609 ask_alyf/public/js/ask_alyf.bundle.js:2688
-=======
-#: ask_alyf/ask_alyf/tools.py:1609 ask_alyf/public/js/ask_alyf.bundle.js:2773
->>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 msgid "Invalid chart data."
 msgstr "无效的图表数据。"
 
@@ -1049,11 +893,7 @@ msgstr "最后消息时间"
 msgid "Line offset {0} exceeds file length"
 msgstr "行偏移 {0} 超出文件长度"
 
-<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:1679
-=======
-#: ask_alyf/public/js/ask_alyf.bundle.js:1741
->>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 msgid "Loading conversation..."
 msgstr "正在加载对话..."
 
@@ -1065,11 +905,7 @@ msgstr "正在查找可用的报表"
 msgid "Looking up what you can access"
 msgstr "正在查找您可以访问的内容"
 
-<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:1477
-=======
-#: ask_alyf/public/js/ask_alyf.bundle.js:1513
->>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 msgid "Manufacturing"
 msgstr "制造"
 
@@ -1093,11 +929,7 @@ msgstr "元数据类型"
 msgid "Method call proposal needs correction."
 msgstr "方法调用提案需要更正。"
 
-<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:1364
-=======
-#: ask_alyf/public/js/ask_alyf.bundle.js:1400
->>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 #, python-brace-format
 msgid "Mode: {0}"
 msgstr "模式：{0}"
@@ -1128,11 +960,7 @@ msgstr "新建文档操作需要更正。"
 msgid "No active form found."
 msgstr "未找到活动表单。"
 
-<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:1632
-=======
-#: ask_alyf/public/js/ask_alyf.bundle.js:1668
->>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 msgid "No conversations yet."
 msgstr "暂无对话。"
 
@@ -1141,11 +969,7 @@ msgstr "暂无对话。"
 msgid "No documentation URL was found for app '{0}'."
 msgstr "未找到应用 '{0}' 的文档URL。"
 
-<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:2278
-=======
-#: ask_alyf/public/js/ask_alyf.bundle.js:2364
->>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 msgid "No form is currently open."
 msgstr "当前没有打开的表单。"
 
@@ -1287,11 +1111,7 @@ msgstr "路径必须以已安装的应用名称开头。"
 msgid "Pending Operation JSON"
 msgstr "待处理操作 JSON"
 
-<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:2097
-=======
-#: ask_alyf/public/js/ask_alyf.bundle.js:2183
->>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 msgid "Pending operation"
 msgstr "待处理操作"
 
@@ -1383,11 +1203,7 @@ msgstr "已准备更新提案。"
 msgid "Preparing a chart"
 msgstr "正在准备图表"
 
-<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:1486
-=======
-#: ask_alyf/public/js/ask_alyf.bundle.js:1522
->>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 msgid "Projects"
 msgstr "项目"
 
@@ -1435,11 +1251,7 @@ msgstr "原因：{0}"
 msgid "Reasoning Effort"
 msgstr "推理强度"
 
-<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:2190
-=======
-#: ask_alyf/public/js/ask_alyf.bundle.js:2276
->>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 #, python-brace-format
 msgid "Records to create ({0})"
 msgstr "要创建的记录 ({0})"
@@ -1519,11 +1331,7 @@ msgstr "滚动操作需要更正。"
 msgid "Scroll to field {0}"
 msgstr "滚动到字段 {0}"
 
-<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:2312
-=======
-#: ask_alyf/public/js/ask_alyf.bundle.js:2398
->>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 msgid "Scrolling to fields is not available on this form."
 msgstr "此表单不支持滚动到字段。"
 
@@ -1535,19 +1343,11 @@ msgstr "正在搜索文档"
 msgid "Searching the source code"
 msgstr "正在搜索源代码"
 
-<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:1432
 msgid "Selling"
 msgstr "销售"
 
 #: ask_alyf/public/js/ask_alyf.bundle.js:1976
-=======
-#: ask_alyf/public/js/ask_alyf.bundle.js:1468
-msgid "Selling"
-msgstr "销售"
-
-#: ask_alyf/public/js/ask_alyf.bundle.js:2038
->>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 msgid "Sending..."
 msgstr "正在发送..."
 
@@ -1573,7 +1373,6 @@ msgstr "在 {1} {2} 上设置 {0}"
 msgid "Show chart"
 msgstr "显示图表"
 
-<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:1461
 msgid "Show employee headcount by department as a chart"
 msgstr "以图表形式显示按部门划分的员工人数"
@@ -1595,29 +1394,6 @@ msgid "Show me unresolved issues from this week"
 msgstr "显示本周未解决的问题"
 
 #: ask_alyf/public/js/ask_alyf.bundle.js:1488
-=======
-#: ask_alyf/public/js/ask_alyf.bundle.js:1497
-msgid "Show employee headcount by department as a chart"
-msgstr "以图表形式显示按部门划分的员工人数"
-
-#: ask_alyf/public/js/ask_alyf.bundle.js:1516
-msgid "Show me open Work Orders and their status"
-msgstr "显示打开的工单及其状态"
-
-#: ask_alyf/public/js/ask_alyf.bundle.js:1542
-msgid "Show me the top 10 DocTypes by record count"
-msgstr "按记录计数显示前 10 个 DocTypes"
-
-#: ask_alyf/public/js/ask_alyf.bundle.js:1489
-msgid "Show me unpaid Sales Invoices older than 30 days"
-msgstr "显示超过 30 天未付的销售发票"
-
-#: ask_alyf/public/js/ask_alyf.bundle.js:1534
-msgid "Show me unresolved issues from this week"
-msgstr "显示本周未解决的问题"
-
-#: ask_alyf/public/js/ask_alyf.bundle.js:1524
->>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 msgid "Show project progress as a chart"
 msgstr "以图表形式显示项目进展"
 
@@ -1682,19 +1458,11 @@ msgstr "状态必须是 success、failed 或 rejected 之一。"
 msgid "Still generating..."
 msgstr "仍在生成中..."
 
-<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:1468
 msgid "Stock"
 msgstr "库存"
 
 #: ask_alyf/public/js/ask_alyf.bundle.js:1743
-=======
-#: ask_alyf/public/js/ask_alyf.bundle.js:1504
-msgid "Stock"
-msgstr "库存"
-
-#: ask_alyf/public/js/ask_alyf.bundle.js:1805
->>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 msgid "Stop this run"
 msgstr "停止本次运行"
 
@@ -1702,11 +1470,7 @@ msgstr "停止本次运行"
 msgid "Stopped. Send a message to pick up from here."
 msgstr "已停止。发送消息即可从此处继续。"
 
-<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:1764
-=======
-#: ask_alyf/public/js/ask_alyf.bundle.js:1826
->>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 msgid "Stopping..."
 msgstr "正在停止..."
 
@@ -1719,11 +1483,7 @@ msgstr "提交提案需要修正。"
 msgid "Submit {0} {1}"
 msgstr "提交 {0} {1}"
 
-<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:1495
-=======
-#: ask_alyf/public/js/ask_alyf.bundle.js:1531
->>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 msgid "Support"
 msgstr "支持"
 
@@ -1869,11 +1629,7 @@ msgstr "不支持的文件类型 '{0}'。支持的类型：PDF、PNG、JPG、GIF
 msgid "Unsupported frontend action '{0}'."
 msgstr "不支持的前端操作 '{0}'。"
 
-<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:2341
-=======
-#: ask_alyf/public/js/ask_alyf.bundle.js:2427
->>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 #, python-brace-format
 msgid "Unsupported frontend action: {0}"
 msgstr "不支持的前端操作：{0}"
@@ -1892,11 +1648,7 @@ msgstr "不支持的操作类型 '{0}'。"
 msgid "Unsupported or missing chart type."
 msgstr "不支持或缺少的图表类型。"
 
-<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:1407
-=======
-#: ask_alyf/public/js/ask_alyf.bundle.js:1443
->>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 msgid "Untitled conversation"
 msgstr "无标题对话"
 
@@ -1958,16 +1710,11 @@ msgstr "Vision 提供商"
 msgid "Voice input"
 msgstr "语音输入"
 
-<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:2840
-=======
-#: ask_alyf/public/js/ask_alyf.bundle.js:2925
->>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 #, python-brace-format
 msgid "Voice input language: {0}"
 msgstr "语音输入语言：{0}"
 
-<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:2024
 msgid "Waiting for response..."
 msgstr "正在等待回复..."
@@ -2013,53 +1760,6 @@ msgid "Which project tasks are overdue?"
 msgstr "哪些项目任务已逾期？"
 
 #: ask_alyf/public/js/ask_alyf.bundle.js:1508
-=======
-#: ask_alyf/public/js/ask_alyf.bundle.js:2086
-msgid "Waiting for response..."
-msgstr "正在等待回复..."
-
-#: ask_alyf/public/js/ask_alyf.bundle.js:1471
-msgid "What Sales Orders are pending delivery?"
-msgstr "哪些销售订单待发货？"
-
-#: ask_alyf/public/js/ask_alyf.bundle.js:1543
-msgid "What are the recent Error Logs?"
-msgstr "最近的错误日志有哪些？"
-
-#: ask_alyf/public/js/ask_alyf.bundle.js:1525
-msgid "What open tasks are assigned to me?"
-msgstr "分派给我的未完成任务有哪些？"
-
-#: ask_alyf/public/js/ask_alyf.bundle.js:1508
-msgid "What were the top 10 most moved items this month?"
-msgstr "本月移动次数最多的前 10 个项目是哪些？"
-
-#: ask_alyf/public/js/ask_alyf.bundle.js:1535
-msgid "What's the average resolution time for issues?"
-msgstr "问题的平均解决时间是多少？"
-
-#: ask_alyf/public/js/ask_alyf.bundle.js:1490
-msgid "What's the total outstanding receivables?"
-msgstr "未收账款总额是多少？"
-
-#: ask_alyf/public/js/ask_alyf.bundle.js:1480
-msgid "Which Purchase Orders are overdue?"
-msgstr "哪些采购订单已逾期？"
-
-#: ask_alyf/public/js/ask_alyf.bundle.js:1498
-msgid "Which employees are on leave today?"
-msgstr "今天哪些员工休假？"
-
-#: ask_alyf/public/js/ask_alyf.bundle.js:1507
-msgid "Which items are below their reorder level?"
-msgstr "哪些项目低于其再订货水平？"
-
-#: ask_alyf/public/js/ask_alyf.bundle.js:1526
-msgid "Which project tasks are overdue?"
-msgstr "哪些项目任务已逾期？"
-
-#: ask_alyf/public/js/ask_alyf.bundle.js:1544
->>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 msgid "Which users logged in today?"
 msgstr "今天哪些用户已登录？"
 
@@ -2077,11 +1777,7 @@ msgstr "您无权访问 Ask ALYF。"
 msgid "You do not have read permission on {0}."
 msgstr "您没有 {0} 的读取权限。"
 
-<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:2781
-=======
-#: ask_alyf/public/js/ask_alyf.bundle.js:2866
->>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 msgid "Your browser does not support voice input."
 msgstr "您的浏览器不支持语音输入。"
 
@@ -2158,15 +1854,11 @@ msgstr "超高"
 msgid "{0} '{1}' was not found."
 msgstr "未找到 {0} '{1}'。"
 
-<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:2249
 msgid "{0} items"
 msgstr ""
 
 #: ask_alyf/public/js/ask_alyf.bundle.js:2243
-=======
-#: ask_alyf/public/js/ask_alyf.bundle.js:2329
->>>>>>> d6d64c2 (feat: add conversation deletion functionality (#128))
 #, python-brace-format
 msgid "{0} rows"
 msgstr "{0} 行"
