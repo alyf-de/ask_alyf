@@ -477,7 +477,8 @@
 	background: transparent;
 }
 
-.ask_alyf-history-item:hover .ask_alyf-history-item-delete {
+.ask_alyf-history-item:hover .ask_alyf-history-item-delete,
+.ask_alyf-history-item:focus-within .ask_alyf-history-item-delete {
 	opacity: 1;
 	pointer-events: auto;
 }
