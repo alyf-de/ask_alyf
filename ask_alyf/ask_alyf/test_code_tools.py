@@ -762,6 +762,55 @@ class UnitTestCodeTools(UnitTestCase):
 		Client.return_value.flush.assert_called_once()
 		self.assertEqual(runner.checkpointer.flush_count, 1)
 
+	def test_run_graph_keeps_the_result_when_langsmith_flush_fails(self):
+		runner = self.make_runner(allow_code_search=False)
+		runner.settings = FakeSettings(
+			allow_code_search=False,
+			enable_tracing=1,
+			langsmith_endpoint="https://eu.api.smith.langchain.com",
+			langsmith_project="ask-alyf",
+			passwords={"langsmith_api_key": "ls-test-key"},
+		)
+		runner.agent = self.make_agent(lambda _input, config=None: {"messages": [AIMessage(content="Done.")]})
+
+		with (
+			patch("langsmith.client.Client") as Client,
+			patch("langsmith.run_helpers.tracing_context", return_value=contextlib.nullcontext()),
+			patch("ask_alyf.ask_alyf.agent.frappe.log_error") as log_error,
+		):
+			Client.return_value.flush.side_effect = RuntimeError("langsmith down")
+			result = runner._run_graph({"messages": []})
+
+		self.assertEqual(result["response"], "Done.")
+		log_error.assert_called_once_with("Ask ALYF LangSmith Tracing Error")
+		self.assertEqual(runner.checkpointer.flush_count, 1)
+
+	def test_run_graph_keeps_the_invoke_error_when_langsmith_flush_also_fails(self):
+		runner = self.make_runner(allow_code_search=False)
+		runner.settings = FakeSettings(
+			allow_code_search=False,
+			enable_tracing=1,
+			langsmith_endpoint="https://eu.api.smith.langchain.com",
+			langsmith_project="ask-alyf",
+			passwords={"langsmith_api_key": "ls-test-key"},
+		)
+
+		def boom(_input, config=None):
+			raise RuntimeError("provider down")
+
+		runner.agent = self.make_agent(boom)
+
+		with (
+			patch("langsmith.client.Client") as Client,
+			patch("langsmith.run_helpers.tracing_context", return_value=contextlib.nullcontext()),
+			patch("ask_alyf.ask_alyf.agent.frappe.log_error"),
+			self.assertRaisesRegex(RuntimeError, "provider down"),
+		):
+			Client.return_value.flush.side_effect = RuntimeError("langsmith down")
+			runner._run_graph({"messages": []})
+
+		self.assertEqual(runner.checkpointer.flush_count, 1)
+
 	def test_resume_reports_a_committed_operation_when_follow_up_fails(self):
 		runner = self.make_runner(allow_code_search=False, mode="Agent")
 		runner.runtime.backend_operation_committed = True

@@ -325,7 +325,12 @@ def _langsmith_tracing(settings, *, metadata: dict[str, Any]) -> Generator[None]
 		try:
 			yield
 		finally:
-			client.flush()
+			try:
+				client.flush()
+			except Exception:
+				# Tracing must not replace a finished invoke, or resume will
+				# treat a completed run as a follow-up failure.
+				frappe.log_error("Ask ALYF LangSmith Tracing Error")
 
 
 # --- Deep Agents coordinator --------------------------------------------------
