@@ -115,10 +115,13 @@ Common settings include:
 - _Allow Field Agent_
 - _Excluded DocTypes_
 - separate vision model settings, if document and image extraction should use a different model
+- _Enable Tracing_, _LangSmith API Key_, _LangSmith Endpoint_, and _LangSmith Project_
 
 _System Prompt_ is added on top of the built-in instructions, not instead of them. Ask ALYF already tells the assistant how to behave, which tools to use, and how to respect permissions. Put only company-specific context here, such as your company name, the language to answer in, or conventions the assistant cannot read from the data. For step-by-step procedures, write a skill instead of adding it to the system prompt, so the instructions load only when they are relevant and only for the roles that need them.
 
 Ask ALYF chat requires the [OpenAI Responses API](https://developers.openai.com/api/reference/resources/responses). OpenAI-compatible _Base URLs_ must implement `POST /v1/responses`. Providers that support only Chat Completions are not supported for chat.
+
+When _Enable Tracing_ is on, Ask ALYF sends traces of agent runs to [LangSmith](https://smith.langchain.com). Traces include prompts, tool calls, and answers. They go to the _LangSmith Endpoint_ and _LangSmith Project_ you set. Leave tracing off if this data must stay on your site.
 
 ## Conversation History
 
@@ -284,7 +287,7 @@ This app can use GitHub Actions for CI. The configured workflows are:
 
 Ask ALYF is self-hosted. The published source code does not send usage data, analytics, or chat contents to the maintainers of this project.
 
-The app calls the LLM and related providers you configure. Text, context, and uploaded documents may be processed by those providers under their privacy policies and terms. See [PRIVACY.md](PRIVACY.md).
+The app calls the LLM and related providers you configure. Text, context, and uploaded documents may be processed by those providers under their privacy policies and terms. If you enable LangSmith tracing, traces of agent runs also go to LangSmith. See [PRIVACY.md](PRIVACY.md).
 
 ## License
 

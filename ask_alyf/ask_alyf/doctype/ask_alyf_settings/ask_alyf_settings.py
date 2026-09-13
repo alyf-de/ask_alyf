@@ -75,8 +75,12 @@ class AskALYFSettings(Document):
 		allow_file_upload: DF.Check
 		api_key: DF.Password | None
 		base_url: DF.Data | None
+		enable_tracing: DF.Check
 		enabled: DF.Check
 		excluded_doctypes: DF.TableMultiSelect[AskALYFExcludedDocType]
+		langsmith_api_key: DF.Password | None
+		langsmith_endpoint: DF.Data | None
+		langsmith_project: DF.Data | None
 		llm_provider: DF.Literal["OpenAI", "OpenAI Compatible"]
 		model: DF.Autocomplete | None
 		reasoning_effort: DF.Literal["", "low", "medium", "high", "xhigh", "max"]

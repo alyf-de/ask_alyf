@@ -31,7 +31,12 @@
   "vision_model",
   "access_tab",
   "section_break_kmgx",
-  "excluded_doctypes"
+  "excluded_doctypes",
+  "tracing_tab",
+  "enable_tracing",
+  "langsmith_api_key",
+  "langsmith_endpoint",
+  "langsmith_project"
  ],
  "fields": [
   {
@@ -179,13 +184,43 @@
    "fieldtype": "Select",
    "label": "Reasoning Effort",
    "options": "\nlow\nmedium\nhigh\nxhigh\nmax"
+  },
+  {
+   "fieldname": "tracing_tab",
+   "fieldtype": "Tab Break",
+   "label": "Tracing"
+  },
+  {
+   "fieldname": "langsmith_api_key",
+   "fieldtype": "Password",
+   "label": "LangSmith API Key",
+   "mandatory_depends_on": "enable_tracing"
+  },
+  {
+   "default": "0",
+   "fieldname": "enable_tracing",
+   "fieldtype": "Check",
+   "label": "Enable Tracing"
+  },
+  {
+   "fieldname": "langsmith_endpoint",
+   "fieldtype": "Data",
+   "label": "LangSmith Endpoint",
+   "mandatory_depends_on": "enable_tracing",
+   "options": "URL"
+  },
+  {
+   "fieldname": "langsmith_project",
+   "fieldtype": "Data",
+   "label": "LangSmith Project",
+   "mandatory_depends_on": "enable_tracing"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2026-09-01 15:45:13.725210",
+ "modified": "2026-09-13 22:56:48.788226",
  "modified_by": "Administrator",
  "module": "Ask ALYF",
  "name": "Ask ALYF Settings",
