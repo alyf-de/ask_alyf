@@ -1,5 +1,6 @@
+import contextlib
 import threading
-from collections.abc import Callable
+from collections.abc import Callable, Generator
 from typing import Any
 
 import frappe
@@ -292,6 +293,41 @@ def build_chat_model(settings, *, temperature: float = 0.2) -> ChatOpenAI:
 	)
 
 
+@contextlib.contextmanager
+def _langsmith_tracing(settings, *, metadata: dict[str, Any]) -> Generator[None]:
+	"""Publish this invoke to LangSmith when tracing is enabled in settings.
+
+	Tracing is scoped to the invoke, not the process: workers are shared across
+	sites, so LANGSMITH_* must not be set as environment variables.
+	"""
+	if not settings.enable_tracing:
+		yield
+		return
+
+	api_key = (settings.get_password("langsmith_api_key", raise_exception=False) or "").strip()
+	if not api_key:
+		yield
+		return
+
+	from langsmith.client import Client
+	from langsmith.run_helpers import tracing_context
+
+	client = Client(
+		api_key=api_key,
+		api_url=(settings.langsmith_endpoint or "").strip() or None,
+	)
+	with tracing_context(
+		enabled=True,
+		client=client,
+		project_name=(settings.langsmith_project or "").strip() or None,
+		metadata=metadata,
+	):
+		try:
+			yield
+		finally:
+			client.flush()
+
+
 # --- Deep Agents coordinator --------------------------------------------------
 
 
@@ -564,17 +600,27 @@ Mode awareness and behavior:
 		the stored pause left exactly as it was, so it owns its own handling.
 		"""
 		try:
-			return self._finish(self.agent.invoke(payload, config=self.thread_config))
+			return self._finish(self._invoke(payload))
 		except Exception:
 			self.checkpointer.flush()
 			raise
+
+	def _invoke(self, payload: Any) -> Any:
+		with _langsmith_tracing(
+			self.settings,
+			metadata={
+				"conversation": self.runtime.conversation_name,
+				"mode": self.runtime.mode,
+			},
+		):
+			return self.agent.invoke(payload, config=self.thread_config)
 
 	def resume(self, call_id: str, status: str, **decision: Any) -> dict[str, Any]:
 		"""Continue a run that paused on a proposal, with the user's decision."""
 		command = Command(resume={"call_id": call_id, "status": status, **decision})
 		frappe.db.savepoint(OPERATION_RESUME_SAVEPOINT)
 		try:
-			return self._finish(self.agent.invoke(command, config=self.thread_config))
+			return self._finish(self._invoke(command))
 		except Exception:
 			frappe.db.rollback(save_point=OPERATION_RESUME_SAVEPOINT)
 			if not self.runtime.backend_operation_committed:
