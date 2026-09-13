@@ -373,7 +373,8 @@ class IntegrationTestFrappeCheckpointSaver(FrappeTestCase):
 		runner = ask_alyfAgentRunner.__new__(ask_alyfAgentRunner)
 		runner.agent = builder.compile(checkpointer=self.saver)
 		runner.checkpointer = self.saver
-		runner.runtime = SimpleNamespace(conversation_name=THREAD)
+		runner.runtime = SimpleNamespace(conversation_name=THREAD, mode="Ask")
+		runner.settings = SimpleNamespace(enable_tracing=0, get_password=lambda *_args, **_kwargs: "")
 
 		with self.assertRaises(JobTimeoutException):
 			runner._run_graph({"steps": []})
