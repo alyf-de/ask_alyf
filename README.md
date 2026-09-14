@@ -239,29 +239,6 @@ bench get-app $URL_OF_THIS_REPO --branch develop
 bench install-app ask_alyf
 ```
 
-## Cursor Cloud Agents
-
-This repository includes a Cursor cloud-agent setup in `.cursor/` for bootstrapping a self-contained Frappe bench on the remote machine.
-
-To use it:
-
-1. Open the `ask_alyf` repository itself in Cursor, not your local bench root.
-2. Rebuild the cloud-agent environment so Cursor picks up `.cursor/environment.json`.
-3. Let the agent finish the initial install. It creates a bench in `$HOME/frappe-bench`, starts MariaDB and Redis, creates a default site, and soft-links the checked-out repo into the bench.
-
-Useful variables in `.cursor/install.sh`:
-
-- `REPO_NAME` defaults to `ask_alyf` and is used for the bench app path and default site name.
-- `SITE_NAME` overrides the default site, which otherwise becomes `<repo-name>.localhost`.
-- `BENCH_ROOT` overrides the bench location.
-- `FRAPPE_BRANCH` lets you pin a different Frappe branch.
-
-Troubleshooting:
-
-- If you change `.cursor/Dockerfile`, `.cursor/install.sh`, or dependency versions, rebuild the environment so Cursor refreshes the cached setup.
-- If the standalone `start` hook is skipped by Cursor, the `bench` terminal still runs `.cursor/start.sh` before `bench start`.
-- If setup fails during `bench init` or `bench build`, check the environment build logs first, then the `bench` terminal output.
-
 ## Contributing
 
 This app uses `pre-commit` for code formatting and linting. Please [install pre-commit](https://pre-commit.com/#installation) and enable it for this repository:
