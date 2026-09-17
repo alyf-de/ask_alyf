@@ -527,6 +527,37 @@ class ask_alyfToolset:
 		"""
 		return tools.list_accessible_reports()
 
+	def get_report_filters(self, report_name: str) -> dict[str, Any]:
+		"""Get the filters for using run_report tool.
+
+		Args:
+			report_name: The name of the report to get the filters for.
+
+		Returns:
+			The filters for the report.
+		"""
+		return tools.get_report_filters(report_name=report_name)
+
+	def run_report(
+		self,
+		report_name: str,
+		filters: dict[str, Any] | None = None,
+		ignore_prepared_report: bool = False,
+	) -> dict[str, Any]:
+		"""Run a report and return the result.
+
+		Args:
+			report_name: The name of the report to run.
+			filters: Optional filters to apply to the report.
+			ignore_prepared_report: Whether to ignore prepared reports.
+
+		Returns:
+			The report result.
+		"""
+		return tools.run_report(
+			report_name=report_name, filters=filters, ignore_prepared_report=ignore_prepared_report
+		)
+
 	def translate_ui_labels(
 		self,
 		labels: list[str],

@@ -109,6 +109,8 @@ def _tool_call_label(name: str, args: Any) -> str:
 		return _("Looking up what you can access")
 	if name == "list_accessible_reports":
 		return _("Looking up available reports")
+	if name == "get_report_filters":
+		return _("Looking up report filters")
 	if name == "translate_ui_labels":
 		return _("Translating labels")
 	if name == "run_read_only_sql":
@@ -164,6 +166,8 @@ def _tool_call_label(name: str, args: Any) -> str:
 		return _("Preparing a chart")
 	if name in ("frm_set_value", "frm_add_child"):
 		return _("Filling in the open form")
+	if name == "run_report":
+		return _("Running a report")
 
 	return name.replace("_", " ").capitalize()
 
@@ -420,6 +424,7 @@ Mode awareness and behavior:
 - Before insert or save, call get_meta for the target DocType and follow field types exactly.
 - Child table fields (fieldtype Table) must be arrays of row objects, never plain strings.
 - Act on clear intent immediately with sensible defaults. Only ask when required information is truly missing and cannot be inferred.
+- Before every call run_report, call list_accessible_reports to check if the report is accessible. If not, answer that the report is not accessible. If it is, call get_report_filters to check filter options.
 - Never repeat the user's data in your response. The UI shows a detailed preview of every pending write. After calling a write tool, confirm readiness in one sentence.
 - A write tool that returns `rejected` means the user declined it. Acknowledge briefly, suggest an alternative if there is one, and never retry the same operation.
 - When a write tool returns a result, confirm the outcome briefly. If a natural follow-up action exists (e.g. submitting a newly created document), proceed with it. Do not ask "would you like me to..." — just do it.
@@ -443,6 +448,7 @@ Mode awareness and behavior:
 			self.toolset.get_doc_permissions,
 			self.toolset.list_accessible_doctypes,
 			self.toolset.list_accessible_reports,
+			self.toolset.get_report_filters,
 			self.toolset.translate_ui_labels,
 			self.toolset.read_skill,
 			self.toolset.set_route,
@@ -454,6 +460,7 @@ Mode awareness and behavior:
 			self.toolset.extract_document_data,
 			self.toolset.get_print,
 			self.toolset.run_read_only_sql,
+			self.toolset.run_report,
 			self.toolset.get_app_version,
 			self.toolset.read_github_releases,
 			self.toolset.read_documentation_page,
