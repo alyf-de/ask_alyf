@@ -627,13 +627,23 @@ def _parse_js_value(raw: str) -> Any:
 
 
 def _read_quoted(raw: str) -> str:
-	import codecs
-
 	end = _skip_string(raw, 0)
 	inner = raw[1 : end - 1]
 	if "\\" not in inner:
 		return inner
-	return codecs.decode(inner, "unicode_escape")
+	out: list[str] = []
+	i = 0
+	escapes = {"n": "\n", "r": "\r", "t": "\t", "\\": "\\", "'": "'", '"': '"'}
+	while i < len(inner):
+		if inner[i] != "\\":
+			out.append(inner[i])
+			i += 1
+			continue
+		i += 1
+		ch = inner[i] if i < len(inner) else "\\"
+		out.append(escapes.get(ch, ch))
+		i += 1
+	return "".join(out)
 
 
 def _skip_string(s: str, i: int) -> int:
