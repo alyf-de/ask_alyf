@@ -527,7 +527,6 @@ class ask_alyfToolset:
 		"""
 		return tools.list_accessible_reports()
 
-
 	def run_report(
 		self,
 		report_name: str,
