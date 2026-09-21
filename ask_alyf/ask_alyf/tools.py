@@ -716,7 +716,7 @@ def run_report(
 		# can be frappe.throw, but marks every failed tool call as an error in ui
 		# so the agent gets the error as return with allowed filters and can handle it
 		return {
-			"error": _("{0}\nReport: {1}\nApplied filters: {2}\nAllowed filter fields: {3}").format(
+			"error": "{0}\nReport: {1}\nApplied filters: {2}\nAllowed filter fields: {3}".format(
 				str(exc),
 				report_name,
 				applied,
