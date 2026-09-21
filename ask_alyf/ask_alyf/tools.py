@@ -26,7 +26,17 @@ FORBIDDEN_SQL_RE = re.compile(
 )
 EXTEND_RE = re.compile(r"(?:\$\.extend|Object\.assign)\(\s*\{\s*\}\s*,\s*([A-Za-z0-9_.]+)")
 IDENT_RE = re.compile(r"[A-Za-z_][A-Za-z0-9_]*")
-JS_FILTER_KEYS = {"fieldname", "label", "fieldtype", "options", "default", "reqd", "mandatory", "depends_on", "mandatory_depends_on"}
+JS_FILTER_KEYS = {
+	"fieldname",
+	"label",
+	"fieldtype",
+	"options",
+	"default",
+	"reqd",
+	"mandatory",
+	"depends_on",
+	"mandatory_depends_on",
+}
 FrappeSelectField = str | dict[str, str]
 ENGLISH_LANGUAGE_CODES = {"en", "en-us", "en-gb"}
 OPERATION_KIND_BACKEND = "backend_action"
@@ -661,6 +671,7 @@ def run_report(
 				schema,
 			)
 		}
+
 
 def get_file_id(
 	reference_doctype: str,
