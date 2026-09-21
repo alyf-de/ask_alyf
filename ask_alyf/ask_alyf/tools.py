@@ -500,19 +500,19 @@ def _filters_from_js(script: str) -> list[dict[str, Any]]:
 
 
 def _find_js_for_ident(ident: str) -> str:
-    """
+	"""
 	No full scan of all js files, only the first two parts of the ident are used.
 	For erpnext the first two parts of the ident are enough to find the js file.
 	For other apps a change to full ident lookup or caching may be needed.
 	"""
-    parts = ident.split(".")
-    if len(parts) < 2 or parts[0] not in frappe.get_installed_apps():
-        return ""
-    path = Path(frappe.get_app_path(parts[0])) / "public" / "js" / f"{parts[-1]}.js"
-    if not path.is_file():
-        return ""
-    text = path.read_text(encoding="utf-8", errors="ignore")
-    return text if f"{ident} =" in text else ""
+	parts = ident.split(".")
+	if len(parts) < 2 or parts[0] not in frappe.get_installed_apps():
+		return ""
+	path = Path(frappe.get_app_path(parts[0])) / "public" / "js" / f"{parts[-1]}.js"
+	if not path.is_file():
+		return ""
+	text = path.read_text(encoding="utf-8", errors="ignore")
+	return text if f"{ident} =" in text else ""
 
 
 def _extract_filter_objects(script: str) -> list[dict[str, Any]]:
@@ -627,12 +627,13 @@ def _parse_js_value(raw: str) -> Any:
 
 
 def _read_quoted(raw: str) -> str:
-    import codecs
-    end = _skip_string(raw, 0)
-    inner = raw[1 : end - 1]
-    if "\\" not in inner:
-        return inner
-    return codecs.decode(inner, "unicode_escape")
+	import codecs
+
+	end = _skip_string(raw, 0)
+	inner = raw[1 : end - 1]
+	if "\\" not in inner:
+		return inner
+	return codecs.decode(inner, "unicode_escape")
 
 
 def _skip_string(s: str, i: int) -> int:
