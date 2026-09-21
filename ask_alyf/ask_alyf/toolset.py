@@ -527,16 +527,6 @@ class ask_alyfToolset:
 		"""
 		return tools.list_accessible_reports()
 
-	def get_report_filters(self, report_name: str) -> dict[str, Any]:
-		"""Get the filters for using run_report tool.
-
-		Args:
-			report_name: The name of the report to get the filters for.
-
-		Returns:
-			The filters for the report.
-		"""
-		return tools.get_report_filters(report_name=report_name)
 
 	def run_report(
 		self,
