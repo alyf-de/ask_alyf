@@ -449,15 +449,22 @@ def list_accessible_reports() -> list[dict[str, Any]]:
 def get_report_filters(report_name: str) -> dict[str, Any]:
 	from frappe.desk.query_report import get_report_doc, get_script
 
-	report = get_report_doc(report_name)
+	report = get_report_doc(report_name)  # checks permissions
 	script = get_script(report_name)["script"] or ""
-	rows = _filters_from_js(script) or _filters_from_doc(report.filters)
+	js_rows = _filters_from_js(script)
+	rows = list(
+		{
+			**{r["fieldname"]: r for r in _filters_from_doc(report.filters)},
+			**{r["fieldname"]: r for r in js_rows},
+		}.values()
+	)
 	return {
 		"report_name": report.name,
 		"ref_doctype": report.ref_doctype,
 		"report_type": report.report_type,
 		"has_dynamic_dimensions": "add_dimensions" in script,
 		"filters": rows,
+		"js_filters": js_rows,
 	}
 
 
@@ -673,6 +680,13 @@ def _slim_filter(
 		row["options"] = options
 	if default not in (None, ""):
 		row["default"] = default
+	elif fieldtype == "Link" and options == "Company":
+		row["default"] = frappe.defaults.get_user_default("Company")
+	elif fieldtype == "Link" and options == "Fiscal Year":
+		from erpnext.accounts.utils import get_fiscal_year
+
+		if fy := get_fiscal_year(frappe.utils.today(), raise_on_missing=False):
+			row["default"] = fy[0]
 	if depends_on:
 		row["depends_on"] = depends_on
 	if mandatory_depends_on:
@@ -687,17 +701,17 @@ def run_report(
 ) -> dict[str, Any]:
 	from frappe.desk.query_report import run
 
-	meta = get_report_filters(report_name)
-
+	meta = None
 	try:
+		meta = get_report_filters(report_name)
 		return run(
 			report_name=report_name,
 			filters=filters,
 			ignore_prepared_report=ignore_prepared_report,
-			js_filters=meta["filters"],
+			js_filters=meta["js_filters"],
 		)
 	except Exception as exc:
-		schema = json.dumps(meta["filters"], default=str) if meta["filters"] else "[]"
+		schema = json.dumps((meta or {}).get("filters") or [], default=str)
 		applied = json.dumps(filters or {}, default=str)
 		# can be frappe.throw, but marks every failed tool call as an error in ui
 		# so the agent gets the error as return with allowed filters and can handle it
