@@ -23,7 +23,7 @@ FORBIDDEN_SQL_RE = re.compile(
 )
 EXTEND_RE = re.compile(r"(?:\$\.extend|Object\.assign)\(\s*\{\s*\}\s*,\s*([A-Za-z0-9_.]+)")
 IDENT_RE = re.compile(r"[A-Za-z_][A-Za-z0-9_]*")
-JS_FILTER_KEYS = {"fieldname", "label", "fieldtype", "options", "default", "reqd", "mandatory", "depends_on"}
+JS_FILTER_KEYS = {"fieldname", "label", "fieldtype", "options", "default", "reqd", "mandatory", "depends_on", "mandatory_depends_on"}
 FrappeSelectField = str | dict[str, str]
 ENGLISH_LANGUAGE_CODES = {"en", "en-us", "en-gb"}
 OPERATION_KIND_BACKEND = "backend_action"
@@ -551,6 +551,7 @@ def _filter_from_js_object(obj: str) -> dict[str, Any] | None:
 		default=props.get("default"),
 		reqd=props.get("reqd") or props.get("mandatory"),
 		depends_on=props.get("depends_on"),
+		mandatory_depends_on=props.get("mandatory_depends_on"),
 	)
 
 
@@ -648,6 +649,7 @@ def _slim_filter(
 	default=None,
 	reqd=None,
 	depends_on=None,
+	mandatory_depends_on=None,
 ) -> dict[str, Any] | None:
 	if not fieldname:
 		return None
@@ -663,6 +665,8 @@ def _slim_filter(
 		row["default"] = default
 	if depends_on:
 		row["depends_on"] = depends_on
+	if mandatory_depends_on:
+		row["mandatory_depends_on"] = mandatory_depends_on
 	return row
 
 
@@ -671,14 +675,30 @@ def run_report(
 	filters: dict[str, Any] | None = None,
 	ignore_prepared_report: bool = False,
 ) -> dict[str, Any]:
-	from frappe.desk.query_report import run as run_query_report
+	from frappe.desk.query_report import run
 
-	return run_query_report(
-		report_name=report_name,
-		filters=filters,
-		ignore_prepared_report=ignore_prepared_report,
-	)
+	meta = get_report_filters(report_name)
 
+	try:
+		return run(
+			report_name=report_name,
+			filters=filters,
+			ignore_prepared_report=ignore_prepared_report,
+			js_filters=meta["filters"],
+		)
+	except Exception as exc:
+		schema = json.dumps(meta["filters"], default=str) if meta["filters"] else "[]"
+		applied = json.dumps(filters or {}, default=str)
+		# can be frappe.throw, but marks every failed tool call as an error in ui
+		# so the agent gets the error as return with allowed filters and can handle it
+		return {
+			"error": _("{0}\nReport: {1}\nApplied filters: {2}\nAllowed filter fields: {3}").format(
+				str(exc),
+				report_name,
+				applied,
+				schema,
+			)
+		}
 
 def get_file_id(
 	reference_doctype: str,
