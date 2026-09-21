@@ -154,6 +154,7 @@ Schema, permissions, and UI:
 - `get_doc_permissions` returns the evaluated permissions for a document
 - `list_accessible_doctypes` lists DocTypes the current user can read or write
 - `list_accessible_reports` lists reports the current user can access
+- `run_report` runs a permitted **Report** with optional filters
 - `translate_ui_labels` translates UI labels so answers match the user's language
 - `read_skill` reads a stored **Ask ALYF Skill** the current user's roles allow
 
