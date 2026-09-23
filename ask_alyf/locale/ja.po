@@ -422,6 +422,10 @@ msgstr "Ask ALYF 設定でビジョンモデルを構成してください。"
 msgid "Configure an API key in Ask ALYF Settings before sending messages."
 msgstr "メッセージを送信する前に、Ask ALYF 設定で API キーを構成してください。"
 
+#: ask_alyf/public/js/ask_alyf.bundle.js:694
+#: ask_alyf/public/js/ask_alyf.bundle.js:715
+msgid "Column"
+msgstr "列"
 #: ask_alyf/public/js/ask_alyf.bundle.js:728
 msgid "Confirm all"
 msgstr "すべて確認"
@@ -945,6 +949,9 @@ msgstr "新しい会話"
 msgid "New chat"
 msgstr "新しいチャット"
 
+#: ask_alyf/public/js/ask_alyf.bundle.js:660
+msgid "Next page"
+msgstr "次のページ"
 #: ask_alyf/ask_alyf/toolset.py:1127
 msgid "New document action needs correction."
 msgstr "新規ドキュメントアクションを修正する必要があります。"
@@ -1196,6 +1203,9 @@ msgstr "更新提案を準備しました。"
 msgid "Preparing a chart"
 msgstr "チャートを準備しています"
 
+#: ask_alyf/public/js/ask_alyf.bundle.js:659
+msgid "Previous page"
+msgstr "前のページ"
 #: ask_alyf/public/js/ask_alyf.bundle.js:1522
 msgid "Projects"
 msgstr "プロジェクト"
@@ -1463,6 +1473,18 @@ msgstr "この実行を停止"
 msgid "Stopped. Send a message to pick up from here."
 msgstr "停止しました。ここから再開するにはメッセージを送信してください。"
 
+#: ask_alyf/public/js/ask_alyf.bundle.js:691
+#, python-brace-format
+msgid "Sort by {0}"
+msgstr "{0}で並べ替え"
+#: ask_alyf/public/js/ask_alyf.bundle.js:686
+#, python-brace-format
+msgid "Sorted ascending by {0}"
+msgstr "{0}の昇順"
+#: ask_alyf/public/js/ask_alyf.bundle.js:689
+#, python-brace-format
+msgid "Sorted descending by {0}"
+msgstr "{0}の降順"
 #: ask_alyf/public/js/ask_alyf.bundle.js:1826
 msgid "Stopping..."
 msgstr "停止中..."
@@ -1566,6 +1588,9 @@ msgstr "確認すべき保留中の操作はありません。"
 msgid "Thinking..."
 msgstr "考えています..."
 
+#: ask_alyf/public/js/ask_alyf.bundle.js:654
+msgid "Table pagination"
+msgstr "表のページ送り"
 #: ask_alyf/public/js/field_agent.js:203
 msgid "This is taking a moment..."
 msgstr "少し時間がかかっています..."

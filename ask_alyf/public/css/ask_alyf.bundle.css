@@ -629,6 +629,7 @@
 }
 
 .ask_alyf-message-body table {
+	width: 100%;
 	margin: 0.5rem 0;
 	border-radius: var(--radius) var(--radius) 0 0;
 	overflow: hidden;
@@ -682,6 +683,15 @@
 	gap: 0.35rem;
 	white-space: nowrap;
 }
+.ask_alyf-sort-btn {
+	border: none;
+	background: transparent;
+	padding: 0;
+	font: inherit;
+	color: inherit;
+	line-height: 0;
+}
+
 .ask_alyf-sort-icon {
 	cursor: pointer;
 	margin-left: auto;

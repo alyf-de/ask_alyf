@@ -650,10 +650,15 @@ import "./field_agent";
 					if (body && body.rows.length > PAGE) {
 						const nav = document.createElement("div");
 						nav.className = "ask_alyf-table-pager";
+						nav.setAttribute("role", "navigation");
+						nav.setAttribute("aria-label", __("Table pagination"));
 						const prev = document.createElement("button");
 						const next = document.createElement("button");
 						const label = document.createElement("span");
 						prev.type = next.type = "button";
+						prev.setAttribute("aria-label", __("Previous page"));
+						next.setAttribute("aria-label", __("Next page"));
+						label.setAttribute("aria-live", "polite");
 						prev.innerHTML = getIcon("chevron-left", "xs", "", true);
 						next.innerHTML = getIcon("chevron-right", "xs", "", true);
 						const show = (page) => {
@@ -675,39 +680,61 @@ import "./field_agent";
 					}
 					const header = table.tHead?.rows[0];
 					if (!header) continue;
+					const sortIcon = (name) => getIcon(name, "xs", "", true);
+					const sortButtonLabel = (columnLabel, direction) => {
+						if (direction === "asc") {
+							return __("Sorted ascending by {0}", [columnLabel]);
+						}
+						if (direction === "desc") {
+							return __("Sorted descending by {0}", [columnLabel]);
+						}
+						return __("Sort by {0}", [columnLabel]);
+					};
+					const setHeaderSortUi = (cell, direction) => {
+						const columnLabel = cell.dataset.columnLabel || __("Column");
+						cell.setAttribute(
+							"aria-sort",
+							direction === "asc" ? "ascending" : direction === "desc" ? "descending" : "none",
+						);
+						const btn = cell.querySelector(".ask_alyf-sort-btn");
+						if (!btn) {
+							return;
+						}
+						btn.className = direction
+							? "ask_alyf-sort-btn ask_alyf-sort-icon"
+							: "ask_alyf-sort-btn ask_alyf-sort-icon ask_alyf-sort-icon-default";
+						btn.innerHTML = sortIcon(
+							direction === "asc"
+								? "chevron-up"
+								: direction === "desc"
+								  ? "chevron-down"
+								  : "chevrons-up-down",
+						);
+						btn.setAttribute("aria-label", sortButtonLabel(columnLabel, direction));
+					};
 					for (const cell of header.cells) {
+						const columnLabel = (cell.textContent || "").trim() || __("Column");
+						cell.dataset.columnLabel = columnLabel;
 						cell.dataset.sort = "desc";
-						cell.innerHTML = `<span class="ask_alyf-th">${
-							cell.innerHTML
-						}<span class="ask_alyf-sort-icon ask_alyf-sort-icon-default">${getIcon(
-							"chevrons-up-down",
-							"xs",
-							"",
-							true,
-						)}</span></span>`;
+						cell.setAttribute("aria-sort", "none");
+						const labelHtml = cell.innerHTML;
+						cell.innerHTML = `<span class="ask_alyf-th">${labelHtml}<button type="button" class="ask_alyf-sort-btn ask_alyf-sort-icon ask_alyf-sort-icon-default" aria-label="${this.escapeHtml(
+							sortButtonLabel(columnLabel, null),
+						)}">${sortIcon("chevrons-up-down")}</button></span>`;
 					}
 					table.tHead?.addEventListener("click", (event) => {
-						const iconClick = event.target.closest(".ask_alyf-sort-icon");
-						if (!iconClick) return;
-						const th = iconClick.closest("th");
+						const sortBtn = event.target.closest(".ask_alyf-sort-btn");
+						if (!sortBtn) return;
+						const th = sortBtn.closest("th");
 						const index = th.cellIndex;
 						const desc = th.dataset.sort === "asc";
 						const direction = desc ? "desc" : "asc";
 						for (const cell of table.tHead.rows[0].cells) {
 							delete cell.dataset.sort;
-							const icon = cell.querySelector(".ask_alyf-sort-icon");
-							icon.className = "ask_alyf-sort-icon ask_alyf-sort-icon-default";
-							icon.innerHTML = getIcon("chevrons-up-down", "xs", "", true);
+							setHeaderSortUi(cell, null);
 						}
 						th.dataset.sort = direction;
-						const icon = th.querySelector(".ask_alyf-sort-icon");
-						icon.className = "ask_alyf-sort-icon";
-						icon.innerHTML = getIcon(
-							direction === "asc" ? "chevron-up" : "chevron-down",
-							"xs",
-							"",
-							true,
-						);
+						setHeaderSortUi(th, direction);
 						const body = table.tBodies[0];
 						[...body.rows]
 							.sort((a, b) => {
