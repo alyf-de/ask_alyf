@@ -644,6 +644,84 @@ import "./field_agent";
 			if (entry.html !== html) {
 				entry.body.innerHTML = html;
 				entry.html = html;
+				for (const table of entry.body.querySelectorAll("table")) {
+					const PAGE = 10;
+					const body = table.tBodies[0];
+					if (body && body.rows.length > PAGE) {
+						const nav = document.createElement("div");
+						nav.className = "ask_alyf-table-pager";
+						const prev = document.createElement("button");
+						const next = document.createElement("button");
+						const label = document.createElement("span");
+						prev.type = next.type = "button";
+						prev.innerHTML = getIcon("chevron-left", "xs", "", true);
+						next.innerHTML = getIcon("chevron-right", "xs", "", true);
+						const show = (page) => {
+							const rows = [...body.rows];
+							const pages = Math.ceil(rows.length / PAGE);
+							page = Math.min(Math.max(page, 0), pages - 1);
+							rows.forEach((row, i) => {
+								row.hidden = i < page * PAGE || i >= (page + 1) * PAGE;
+							});
+							table.dataset.page = String(page);
+							label.textContent = `${page + 1}/${pages}`;
+						};
+						prev.addEventListener("click", () => show(Number(table.dataset.page) - 1));
+						next.addEventListener("click", () => show(Number(table.dataset.page) + 1));
+						nav.append(prev, label, next);
+						table.after(nav);
+						table.showPage = show;
+						show(0);
+					}
+					const header = table.tHead?.rows[0];
+					if (!header) continue;
+					for (const cell of header.cells) {
+						cell.dataset.sort = "desc";
+						cell.innerHTML = `<span class="ask_alyf-th">${
+							cell.innerHTML
+						}<span class="ask_alyf-sort-icon ask_alyf-sort-icon-default">${getIcon(
+							"chevrons-up-down",
+							"xs",
+							"",
+							true,
+						)}</span></span>`;
+					}
+					table.tHead?.addEventListener("click", (event) => {
+						const iconClick = event.target.closest(".ask_alyf-sort-icon");
+						if (!iconClick) return;
+						const th = iconClick.closest("th");
+						const index = th.cellIndex;
+						const desc = th.dataset.sort === "asc";
+						const direction = desc ? "desc" : "asc";
+						for (const cell of table.tHead.rows[0].cells) {
+							delete cell.dataset.sort;
+							const icon = cell.querySelector(".ask_alyf-sort-icon");
+							icon.className = "ask_alyf-sort-icon ask_alyf-sort-icon-default";
+							icon.innerHTML = getIcon("chevrons-up-down", "xs", "", true);
+						}
+						th.dataset.sort = direction;
+						const icon = th.querySelector(".ask_alyf-sort-icon");
+						icon.className = "ask_alyf-sort-icon";
+						icon.innerHTML = getIcon(
+							direction === "asc" ? "chevron-up" : "chevron-down",
+							"xs",
+							"",
+							true,
+						);
+						const body = table.tBodies[0];
+						[...body.rows]
+							.sort((a, b) => {
+								const cmp = (a.cells[index]?.innerText || "").localeCompare(
+									b.cells[index]?.innerText || "",
+									undefined,
+									{ numeric: true },
+								);
+								return desc ? -cmp : cmp;
+							})
+							.forEach((row) => body.appendChild(row));
+						table.showPage?.(Number(table.dataset.page) || 0);
+					});
+				}
 			}
 
 			this.syncMessageToolCalls(entry, message);
