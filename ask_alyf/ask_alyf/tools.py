@@ -529,30 +529,11 @@ def _extract_filter_objects(script: str) -> list[dict[str, Any]]:
 		if end is None:
 			break
 		obj = script[i : end + 1]
-		if _has_own_fieldname(obj):
-			row = _filter_from_js_object(obj)
-			if row:
-				rows.append(row)
+		row = _filter_from_js_object(obj)
+		if row:
+			rows.append(row)
 		i += 1
 	return rows
-
-
-def _has_own_fieldname(obj: str) -> bool:
-	inner = obj[1:-1]
-	depth = 0
-	i = 0
-	while i < len(inner):
-		if inner[i] in "'\"":
-			i = _skip_string(inner, i)
-			continue
-		if inner[i] in "{[":
-			depth += 1
-		elif inner[i] in "}]":
-			depth -= 1
-		elif depth == 0 and inner.startswith("fieldname", i) and re.match(r"fieldname\s*:", inner[i:]):
-			return True
-		i += 1
-	return False
 
 
 def _filter_from_js_object(obj: str) -> dict[str, Any] | None:
