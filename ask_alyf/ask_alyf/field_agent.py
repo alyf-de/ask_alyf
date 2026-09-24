@@ -146,7 +146,7 @@ def run_field_agent(
 	try:
 		result = agent.invoke({"messages": [{"role": "user", "content": prompt}]})
 	except Exception:
-		frappe.log_error("Ask ALYF Field Agent Error")
+		frappe.log_error("Ask ALYF Field Agent Error", frappe.get_traceback())
 		raise
 
 	result_messages = result.get("messages") if isinstance(result, dict) else None
