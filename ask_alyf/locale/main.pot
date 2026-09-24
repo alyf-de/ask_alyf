@@ -418,7 +418,15 @@ msgstr ""
 msgid "Configure an API key in Ask ALYF Settings before sending messages."
 msgstr ""
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:719
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:694
+#: ask_alyf/public/js/ask_alyf.bundle.js:715
+msgid "Column"
+msgstr ""
+#: ask_alyf/public/js/ask_alyf.bundle.js:728
+>>>>>>> 379bb83 (feat: implement table pagination and sorting functionality (#145))
 msgid "Confirm all"
 msgstr ""
 
@@ -913,7 +921,14 @@ msgstr ""
 msgid "New chat"
 msgstr ""
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/toolset.py:1132
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:660
+msgid "Next page"
+msgstr ""
+#: ask_alyf/ask_alyf/toolset.py:1127
+>>>>>>> 379bb83 (feat: implement table pagination and sorting functionality (#145))
 msgid "New document action needs correction."
 msgstr ""
 
@@ -1152,7 +1167,14 @@ msgstr ""
 msgid "Preparing a chart"
 msgstr ""
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:1506
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:659
+msgid "Previous page"
+msgstr ""
+#: ask_alyf/public/js/ask_alyf.bundle.js:1522
+>>>>>>> 379bb83 (feat: implement table pagination and sorting functionality (#145))
 msgid "Projects"
 msgstr ""
 
@@ -1400,7 +1422,23 @@ msgstr ""
 msgid "Stopped. Send a message to pick up from here."
 msgstr ""
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:1813
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:691
+#, python-brace-format
+msgid "Sort by {0}"
+msgstr ""
+#: ask_alyf/public/js/ask_alyf.bundle.js:686
+#, python-brace-format
+msgid "Sorted ascending by {0}"
+msgstr ""
+#: ask_alyf/public/js/ask_alyf.bundle.js:689
+#, python-brace-format
+msgid "Sorted descending by {0}"
+msgstr ""
+#: ask_alyf/public/js/ask_alyf.bundle.js:1826
+>>>>>>> 379bb83 (feat: implement table pagination and sorting functionality (#145))
 msgid "Stopping..."
 msgstr ""
 
@@ -1501,6 +1539,9 @@ msgstr ""
 msgid "Thinking..."
 msgstr ""
 
+#: ask_alyf/public/js/ask_alyf.bundle.js:654
+msgid "Table pagination"
+msgstr ""
 #: ask_alyf/public/js/field_agent.js:203
 msgid "This is taking a moment..."
 msgstr ""
