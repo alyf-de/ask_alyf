@@ -422,6 +422,10 @@ msgstr "Konfigurieren Sie ein Vision-Modell in den ALYF-Fragen-Einstellungen."
 msgid "Configure an API key in Ask ALYF Settings before sending messages."
 msgstr "Konfigurieren Sie einen API-Schlüssel in den ALYF-Fragen-Einstellungen, bevor Sie Nachrichten senden."
 
+#: ask_alyf/public/js/ask_alyf.bundle.js:694
+#: ask_alyf/public/js/ask_alyf.bundle.js:715
+msgid "Column"
+msgstr "Spalte"
 #: ask_alyf/public/js/ask_alyf.bundle.js:728
 msgid "Confirm all"
 msgstr "Alle bestätigen"
@@ -945,6 +949,9 @@ msgstr "Neue Konversation"
 msgid "New chat"
 msgstr "Neuer Chat"
 
+#: ask_alyf/public/js/ask_alyf.bundle.js:660
+msgid "Next page"
+msgstr "Nächste Seite"
 #: ask_alyf/ask_alyf/toolset.py:1127
 msgid "New document action needs correction."
 msgstr "Aktion zum Öffnen eines neuen Dokuments benötigt Korrektur."
@@ -1196,6 +1203,9 @@ msgstr "Änderungs-Vorschlag vorbereitet."
 msgid "Preparing a chart"
 msgstr "Ein Diagramm wird vorbereitet"
 
+#: ask_alyf/public/js/ask_alyf.bundle.js:659
+msgid "Previous page"
+msgstr "Vorherige Seite"
 #: ask_alyf/public/js/ask_alyf.bundle.js:1522
 msgid "Projects"
 msgstr "Projekte"
@@ -1463,6 +1473,18 @@ msgstr "Diesen Lauf anhalten"
 msgid "Stopped. Send a message to pick up from here."
 msgstr "Angehalten. Senden Sie eine Nachricht, um hier fortzufahren."
 
+#: ask_alyf/public/js/ask_alyf.bundle.js:691
+#, python-brace-format
+msgid "Sort by {0}"
+msgstr "Sortieren nach {0}"
+#: ask_alyf/public/js/ask_alyf.bundle.js:686
+#, python-brace-format
+msgid "Sorted ascending by {0}"
+msgstr "Aufsteigend sortiert nach {0}"
+#: ask_alyf/public/js/ask_alyf.bundle.js:689
+#, python-brace-format
+msgid "Sorted descending by {0}"
+msgstr "Absteigend sortiert nach {0}"
 #: ask_alyf/public/js/ask_alyf.bundle.js:1826
 msgid "Stopping..."
 msgstr "Wird angehalten..."
@@ -1566,6 +1588,9 @@ msgstr "Es gibt keine ausstehende Operation zur Bestätigung."
 msgid "Thinking..."
 msgstr "Denke..."
 
+#: ask_alyf/public/js/ask_alyf.bundle.js:654
+msgid "Table pagination"
+msgstr "Tabellenseiten"
 #: ask_alyf/public/js/field_agent.js:203
 msgid "This is taking a moment..."
 msgstr "Das dauert noch etwas..."
