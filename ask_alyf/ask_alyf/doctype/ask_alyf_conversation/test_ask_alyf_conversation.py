@@ -605,7 +605,6 @@ class UnitTestAskALYFConversation(UnitTestCase):
 
 		conversation.reload()
 		messages = loads(conversation.messages_json, [])
-		print("messages", messages)
 		self.assertIn("Left blank: customer, items.1.item_code", messages[-1]["content"])
 
 	def test_confirmable_frontend_action_result_resumes_the_paused_agent(self):
