@@ -892,6 +892,11 @@ msgstr "آخر سياق JSON"
 msgid "Last Message At"
 msgstr "آخر رسالة في"
 
+#: ask_alyf/ask_alyf/api.py:973
+#, python-brace-format
+msgid "Left blank: {0}"
+msgstr "تُرك فارغاً: {0}"
+
 #: ask_alyf/ask_alyf/deep_agent_backend.py:172
 #: ask_alyf/ask_alyf/deep_agent_backend.py:285
 #, python-brace-format

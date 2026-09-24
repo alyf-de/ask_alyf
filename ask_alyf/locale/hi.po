@@ -892,6 +892,11 @@ msgstr "अंतिम संदर्भ JSON"
 msgid "Last Message At"
 msgstr "अंतिम संदेश पर"
 
+#: ask_alyf/ask_alyf/api.py:973
+#, python-brace-format
+msgid "Left blank: {0}"
+msgstr "खाली छोड़ दिया गया: {0}"
+
 #: ask_alyf/ask_alyf/deep_agent_backend.py:172
 #: ask_alyf/ask_alyf/deep_agent_backend.py:285
 #, python-brace-format

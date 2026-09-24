@@ -966,6 +966,11 @@ def frontend_action_result(
 		else:
 			if status_value == "success":
 				content = _("Executed frontend action: {0}").format(summary)
+				omitted = result_payload.get("omitted_fields")
+				if isinstance(omitted, list) and omitted:
+					names = ", ".join(str(name) for name in omitted if str(name).strip())
+					if names:
+						content += "\n\n" + _("Left blank: {0}").format(names)
 			elif status_value == "rejected":
 				content = _("Cancelled frontend action: {0}").format(summary)
 			else:

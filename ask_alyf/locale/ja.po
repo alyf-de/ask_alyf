@@ -892,6 +892,11 @@ msgstr "最終コンテキストJSON"
 msgid "Last Message At"
 msgstr "最終メッセージ日時"
 
+#: ask_alyf/ask_alyf/api.py:973
+#, python-brace-format
+msgid "Left blank: {0}"
+msgstr "空のまま: {0}"
+
 #: ask_alyf/ask_alyf/deep_agent_backend.py:172
 #: ask_alyf/ask_alyf/deep_agent_backend.py:285
 #, python-brace-format

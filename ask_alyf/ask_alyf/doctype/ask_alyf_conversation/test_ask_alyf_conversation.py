@@ -579,6 +579,35 @@ class UnitTestAskALYFConversation(UnitTestCase):
 		self.assertEqual(messages[-1]["metadata"].get("frontend_action_status"), "success")
 		self.assertTrue(messages[-1]["metadata"].get("frontend_action_result"))
 
+	def test_auto_frontend_action_result_names_omitted_fields(self):
+		pending_operation = {
+			"kind": "frontend_action",
+			"tool": "open_prefilled_doc",
+			"summary": "Open unsaved Sales Invoice",
+			"requires_confirmation": False,
+			"payload": {"doctype": "Sales Invoice", "doc": {}},
+			"call_id": "call-frontend-omitted",
+		}
+		conversation = self.make_conversation(messages=[], pending_operations=[pending_operation])
+
+		with patch("ask_alyf.ask_alyf.api.can_access_ask_alyf", return_value=True):
+			api.frontend_action_result(
+				conversation=conversation.name,
+				call_id="call-frontend-omitted",
+				status="success",
+				mode=api.MODE_ASK,
+				result={
+					"doctype": "Sales Invoice",
+					"docname": "new-sales-invoice-1",
+					"omitted_fields": ["customer", "items.1.item_code"],
+				},
+			)
+
+		conversation.reload()
+		messages = loads(conversation.messages_json, [])
+		print("messages", messages)
+		self.assertIn("Left blank: customer, items.1.item_code", messages[-1]["content"])
+
 	def test_confirmable_frontend_action_result_resumes_the_paused_agent(self):
 		pending_operation = {
 			"kind": "frontend_action",

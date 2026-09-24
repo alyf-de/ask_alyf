@@ -2402,6 +2402,7 @@ import "./field_agent";
 					...frappe.model.child_table_field_list,
 				]);
 				const payloadValues = new WeakMap();
+				const omittedFields = [];
 				const hasValue = (value) => value !== undefined && value !== null && value !== "";
 				const tableFieldsOf = (doctype) =>
 					(frappe.get_meta(doctype)?.fields || []).filter(
@@ -2412,24 +2413,25 @@ import "./field_agent";
 					for (let i = 0; i < 5 && frappe.request.ajax_count; i++) await frappe.after_ajax();
 				};
 
-				const setField = async (target, fieldname, value) => {
-					fieldInProgress = { target, fieldname };
-					fieldFailed = false;
+				const setField = async (target, fieldname, value, path) => {
+					const attempt = { failed: false };
+					fieldInProgress = attempt;
 					try {
 						await frappe.model.set_value(target.doctype, target.name, fieldname, value);
 					} catch {
-						fieldFailed = true;
+						attempt.failed = true;
 					} finally {
 						await waitForRequests();
 					}
-					if (fieldFailed) {
+					if (attempt.failed) {
 						target[fieldname] = "";
 						payloadValues.get(target)?.delete(fieldname);
+						omittedFields.push(path);
 					}
 					fieldInProgress = null;
 				};
 
-				const fillDocument = async (target, source) => {
+				const fillDocument = async (target, source, pathPrefix = "") => {
 					const tables = new Map(
 						tableFieldsOf(target.doctype).map((df) => [df.fieldname, df.options]),
 					);
@@ -2445,14 +2447,21 @@ import "./field_agent";
 						const value = source?.[df.fieldname];
 						if (!hasValue(value)) continue;
 						values.set(df.fieldname, value);
-						await setField(target, df.fieldname, value);
+						await setField(target, df.fieldname, value, `${pathPrefix}${df.fieldname}`);
 					}
 					for (const [fieldname, childDoctype] of tables) {
 						const rows = source?.[fieldname];
 						if (!Array.isArray(rows)) continue;
+						let rowNumber = 0;
 						for (const row of rows) {
+							rowNumber += 1;
 							if (!row || typeof row !== "object" || Array.isArray(row)) continue;
-							await fillDocument(frappe.model.add_child(target, childDoctype, fieldname), row);
+							const child = frappe.model.add_child(target, childDoctype, fieldname);
+							await fillDocument(
+								child,
+								row,
+								`${pathPrefix}${fieldname}.${child.idx || rowNumber}.`,
+							);
 						}
 					}
 				};
@@ -2465,7 +2474,6 @@ import "./field_agent";
 				};
 
 				let fieldInProgress = null;
-				let fieldFailed = false;
 				const originalMsgprint = frappe.msgprint;
 				const originalCall = frappe.request.call;
 				const originalThrow = frappe.throw;
@@ -2477,15 +2485,16 @@ import "./field_agent";
 					return dialog;
 				};
 				frappe.request.call = function () {
+					const attempt = fieldInProgress;
 					const req = originalCall.apply(this, arguments);
-					if (fieldInProgress)
+					if (attempt)
 						req?.fail?.(() => {
-							fieldFailed = true;
+							attempt.failed = true;
 						});
 					return req;
 				};
 				frappe.throw = (msg) => {
-					if (fieldInProgress) fieldFailed = true;
+					if (fieldInProgress) fieldInProgress.failed = true;
 					return originalThrow(msg);
 				};
 
@@ -2496,7 +2505,8 @@ import "./field_agent";
 						await fillDocument(doc, payload.doc);
 					} finally {
 						writeBackPayload(doc);
-						cur_frm.refresh_fields();
+						const layout = frappe.router.doctype_layout || doc.doctype;
+						frappe.views.formview[layout]?.frm?.refresh_fields();
 					}
 				} finally {
 					frappe.msgprint = originalMsgprint;
@@ -2504,7 +2514,9 @@ import "./field_agent";
 					frappe.throw = originalThrow;
 					if (frappe.msg_dialog) frappe.msg_dialog.custom_onhide = null;
 				}
-				return { doctype: doc.doctype, docname: doc.name };
+				const result = { doctype: doc.doctype, docname: doc.name };
+				if (omittedFields.length) result.omitted_fields = omittedFields;
+				return result;
 			}
 
 			if (tool === "scroll_to_field") {
