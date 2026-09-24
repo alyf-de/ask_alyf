@@ -333,7 +333,7 @@ def resume_pending_operation(
 			**decision,
 		)
 	except Exception:
-		frappe.log_error("Ask ALYF Action Follow-Up Error")
+		frappe.log_error("Ask ALYF Action Follow-Up Error", frappe.get_traceback())
 		frappe.clear_messages()
 		return None
 
@@ -637,7 +637,7 @@ def process_message_job(
 		attached_files = None
 		tool_calls = None
 	except Exception:
-		frappe.log_error("Ask ALYF Agent Error")
+		frappe.log_error("Ask ALYF Agent Error", frappe.get_traceback())
 		frappe.clear_messages()
 		response = _("I hit an error while processing that request. Please try again.")
 		pending_operations = []
