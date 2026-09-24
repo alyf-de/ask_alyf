@@ -166,6 +166,7 @@ Files, printing, charts, and navigation:
 - `show_chart` renders one or more **Frappe Charts** below an assistant message
 - `set_route` navigates to a Desk route
 - `new_doc` opens a new document form with optional defaults
+- `open_prefilled_doc` opens a new unsaved document in the form view and fills it with the given field values
 - `scroll_to_field` scrolls to a field on the active form
 
 Optional tools:

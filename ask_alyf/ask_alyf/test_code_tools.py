@@ -528,7 +528,7 @@ class UnitTestCodeTools(UnitTestCase):
 		for forbidden in ("insert", "save", "set_value", "submit", "cancel", "delete", "batch_insert"):
 			self.assertNotIn(forbidden, tool_names)
 		# No frontend action tools either.
-		for forbidden in ("set_route", "new_doc", "show_chart", "frm_set_value"):
+		for forbidden in ("set_route", "new_doc", "open_prefilled_doc", "show_chart", "frm_set_value"):
 			self.assertNotIn(forbidden, tool_names)
 
 	def test_document_planner_subagent_has_response_format(self):

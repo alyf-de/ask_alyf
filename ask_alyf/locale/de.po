@@ -756,6 +756,18 @@ msgstr "Frontend-Aktion 'new_doc' Feld 'route_options' muss ein Objekt sein."
 msgid "Frontend action 'new_doc' requires a DocType."
 msgstr "Frontend-Aktion 'new_doc' erfordert einen DocType."
 
+#: ask_alyf/ask_alyf/tools.py:1711
+msgid "Frontend action 'open_prefilled_doc' doc DocType must match."
+msgstr "Frontend-Aktion 'open_prefilled_doc': DocType des Dokuments muss übereinstimmen."
+
+#: ask_alyf/ask_alyf/tools.py:1709
+msgid "Frontend action 'open_prefilled_doc' field 'doc' must be an object."
+msgstr "Frontend-Aktion 'open_prefilled_doc' Feld 'doc' muss ein Objekt sein."
+
+#: ask_alyf/ask_alyf/tools.py:1706
+msgid "Frontend action 'open_prefilled_doc' requires a DocType."
+msgstr "Frontend-Aktion 'open_prefilled_doc' erfordert einen DocType."
+
 #: ask_alyf/ask_alyf/tools.py:1705
 msgid "Frontend action 'scroll_to_field' requires a fieldname."
 msgstr "Frontend-Aktion 'scroll_to_field' erfordert einen Feldnamen."
@@ -1038,10 +1050,19 @@ msgstr "Nur lesende SQL-Anweisungen sind erlaubt."
 msgid "Open Ask ALYF"
 msgstr "ALYF-Fragen öffnen"
 
+#: ask_alyf/ask_alyf/toolset.py:1148
+msgid "Open document action needs correction."
+msgstr "Aktion zum Öffnen eines Dokuments benötigt Korrektur."
+
 #: ask_alyf/ask_alyf/toolset.py:1125
 #, python-brace-format
 msgid "Open new {0}"
 msgstr "Neues {0} öffnen"
+
+#: ask_alyf/ask_alyf/toolset.py:1146
+#, python-brace-format
+msgid "Open unsaved {0}"
+msgstr "Nicht gespeichertes {0} öffnen"
 
 #. Option for the 'LLM Provider' (Select) field in DocType 'Ask ALYF Settings'
 #. Option for the 'Vision LLM Provider' (Select) field in DocType 'Ask ALYF
@@ -1065,6 +1086,11 @@ msgstr "Neues {0} wird geöffnet"
 #: ask_alyf/ask_alyf/agent.py:157
 msgid "Opening a page"
 msgstr "Eine Seite wird geöffnet"
+
+#: ask_alyf/ask_alyf/agent.py:162
+#, python-brace-format
+msgid "Opening an unsaved {0}"
+msgstr "Nicht gespeichertes {0} wird geöffnet"
 
 #. Description of the 'Base URL' (Data) field in DocType 'Ask ALYF Settings'
 #. Description of the 'Vision Base URL' (Data) field in DocType 'Ask ALYF
@@ -1187,6 +1213,10 @@ msgstr "Skill-Vorschlag vorbereitet."
 #: ask_alyf/ask_alyf/toolset.py:927
 msgid "Prepared submit proposal."
 msgstr "Buchungs-Vorschlag vorbereitet."
+
+#: ask_alyf/ask_alyf/toolset.py:1149
+msgid "Prepared unsaved document."
+msgstr "Nicht gespeichertes Dokument vorbereitet."
 
 #: ask_alyf/ask_alyf/toolset.py:873
 msgid "Prepared update proposal."

@@ -756,6 +756,18 @@ msgstr "O campo 'route_options' da ação de frontend 'new_doc' deve ser um obje
 msgid "Frontend action 'new_doc' requires a DocType."
 msgstr "A ação de frontend 'new_doc' requer um Doctype."
 
+#: ask_alyf/ask_alyf/tools.py:1711
+msgid "Frontend action 'open_prefilled_doc' doc DocType must match."
+msgstr "O DocType do documento na ação de frontend 'open_prefilled_doc' tem de corresponder."
+
+#: ask_alyf/ask_alyf/tools.py:1709
+msgid "Frontend action 'open_prefilled_doc' field 'doc' must be an object."
+msgstr "O campo 'doc' da ação de frontend 'open_prefilled_doc' deve ser um objeto."
+
+#: ask_alyf/ask_alyf/tools.py:1706
+msgid "Frontend action 'open_prefilled_doc' requires a DocType."
+msgstr "A ação de frontend 'open_prefilled_doc' requer um DocType."
+
 #: ask_alyf/ask_alyf/tools.py:1705
 msgid "Frontend action 'scroll_to_field' requires a fieldname."
 msgstr "A ação de frontend 'scroll_to_field' requer um nome do campo."
@@ -1038,10 +1050,19 @@ msgstr "Apenas instruções SQL somente leitura são permitidas."
 msgid "Open Ask ALYF"
 msgstr "Abrir Ask ALYF"
 
+#: ask_alyf/ask_alyf/toolset.py:1148
+msgid "Open document action needs correction."
+msgstr "A ação de abrir documento precisa de correção."
+
 #: ask_alyf/ask_alyf/toolset.py:1125
 #, python-brace-format
 msgid "Open new {0}"
 msgstr "Abrir novo {0}"
+
+#: ask_alyf/ask_alyf/toolset.py:1146
+#, python-brace-format
+msgid "Open unsaved {0}"
+msgstr "Abrir {0} não guardado"
 
 #. Option for the 'LLM Provider' (Select) field in DocType 'Ask ALYF Settings'
 #. Option for the 'Vision LLM Provider' (Select) field in DocType 'Ask ALYF
@@ -1065,6 +1086,11 @@ msgstr "A abrir um novo {0}"
 #: ask_alyf/ask_alyf/agent.py:157
 msgid "Opening a page"
 msgstr "A abrir uma página"
+
+#: ask_alyf/ask_alyf/agent.py:162
+#, python-brace-format
+msgid "Opening an unsaved {0}"
+msgstr "A abrir um {0} não guardado"
 
 #. Description of the 'Base URL' (Data) field in DocType 'Ask ALYF Settings'
 #. Description of the 'Vision Base URL' (Data) field in DocType 'Ask ALYF
@@ -1187,6 +1213,10 @@ msgstr "Proposta de habilidade preparada."
 #: ask_alyf/ask_alyf/toolset.py:927
 msgid "Prepared submit proposal."
 msgstr "Proposta de submeter preparada."
+
+#: ask_alyf/ask_alyf/toolset.py:1149
+msgid "Prepared unsaved document."
+msgstr "Documento não guardado preparado."
 
 #: ask_alyf/ask_alyf/toolset.py:873
 msgid "Prepared update proposal."

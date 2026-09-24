@@ -756,6 +756,18 @@ msgstr "फ्रंटएंड क्रिया 'new_doc' का फ़ी�
 msgid "Frontend action 'new_doc' requires a DocType."
 msgstr "फ्रंटएंड क्रिया 'new_doc' के लिए एक DocType आवश्यक है।"
 
+#: ask_alyf/ask_alyf/tools.py:1711
+msgid "Frontend action 'open_prefilled_doc' doc DocType must match."
+msgstr "फ्रंटएंड क्रिया 'open_prefilled_doc' का दस्तावेज़ DocType मेल खाना चाहिए।"
+
+#: ask_alyf/ask_alyf/tools.py:1709
+msgid "Frontend action 'open_prefilled_doc' field 'doc' must be an object."
+msgstr "फ्रंटएंड क्रिया 'open_prefilled_doc' का फ़ील्ड 'doc' एक ऑब्जेक्ट होना चाहिए।"
+
+#: ask_alyf/ask_alyf/tools.py:1706
+msgid "Frontend action 'open_prefilled_doc' requires a DocType."
+msgstr "फ्रंटएंड क्रिया 'open_prefilled_doc' के लिए एक DocType आवश्यक है।"
+
 #: ask_alyf/ask_alyf/tools.py:1705
 msgid "Frontend action 'scroll_to_field' requires a fieldname."
 msgstr "फ्रंटएंड क्रिया 'scroll_to_field' के लिए एक fieldname आवश्यक है।"
@@ -1038,10 +1050,19 @@ msgstr "केवल read-only SQL statements की अनुमति है�
 msgid "Open Ask ALYF"
 msgstr "Ask ALYF खोलें"
 
+#: ask_alyf/ask_alyf/toolset.py:1148
+msgid "Open document action needs correction."
+msgstr "दस्तावेज़ खोलने की क्रिया में सुधार की आवश्यकता है।"
+
 #: ask_alyf/ask_alyf/toolset.py:1125
 #, python-brace-format
 msgid "Open new {0}"
 msgstr "नया {0} खोलें"
+
+#: ask_alyf/ask_alyf/toolset.py:1146
+#, python-brace-format
+msgid "Open unsaved {0}"
+msgstr "बिना सहेजा गया {0} खोलें"
 
 #. Option for the 'LLM Provider' (Select) field in DocType 'Ask ALYF Settings'
 #. Option for the 'Vision LLM Provider' (Select) field in DocType 'Ask ALYF
@@ -1065,6 +1086,11 @@ msgstr "एक नया {0} खोला जा रहा है"
 #: ask_alyf/ask_alyf/agent.py:157
 msgid "Opening a page"
 msgstr "एक पेज खोला जा रहा है"
+
+#: ask_alyf/ask_alyf/agent.py:162
+#, python-brace-format
+msgid "Opening an unsaved {0}"
+msgstr "एक बिना सहेजा गया {0} खोला जा रहा है"
 
 #. Description of the 'Base URL' (Data) field in DocType 'Ask ALYF Settings'
 #. Description of the 'Vision Base URL' (Data) field in DocType 'Ask ALYF
@@ -1187,6 +1213,10 @@ msgstr "स्किल प्रस्ताव तैयार किया �
 #: ask_alyf/ask_alyf/toolset.py:927
 msgid "Prepared submit proposal."
 msgstr "सबमिट प्रस्ताव तैयार किया गया।"
+
+#: ask_alyf/ask_alyf/toolset.py:1149
+msgid "Prepared unsaved document."
+msgstr "बिना सहेजा गया दस्तावेज़ तैयार किया गया।"
 
 #: ask_alyf/ask_alyf/toolset.py:873
 msgid "Prepared update proposal."

@@ -756,6 +756,18 @@ msgstr "前端操作 'new_doc' 的字段 'route_options' 必须是一个对象�
 msgid "Frontend action 'new_doc' requires a DocType."
 msgstr "前端操作 'new_doc' 需要一个单据类型。"
 
+#: ask_alyf/ask_alyf/tools.py:1711
+msgid "Frontend action 'open_prefilled_doc' doc DocType must match."
+msgstr "前端操作 'open_prefilled_doc' 的单据类型必须一致。"
+
+#: ask_alyf/ask_alyf/tools.py:1709
+msgid "Frontend action 'open_prefilled_doc' field 'doc' must be an object."
+msgstr "前端操作 'open_prefilled_doc' 的字段 'doc' 必须是一个对象。"
+
+#: ask_alyf/ask_alyf/tools.py:1706
+msgid "Frontend action 'open_prefilled_doc' requires a DocType."
+msgstr "前端操作 'open_prefilled_doc' 需要一个单据类型。"
+
 #: ask_alyf/ask_alyf/tools.py:1705
 msgid "Frontend action 'scroll_to_field' requires a fieldname."
 msgstr "前端操作 'scroll_to_field' 需要一个字段名称。"
@@ -1038,10 +1050,19 @@ msgstr "仅允许只读 SQL 语句。"
 msgid "Open Ask ALYF"
 msgstr "打开 Ask ALYF"
 
+#: ask_alyf/ask_alyf/toolset.py:1148
+msgid "Open document action needs correction."
+msgstr "打开文档操作需要更正。"
+
 #: ask_alyf/ask_alyf/toolset.py:1125
 #, python-brace-format
 msgid "Open new {0}"
 msgstr "打开新的 {0}"
+
+#: ask_alyf/ask_alyf/toolset.py:1146
+#, python-brace-format
+msgid "Open unsaved {0}"
+msgstr "打开未保存的 {0}"
 
 #. Option for the 'LLM Provider' (Select) field in DocType 'Ask ALYF Settings'
 #. Option for the 'Vision LLM Provider' (Select) field in DocType 'Ask ALYF
@@ -1065,6 +1086,11 @@ msgstr "正在打开新的 {0}"
 #: ask_alyf/ask_alyf/agent.py:157
 msgid "Opening a page"
 msgstr "正在打开页面"
+
+#: ask_alyf/ask_alyf/agent.py:162
+#, python-brace-format
+msgid "Opening an unsaved {0}"
+msgstr "正在打开未保存的 {0}"
 
 #. Description of the 'Base URL' (Data) field in DocType 'Ask ALYF Settings'
 #. Description of the 'Vision Base URL' (Data) field in DocType 'Ask ALYF
@@ -1187,6 +1213,10 @@ msgstr "已准备技能提案。"
 #: ask_alyf/ask_alyf/toolset.py:927
 msgid "Prepared submit proposal."
 msgstr "已准备提交提案。"
+
+#: ask_alyf/ask_alyf/toolset.py:1149
+msgid "Prepared unsaved document."
+msgstr "已准备未保存的文档。"
 
 #: ask_alyf/ask_alyf/toolset.py:873
 msgid "Prepared update proposal."

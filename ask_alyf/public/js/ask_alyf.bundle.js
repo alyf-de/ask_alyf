@@ -2392,6 +2392,121 @@ import "./field_agent";
 				return { doctype: payload.doctype };
 			}
 
+			if (tool === "open_prefilled_doc") {
+				await frappe.model.with_doctype(payload.doctype);
+				const doc = frappe.model.get_new_doc(payload.doctype);
+				doc.__run_link_triggers = false;
+				const skip = new Set([
+					"doctype",
+					...frappe.model.std_fields_list,
+					...frappe.model.child_table_field_list,
+				]);
+				const payloadValues = new WeakMap();
+				const hasValue = (value) => value !== undefined && value !== null && value !== "";
+				const tableFieldsOf = (doctype) =>
+					(frappe.get_meta(doctype)?.fields || []).filter(
+						(df) => frappe.model.table_fields.includes(df.fieldtype) && df.fieldname && df.options,
+					);
+
+				const waitForRequests = async () => {
+					for (let i = 0; i < 5 && frappe.request.ajax_count; i++) await frappe.after_ajax();
+				};
+
+				const setField = async (target, fieldname, value) => {
+					fieldInProgress = { target, fieldname };
+					fieldFailed = false;
+					try {
+						await frappe.model.set_value(target.doctype, target.name, fieldname, value);
+					} catch {
+						fieldFailed = true;
+					} finally {
+						await waitForRequests();
+					}
+					if (fieldFailed) {
+						target[fieldname] = "";
+						payloadValues.get(target)?.delete(fieldname);
+					}
+					fieldInProgress = null;
+				};
+
+				const fillDocument = async (target, source) => {
+					const tables = new Map(
+						tableFieldsOf(target.doctype).map((df) => [df.fieldname, df.options]),
+					);
+					const values = new Map();
+					payloadValues.set(target, values);
+					for (const df of frappe.get_meta(target.doctype)?.fields || []) {
+						if (
+							tables.has(df.fieldname) ||
+							skip.has(df.fieldname) ||
+							df.fieldname.startsWith("__")
+						)
+							continue;
+						const value = source?.[df.fieldname];
+						if (!hasValue(value)) continue;
+						values.set(df.fieldname, value);
+						await setField(target, df.fieldname, value);
+					}
+					for (const [fieldname, childDoctype] of tables) {
+						const rows = source?.[fieldname];
+						if (!Array.isArray(rows)) continue;
+						for (const row of rows) {
+							if (!row || typeof row !== "object" || Array.isArray(row)) continue;
+							await fillDocument(frappe.model.add_child(target, childDoctype, fieldname), row);
+						}
+					}
+				};
+
+				const writeBackPayload = (target) => {
+					for (const [key, value] of payloadValues.get(target) || []) target[key] = value;
+					for (const df of tableFieldsOf(target.doctype)) {
+						for (const row of target[df.fieldname] || []) writeBackPayload(row);
+					}
+				};
+
+				let fieldInProgress = null;
+				let fieldFailed = false;
+				const originalMsgprint = frappe.msgprint;
+				const originalCall = frappe.request.call;
+				const originalThrow = frappe.throw;
+				frappe.msgprint = (msg, ...rest) => {
+					if (msg && typeof msg === "object" && !Array.isArray(msg))
+						msg = { ...msg, re_route: false };
+					const dialog = originalMsgprint(msg, ...rest);
+					if (frappe.msg_dialog) frappe.msg_dialog.custom_onhide = null;
+					return dialog;
+				};
+				frappe.request.call = function () {
+					const req = originalCall.apply(this, arguments);
+					if (fieldInProgress)
+						req?.fail?.(() => {
+							fieldFailed = true;
+						});
+					return req;
+				};
+				frappe.throw = (msg) => {
+					if (fieldInProgress) fieldFailed = true;
+					return originalThrow(msg);
+				};
+
+				try {
+					await frappe.set_route("Form", doc.doctype, doc.name);
+					await waitForRequests();
+					try {
+						await fillDocument(doc, payload.doc);
+					} finally {
+						writeBackPayload(doc);
+						cur_frm.refresh_fields();
+					}
+				} finally {
+					frappe.msgprint = originalMsgprint;
+					frappe.request.call = originalCall;
+					frappe.throw = originalThrow;
+					if (frappe.msg_dialog) frappe.msg_dialog.custom_onhide = null;
+				}
+				return { doctype: doc.doctype, docname: doc.name };
+			}
+
 			if (tool === "scroll_to_field") {
 				const frm = this.getMatchingForm(payload);
 				if (typeof frm.scroll_to_field !== "function") {

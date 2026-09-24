@@ -718,6 +718,18 @@ msgstr ""
 msgid "Frontend action 'new_doc' requires a DocType."
 msgstr ""
 
+#: ask_alyf/ask_alyf/tools.py:1711
+msgid "Frontend action 'open_prefilled_doc' doc DocType must match."
+msgstr ""
+
+#: ask_alyf/ask_alyf/tools.py:1709
+msgid "Frontend action 'open_prefilled_doc' field 'doc' must be an object."
+msgstr ""
+
+#: ask_alyf/ask_alyf/tools.py:1706
+msgid "Frontend action 'open_prefilled_doc' requires a DocType."
+msgstr ""
+
 #: ask_alyf/ask_alyf/tools.py:1705
 msgid "Frontend action 'scroll_to_field' requires a fieldname."
 msgstr ""
@@ -990,8 +1002,17 @@ msgstr ""
 msgid "Open Ask ALYF"
 msgstr ""
 
+#: ask_alyf/ask_alyf/toolset.py:1148
+msgid "Open document action needs correction."
+msgstr ""
+
 #: ask_alyf/ask_alyf/toolset.py:1125
 msgid "Open new {0}"
+msgstr ""
+
+#: ask_alyf/ask_alyf/toolset.py:1146
+#, python-brace-format
+msgid "Open unsaved {0}"
 msgstr ""
 
 #. Option for the 'LLM Provider' (Select) field in DocType 'Ask ALYF Settings'
@@ -1014,6 +1035,10 @@ msgstr ""
 
 #: ask_alyf/ask_alyf/agent.py:157
 msgid "Opening a page"
+msgstr ""
+
+#: ask_alyf/ask_alyf/agent.py:162
+msgid "Opening an unsaved {0}"
 msgstr ""
 
 #. Description of the 'Base URL' (Data) field in DocType 'Ask ALYF Settings'
@@ -1133,6 +1158,10 @@ msgstr ""
 
 #: ask_alyf/ask_alyf/toolset.py:927
 msgid "Prepared submit proposal."
+msgstr ""
+
+#: ask_alyf/ask_alyf/toolset.py:1149
+msgid "Prepared unsaved document."
 msgstr ""
 
 #: ask_alyf/ask_alyf/toolset.py:873
