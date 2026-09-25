@@ -438,15 +438,12 @@ msgstr "Configure un modelo de visión en la configuración de Ask ALYF."
 msgid "Configure an API key in Ask ALYF Settings before sending messages."
 msgstr "Configure una clave de API en la configuración de Ask ALYF antes de enviar mensajes."
 
-<<<<<<< HEAD
-#: ask_alyf/public/js/ask_alyf.bundle.js:719
-=======
-#: ask_alyf/public/js/ask_alyf.bundle.js:694
-#: ask_alyf/public/js/ask_alyf.bundle.js:715
+#: ask_alyf/public/js/ask_alyf.bundle.js:685
+#: ask_alyf/public/js/ask_alyf.bundle.js:707
 msgid "Column"
 msgstr "Columna"
-#: ask_alyf/public/js/ask_alyf.bundle.js:728
->>>>>>> 379bb83 (feat: implement table pagination and sorting functionality (#145))
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:824
 msgid "Confirm all"
 msgstr "Confirmar todo"
 
@@ -965,14 +962,11 @@ msgstr "Nueva conversación"
 msgid "New chat"
 msgstr "Nuevo chat"
 
-<<<<<<< HEAD
-#: ask_alyf/ask_alyf/toolset.py:1132
-=======
-#: ask_alyf/public/js/ask_alyf.bundle.js:660
+#: ask_alyf/public/js/ask_alyf.bundle.js:651
 msgid "Next page"
 msgstr "Página siguiente"
-#: ask_alyf/ask_alyf/toolset.py:1127
->>>>>>> 379bb83 (feat: implement table pagination and sorting functionality (#145))
+
+#: ask_alyf/ask_alyf/toolset.py:1132
 msgid "New document action needs correction."
 msgstr "La acción de nuevo documento necesita corrección."
 
@@ -1221,14 +1215,11 @@ msgstr "Propuesta de actualización preparada."
 msgid "Preparing a chart"
 msgstr "Preparando un gráfico"
 
-<<<<<<< HEAD
-#: ask_alyf/public/js/ask_alyf.bundle.js:1506
-=======
-#: ask_alyf/public/js/ask_alyf.bundle.js:659
+#: ask_alyf/public/js/ask_alyf.bundle.js:650
 msgid "Previous page"
 msgstr "Página anterior"
-#: ask_alyf/public/js/ask_alyf.bundle.js:1522
->>>>>>> 379bb83 (feat: implement table pagination and sorting functionality (#145))
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1611
 msgid "Projects"
 msgstr "Proyectos"
 
@@ -1490,23 +1481,22 @@ msgstr "Detener esta ejecución"
 msgid "Stopped. Send a message to pick up from here."
 msgstr "Detenido. Envíe un mensaje para continuar desde aquí."
 
-<<<<<<< HEAD
-#: ask_alyf/public/js/ask_alyf.bundle.js:1813
-=======
-#: ask_alyf/public/js/ask_alyf.bundle.js:691
+#: ask_alyf/public/js/ask_alyf.bundle.js:682
 #, python-brace-format
 msgid "Sort by {0}"
 msgstr "Ordenar por {0}"
-#: ask_alyf/public/js/ask_alyf.bundle.js:686
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:677
 #, python-brace-format
 msgid "Sorted ascending by {0}"
 msgstr "Ordenado ascendente por {0}"
-#: ask_alyf/public/js/ask_alyf.bundle.js:689
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:680
 #, python-brace-format
 msgid "Sorted descending by {0}"
 msgstr "Ordenado descendente por {0}"
-#: ask_alyf/public/js/ask_alyf.bundle.js:1826
->>>>>>> 379bb83 (feat: implement table pagination and sorting functionality (#145))
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1918
 msgid "Stopping..."
 msgstr "Deteniendo..."
 
