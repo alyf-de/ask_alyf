@@ -638,6 +638,111 @@ import "./field_agent";
 			if (entry.html !== html) {
 				entry.body.innerHTML = html;
 				entry.html = html;
+				for (const table of entry.body.querySelectorAll("table")) {
+					const PAGE = 10;
+					const body = table.tBodies[0];
+					if (body && body.rows.length > PAGE) {
+						const nav = document.createElement("div");
+						nav.className = "ask_alyf-table-pager";
+						nav.setAttribute("role", "navigation");
+						nav.setAttribute("aria-label", __("Table pagination"));
+						const prev = document.createElement("button");
+						const next = document.createElement("button");
+						const label = document.createElement("span");
+						prev.type = next.type = "button";
+						prev.setAttribute("aria-label", __("Previous page"));
+						next.setAttribute("aria-label", __("Next page"));
+						label.setAttribute("aria-live", "polite");
+						prev.innerHTML = frappe.utils.icon("es-line-left-chevron", "xs", "", true);
+						next.innerHTML = frappe.utils.icon("es-line-right-chevron", "xs", "", true);
+						const show = (page) => {
+							const rows = [...body.rows];
+							const pages = Math.ceil(rows.length / PAGE);
+							page = Math.min(Math.max(page, 0), pages - 1);
+							rows.forEach((row, i) => {
+								row.hidden = i < page * PAGE || i >= (page + 1) * PAGE;
+							});
+							table.dataset.page = String(page);
+							label.textContent = `${page + 1}/${pages}`;
+						};
+						prev.addEventListener("click", () => show(Number(table.dataset.page) - 1));
+						next.addEventListener("click", () => show(Number(table.dataset.page) + 1));
+						nav.append(prev, label, next);
+						table.after(nav);
+						table.showPage = show;
+						show(0);
+					}
+					const header = table.tHead?.rows[0];
+					if (!header) continue;
+					const sortIcon = (name) => frappe.utils.icon(name, "xs", "", true);
+					const sortButtonLabel = (columnLabel, direction) => {
+						if (direction === "asc") {
+							return __("Sorted ascending by {0}", [columnLabel]);
+						}
+						if (direction === "desc") {
+							return __("Sorted descending by {0}", [columnLabel]);
+						}
+						return __("Sort by {0}", [columnLabel]);
+					};
+					const setHeaderSortUi = (cell, direction) => {
+						const columnLabel = cell.dataset.columnLabel || __("Column");
+						cell.setAttribute(
+							"aria-sort",
+							direction === "asc" ? "ascending" : direction === "desc" ? "descending" : "none",
+						);
+						const btn = cell.querySelector(".ask_alyf-sort-btn");
+						if (!btn) {
+							return;
+						}
+						btn.className = direction
+							? "ask_alyf-sort-btn ask_alyf-sort-icon"
+							: "ask_alyf-sort-btn ask_alyf-sort-icon ask_alyf-sort-icon-default";
+						btn.innerHTML = sortIcon(
+							direction === "asc"
+								? "es-line-up"
+								: direction === "desc"
+								  ? "es-line-down"
+								  : "es-line-sort",
+						);
+						btn.setAttribute("aria-label", sortButtonLabel(columnLabel, direction));
+					};
+					for (const cell of header.cells) {
+						const columnLabel = (cell.textContent || "").trim() || __("Column");
+						cell.dataset.columnLabel = columnLabel;
+						cell.dataset.sort = "desc";
+						cell.setAttribute("aria-sort", "none");
+						const labelHtml = cell.innerHTML;
+						cell.innerHTML = `<span class="ask_alyf-th">${labelHtml}<button type="button" class="ask_alyf-sort-btn ask_alyf-sort-icon ask_alyf-sort-icon-default" aria-label="${this.escapeHtml(
+							sortButtonLabel(columnLabel, null),
+						)}">${sortIcon("es-line-sort")}</button></span>`;
+					}
+					table.tHead?.addEventListener("click", (event) => {
+						const sortBtn = event.target.closest(".ask_alyf-sort-btn");
+						if (!sortBtn) return;
+						const th = sortBtn.closest("th");
+						const index = th.cellIndex;
+						const desc = th.dataset.sort === "asc";
+						const direction = desc ? "desc" : "asc";
+						for (const cell of table.tHead.rows[0].cells) {
+							delete cell.dataset.sort;
+							setHeaderSortUi(cell, null);
+						}
+						th.dataset.sort = direction;
+						setHeaderSortUi(th, direction);
+						const body = table.tBodies[0];
+						[...body.rows]
+							.sort((a, b) => {
+								const cmp = (a.cells[index]?.innerText || "").localeCompare(
+									b.cells[index]?.innerText || "",
+									undefined,
+									{ numeric: true },
+								);
+								return desc ? -cmp : cmp;
+							})
+							.forEach((row) => body.appendChild(row));
+						table.showPage?.(Number(table.dataset.page) || 0);
+					});
+				}
 			}
 
 			this.syncMessageToolCalls(entry, message);
