@@ -760,6 +760,18 @@ msgstr "El campo 'route_options' de la acción de frontend 'new_doc' debe ser un
 msgid "Frontend action 'new_doc' requires a DocType."
 msgstr "La acción de frontend 'new_doc' requiere un Doctype."
 
+#: ask_alyf/ask_alyf/tools.py:1711
+msgid "Frontend action 'open_prefilled_doc' doc DocType must match."
+msgstr "El DocType del documento de la acción de frontend 'open_prefilled_doc' debe coincidir."
+
+#: ask_alyf/ask_alyf/tools.py:1709
+msgid "Frontend action 'open_prefilled_doc' field 'doc' must be an object."
+msgstr "El campo 'doc' de la acción de frontend 'open_prefilled_doc' debe ser un objeto."
+
+#: ask_alyf/ask_alyf/tools.py:1706
+msgid "Frontend action 'open_prefilled_doc' requires a DocType."
+msgstr "La acción de frontend 'open_prefilled_doc' requiere un DocType."
+
 #: ask_alyf/ask_alyf/tools.py:1705
 msgid "Frontend action 'scroll_to_field' requires a fieldname."
 msgstr "La acción de frontend 'scroll_to_field' requiere un nombre del campo."
@@ -883,6 +895,11 @@ msgstr "Último JSON de contexto"
 #: ask_alyf/ask_alyf/doctype/ask_alyf_conversation/ask_alyf_conversation.json
 msgid "Last Message At"
 msgstr "Último mensaje el"
+
+#: ask_alyf/ask_alyf/api.py:973
+#, python-brace-format
+msgid "Left blank: {0}"
+msgstr "Dejado en blanco: {0}"
 
 #: ask_alyf/ask_alyf/deep_agent_backend.py:172
 #: ask_alyf/ask_alyf/deep_agent_backend.py:285
@@ -1045,10 +1062,19 @@ msgstr "Solo se permiten instrucciones SQL de solo lectura."
 msgid "Open Ask ALYF"
 msgstr "Abrir Ask ALYF"
 
+#: ask_alyf/ask_alyf/toolset.py:1148
+msgid "Open document action needs correction."
+msgstr "La acción de abrir documento necesita corrección."
+
 #: ask_alyf/ask_alyf/toolset.py:1125
 #, python-brace-format
 msgid "Open new {0}"
 msgstr "Abrir nuevo {0}"
+
+#: ask_alyf/ask_alyf/toolset.py:1146
+#, python-brace-format
+msgid "Open unsaved {0}"
+msgstr "Abrir {0} sin guardar"
 
 #. Option for the 'LLM Provider' (Select) field in DocType 'Ask ALYF Settings'
 #. Option for the 'Vision LLM Provider' (Select) field in DocType 'Ask ALYF
@@ -1072,6 +1098,11 @@ msgstr "Abriendo un nuevo {0}"
 #: ask_alyf/ask_alyf/agent.py:157
 msgid "Opening a page"
 msgstr "Abriendo una página"
+
+#: ask_alyf/ask_alyf/agent.py:162
+#, python-brace-format
+msgid "Opening an unsaved {0}"
+msgstr "Abriendo un {0} sin guardar"
 
 #. Description of the 'Base URL' (Data) field in DocType 'Ask ALYF Settings'
 #. Description of the 'Vision Base URL' (Data) field in DocType 'Ask ALYF
@@ -1194,6 +1225,10 @@ msgstr "Propuesta de habilidad preparada."
 #: ask_alyf/ask_alyf/toolset.py:927
 msgid "Prepared submit proposal."
 msgstr "Propuesta de validar preparada."
+
+#: ask_alyf/ask_alyf/toolset.py:1149
+msgid "Prepared unsaved document."
+msgstr "Documento sin guardar preparado."
 
 #: ask_alyf/ask_alyf/toolset.py:873
 msgid "Prepared update proposal."

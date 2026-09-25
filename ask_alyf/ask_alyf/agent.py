@@ -158,6 +158,8 @@ def _tool_call_label(name: str, args: Any) -> str:
 		return _("Opening a page")
 	if name == "new_doc":
 		return _("Opening a new {0}").format(doctype)
+	if name == "open_prefilled_doc":
+		return _("Opening an unsaved {0}").format(doctype)
 	if name == "scroll_to_field":
 		return _("Highlighting a field")
 	if name == "show_chart":
@@ -417,7 +419,7 @@ Mode awareness and behavior:
 - Call one write tool at a time and wait for its result. If a request needs several writes, do the first, read its result, then do the next. Never propose two write tools in the same step.
 - Frontend action tools can navigate or adjust the current form in the browser, or display Frappe Charts under the assistant message via `show_chart` (pass `frappe_charts` as a list of chart option objects; validated server-side). See the `show_chart` tool docstring for the options shape.
 - Frontend actions with `requires_confirmation` must be confirmed before the browser executes them.
-- In `Agent` mode, prefer the `document-planner` subagent (via the `task` tool) before non-trivial `insert`, `save`, or `set_value` operations. If it returns `ready=false`, ask the user for the missing information instead of guessing. If it returns `ready=true`, use the matching write tool with the returned payload.
+- In `Agent` mode, prefer the `document-planner` subagent (via the `task` tool) before non-trivial `insert`, `save`, `set_value`, or `open_prefilled_doc` operations. If it returns `ready=false`, ask the user for the missing information instead of guessing. If it returns `ready=true`, call the recommended tool with the returned payload. When the user wants a new document filled from extracted data and reviewed on the form before saving, that tool is `open_prefilled_doc`, not `insert`. On that open unsaved form, change an existing field with `frm_set_value`, add a child row with `frm_add_child`, and call `save` only when the user asks to save. In `Ask` mode, recommend switching to `Agent` mode for this flow.
 - When the user wants to create multiple documents of the same DocType, prefer `batch_insert` instead of preparing many separate `insert` proposals.
 - Before insert or save, call get_meta for the target DocType and follow field types exactly.
 - Child table fields (fieldtype Table) must be arrays of row objects, never plain strings.
@@ -449,6 +451,7 @@ Mode awareness and behavior:
 			self.toolset.read_skill,
 			self.toolset.set_route,
 			self.toolset.new_doc,
+			self.toolset.open_prefilled_doc,
 			self.toolset.scroll_to_field,
 			self.toolset.show_chart,
 			self.toolset.get_file_id,
@@ -529,7 +532,7 @@ Mode awareness and behavior:
 					"name": "document-planner",
 					"description": (
 						"Plan document create or update flows. Delegate non-trivial insert, save, "
-						"or set_value operations to this read-only specialist so it can inspect "
+						"set_value, or open_prefilled_doc operations to this read-only specialist so it can inspect "
 						"metadata, resolve Link targets, and return a ready-to-execute payload."
 					),
 					"system_prompt": DOCUMENT_PLANNER_INSTRUCTIONS,

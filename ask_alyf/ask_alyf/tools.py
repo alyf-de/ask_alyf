@@ -29,12 +29,13 @@ UNSAFE_PAYLOAD_KEYS = {"__proto__", "constructor", "prototype"}
 FRONTEND_ACTION_TOOLS = {
 	"set_route",
 	"new_doc",
+	"open_prefilled_doc",
 	"scroll_to_field",
 	"frm_set_value",
 	"frm_add_child",
 	"show_chart",
 }
-AUTO_FRONTEND_ACTION_TOOLS = {"set_route", "new_doc", "scroll_to_field", "show_chart"}
+AUTO_FRONTEND_ACTION_TOOLS = {"set_route", "new_doc", "open_prefilled_doc", "scroll_to_field", "show_chart"}
 ALLOWED_FRAPPE_CHART_TYPES = frozenset({"bar", "line", "scatter", "pie", "percentage", "donut", "axis-mixed"})
 MAX_FRAPPE_CHARTS_PER_MESSAGE = 8
 MAX_FRAPPE_CHART_LABELS = 100
@@ -784,7 +785,7 @@ def _get_document_extraction_model_config(settings) -> VisionModelConfig:
 		provider_name=get_any_llm_provider(provider_label),
 		api_key=api_key,
 		api_base=api_base,
-		model_id=_normalize_any_llm_model_id(model_setting),
+		model_id=model_setting,
 	)
 
 
@@ -1698,6 +1699,17 @@ def validate_frontend_action_payload(tool: str, payload: dict[str, Any]) -> str 
 		if route_options is not None and not isinstance(route_options, dict):
 			return _("Frontend action 'new_doc' field 'route_options' must be an object.")
 		return None
+
+	if tool == "open_prefilled_doc":
+		doctype = payload.get("doctype")
+		if not isinstance(doctype, str) or not doctype.strip():
+			return _("Frontend action 'open_prefilled_doc' requires a DocType.")
+		doc = payload.get("doc")
+		if not isinstance(doc, dict):
+			return _("Frontend action 'open_prefilled_doc' field 'doc' must be an object.")
+		if doc.get("doctype") not in (None, doctype):
+			return _("Frontend action 'open_prefilled_doc' doc DocType must match.")
+		return validate_table_field_shapes(doctype, doc)
 
 	if tool == "scroll_to_field":
 		fieldname = payload.get("fieldname")
