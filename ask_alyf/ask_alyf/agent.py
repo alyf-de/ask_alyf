@@ -330,7 +330,7 @@ def _langsmith_tracing(settings, *, metadata: dict[str, Any]) -> Generator[None]
 			except Exception:
 				# Tracing must not replace a finished invoke, or resume will
 				# treat a completed run as a follow-up failure.
-				frappe.log_error("Ask ALYF LangSmith Tracing Error", frappe.get_traceback())
+				frappe.log_error("Ask ALYF LangSmith Tracing Error", frappe.get_traceback())  # traceback intentionally without context
 
 
 # --- Deep Agents coordinator --------------------------------------------------
@@ -639,7 +639,7 @@ Mode awareness and behavior:
 			# the write a second time, so the thread goes and the next turn is
 			# seeded from the stored conversation history instead.
 			self.checkpointer.delete_thread(self.runtime.conversation_name)
-			frappe.log_error("Ask ALYF Action Follow-Up Error", frappe.get_traceback())
+			frappe.log_error("Ask ALYF Action Follow-Up Error", frappe.get_traceback())  # traceback intentionally without context
 			frappe.clear_messages()
 			return {
 				"response": _(
