@@ -12,6 +12,16 @@ from ask_alyf.ask_alyf.api import _truncate_doc_for_size
 
 
 class UnitTestFieldContexts(UnitTestCase):
+	def test_skill_description_uses_process_mining_prompt(self):
+		"""Ask ALYF Skill / description resolves to the mining prompt, not the generic fallback."""
+		result = field_contexts.get_field_context("Ask ALYF Skill", "description", "Markdown Editor")
+
+		prompt = result["system_prompt"]
+		self.assertIn("read_skill", prompt)
+		self.assertIn("tabVersion", prompt)
+		self.assertIn("GROUP BY", prompt)
+		self.assertIn("ask the user", prompt)
+
 	def test_get_field_context_mapped_returns_specific_entry(self):
 		"""Print Format entry has correct system_prompt, jinja_globals, jinja_filters, render_context_vars."""
 		result = field_contexts.get_field_context("Print Format", "html", "Code")
