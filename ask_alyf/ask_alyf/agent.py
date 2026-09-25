@@ -164,6 +164,8 @@ def _tool_call_label(name: str, args: Any) -> str:
 		return _("Preparing a chart")
 	if name in ("frm_set_value", "frm_add_child"):
 		return _("Filling in the open form")
+	if name == "run_report":
+		return _("Running a report")
 
 	return name.replace("_", " ").capitalize()
 
@@ -422,6 +424,7 @@ Mode awareness and behavior:
 - Before insert or save, call get_meta for the target DocType and follow field types exactly.
 - Child table fields (fieldtype Table) must be arrays of row objects, never plain strings.
 - Act on clear intent immediately with sensible defaults. Only ask when required information is truly missing and cannot be inferred.
+- Before every call run_report, call list_accessible_reports to check if the report is accessible.
 - Never repeat the user's data in your response. The UI shows a detailed preview of every pending write. After calling a write tool, confirm readiness in one sentence.
 - A write tool that returns `rejected` means the user declined it. Acknowledge briefly, suggest an alternative if there is one, and never retry the same operation.
 - When a write tool returns a result, confirm the outcome briefly. If a natural follow-up action exists (e.g. submitting a newly created document), proceed with it. Do not ask "would you like me to..." — just do it.
@@ -456,6 +459,7 @@ Mode awareness and behavior:
 			self.toolset.extract_document_data,
 			self.toolset.get_print,
 			self.toolset.run_read_only_sql,
+			self.toolset.run_report,
 			self.toolset.get_app_version,
 			self.toolset.read_github_releases,
 			self.toolset.read_documentation_page,
