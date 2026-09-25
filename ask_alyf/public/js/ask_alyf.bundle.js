@@ -650,8 +650,8 @@ import "./field_agent";
 						prev.setAttribute("aria-label", __("Previous page"));
 						next.setAttribute("aria-label", __("Next page"));
 						label.setAttribute("aria-live", "polite");
-						prev.innerHTML = getIcon("chevron-left", "xs", "", true);
-						next.innerHTML = getIcon("chevron-right", "xs", "", true);
+						prev.innerHTML = frappe.utils.icon("es-line-left-chevron", "xs", "", true);
+						next.innerHTML = frappe.utils.icon("es-line-right-chevron", "xs", "", true);
 						const show = (page) => {
 							const rows = [...body.rows];
 							const pages = Math.ceil(rows.length / PAGE);
@@ -671,7 +671,7 @@ import "./field_agent";
 					}
 					const header = table.tHead?.rows[0];
 					if (!header) continue;
-					const sortIcon = (name) => getIcon(name, "xs", "", true);
+					const sortIcon = (name) => frappe.utils.icon(name, "xs", "", true);
 					const sortButtonLabel = (columnLabel, direction) => {
 						if (direction === "asc") {
 							return __("Sorted ascending by {0}", [columnLabel]);
@@ -685,7 +685,7 @@ import "./field_agent";
 						const columnLabel = cell.dataset.columnLabel || __("Column");
 						cell.setAttribute(
 							"aria-sort",
-							direction === "asc" ? "ascending" : direction === "desc" ? "descending" : "none",
+							direction === "asc" ? "ascending" : direction === "desc" ? "descending" : "none"
 						);
 						const btn = cell.querySelector(".ask_alyf-sort-btn");
 						if (!btn) {
@@ -696,10 +696,10 @@ import "./field_agent";
 							: "ask_alyf-sort-btn ask_alyf-sort-icon ask_alyf-sort-icon-default";
 						btn.innerHTML = sortIcon(
 							direction === "asc"
-								? "chevron-up"
+								? "es-line-up"
 								: direction === "desc"
-								  ? "chevron-down"
-								  : "chevrons-up-down",
+								? "es-line-down"
+								: "es-line-sort"
 						);
 						btn.setAttribute("aria-label", sortButtonLabel(columnLabel, direction));
 					};
@@ -710,8 +710,8 @@ import "./field_agent";
 						cell.setAttribute("aria-sort", "none");
 						const labelHtml = cell.innerHTML;
 						cell.innerHTML = `<span class="ask_alyf-th">${labelHtml}<button type="button" class="ask_alyf-sort-btn ask_alyf-sort-icon ask_alyf-sort-icon-default" aria-label="${this.escapeHtml(
-							sortButtonLabel(columnLabel, null),
-						)}">${sortIcon("chevrons-up-down")}</button></span>`;
+							sortButtonLabel(columnLabel, null)
+						)}">${sortIcon("es-line-sort")}</button></span>`;
 					}
 					table.tHead?.addEventListener("click", (event) => {
 						const sortBtn = event.target.closest(".ask_alyf-sort-btn");
@@ -732,7 +732,7 @@ import "./field_agent";
 								const cmp = (a.cells[index]?.innerText || "").localeCompare(
 									b.cells[index]?.innerText || "",
 									undefined,
-									{ numeric: true },
+									{ numeric: true }
 								);
 								return desc ? -cmp : cmp;
 							})

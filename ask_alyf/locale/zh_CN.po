@@ -438,15 +438,12 @@ msgstr "请在 Ask ALYF 设置中配置视觉模型。"
 msgid "Configure an API key in Ask ALYF Settings before sending messages."
 msgstr "发送消息前，请在 Ask ALYF 设置中配置 API 密钥。"
 
-<<<<<<< HEAD
-#: ask_alyf/public/js/ask_alyf.bundle.js:719
-=======
-#: ask_alyf/public/js/ask_alyf.bundle.js:694
-#: ask_alyf/public/js/ask_alyf.bundle.js:715
+#: ask_alyf/public/js/ask_alyf.bundle.js:685
+#: ask_alyf/public/js/ask_alyf.bundle.js:707
 msgid "Column"
 msgstr "列"
-#: ask_alyf/public/js/ask_alyf.bundle.js:728
->>>>>>> 379bb83 (feat: implement table pagination and sorting functionality (#145))
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:824
 msgid "Confirm all"
 msgstr "全部确认"
 
@@ -965,14 +962,11 @@ msgstr "新对话"
 msgid "New chat"
 msgstr "新聊天"
 
-<<<<<<< HEAD
-#: ask_alyf/ask_alyf/toolset.py:1132
-=======
-#: ask_alyf/public/js/ask_alyf.bundle.js:660
+#: ask_alyf/public/js/ask_alyf.bundle.js:651
 msgid "Next page"
 msgstr "下一页"
-#: ask_alyf/ask_alyf/toolset.py:1127
->>>>>>> 379bb83 (feat: implement table pagination and sorting functionality (#145))
+
+#: ask_alyf/ask_alyf/toolset.py:1132
 msgid "New document action needs correction."
 msgstr "新建文档操作需要更正。"
 
@@ -1221,14 +1215,11 @@ msgstr "已准备更新提案。"
 msgid "Preparing a chart"
 msgstr "正在准备图表"
 
-<<<<<<< HEAD
-#: ask_alyf/public/js/ask_alyf.bundle.js:1506
-=======
-#: ask_alyf/public/js/ask_alyf.bundle.js:659
+#: ask_alyf/public/js/ask_alyf.bundle.js:650
 msgid "Previous page"
 msgstr "上一页"
-#: ask_alyf/public/js/ask_alyf.bundle.js:1522
->>>>>>> 379bb83 (feat: implement table pagination and sorting functionality (#145))
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1611
 msgid "Projects"
 msgstr "项目"
 
@@ -1490,23 +1481,22 @@ msgstr "停止本次运行"
 msgid "Stopped. Send a message to pick up from here."
 msgstr "已停止。发送消息即可从此处继续。"
 
-<<<<<<< HEAD
-#: ask_alyf/public/js/ask_alyf.bundle.js:1813
-=======
-#: ask_alyf/public/js/ask_alyf.bundle.js:691
+#: ask_alyf/public/js/ask_alyf.bundle.js:682
 #, python-brace-format
 msgid "Sort by {0}"
 msgstr "按{0}排序"
-#: ask_alyf/public/js/ask_alyf.bundle.js:686
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:677
 #, python-brace-format
 msgid "Sorted ascending by {0}"
 msgstr "按{0}升序排序"
-#: ask_alyf/public/js/ask_alyf.bundle.js:689
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:680
 #, python-brace-format
 msgid "Sorted descending by {0}"
 msgstr "按{0}降序排序"
-#: ask_alyf/public/js/ask_alyf.bundle.js:1826
->>>>>>> 379bb83 (feat: implement table pagination and sorting functionality (#145))
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1918
 msgid "Stopping..."
 msgstr "正在停止..."
 

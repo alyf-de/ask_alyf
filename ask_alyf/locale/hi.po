@@ -438,15 +438,12 @@ msgstr "Ask ALYF सेटिंग्स में एक विज़न म�
 msgid "Configure an API key in Ask ALYF Settings before sending messages."
 msgstr "संदेश भेजने से पहले Ask ALYF सेटिंग्स में एक API कुंजी कॉन्फ़िगर करें।"
 
-<<<<<<< HEAD
-#: ask_alyf/public/js/ask_alyf.bundle.js:719
-=======
-#: ask_alyf/public/js/ask_alyf.bundle.js:694
-#: ask_alyf/public/js/ask_alyf.bundle.js:715
+#: ask_alyf/public/js/ask_alyf.bundle.js:685
+#: ask_alyf/public/js/ask_alyf.bundle.js:707
 msgid "Column"
 msgstr "कॉलम"
-#: ask_alyf/public/js/ask_alyf.bundle.js:728
->>>>>>> 379bb83 (feat: implement table pagination and sorting functionality (#145))
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:824
 msgid "Confirm all"
 msgstr "सभी की पुष्टि करें"
 
@@ -965,14 +962,11 @@ msgstr "नई बातचीत"
 msgid "New chat"
 msgstr "नई चैट"
 
-<<<<<<< HEAD
-#: ask_alyf/ask_alyf/toolset.py:1132
-=======
-#: ask_alyf/public/js/ask_alyf.bundle.js:660
+#: ask_alyf/public/js/ask_alyf.bundle.js:651
 msgid "Next page"
 msgstr "अगला पृष्ठ"
-#: ask_alyf/ask_alyf/toolset.py:1127
->>>>>>> 379bb83 (feat: implement table pagination and sorting functionality (#145))
+
+#: ask_alyf/ask_alyf/toolset.py:1132
 msgid "New document action needs correction."
 msgstr "नया दस्तावेज़ क्रिया में सुधार की आवश्यकता है।"
 
@@ -1221,14 +1215,11 @@ msgstr "अपडेट प्रस्ताव तैयार किया �
 msgid "Preparing a chart"
 msgstr "एक चार्ट तैयार किया जा रहा है"
 
-<<<<<<< HEAD
-#: ask_alyf/public/js/ask_alyf.bundle.js:1506
-=======
-#: ask_alyf/public/js/ask_alyf.bundle.js:659
+#: ask_alyf/public/js/ask_alyf.bundle.js:650
 msgid "Previous page"
 msgstr "पिछला पृष्ठ"
-#: ask_alyf/public/js/ask_alyf.bundle.js:1522
->>>>>>> 379bb83 (feat: implement table pagination and sorting functionality (#145))
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1611
 msgid "Projects"
 msgstr "परियोजनाएं"
 
@@ -1490,23 +1481,22 @@ msgstr "इस रन को रोकें"
 msgid "Stopped. Send a message to pick up from here."
 msgstr "रोक दिया गया। यहाँ से आगे बढ़ने के लिए एक संदेश भेजें।"
 
-<<<<<<< HEAD
-#: ask_alyf/public/js/ask_alyf.bundle.js:1813
-=======
-#: ask_alyf/public/js/ask_alyf.bundle.js:691
+#: ask_alyf/public/js/ask_alyf.bundle.js:682
 #, python-brace-format
 msgid "Sort by {0}"
 msgstr "{0} के अनुसार क्रमबद्ध करें"
-#: ask_alyf/public/js/ask_alyf.bundle.js:686
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:677
 #, python-brace-format
 msgid "Sorted ascending by {0}"
 msgstr "{0} के अनुसार आरोही क्रम"
-#: ask_alyf/public/js/ask_alyf.bundle.js:689
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:680
 #, python-brace-format
 msgid "Sorted descending by {0}"
 msgstr "{0} के अनुसार अवरोही क्रम"
-#: ask_alyf/public/js/ask_alyf.bundle.js:1826
->>>>>>> 379bb83 (feat: implement table pagination and sorting functionality (#145))
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1918
 msgid "Stopping..."
 msgstr "रोका जा रहा है..."
 
