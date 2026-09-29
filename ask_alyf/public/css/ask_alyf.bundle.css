@@ -23,9 +23,9 @@
 }
 
 .field-agent-trigger:hover:not(:disabled) {
-	color: var(--primary);
-	border-color: var(--primary);
-	background: color-mix(in srgb, var(--primary), var(--bg-color) 92%);
+	color: var(--text-muted);
+	border-color: var(--text-muted);
+	background: color-mix(in srgb, var(--text-muted), var(--bg-color) 92%);
 }
 
 .field-agent-trigger:focus-visible {
@@ -347,7 +347,7 @@
 }
 
 .ask_alyf-resize-handle:hover {
-	border-color: var(--primary);
+	border-color: var(--text-muted);
 }
 
 .ask_alyf-root.ask_alyf-resizing,
