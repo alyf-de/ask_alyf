@@ -418,7 +418,12 @@ msgstr ""
 msgid "Configure an API key in Ask ALYF Settings before sending messages."
 msgstr ""
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:719
+#: ask_alyf/public/js/ask_alyf.bundle.js:685
+#: ask_alyf/public/js/ask_alyf.bundle.js:707
+msgid "Column"
+msgstr ""
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:824
 msgid "Confirm all"
 msgstr ""
 
@@ -913,6 +918,10 @@ msgstr ""
 msgid "New chat"
 msgstr ""
 
+#: ask_alyf/public/js/ask_alyf.bundle.js:651
+msgid "Next page"
+msgstr ""
+
 #: ask_alyf/ask_alyf/toolset.py:1132
 msgid "New document action needs correction."
 msgstr ""
@@ -1152,7 +1161,11 @@ msgstr ""
 msgid "Preparing a chart"
 msgstr ""
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1506
+#: ask_alyf/public/js/ask_alyf.bundle.js:650
+msgid "Previous page"
+msgstr ""
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1611
 msgid "Projects"
 msgstr ""
 
@@ -1400,7 +1413,22 @@ msgstr ""
 msgid "Stopped. Send a message to pick up from here."
 msgstr ""
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1813
+#: ask_alyf/public/js/ask_alyf.bundle.js:682
+#, python-brace-format
+msgid "Sort by {0}"
+msgstr ""
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:677
+#, python-brace-format
+msgid "Sorted ascending by {0}"
+msgstr ""
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:680
+#, python-brace-format
+msgid "Sorted descending by {0}"
+msgstr ""
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1918
 msgid "Stopping..."
 msgstr ""
 
@@ -1501,6 +1529,9 @@ msgstr ""
 msgid "Thinking..."
 msgstr ""
 
+#: ask_alyf/public/js/ask_alyf.bundle.js:654
+msgid "Table pagination"
+msgstr ""
 #: ask_alyf/public/js/field_agent.js:203
 msgid "This is taking a moment..."
 msgstr ""

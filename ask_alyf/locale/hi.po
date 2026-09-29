@@ -438,7 +438,12 @@ msgstr "Ask ALYF सेटिंग्स में एक विज़न म�
 msgid "Configure an API key in Ask ALYF Settings before sending messages."
 msgstr "संदेश भेजने से पहले Ask ALYF सेटिंग्स में एक API कुंजी कॉन्फ़िगर करें।"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:719
+#: ask_alyf/public/js/ask_alyf.bundle.js:685
+#: ask_alyf/public/js/ask_alyf.bundle.js:707
+msgid "Column"
+msgstr "कॉलम"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:824
 msgid "Confirm all"
 msgstr "सभी की पुष्टि करें"
 
@@ -957,6 +962,10 @@ msgstr "नई बातचीत"
 msgid "New chat"
 msgstr "नई चैट"
 
+#: ask_alyf/public/js/ask_alyf.bundle.js:651
+msgid "Next page"
+msgstr "अगला पृष्ठ"
+
 #: ask_alyf/ask_alyf/toolset.py:1132
 msgid "New document action needs correction."
 msgstr "नया दस्तावेज़ क्रिया में सुधार की आवश्यकता है।"
@@ -1206,7 +1215,11 @@ msgstr "अपडेट प्रस्ताव तैयार किया �
 msgid "Preparing a chart"
 msgstr "एक चार्ट तैयार किया जा रहा है"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1506
+#: ask_alyf/public/js/ask_alyf.bundle.js:650
+msgid "Previous page"
+msgstr "पिछला पृष्ठ"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1611
 msgid "Projects"
 msgstr "परियोजनाएं"
 
@@ -1468,7 +1481,22 @@ msgstr "इस रन को रोकें"
 msgid "Stopped. Send a message to pick up from here."
 msgstr "रोक दिया गया। यहाँ से आगे बढ़ने के लिए एक संदेश भेजें।"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1813
+#: ask_alyf/public/js/ask_alyf.bundle.js:682
+#, python-brace-format
+msgid "Sort by {0}"
+msgstr "{0} के अनुसार क्रमबद्ध करें"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:677
+#, python-brace-format
+msgid "Sorted ascending by {0}"
+msgstr "{0} के अनुसार आरोही क्रम"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:680
+#, python-brace-format
+msgid "Sorted descending by {0}"
+msgstr "{0} के अनुसार अवरोही क्रम"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1918
 msgid "Stopping..."
 msgstr "रोका जा रहा है..."
 
@@ -1575,6 +1603,9 @@ msgstr "पुष्टि करने के लिए कोई लंबि�
 msgid "Thinking..."
 msgstr "सोच रहा है..."
 
+#: ask_alyf/public/js/ask_alyf.bundle.js:654
+msgid "Table pagination"
+msgstr "तालिका पृष्ठांकन"
 #: ask_alyf/public/js/field_agent.js:203
 msgid "This is taking a moment..."
 msgstr "इसमें थोड़ा समय लग रहा है..."

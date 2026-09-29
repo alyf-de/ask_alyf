@@ -438,7 +438,12 @@ msgstr "Настройте модель зрения в настройках Ask
 msgid "Configure an API key in Ask ALYF Settings before sending messages."
 msgstr "Настройте API-ключ в настройках Ask ALYF перед отправкой сообщений."
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:719
+#: ask_alyf/public/js/ask_alyf.bundle.js:685
+#: ask_alyf/public/js/ask_alyf.bundle.js:707
+msgid "Column"
+msgstr "Столбец"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:824
 msgid "Confirm all"
 msgstr "Подтвердить все"
 
@@ -957,6 +962,10 @@ msgstr "Новый разговор"
 msgid "New chat"
 msgstr "Новый чат"
 
+#: ask_alyf/public/js/ask_alyf.bundle.js:651
+msgid "Next page"
+msgstr "Следующая страница"
+
 #: ask_alyf/ask_alyf/toolset.py:1132
 msgid "New document action needs correction."
 msgstr "Действие создания нового документа требует исправления."
@@ -1206,7 +1215,11 @@ msgstr "Предложение об обновлении подготовлен�
 msgid "Preparing a chart"
 msgstr "Подготовка диаграммы"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1506
+#: ask_alyf/public/js/ask_alyf.bundle.js:650
+msgid "Previous page"
+msgstr "Предыдущая страница"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1611
 msgid "Projects"
 msgstr "Проекты"
 
@@ -1468,7 +1481,22 @@ msgstr "Остановить этот запуск"
 msgid "Stopped. Send a message to pick up from here."
 msgstr "Приостановлено. Отправьте сообщение, чтобы продолжить с этого места."
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1813
+#: ask_alyf/public/js/ask_alyf.bundle.js:682
+#, python-brace-format
+msgid "Sort by {0}"
+msgstr "Сортировать по {0}"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:677
+#, python-brace-format
+msgid "Sorted ascending by {0}"
+msgstr "По возрастанию: {0}"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:680
+#, python-brace-format
+msgid "Sorted descending by {0}"
+msgstr "По убыванию: {0}"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1918
 msgid "Stopping..."
 msgstr "Остановка..."
 
@@ -1575,6 +1603,9 @@ msgstr "Нет ожидающих операций для подтвержден
 msgid "Thinking..."
 msgstr "Думаю..."
 
+#: ask_alyf/public/js/ask_alyf.bundle.js:654
+msgid "Table pagination"
+msgstr "Страницы таблицы"
 #: ask_alyf/public/js/field_agent.js:203
 msgid "This is taking a moment..."
 msgstr "Это занимает некоторое время..."
