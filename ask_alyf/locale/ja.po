@@ -760,6 +760,18 @@ msgstr "フロントエンドアクション 'new_doc' のフィールド 'route
 msgid "Frontend action 'new_doc' requires a DocType."
 msgstr "フロントエンドアクション 'new_doc' には DocType が必要です。"
 
+#: ask_alyf/ask_alyf/tools.py:1711
+msgid "Frontend action 'open_prefilled_doc' doc DocType must match."
+msgstr "フロントエンドアクション 'open_prefilled_doc' のドキュメントの DocType は一致する必要があります。"
+
+#: ask_alyf/ask_alyf/tools.py:1709
+msgid "Frontend action 'open_prefilled_doc' field 'doc' must be an object."
+msgstr "フロントエンドアクション 'open_prefilled_doc' のフィールド 'doc' はオブジェクトである必要があります。"
+
+#: ask_alyf/ask_alyf/tools.py:1706
+msgid "Frontend action 'open_prefilled_doc' requires a DocType."
+msgstr "フロントエンドアクション 'open_prefilled_doc' には DocType が必要です。"
+
 #: ask_alyf/ask_alyf/tools.py:1705
 msgid "Frontend action 'scroll_to_field' requires a fieldname."
 msgstr "フロントエンドアクション 'scroll_to_field' には fieldname が必要です。"
@@ -883,6 +895,11 @@ msgstr "最終コンテキストJSON"
 #: ask_alyf/ask_alyf/doctype/ask_alyf_conversation/ask_alyf_conversation.json
 msgid "Last Message At"
 msgstr "最終メッセージ日時"
+
+#: ask_alyf/ask_alyf/api.py:973
+#, python-brace-format
+msgid "Left blank: {0}"
+msgstr "空のまま: {0}"
 
 #: ask_alyf/ask_alyf/deep_agent_backend.py:172
 #: ask_alyf/ask_alyf/deep_agent_backend.py:285
@@ -1045,10 +1062,19 @@ msgstr "読み取り専用のSQLステートメントのみ許可されます。
 msgid "Open Ask ALYF"
 msgstr "Ask ALYFを開く"
 
+#: ask_alyf/ask_alyf/toolset.py:1148
+msgid "Open document action needs correction."
+msgstr "ドキュメントを開くアクションを修正する必要があります。"
+
 #: ask_alyf/ask_alyf/toolset.py:1125
 #, python-brace-format
 msgid "Open new {0}"
 msgstr "新しい{0}を開く"
+
+#: ask_alyf/ask_alyf/toolset.py:1146
+#, python-brace-format
+msgid "Open unsaved {0}"
+msgstr "未保存の{0}を開く"
 
 #. Option for the 'LLM Provider' (Select) field in DocType 'Ask ALYF Settings'
 #. Option for the 'Vision LLM Provider' (Select) field in DocType 'Ask ALYF
@@ -1072,6 +1098,11 @@ msgstr "新しい {0} を開いています"
 #: ask_alyf/ask_alyf/agent.py:157
 msgid "Opening a page"
 msgstr "ページを開いています"
+
+#: ask_alyf/ask_alyf/agent.py:162
+#, python-brace-format
+msgid "Opening an unsaved {0}"
+msgstr "未保存の {0} を開いています"
 
 #. Description of the 'Base URL' (Data) field in DocType 'Ask ALYF Settings'
 #. Description of the 'Vision Base URL' (Data) field in DocType 'Ask ALYF
@@ -1194,6 +1225,10 @@ msgstr "スキル提案を準備しました。"
 #: ask_alyf/ask_alyf/toolset.py:927
 msgid "Prepared submit proposal."
 msgstr "提出提案を準備しました。"
+
+#: ask_alyf/ask_alyf/toolset.py:1149
+msgid "Prepared unsaved document."
+msgstr "未保存のドキュメントを準備しました。"
 
 #: ask_alyf/ask_alyf/toolset.py:873
 msgid "Prepared update proposal."

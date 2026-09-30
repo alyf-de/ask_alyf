@@ -760,6 +760,18 @@ msgstr "ফ্রন্টএন্ড অ্যাকশন 'new_doc'-এর �
 msgid "Frontend action 'new_doc' requires a DocType."
 msgstr "ফ্রন্টএন্ড অ্যাকশন 'new_doc'-এর জন্য একটি DocType প্রয়োজন।"
 
+#: ask_alyf/ask_alyf/tools.py:1711
+msgid "Frontend action 'open_prefilled_doc' doc DocType must match."
+msgstr "ফ্রন্টএন্ড অ্যাকশন 'open_prefilled_doc'-এর ডকুমেন্ট DocType মিলতে হবে।"
+
+#: ask_alyf/ask_alyf/tools.py:1709
+msgid "Frontend action 'open_prefilled_doc' field 'doc' must be an object."
+msgstr "ফ্রন্টএন্ড অ্যাকশন 'open_prefilled_doc'-এর ফিল্ড 'doc' একটি অবজেক্ট হতে হবে।"
+
+#: ask_alyf/ask_alyf/tools.py:1706
+msgid "Frontend action 'open_prefilled_doc' requires a DocType."
+msgstr "ফ্রন্টএন্ড অ্যাকশন 'open_prefilled_doc'-এর জন্য একটি DocType প্রয়োজন।"
+
 #: ask_alyf/ask_alyf/tools.py:1705
 msgid "Frontend action 'scroll_to_field' requires a fieldname."
 msgstr "ফ্রন্টএন্ড অ্যাকশন 'scroll_to_field'-এর জন্য একটি fieldname প্রয়োজন।"
@@ -883,6 +895,11 @@ msgstr "সর্বশেষ কনটেক্সট JSON"
 #: ask_alyf/ask_alyf/doctype/ask_alyf_conversation/ask_alyf_conversation.json
 msgid "Last Message At"
 msgstr "সর্বশেষ বার্তা প্রাপ্তির সময়"
+
+#: ask_alyf/ask_alyf/api.py:973
+#, python-brace-format
+msgid "Left blank: {0}"
+msgstr "ফাঁকা রাখা হয়েছে: {0}"
 
 #: ask_alyf/ask_alyf/deep_agent_backend.py:172
 #: ask_alyf/ask_alyf/deep_agent_backend.py:285
@@ -1045,10 +1062,19 @@ msgstr "শুধুমাত্র read-only SQL statements অনুমোদ�
 msgid "Open Ask ALYF"
 msgstr "Ask ALYF খুলুন"
 
+#: ask_alyf/ask_alyf/toolset.py:1148
+msgid "Open document action needs correction."
+msgstr "ডকুমেন্ট খোলার অ্যাকশনের সংশোধন প্রয়োজন।"
+
 #: ask_alyf/ask_alyf/toolset.py:1125
 #, python-brace-format
 msgid "Open new {0}"
 msgstr "নতুন {0} খুলুন"
+
+#: ask_alyf/ask_alyf/toolset.py:1146
+#, python-brace-format
+msgid "Open unsaved {0}"
+msgstr "অসংরক্ষিত {0} খুলুন"
 
 #. Option for the 'LLM Provider' (Select) field in DocType 'Ask ALYF Settings'
 #. Option for the 'Vision LLM Provider' (Select) field in DocType 'Ask ALYF
@@ -1072,6 +1098,11 @@ msgstr "একটি নতুন {0} খোলা হচ্ছে"
 #: ask_alyf/ask_alyf/agent.py:157
 msgid "Opening a page"
 msgstr "একটি পৃষ্ঠা খোলা হচ্ছে"
+
+#: ask_alyf/ask_alyf/agent.py:162
+#, python-brace-format
+msgid "Opening an unsaved {0}"
+msgstr "একটি অসংরক্ষিত {0} খোলা হচ্ছে"
 
 #. Description of the 'Base URL' (Data) field in DocType 'Ask ALYF Settings'
 #. Description of the 'Vision Base URL' (Data) field in DocType 'Ask ALYF
@@ -1194,6 +1225,10 @@ msgstr "দক্ষতার প্রস্তাব প্রস্তুত 
 #: ask_alyf/ask_alyf/toolset.py:927
 msgid "Prepared submit proposal."
 msgstr "সাবমিট প্রস্তাব প্রস্তুত করা হয়েছে।"
+
+#: ask_alyf/ask_alyf/toolset.py:1149
+msgid "Prepared unsaved document."
+msgstr "অসংরক্ষিত ডকুমেন্ট প্রস্তুত করা হয়েছে।"
 
 #: ask_alyf/ask_alyf/toolset.py:873
 msgid "Prepared update proposal."
