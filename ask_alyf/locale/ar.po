@@ -894,6 +894,10 @@ msgstr "جارٍ تحميل المحادثة..."
 msgid "Looking up available reports"
 msgstr "البحث عن التقارير المتاحة"
 
+#: ask_alyf/ask_alyf/agent.py:113
+msgid "Looking up report filters"
+msgstr "البحث عن عوامل تصفية التقرير"
+
 #: ask_alyf/ask_alyf/agent.py:108
 msgid "Looking up what you can access"
 msgstr "البحث عما يمكنك الوصول إليه"

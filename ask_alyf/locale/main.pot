@@ -853,6 +853,10 @@ msgstr ""
 msgid "Looking up available reports"
 msgstr ""
 
+#: ask_alyf/ask_alyf/agent.py:113
+msgid "Looking up report filters"
+msgstr ""
+
 #: ask_alyf/ask_alyf/agent.py:108
 msgid "Looking up what you can access"
 msgstr ""

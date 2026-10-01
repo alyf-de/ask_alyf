@@ -894,6 +894,10 @@ msgstr "वार्तालाप लोड हो रहा है..."
 msgid "Looking up available reports"
 msgstr "उपलब्ध रिपोर्ट खोजी जा रही हैं"
 
+#: ask_alyf/ask_alyf/agent.py:113
+msgid "Looking up report filters"
+msgstr "रिपोर्ट फ़िल्टर खोजे जा रहे हैं"
+
 #: ask_alyf/ask_alyf/agent.py:108
 msgid "Looking up what you can access"
 msgstr "आप किस तक एक्सेस कर सकते हैं, यह खोजा जा रहा है"

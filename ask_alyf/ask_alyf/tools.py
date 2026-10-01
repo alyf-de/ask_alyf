@@ -16,24 +16,13 @@ from frappe import _, client
 from frappe.utils import get_bench_path
 from frappe.utils.data import cint
 
+from .extract_report_filters import filters_from_doc, filters_from_js
+
 CODE_EXTENSIONS = {".py", ".js", ".ts", ".tsx", ".jsx", ".md", ".json", ".yml", ".yaml", ".toml"}
 READ_ONLY_SQL_RE = re.compile(r"^\s*(with|select|show|explain|describe|desc)\b", re.IGNORECASE)
 FORBIDDEN_SQL_RE = re.compile(
 	r"\b(insert|update|delete|drop|truncate|alter|create|grant|revoke|replace)\b", re.IGNORECASE
 )
-EXTEND_RE = re.compile(r"(?:\$\.extend|Object\.assign)\(\s*\{\s*\}\s*,\s*([A-Za-z0-9_.]+)")
-IDENT_RE = re.compile(r"[A-Za-z_][A-Za-z0-9_]*")
-JS_FILTER_KEYS = {
-	"fieldname",
-	"label",
-	"fieldtype",
-	"options",
-	"default",
-	"reqd",
-	"mandatory",
-	"depends_on",
-	"mandatory_depends_on",
-}
 FrappeSelectField = str | dict[str, str]
 ENGLISH_LANGUAGE_CODES = {"en", "en-us", "en-gb"}
 OPERATION_KIND_BACKEND = "backend_action"
@@ -66,6 +55,7 @@ VISION_MIME_TYPES = {
 }
 MAX_VISION_PAGES = 10
 VISION_DPI = 200
+MAX_REPORT_ROWS = 200
 # How much of a docs page one read returns. A longer page is read on in a
 # second call, from the offset the first one reported.
 MAX_COMPENDIUM_PAGE_CHARS = 6000
@@ -451,272 +441,133 @@ def get_report_filters(report_name: str) -> dict[str, Any]:
 
 	report = get_report_doc(report_name)  # checks permissions
 	script = get_script(report_name)["script"] or ""
-	js_rows = _filters_from_js(script)
+	js_rows = filters_from_js(script)
 	rows = list(
 		{
-			**{r["fieldname"]: r for r in _filters_from_doc(report.filters)},
+			**{r["fieldname"]: r for r in filters_from_doc(report.filters)},
 			**{r["fieldname"]: r for r in js_rows},
 		}.values()
 	)
+
 	return {
 		"report_name": report.name,
 		"ref_doctype": report.ref_doctype,
 		"report_type": report.report_type,
-		"has_dynamic_dimensions": "add_dimensions" in script,
 		"filters": rows,
 		"js_filters": js_rows,
 	}
 
 
-def _filters_from_doc(filters) -> list[dict[str, Any]]:
-	rows = []
-	for f in filters or []:
-		row = _slim_filter(
-			fieldname=f.fieldname,
-			label=f.label,
-			fieldtype=f.fieldtype,
-			options=f.options,
-			default=f.default,
-			reqd=f.mandatory,
-		)
-		if row:
-			rows.append(row)
-	return rows
+def _cap_report_rows(payload):
+	rows = payload.get("result")
+	if not isinstance(rows, list) or len(rows) <= MAX_REPORT_ROWS:
+		return payload
+	payload["result"] = rows[:MAX_REPORT_ROWS]
+	payload["truncated"] = True
+	return payload
 
 
-def _filters_from_js(script: str) -> list[dict[str, Any]]:
-	chunks = [_find_js_for_ident(ident) for ident in EXTEND_RE.findall(script)]
-	chunks.append(script)
-	rows: list[dict[str, Any]] = []
-	seen: set[str] = set()
-	for chunk in chunks:
-		for row in _extract_filter_objects(chunk or ""):
-			name = row["fieldname"]
-			if name in seen:
-				continue
-			seen.add(name)
-			rows.append(row)
-	return rows
+def _builder_filters(report_name, filters, filter_rows, js_filters):
+	"""Keep known fieldnames and rewrite MultiSelectList values to `["in", values]`.
 
-
-def _find_js_for_ident(ident: str) -> str:
+	A Link value names another document. Reject it when the user can neither read nor select that document, so it cannot narrow the report to that document's rows.
 	"""
-	No full scan of all js files, only the first two parts of the ident are used.
-	For erpnext the first two parts of the ident are enough to find the js file.
-	For other apps a change to full ident lookup or caching may be needed.
-	"""
-	parts = ident.split(".")
-	if len(parts) < 2 or parts[0] not in frappe.get_installed_apps():
-		return ""
-	path = Path(frappe.get_app_path(parts[0])) / "public" / "js" / f"{parts[-1]}.js"
-	if not path.is_file():
-		return ""
-	text = path.read_text(encoding="utf-8", errors="ignore")
-	return text if f"{ident} =" in text else ""
 
+	from frappe.desk.query_report import validate_filters_permissions
 
-def _extract_filter_objects(script: str) -> list[dict[str, Any]]:
-	rows = []
-	i = 0
-	while i < len(script):
-		if script[i] in "'\"":
-			i = _skip_string(script, i)
-			continue
-		if script[i] != "{":
-			i += 1
-			continue
-		end = _match_brace(script, i)
-		if end is None:
-			break
-		obj = script[i : end + 1]
-		row = _filter_from_js_object(obj)
-		if row:
-			rows.append(row)
-		i += 1
-	return rows
-
-
-def _filter_from_js_object(obj: str) -> dict[str, Any] | None:
-	props: dict[str, Any] = {}
-	for key, raw in _iter_js_props(obj):
-		if key not in JS_FILTER_KEYS:
-			continue
-		value = _parse_js_value(raw)
-		if value is not None:
-			props[key] = value
-	return _slim_filter(
-		fieldname=props.get("fieldname"),
-		label=props.get("label"),
-		fieldtype=props.get("fieldtype"),
-		options=props.get("options"),
-		default=props.get("default"),
-		reqd=props.get("reqd") or props.get("mandatory"),
-		depends_on=props.get("depends_on"),
-		mandatory_depends_on=props.get("mandatory_depends_on"),
-	)
-
-
-def _iter_js_props(obj: str):
-	s = obj[1:-1]
-	i = 0
-	n = len(s)
-	while i < n:
-		while i < n and s[i] in " \t\n\r,":
-			i += 1
-		m = IDENT_RE.match(s, i)
-		if not m:
-			i += 1
-			continue
-		key = m.group(0)
-		i = m.end()
-		while i < n and s[i] in " \t\n\r":
-			i += 1
-		if i >= n or s[i] != ":":
-			continue
-		i += 1
-		start = i
-		depth = 0
-		while i < n:
-			if s[i] in "'\"":
-				i = _skip_string(s, i)
-				continue
-			if s[i] in "{[":
-				depth += 1
-			elif s[i] in "}]":
-				depth -= 1
-			elif s[i] == "," and depth <= 0:
-				break
-			i += 1
-		yield key, s[start:i].strip()
-
-
-def _parse_js_value(raw: str) -> Any:
-	raw = raw.strip()
-	m = re.match(r"""__\(\s*(['"])(.*?)\1\s*\)""", raw, re.DOTALL)
-	if m:
-		return m.group(2)
-	if raw[:1] in "'\"":
-		return _read_quoted(raw)
-	if re.match(r"^-?\d+(?:\.\d+)?$", raw):
-		return float(raw) if "." in raw else int(raw)
-	if raw in ("true", "false"):
-		return raw == "true"
-	if raw.startswith("["):
-		values = re.findall(r"""value\s*:\s*['"]([^'"]+)['"]""", raw)
-		return values or re.findall(r"""['"]([^'"]+)['"]""", raw)
-	return None
-
-
-def _read_quoted(raw: str) -> str:
-	end = _skip_string(raw, 0)
-	inner = raw[1 : end - 1]
-	if "\\" not in inner:
-		return inner
-	out: list[str] = []
-	i = 0
-	escapes = {"n": "\n", "r": "\r", "t": "\t", "\\": "\\", "'": "'", '"': '"'}
-	while i < len(inner):
-		if inner[i] != "\\":
-			out.append(inner[i])
-			i += 1
-			continue
-		i += 1
-		ch = inner[i] if i < len(inner) else "\\"
-		out.append(escapes.get(ch, ch))
-		i += 1
-	return "".join(out)
-
-
-def _skip_string(s: str, i: int) -> int:
-	quote = s[i]
-	i += 1
-	while i < len(s):
-		if s[i] == "\\":
-			i += 2
-			continue
-		if s[i] == quote:
-			return i + 1
-		i += 1
-	return i
-
-
-def _match_brace(s: str, start: int) -> int | None:
-	depth = 0
-	i = start
-	while i < len(s):
-		if s[i] in "'\"":
-			i = _skip_string(s, i)
-			continue
-		if s[i] == "{":
-			depth += 1
-		elif s[i] == "}":
-			depth -= 1
-			if depth == 0:
-				return i
-		i += 1
-	return None
-
-
-def _slim_filter(
-	fieldname=None,
-	label=None,
-	fieldtype=None,
-	options=None,
-	default=None,
-	reqd=None,
-	depends_on=None,
-	mandatory_depends_on=None,
-) -> dict[str, Any] | None:
-	if not fieldname:
-		return None
-	row = {
-		"fieldname": fieldname,
-		"label": label or fieldname,
-		"fieldtype": fieldtype or "Data",
-		"reqd": 1 if reqd else 0,
+	allowed = {row["fieldname"]: row for row in filter_rows}
+	checked = {}
+	for key, value in filters.items():
+		row = allowed.get(key)
+		if row is None or isinstance(value, dict):
+			frappe.throw(_("Invalid filter: {0}").format(key))
+		if isinstance(value, (list, tuple)):
+			if row.get("fieldtype") != "MultiSelectList" or any(
+				isinstance(item, (list, tuple, dict)) for item in value
+			):
+				frappe.throw(_("Invalid filter: {0}").format(key))
+		checked[key] = value
+	validate_filters_permissions(report_name, checked, js_filters=js_filters)
+	return {
+		key: ["in", list(value)] if isinstance(value, (list, tuple)) else value
+		for key, value in checked.items()
 	}
-	if options not in (None, ""):
-		row["options"] = options
-	if default not in (None, ""):
-		row["default"] = default
-	elif fieldtype == "Link" and options == "Company":
-		row["default"] = frappe.defaults.get_user_default("Company")
-	elif fieldtype == "Link" and options == "Fiscal Year":
-		from erpnext.accounts.utils import get_fiscal_year
 
-		if fy := get_fiscal_year(frappe.utils.today(), raise_on_missing=False):
-			row["default"] = fy[0]
-	if depends_on:
-		row["depends_on"] = depends_on
-	if mandatory_depends_on:
-		row["mandatory_depends_on"] = mandatory_depends_on
-	return row
+
+def _omit_default_checks(filters, rows):
+	"""Drop optional Check filters whose value equals the default."""
+	by_name = {row["fieldname"]: row for row in rows}
+	kept, omitted = {}, []
+	for key, value in filters.items():
+		row = by_name.get(key)
+		if (
+			row
+			and row.get("fieldtype") == "Check"
+			and not row.get("reqd")
+			and cint(row.get("default")) == cint(value)
+		):
+			omitted.append(key)
+			continue
+		kept[key] = value
+	return kept, omitted
+
+
+def _run_report_builder(report_name, filters, rows, js_filters):
+	doc = frappe.get_doc("Report", report_name)
+	columns, result = doc.get_data(
+		# Report Builder skips query_report.run, where this check normally lives,
+		# and get_list only checks access to the report rows.
+		# _builder_filters validates the filters and permissions.
+		filters=_builder_filters(report_name, filters, rows, js_filters),
+		limit=MAX_REPORT_ROWS + 1,
+		user=frappe.session.user,
+		as_dict=True,
+	)
+	return _cap_report_rows({"result": result, "columns": columns})
+
+
+def _execute_report(report_name, meta, filters, are_default_filters):
+	if meta["report_type"] == "Report Builder":
+		return _run_report_builder(report_name, filters, meta["filters"], meta["js_filters"])
+	from frappe.desk.query_report import run
+
+	return _cap_report_rows(
+		run(
+			report_name=report_name,
+			filters=filters,
+			ignore_prepared_report=True,
+			js_filters=meta["js_filters"],
+			are_default_filters=are_default_filters,
+		)
+	)
 
 
 def run_report(
 	report_name: str,
 	filters: dict[str, Any] | None = None,
-	ignore_prepared_report: bool = False,
 ) -> dict[str, Any]:
-	from frappe.desk.query_report import run
-
 	meta = None
+	applied_filters = dict(filters or {})
 	try:
 		meta = get_report_filters(report_name)
-		return run(
-			report_name=report_name,
-			filters=filters,
-			ignore_prepared_report=ignore_prepared_report,
-			js_filters=meta["js_filters"],
-		)
+		return _execute_report(report_name, meta, applied_filters, are_default_filters=not filters)
 	except Exception as error:
 		# can be frappe.throw, but marks every failed tool call as an error in ui
 		# so the agent gets the error as return with allowed filters and can handle it
+		rows = (meta or {}).get("filters") or []
+		narrowed, omitted = _omit_default_checks(applied_filters, rows)
+		if omitted:
+			try:
+				result = _execute_report(report_name, meta, narrowed, are_default_filters=False)
+				result["omitted_filters"] = omitted
+				return result
+			except Exception:
+				pass
 		return {
 			"error": str(error),
 			"report_name": report_name,
-			"applied_filters": filters or {},
-			"allowed_filters": (meta or {}).get("filters") or [],
+			"applied_filters": applied_filters,
+			"allowed_filters": rows,
 		}
 
 

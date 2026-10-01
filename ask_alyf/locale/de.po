@@ -894,6 +894,10 @@ msgstr "Lade Konversation..."
 msgid "Looking up available reports"
 msgstr "Verfügbare Berichte werden gesucht"
 
+#: ask_alyf/ask_alyf/agent.py:113
+msgid "Looking up report filters"
+msgstr "Berichtsfilter werden gesucht"
+
 #: ask_alyf/ask_alyf/agent.py:108
 msgid "Looking up what you can access"
 msgstr "Es wird ermittelt, worauf Sie zugreifen können"
