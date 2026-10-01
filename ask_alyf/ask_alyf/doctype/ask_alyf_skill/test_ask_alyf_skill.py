@@ -26,7 +26,7 @@ class IntegrationTestAskALYFSkill(IntegrationTestCase):
 		doc = frappe.get_doc("Ask ALYF Skill", SKILL_NAME)
 		self.assertEqual(doc.title, "Running ERPNext reports")
 		self.assertIn("show_opening_and_closing_balance", doc.description)
-		self.assertEqual([row.role for row in doc.roles], ["All"])
+		self.assertEqual([row.role for row in doc.roles], ["Ask ALYF User"])
 
 		ensure_erpnext_report_skill()
 		self.assertEqual(frappe.db.count("Ask ALYF Skill", {"name": SKILL_NAME}), 1)
