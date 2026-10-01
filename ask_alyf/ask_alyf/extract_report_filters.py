@@ -257,6 +257,14 @@ def read_date_expression(tokens, index):
 	return None, index
 
 
+def lookup_fiscal_year(date):
+	if "erpnext" not in frappe.get_installed_apps():
+		return None
+	from erpnext.accounts.utils import get_fiscal_year
+
+	return get_fiscal_year(date, raise_on_missing=False)
+
+
 def read_fiscal_year(tokens, index):
 	"""`get_fiscal_year(today)` is the year name, `[1]` its start date, `[2]` its end date."""
 	start_date, next_index = read_date_expression(tokens, index + 2)
@@ -280,9 +288,7 @@ def read_fiscal_year(tokens, index):
 		part = int(part_token)
 		next_index += 3
 
-	from erpnext.accounts.utils import get_fiscal_year
-
-	fiscal_year = get_fiscal_year(start_date, raise_on_missing=False)
+	fiscal_year = lookup_fiscal_year(start_date)
 	if not fiscal_year:
 		return None, next_index
 	if part == 0:
@@ -347,9 +353,7 @@ def build_filter(
 	elif fieldtype == "Link" and options == "Company":
 		row["default"] = frappe.defaults.get_user_default("Company")
 	elif fieldtype == "Link" and options == "Fiscal Year":
-		from erpnext.accounts.utils import get_fiscal_year
-
-		if fiscal_year := get_fiscal_year(frappe.utils.today(), raise_on_missing=False):
+		if fiscal_year := lookup_fiscal_year(frappe.utils.today()):
 			row["default"] = fiscal_year[0]
 	if depends_on:
 		row["depends_on"] = depends_on
