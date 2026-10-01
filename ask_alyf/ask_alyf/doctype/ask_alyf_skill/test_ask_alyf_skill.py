@@ -1,7 +1,7 @@
 # Copyright (c) 2026, ALYF GmbH and Contributors
 # See license.txt
 
-# import frappe
+import frappe
 from frappe.tests import IntegrationTestCase
 
 # On IntegrationTestCase, the doctype test records and all
@@ -17,4 +17,16 @@ class IntegrationTestAskALYFSkill(IntegrationTestCase):
 	Use this class for testing interactions between multiple components.
 	"""
 
-	pass
+	def test_erpnext_report_skill_fixture(self):
+		from ask_alyf.ask_alyf.install import SKILL_NAME, ensure_erpnext_report_skill
+
+		frappe.delete_doc("Ask ALYF Skill", SKILL_NAME, force=True, ignore_permissions=True)
+		ensure_erpnext_report_skill()
+
+		doc = frappe.get_doc("Ask ALYF Skill", SKILL_NAME)
+		self.assertEqual(doc.title, "Running ERPNext reports")
+		self.assertIn("show_opening_and_closing_balance", doc.description)
+		self.assertEqual([row.role for row in doc.roles], ["All"])
+
+		ensure_erpnext_report_skill()
+		self.assertEqual(frappe.db.count("Ask ALYF Skill", {"name": SKILL_NAME}), 1)
