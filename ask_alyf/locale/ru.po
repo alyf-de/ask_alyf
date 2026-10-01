@@ -898,6 +898,10 @@ msgstr "Загрузка беседы..."
 msgid "Looking up available reports"
 msgstr "Поиск доступных отчетов"
 
+#: ask_alyf/ask_alyf/agent.py:113
+msgid "Looking up report filters"
+msgstr "Поиск фильтров отчета"
+
 #: ask_alyf/ask_alyf/agent.py:108
 msgid "Looking up what you can access"
 msgstr "Определение доступных вам объектов"

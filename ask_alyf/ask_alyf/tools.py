@@ -16,6 +16,8 @@ from frappe import _, client
 from frappe.utils import get_bench_path
 from frappe.utils.data import cint
 
+from .extract_report_filters import filters_from_doc, filters_from_js
+
 CODE_EXTENSIONS = {".py", ".js", ".ts", ".tsx", ".jsx", ".md", ".json", ".yml", ".yaml", ".toml"}
 READ_ONLY_SQL_RE = re.compile(r"^\s*(with|select|show|explain|describe|desc)\b", re.IGNORECASE)
 FORBIDDEN_SQL_RE = re.compile(
@@ -53,6 +55,7 @@ VISION_MIME_TYPES = {
 }
 MAX_VISION_PAGES = 10
 VISION_DPI = 200
+MAX_REPORT_ROWS = 200
 # How much of a docs page one read returns. A longer page is read on in a
 # second call, from the offset the first one reported.
 MAX_COMPENDIUM_PAGE_CHARS = 6000
@@ -431,6 +434,141 @@ def list_accessible_reports() -> list[dict[str, Any]]:
 		if report.ref_doctype and frappe.has_permission(report.ref_doctype, ptype="report"):
 			allowed.append(report)
 	return allowed
+
+
+def get_report_filters(report_name: str) -> dict[str, Any]:
+	from frappe.desk.query_report import get_report_doc, get_script
+
+	report = get_report_doc(report_name)  # checks permissions
+	script = get_script(report_name)["script"] or ""
+	js_rows = filters_from_js(script)
+	rows = list(
+		{
+			**{r["fieldname"]: r for r in filters_from_doc(report.filters)},
+			**{r["fieldname"]: r for r in js_rows},
+		}.values()
+	)
+
+	return {
+		"report_name": report.name,
+		"ref_doctype": report.ref_doctype,
+		"report_type": report.report_type,
+		"filters": rows,
+		"js_filters": js_rows,
+	}
+
+
+def _cap_report_rows(payload):
+	rows = payload.get("result")
+	if not isinstance(rows, list) or len(rows) <= MAX_REPORT_ROWS:
+		return payload
+	payload["result"] = rows[:MAX_REPORT_ROWS]
+	payload["truncated"] = True
+	return payload
+
+
+def _builder_filters(report_name, filters, filter_rows, js_filters):
+	"""Keep known fieldnames and rewrite MultiSelectList values to `["in", values]`.
+
+	A Link value names another document. Reject it when the user can neither read nor select that document, so it cannot narrow the report to that document's rows.
+	"""
+
+	from frappe.desk.query_report import validate_filters_permissions
+
+	allowed = {row["fieldname"]: row for row in filter_rows}
+	checked = {}
+	for key, value in filters.items():
+		row = allowed.get(key)
+		if row is None or isinstance(value, dict):
+			frappe.throw(_("Invalid filter: {0}").format(key))
+		if isinstance(value, (list, tuple)):
+			if row.get("fieldtype") != "MultiSelectList" or any(
+				isinstance(item, (list, tuple, dict)) for item in value
+			):
+				frappe.throw(_("Invalid filter: {0}").format(key))
+		checked[key] = value
+	validate_filters_permissions(report_name, checked, js_filters=js_filters)
+	return {
+		key: ["in", list(value)] if isinstance(value, (list, tuple)) else value
+		for key, value in checked.items()
+	}
+
+
+def _omit_default_checks(filters, rows):
+	"""Drop optional Check filters whose value equals the default."""
+	by_name = {row["fieldname"]: row for row in rows}
+	kept, omitted = {}, []
+	for key, value in filters.items():
+		row = by_name.get(key)
+		if (
+			row
+			and row.get("fieldtype") == "Check"
+			and not row.get("reqd")
+			and cint(row.get("default")) == cint(value)
+		):
+			omitted.append(key)
+			continue
+		kept[key] = value
+	return kept, omitted
+
+
+def _run_report_builder(report_name, filters, rows, js_filters):
+	doc = frappe.get_doc("Report", report_name)
+	columns, result = doc.get_data(
+		# Report Builder skips query_report.run, where this check normally lives,
+		# and get_list only checks access to the report rows.
+		# _builder_filters validates the filters and permissions.
+		filters=_builder_filters(report_name, filters, rows, js_filters),
+		limit=MAX_REPORT_ROWS + 1,
+		user=frappe.session.user,
+		as_dict=True,
+	)
+	return _cap_report_rows({"result": result, "columns": columns})
+
+
+def _execute_report(report_name, meta, filters, are_default_filters):
+	if meta["report_type"] == "Report Builder":
+		return _run_report_builder(report_name, filters, meta["filters"], meta["js_filters"])
+	from frappe.desk.query_report import run
+
+	return _cap_report_rows(
+		run(
+			report_name=report_name,
+			filters=filters,
+			ignore_prepared_report=True,
+			js_filters=meta["js_filters"],
+			are_default_filters=are_default_filters,
+		)
+	)
+
+
+def run_report(
+	report_name: str,
+	filters: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+	meta = None
+	applied_filters = dict(filters or {})
+	try:
+		meta = get_report_filters(report_name)
+		return _execute_report(report_name, meta, applied_filters, are_default_filters=not filters)
+	except Exception as error:
+		# can be frappe.throw, but marks every failed tool call as an error in ui
+		# so the agent gets the error as return with allowed filters and can handle it
+		rows = (meta or {}).get("filters") or []
+		narrowed, omitted = _omit_default_checks(applied_filters, rows)
+		if omitted:
+			try:
+				result = _execute_report(report_name, meta, narrowed, are_default_filters=False)
+				result["omitted_filters"] = omitted
+				return result
+			except Exception:
+				pass
+		return {
+			"error": str(error),
+			"report_name": report_name,
+			"applied_filters": applied_filters,
+			"allowed_filters": rows,
+		}
 
 
 def get_file_id(

@@ -11,7 +11,7 @@ from typing import Any
 from unittest.mock import MagicMock, patch
 
 import frappe
-from frappe.tests import UnitTestCase
+from frappe.tests import IntegrationTestCase, UnitTestCase
 from langchain_core.messages import AIMessage, HumanMessage, SystemMessage
 from langchain_core.runnables.config import var_child_runnable_config
 from langgraph._internal._constants import (
@@ -1437,3 +1437,80 @@ class UnitTestCodeTools(UnitTestCase):
 			self.assertEqual(parent_message_log, [*parent_messages, "parent message"])
 		finally:
 			parent_message_log[:] = parent_messages
+
+
+class IntegrationTestReports(IntegrationTestCase):
+	def test_report_builder_rejects_unknown_filter(self):
+		"""Report Builder must reject unknown filters, even when the user can read the report rows."""
+		report = frappe.get_doc(
+			{
+				"doctype": "Report",
+				"report_name": "Test Report Builder Unknown Filter",
+				"ref_doctype": "User",
+				"report_type": "Report Builder",
+				"is_standard": "No",
+				"json": '{"filters":[],"columns":[["name","User"]]}',
+			}
+		).insert()
+		meta = tools.get_report_filters(report.name)
+
+		with self.assertRaisesRegex(frappe.ValidationError, "Invalid filter: unknown"):
+			tools._run_report_builder(report.name, {"unknown": "x"}, meta["filters"], meta["js_filters"])
+
+	def test_report_builder_rejects_link_the_user_cannot_read(self):
+		"""The user can read this ToDo, and its Link points at Administrator.
+		get_list would return that row. Report Builder must still reject the filter, because this user can neither read nor select that User.
+		"""
+		frappe.get_doc({"doctype": "Role", "role_name": "Report Link Demo", "desk_access": 0}).insert()
+		user = frappe.get_doc(
+			{
+				"doctype": "User",
+				"email": "report-link-demo@example.com",
+				"first_name": "Report Link Demo",
+				"send_welcome_email": 0,
+				"roles": [{"role": "Report Link Demo"}],
+			}
+		).insert()
+		frappe.permissions.add_permission("Report", "Report Link Demo", ptype="read")
+		frappe.clear_cache()
+
+		report = frappe.get_doc(
+			{
+				"doctype": "Report",
+				"report_name": "Test Report Builder Link Filter",
+				"ref_doctype": "ToDo",
+				"report_type": "Report Builder",
+				"is_standard": "No",
+				"json": '{"filters":[],"columns":[["name","ToDo"],["allocated_to","ToDo"]]}',
+				"filters": [
+					{
+						"label": "Allocated To",
+						"fieldname": "allocated_to",
+						"fieldtype": "Link",
+						"options": "User",
+					}
+				],
+			}
+		).insert()
+		todo = frappe.get_doc(
+			{"doctype": "ToDo", "description": "link filter demo", "allocated_to": "Administrator"}
+		).insert()
+		frappe.db.set_value("ToDo", todo.name, "owner", user.name)
+
+		meta = tools.get_report_filters(report.name)
+		frappe.set_user(user.name)
+		try:
+			visible = frappe.get_list("ToDo", filters={"name": todo.name}, fields=["name", "allocated_to"])
+			self.assertEqual([row.allocated_to for row in visible], ["Administrator"])
+			with self.assertRaisesRegex(
+				frappe.ValidationError,
+				"You do not have permission to access User: Administrator",
+			):
+				tools._run_report_builder(
+					report.name,
+					{"allocated_to": "Administrator"},
+					meta["filters"],
+					meta["js_filters"],
+				)
+		finally:
+			frappe.set_user("Administrator")

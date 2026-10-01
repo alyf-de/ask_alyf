@@ -898,6 +898,10 @@ msgstr "会話を読み込んでいます..."
 msgid "Looking up available reports"
 msgstr "利用可能なレポートを検索しています"
 
+#: ask_alyf/ask_alyf/agent.py:113
+msgid "Looking up report filters"
+msgstr "レポートのフィルターを検索しています"
+
 #: ask_alyf/ask_alyf/agent.py:108
 msgid "Looking up what you can access"
 msgstr "アクセス可能な対象を確認しています"

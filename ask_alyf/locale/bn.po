@@ -898,6 +898,10 @@ msgstr "কথোপকথন লোড হচ্ছে..."
 msgid "Looking up available reports"
 msgstr "উপলব্ধ রিপোর্ট খোঁজা হচ্ছে"
 
+#: ask_alyf/ask_alyf/agent.py:113
+msgid "Looking up report filters"
+msgstr "রিপোর্ট ফিল্টার খোঁজা হচ্ছে"
+
 #: ask_alyf/ask_alyf/agent.py:108
 msgid "Looking up what you can access"
 msgstr "আপনি কী অ্যাক্সেস করতে পারেন তা খোঁজা হচ্ছে"

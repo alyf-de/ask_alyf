@@ -898,6 +898,10 @@ msgstr "正在加载对话..."
 msgid "Looking up available reports"
 msgstr "正在查找可用的报表"
 
+#: ask_alyf/ask_alyf/agent.py:113
+msgid "Looking up report filters"
+msgstr "正在查找报表筛选条件"
+
 #: ask_alyf/ask_alyf/agent.py:108
 msgid "Looking up what you can access"
 msgstr "正在查找您可以访问的内容"
