@@ -782,7 +782,9 @@ class UnitTestCodeTools(UnitTestCase):
 			result = runner._run_graph({"messages": []})
 
 		self.assertEqual(result["response"], "Done.")
-		log_error.assert_called_once_with("Ask ALYF LangSmith Tracing Error")
+		log_error.assert_called_once()
+		self.assertEqual(log_error.call_args.args[0], "Ask ALYF LangSmith Tracing Error")
+		self.assertIn("RuntimeError: langsmith down", log_error.call_args.args[1])
 		self.assertEqual(runner.checkpointer.flush_count, 1)
 
 	def test_run_graph_keeps_the_invoke_error_when_langsmith_flush_also_fails(self):
@@ -839,7 +841,9 @@ class UnitTestCodeTools(UnitTestCase):
 		self.assertEqual(runner.checkpointer.deleted_threads, ["TEST-CONVERSATION"])
 		savepoint.assert_called_once_with("ask_alyf_operation_resume")
 		rollback.assert_called_once_with(save_point="ask_alyf_operation_resume")
-		log_error.assert_called_once_with("Ask ALYF Action Follow-Up Error")
+		log_error.assert_called_once()
+		self.assertEqual(log_error.call_args.args[0], "Ask ALYF Action Follow-Up Error")
+		self.assertIn("RuntimeError: boom", log_error.call_args.args[1])
 		clear_messages.assert_called_once_with()
 
 	def test_resume_still_raises_when_the_operation_did_not_commit(self):
