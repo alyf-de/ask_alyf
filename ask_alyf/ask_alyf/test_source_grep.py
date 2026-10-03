@@ -8,14 +8,14 @@ from time import perf_counter
 from unittest import skipUnless
 from unittest.mock import patch
 
-from frappe.tests import UnitTestCase
+from frappe.tests.utils import FrappeTestCase
 
 from ask_alyf.ask_alyf.deep_agent_backend import ReadOnlySourceBackend
 from ask_alyf.ask_alyf.source_grep import SourceGrep
 from ask_alyf.ask_alyf.tools import get_installed_app_roots
 
 
-class UnitTestSourceGrep(UnitTestCase):
+class UnitTestSourceGrep(FrappeTestCase):
 	def setUp(self):
 		self.directory = TemporaryDirectory()
 		self.addCleanup(self.directory.cleanup)
@@ -210,7 +210,7 @@ class UnitTestSourceGrep(UnitTestCase):
 			self.assertEqual(native, self.matches())
 
 
-class UnitTestSourceGrepBenchmark(UnitTestCase):
+class UnitTestSourceGrepBenchmark(FrappeTestCase):
 	@skipUnless(os.environ.get("ASK_ALYF_BENCHMARK_SOURCE_GREP"), "Opt-in source grep benchmark")
 	def test_installed_app_search_timings(self):
 		backend = ReadOnlySourceBackend(get_installed_app_roots())
