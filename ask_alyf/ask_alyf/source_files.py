@@ -76,6 +76,6 @@ class SourceTree:
 			return rules
 		try:
 			lines = ignore_file.read_text(encoding="utf-8").splitlines()
-		except OSError, UnicodeError:
+		except (OSError, UnicodeError):
 			return rules
 		return [*rules, (directory, GitIgnoreSpec.from_lines(lines))]
