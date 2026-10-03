@@ -6,10 +6,11 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 from time import perf_counter
 from unittest import skipUnless
-from unittest.mock import patch
+from unittest.mock import MagicMock, patch
 
 from frappe.tests import UnitTestCase
 
+from ask_alyf.ask_alyf import tools
 from ask_alyf.ask_alyf.deep_agent_backend import ReadOnlySourceBackend
 from ask_alyf.ask_alyf.source_grep import SourceGrep
 from ask_alyf.ask_alyf.tools import get_installed_app_roots
@@ -94,6 +95,17 @@ class UnitTestSourceGrep(UnitTestCase):
 				self.assertEqual(sorted(match["path"] for match in self.matches(path=path)), expected)
 		self.assertEqual(self.matches(path="/sample/generated"), [])
 		self.assertEqual(self.matches(path="/sample/src/debug.log"), [])
+
+	def test_ls_lists_an_explicit_file_in_an_ignored_directory(self):
+		self.write(".gitignore", "generated/\n")
+		self.write("generated/result.py")
+		settings = MagicMock(**{"is_code_search_enabled.return_value": True})
+		with (
+			patch("ask_alyf.ask_alyf.tools.get_settings", return_value=settings),
+			patch("frappe.get_installed_apps", return_value=["sample"]),
+		):
+			listing = tools.ls("sample", "generated/result.py")
+		self.assertEqual([entry["path"] for entry in listing["entries"]], ["apps/sample/generated/result.py"])
 
 	def test_long_lines_are_truncated_after_matching(self):
 		self.write("minified.js", "é" * 1000 + "needle\n")
