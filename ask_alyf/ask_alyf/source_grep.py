@@ -112,7 +112,7 @@ class SourceGrep:
 	def _read_text(self, file: Path) -> str | None:
 		try:
 			content = file.read_bytes().decode("utf-8")
-		except OSError, UnicodeError:
+		except (OSError, UnicodeError):
 			return None
 		return None if "\0" in content else content
 
