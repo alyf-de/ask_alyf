@@ -255,6 +255,25 @@ Pre-commit is configured to use:
 - prettier
 - pyupgrade
 
+### Source search
+
+Source searches skip `node_modules`, `__pycache__`, `public/dist`, `public/frontend/assets`, and source maps.
+They also honor each app's `.gitignore` files, including nested rules, without requiring Git metadata.
+File discovery skips symlinks.
+
+Search uses ripgrep (`rg`) when available, with a Python fallback for missing tools, failed commands, and incompatible regular expressions.
+Both paths use the same file selection rules and limit each matching line to 300 characters.
+Frappe Cloud installs ripgrep through `pyproject.toml`. On other hosts, install it with the system package manager to enable native search.
+
+Run the optional benchmark from the bench directory against a test site with Ask ALYF installed:
+
+```bash
+ASK_ALYF_BENCHMARK_SOURCE_GREP=1 bench --site test_site run-tests \
+  --module ask_alyf.ask_alyf.test_source_grep --test test_installed_app_search_timings
+```
+
+The benchmark reports file counts and search times for native search and the Python fallback. It has no timing assertions.
+
 ## CI
 
 This app can use GitHub Actions for CI. The configured workflows are:
