@@ -538,6 +538,8 @@ def ls(
 		iter_scoped_entries(app_root, target, recursive=bool(recursive), include_hidden=bool(include_hidden)),
 		key=to_bench_relative_path,
 	)
+	if target.is_file():
+		entries = [target]
 
 	return {
 		"app_name": app_name,
