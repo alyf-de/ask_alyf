@@ -16,6 +16,8 @@ from frappe import _, client
 from frappe.utils import get_bench_path
 from frappe.utils.data import cint
 
+from ask_alyf.ask_alyf.source_files import SourceTree
+
 CODE_EXTENSIONS = {".py", ".js", ".ts", ".tsx", ".jsx", ".md", ".json", ".yml", ".yaml", ".toml"}
 READ_ONLY_SQL_RE = re.compile(r"^\s*(with|select|show|explain|describe|desc)\b", re.IGNORECASE)
 FORBIDDEN_SQL_RE = re.compile(
@@ -273,41 +275,10 @@ def iter_scoped_entries(
 	include_hidden: bool,
 ) -> list[Path]:
 	ensure_app_target_exists(app_root, target)
-	if target.is_file():
-		return [target]
-
-	results: list[Path] = []
-	real_app_root = app_root.resolve()
-	seen_paths = {target}
-	pending_paths = [target]
-
-	while pending_paths:
-		current_path = pending_paths.pop()
-		try:
-			children = sorted(current_path.iterdir(), key=lambda child: child.name.lower())
-		except Exception:
-			continue
-
-		for child in children:
-			resolved_child = child.resolve()
-			if resolved_child in seen_paths or not is_path_within(real_app_root, resolved_child):
-				continue
-			if not include_hidden and is_hidden_path(app_root, child):
-				continue
-
-			seen_paths.add(resolved_child)
-			results.append(resolved_child)
-			if recursive and resolved_child.is_dir():
-				pending_paths.append(resolved_child)
-
-	return results
+	return SourceTree(app_root, include_hidden=include_hidden).entries(target, recursive=recursive)
 
 
 def iter_scoped_files(app_root: Path, target: Path, include_hidden: bool = False) -> list[Path]:
-	if target.is_file():
-		ensure_app_target_exists(app_root, target)
-		return [target]
-
 	return [
 		entry
 		for entry in iter_scoped_entries(app_root, target, recursive=True, include_hidden=include_hidden)
