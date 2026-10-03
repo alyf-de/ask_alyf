@@ -60,7 +60,10 @@ class SourceGrep:
 					timeout=15,
 					check=False,
 				)
-			except OSError, subprocess.TimeoutExpired:
+			except subprocess.TimeoutExpired:
+				# A Python rescan of the whole tree would be slower still.
+				raise TimeoutError("Search timed out. Narrow the path or glob.") from None
+			except OSError:
 				return None
 			# Unsupported regex syntax (for example lookbehind) uses Python as well.
 			if result.returncode not in (0, 1):
@@ -80,7 +83,7 @@ class SourceGrep:
 				invalid_text = False
 			elif event["type"] == "match":
 				try:
-					path = paths.get(_decode_field(data["path"]))
+					path = paths.get(_decode_path(data["path"]))
 					line = _decode_field(data["lines"]).removesuffix("\n").removesuffix("\r")
 				except UnicodeError:
 					invalid_text = True
@@ -129,6 +132,13 @@ def _decode_field(field: dict[str, str]) -> str:
 	if "text" in field:
 		return field["text"]
 	return base64.b64decode(field["bytes"]).decode("utf-8")
+
+
+def _decode_path(field: dict[str, str]) -> str:
+	# Match the surrogate-escaped names that os.scandir returns for non-UTF-8 bytes.
+	if "text" in field:
+		return field["text"]
+	return os.fsdecode(base64.b64decode(field["bytes"]))
 
 
 def _path_batches(paths: dict[str, Path]):

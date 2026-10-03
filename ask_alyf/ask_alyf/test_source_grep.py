@@ -169,13 +169,11 @@ class UnitTestSourceGrep(UnitTestCase):
 
 	def test_native_failures_fall_back_to_python(self):
 		self.write("main.py")
-		for failure in [FileNotFoundError(), subprocess.TimeoutExpired("rg", 30)]:
-			with (
-				self.subTest(failure=failure),
-				patch("ask_alyf.ask_alyf.source_grep.shutil.which", return_value="rg"),
-				patch("ask_alyf.ask_alyf.source_grep.subprocess.run", side_effect=failure),
-			):
-				self.assertEqual(len(self.matches()), 1)
+		with (
+			patch("ask_alyf.ask_alyf.source_grep.shutil.which", return_value="rg"),
+			patch("ask_alyf.ask_alyf.source_grep.subprocess.run", side_effect=FileNotFoundError()),
+		):
+			self.assertEqual(len(self.matches()), 1)
 		with (
 			patch("ask_alyf.ask_alyf.source_grep.shutil.which", return_value="rg"),
 			patch(
@@ -184,6 +182,32 @@ class UnitTestSourceGrep(UnitTestCase):
 			),
 		):
 			self.assertEqual(len(self.matches()), 1)
+
+	def test_native_timeout_returns_an_error_without_python_rescan(self):
+		self.write("main.py")
+		with (
+			patch("ask_alyf.ask_alyf.source_grep.shutil.which", return_value="rg"),
+			patch(
+				"ask_alyf.ask_alyf.source_grep.subprocess.run",
+				side_effect=subprocess.TimeoutExpired("rg", 15),
+			),
+			patch.object(SourceGrep, "_python_matches", side_effect=AssertionError("Unexpected fallback")),
+		):
+			self.assertIn("timed out", self.backend.grep("needle").error)
+
+	def test_non_utf8_file_names_match_with_ripgrep(self):
+		if not shutil.which("rg"):
+			self.skipTest("ripgrep is not installed")
+		try:
+			# Some file systems, for example APFS, reject non-UTF-8 names.
+			Path(os.fsdecode(os.fsencode(self.root) + b"/caf\xe9.py")).write_text("needle\n")
+		except OSError:
+			self.skipTest("File system rejects non-UTF-8 file names")
+		with patch.object(SourceGrep, "_python_matches", side_effect=AssertionError("Unexpected fallback")):
+			native = self.matches()
+		self.assertEqual(len(native), 1)
+		with patch("ask_alyf.ask_alyf.source_grep.shutil.which", return_value=None):
+			self.assertEqual(native, self.matches())
 
 
 class UnitTestSourceGrepBenchmark(UnitTestCase):
