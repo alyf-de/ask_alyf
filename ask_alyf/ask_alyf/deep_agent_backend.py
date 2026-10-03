@@ -14,7 +14,6 @@ from deepagents.backends.protocol import (
 	FileData,
 	FileInfo,
 	GlobResult,
-	GrepMatch,
 	GrepResult,
 	LsResult,
 	ReadResult,
@@ -22,6 +21,7 @@ from deepagents.backends.protocol import (
 )
 from frappe import _
 
+from ask_alyf.ask_alyf.source_grep import SourceGrep
 from ask_alyf.ask_alyf.tools import (
 	_get_accessible_file_doc,
 	build_code_path_entry,
@@ -180,22 +180,15 @@ class ReadOnlySourceBackend(BackendProtocol):
 				regex = re.compile(pattern)
 			except re.error as exc:
 				return GrepResult(error=_("Invalid regex pattern: {0}").format(str(exc)))
-			files = self._collect_files(path)
-			matches: list[GrepMatch] = []
-			for _app_root, file_path in files:
-				source_path = _bench_relative_to_source_path(to_bench_relative_path(file_path))
-				if glob:
-					relative = source_path.lstrip("/")
-					if not wcglob.globmatch(relative, glob, flags=wcglob.BRACE | wcglob.GLOBSTAR):
-						continue
-				try:
-					content = file_path.read_text(encoding="utf-8")
-				except Exception:
-					continue
-				for line_num, line in enumerate(content.split("\n"), 1):
-					if regex.search(line):
-						matches.append(GrepMatch(path=source_path, line=int(line_num), text=line))
-			return GrepResult(matches=matches)
+			matcher = wcglob.compile(glob, flags=wcglob.BRACE | wcglob.GLOBSTAR) if glob else None
+			files = {}
+			app_paths = {root: (name, root.resolve()) for name, root in self._app_roots.items()}
+			for app_root, file_path in self._collect_files(path):
+				app_name, real_root = app_paths[app_root]
+				relative = "/".join((app_name, *file_path.parts[len(real_root.parts) :]))
+				if not matcher or matcher.match(relative):
+					files[file_path] = f"/{relative}"
+			return GrepResult(matches=SourceGrep(files, regex).matches())
 		except Exception as exc:
 			return GrepResult(error=str(exc))
 
