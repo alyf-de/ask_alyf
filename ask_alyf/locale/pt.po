@@ -724,6 +724,16 @@ msgstr "O carregamento de ficheiro não está ativado."
 msgid "Filling in the open form"
 msgstr "A preencher o formulário aberto"
 
+#: ask_alyf/ask_alyf/agent.py:200
+#, python-brace-format
+msgid "Finding {0}"
+msgstr "Procurando arquivos {0}"
+
+#: ask_alyf/ask_alyf/agent.py:200
+#, python-brace-format
+msgid "Finding {0} in {1}"
+msgstr "Procurando arquivos {0} em {1}"
+
 #: ask_alyf/ask_alyf/tools.py:1732
 msgid "Frontend action 'frm_add_child' field 'docname' must be a string."
 msgstr "Na ação de frontend 'frm_add_child', o campo 'docname' deve ser uma cadeia de caracteres."
@@ -889,6 +899,11 @@ msgstr "Última mensagem em"
 #, python-brace-format
 msgid "Line offset {0} exceeds file length"
 msgstr "O deslocamento de linha {0} excede o comprimento do ficheiro"
+
+#: ask_alyf/ask_alyf/agent.py:210
+#, python-brace-format
+msgid "Listing {0}"
+msgstr "Listando {0}"
 
 #: ask_alyf/public/js/ask_alyf.bundle.js:1741
 msgid "Loading conversation..."
@@ -1239,6 +1254,11 @@ msgstr "A ler o documento anexado"
 msgid "Reading {0}"
 msgstr "A ler {0}"
 
+#: ask_alyf/ask_alyf/agent.py:206
+#, python-brace-format
+msgid "Reading {0}, lines {1}-{2}"
+msgstr "Lendo {0}, linhas {1}-{2}"
+
 #: ask_alyf/ask_alyf/agent.py:98
 #, python-brace-format
 msgid "Reading {0} list"
@@ -1338,6 +1358,16 @@ msgstr "Rolar até o campo {0}"
 msgid "Scrolling to fields is not available on this form."
 msgstr "A rolagem para campos não está disponível neste formulário."
 
+#: ask_alyf/ask_alyf/agent.py:196
+#, python-brace-format
+msgid "Searching for \"{0}\""
+msgstr "Pesquisando \"{0}\""
+
+#: ask_alyf/ask_alyf/agent.py:194
+#, python-brace-format
+msgid "Searching for \"{0}\" in {1}"
+msgstr "Pesquisando \"{0}\" em {1}"
+
 #: ask_alyf/ask_alyf/agent.py:127
 msgid "Searching the documentation"
 msgstr "A pesquisar na documentação"
@@ -1371,6 +1401,10 @@ msgstr "A proposta de definir valor precisa de correção."
 #, python-brace-format
 msgid "Set {0} on {1} {2}"
 msgstr "Definir {0} em {1} {2}"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:398
+msgid "Show all"
+msgstr "Mostrar tudo"
 
 #: ask_alyf/ask_alyf/toolset.py:1248
 msgid "Show chart"
@@ -1858,6 +1892,11 @@ msgstr "Muito alto"
 #, python-brace-format
 msgid "{0} '{1}' was not found."
 msgstr "{0} '{1}' não foi encontrado."
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:371
+#, python-brace-format
+msgid "{0} failed"
+msgstr "{0} falharam"
 
 #: ask_alyf/public/js/ask_alyf.bundle.js:2329
 #, python-brace-format
