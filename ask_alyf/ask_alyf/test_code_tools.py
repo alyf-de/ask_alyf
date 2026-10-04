@@ -25,6 +25,7 @@ from langgraph.errors import GraphInterrupt
 from ask_alyf.ask_alyf import tools
 from ask_alyf.ask_alyf.agent import (
 	ASK_ALYF_EXCLUDED_TOOLS,
+	_tool_call_detail,
 	_tool_call_label,
 	ask_alyfAgentRunner,
 	build_chat_model,
@@ -1079,6 +1080,25 @@ class UnitTestCodeTools(UnitTestCase):
 		for (name, args), expected in cases:
 			with self.subTest(tool=name):
 				self.assertEqual(_tool_call_label(name, args), expected)
+
+	def test_source_code_calls_say_which_file_or_pattern_they_are_on(self):
+		cases = [
+			(
+				("grep", {"pattern": "on_submit", "path": "/source/hrms/hrms/hr"}),
+				'Searching for "on_submit" in hrms/hrms/hr',
+			),
+			(("grep", {"pattern": "working_time", "path": "/source"}), 'Searching for "working_time"'),
+			(("glob", {"pattern": "**/*.json", "path": "/source/erpnext/"}), "Finding **/*.json in erpnext"),
+			(
+				("read_file", {"file_path": "/source/frappe/model/document.py"}),
+				"Reading frappe/model/document.py",
+			),
+			(("ls", {"path": "/source/"}), "Listing /"),
+			(("get_list", {"doctype": "ToDo"}), ""),
+		]
+		for (name, args), expected in cases:
+			with self.subTest(tool=name, args=args):
+				self.assertEqual(_tool_call_detail(name, args), expected)
 
 	def test_an_unmapped_tool_still_gets_a_readable_label(self):
 		self.assertEqual(_tool_call_label("some_new_tool", {}), "Some new tool")

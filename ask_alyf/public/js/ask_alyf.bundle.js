@@ -316,38 +316,86 @@ import "./field_agent";
 
 			const list = document.createElement("ol");
 			list.className = "ask_alyf-tool-call-list";
-			for (const call of toolCalls) {
-				list.appendChild(this.buildToolCallItem(call));
+			for (const group of this.groupToolCalls(toolCalls)) {
+				list.appendChild(this.buildToolCallItem(group));
 			}
 			holder.appendChild(list);
 			return holder;
 		}
 
-		buildToolCallItem(call, { showArgs = true } = {}) {
+		groupToolCalls(toolCalls) {
+			// A run of calls under the same label — the source code analyzer
+			// reading dozens of files — becomes one row instead of a wall of
+			// identical ones.
+			const groups = [];
+			for (const call of toolCalls) {
+				// Older messages predate the server-side label and only carry
+				// the raw tool name.
+				const label = call?.label || (call?.name || "").replace(/_/g, " ");
+				const lastGroup = groups[groups.length - 1];
+				if (lastGroup?.label === label) {
+					lastGroup.calls.push(call);
+				} else {
+					groups.push({ label, calls: [call] });
+				}
+			}
+			return groups;
+		}
+
+		buildToolCallItem(group, { showArgs = true } = {}) {
+			const { label, calls } = group;
+			const latestCall = calls[calls.length - 1];
 			const item = document.createElement("li");
-			if (call?.status === "failed") {
+			// One failed read among many is routine for the analyzer, so a
+			// group only shows as failed when nothing in it worked.
+			if (calls.every((call) => call?.status === "failed")) {
 				item.classList.add("ask_alyf-tool-call-failed");
 			}
-			if (call?.status === "running") {
+			if (calls.some((call) => call?.status === "running")) {
 				item.classList.add("ask_alyf-tool-call-running");
 			}
 
 			const name = document.createElement("span");
 			name.className = "ask_alyf-tool-call-name";
-			// Older messages predate the server-side label and only carry the
-			// raw tool name.
-			name.textContent = call?.label || (call?.name || "").replace(/_/g, " ");
+			name.textContent = calls.length > 1 ? `${label} ×${calls.length}` : label;
 			item.appendChild(name);
 
-			const args = showArgs ? this.formatToolCallArgs(call?.args) : "";
-			if (args) {
+			if (showArgs && calls.length > 1) {
+				item.appendChild(this.buildToolCallGroupDetails(calls));
+				return item;
+			}
+
+			// While running, only the latest call's detail: it says what the
+			// group is on right now.
+			const text = showArgs
+				? latestCall?.detail || this.formatToolCallArgs(latestCall?.args)
+				: latestCall?.detail || "";
+			if (text) {
 				const detail = document.createElement("span");
 				detail.className = "ask_alyf-tool-call-args";
-				detail.textContent = args;
+				detail.textContent = text;
 				item.appendChild(detail);
 			}
 
 			return item;
+		}
+
+		buildToolCallGroupDetails(calls) {
+			const holder = document.createElement("details");
+			holder.className = "ask_alyf-tool-call-args";
+
+			const summary = document.createElement("summary");
+			summary.textContent = __("Show all");
+			holder.appendChild(summary);
+
+			const list = document.createElement("ol");
+			for (const call of calls) {
+				const entry = document.createElement("li");
+				entry.textContent = call?.detail || this.formatToolCallArgs(call?.args);
+				list.appendChild(entry);
+			}
+			holder.appendChild(list);
+			return holder;
 		}
 
 		applyStepUpdate(step) {
@@ -420,10 +468,10 @@ import "./field_agent";
 			wrapper.className = "ask_alyf-message ask_alyf-assistant ask_alyf-live-steps";
 			const list = document.createElement("ol");
 			list.className = "ask_alyf-tool-call-list";
-			for (const step of this.state.steps) {
-				// Labels only while it runs; the arguments are there to read in
+			for (const group of this.groupToolCalls(this.state.steps)) {
+				// No raw arguments while it runs; they are there to read in
 				// the message once the turn is done.
-				list.appendChild(this.buildToolCallItem(step, { showArgs: false }));
+				list.appendChild(this.buildToolCallItem(group, { showArgs: false }));
 			}
 			wrapper.appendChild(list);
 

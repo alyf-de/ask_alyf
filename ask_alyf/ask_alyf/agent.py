@@ -168,6 +168,38 @@ def _tool_call_label(name: str, args: Any) -> str:
 	return name.replace("_", " ").capitalize()
 
 
+def _tool_call_detail(name: str, args: Any) -> str:
+	"""Say what one call of a repeated step is doing, below its shared label.
+
+	The source code analyzer makes dozens of calls in a row under the same
+	label. The chat folds them into one row, and this line tells the user
+	which file or pattern the latest one is on.
+	"""
+	args = args if isinstance(args, dict) else {}
+	# Most searches are scoped to an app, a folder or a single file, and
+	# that scope is what tells one search from the next.
+	scope = _source_relative_path(args.get("path"))
+	if name in ("grep", "glob"):
+		pattern = args.get("pattern") or ""
+		if name == "grep":
+			return (
+				_('Searching for "{0}" in {1}').format(pattern, scope)
+				if scope
+				else _('Searching for "{0}"').format(pattern)
+			)
+		return _("Finding {0} in {1}").format(pattern, scope) if scope else _("Finding {0}").format(pattern)
+	if name == "read_file":
+		return _("Reading {0}").format(_source_relative_path(args.get("file_path")))
+	if name == "ls":
+		return _("Listing {0}").format(scope or "/")
+	return ""
+
+
+def _source_relative_path(path: Any) -> str:
+	"""Drop the `/source` mount from a path, which the model writes with or without a slash."""
+	return (path or "").removeprefix("/source").strip("/") if isinstance(path, str) else ""
+
+
 class ToolCallLogMiddleware(AgentMiddleware):
 	"""Show the user each tool call as it happens, and keep the list afterwards.
 
@@ -217,6 +249,7 @@ class ToolCallLogMiddleware(AgentMiddleware):
 			call.get("name") or "",
 			_summarize_tool_args(call.get("args")),
 			_tool_call_label(call.get("name") or "", call.get("args")),
+			_tool_call_detail(call.get("name") or "", call.get("args")),
 		)
 		try:
 			result = handler(request)
