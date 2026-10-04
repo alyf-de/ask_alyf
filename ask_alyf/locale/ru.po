@@ -429,15 +429,11 @@ msgstr "Настройте модель зрения в настройках Ask
 msgid "Configure an API key in Ask ALYF Settings before sending messages."
 msgstr "Настройте API-ключ в настройках Ask ALYF перед отправкой сообщений."
 
-<<<<<<< HEAD
-#: ask_alyf/public/js/ask_alyf.bundle.js:722
-=======
 #: ask_alyf/public/js/ask_alyf.bundle.js:694
 #: ask_alyf/public/js/ask_alyf.bundle.js:715
 msgid "Column"
 msgstr "Столбец"
-#: ask_alyf/public/js/ask_alyf.bundle.js:728
->>>>>>> 379bb83 (feat: implement table pagination and sorting functionality (#145))
+#: ask_alyf/public/js/ask_alyf.bundle.js:722
 msgid "Confirm all"
 msgstr "Подтвердить все"
 
@@ -736,6 +732,16 @@ msgstr "Загрузка файлов не включена."
 msgid "Filling in the open form"
 msgstr "Заполнение открытой формы"
 
+#: ask_alyf/ask_alyf/agent.py:200
+#, python-brace-format
+msgid "Finding {0}"
+msgstr "Поиск файлов {0}"
+
+#: ask_alyf/ask_alyf/agent.py:200
+#, python-brace-format
+msgid "Finding {0} in {1}"
+msgstr "Поиск файлов {0} в {1}"
+
 #: ask_alyf/ask_alyf/tools.py:1732
 msgid "Frontend action 'frm_add_child' field 'docname' must be a string."
 msgstr "В действии интерфейса 'frm_add_child' поле 'docname' должно быть строкой."
@@ -901,6 +907,11 @@ msgstr "Последнее сообщение в"
 #, python-brace-format
 msgid "Line offset {0} exceeds file length"
 msgstr "Смещение строки {0} превышает длину файла"
+
+#: ask_alyf/ask_alyf/agent.py:210
+#, python-brace-format
+msgid "Listing {0}"
+msgstr "Список {0}"
 
 #: ask_alyf/public/js/ask_alyf.bundle.js:1735
 msgid "Loading conversation..."
@@ -1215,14 +1226,10 @@ msgstr "Предложение об обновлении подготовлен�
 msgid "Preparing a chart"
 msgstr "Подготовка диаграммы"
 
-<<<<<<< HEAD
-#: ask_alyf/public/js/ask_alyf.bundle.js:1513
-=======
 #: ask_alyf/public/js/ask_alyf.bundle.js:659
 msgid "Previous page"
 msgstr "Предыдущая страница"
-#: ask_alyf/public/js/ask_alyf.bundle.js:1522
->>>>>>> 379bb83 (feat: implement table pagination and sorting functionality (#145))
+#: ask_alyf/public/js/ask_alyf.bundle.js:1513
 msgid "Projects"
 msgstr "Проекты"
 
@@ -1254,6 +1261,11 @@ msgstr "Чтение прикреплённого документа"
 #, python-brace-format
 msgid "Reading {0}"
 msgstr "Чтение {0}"
+
+#: ask_alyf/ask_alyf/agent.py:206
+#, python-brace-format
+msgid "Reading {0}, lines {1}-{2}"
+msgstr "Чтение {0}, строки {1}-{2}"
 
 #: ask_alyf/ask_alyf/agent.py:98
 #, python-brace-format
@@ -1354,6 +1366,16 @@ msgstr "Прокрутить к полю {0}"
 msgid "Scrolling to fields is not available on this form."
 msgstr "Прокрутка к полям недоступна на этой форме."
 
+#: ask_alyf/ask_alyf/agent.py:196
+#, python-brace-format
+msgid "Searching for \"{0}\""
+msgstr "Поиск «{0}»"
+
+#: ask_alyf/ask_alyf/agent.py:194
+#, python-brace-format
+msgid "Searching for \"{0}\" in {1}"
+msgstr "Поиск «{0}» в {1}"
+
 #: ask_alyf/ask_alyf/agent.py:127
 msgid "Searching the documentation"
 msgstr "Поиск в документации"
@@ -1387,6 +1409,10 @@ msgstr "Предложение установки значения требуе�
 #, python-brace-format
 msgid "Set {0} on {1} {2}"
 msgstr "Установить {0} в {1} {2}"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:398
+msgid "Show all"
+msgstr "Показать все"
 
 #: ask_alyf/ask_alyf/toolset.py:1248
 msgid "Show chart"
@@ -1489,9 +1515,6 @@ msgstr "Остановить этот запуск"
 msgid "Stopped. Send a message to pick up from here."
 msgstr "Приостановлено. Отправьте сообщение, чтобы продолжить с этого места."
 
-<<<<<<< HEAD
-#: ask_alyf/public/js/ask_alyf.bundle.js:1820
-=======
 #: ask_alyf/public/js/ask_alyf.bundle.js:691
 #, python-brace-format
 msgid "Sort by {0}"
@@ -1504,8 +1527,7 @@ msgstr "По возрастанию: {0}"
 #, python-brace-format
 msgid "Sorted descending by {0}"
 msgstr "По убыванию: {0}"
-#: ask_alyf/public/js/ask_alyf.bundle.js:1826
->>>>>>> 379bb83 (feat: implement table pagination and sorting functionality (#145))
+#: ask_alyf/public/js/ask_alyf.bundle.js:1820
 msgid "Stopping..."
 msgstr "Остановка..."
 
@@ -1892,6 +1914,11 @@ msgstr "Очень высокий"
 #, python-brace-format
 msgid "{0} '{1}' was not found."
 msgstr "{0} «{1}» не найден."
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:371
+#, python-brace-format
+msgid "{0} failed"
+msgstr "Ошибок: {0}"
 
 #: ask_alyf/public/js/ask_alyf.bundle.js:2329
 #, python-brace-format

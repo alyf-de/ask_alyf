@@ -25,6 +25,9 @@ from langgraph.errors import GraphInterrupt
 from ask_alyf.ask_alyf import tools
 from ask_alyf.ask_alyf.agent import (
 	ASK_ALYF_EXCLUDED_TOOLS,
+	TOOL_CALL_ARGS_LIMIT,
+	_summarize_tool_args,
+	_tool_call_detail,
 	_tool_call_label,
 	ask_alyfAgentRunner,
 	build_chat_model,
@@ -1079,6 +1082,45 @@ class UnitTestCodeTools(UnitTestCase):
 		for (name, args), expected in cases:
 			with self.subTest(tool=name):
 				self.assertEqual(_tool_call_label(name, args), expected)
+
+	def test_source_code_calls_say_which_file_or_pattern_they_are_on(self):
+		cases = [
+			(
+				("grep", {"pattern": "on_submit", "path": "/source/hrms/hrms/hr"}),
+				'Searching for "on_submit" in hrms/hrms/hr',
+			),
+			(("grep", {"pattern": "working_time", "path": "/source"}), 'Searching for "working_time"'),
+			(
+				("grep", {"pattern": "working_time", "path": "/source", "glob": "**/*.json"}),
+				'Searching for "working_time" in **/*.json',
+			),
+			(
+				("grep", {"pattern": "submit", "path": "/source/frappe/frappe/model", "glob": "*.py"}),
+				'Searching for "submit" in frappe/frappe/model/*.py',
+			),
+			(
+				(
+					"grep",
+					{"pattern": "submit", "path": "/source/frappe/frappe/model/document.py", "glob": "*.py"},
+				),
+				'Searching for "submit" in frappe/frappe/model/document.py',
+			),
+			(("glob", {"pattern": "**/*.json", "path": "/source/erpnext/"}), "Finding **/*.json in erpnext"),
+			(
+				("read_file", {"file_path": "/source/frappe/model/document.py", "offset": 200, "limit": 50}),
+				"Reading frappe/model/document.py, lines 201-250",
+			),
+			(("read_file", {"file_path": "/source/frappe/hooks.py"}), "Reading frappe/hooks.py, lines 1-100"),
+			(("ls", {"path": "/source/"}), "Listing /"),
+			(("get_list", {"doctype": "ToDo"}), ""),
+		]
+		for (name, args), expected in cases:
+			with self.subTest(tool=name, args=args):
+				self.assertEqual(_tool_call_detail(name, _summarize_tool_args(args)), expected)
+
+	def test_a_long_search_pattern_is_trimmed_like_the_arguments(self):
+		detail = _tool_call_detail("grep", _summarize_tool_args({"pattern": "x" * 5000}))
+		self.assertLess(len(detail), TOOL_CALL_ARGS_LIMIT + 50)
 
 	def test_an_unmapped_tool_still_gets_a_readable_label(self):
 		self.assertEqual(_tool_call_label("some_new_tool", {}), "Some new tool")

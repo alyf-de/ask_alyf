@@ -429,15 +429,11 @@ msgstr "Ask ALYF सेटिंग्स में एक विज़न म�
 msgid "Configure an API key in Ask ALYF Settings before sending messages."
 msgstr "संदेश भेजने से पहले Ask ALYF सेटिंग्स में एक API कुंजी कॉन्फ़िगर करें।"
 
-<<<<<<< HEAD
-#: ask_alyf/public/js/ask_alyf.bundle.js:722
-=======
 #: ask_alyf/public/js/ask_alyf.bundle.js:694
 #: ask_alyf/public/js/ask_alyf.bundle.js:715
 msgid "Column"
 msgstr "कॉलम"
-#: ask_alyf/public/js/ask_alyf.bundle.js:728
->>>>>>> 379bb83 (feat: implement table pagination and sorting functionality (#145))
+#: ask_alyf/public/js/ask_alyf.bundle.js:722
 msgid "Confirm all"
 msgstr "सभी की पुष्टि करें"
 
@@ -736,6 +732,16 @@ msgstr "फ़ाइल अपलोड सक्षम नहीं है।"
 msgid "Filling in the open form"
 msgstr "खुले फ़ॉर्म को भरा जा रहा है"
 
+#: ask_alyf/ask_alyf/agent.py:200
+#, python-brace-format
+msgid "Finding {0}"
+msgstr "{0} फ़ाइलें खोजी जा रही हैं"
+
+#: ask_alyf/ask_alyf/agent.py:200
+#, python-brace-format
+msgid "Finding {0} in {1}"
+msgstr "{1} में {0} फ़ाइलें खोजी जा रही हैं"
+
 #: ask_alyf/ask_alyf/tools.py:1732
 msgid "Frontend action 'frm_add_child' field 'docname' must be a string."
 msgstr "फ्रंटएंड क्रिया 'frm_add_child' का फ़ील्ड 'docname' एक स्ट्रिंग होना चाहिए।"
@@ -901,6 +907,11 @@ msgstr "अंतिम संदेश पर"
 #, python-brace-format
 msgid "Line offset {0} exceeds file length"
 msgstr "लाइन ऑफ़सेट {0} फ़ाइल की लंबाई से अधिक है"
+
+#: ask_alyf/ask_alyf/agent.py:210
+#, python-brace-format
+msgid "Listing {0}"
+msgstr "{0} की सूची बनाई जा रही है"
 
 #: ask_alyf/public/js/ask_alyf.bundle.js:1735
 msgid "Loading conversation..."
@@ -1215,14 +1226,10 @@ msgstr "अपडेट प्रस्ताव तैयार किया �
 msgid "Preparing a chart"
 msgstr "एक चार्ट तैयार किया जा रहा है"
 
-<<<<<<< HEAD
-#: ask_alyf/public/js/ask_alyf.bundle.js:1513
-=======
 #: ask_alyf/public/js/ask_alyf.bundle.js:659
 msgid "Previous page"
 msgstr "पिछला पृष्ठ"
-#: ask_alyf/public/js/ask_alyf.bundle.js:1522
->>>>>>> 379bb83 (feat: implement table pagination and sorting functionality (#145))
+#: ask_alyf/public/js/ask_alyf.bundle.js:1513
 msgid "Projects"
 msgstr "परियोजनाएं"
 
@@ -1254,6 +1261,11 @@ msgstr "संलग्न दस्तावेज़ पढ़ा जा र�
 #, python-brace-format
 msgid "Reading {0}"
 msgstr "{0} पढ़ा जा रहा है"
+
+#: ask_alyf/ask_alyf/agent.py:206
+#, python-brace-format
+msgid "Reading {0}, lines {1}-{2}"
+msgstr "{0} की पंक्तियाँ {1}-{2} पढ़ी जा रही हैं"
 
 #: ask_alyf/ask_alyf/agent.py:98
 #, python-brace-format
@@ -1354,6 +1366,16 @@ msgstr "फ़ील्ड {0} पर स्क्रॉल करें"
 msgid "Scrolling to fields is not available on this form."
 msgstr "इस फॉर्म पर फ़ील्ड्स तक स्क्रॉल करना उपलब्ध नहीं है।"
 
+#: ask_alyf/ask_alyf/agent.py:196
+#, python-brace-format
+msgid "Searching for \"{0}\""
+msgstr "\"{0}\" खोजा जा रहा है"
+
+#: ask_alyf/ask_alyf/agent.py:194
+#, python-brace-format
+msgid "Searching for \"{0}\" in {1}"
+msgstr "{1} में \"{0}\" खोजा जा रहा है"
+
 #: ask_alyf/ask_alyf/agent.py:127
 msgid "Searching the documentation"
 msgstr "दस्तावेज़ीकरण में खोज की जा रही है"
@@ -1387,6 +1409,10 @@ msgstr "मान सेट करने के प्रस्ताव मे�
 #, python-brace-format
 msgid "Set {0} on {1} {2}"
 msgstr "{1} {2} पर {0} सेट करें"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:398
+msgid "Show all"
+msgstr "सभी दिखाएँ"
 
 #: ask_alyf/ask_alyf/toolset.py:1248
 msgid "Show chart"
@@ -1489,9 +1515,6 @@ msgstr "इस रन को रोकें"
 msgid "Stopped. Send a message to pick up from here."
 msgstr "रोक दिया गया। यहाँ से आगे बढ़ने के लिए एक संदेश भेजें।"
 
-<<<<<<< HEAD
-#: ask_alyf/public/js/ask_alyf.bundle.js:1820
-=======
 #: ask_alyf/public/js/ask_alyf.bundle.js:691
 #, python-brace-format
 msgid "Sort by {0}"
@@ -1504,8 +1527,7 @@ msgstr "{0} के अनुसार आरोही क्रम"
 #, python-brace-format
 msgid "Sorted descending by {0}"
 msgstr "{0} के अनुसार अवरोही क्रम"
-#: ask_alyf/public/js/ask_alyf.bundle.js:1826
->>>>>>> 379bb83 (feat: implement table pagination and sorting functionality (#145))
+#: ask_alyf/public/js/ask_alyf.bundle.js:1820
 msgid "Stopping..."
 msgstr "रोका जा रहा है..."
 
@@ -1892,6 +1914,11 @@ msgstr "अति उच्च"
 #, python-brace-format
 msgid "{0} '{1}' was not found."
 msgstr "{0} '{1}' नहीं मिला।"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:371
+#, python-brace-format
+msgid "{0} failed"
+msgstr "{0} विफल"
 
 #: ask_alyf/public/js/ask_alyf.bundle.js:2329
 #, python-brace-format
