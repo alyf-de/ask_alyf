@@ -59,6 +59,7 @@ jobs:
           cd ${GITHUB_WORKSPACE}
           pip-audit --desc on .
 
+<<<<<<< HEAD
   translations:
     name: 'Build Translations'
     runs-on: ubuntu-latest
@@ -87,6 +88,8 @@ jobs:
               print("Compiled", po_path)
           PY
 
+=======
+>>>>>>> 31b5c50 (ci: add PO review workflow (#167))
   conflict-markers:
     name: 'Git Conflict Markers'
     runs-on: ubuntu-latest
