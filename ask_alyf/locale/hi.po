@@ -740,9 +740,6 @@ msgstr "फ़ाइल अपलोड सक्षम नहीं है।"
 msgid "Filling in the open form"
 msgstr "खुले फ़ॉर्म को भरा जा रहा है"
 
-<<<<<<< HEAD
-#: ask_alyf/ask_alyf/tools.py:1736
-=======
 #: ask_alyf/ask_alyf/agent.py:200
 #, python-brace-format
 msgid "Finding {0}"
@@ -753,8 +750,7 @@ msgstr "{0} फ़ाइलें खोजी जा रही हैं"
 msgid "Finding {0} in {1}"
 msgstr "{1} में {0} फ़ाइलें खोजी जा रही हैं"
 
-#: ask_alyf/ask_alyf/tools.py:1732
->>>>>>> 0ac422d (fix: group repeated steps in the chat (#161))
+#: ask_alyf/ask_alyf/tools.py:1736
 msgid "Frontend action 'frm_add_child' field 'docname' must be a string."
 msgstr "फ्रंटएंड क्रिया 'frm_add_child' का फ़ील्ड 'docname' एक स्ट्रिंग होना चाहिए।"
 
@@ -918,16 +914,12 @@ msgstr "अंतिम संदेश पर"
 msgid "Line offset {0} exceeds file length"
 msgstr "लाइन ऑफ़सेट {0} फ़ाइल की लंबाई से अधिक है"
 
-<<<<<<< HEAD
-#: ask_alyf/public/js/ask_alyf.bundle.js:1728
-=======
 #: ask_alyf/ask_alyf/agent.py:210
 #, python-brace-format
 msgid "Listing {0}"
 msgstr "{0} की सूची बनाई जा रही है"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1741
->>>>>>> 0ac422d (fix: group repeated steps in the chat (#161))
+#: ask_alyf/public/js/ask_alyf.bundle.js:1728
 msgid "Loading conversation..."
 msgstr "वार्तालाप लोड हो रहा है..."
 
@@ -1418,15 +1410,11 @@ msgstr "मान सेट करने के प्रस्ताव मे�
 msgid "Set {0} on {1} {2}"
 msgstr "{1} {2} पर {0} सेट करें"
 
-<<<<<<< HEAD
-#: ask_alyf/ask_alyf/toolset.py:1253
-=======
 #: ask_alyf/public/js/ask_alyf.bundle.js:398
 msgid "Show all"
 msgstr "सभी दिखाएँ"
 
-#: ask_alyf/ask_alyf/toolset.py:1248
->>>>>>> 0ac422d (fix: group repeated steps in the chat (#161))
+#: ask_alyf/ask_alyf/toolset.py:1253
 msgid "Show chart"
 msgstr "चार्ट दिखाएं"
 
@@ -1925,21 +1913,17 @@ msgstr "अति उच्च"
 msgid "{0} '{1}' was not found."
 msgstr "{0} '{1}' नहीं मिला।"
 
-<<<<<<< HEAD
+#: ask_alyf/public/js/ask_alyf.bundle.js:371
+#, python-brace-format
+msgid "{0} failed"
+msgstr "{0} विफल"
+
 #: ask_alyf/public/js/ask_alyf.bundle.js:2322
 #, python-brace-format
 msgid "{0} items"
 msgstr "{0} आइटम"
 
 #: ask_alyf/public/js/ask_alyf.bundle.js:2316
-=======
-#: ask_alyf/public/js/ask_alyf.bundle.js:371
-#, python-brace-format
-msgid "{0} failed"
-msgstr "{0} विफल"
-
-#: ask_alyf/public/js/ask_alyf.bundle.js:2329
->>>>>>> 0ac422d (fix: group repeated steps in the chat (#161))
 #, python-brace-format
 msgid "{0} rows"
 msgstr "{0} पंक्तियाँ"

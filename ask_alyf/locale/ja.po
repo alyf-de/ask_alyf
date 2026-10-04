@@ -740,9 +740,6 @@ msgstr "ファイルのアップロードが有効になっていません。"
 msgid "Filling in the open form"
 msgstr "開いているフォームに入力しています"
 
-<<<<<<< HEAD
-#: ask_alyf/ask_alyf/tools.py:1736
-=======
 #: ask_alyf/ask_alyf/agent.py:200
 #, python-brace-format
 msgid "Finding {0}"
@@ -753,8 +750,7 @@ msgstr "{0} に一致するファイルを検索中"
 msgid "Finding {0} in {1}"
 msgstr "{1} で {0} に一致するファイルを検索中"
 
-#: ask_alyf/ask_alyf/tools.py:1732
->>>>>>> 0ac422d (fix: group repeated steps in the chat (#161))
+#: ask_alyf/ask_alyf/tools.py:1736
 msgid "Frontend action 'frm_add_child' field 'docname' must be a string."
 msgstr "フロントエンドアクション 'frm_add_child' のフィールド 'docname' は文字列でなければなりません。"
 
@@ -918,16 +914,12 @@ msgstr "最終メッセージ日時"
 msgid "Line offset {0} exceeds file length"
 msgstr "行オフセット {0} がファイルの長さを超えています"
 
-<<<<<<< HEAD
-#: ask_alyf/public/js/ask_alyf.bundle.js:1728
-=======
 #: ask_alyf/ask_alyf/agent.py:210
 #, python-brace-format
 msgid "Listing {0}"
 msgstr "{0} を一覧表示中"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1741
->>>>>>> 0ac422d (fix: group repeated steps in the chat (#161))
+#: ask_alyf/public/js/ask_alyf.bundle.js:1728
 msgid "Loading conversation..."
 msgstr "会話を読み込んでいます..."
 
@@ -1418,15 +1410,11 @@ msgstr "値設定の提案を修正する必要があります。"
 msgid "Set {0} on {1} {2}"
 msgstr "{1} {2} に {0} を設定"
 
-<<<<<<< HEAD
-#: ask_alyf/ask_alyf/toolset.py:1253
-=======
 #: ask_alyf/public/js/ask_alyf.bundle.js:398
 msgid "Show all"
 msgstr "すべて表示"
 
-#: ask_alyf/ask_alyf/toolset.py:1248
->>>>>>> 0ac422d (fix: group repeated steps in the chat (#161))
+#: ask_alyf/ask_alyf/toolset.py:1253
 msgid "Show chart"
 msgstr "チャートを表示"
 
@@ -1925,21 +1913,17 @@ msgstr "超高"
 msgid "{0} '{1}' was not found."
 msgstr "{0} '{1}' は見つかりませんでした。"
 
-<<<<<<< HEAD
+#: ask_alyf/public/js/ask_alyf.bundle.js:371
+#, python-brace-format
+msgid "{0} failed"
+msgstr "{0} 件失敗"
+
 #: ask_alyf/public/js/ask_alyf.bundle.js:2322
 #, python-brace-format
 msgid "{0} items"
 msgstr "{0} 件"
 
 #: ask_alyf/public/js/ask_alyf.bundle.js:2316
-=======
-#: ask_alyf/public/js/ask_alyf.bundle.js:371
-#, python-brace-format
-msgid "{0} failed"
-msgstr "{0} 件失敗"
-
-#: ask_alyf/public/js/ask_alyf.bundle.js:2329
->>>>>>> 0ac422d (fix: group repeated steps in the chat (#161))
 #, python-brace-format
 msgid "{0} rows"
 msgstr "{0} 行"

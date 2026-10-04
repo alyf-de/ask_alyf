@@ -740,9 +740,6 @@ msgstr "ফাইল আপলোড সক্ষম নয়।"
 msgid "Filling in the open form"
 msgstr "খোলা ফর্মটি পূরণ করা হচ্ছে"
 
-<<<<<<< HEAD
-#: ask_alyf/ask_alyf/tools.py:1736
-=======
 #: ask_alyf/ask_alyf/agent.py:200
 #, python-brace-format
 msgid "Finding {0}"
@@ -753,8 +750,7 @@ msgstr "{0} ফাইল খোঁজা হচ্ছে"
 msgid "Finding {0} in {1}"
 msgstr "{1}-এ {0} ফাইল খোঁজা হচ্ছে"
 
-#: ask_alyf/ask_alyf/tools.py:1732
->>>>>>> 0ac422d (fix: group repeated steps in the chat (#161))
+#: ask_alyf/ask_alyf/tools.py:1736
 msgid "Frontend action 'frm_add_child' field 'docname' must be a string."
 msgstr "ফ্রন্টএন্ড অ্যাকশন 'frm_add_child'-এর 'docname' ফিল্ড অবশ্যই একটি স্ট্রিং হতে হবে।"
 
@@ -918,16 +914,12 @@ msgstr "সর্বশেষ বার্তা প্রাপ্তির স
 msgid "Line offset {0} exceeds file length"
 msgstr "লাইন অফসেট {0} ফাইলের দৈর্ঘ্য অতিক্রম করেছে"
 
-<<<<<<< HEAD
-#: ask_alyf/public/js/ask_alyf.bundle.js:1728
-=======
 #: ask_alyf/ask_alyf/agent.py:210
 #, python-brace-format
 msgid "Listing {0}"
 msgstr "{0} তালিকাভুক্ত করা হচ্ছে"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1741
->>>>>>> 0ac422d (fix: group repeated steps in the chat (#161))
+#: ask_alyf/public/js/ask_alyf.bundle.js:1728
 msgid "Loading conversation..."
 msgstr "কথোপকথন লোড হচ্ছে..."
 
@@ -1418,15 +1410,11 @@ msgstr "মান সেট করার প্রস্তাব সংশো�
 msgid "Set {0} on {1} {2}"
 msgstr "{1} {2}-এ {0} সেট করুন"
 
-<<<<<<< HEAD
-#: ask_alyf/ask_alyf/toolset.py:1253
-=======
 #: ask_alyf/public/js/ask_alyf.bundle.js:398
 msgid "Show all"
 msgstr "সব দেখান"
 
-#: ask_alyf/ask_alyf/toolset.py:1248
->>>>>>> 0ac422d (fix: group repeated steps in the chat (#161))
+#: ask_alyf/ask_alyf/toolset.py:1253
 msgid "Show chart"
 msgstr "চার্ট দেখান"
 
@@ -1925,21 +1913,17 @@ msgstr "অতি উচ্চ"
 msgid "{0} '{1}' was not found."
 msgstr "{0} '{1}' পাওয়া যায়নি।"
 
-<<<<<<< HEAD
+#: ask_alyf/public/js/ask_alyf.bundle.js:371
+#, python-brace-format
+msgid "{0} failed"
+msgstr "{0}টি ব্যর্থ"
+
 #: ask_alyf/public/js/ask_alyf.bundle.js:2322
 #, python-brace-format
 msgid "{0} items"
 msgstr "{0}টি আইটেম"
 
 #: ask_alyf/public/js/ask_alyf.bundle.js:2316
-=======
-#: ask_alyf/public/js/ask_alyf.bundle.js:371
-#, python-brace-format
-msgid "{0} failed"
-msgstr "{0}টি ব্যর্থ"
-
-#: ask_alyf/public/js/ask_alyf.bundle.js:2329
->>>>>>> 0ac422d (fix: group repeated steps in the chat (#161))
 #, python-brace-format
 msgid "{0} rows"
 msgstr "{0} সারি"
