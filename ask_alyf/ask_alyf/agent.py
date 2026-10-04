@@ -1,4 +1,5 @@
 import contextlib
+import os
 import threading
 from collections.abc import Callable, Generator
 from typing import Any
@@ -11,7 +12,9 @@ from deepagents import (
 	create_deep_agent,
 	register_harness_profile,
 )
+from deepagents.middleware.filesystem import DEFAULT_READ_LIMIT
 from frappe import _
+from frappe.utils import cint
 from langchain.agents import create_agent
 from langchain.agents.middleware import AgentMiddleware, ToolErrorMiddleware, hook_config
 from langchain.agents.middleware.types import ToolCallRequest
@@ -168,28 +171,41 @@ def _tool_call_label(name: str, args: Any) -> str:
 	return name.replace("_", " ").capitalize()
 
 
-def _tool_call_detail(name: str, args: Any) -> str:
+def _tool_call_detail(name: str, args: dict[str, Any]) -> str:
 	"""Say what one call of a repeated step is doing, below its shared label.
 
 	The source code analyzer makes dozens of calls in a row under the same
 	label. The chat folds them into one row, and this line tells the user
-	which file or pattern the latest one is on.
+	which file or pattern the latest one is on. Pass the summarized
+	arguments, so a long pattern stays as short as it is everywhere else.
 	"""
-	args = args if isinstance(args, dict) else {}
 	# Most searches are scoped to an app, a folder or a single file, and
 	# that scope is what tells one search from the next.
 	scope = _source_relative_path(args.get("path"))
-	if name in ("grep", "glob"):
+	if name == "grep":
 		pattern = args.get("pattern") or ""
-		if name == "grep":
-			return (
-				_('Searching for "{0}" in {1}').format(pattern, scope)
-				if scope
-				else _('Searching for "{0}"').format(pattern)
-			)
+		file_filter = args.get("glob") or ""
+		# The same pattern is often searched again with only another file
+		# filter, such as `*.py` and then `*.json`. A filter does nothing on a
+		# single file, so it is left out there.
+		if file_filter and not os.path.splitext(scope)[1]:
+			scope = f"{scope}/{file_filter}" if scope else file_filter
+		return (
+			_('Searching for "{0}" in {1}').format(pattern, scope)
+			if scope
+			else _('Searching for "{0}"').format(pattern)
+		)
+	if name == "glob":
+		pattern = args.get("pattern") or ""
 		return _("Finding {0} in {1}").format(pattern, scope) if scope else _("Finding {0}").format(pattern)
 	if name == "read_file":
-		return _("Reading {0}").format(_source_relative_path(args.get("file_path")))
+		# The analyzer reads files in slices, often several of the same file,
+		# so the line range is what tells those reads apart.
+		first_line = cint(args.get("offset")) + 1
+		last_line = first_line + cint(args.get("limit") or DEFAULT_READ_LIMIT) - 1
+		return _("Reading {0}, lines {1}-{2}").format(
+			_source_relative_path(args.get("file_path")), first_line, last_line
+		)
 	if name == "ls":
 		return _("Listing {0}").format(scope or "/")
 	return ""
@@ -244,12 +260,13 @@ class ToolCallLogMiddleware(AgentMiddleware):
 				tool_call_id=call_id,
 			)
 
+		args = _summarize_tool_args(call.get("args"))
 		self.runtime.begin_tool_call(
 			call_id,
 			call.get("name") or "",
-			_summarize_tool_args(call.get("args")),
+			args,
 			_tool_call_label(call.get("name") or "", call.get("args")),
-			_tool_call_detail(call.get("name") or "", call.get("args")),
+			_tool_call_detail(call.get("name") or "", args),
 		)
 		try:
 			result = handler(request)

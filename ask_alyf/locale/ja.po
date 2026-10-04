@@ -724,12 +724,12 @@ msgstr "ファイルのアップロードが有効になっていません。"
 msgid "Filling in the open form"
 msgstr "開いているフォームに入力しています"
 
-#: ask_alyf/ask_alyf/agent.py:190
+#: ask_alyf/ask_alyf/agent.py:200
 #, python-brace-format
 msgid "Finding {0}"
 msgstr "{0} に一致するファイルを検索中"
 
-#: ask_alyf/ask_alyf/agent.py:190
+#: ask_alyf/ask_alyf/agent.py:200
 #, python-brace-format
 msgid "Finding {0} in {1}"
 msgstr "{1} で {0} に一致するファイルを検索中"
@@ -900,7 +900,7 @@ msgstr "最終メッセージ日時"
 msgid "Line offset {0} exceeds file length"
 msgstr "行オフセット {0} がファイルの長さを超えています"
 
-#: ask_alyf/ask_alyf/agent.py:194
+#: ask_alyf/ask_alyf/agent.py:210
 #, python-brace-format
 msgid "Listing {0}"
 msgstr "{0} を一覧表示中"
@@ -1254,6 +1254,11 @@ msgstr "添付ドキュメントを読み込み中"
 msgid "Reading {0}"
 msgstr "{0} を読み込み中"
 
+#: ask_alyf/ask_alyf/agent.py:206
+#, python-brace-format
+msgid "Reading {0}, lines {1}-{2}"
+msgstr "{0} の {1}-{2} 行目を読み込み中"
+
 #: ask_alyf/ask_alyf/agent.py:98
 #, python-brace-format
 msgid "Reading {0} list"
@@ -1353,12 +1358,12 @@ msgstr "フィールド {0} へスクロール"
 msgid "Scrolling to fields is not available on this form."
 msgstr "このフォームではフィールドへのスクロールは利用できません。"
 
-#: ask_alyf/ask_alyf/agent.py:188
+#: ask_alyf/ask_alyf/agent.py:196
 #, python-brace-format
 msgid "Searching for \"{0}\""
 msgstr "「{0}」を検索中"
 
-#: ask_alyf/ask_alyf/agent.py:186
+#: ask_alyf/ask_alyf/agent.py:194
 #, python-brace-format
 msgid "Searching for \"{0}\" in {1}"
 msgstr "{1} で「{0}」を検索中"

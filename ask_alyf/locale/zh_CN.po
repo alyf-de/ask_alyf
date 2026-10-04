@@ -724,12 +724,12 @@ msgstr "文件上传未启用。"
 msgid "Filling in the open form"
 msgstr "正在填写打开的表单"
 
-#: ask_alyf/ask_alyf/agent.py:190
+#: ask_alyf/ask_alyf/agent.py:200
 #, python-brace-format
 msgid "Finding {0}"
 msgstr "正在查找 {0}"
 
-#: ask_alyf/ask_alyf/agent.py:190
+#: ask_alyf/ask_alyf/agent.py:200
 #, python-brace-format
 msgid "Finding {0} in {1}"
 msgstr "正在 {1} 中查找 {0}"
@@ -900,7 +900,7 @@ msgstr "最后消息时间"
 msgid "Line offset {0} exceeds file length"
 msgstr "行偏移 {0} 超出文件长度"
 
-#: ask_alyf/ask_alyf/agent.py:194
+#: ask_alyf/ask_alyf/agent.py:210
 #, python-brace-format
 msgid "Listing {0}"
 msgstr "正在列出 {0}"
@@ -1254,6 +1254,11 @@ msgstr "正在读取附加的单据"
 msgid "Reading {0}"
 msgstr "正在读取 {0}"
 
+#: ask_alyf/ask_alyf/agent.py:206
+#, python-brace-format
+msgid "Reading {0}, lines {1}-{2}"
+msgstr "正在读取 {0} 的第 {1}-{2} 行"
+
 #: ask_alyf/ask_alyf/agent.py:98
 #, python-brace-format
 msgid "Reading {0} list"
@@ -1353,12 +1358,12 @@ msgstr "滚动到字段 {0}"
 msgid "Scrolling to fields is not available on this form."
 msgstr "此表单不支持滚动到字段。"
 
-#: ask_alyf/ask_alyf/agent.py:188
+#: ask_alyf/ask_alyf/agent.py:196
 #, python-brace-format
 msgid "Searching for \"{0}\""
 msgstr "正在搜索“{0}”"
 
-#: ask_alyf/ask_alyf/agent.py:186
+#: ask_alyf/ask_alyf/agent.py:194
 #, python-brace-format
 msgid "Searching for \"{0}\" in {1}"
 msgstr "正在 {1} 中搜索“{0}”"

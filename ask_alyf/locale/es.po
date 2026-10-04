@@ -724,12 +724,12 @@ msgstr "La carga de archivos no está habilitada."
 msgid "Filling in the open form"
 msgstr "Rellenando el formulario abierto"
 
-#: ask_alyf/ask_alyf/agent.py:190
+#: ask_alyf/ask_alyf/agent.py:200
 #, python-brace-format
 msgid "Finding {0}"
 msgstr "Buscando archivos {0}"
 
-#: ask_alyf/ask_alyf/agent.py:190
+#: ask_alyf/ask_alyf/agent.py:200
 #, python-brace-format
 msgid "Finding {0} in {1}"
 msgstr "Buscando archivos {0} en {1}"
@@ -900,7 +900,7 @@ msgstr "Último mensaje el"
 msgid "Line offset {0} exceeds file length"
 msgstr "El desplazamiento de línea {0} supera la longitud del archivo"
 
-#: ask_alyf/ask_alyf/agent.py:194
+#: ask_alyf/ask_alyf/agent.py:210
 #, python-brace-format
 msgid "Listing {0}"
 msgstr "Listando {0}"
@@ -1254,6 +1254,11 @@ msgstr "Leyendo el documento adjunto"
 msgid "Reading {0}"
 msgstr "Leyendo {0}"
 
+#: ask_alyf/ask_alyf/agent.py:206
+#, python-brace-format
+msgid "Reading {0}, lines {1}-{2}"
+msgstr "Leyendo {0}, líneas {1}-{2}"
+
 #: ask_alyf/ask_alyf/agent.py:98
 #, python-brace-format
 msgid "Reading {0} list"
@@ -1353,12 +1358,12 @@ msgstr "Desplazarse al campo {0}"
 msgid "Scrolling to fields is not available on this form."
 msgstr "El desplazamiento a campos no está disponible en este formulario."
 
-#: ask_alyf/ask_alyf/agent.py:188
+#: ask_alyf/ask_alyf/agent.py:196
 #, python-brace-format
 msgid "Searching for \"{0}\""
 msgstr "Buscando \"{0}\""
 
-#: ask_alyf/ask_alyf/agent.py:186
+#: ask_alyf/ask_alyf/agent.py:194
 #, python-brace-format
 msgid "Searching for \"{0}\" in {1}"
 msgstr "Buscando \"{0}\" en {1}"
