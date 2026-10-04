@@ -724,6 +724,16 @@ msgstr "फ़ाइल अपलोड सक्षम नहीं है।"
 msgid "Filling in the open form"
 msgstr "खुले फ़ॉर्म को भरा जा रहा है"
 
+#: ask_alyf/ask_alyf/agent.py:190
+#, python-brace-format
+msgid "Finding {0}"
+msgstr "{0} फ़ाइलें खोजी जा रही हैं"
+
+#: ask_alyf/ask_alyf/agent.py:190
+#, python-brace-format
+msgid "Finding {0} in {1}"
+msgstr "{1} में {0} फ़ाइलें खोजी जा रही हैं"
+
 #: ask_alyf/ask_alyf/tools.py:1732
 msgid "Frontend action 'frm_add_child' field 'docname' must be a string."
 msgstr "फ्रंटएंड क्रिया 'frm_add_child' का फ़ील्ड 'docname' एक स्ट्रिंग होना चाहिए।"
@@ -889,6 +899,11 @@ msgstr "अंतिम संदेश पर"
 #, python-brace-format
 msgid "Line offset {0} exceeds file length"
 msgstr "लाइन ऑफ़सेट {0} फ़ाइल की लंबाई से अधिक है"
+
+#: ask_alyf/ask_alyf/agent.py:194
+#, python-brace-format
+msgid "Listing {0}"
+msgstr "{0} की सूची बनाई जा रही है"
 
 #: ask_alyf/public/js/ask_alyf.bundle.js:1741
 msgid "Loading conversation..."
@@ -1338,6 +1353,16 @@ msgstr "फ़ील्ड {0} पर स्क्रॉल करें"
 msgid "Scrolling to fields is not available on this form."
 msgstr "इस फॉर्म पर फ़ील्ड्स तक स्क्रॉल करना उपलब्ध नहीं है।"
 
+#: ask_alyf/ask_alyf/agent.py:188
+#, python-brace-format
+msgid "Searching for \"{0}\""
+msgstr "\"{0}\" खोजा जा रहा है"
+
+#: ask_alyf/ask_alyf/agent.py:186
+#, python-brace-format
+msgid "Searching for \"{0}\" in {1}"
+msgstr "{1} में \"{0}\" खोजा जा रहा है"
+
 #: ask_alyf/ask_alyf/agent.py:127
 msgid "Searching the documentation"
 msgstr "दस्तावेज़ीकरण में खोज की जा रही है"
@@ -1371,6 +1396,10 @@ msgstr "मान सेट करने के प्रस्ताव मे�
 #, python-brace-format
 msgid "Set {0} on {1} {2}"
 msgstr "{1} {2} पर {0} सेट करें"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:398
+msgid "Show all"
+msgstr "सभी दिखाएँ"
 
 #: ask_alyf/ask_alyf/toolset.py:1248
 msgid "Show chart"
@@ -1858,6 +1887,11 @@ msgstr "अति उच्च"
 #, python-brace-format
 msgid "{0} '{1}' was not found."
 msgstr "{0} '{1}' नहीं मिला।"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:371
+#, python-brace-format
+msgid "{0} failed"
+msgstr "{0} विफल"
 
 #: ask_alyf/public/js/ask_alyf.bundle.js:2329
 #, python-brace-format

@@ -1236,8 +1236,14 @@
 	}
 }
 
-.ask_alyf-tool-call-failed .ask_alyf-tool-call-name {
+.ask_alyf-tool-call-failed .ask_alyf-tool-call-name,
+.ask_alyf-tool-call-failed-count,
+.ask_alyf-tool-call-args li.ask_alyf-tool-call-failed {
 	color: var(--text-danger, #c0392b);
+}
+
+.ask_alyf-tool-call-failed-count {
+	margin-left: 0.5em;
 }
 
 @media (prefers-reduced-motion: reduce) {

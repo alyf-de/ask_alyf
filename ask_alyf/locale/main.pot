@@ -686,6 +686,14 @@ msgstr ""
 msgid "Filling in the open form"
 msgstr ""
 
+#: ask_alyf/ask_alyf/agent.py:190
+msgid "Finding {0}"
+msgstr ""
+
+#: ask_alyf/ask_alyf/agent.py:190
+msgid "Finding {0} in {1}"
+msgstr ""
+
 #: ask_alyf/ask_alyf/tools.py:1732
 msgid "Frontend action 'frm_add_child' field 'docname' must be a string."
 msgstr ""
@@ -847,6 +855,10 @@ msgstr ""
 #: ask_alyf/ask_alyf/deep_agent_backend.py:172
 #: ask_alyf/ask_alyf/deep_agent_backend.py:285
 msgid "Line offset {0} exceeds file length"
+msgstr ""
+
+#: ask_alyf/ask_alyf/agent.py:194
+msgid "Listing {0}"
 msgstr ""
 
 #: ask_alyf/public/js/ask_alyf.bundle.js:1741
@@ -1276,6 +1288,14 @@ msgstr ""
 msgid "Scrolling to fields is not available on this form."
 msgstr ""
 
+#: ask_alyf/ask_alyf/agent.py:188
+msgid "Searching for \"{0}\""
+msgstr ""
+
+#: ask_alyf/ask_alyf/agent.py:186
+msgid "Searching for \"{0}\" in {1}"
+msgstr ""
+
 #: ask_alyf/ask_alyf/agent.py:127
 msgid "Searching the documentation"
 msgstr ""
@@ -1306,6 +1326,10 @@ msgstr ""
 
 #: ask_alyf/ask_alyf/toolset.py:901
 msgid "Set {0} on {1} {2}"
+msgstr ""
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:398
+msgid "Show all"
 msgstr ""
 
 #: ask_alyf/ask_alyf/toolset.py:1248
@@ -1772,6 +1796,10 @@ msgstr ""
 
 #: ask_alyf/ask_alyf/tools.py:993
 msgid "{0} '{1}' was not found."
+msgstr ""
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:371
+msgid "{0} failed"
 msgstr ""
 
 #: ask_alyf/public/js/ask_alyf.bundle.js:2329

@@ -344,14 +344,16 @@ import "./field_agent";
 
 		buildToolCallItem(group, { showArgs = true } = {}) {
 			const { label, calls } = group;
-			const latestCall = calls[calls.length - 1];
+			const runningCalls = calls.filter((call) => call?.status === "running");
+			const failedCount = calls.filter((call) => call?.status === "failed").length;
+			// Parallel calls can finish out of order, so the row describes the
+			// newest call that still runs, not just the newest call.
+			const currentCall = runningCalls[runningCalls.length - 1] || calls[calls.length - 1];
 			const item = document.createElement("li");
-			// One failed read among many is routine for the analyzer, so a
-			// group only shows as failed when nothing in it worked.
-			if (calls.every((call) => call?.status === "failed")) {
+			if (failedCount === calls.length) {
 				item.classList.add("ask_alyf-tool-call-failed");
 			}
-			if (calls.some((call) => call?.status === "running")) {
+			if (runningCalls.length) {
 				item.classList.add("ask_alyf-tool-call-running");
 			}
 
@@ -360,16 +362,24 @@ import "./field_agent";
 			name.textContent = calls.length > 1 ? `${label} ×${calls.length}` : label;
 			item.appendChild(name);
 
+			// A failed read among many is routine for the analyzer, so it does
+			// not turn the whole row red, but a failed save must not hide in
+			// a group of successful ones either.
+			if (failedCount && failedCount < calls.length) {
+				const failed = document.createElement("span");
+				failed.className = "ask_alyf-tool-call-failed-count";
+				failed.textContent = __("{0} failed", [failedCount]);
+				item.appendChild(failed);
+			}
+
 			if (showArgs && calls.length > 1) {
 				item.appendChild(this.buildToolCallGroupDetails(calls));
 				return item;
 			}
 
-			// While running, only the latest call's detail: it says what the
-			// group is on right now.
 			const text = showArgs
-				? latestCall?.detail || this.formatToolCallArgs(latestCall?.args)
-				: latestCall?.detail || "";
+				? currentCall?.detail || this.formatToolCallArgs(currentCall?.args)
+				: currentCall?.detail || "";
 			if (text) {
 				const detail = document.createElement("span");
 				detail.className = "ask_alyf-tool-call-args";
@@ -391,6 +401,9 @@ import "./field_agent";
 			const list = document.createElement("ol");
 			for (const call of calls) {
 				const entry = document.createElement("li");
+				if (call?.status === "failed") {
+					entry.className = "ask_alyf-tool-call-failed";
+				}
 				entry.textContent = call?.detail || this.formatToolCallArgs(call?.args);
 				list.appendChild(entry);
 			}
