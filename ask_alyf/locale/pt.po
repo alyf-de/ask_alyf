@@ -429,15 +429,11 @@ msgstr "Configure um modelo de visão nas Definições do Ask ALYF."
 msgid "Configure an API key in Ask ALYF Settings before sending messages."
 msgstr "Configure uma chave de API nas Definições do Ask ALYF antes de enviar mensagens."
 
-<<<<<<< HEAD
-#: ask_alyf/public/js/ask_alyf.bundle.js:722
-=======
 #: ask_alyf/public/js/ask_alyf.bundle.js:694
 #: ask_alyf/public/js/ask_alyf.bundle.js:715
 msgid "Column"
 msgstr "Coluna"
-#: ask_alyf/public/js/ask_alyf.bundle.js:728
->>>>>>> 379bb83 (feat: implement table pagination and sorting functionality (#145))
+#: ask_alyf/public/js/ask_alyf.bundle.js:722
 msgid "Confirm all"
 msgstr "Confirmar tudo"
 
@@ -912,16 +908,12 @@ msgstr "Última mensagem em"
 msgid "Line offset {0} exceeds file length"
 msgstr "O deslocamento de linha {0} excede o comprimento do ficheiro"
 
-<<<<<<< HEAD
-#: ask_alyf/public/js/ask_alyf.bundle.js:1735
-=======
 #: ask_alyf/ask_alyf/agent.py:210
 #, python-brace-format
 msgid "Listing {0}"
 msgstr "Listando {0}"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1741
->>>>>>> 0ac422d (fix: group repeated steps in the chat (#161))
+#: ask_alyf/public/js/ask_alyf.bundle.js:1735
 msgid "Loading conversation..."
 msgstr "A carregar conversa..."
 
@@ -1234,14 +1226,10 @@ msgstr "Proposta de atualização preparada."
 msgid "Preparing a chart"
 msgstr "A preparar um gráfico"
 
-<<<<<<< HEAD
-#: ask_alyf/public/js/ask_alyf.bundle.js:1513
-=======
 #: ask_alyf/public/js/ask_alyf.bundle.js:659
 msgid "Previous page"
 msgstr "Página anterior"
-#: ask_alyf/public/js/ask_alyf.bundle.js:1522
->>>>>>> 379bb83 (feat: implement table pagination and sorting functionality (#145))
+#: ask_alyf/public/js/ask_alyf.bundle.js:1513
 msgid "Projects"
 msgstr "Projetos"
 
@@ -1527,9 +1515,6 @@ msgstr "Parar esta execução"
 msgid "Stopped. Send a message to pick up from here."
 msgstr "Parado. Envie uma mensagem para continuar a partir daqui."
 
-<<<<<<< HEAD
-#: ask_alyf/public/js/ask_alyf.bundle.js:1820
-=======
 #: ask_alyf/public/js/ask_alyf.bundle.js:691
 #, python-brace-format
 msgid "Sort by {0}"
@@ -1542,8 +1527,7 @@ msgstr "Ordenado ascendente por {0}"
 #, python-brace-format
 msgid "Sorted descending by {0}"
 msgstr "Ordenado descendente por {0}"
-#: ask_alyf/public/js/ask_alyf.bundle.js:1826
->>>>>>> 379bb83 (feat: implement table pagination and sorting functionality (#145))
+#: ask_alyf/public/js/ask_alyf.bundle.js:1820
 msgid "Stopping..."
 msgstr "A parar..."
 
