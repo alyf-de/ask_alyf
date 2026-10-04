@@ -304,38 +304,99 @@ import "./field_agent";
 
 			const list = document.createElement("ol");
 			list.className = "ask_alyf-tool-call-list";
-			for (const call of toolCalls) {
-				list.appendChild(this.buildToolCallItem(call));
+			for (const group of this.groupToolCalls(toolCalls)) {
+				list.appendChild(this.buildToolCallItem(group));
 			}
 			holder.appendChild(list);
 			return holder;
 		}
 
-		buildToolCallItem(call, { showArgs = true } = {}) {
+		groupToolCalls(toolCalls) {
+			// A run of calls under the same label — the source code analyzer
+			// reading dozens of files — becomes one row instead of a wall of
+			// identical ones.
+			const groups = [];
+			for (const call of toolCalls) {
+				// Older messages predate the server-side label and only carry
+				// the raw tool name.
+				const label = call?.label || (call?.name || "").replace(/_/g, " ");
+				const lastGroup = groups[groups.length - 1];
+				if (lastGroup?.label === label) {
+					lastGroup.calls.push(call);
+				} else {
+					groups.push({ label, calls: [call] });
+				}
+			}
+			return groups;
+		}
+
+		buildToolCallItem(group, { showArgs = true } = {}) {
+			const { label, calls } = group;
+			const runningCalls = calls.filter((call) => call?.status === "running");
+			const failedCount = calls.filter((call) => call?.status === "failed").length;
+			// Parallel calls can finish out of order, so the row describes the
+			// newest call that still runs, not just the newest call.
+			const currentCall = runningCalls[runningCalls.length - 1] || calls[calls.length - 1];
 			const item = document.createElement("li");
-			if (call?.status === "failed") {
+			if (failedCount === calls.length) {
 				item.classList.add("ask_alyf-tool-call-failed");
 			}
-			if (call?.status === "running") {
+			if (runningCalls.length) {
 				item.classList.add("ask_alyf-tool-call-running");
 			}
 
 			const name = document.createElement("span");
 			name.className = "ask_alyf-tool-call-name";
-			// Older messages predate the server-side label and only carry the
-			// raw tool name.
-			name.textContent = call?.label || (call?.name || "").replace(/_/g, " ");
+			name.textContent = calls.length > 1 ? `${label} ×${calls.length}` : label;
 			item.appendChild(name);
 
-			const args = showArgs ? this.formatToolCallArgs(call?.args) : "";
-			if (args) {
+			// A failed read among many is routine for the analyzer, so it does
+			// not turn the whole row red, but a failed save must not hide in
+			// a group of successful ones either.
+			if (failedCount && failedCount < calls.length) {
+				const failed = document.createElement("span");
+				failed.className = "ask_alyf-tool-call-failed-count";
+				failed.textContent = __("{0} failed", [failedCount]);
+				item.appendChild(failed);
+			}
+
+			if (showArgs && calls.length > 1) {
+				item.appendChild(this.buildToolCallGroupDetails(calls));
+				return item;
+			}
+
+			const text = showArgs
+				? currentCall?.detail || this.formatToolCallArgs(currentCall?.args)
+				: currentCall?.detail || "";
+			if (text) {
 				const detail = document.createElement("span");
 				detail.className = "ask_alyf-tool-call-args";
-				detail.textContent = args;
+				detail.textContent = text;
 				item.appendChild(detail);
 			}
 
 			return item;
+		}
+
+		buildToolCallGroupDetails(calls) {
+			const holder = document.createElement("details");
+			holder.className = "ask_alyf-tool-call-args";
+
+			const summary = document.createElement("summary");
+			summary.textContent = __("Show all");
+			holder.appendChild(summary);
+
+			const list = document.createElement("ol");
+			for (const call of calls) {
+				const entry = document.createElement("li");
+				if (call?.status === "failed") {
+					entry.className = "ask_alyf-tool-call-failed";
+				}
+				entry.textContent = call?.detail || this.formatToolCallArgs(call?.args);
+				list.appendChild(entry);
+			}
+			holder.appendChild(list);
+			return holder;
 		}
 
 		applyStepUpdate(step) {
@@ -408,10 +469,10 @@ import "./field_agent";
 			wrapper.className = "ask_alyf-message ask_alyf-assistant ask_alyf-live-steps";
 			const list = document.createElement("ol");
 			list.className = "ask_alyf-tool-call-list";
-			for (const step of this.state.steps) {
-				// Labels only while it runs; the arguments are there to read in
+			for (const group of this.groupToolCalls(this.state.steps)) {
+				// No raw arguments while it runs; they are there to read in
 				// the message once the turn is done.
-				list.appendChild(this.buildToolCallItem(step, { showArgs: false }));
+				list.appendChild(this.buildToolCallItem(group, { showArgs: false }));
 			}
 			wrapper.appendChild(list);
 
