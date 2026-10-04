@@ -697,6 +697,14 @@ msgstr ""
 msgid "Filling in the open form"
 msgstr ""
 
+#: ask_alyf/ask_alyf/agent.py:200
+msgid "Finding {0}"
+msgstr ""
+
+#: ask_alyf/ask_alyf/agent.py:200
+msgid "Finding {0} in {1}"
+msgstr ""
+
 #: ask_alyf/ask_alyf/tools.py:1732
 msgid "Frontend action 'frm_add_child' field 'docname' must be a string."
 msgstr ""
@@ -860,7 +868,15 @@ msgstr ""
 msgid "Line offset {0} exceeds file length"
 msgstr ""
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:1735
+=======
+#: ask_alyf/ask_alyf/agent.py:210
+msgid "Listing {0}"
+msgstr ""
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1741
+>>>>>>> 0ac422d (fix: group repeated steps in the chat (#161))
 msgid "Loading conversation..."
 msgstr ""
 
@@ -1200,6 +1216,10 @@ msgstr ""
 msgid "Reading {0}"
 msgstr ""
 
+#: ask_alyf/ask_alyf/agent.py:206
+msgid "Reading {0}, lines {1}-{2}"
+msgstr ""
+
 #: ask_alyf/ask_alyf/agent.py:98
 msgid "Reading {0} list"
 msgstr ""
@@ -1291,6 +1311,14 @@ msgstr ""
 msgid "Scrolling to fields is not available on this form."
 msgstr ""
 
+#: ask_alyf/ask_alyf/agent.py:196
+msgid "Searching for \"{0}\""
+msgstr ""
+
+#: ask_alyf/ask_alyf/agent.py:194
+msgid "Searching for \"{0}\" in {1}"
+msgstr ""
+
 #: ask_alyf/ask_alyf/agent.py:127
 msgid "Searching the documentation"
 msgstr ""
@@ -1321,6 +1349,10 @@ msgstr ""
 
 #: ask_alyf/ask_alyf/toolset.py:901
 msgid "Set {0} on {1} {2}"
+msgstr ""
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:398
+msgid "Show all"
 msgstr ""
 
 #: ask_alyf/ask_alyf/toolset.py:1248
@@ -1804,6 +1836,10 @@ msgstr ""
 
 #: ask_alyf/ask_alyf/tools.py:993
 msgid "{0} '{1}' was not found."
+msgstr ""
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:371
+msgid "{0} failed"
 msgstr ""
 
 #: ask_alyf/public/js/ask_alyf.bundle.js:2329
