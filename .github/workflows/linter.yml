@@ -59,37 +59,6 @@ jobs:
           cd ${GITHUB_WORKSPACE}
           pip-audit --desc on .
 
-<<<<<<< HEAD
-  translations:
-    name: 'Build Translations'
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v6
-      - uses: actions/setup-python@v6
-        with:
-          python-version: '3.11'
-
-      # Same read_po/write_mo path as `bench build`, but strict about invalid entries
-      - name: Compile PO files
-        run: |
-          pip install "Babel~=2.16.0"
-          python - <<'PY'
-          from io import BytesIO
-          from pathlib import Path
-
-          from babel.messages.mofile import write_mo
-          from babel.messages.pofile import read_po
-
-          for po_path in sorted(Path("ask_alyf/locale").glob("*.po")):
-              with po_path.open("rb") as f:
-                  catalog = read_po(f, abort_invalid=True)
-              write_mo(BytesIO(), catalog)
-              print("Compiled", po_path)
-          PY
-
-=======
->>>>>>> 31b5c50 (ci: add PO review workflow (#167))
   conflict-markers:
     name: 'Git Conflict Markers'
     runs-on: ubuntu-latest
