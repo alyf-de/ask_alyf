@@ -970,6 +970,10 @@ msgstr "新しいチャット"
 msgid "New document action needs correction."
 msgstr "新規ドキュメントアクションを修正する必要があります。"
 
+#: ask_alyf/public/js/ask_alyf.bundle.js:660
+msgid "Next page"
+msgstr "次のページ"
+
 #: ask_alyf/public/js/field_agent.js:169
 msgid "No active form found."
 msgstr "アクティブなフォームが見つかりません。"
@@ -1132,6 +1136,10 @@ msgstr "保留中の操作"
 #: ask_alyf/ask_alyf/agent.py:134
 msgid "Planning the next steps"
 msgstr "次のステップを計画しています"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:659
+msgid "Previous page"
+msgstr "前のページ"
 
 #: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.py:147
 msgid "Please configure a Base URL first and save the settings, then we can fetch available models."

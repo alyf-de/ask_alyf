@@ -970,6 +970,10 @@ msgstr "新聊天"
 msgid "New document action needs correction."
 msgstr "新建文档操作需要更正。"
 
+#: ask_alyf/public/js/ask_alyf.bundle.js:660
+msgid "Next page"
+msgstr "下一页"
+
 #: ask_alyf/public/js/field_agent.js:169
 msgid "No active form found."
 msgstr "未找到活动表单。"
@@ -1132,6 +1136,10 @@ msgstr "待处理操作"
 #: ask_alyf/ask_alyf/agent.py:134
 msgid "Planning the next steps"
 msgstr "正在规划后续步骤"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:659
+msgid "Previous page"
+msgstr "上一页"
 
 #: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.py:147
 msgid "Please configure a Base URL first and save the settings, then we can fetch available models."

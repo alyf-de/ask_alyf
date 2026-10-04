@@ -970,6 +970,10 @@ msgstr "नई चैट"
 msgid "New document action needs correction."
 msgstr "नया दस्तावेज़ क्रिया में सुधार की आवश्यकता है।"
 
+#: ask_alyf/public/js/ask_alyf.bundle.js:660
+msgid "Next page"
+msgstr "अगला पृष्ठ"
+
 #: ask_alyf/public/js/field_agent.js:169
 msgid "No active form found."
 msgstr "कोई सक्रिय फ़ॉर्म नहीं मिला।"
@@ -1132,6 +1136,10 @@ msgstr "लंबित ऑपरेशन"
 #: ask_alyf/ask_alyf/agent.py:134
 msgid "Planning the next steps"
 msgstr "अगले चरणों की योजना बनाई जा रही है"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:659
+msgid "Previous page"
+msgstr "पिछला पृष्ठ"
 
 #: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.py:147
 msgid "Please configure a Base URL first and save the settings, then we can fetch available models."

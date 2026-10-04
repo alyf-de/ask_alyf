@@ -927,6 +927,10 @@ msgstr ""
 msgid "New document action needs correction."
 msgstr ""
 
+#: ask_alyf/public/js/ask_alyf.bundle.js:660
+msgid "Next page"
+msgstr ""
+
 #: ask_alyf/public/js/field_agent.js:169
 msgid "No active form found."
 msgstr ""
@@ -1078,6 +1082,10 @@ msgstr ""
 
 #: ask_alyf/ask_alyf/agent.py:134
 msgid "Planning the next steps"
+msgstr ""
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:659
+msgid "Previous page"
 msgstr ""
 
 #: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.py:147

@@ -970,6 +970,10 @@ msgstr "Neuer Chat"
 msgid "New document action needs correction."
 msgstr "Aktion zum Öffnen eines neuen Dokuments benötigt Korrektur."
 
+#: ask_alyf/public/js/ask_alyf.bundle.js:660
+msgid "Next page"
+msgstr "Nächste Seite"
+
 #: ask_alyf/public/js/field_agent.js:169
 msgid "No active form found."
 msgstr "Kein aktives Formular gefunden."
@@ -1132,6 +1136,10 @@ msgstr "Ausstehende Operation"
 #: ask_alyf/ask_alyf/agent.py:134
 msgid "Planning the next steps"
 msgstr "Die nächsten Schritte werden geplant"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:659
+msgid "Previous page"
+msgstr "Vorherige Seite"
 
 #: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.py:147
 msgid "Please configure a Base URL first and save the settings, then we can fetch available models."
