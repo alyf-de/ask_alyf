@@ -58,3 +58,17 @@ jobs:
           pip install pip-audit
           cd ${GITHUB_WORKSPACE}
           pip-audit --desc on .
+
+  conflict-markers:
+    name: 'Git Conflict Markers'
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Find conflict markers
+        run: |
+          if git grep -nE '^(<{7}|>{7}) |^={7}$'; then
+            echo "::error::Git conflict markers found"
+            exit 1
+          fi
