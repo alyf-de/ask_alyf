@@ -995,7 +995,11 @@ import "./field_agent";
 								</div>
 							</div>
 							<div class="ask_alyf-disclaimer">${__(
+<<<<<<< HEAD
 								"Ask ALYF is an AI and can make mistakes, including with numbers and information about people."
+=======
+								"Ask ALYF uses AI and can make mistakes, including with numbers and information about people.",
+>>>>>>> ef90356 (fix(i18n): add LangSmith labels and standardize Ask ALYF translations (#160))
 							)}</div>
 						</div>
 					</div>
