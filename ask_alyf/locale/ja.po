@@ -725,7 +725,17 @@ msgstr "ファイルのアップロードが有効になっていません。"
 msgid "Filling in the open form"
 msgstr "開いているフォームに入力しています"
 
-#: ask_alyf/ask_alyf/tools.py:1705
+#: ask_alyf/ask_alyf/agent.py:200
+#, python-brace-format
+msgid "Finding {0}"
+msgstr "{0} に一致するファイルを検索中"
+
+#: ask_alyf/ask_alyf/agent.py:200
+#, python-brace-format
+msgid "Finding {0} in {1}"
+msgstr "{1} で {0} に一致するファイルを検索中"
+
+#: ask_alyf/ask_alyf/tools.py:1732
 msgid "Frontend action 'frm_add_child' field 'docname' must be a string."
 msgstr "フロントエンドアクション 'frm_add_child' のフィールド 'docname' は文字列でなければなりません。"
 
@@ -907,7 +917,12 @@ msgstr "最終メッセージ日時"
 msgid "Line offset {0} exceeds file length"
 msgstr "行オフセット {0} がファイルの長さを超えています"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1846
+#: ask_alyf/ask_alyf/agent.py:210
+#, python-brace-format
+msgid "Listing {0}"
+msgstr "{0} を一覧表示中"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1741
 msgid "Loading conversation..."
 msgstr "会話を読み込んでいます..."
 
@@ -1258,7 +1273,12 @@ msgstr "添付ドキュメントを読み込み中"
 msgid "Reading {0}"
 msgstr "{0} を読み込み中"
 
-#: ask_alyf/ask_alyf/agent.py:99
+#: ask_alyf/ask_alyf/agent.py:206
+#, python-brace-format
+msgid "Reading {0}, lines {1}-{2}"
+msgstr "{0} の {1}-{2} 行目を読み込み中"
+
+#: ask_alyf/ask_alyf/agent.py:98
 #, python-brace-format
 msgid "Reading {0} list"
 msgstr "{0} の一覧を読み込み中"
@@ -1357,7 +1377,17 @@ msgstr "フィールド {0} へスクロール"
 msgid "Scrolling to fields is not available on this form."
 msgstr "このフォームではフィールドへのスクロールは利用できません。"
 
-#: ask_alyf/ask_alyf/agent.py:128
+#: ask_alyf/ask_alyf/agent.py:196
+#, python-brace-format
+msgid "Searching for \"{0}\""
+msgstr "「{0}」を検索中"
+
+#: ask_alyf/ask_alyf/agent.py:194
+#, python-brace-format
+msgid "Searching for \"{0}\" in {1}"
+msgstr "{1} で「{0}」を検索中"
+
+#: ask_alyf/ask_alyf/agent.py:127
 msgid "Searching the documentation"
 msgstr "ドキュメントを検索中"
 
@@ -1390,6 +1420,10 @@ msgstr "値設定の提案を修正する必要があります。"
 #, python-brace-format
 msgid "Set {0} on {1} {2}"
 msgstr "{1} {2} に {0} を設定"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:398
+msgid "Show all"
+msgstr "すべて表示"
 
 #: ask_alyf/ask_alyf/toolset.py:1248
 msgid "Show chart"
@@ -1887,7 +1921,12 @@ msgstr "超高"
 msgid "{0} '{1}' was not found."
 msgstr "{0} '{1}' は見つかりませんでした。"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2434
+#: ask_alyf/public/js/ask_alyf.bundle.js:371
+#, python-brace-format
+msgid "{0} failed"
+msgstr "{0} 件失敗"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:2329
 #, python-brace-format
 msgid "{0} rows"
 msgstr "{0} 行"

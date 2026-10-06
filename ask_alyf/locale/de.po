@@ -725,7 +725,17 @@ msgstr "Datei-Upload ist nicht aktiviert."
 msgid "Filling in the open form"
 msgstr "Das geöffnete Formular wird ausgefüllt"
 
-#: ask_alyf/ask_alyf/tools.py:1705
+#: ask_alyf/ask_alyf/agent.py:200
+#, python-brace-format
+msgid "Finding {0}"
+msgstr "Dateien {0} werden gesucht"
+
+#: ask_alyf/ask_alyf/agent.py:200
+#, python-brace-format
+msgid "Finding {0} in {1}"
+msgstr "Dateien {0} werden in {1} gesucht"
+
+#: ask_alyf/ask_alyf/tools.py:1732
 msgid "Frontend action 'frm_add_child' field 'docname' must be a string."
 msgstr "Frontend-Aktion 'frm_add_child' Feld 'docname' muss eine Zeichenkette sein."
 
@@ -907,7 +917,12 @@ msgstr "Letzte Nachricht am"
 msgid "Line offset {0} exceeds file length"
 msgstr "Zeilenversatz {0} überschreitet die Dateilänge"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1846
+#: ask_alyf/ask_alyf/agent.py:210
+#, python-brace-format
+msgid "Listing {0}"
+msgstr "{0} wird aufgelistet"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1741
 msgid "Loading conversation..."
 msgstr "Lade Konversation..."
 
@@ -1258,7 +1273,12 @@ msgstr "Angehängtes Dokument wird gelesen"
 msgid "Reading {0}"
 msgstr "{0} wird gelesen"
 
-#: ask_alyf/ask_alyf/agent.py:99
+#: ask_alyf/ask_alyf/agent.py:206
+#, python-brace-format
+msgid "Reading {0}, lines {1}-{2}"
+msgstr "{0} wird gelesen, Zeilen {1}-{2}"
+
+#: ask_alyf/ask_alyf/agent.py:98
 #, python-brace-format
 msgid "Reading {0} list"
 msgstr "{0}-Liste wird gelesen"
@@ -1357,7 +1377,17 @@ msgstr "Zum Feld {0} scrollen"
 msgid "Scrolling to fields is not available on this form."
 msgstr "Das Scrollen zu Feldern ist in diesem Formular nicht verfügbar."
 
-#: ask_alyf/ask_alyf/agent.py:128
+#: ask_alyf/ask_alyf/agent.py:196
+#, python-brace-format
+msgid "Searching for \"{0}\""
+msgstr "„{0}“ wird gesucht"
+
+#: ask_alyf/ask_alyf/agent.py:194
+#, python-brace-format
+msgid "Searching for \"{0}\" in {1}"
+msgstr "„{0}“ wird in {1} gesucht"
+
+#: ask_alyf/ask_alyf/agent.py:127
 msgid "Searching the documentation"
 msgstr "Dokumentation wird durchsucht"
 
@@ -1390,6 +1420,10 @@ msgstr "Wert-Änderungs-Vorschlag benötigt Korrektur."
 #, python-brace-format
 msgid "Set {0} on {1} {2}"
 msgstr "{0} in {1} {2} setzen"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:398
+msgid "Show all"
+msgstr "Alle anzeigen"
 
 #: ask_alyf/ask_alyf/toolset.py:1248
 msgid "Show chart"
@@ -1887,7 +1921,12 @@ msgstr "Sehr hoch"
 msgid "{0} '{1}' was not found."
 msgstr "{0} '{1}' wurde nicht gefunden."
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2434
+#: ask_alyf/public/js/ask_alyf.bundle.js:371
+#, python-brace-format
+msgid "{0} failed"
+msgstr "{0} fehlgeschlagen"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:2329
 #, python-brace-format
 msgid "{0} rows"
 msgstr "{0} Zeilen"

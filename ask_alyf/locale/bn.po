@@ -725,7 +725,17 @@ msgstr "ফাইল আপলোড সক্ষম নয়।"
 msgid "Filling in the open form"
 msgstr "খোলা ফর্মটি পূরণ করা হচ্ছে"
 
-#: ask_alyf/ask_alyf/tools.py:1705
+#: ask_alyf/ask_alyf/agent.py:200
+#, python-brace-format
+msgid "Finding {0}"
+msgstr "{0} ফাইল খোঁজা হচ্ছে"
+
+#: ask_alyf/ask_alyf/agent.py:200
+#, python-brace-format
+msgid "Finding {0} in {1}"
+msgstr "{1}-এ {0} ফাইল খোঁজা হচ্ছে"
+
+#: ask_alyf/ask_alyf/tools.py:1732
 msgid "Frontend action 'frm_add_child' field 'docname' must be a string."
 msgstr "ফ্রন্টএন্ড অ্যাকশন 'frm_add_child'-এর 'docname' ফিল্ড অবশ্যই একটি স্ট্রিং হতে হবে।"
 
@@ -907,7 +917,12 @@ msgstr "সর্বশেষ বার্তা প্রাপ্তির স
 msgid "Line offset {0} exceeds file length"
 msgstr "লাইন অফসেট {0} ফাইলের দৈর্ঘ্য অতিক্রম করেছে"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1846
+#: ask_alyf/ask_alyf/agent.py:210
+#, python-brace-format
+msgid "Listing {0}"
+msgstr "{0} তালিকাভুক্ত করা হচ্ছে"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1741
 msgid "Loading conversation..."
 msgstr "কথোপকথন লোড হচ্ছে..."
 
@@ -1258,7 +1273,12 @@ msgstr "সংযুক্ত নথি পড়া হচ্ছে"
 msgid "Reading {0}"
 msgstr "{0} পড়া হচ্ছে"
 
-#: ask_alyf/ask_alyf/agent.py:99
+#: ask_alyf/ask_alyf/agent.py:206
+#, python-brace-format
+msgid "Reading {0}, lines {1}-{2}"
+msgstr "{0}-এর {1}-{2} লাইন পড়া হচ্ছে"
+
+#: ask_alyf/ask_alyf/agent.py:98
 #, python-brace-format
 msgid "Reading {0} list"
 msgstr "{0} তালিকা পড়া হচ্ছে"
@@ -1357,7 +1377,17 @@ msgstr "{0} ফিল্ডে স্ক্রল করুন"
 msgid "Scrolling to fields is not available on this form."
 msgstr "এই ফর্মে ফিল্ডে স্ক্রল করা উপলব্ধ নয়।"
 
-#: ask_alyf/ask_alyf/agent.py:128
+#: ask_alyf/ask_alyf/agent.py:196
+#, python-brace-format
+msgid "Searching for \"{0}\""
+msgstr "\"{0}\" খোঁজা হচ্ছে"
+
+#: ask_alyf/ask_alyf/agent.py:194
+#, python-brace-format
+msgid "Searching for \"{0}\" in {1}"
+msgstr "{1}-এ \"{0}\" খোঁজা হচ্ছে"
+
+#: ask_alyf/ask_alyf/agent.py:127
 msgid "Searching the documentation"
 msgstr "ডকুমেন্টেশনে অনুসন্ধান করা হচ্ছে"
 
@@ -1390,6 +1420,10 @@ msgstr "মান সেট করার প্রস্তাব সংশো�
 #, python-brace-format
 msgid "Set {0} on {1} {2}"
 msgstr "{1} {2}-এ {0} সেট করুন"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:398
+msgid "Show all"
+msgstr "সব দেখান"
 
 #: ask_alyf/ask_alyf/toolset.py:1248
 msgid "Show chart"
@@ -1887,7 +1921,12 @@ msgstr "অতি উচ্চ"
 msgid "{0} '{1}' was not found."
 msgstr "{0} '{1}' পাওয়া যায়নি।"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2434
+#: ask_alyf/public/js/ask_alyf.bundle.js:371
+#, python-brace-format
+msgid "{0} failed"
+msgstr "{0}টি ব্যর্থ"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:2329
 #, python-brace-format
 msgid "{0} rows"
 msgstr "{0} সারি"
