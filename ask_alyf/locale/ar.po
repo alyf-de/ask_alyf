@@ -7,7 +7,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Ask ALYF VERSION\n"
 "Report-Msgid-Bugs-To: hallo@alyf.de\n"
+<<<<<<< HEAD
 "POT-Creation-Date: 2026-09-12 22:24+0053\n"
+=======
+"POT-Creation-Date: 2026-10-04 13:11+0053\n"
+>>>>>>> ef90356 (fix(i18n): add LangSmith labels and standardize Ask ALYF translations (#160))
 "PO-Revision-Date: 2026-05-02 19:04+0053\n"
 "Last-Translator: hallo@alyf.de\n"
 "Language: ar\n"
@@ -33,36 +37,40 @@ msgstr "الوصول"
 msgid "Access to hidden paths is not allowed"
 msgstr "الوصول إلى المسارات المخفية غير مسموح"
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:1477
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:1591
+>>>>>>> ef90356 (fix(i18n): add LangSmith labels and standardize Ask ALYF translations (#160))
 msgid "Accounts"
 msgstr "الحسابات"
 
-#: ask_alyf/ask_alyf/tools.py:1473
+#: ask_alyf/ask_alyf/tools.py:1446
 msgid "Action field 'args' must be an object."
 msgstr "يجب أن يكون حقل الإجراء 'args' كائنًا."
 
-#: ask_alyf/ask_alyf/tools.py:1439 ask_alyf/ask_alyf/tools.py:1450
+#: ask_alyf/ask_alyf/tools.py:1412 ask_alyf/ask_alyf/tools.py:1423
 msgid "Action field 'doctype' is required."
 msgstr "حقل الإجراء 'doctype' مطلوب."
 
-#: ask_alyf/ask_alyf/tools.py:1468
+#: ask_alyf/ask_alyf/tools.py:1441
 msgid "Action field 'file_id' is required."
 msgstr "حقل الإجراء 'file_id' مطلوب."
 
-#: ask_alyf/ask_alyf/tools.py:1454
+#: ask_alyf/ask_alyf/tools.py:1427
 msgid "Action field 'records' must be a non-empty list."
 msgstr "يجب أن يكون حقل الإجراء 'records' قائمة غير فارغة."
 
-#: ask_alyf/ask_alyf/tools.py:1458
+#: ask_alyf/ask_alyf/tools.py:1431
 #, python-brace-format
 msgid "Action field 'records' row #{0} must be an object."
 msgstr "يجب أن يكون الصف رقم {0} في حقل الإجراء 'records' كائنًا."
 
-#: ask_alyf/ask_alyf/tools.py:1443
+#: ask_alyf/ask_alyf/tools.py:1416
 msgid "Action field 'values' must be an object."
 msgstr "يجب أن يكون حقل الإجراء 'values' كائنًا."
 
-#: ask_alyf/ask_alyf/tools.py:1383
+#: ask_alyf/ask_alyf/tools.py:1356
 #, python-brace-format
 msgid "Action field '{0}' must be an object."
 msgstr "يجب أن يكون حقل الإجراء '{0}' كائنًا."
@@ -76,8 +84,13 @@ msgstr "أضف صفًا إلى {0} في النموذج الحالي"
 msgid "Add child row action needs correction."
 msgstr "إجراء إضافة صف فرعي يحتاج إلى تصحيح."
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:821
 #: ask_alyf/public/js/ask_alyf.bundle.js:1389
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:930
+#: ask_alyf/public/js/ask_alyf.bundle.js:1503
+>>>>>>> ef90356 (fix(i18n): add LangSmith labels and standardize Ask ALYF translations (#160))
 msgid "Agent"
 msgstr "وكيل"
 
@@ -120,23 +133,27 @@ msgstr "اقتراح التعديل يحتاج إلى تصحيح."
 msgid "Amend {0} {1}"
 msgstr "تعديل {0} {1}"
 
-#: ask_alyf/ask_alyf/agent.py:146
+#: ask_alyf/ask_alyf/agent.py:147
 #, python-brace-format
 msgid "Amending {0}"
 msgstr "جارٍ تعديل {0}"
 
-#: ask_alyf/ask_alyf/tools.py:1431
+#: ask_alyf/ask_alyf/tools.py:1404
 #, python-brace-format
 msgid "And {0} more."
 msgstr "و{0} أخرى."
 
-#: ask_alyf/ask_alyf/deep_agent_backend.py:100 ask_alyf/ask_alyf/tools.py:154
-#: ask_alyf/ask_alyf/tools.py:1051
+#: ask_alyf/ask_alyf/deep_agent_backend.py:100 ask_alyf/ask_alyf/tools.py:156
+#: ask_alyf/ask_alyf/tools.py:1024
 #, python-brace-format
 msgid "App '{0}' is not installed."
 msgstr "التطبيق '{0}' غير مثبت."
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:2507
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:2618
+>>>>>>> ef90356 (fix(i18n): add LangSmith labels and standardize Ask ALYF translations (#160))
 msgid "Applying action..."
 msgstr "جارٍ تطبيق الإجراء..."
 
@@ -144,7 +161,7 @@ msgstr "جارٍ تطبيق الإجراء..."
 #. Title of a Workspace Sidebar
 #: ask_alyf/desktop_icon/ask_alyf.json ask_alyf/workspace_sidebar/ask_alyf.json
 msgid "Ask ALYF"
-msgstr "اسأل ALYF"
+msgstr "Ask ALYF"
 
 #. Name of a DocType
 #: ask_alyf/ask_alyf/doctype/ask_alyf_checkpoint/ask_alyf_checkpoint.json
@@ -188,6 +205,7 @@ msgstr "مهارة Ask ALYF"
 msgid "Ask ALYF User"
 msgstr "مستخدم Ask ALYF"
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:1175
 msgid "Ask ALYF could not finish processing this message. Please try again."
 msgstr "تعذّر على Ask ALYF إنهاء معالجة هذه الرسالة. يُرجى المحاولة مرة أخرى."
@@ -197,13 +215,21 @@ msgid "Ask ALYF is an AI and can make mistakes, including with numbers and infor
 msgstr "Ask ALYF هو ذكاء اصطناعي ويمكن أن يرتكب أخطاء، بما في ذلك في الأرقام والمعلومات المتعلقة بالأشخاص."
 
 #: ask_alyf/ask_alyf/api.py:433
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:1289
+msgid "Ask ALYF could not finish processing this message. Please try again."
+msgstr "تعذّر على Ask ALYF إنهاء معالجة هذه الرسالة. يُرجى المحاولة مرة أخرى."
+
+#: ask_alyf/ask_alyf/api.py:435
+>>>>>>> ef90356 (fix(i18n): add LangSmith labels and standardize Ask ALYF translations (#160))
 msgid "Ask ALYF is still working on a message in this conversation. Stop it or wait for it to finish before deleting."
 msgstr "لا يزال Ask ALYF يعمل على رسالة في هذه المحادثة. أوقفه أو انتظر حتى ينتهي قبل الحذف."
 
-#: ask_alyf/ask_alyf/api.py:464
+#: ask_alyf/ask_alyf/api.py:466
 msgid "Ask ALYF is still working on the previous message in this conversation."
 msgstr "لا يزال Ask ALYF يعمل على الرسالة السابقة في هذه المحادثة."
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:981
 msgid "Ask ALYF is visible, but no API key/model is configured yet in Ask ALYF Settings."
 msgstr "Ask ALYF مرئي، ولكن لم يتم تكوين أي مفتاح API/نموذج بعد في إعدادات Ask ALYF."
@@ -217,10 +243,29 @@ msgid "Ask ALYF stopped processing this message. Please try again."
 msgstr "توقّف Ask ALYF عن معالجة هذه الرسالة. يُرجى المحاولة مرة أخرى."
 
 #: ask_alyf/public/js/ask_alyf.bundle.js:809
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:1095
+msgid "Ask ALYF is visible, but no API key/model is configured yet in Ask ALYF Settings."
+msgstr "Ask ALYF مرئي، ولكن لم يتم تكوين أي مفتاح API/نموذج بعد في إعدادات Ask ALYF."
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:900
+msgid "Ask ALYF sections"
+msgstr "أقسام Ask ALYF"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1290
+msgid "Ask ALYF stopped processing this message. Please try again."
+msgstr "توقّف Ask ALYF عن معالجة هذه الرسالة. يُرجى المحاولة مرة أخرى."
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:950
+msgid "Ask ALYF uses AI and can make mistakes, including with numbers and information about people."
+msgstr "يستخدم Ask ALYF الذكاء الاصطناعي وقد يُرتكِب أخطاء، بما في ذلك في الأرقام والمعلومات المتعلقة بالأشخاص."
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:918
+>>>>>>> ef90356 (fix(i18n): add LangSmith labels and standardize Ask ALYF translations (#160))
 msgid "Ask about this ERPNext instance"
 msgstr "اسأل عن مثيل ERPNext هذا"
 
-#: ask_alyf/ask_alyf/agent.py:131
+#: ask_alyf/ask_alyf/agent.py:132
 #, python-brace-format
 msgid "Asking the {0} specialist"
 msgstr "جارٍ سؤال المختص في {0}"
@@ -229,8 +274,13 @@ msgstr "جارٍ سؤال المختص في {0}"
 msgid "At least one role is required."
 msgstr "يلزم وجود دور واحد على الأقل."
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:827
 #: ask_alyf/public/js/ask_alyf.bundle.js:829
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:936
+#: ask_alyf/public/js/ask_alyf.bundle.js:938
+>>>>>>> ef90356 (fix(i18n): add LangSmith labels and standardize Ask ALYF translations (#160))
 msgid "Attach file"
 msgstr "إرفاق ملف"
 
@@ -243,12 +293,12 @@ msgstr "اقتراح إرفاق الملف يحتاج إلى تصحيح."
 msgid "Attach file {0} to {1} {2}"
 msgstr "إرفاق الملف {0} بـ {1} {2}"
 
-#: ask_alyf/ask_alyf/agent.py:152
+#: ask_alyf/ask_alyf/agent.py:153
 #, python-brace-format
 msgid "Attaching a file to {0}"
 msgstr "جارٍ إرفاق ملف بـ {0}"
 
-#: ask_alyf/ask_alyf/deep_agent_backend.py:274
+#: ask_alyf/ask_alyf/deep_agent_backend.py:267
 msgid "Attachment name is required"
 msgstr "اسم المرفق مطلوب"
 
@@ -260,6 +310,7 @@ msgstr "المرفقات للقراءة فقط"
 msgid "Batch create proposal needs correction."
 msgstr "اقتراح الإنشاء المجمّع يحتاج إلى تصحيح."
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:1468
 msgid "Buying"
 msgstr "المشتريات"
@@ -271,6 +322,19 @@ msgid "Call support"
 msgstr "اتصل بالدعم"
 
 #: ask_alyf/public/js/ask_alyf.bundle.js:1345
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:1582
+msgid "Buying"
+msgstr "المشتريات"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:891
+#: ask_alyf/public/js/ask_alyf.bundle.js:893
+#: ask_alyf/public/js/ask_alyf.bundle.js:1460
+msgid "Call support"
+msgstr "اتصل بالدعم"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1459
+>>>>>>> ef90356 (fix(i18n): add LangSmith labels and standardize Ask ALYF translations (#160))
 #, python-brace-format
 msgid "Call support: {0}"
 msgstr "اتصل بالدعم: {0}"
@@ -289,22 +353,26 @@ msgstr "يحتاج اقتراح الإلغاء إلى تصحيح."
 msgid "Cancel {0} {1}"
 msgstr "إلغاء {0} {1}"
 
-#: ask_alyf/ask_alyf/api.py:970
+#: ask_alyf/ask_alyf/api.py:974
 #, python-brace-format
 msgid "Cancelled frontend action: {0}"
 msgstr "تم إلغاء إجراء الواجهة الأمامية: {0}"
 
-#: ask_alyf/ask_alyf/api.py:863
+#: ask_alyf/ask_alyf/api.py:867
 #, python-brace-format
 msgid "Cancelled showing chart: {0}."
 msgstr "تم إلغاء عرض المخطط: {0}."
 
-#: ask_alyf/ask_alyf/api.py:824
+#: ask_alyf/ask_alyf/api.py:828
 #, python-brace-format
 msgid "Cancelled the pending operation: {0}."
 msgstr "تم إلغاء العملية المعلقة: {0}."
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:2223
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:2334
+>>>>>>> ef90356 (fix(i18n): add LangSmith labels and standardize Ask ALYF translations (#160))
 msgid "Changes preview"
 msgstr "معاينة التغييرات"
 
@@ -312,26 +380,27 @@ msgstr "معاينة التغييرات"
 msgid "Chart action needs correction."
 msgstr "يحتاج إجراء المخطط إلى تصحيح."
 
-#: ask_alyf/ask_alyf/tools.py:1605
+#: ask_alyf/ask_alyf/tools.py:1578
 msgid "Chart data must be an object."
 msgstr "يجب أن تكون بيانات المخطط كائنًا."
 
-#: ask_alyf/ask_alyf/tools.py:1531
+#: ask_alyf/ask_alyf/tools.py:1504
 msgid "Chart data requires a non-empty datasets array."
 msgstr "تتطلب بيانات المخطط مصفوفة مجموعات بيانات غير فارغة."
 
-#: ask_alyf/ask_alyf/tools.py:1512
+#: ask_alyf/ask_alyf/tools.py:1485
 msgid "Chart data requires a non-empty labels array."
 msgstr "تتطلب بيانات المخطط مصفوفة تسميات غير فارغة."
 
-#: ask_alyf/ask_alyf/tools.py:1591
+#: ask_alyf/ask_alyf/tools.py:1564
 msgid "Chart height is out of range."
 msgstr "ارتفاع المخطط خارج النطاق."
 
-#: ask_alyf/ask_alyf/tools.py:1521
+#: ask_alyf/ask_alyf/tools.py:1494
 msgid "Chart labels must be numbers or strings."
 msgstr "يجب أن تكون تسميات المخطط أرقامًا أو سلاسل نصية."
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:1479
 msgid "Chart monthly expenses by cost center"
 msgstr "عرض المصروفات الشهرية حسب مركز التكلفة في مخطط"
@@ -353,6 +422,29 @@ msgid "Chart spending by supplier for this quarter"
 msgstr "عرض الإنفاق حسب المورد لهذا الربع في مخطط"
 
 #: ask_alyf/public/js/ask_alyf.bundle.js:1497
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:1593
+msgid "Chart monthly expenses by cost center"
+msgstr "عرض المصروفات الشهرية حسب مركز التكلفة في مخطط"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1575
+msgid "Chart my monthly sales revenue for the last 6 months"
+msgstr "عرض إيرادات المبيعات الشهرية لآخر 6 أشهر في مخطط"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1638
+msgid "Chart open issues by priority"
+msgstr "عرض المشكلات المفتوحة حسب الأولوية في مخطط"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1620
+msgid "Chart production output by item this week"
+msgstr "عرض إنتاج هذا الأسبوع حسب الصنف في مخطط"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1584
+msgid "Chart spending by supplier for this quarter"
+msgstr "عرض الإنفاق حسب المورد لهذا الربع في مخطط"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1611
+>>>>>>> ef90356 (fix(i18n): add LangSmith labels and standardize Ask ALYF translations (#160))
 msgid "Chart stock value by warehouse"
 msgstr "رسم بياني لقيمة المخزون حسب المستودع"
 
@@ -367,12 +459,12 @@ msgstr "نموذج الدردشة"
 msgid "Chat Provider"
 msgstr "مزود الدردشة"
 
-#: ask_alyf/ask_alyf/agent.py:104
+#: ask_alyf/ask_alyf/agent.py:105
 #, python-brace-format
 msgid "Checking the {0} form"
 msgstr "جارٍ التحقق من استمارة {0}"
 
-#: ask_alyf/ask_alyf/agent.py:106
+#: ask_alyf/ask_alyf/agent.py:107
 #, python-brace-format
 msgid "Checking your permissions on {0}"
 msgstr "جارٍ التحقق من صلاحياتك على {0}"
@@ -404,31 +496,32 @@ msgstr "مساحة اسم نقطة التحقق"
 msgid "Checkpoint Type"
 msgstr "نوع نقطة التحقق"
 
-#: ask_alyf/ask_alyf/deep_agent_backend.py:104 ask_alyf/ask_alyf/tools.py:183
+#: ask_alyf/ask_alyf/deep_agent_backend.py:104 ask_alyf/ask_alyf/tools.py:185
 msgid "Code access is restricted to installed app directories."
 msgstr "الوصول إلى الكود مقيد بأدلة التطبيقات المثبتة."
 
-#: ask_alyf/ask_alyf/tools.py:125
+#: ask_alyf/ask_alyf/tools.py:127
 msgid "Code search is disabled in Ask ALYF Settings."
 msgstr "البحث في الكود معطل في إعدادات Ask ALYF."
 
-#: ask_alyf/ask_alyf/agent.py:275
+#: ask_alyf/ask_alyf/agent.py:276
 msgid "Configure a model in Ask ALYF Settings before sending messages."
 msgstr "قم بتكوين نموذج في إعدادات Ask ALYF قبل إرسال الرسائل."
 
-#: ask_alyf/ask_alyf/tools.py:779
+#: ask_alyf/ask_alyf/tools.py:752
 msgid "Configure a vision model API key in Ask ALYF Settings."
 msgstr "قم بتكوين مفتاح API لنموذج الرؤية في إعدادات Ask ALYF."
 
-#: ask_alyf/ask_alyf/tools.py:781
+#: ask_alyf/ask_alyf/tools.py:754
 msgid "Configure a vision model in Ask ALYF Settings."
 msgstr "قم بتكوين نموذج رؤية في إعدادات Ask ALYF."
 
-#: ask_alyf/ask_alyf/agent.py:268
+#: ask_alyf/ask_alyf/agent.py:269
 #: ask_alyf/ask_alyf/test_tool_error_middleware.py:104
 msgid "Configure an API key in Ask ALYF Settings before sending messages."
 msgstr "قم بتكوين مفتاح API في إعدادات Ask ALYF قبل إرسال الرسائل."
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:694
 #: ask_alyf/public/js/ask_alyf.bundle.js:715
 msgid "Column"
@@ -438,18 +531,29 @@ msgid "Confirm all"
 msgstr "تأكيد الكل"
 
 #: ask_alyf/ask_alyf/api.py:741 ask_alyf/public/js/ask_alyf.bundle.js:2507
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:833
+msgid "Confirm all"
+msgstr "تأكيد الكل"
+
+#: ask_alyf/ask_alyf/api.py:745 ask_alyf/public/js/ask_alyf.bundle.js:2618
+>>>>>>> ef90356 (fix(i18n): add LangSmith labels and standardize Ask ALYF translations (#160))
 msgid "Confirming action..."
 msgstr "جارٍ تأكيد الإجراء..."
 
-#: ask_alyf/ask_alyf/api.py:427
+#: ask_alyf/ask_alyf/api.py:429
 msgid "Conversation deletion is not allowed."
 msgstr "لا يُسمح بحذف المحادثات."
 
-#: ask_alyf/ask_alyf/tools.py:991
+#: ask_alyf/ask_alyf/tools.py:964
 msgid "Conversation name is required."
 msgstr "اسم المحادثة مطلوب."
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:1163
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:1277
+>>>>>>> ef90356 (fix(i18n): add LangSmith labels and standardize Ask ALYF translations (#160))
 msgid "Conversation not found. Please start a new conversation."
 msgstr "لم يتم العثور على المحادثة. يُرجى بدء محادثة جديدة."
 
@@ -457,24 +561,28 @@ msgstr "لم يتم العثور على المحادثة. يُرجى بدء مح
 msgid "Copy as Markdown"
 msgstr "نسخ بصيغة Markdown"
 
-#: ask_alyf/ask_alyf/api.py:857
+#: ask_alyf/ask_alyf/api.py:861
 msgid "Could not attach charts to the assistant message."
 msgstr "تعذر إرفاق الرسوم البيانية برسالة المساعد."
 
-#: ask_alyf/ask_alyf/api.py:771
+#: ask_alyf/ask_alyf/api.py:775
 #, python-brace-format
 msgid "Could not complete the operation: {0}."
 msgstr "تعذّر إكمال العملية: {0}."
 
-#: ask_alyf/ask_alyf/api.py:865
+#: ask_alyf/ask_alyf/api.py:869
 msgid "Could not display chart."
 msgstr "تعذر عرض الرسم البياني."
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:2727
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:2837
+>>>>>>> ef90356 (fix(i18n): add LangSmith labels and standardize Ask ALYF translations (#160))
 msgid "Could not download chart."
 msgstr "تعذر تحميل الرسم البياني."
 
-#: ask_alyf/ask_alyf/tools.py:693
+#: ask_alyf/ask_alyf/tools.py:666
 msgid "Could not extract visual content from the file."
 msgstr "تعذر استخراج المحتوى المرئي من الملف."
 
@@ -482,11 +590,15 @@ msgstr "تعذر استخراج المحتوى المرئي من الملف."
 msgid "Could not generate content."
 msgstr "تعذر إنشاء المحتوى."
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:2798
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:2908
+>>>>>>> ef90356 (fix(i18n): add LangSmith labels and standardize Ask ALYF translations (#160))
 msgid "Could not render chart."
 msgstr "تعذر عرض الخريطة."
 
-#: ask_alyf/ask_alyf/agent.py:100
+#: ask_alyf/ask_alyf/agent.py:101
 #, python-brace-format
 msgid "Counting {0}"
 msgstr "جارٍ عد {0}"
@@ -510,35 +622,44 @@ msgstr "إنشاء {0}"
 msgid "Create {0} {1} records"
 msgstr "إنشاء {0} من سجلات {1}"
 
-#: ask_alyf/ask_alyf/tools.py:1395
+#: ask_alyf/ask_alyf/tools.py:1368
 #, python-brace-format
 msgid "Created {0} of {1} {2} records."
 msgstr "تم إنشاء {0} من أصل {1} من سجلات {2}."
 
-#: ask_alyf/ask_alyf/agent.py:138
+#: ask_alyf/ask_alyf/agent.py:139
 #, python-brace-format
 msgid "Creating several {0} records"
 msgstr "إنشاء عدة سجلات {0}"
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:2371
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:2482
+>>>>>>> ef90356 (fix(i18n): add LangSmith labels and standardize Ask ALYF translations (#160))
 #, python-brace-format
 msgid "Current document is {0}, expected {1}."
 msgstr "المستند الحالي هو {0}، المتوقع {1}."
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:2364
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:2475
+>>>>>>> ef90356 (fix(i18n): add LangSmith labels and standardize Ask ALYF translations (#160))
 #, python-brace-format
 msgid "Current form is {0}, expected {1}."
 msgstr "الاستمارة الحالية هي {0}، المتوقع {1}."
 
-#: ask_alyf/ask_alyf/tools.py:1549 ask_alyf/ask_alyf/tools.py:1552
-#: ask_alyf/ask_alyf/tools.py:1555
+#: ask_alyf/ask_alyf/tools.py:1522 ask_alyf/ask_alyf/tools.py:1525
+#: ask_alyf/ask_alyf/tools.py:1528
 msgid "Dataset values must be numeric."
 msgstr "يجب أن تكون قيم مجموعة البيانات رقمية."
 
-#: ask_alyf/ask_alyf/tools.py:1544
+#: ask_alyf/ask_alyf/tools.py:1517
 msgid "Dataset values must match labels length."
 msgstr "يجب أن تتطابق قيم مجموعة البيانات مع طول التسميات."
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:1704
 #: ask_alyf/public/js/ask_alyf.bundle.js:1705
 msgid "Delete conversation"
@@ -546,6 +667,14 @@ msgstr "حذف المحادثة"
 
 #: ask_alyf/public/js/ask_alyf.bundle.js:1232
 #, python-brace-format
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:1818
+#: ask_alyf/public/js/ask_alyf.bundle.js:1819
+msgid "Delete conversation"
+msgstr "حذف المحادثة"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1346
+>>>>>>> ef90356 (fix(i18n): add LangSmith labels and standardize Ask ALYF translations (#160))
 msgid "Delete conversation '{0}'?"
 msgstr "حذف المحادثة '{0}'؟"
 
@@ -558,7 +687,7 @@ msgstr "يحتاج اقتراح الحذف إلى تصحيح."
 msgid "Delete {0} {1}"
 msgstr "حذف {0} {1}"
 
-#: ask_alyf/ask_alyf/tools.py:1329
+#: ask_alyf/ask_alyf/tools.py:1302
 #, python-brace-format
 msgid "Deleted {0} {1}"
 msgstr "تم حذف {0} {1}"
@@ -567,7 +696,7 @@ msgstr "تم حذف {0} {1}"
 msgid "Describe what you want..."
 msgstr "صف ما تريده..."
 
-#: ask_alyf/ask_alyf/tools.py:333
+#: ask_alyf/ask_alyf/tools.py:304
 #, python-brace-format
 msgid "DocType '{0}' is excluded from Agent mode."
 msgstr "DocType '{0}' مستبعد من وضع الوكيل."
@@ -577,35 +706,39 @@ msgstr "DocType '{0}' مستبعد من وضع الوكيل."
 msgid "DocType is excluded"
 msgstr "تم استبعاد DOCTYPE"
 
-#: ask_alyf/ask_alyf/tools.py:987
+#: ask_alyf/ask_alyf/tools.py:960
 msgid "DocType is required."
 msgstr "DocType مطلوب."
 
-#: ask_alyf/ask_alyf/tools.py:904
+#: ask_alyf/ask_alyf/tools.py:877
 msgid "Document extraction did not return text."
 msgstr "لم يُرجع استخراج المستند نصًا."
 
-#: ask_alyf/ask_alyf/tools.py:928
+#: ask_alyf/ask_alyf/tools.py:901
 msgid "Document extraction did not return valid JSON."
 msgstr "لم يُرجع استخراج المستند JSON صالحًا."
 
-#: ask_alyf/ask_alyf/tools.py:908
+#: ask_alyf/ask_alyf/tools.py:881
 msgid "Document extraction returned an empty response."
 msgstr "أرجع استخراج المستند رداً فارغاً."
 
-#: ask_alyf/ask_alyf/tools.py:853
+#: ask_alyf/ask_alyf/tools.py:826
 msgid "Document extraction returned no choices."
 msgstr "لم يُرجع استخراج المستند أي خيارات."
 
-#: ask_alyf/ask_alyf/tools.py:858
+#: ask_alyf/ask_alyf/tools.py:831
 msgid "Document extraction returned no content."
 msgstr "لم يُرجع استخراج المستند أي محتوى."
 
-#: ask_alyf/ask_alyf/tools.py:989
+#: ask_alyf/ask_alyf/tools.py:962
 msgid "Document name is required."
 msgstr "اسم المستند مطلوب."
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:2711
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:2822
+>>>>>>> ef90356 (fix(i18n): add LangSmith labels and standardize Ask ALYF translations (#160))
 msgid "Download chart as SVG"
 msgstr "تحميل الخريطة بصيغة SVG"
 
@@ -613,27 +746,36 @@ msgstr "تحميل الخريطة بصيغة SVG"
 msgid "Drafting..."
 msgstr "جاري الصياغة..."
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:774
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:885
+>>>>>>> ef90356 (fix(i18n): add LangSmith labels and standardize Ask ALYF translations (#160))
 msgid "ERPNext assistant"
 msgstr "مساعد ERPNext"
 
-#: ask_alyf/ask_alyf/tools.py:1571
+#: ask_alyf/ask_alyf/tools.py:1544
 msgid "Each chart must be an object."
 msgstr "يجب أن تكون كل خريطة كائناً."
 
-#: ask_alyf/ask_alyf/tools.py:1539
+#: ask_alyf/ask_alyf/tools.py:1512
 msgid "Each dataset must be an object."
 msgstr "يجب أن تكون كل مجموعة بيانات كائناً."
 
-#: ask_alyf/ask_alyf/tools.py:1542
+#: ask_alyf/ask_alyf/tools.py:1515
 msgid "Each dataset needs a values array."
 msgstr "تحتاج كل مجموعة بيانات إلى مصفوفة قيم."
 
-#: ask_alyf/ask_alyf/tools.py:472
+#: ask_alyf/ask_alyf/tools.py:443
 msgid "Each label must be a string."
 msgstr "يجب أن يكون كل تصنيف سلسلة نصية."
 
-#: ask_alyf/ask_alyf/tools.py:588
+#. Label of the enable_tracing (Check) field in DocType 'Ask ALYF Settings'
+#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.json
+msgid "Enable Tracing"
+msgstr "تفعيل التتبع"
+
+#: ask_alyf/ask_alyf/tools.py:561
 msgid "Entry type must be one of any, file, or directory."
 msgstr "يجب أن يكون نوع الإدخال أحد التالي: any أو file أو directory."
 
@@ -649,16 +791,17 @@ msgstr "DocType المستبعد"
 msgid "Excluded DocTypes"
 msgstr "DocTypes المستبعدة"
 
-#: ask_alyf/ask_alyf/api.py:968
+#: ask_alyf/ask_alyf/api.py:972
 #, python-brace-format
 msgid "Executed frontend action: {0}"
 msgstr "تم تنفيذ إجراء الواجهة الأمامية: {0}"
 
-#: ask_alyf/ask_alyf/tools.py:1428
+#: ask_alyf/ask_alyf/tools.py:1401
 #, python-brace-format
 msgid "Failed rows: {0}"
 msgstr "الصفوف الفاشلة: {0}"
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:1323
 msgid "Failed to attach file to conversation."
 msgstr "فشل إرفاق الملف بالمحادثة."
@@ -688,20 +831,51 @@ msgid "Failed to send message."
 msgstr "فشل إرسال الرسالة."
 
 #: ask_alyf/public/js/ask_alyf.bundle.js:1838
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:1437
+msgid "Failed to attach file to conversation."
+msgstr "فشل إرفاق الملف بالمحادثة."
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:2645
+msgid "Failed to confirm pending operation."
+msgstr "فشل تأكيد العملية المعلقة."
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1350
+msgid "Failed to delete conversation."
+msgstr "فشل حذف المحادثة."
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:2583
+msgid "Failed to execute frontend action."
+msgstr "فشل تنفيذ إجراء الواجهة الأمامية."
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1861
+msgid "Failed to open conversation."
+msgstr "فشل فتح المحادثة."
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:2683
+msgid "Failed to reject pending operation."
+msgstr "فشل رفض العملية المعلقة."
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:2203
+msgid "Failed to send message."
+msgstr "فشل إرسال الرسالة."
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1949
+>>>>>>> ef90356 (fix(i18n): add LangSmith labels and standardize Ask ALYF translations (#160))
 msgid "Failed to stop the run."
 msgstr "فشل إيقاف التشغيل."
 
-#: ask_alyf/ask_alyf/tools.py:1761
+#: ask_alyf/ask_alyf/tools.py:1734
 #, python-brace-format
 msgid "Field '{0}' in {1} is a child table ({2}) and must be a list of row objects."
 msgstr "الحقل '{0}' في {1} هو جدول تابع ({2}) ويجب أن يكون قائمة من كائنات الصفوف."
 
-#: ask_alyf/ask_alyf/tools.py:1769
+#: ask_alyf/ask_alyf/tools.py:1742
 #, python-brace-format
 msgid "Field '{0}' row #{1} in {2} must be an object."
 msgstr "الحقل '{0}' الصف رقم {1} في {2} يجب أن يكون كائنًا."
 
-#: ask_alyf/ask_alyf/api.py:1015
+#: ask_alyf/ask_alyf/api.py:1019
 msgid "Field Agent is not enabled."
 msgstr "وكيل الحقل غير مفعّل."
 
@@ -709,26 +883,31 @@ msgstr "وكيل الحقل غير مفعّل."
 msgid "Field updated."
 msgstr "تم تحديث الحقل."
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:2401
 #: ask_alyf/public/js/ask_alyf.bundle.js:2410
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:2512
+#: ask_alyf/public/js/ask_alyf.bundle.js:2521
+>>>>>>> ef90356 (fix(i18n): add LangSmith labels and standardize Ask ALYF translations (#160))
 #, python-brace-format
 msgid "Field {0} does not exist on this form."
 msgstr "الحقل {0} غير موجود في هذه الاستمارة."
 
-#: ask_alyf/ask_alyf/api.py:1068 ask_alyf/ask_alyf/tools.py:719
+#: ask_alyf/ask_alyf/api.py:1072 ask_alyf/ask_alyf/tools.py:692
 #, python-brace-format
 msgid "File '{0}' was not found."
 msgstr "لم يتم العثور على الملف '{0}'."
 
-#: ask_alyf/ask_alyf/tools.py:717
+#: ask_alyf/ask_alyf/tools.py:690
 msgid "File ID is required."
 msgstr "معرّف الملف (File ID) مطلوب."
 
-#: ask_alyf/ask_alyf/api.py:1053
+#: ask_alyf/ask_alyf/api.py:1057
 msgid "File upload is not enabled."
 msgstr "رفع الملف غير مفعّل."
 
-#: ask_alyf/ask_alyf/agent.py:165
+#: ask_alyf/ask_alyf/agent.py:166
 msgid "Filling in the open form"
 msgstr "تعبئة الاستمارة المفتوحة"
 
@@ -746,64 +925,68 @@ msgstr "جارٍ البحث عن الملفات {0} في {1}"
 msgid "Frontend action 'frm_add_child' field 'docname' must be a string."
 msgstr "في إجراء الواجهة الأمامية 'frm_add_child'، يجب أن يكون الحقل 'docname' من نوع سلسلة نصية."
 
-#: ask_alyf/ask_alyf/tools.py:1730
+#: ask_alyf/ask_alyf/tools.py:1703
 msgid "Frontend action 'frm_add_child' field 'doctype' must be a string."
 msgstr "في إجراء الواجهة الأمامية 'frm_add_child'، يجب أن يكون الحقل 'doctype' من نوع سلسلة نصية."
 
-#: ask_alyf/ask_alyf/tools.py:1726
+#: ask_alyf/ask_alyf/tools.py:1699
 msgid "Frontend action 'frm_add_child' field 'values' must be an object."
 msgstr "يجب أن يكون حقل 'values' في إجراء الواجهة الأمامية 'frm_add_child' كائناً."
 
-#: ask_alyf/ask_alyf/tools.py:1723
+#: ask_alyf/ask_alyf/tools.py:1696
 msgid "Frontend action 'frm_add_child' requires a fieldname."
 msgstr "يتطلب إجراء الواجهة الأمامية 'frm_add_child' اسم حقل."
 
-#: ask_alyf/ask_alyf/tools.py:1717
+#: ask_alyf/ask_alyf/tools.py:1690
 msgid "Frontend action 'frm_set_value' field 'docname' must be a string."
 msgstr "يجب أن يكون حقل 'docname' في إجراء الواجهة الأمامية 'frm_set_value' سلسلة نصية."
 
-#: ask_alyf/ask_alyf/tools.py:1715
+#: ask_alyf/ask_alyf/tools.py:1688
 msgid "Frontend action 'frm_set_value' field 'doctype' must be a string."
 msgstr "يجب أن يكون حقل 'doctype' في إجراء الواجهة الأمامية 'frm_set_value' سلسلة نصية."
 
-#: ask_alyf/ask_alyf/tools.py:1711
+#: ask_alyf/ask_alyf/tools.py:1684
 msgid "Frontend action 'frm_set_value' requires a fieldname."
 msgstr "يتطلب إجراء الواجهة الأمامية 'frm_set_value' اسم حقل."
 
-#: ask_alyf/ask_alyf/tools.py:1699
+#: ask_alyf/ask_alyf/tools.py:1672
 msgid "Frontend action 'new_doc' field 'route_options' must be an object."
 msgstr "يجب أن يكون حقل 'route_options' في إجراء الواجهة الأمامية 'new_doc' كائناً."
 
-#: ask_alyf/ask_alyf/tools.py:1696
+#: ask_alyf/ask_alyf/tools.py:1669
 msgid "Frontend action 'new_doc' requires a DocType."
 msgstr "يتطلب إجراء الواجهة الأمامية 'new_doc' نوع DOCTYPE."
 
-#: ask_alyf/ask_alyf/tools.py:1705
+#: ask_alyf/ask_alyf/tools.py:1678
 msgid "Frontend action 'scroll_to_field' requires a fieldname."
 msgstr "يتطلب إجراء الواجهة الأمامية 'scroll_to_field' اسم حقل."
 
-#: ask_alyf/ask_alyf/tools.py:1687
+#: ask_alyf/ask_alyf/tools.py:1660
 msgid "Frontend action 'set_route' requires a non-empty route list."
 msgstr "يتطلب إجراء الواجهة الأمامية 'set_route' قائمة مسارات غير فارغة."
 
-#: ask_alyf/ask_alyf/api.py:972
+#: ask_alyf/ask_alyf/api.py:976
 #, python-brace-format
 msgid "Frontend action failed: {0}"
 msgstr "فشل إجراء الواجهة الأمامية: {0}"
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:2459
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:2570
+>>>>>>> ef90356 (fix(i18n): add LangSmith labels and standardize Ask ALYF translations (#160))
 msgid "Frontend action is missing a call ID."
 msgstr "إجراء الواجهة الأمامية يفتقر إلى معرّف اتصال (Call ID)."
 
-#: ask_alyf/ask_alyf/tools.py:1682
+#: ask_alyf/ask_alyf/tools.py:1655
 msgid "Frontend action payload contains an unsafe key."
 msgstr "تحتوي حمولة إجراء الواجهة الأمامية على مفتاح غير آمن."
 
-#: ask_alyf/ask_alyf/tools.py:1679
+#: ask_alyf/ask_alyf/tools.py:1652
 msgid "Frontend action payload must be an object."
 msgstr "يجب أن تكون حمولة إجراء الواجهة الأمامية كائناً."
 
-#: ask_alyf/ask_alyf/tools.py:1224
+#: ask_alyf/ask_alyf/tools.py:1197
 msgid "Frontend actions must be executed in the browser."
 msgstr "يجب تنفيذ إجراءات الواجهة الأمامية في المتصفح."
 
@@ -815,7 +998,7 @@ msgstr "توليد"
 msgid "Generate with AI"
 msgstr "توليد بواسطة الذكاء الاصطناعي"
 
-#: ask_alyf/ask_alyf/api.py:804 ask_alyf/ask_alyf/api.py:921
+#: ask_alyf/ask_alyf/api.py:808 ask_alyf/ask_alyf/api.py:925
 msgid "Generating response..."
 msgstr "جاري إنشاء الرد..."
 
@@ -823,14 +1006,19 @@ msgstr "جاري إنشاء الرد..."
 msgid "Generating..."
 msgstr "جاري الإنشاء..."
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:1486
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:1600
+>>>>>>> ef90356 (fix(i18n): add LangSmith labels and standardize Ask ALYF translations (#160))
 msgid "HR"
 msgstr "الموارد البشرية"
 
-#: ask_alyf/ask_alyf/agent.py:161
+#: ask_alyf/ask_alyf/agent.py:162
 msgid "Highlighting a field"
 msgstr "تمييز حقل"
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:798
 msgid "History"
 msgstr "السجل"
@@ -848,31 +1036,54 @@ msgid "How many pending purchase receipts do I have?"
 msgstr "كم عدد إيصالات الشراء المعلقة لدي؟"
 
 #: ask_alyf/public/js/ask_alyf.bundle.js:1463
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:907
+msgid "History"
+msgstr "السجل"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1622
+msgid "How many Work Orders are behind schedule?"
+msgstr "كم عدد أوامر العمل المتأخرة عن الجدول الزمني؟"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1604
+msgid "How many leave applications are pending approval?"
+msgstr "كم عدد طلبات الإجازة المعلقة للموافقة؟"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1586
+msgid "How many pending purchase receipts do I have?"
+msgstr "كم عدد إيصالات الشراء المعلقة لدي؟"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1577
+>>>>>>> ef90356 (fix(i18n): add LangSmith labels and standardize Ask ALYF translations (#160))
 msgid "How many quotations were sent this month?"
 msgstr "كم عدد عروض الأسعار التي أُرسلت هذا الشهر؟"
 
-#: ask_alyf/ask_alyf/api.py:643
+#: ask_alyf/ask_alyf/api.py:647
 #: ask_alyf/ask_alyf/test_tool_error_middleware.py:153
 msgid "I hit an error while processing that request. Please try again."
 msgstr "واجهت خطأً أثناء معالجة هذا الطلب. يُرجى المحاولة مرة أخرى."
 
-#: ask_alyf/ask_alyf/api.py:213 ask_alyf/ask_alyf/api.py:632
+#: ask_alyf/ask_alyf/api.py:213 ask_alyf/ask_alyf/api.py:634
 msgid "I've prepared the operation. Please review and confirm."
 msgstr "لقد قمت بإعداد العملية. يُرجى المراجعة والتأكيد."
 
-#: ask_alyf/ask_alyf/tools.py:1231
+#: ask_alyf/ask_alyf/tools.py:1204
 msgid "Invalid action payload."
 msgstr "حمولة إجراء غير صالحة."
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/tools.py:1609 ask_alyf/public/js/ask_alyf.bundle.js:2768
+=======
+#: ask_alyf/ask_alyf/tools.py:1582 ask_alyf/public/js/ask_alyf.bundle.js:2878
+>>>>>>> ef90356 (fix(i18n): add LangSmith labels and standardize Ask ALYF translations (#160))
 msgid "Invalid chart data."
 msgstr "بيانات الرسم البياني غير صالحة."
 
-#: ask_alyf/ask_alyf/tools.py:1667
+#: ask_alyf/ask_alyf/tools.py:1640
 msgid "Invalid chart specification."
 msgstr "مواصفات الرسم البياني غير صالحة."
 
-#: ask_alyf/ask_alyf/tools.py:1211
+#: ask_alyf/ask_alyf/tools.py:1184
 msgid "Invalid pending operation payload."
 msgstr "حمولة عملية معلقة غير صالحة."
 
@@ -886,9 +1097,25 @@ msgstr "نمط regex غير صالح: {0}"
 msgid "LLM Provider"
 msgstr "مزود LLM"
 
-#: ask_alyf/ask_alyf/tools.py:467
+#: ask_alyf/ask_alyf/tools.py:438
 msgid "Labels must be provided as a list of strings."
 msgstr "يجب توفير التسميات كقائمة من السلاسل النصية."
+
+#. Label of the langsmith_api_key (Password) field in DocType 'Ask ALYF
+#. Settings'
+#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.json
+msgid "LangSmith API Key"
+msgstr "مفتاح API لـ LangSmith"
+
+#. Label of the langsmith_endpoint (Data) field in DocType 'Ask ALYF Settings'
+#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.json
+msgid "LangSmith Endpoint"
+msgstr "نقطة نهاية LangSmith"
+
+#. Label of the langsmith_project (Data) field in DocType 'Ask ALYF Settings'
+#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.json
+msgid "LangSmith Project"
+msgstr "مشروع LangSmith"
 
 #. Label of the last_context_json (Code) field in DocType 'Ask ALYF
 #. Conversation'
@@ -903,7 +1130,7 @@ msgid "Last Message At"
 msgstr "آخر رسالة في"
 
 #: ask_alyf/ask_alyf/deep_agent_backend.py:172
-#: ask_alyf/ask_alyf/deep_agent_backend.py:285
+#: ask_alyf/ask_alyf/deep_agent_backend.py:278
 #, python-brace-format
 msgid "Line offset {0} exceeds file length"
 msgstr "إزاحة السطر {0} تتجاوز طول الملف"
@@ -917,15 +1144,19 @@ msgstr "جارٍ عرض {0}"
 msgid "Loading conversation..."
 msgstr "جارٍ تحميل المحادثة..."
 
-#: ask_alyf/ask_alyf/agent.py:110
+#: ask_alyf/ask_alyf/agent.py:111
 msgid "Looking up available reports"
 msgstr "البحث عن التقارير المتاحة"
 
-#: ask_alyf/ask_alyf/agent.py:108
+#: ask_alyf/ask_alyf/agent.py:109
 msgid "Looking up what you can access"
 msgstr "البحث عما يمكنك الوصول إليه"
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:1504
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:1618
+>>>>>>> ef90356 (fix(i18n): add LangSmith labels and standardize Ask ALYF translations (#160))
 msgid "Manufacturing"
 msgstr "التصنيع"
 
@@ -949,12 +1180,16 @@ msgstr "نوع البيانات الوصفية"
 msgid "Method call proposal needs correction."
 msgstr "يحتاج اقتراح استدعاء الطريقة إلى تصحيح."
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:1391
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:1505
+>>>>>>> ef90356 (fix(i18n): add LangSmith labels and standardize Ask ALYF translations (#160))
 #, python-brace-format
 msgid "Mode: {0}"
 msgstr "الوضع: {0}"
 
-#: ask_alyf/ask_alyf/tools.py:457
+#: ask_alyf/ask_alyf/tools.py:428
 msgid "Multiple matching files were found. Provide reference_field, file_url, or file_name."
 msgstr "تم العثور على عدة ملفات مطابقة. يرجى تقديم reference_field أو file_url أو file_name."
 
@@ -963,44 +1198,57 @@ msgstr "تم العثور على عدة ملفات مطابقة. يرجى تقد
 msgid "Navigate to {0}"
 msgstr "الانتقال إلى {0}"
 
-#: ask_alyf/ask_alyf/api.py:296 ask_alyf/ask_alyf/api.py:398
-#: ask_alyf/ask_alyf/api.py:475
+#: ask_alyf/ask_alyf/api.py:296 ask_alyf/ask_alyf/api.py:400
+#: ask_alyf/ask_alyf/api.py:477
 msgid "New Conversation"
 msgstr "محادثة جديدة"
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:779
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:890
+>>>>>>> ef90356 (fix(i18n): add LangSmith labels and standardize Ask ALYF translations (#160))
 msgid "New chat"
 msgstr "محادثة جديدة"
+
+#: ask_alyf/ask_alyf/toolset.py:1127
+msgid "New document action needs correction."
+msgstr "يحتاج إجراء إنشاء المستند الجديد إلى تصحيح."
 
 #: ask_alyf/public/js/ask_alyf.bundle.js:660
 msgid "Next page"
 msgstr "الصفحة التالية"
-#: ask_alyf/ask_alyf/toolset.py:1127
-msgid "New document action needs correction."
-msgstr "يحتاج إجراء إنشاء المستند الجديد إلى تصحيح."
 
 #: ask_alyf/public/js/field_agent.js:169
 msgid "No active form found."
 msgstr "لم يتم العثور على استمارة نشطة."
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:1659
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:1773
+>>>>>>> ef90356 (fix(i18n): add LangSmith labels and standardize Ask ALYF translations (#160))
 msgid "No conversations yet."
 msgstr "لا توجد محادثات بعد."
 
-#: ask_alyf/ask_alyf/tools.py:1163
+#: ask_alyf/ask_alyf/tools.py:1136
 #, python-brace-format
 msgid "No documentation URL was found for app '{0}'."
 msgstr "لم يتم العثور على URL التوثيق للتطبيق '{0}'."
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:2358
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:2469
+>>>>>>> ef90356 (fix(i18n): add LangSmith labels and standardize Ask ALYF translations (#160))
 msgid "No form is currently open."
 msgstr "لا توجد استمارة مفتوحة حاليًا."
 
-#: ask_alyf/ask_alyf/tools.py:192
+#: ask_alyf/ask_alyf/tools.py:194
 msgid "No installed app code roots were found."
 msgstr "لم يتم العثور على جذور كود التطبيقات المثبتة."
 
-#: ask_alyf/ask_alyf/tools.py:453
+#: ask_alyf/ask_alyf/tools.py:424
 msgid "No matching file was found."
 msgstr "لم يتم العثور على ملف مطابق."
 
@@ -1009,21 +1257,21 @@ msgstr "لم يتم العثور على ملف مطابق."
 msgid "No pending operation matches call_id '{0}'."
 msgstr "لا توجد عملية معلقة تطابق call_id '{0}'."
 
-#: ask_alyf/ask_alyf/tools.py:1180
+#: ask_alyf/ask_alyf/tools.py:1153
 #, python-brace-format
 msgid "No pyproject.toml was found for app '{0}'."
 msgstr "لم يتم العثور على pyproject.toml للتطبيق '{0}'."
 
-#: ask_alyf/ask_alyf/tools.py:1078
+#: ask_alyf/ask_alyf/tools.py:1051
 #, python-brace-format
 msgid "No repository URL was found for app '{0}'."
 msgstr "لم يتم العثور على URL المستودع للتطبيق '{0}'."
 
-#: ask_alyf/ask_alyf/api.py:1066
+#: ask_alyf/ask_alyf/api.py:1070
 msgid "No valid file provided."
 msgstr "لم يتم تقديم ملف صالح."
 
-#: ask_alyf/ask_alyf/tools.py:1068
+#: ask_alyf/ask_alyf/tools.py:1041
 #, python-brace-format
 msgid "No version was found for app '{0}'."
 msgstr "لم يتم العثور على إصدار للتطبيق '{0}'."
@@ -1044,27 +1292,31 @@ msgstr "نقطة تفتيش LangGraph واحدة. تتم كتابتها بواس
 msgid "One pending write of a LangGraph checkpoint. Written by FrappeCheckpointSaver, not by users."
 msgstr "عملية كتابة معلقة واحدة لنقطة تفتيش LangGraph. تتم كتابتها بواسطة FrappeCheckpointSaver، وليس بواسطة المستخدمين."
 
-#: ask_alyf/ask_alyf/tools.py:1034
+#: ask_alyf/ask_alyf/tools.py:1007
 msgid "Only Administrator and System Manager can run SQL queries."
 msgstr "يمكن للمدير ومدير النظام فقط تشغيل استعلامات SQL."
 
-#: ask_alyf/ask_alyf/tools.py:1083
+#: ask_alyf/ask_alyf/tools.py:1056
 msgid "Only GitHub repositories are supported for release lookup."
 msgstr "يتم دعم مستودعات GitHub فقط للبحث عن الإصدارات."
 
-#: ask_alyf/ask_alyf/tools.py:1037
+#: ask_alyf/ask_alyf/tools.py:1010
 msgid "Only a single read-only SQL statement is allowed."
 msgstr "يُسمح فقط بعبارة SQL واحدة للقراءة فقط."
 
-#: ask_alyf/ask_alyf/api.py:737
+#: ask_alyf/ask_alyf/api.py:741
 msgid "Only backend actions can be confirmed by this endpoint."
 msgstr "يمكن لهذا النقطة النهائية تأكيد إجراءات الخلفية فقط."
 
-#: ask_alyf/ask_alyf/tools.py:1040
+#: ask_alyf/ask_alyf/tools.py:1013
 msgid "Only read-only SQL statements are allowed."
 msgstr "يُسمح فقط بعبارات SQL للقراءة فقط."
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:766
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:877
+>>>>>>> ef90356 (fix(i18n): add LangSmith labels and standardize Ask ALYF translations (#160))
 msgid "Open Ask ALYF"
 msgstr "فتح Ask ALYF"
 
@@ -1087,12 +1339,12 @@ msgstr "OpenAI"
 msgid "OpenAI Compatible"
 msgstr "متوافق مع OpenAI"
 
-#: ask_alyf/ask_alyf/agent.py:159
+#: ask_alyf/ask_alyf/agent.py:160
 #, python-brace-format
 msgid "Opening a new {0}"
 msgstr "فتح {0} جديد"
 
-#: ask_alyf/ask_alyf/agent.py:157
+#: ask_alyf/ask_alyf/agent.py:158
 msgid "Opening a page"
 msgstr "فتح صفحة"
 
@@ -1109,12 +1361,12 @@ msgstr "اختياري لـ OpenAI. مطلوب للموفرين المتوافق
 msgid "Parent Checkpoint ID"
 msgstr "معرف نقطة التفتيش الأب"
 
-#: ask_alyf/ask_alyf/tools.py:534
+#: ask_alyf/ask_alyf/tools.py:505
 #, python-brace-format
 msgid "Path '{0}' must point to a file inside an installed app."
 msgstr "يجب أن يشير المسار '{0}' إلى ملف داخل تطبيق مثبت."
 
-#: ask_alyf/ask_alyf/tools.py:265
+#: ask_alyf/ask_alyf/tools.py:267
 #, python-brace-format
 msgid "Path '{0}' was not found in app '{1}'."
 msgstr "لم يتم العثور على المسار '{0}' في التطبيق '{1}'."
@@ -1124,7 +1376,7 @@ msgstr "لم يتم العثور على المسار '{0}' في التطبيق '
 msgid "Path is not a file: {0}"
 msgstr "المسار ليس ملفًا: {0}"
 
-#: ask_alyf/ask_alyf/deep_agent_backend.py:93 ask_alyf/ask_alyf/tools.py:214
+#: ask_alyf/ask_alyf/deep_agent_backend.py:93 ask_alyf/ask_alyf/tools.py:216
 msgid "Path must start with an installed app name."
 msgstr "يجب أن يبدأ المسار باسم تطبيق مثبت."
 
@@ -1134,19 +1386,27 @@ msgstr "يجب أن يبدأ المسار باسم تطبيق مثبت."
 msgid "Pending Operation JSON"
 msgstr "JSON العملية المعلقة"
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:2177
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:2288
+>>>>>>> ef90356 (fix(i18n): add LangSmith labels and standardize Ask ALYF translations (#160))
 msgid "Pending operation"
 msgstr "عملية معلقة"
 
-#: ask_alyf/ask_alyf/agent.py:133
+#: ask_alyf/ask_alyf/agent.py:134
 msgid "Planning the next steps"
 msgstr "التخطيط للخطوات التالية"
 
-#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.py:143
+#: ask_alyf/public/js/ask_alyf.bundle.js:659
+msgid "Previous page"
+msgstr "الصفحة السابقة"
+
+#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.py:147
 msgid "Please configure a Base URL first and save the settings, then we can fetch available models."
 msgstr "يرجى تكوين عنوان URL الأساسي أولاً وحفظ الإعدادات، ثم يمكننا جلب النماذج المتاحة."
 
-#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.py:136
+#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.py:140
 msgid "Please configure an API key first and save the settings, then we can fetch available models."
 msgstr "يرجى تكوين مفتاح API أولاً وحفظ الإعدادات، ثم يمكننا جلب النماذج المتاحة."
 
@@ -1222,42 +1482,46 @@ msgstr "تم تحضير اقتراح التسجيل."
 msgid "Prepared update proposal."
 msgstr "تم تحضير اقتراح التحديث."
 
-#: ask_alyf/ask_alyf/agent.py:163
+#: ask_alyf/ask_alyf/agent.py:164
 msgid "Preparing a chart"
 msgstr "إعداد خريطة"
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:659
 msgid "Previous page"
 msgstr "الصفحة السابقة"
 #: ask_alyf/public/js/ask_alyf.bundle.js:1513
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:1627
+>>>>>>> ef90356 (fix(i18n): add LangSmith labels and standardize Ask ALYF translations (#160))
 msgid "Projects"
 msgstr "المشاريع"
 
-#: ask_alyf/ask_alyf/tools.py:1658
+#: ask_alyf/ask_alyf/tools.py:1631
 msgid "Provide at least one chart in frappe_charts."
 msgstr "قدّم خريطة واحدة على الأقل في frappe_charts."
 
-#: ask_alyf/ask_alyf/tools.py:478
+#: ask_alyf/ask_alyf/tools.py:449
 msgid "Provide at least one label to translate."
 msgstr "يرجى تقديم تسمية واحدة على الأقل للترجمة."
 
-#: ask_alyf/ask_alyf/tools.py:497 ask_alyf/ask_alyf/tools.py:634
+#: ask_alyf/ask_alyf/tools.py:468 ask_alyf/ask_alyf/tools.py:607
 msgid "Query is required."
 msgstr "الاستعلام مطلوب."
 
-#: ask_alyf/ask_alyf/agent.py:125
+#: ask_alyf/ask_alyf/agent.py:126
 msgid "Reading documentation"
 msgstr "جارٍ قراءة الوثائق"
 
-#: ask_alyf/ask_alyf/agent.py:116
+#: ask_alyf/ask_alyf/agent.py:117
 msgid "Reading instructions"
 msgstr "جارٍ قراءة التعليمات"
 
-#: ask_alyf/ask_alyf/agent.py:118
+#: ask_alyf/ask_alyf/agent.py:119
 msgid "Reading the attached document"
 msgstr "جارٍ قراءة المستند المرفق"
 
-#: ask_alyf/ask_alyf/agent.py:102
+#: ask_alyf/ask_alyf/agent.py:103
 #, python-brace-format
 msgid "Reading {0}"
 msgstr "جارٍ قراءة {0}"
@@ -1272,7 +1536,7 @@ msgstr "جارٍ قراءة {0}، الأسطر {1}-{2}"
 msgid "Reading {0} list"
 msgstr "جارٍ قراءة قائمة {0}"
 
-#: ask_alyf/ask_alyf/api.py:867 ask_alyf/ask_alyf/api.py:974
+#: ask_alyf/ask_alyf/api.py:871 ask_alyf/ask_alyf/api.py:978
 #, python-brace-format
 msgid "Reason: {0}"
 msgstr "السبب: {0}"
@@ -1282,24 +1546,36 @@ msgstr "السبب: {0}"
 msgid "Reasoning Effort"
 msgstr "جهد الاستدلال"
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:2270
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:2381
+>>>>>>> ef90356 (fix(i18n): add LangSmith labels and standardize Ask ALYF translations (#160))
 #, python-brace-format
 msgid "Records to create ({0})"
 msgstr "السجلات المراد إنشاؤها ({0})"
 
-#: ask_alyf/ask_alyf/tools.py:737
+#: ask_alyf/ask_alyf/tools.py:710
 msgid "Reference doctype is required."
 msgstr "مرجع DocType مطلوب."
 
-#: ask_alyf/ask_alyf/tools.py:741
+#: ask_alyf/ask_alyf/tools.py:714
 msgid "Reference name is required."
 msgstr "اسم الإشارة مطلوب."
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:706
 msgid "Reject"
 msgstr "رفض"
 
 #: ask_alyf/public/js/ask_alyf.bundle.js:725
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:817
+msgid "Reject"
+msgstr "رفض"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:836
+>>>>>>> ef90356 (fix(i18n): add LangSmith labels and standardize Ask ALYF translations (#160))
 msgid "Reject all"
 msgstr "رفض الكل"
 
@@ -1312,12 +1588,16 @@ msgstr "اقتراح إعادة التسمية يحتاج إلى تصحيح."
 msgid "Rename {0} {1} to {2}"
 msgstr "إعادة تسمية {0} {1} إلى {2}"
 
-#: ask_alyf/ask_alyf/agent.py:150
+#: ask_alyf/ask_alyf/agent.py:151
 #, python-brace-format
 msgid "Renaming {0}"
 msgstr "جارٍ إعادة تسمية {0}"
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:770
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:881
+>>>>>>> ef90356 (fix(i18n): add LangSmith labels and standardize Ask ALYF translations (#160))
 msgid "Resize chat window"
 msgstr "تغيير حجم نافذة المحادثة"
 
@@ -1329,16 +1609,16 @@ msgstr "تم التراجع."
 msgid "Route action needs correction."
 msgstr "يحتاج إجراء المسار إلى تصحيح."
 
-#: ask_alyf/ask_alyf/tools.py:1690
+#: ask_alyf/ask_alyf/tools.py:1663
 #, python-brace-format
 msgid "Route part #{0} must be a non-empty string."
 msgstr "يجب أن يكون جزء المسار رقم {0} سلسلة نصية غير فارغة."
 
-#: ask_alyf/ask_alyf/agent.py:114
+#: ask_alyf/ask_alyf/agent.py:115
 msgid "Running a database query"
 msgstr "جارٍ تشغيل استعلام قاعدة بيانات"
 
-#: ask_alyf/ask_alyf/agent.py:154
+#: ask_alyf/ask_alyf/agent.py:155
 #, python-brace-format
 msgid "Running {0}"
 msgstr "جارٍ تشغيل {0}"
@@ -1349,7 +1629,7 @@ msgstr "جارٍ تشغيل {0}"
 msgid "Same as Chat"
 msgstr "نفس المحادثة"
 
-#: ask_alyf/ask_alyf/agent.py:116
+#: ask_alyf/ask_alyf/agent.py:117
 msgid "Saving instructions"
 msgstr "جارٍ حفظ التعليمات"
 
@@ -1362,7 +1642,11 @@ msgstr "يحتاج إجراء التمرير إلى تصحيح."
 msgid "Scroll to field {0}"
 msgstr "التمرير إلى الحقل {0}"
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:2392
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:2503
+>>>>>>> ef90356 (fix(i18n): add LangSmith labels and standardize Ask ALYF translations (#160))
 msgid "Scrolling to fields is not available on this form."
 msgstr "التمرير إلى الحقول غير متاح في هذه الاستمارة."
 
@@ -1380,15 +1664,23 @@ msgstr "جارٍ البحث عن \"{0}\" في {1}"
 msgid "Searching the documentation"
 msgstr "جارٍ البحث في الوثائق"
 
-#: ask_alyf/ask_alyf/agent.py:129
+#: ask_alyf/ask_alyf/agent.py:130
 msgid "Searching the source code"
 msgstr "جارٍ البحث في شفرة المصدر"
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:1459
 msgid "Selling"
 msgstr "المبيعات"
 
 #: ask_alyf/public/js/ask_alyf.bundle.js:2032
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:1573
+msgid "Selling"
+msgstr "المبيعات"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:2143
+>>>>>>> ef90356 (fix(i18n): add LangSmith labels and standardize Ask ALYF translations (#160))
 msgid "Sending..."
 msgstr "جارٍ الإرسال..."
 
@@ -1418,6 +1710,7 @@ msgstr "عرض الكل"
 msgid "Show chart"
 msgstr "عرض الخريطة"
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:1488
 msgid "Show employee headcount by department as a chart"
 msgstr "عرض عدد الموظفين حسب القسم كخريطة"
@@ -1439,6 +1732,29 @@ msgid "Show me unresolved issues from this week"
 msgstr "عرض المشكلات غير المحلولة من هذا الأسبوع"
 
 #: ask_alyf/public/js/ask_alyf.bundle.js:1515
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:1602
+msgid "Show employee headcount by department as a chart"
+msgstr "عرض عدد الموظفين حسب القسم كخريطة"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1621
+msgid "Show me open Work Orders and their status"
+msgstr "اعرض لي أوامر العمل المفتوحة وحالتها"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1647
+msgid "Show me the top 10 DocTypes by record count"
+msgstr "اعرض لي أفضل 10 DocTypes حسب عدد السجلات"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1594
+msgid "Show me unpaid Sales Invoices older than 30 days"
+msgstr "اعرض لي فواتير المبيعات غير المدفوعة الأقدم من 30 يومًا"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1639
+msgid "Show me unresolved issues from this week"
+msgstr "عرض المشكلات غير المحلولة من هذا الأسبوع"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1629
+>>>>>>> ef90356 (fix(i18n): add LangSmith labels and standardize Ask ALYF translations (#160))
 msgid "Show project progress as a chart"
 msgstr "عرض تقدم المشروع كرسم بياني"
 
@@ -1473,9 +1789,24 @@ msgstr "يحتاج اقتراح المهارة إلى تصحيح."
 msgid "Skill title is required."
 msgstr "عنوان المهارة مطلوب."
 
-#: ask_alyf/ask_alyf/tools.py:1426
+#: ask_alyf/ask_alyf/tools.py:1399
 msgid "Some rows failed."
 msgstr "فشلت بعض الصفوف."
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:691
+#, python-brace-format
+msgid "Sort by {0}"
+msgstr "ترتيب حسب {0}"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:686
+#, python-brace-format
+msgid "Sorted ascending by {0}"
+msgstr "ترتيب تصاعدي حسب {0}"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:689
+#, python-brace-format
+msgid "Sorted descending by {0}"
+msgstr "ترتيب تنازلي حسب {0}"
 
 #: ask_alyf/ask_alyf/deep_agent_backend.py:39
 msgid "Source code is read-only"
@@ -1485,7 +1816,11 @@ msgstr "شفرة المصدر للقراءة فقط"
 msgid "Source file path is required"
 msgstr "مسار ملف المصدر مطلوب"
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:777
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:888
+>>>>>>> ef90356 (fix(i18n): add LangSmith labels and standardize Ask ALYF translations (#160))
 msgid "Start a new conversation"
 msgstr "بدء محادثة جديدة"
 
@@ -1495,7 +1830,7 @@ msgstr "بدء محادثة جديدة"
 msgid "Start typing to choose a model. Available models are loaded from the configured provider."
 msgstr "ابدأ بالكتابة لاختيار نموذج. يتم تحميل النماذج المتاحة من المزود الذي تم تكوينه."
 
-#: ask_alyf/ask_alyf/api.py:910
+#: ask_alyf/ask_alyf/api.py:914
 msgid "Status must be one of success, failed, or rejected."
 msgstr "يجب أن تكون الحالة إحدى القيم: success أو failed أو rejected."
 
@@ -1503,18 +1838,27 @@ msgstr "يجب أن تكون الحالة إحدى القيم: success أو fail
 msgid "Still generating..."
 msgstr "لا يزال قيد الإنشاء..."
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:1495
 msgid "Stock"
 msgstr "المخزون"
 
 #: ask_alyf/public/js/ask_alyf.bundle.js:1799
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:1609
+msgid "Stock"
+msgstr "المخزون"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1910
+>>>>>>> ef90356 (fix(i18n): add LangSmith labels and standardize Ask ALYF translations (#160))
 msgid "Stop this run"
 msgstr "إيقاف هذا التشغيل"
 
-#: ask_alyf/ask_alyf/api.py:630
+#: ask_alyf/ask_alyf/api.py:632
 msgid "Stopped. Send a message to pick up from here."
 msgstr "تم الإيقاف. أرسل رسالة للمتابعة من هنا."
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:691
 #, python-brace-format
 msgid "Sort by {0}"
@@ -1528,6 +1872,9 @@ msgstr "ترتيب تصاعدي حسب {0}"
 msgid "Sorted descending by {0}"
 msgstr "ترتيب تنازلي حسب {0}"
 #: ask_alyf/public/js/ask_alyf.bundle.js:1820
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:1931
+>>>>>>> ef90356 (fix(i18n): add LangSmith labels and standardize Ask ALYF translations (#160))
 msgid "Stopping..."
 msgstr "جارٍ الإيقاف..."
 
@@ -1540,7 +1887,11 @@ msgstr "يحتاج اقتراح التسجيل إلى تصحيح."
 msgid "Submit {0} {1}"
 msgstr "تسجيل {0} {1}"
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:1522
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:1636
+>>>>>>> ef90356 (fix(i18n): add LangSmith labels and standardize Ask ALYF translations (#160))
 msgid "Support"
 msgstr "الدعم"
 
@@ -1555,10 +1906,16 @@ msgstr "رقم هاتف الدعم"
 msgid "System Prompt"
 msgstr "موجه النظام"
 
+<<<<<<< HEAD
 #. Label of the task_id (Data) field in DocType 'Ask ALYF Checkpoint Write'
 #: ask_alyf/ask_alyf/doctype/ask_alyf_checkpoint_write/ask_alyf_checkpoint_write.json
 msgid "Task ID"
 msgstr "معرّف المهمة"
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:654
+msgid "Table pagination"
+msgstr "تصفح الجدول"
+>>>>>>> ef90356 (fix(i18n): add LangSmith labels and standardize Ask ALYF translations (#160))
 
 #. Label of the task_path (Data) field in DocType 'Ask ALYF Checkpoint Write'
 #: ask_alyf/ask_alyf/doctype/ask_alyf_checkpoint_write/ask_alyf_checkpoint_write.json
@@ -1569,7 +1926,7 @@ msgstr "مسار المهمة"
 msgid "That confirmation did not match this operation. Propose it again on its own."
 msgstr "لم يتطابق ذلك التأكيد مع هذه العملية. اقترحها مرة أخرى بمفردها."
 
-#: ask_alyf/ask_alyf/tools.py:1106
+#: ask_alyf/ask_alyf/tools.py:1079
 msgid "The Compendium app is not installed."
 msgstr "تطبيق Compendium غير مثبت."
 
@@ -1577,44 +1934,44 @@ msgstr "تطبيق Compendium غير مثبت."
 msgid "The action could not be completed."
 msgstr "تعذر إكمال الإجراء."
 
-#: ask_alyf/ask_alyf/api.py:533 ask_alyf/ask_alyf/api.py:563
+#: ask_alyf/ask_alyf/api.py:535 ask_alyf/ask_alyf/api.py:565
 msgid "The background job does not match this message."
 msgstr "مهمة الخلفية لا تطابق هذه الرسالة."
 
-#: ask_alyf/ask_alyf/api.py:531 ask_alyf/ask_alyf/api.py:559
-#: ask_alyf/ask_alyf/api.py:585
+#: ask_alyf/ask_alyf/api.py:533 ask_alyf/ask_alyf/api.py:561
+#: ask_alyf/ask_alyf/api.py:587
 msgid "The message could not be found in this conversation."
 msgstr "تعذر العثور على الرسالة في هذه المحادثة."
 
-#: ask_alyf/ask_alyf/agent.py:594
+#: ask_alyf/ask_alyf/agent.py:649
 msgid "The operation was completed, but the follow-up response could not be generated."
 msgstr "تم إكمال العملية، ولكن تعذر إنشاء الرد اللاحق."
 
-#: ask_alyf/ask_alyf/api.py:904
+#: ask_alyf/ask_alyf/api.py:908
 msgid "The pending operation is not a frontend action."
 msgstr "العملية المعلقة ليست إجراء واجهة أمامية."
 
-#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.py:242
+#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.py:246
 #, python-brace-format
 msgid "The selected Chat Model ({0}) does not support Reasoning Effort ({1})."
 msgstr "نموذج الدردشة المحدد ({0}) لا يدعم جهد الاستدلال ({1})."
 
-#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.py:238
+#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.py:242
 #, python-brace-format
 msgid "The selected Chat Model ({0}) does not support Reasoning Effort ({1}). Supported values: {2}."
 msgstr "نموذج الدردشة المحدد ({0}) لا يدعم جهد الاستدلال ({1}). القيم المدعومة: {2}."
 
-#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.py:99
+#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.py:103
 #, python-brace-format
 msgid "The selected Chat Model ({0}) does not support function calling."
 msgstr "نموذج الدردشة المحدد ({0}) لا يدعم استدعاء الوظائف."
 
-#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.py:107
+#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.py:111
 #, python-brace-format
 msgid "The selected Chat Model ({0}) does not support vision. Choose a vision-capable chat model or configure a separate vision model."
 msgstr "نموذج الدردشة المحدد ({0}) لا يدعم الرؤية. اختر نموذج دردشة يدعم الرؤية أو قم بتكوين نموذج رؤية منفصل."
 
-#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.py:116
+#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.py:120
 #, python-brace-format
 msgid "The selected Vision Model ({0}) does not support vision."
 msgstr "نموذج الرؤية المحدد ({0}) لا يدعم الرؤية."
@@ -1623,21 +1980,22 @@ msgstr "نموذج الرؤية المحدد ({0}) لا يدعم الرؤية."
 msgid "The user rejected this operation."
 msgstr "رفض المستخدم هذه العملية."
 
-#: ask_alyf/ask_alyf/api.py:898
+#: ask_alyf/ask_alyf/api.py:902
 msgid "There is no pending frontend action to resolve."
 msgstr "لا يوجد إجراء واجهة أمامية معلق لحله."
 
-#: ask_alyf/ask_alyf/api.py:729
+#: ask_alyf/ask_alyf/api.py:733
 msgid "There is no pending operation to confirm."
 msgstr "لا توجد عملية معلقة لتأكيدها."
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:916
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:1030
+>>>>>>> ef90356 (fix(i18n): add LangSmith labels and standardize Ask ALYF translations (#160))
 msgid "Thinking..."
 msgstr "جارٍ التفكير..."
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:654
-msgid "Table pagination"
-msgstr "تصفح الجدول"
 #: ask_alyf/public/js/field_agent.js:203
 msgid "This is taking a moment..."
 msgstr "يستغرق هذا بعض الوقت..."
@@ -1649,66 +2007,79 @@ msgstr "يستغرق هذا بعض الوقت..."
 msgid "Thread ID"
 msgstr "معرف السلسلة"
 
-#: ask_alyf/ask_alyf/tools.py:1534
+#: ask_alyf/ask_alyf/tools.py:1507
 msgid "Too many chart datasets."
 msgstr "عدد كبير جدًا من مجموعات بيانات الرسم البياني."
 
-#: ask_alyf/ask_alyf/tools.py:1515
+#: ask_alyf/ask_alyf/tools.py:1488
 msgid "Too many chart labels."
 msgstr "عدد كبير جدًا من تسميات الرسم البياني."
 
-#: ask_alyf/ask_alyf/tools.py:1661
+#: ask_alyf/ask_alyf/tools.py:1634
 msgid "Too many charts in one request."
 msgstr "عدد كبير جدًا من الرسوم البيانية في طلب واحد."
 
-#: ask_alyf/ask_alyf/agent.py:112
+#. Label of the tracing_tab (Tab Break) field in DocType 'Ask ALYF Settings'
+#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.json
+msgid "Tracing"
+msgstr "التتبع"
+
+#: ask_alyf/ask_alyf/agent.py:113
 msgid "Translating labels"
 msgstr "جارٍ ترجمة التسميات"
 
-#: ask_alyf/ask_alyf/tools.py:1264
+#: ask_alyf/ask_alyf/tools.py:1237
 msgid "Unknown error."
 msgstr "خطأ غير معروف."
 
-#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.py:183
+#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.py:187
 #, python-brace-format
 msgid "Unsupported LLM provider: {0}"
 msgstr "مزود LLM غير مدعوم: {0}"
 
-#: ask_alyf/ask_alyf/tools.py:1365
+#: ask_alyf/ask_alyf/tools.py:1338
 #, python-brace-format
 msgid "Unsupported action '{0}'."
 msgstr "إجراء غير مدعوم '{0}'."
 
-#: ask_alyf/ask_alyf/tools.py:941
+#: ask_alyf/ask_alyf/tools.py:914
 #, python-brace-format
 msgid "Unsupported file type '{0}'. Supported types: PDF, PNG, JPG, GIF, WebP."
 msgstr "نوع الملف '{0}' غير مدعوم. الأنواع المدعومة: PDF، PNG، JPG، GIF، WebP."
 
-#: ask_alyf/ask_alyf/tools.py:1676 ask_alyf/ask_alyf/tools.py:1739
+#: ask_alyf/ask_alyf/tools.py:1649 ask_alyf/ask_alyf/tools.py:1712
 #, python-brace-format
 msgid "Unsupported frontend action '{0}'."
 msgstr "إجراء واجهة أمامية غير مدعوم '{0}'."
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:2421
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:2532
+>>>>>>> ef90356 (fix(i18n): add LangSmith labels and standardize Ask ALYF translations (#160))
 #, python-brace-format
 msgid "Unsupported frontend action: {0}"
 msgstr "إجراء واجهة أمامية غير مدعوم: {0}"
 
-#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.py:171
+#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.py:175
 #, python-brace-format
 msgid "Unsupported model configuration: {0}"
 msgstr "إعدادات النموذج غير مدعومة: {0}"
 
-#: ask_alyf/ask_alyf/tools.py:1206 ask_alyf/ask_alyf/tools.py:1226
+#: ask_alyf/ask_alyf/tools.py:1179 ask_alyf/ask_alyf/tools.py:1199
 #, python-brace-format
 msgid "Unsupported operation kind '{0}'."
 msgstr "نوع عملية غير مدعوم '{0}'."
 
-#: ask_alyf/ask_alyf/tools.py:1575
+#: ask_alyf/ask_alyf/tools.py:1548
 msgid "Unsupported or missing chart type."
 msgstr "نوع الرسم البياني غير مدعوم أو مفقود."
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:1434
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:1548
+>>>>>>> ef90356 (fix(i18n): add LangSmith labels and standardize Ask ALYF translations (#160))
 msgid "Untitled conversation"
 msgstr "محادثة بدون عنوان"
 
@@ -1765,16 +2136,26 @@ msgstr "نموذج Vision"
 msgid "Vision Provider"
 msgstr "مزود Vision"
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:830
 #: ask_alyf/public/js/ask_alyf.bundle.js:832
 msgid "Voice input"
 msgstr "إدخال صوتي"
 
 #: ask_alyf/public/js/ask_alyf.bundle.js:2920
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:944
+#: ask_alyf/public/js/ask_alyf.bundle.js:946
+msgid "Voice input"
+msgstr "إدخال صوتي"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:3030
+>>>>>>> ef90356 (fix(i18n): add LangSmith labels and standardize Ask ALYF translations (#160))
 #, python-brace-format
 msgid "Voice input language: {0}"
 msgstr "لغة الإدخال الصوتي: {0}"
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:2080
 msgid "Waiting for response..."
 msgstr "في انتظار الرد..."
@@ -1820,32 +2201,83 @@ msgid "Which project tasks are overdue?"
 msgstr "ما هي مهام المشاريع المتأخرة؟"
 
 #: ask_alyf/public/js/ask_alyf.bundle.js:1535
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:2191
+msgid "Waiting for response..."
+msgstr "في انتظار الرد..."
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1576
+msgid "What Sales Orders are pending delivery?"
+msgstr "ما هي أوامر البيع المعلقة للتسليم؟"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1648
+msgid "What are the recent Error Logs?"
+msgstr "ما هي سجلات الأخطاء الأخيرة؟"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1630
+msgid "What open tasks are assigned to me?"
+msgstr "ما هي المهام المفتوحة المكلف بها؟"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1613
+msgid "What were the top 10 most moved items this month?"
+msgstr "ما هي أكثر 10 أصناف حركةً هذا الشهر؟"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1640
+msgid "What's the average resolution time for issues?"
+msgstr "ما هو متوسط وقت حل المشكلات؟"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1595
+msgid "What's the total outstanding receivables?"
+msgstr "ما هو إجمالي المستحقات القائمة؟"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1585
+msgid "Which Purchase Orders are overdue?"
+msgstr "ما هي أوامر الشراء المتأخرة؟"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1603
+msgid "Which employees are on leave today?"
+msgstr "ما هم الموظفون الذين في إجازة اليوم؟"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1612
+msgid "Which items are below their reorder level?"
+msgstr "ما هي الأصناف التي أقل من مستوى إعادة الطلب الخاص بها؟"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1631
+msgid "Which project tasks are overdue?"
+msgstr "ما هي مهام المشاريع المتأخرة؟"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1649
+>>>>>>> ef90356 (fix(i18n): add LangSmith labels and standardize Ask ALYF translations (#160))
 msgid "Which users logged in today?"
 msgstr "أي المستخدمين سجلوا الدخول اليوم؟"
 
-#: ask_alyf/ask_alyf/api.py:365 ask_alyf/ask_alyf/api.py:377
-#: ask_alyf/ask_alyf/api.py:394 ask_alyf/ask_alyf/api.py:424
-#: ask_alyf/ask_alyf/api.py:450 ask_alyf/ask_alyf/api.py:518
-#: ask_alyf/ask_alyf/api.py:542 ask_alyf/ask_alyf/api.py:719
-#: ask_alyf/ask_alyf/api.py:787 ask_alyf/ask_alyf/api.py:892
-#: ask_alyf/ask_alyf/api.py:1011 ask_alyf/ask_alyf/api.py:1049
+#: ask_alyf/ask_alyf/api.py:367 ask_alyf/ask_alyf/api.py:379
+#: ask_alyf/ask_alyf/api.py:396 ask_alyf/ask_alyf/api.py:426
+#: ask_alyf/ask_alyf/api.py:452 ask_alyf/ask_alyf/api.py:520
+#: ask_alyf/ask_alyf/api.py:544 ask_alyf/ask_alyf/api.py:723
+#: ask_alyf/ask_alyf/api.py:791 ask_alyf/ask_alyf/api.py:896
+#: ask_alyf/ask_alyf/api.py:1015 ask_alyf/ask_alyf/api.py:1053
 msgid "You do not have access to Ask ALYF."
 msgstr "ليس لديك صلاحية الوصول إلى Ask ALYF."
 
-#: ask_alyf/ask_alyf/api.py:1018
+#: ask_alyf/ask_alyf/api.py:1022
 #, python-brace-format
 msgid "You do not have read permission on {0}."
 msgstr "ليس لديك صلاحية القراءة على {0}."
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:2861
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:2971
+>>>>>>> ef90356 (fix(i18n): add LangSmith labels and standardize Ask ALYF translations (#160))
 msgid "Your browser does not support voice input."
 msgstr "متصفحك لا يدعم الإدخال الصوتي."
 
-#: ask_alyf/ask_alyf/agent.py:154
+#: ask_alyf/ask_alyf/agent.py:155
 msgid "an action"
 msgstr "إجراء"
 
-#: ask_alyf/ask_alyf/agent.py:131
+#: ask_alyf/ask_alyf/agent.py:132
 msgid "assistant"
 msgstr "المساعد"
 
@@ -1858,11 +2290,11 @@ msgstr "مخطط"
 msgid "debug session"
 msgstr "جلسة تصحيح الأخطاء"
 
-#: ask_alyf/ask_alyf/agent.py:93
+#: ask_alyf/ask_alyf/agent.py:94
 msgid "doctype"
 msgstr "نوع المستند"
 
-#: ask_alyf/ask_alyf/api.py:943
+#: ask_alyf/ask_alyf/api.py:947
 msgid "frontend action"
 msgstr "إجراء الواجهة الأمامية"
 
@@ -1890,12 +2322,16 @@ msgstr "أقصى"
 msgid "medium"
 msgstr "متوسط"
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/tools.py:1421
 #, python-brace-format
 msgid "row {0}"
 msgstr "الصف {0}"
 
 #: ask_alyf/ask_alyf/tools.py:1419
+=======
+#: ask_alyf/ask_alyf/tools.py:1392
+>>>>>>> ef90356 (fix(i18n): add LangSmith labels and standardize Ask ALYF translations (#160))
 #, python-brace-format
 msgid "row {0}: {1}"
 msgstr "الصف {0}: {1}"
@@ -1910,7 +2346,7 @@ msgstr "المسار المستهدف"
 msgid "xhigh"
 msgstr "مرتفع جدًا"
 
-#: ask_alyf/ask_alyf/tools.py:993
+#: ask_alyf/ask_alyf/tools.py:966
 #, python-brace-format
 msgid "{0} '{1}' was not found."
 msgstr "لم يتم العثور على {0} ‘{1}’."
