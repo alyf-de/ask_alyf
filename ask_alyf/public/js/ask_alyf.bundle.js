@@ -1009,7 +1009,7 @@ import "./field_agent";
 								</div>
 							</div>
 							<div class="ask_alyf-disclaimer">${__(
-								"Ask ALYF is an AI and can make mistakes, including with numbers and information about people.",
+								"Ask ALYF uses AI and can make mistakes, including with numbers and information about people.",
 							)}</div>
 						</div>
 					</div>
