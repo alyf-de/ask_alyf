@@ -153,7 +153,7 @@ msgstr "Perguntar"
 #: ask_alyf/ask_alyf/workspace/ask_alyf/ask_alyf.json
 #: ask_alyf/config/desktop.py:5
 msgid "Ask ALYF"
-msgstr "Perguntar ao ALYF"
+msgstr "Ask ALYF"
 
 #. Name of a DocType
 #: ask_alyf/ask_alyf/doctype/ask_alyf_checkpoint/ask_alyf_checkpoint.json
@@ -1933,3 +1933,35 @@ msgstr "{0} linhas"
 msgid "{0} steps"
 msgstr "{0} passos"
 
+#: ask_alyf/public/js/ask_alyf.bundle.js:998
+msgid "Ask ALYF uses AI and can make mistakes, including with numbers and information about people."
+msgstr "O Ask ALYF utiliza IA e pode cometer erros, inclusive em números e informações sobre pessoas."
+
+#. Label of a Check field in DocType 'Ask ALYF Settings'
+#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.json
+msgid "Enable Tracing"
+msgstr "Ativar rastreamento"
+
+#. Label of a Password field in DocType 'Ask ALYF Settings'
+#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.json
+msgid "LangSmith API Key"
+msgstr "Chave de API LangSmith"
+
+#. Label of a Data field in DocType 'Ask ALYF Settings'
+#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.json
+msgid "LangSmith Endpoint"
+msgstr "Endpoint LangSmith"
+
+#. Label of a Data field in DocType 'Ask ALYF Settings'
+#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.json
+msgid "LangSmith Project"
+msgstr "Projeto LangSmith"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:2191
+msgid "Sending..."
+msgstr "Enviando..."
+
+#. Label of a Tab Break field in DocType 'Ask ALYF Settings'
+#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.json
+msgid "Tracing"
+msgstr "Rastreamento"

@@ -153,7 +153,7 @@ msgstr "Fragen"
 #: ask_alyf/ask_alyf/workspace/ask_alyf/ask_alyf.json
 #: ask_alyf/config/desktop.py:5
 msgid "Ask ALYF"
-msgstr "ALYF fragen"
+msgstr "Ask ALYF"
 
 #. Name of a DocType
 #: ask_alyf/ask_alyf/doctype/ask_alyf_checkpoint/ask_alyf_checkpoint.json
@@ -170,36 +170,36 @@ msgstr "Ask ALYF Checkpoint-Schreibvorgang"
 #: ask_alyf/ask_alyf/doctype/ask_alyf_conversation/ask_alyf_conversation.json
 #: ask_alyf/ask_alyf/workspace/ask_alyf/ask_alyf.json
 msgid "Ask ALYF Conversation"
-msgstr "ALYF-Fragen-Konversation"
+msgstr "Ask ALYF-Konversation"
 
 #. Name of a DocType
 #: ask_alyf/ask_alyf/doctype/ask_alyf_excluded_doctype/ask_alyf_excluded_doctype.json
 msgid "Ask ALYF Excluded DocType"
-msgstr "ALYF-Fragen-Ausgeschlossenes DocType"
+msgstr "Ask ALYF – ausgeschlossenes DocType"
 
 #. Title of the Module Onboarding 'Ask ALYF Onboarding'
 #: ask_alyf/ask_alyf/module_onboarding/ask_alyf_onboarding/ask_alyf_onboarding.json
 msgid "Ask ALYF Onboarding"
-msgstr "ALYF-Fragen-Onboarding"
+msgstr "Ask ALYF-Onboarding"
 
 #. Name of a DocType
 #. Label of a Link in the Ask ALYF Workspace
 #: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.json
 #: ask_alyf/ask_alyf/workspace/ask_alyf/ask_alyf.json
 msgid "Ask ALYF Settings"
-msgstr "ALYF-Fragen-Einstellungen"
+msgstr "Ask ALYF-Einstellungen"
 
 #. Name of a DocType
 #. Label of a Link in the Ask ALYF Workspace
 #: ask_alyf/ask_alyf/doctype/ask_alyf_skill/ask_alyf_skill.json
 #: ask_alyf/ask_alyf/workspace/ask_alyf/ask_alyf.json
 msgid "Ask ALYF Skill"
-msgstr "ALYF-Fragen-Skill"
+msgstr "Ask ALYF-Skill"
 
 #. Name of a role
 #: ask_alyf/ask_alyf/doctype/ask_alyf_conversation/ask_alyf_conversation.json
 msgid "Ask ALYF User"
-msgstr "ALYF-Fragen-Benutzer"
+msgstr "Ask ALYF-Benutzer"
 
 #: ask_alyf/public/js/ask_alyf.bundle.js:1168
 msgid "Ask ALYF could not finish processing this message. Please try again."
@@ -219,11 +219,11 @@ msgstr "Ask ALYF bearbeitet noch die vorherige Nachricht in dieser Konversation.
 
 #: ask_alyf/public/js/ask_alyf.bundle.js:976
 msgid "Ask ALYF is visible, but no API key/model is configured yet in Ask ALYF Settings."
-msgstr "ALYF-Fragen ist sichtbar, aber es wurde noch kein API-Schlüssel/Modell in ALYF-Fragen-Einstellungen konfiguriert."
+msgstr "Ask ALYF ist sichtbar, aber es wurde noch kein API-Schlüssel/Modell in Ask ALYF-Einstellungen konfiguriert."
 
 #: ask_alyf/public/js/ask_alyf.bundle.js:784
 msgid "Ask ALYF sections"
-msgstr "ALYF-Fragen-Abschnitte"
+msgstr "Ask ALYF-Abschnitte"
 
 #: ask_alyf/public/js/ask_alyf.bundle.js:1169
 msgid "Ask ALYF stopped processing this message. Please try again."
@@ -419,24 +419,24 @@ msgstr "Code-Zugriff ist auf installierte App-Verzeichnisse beschränkt."
 
 #: ask_alyf/ask_alyf/tools.py:129
 msgid "Code search is disabled in Ask ALYF Settings."
-msgstr "Code-Suche ist in den ALYF-Fragen-Einstellungen deaktiviert."
+msgstr "Code-Suche ist in den Ask ALYF-Einstellungen deaktiviert."
 
 #: ask_alyf/ask_alyf/agent.py:275
 msgid "Configure a model in Ask ALYF Settings before sending messages."
-msgstr "Konfigurieren Sie ein Modell in den ALYF-Fragen-Einstellungen, bevor Sie Nachrichten senden."
+msgstr "Konfigurieren Sie ein Modell in den Ask ALYF-Einstellungen, bevor Sie Nachrichten senden."
 
 #: ask_alyf/ask_alyf/tools.py:783
 msgid "Configure a vision model API key in Ask ALYF Settings."
-msgstr "Konfigurieren Sie einen Vision-Modell-API-Schlüssel in den ALYF-Fragen-Einstellungen."
+msgstr "Konfigurieren Sie einen Vision-Modell-API-Schlüssel in den Ask ALYF-Einstellungen."
 
 #: ask_alyf/ask_alyf/tools.py:785
 msgid "Configure a vision model in Ask ALYF Settings."
-msgstr "Konfigurieren Sie ein Vision-Modell in den ALYF-Fragen-Einstellungen."
+msgstr "Konfigurieren Sie ein Vision-Modell in den Ask ALYF-Einstellungen."
 
 #: ask_alyf/ask_alyf/agent.py:268
 #: ask_alyf/ask_alyf/test_tool_error_middleware.py:104
 msgid "Configure an API key in Ask ALYF Settings before sending messages."
-msgstr "Konfigurieren Sie einen API-Schlüssel in den ALYF-Fragen-Einstellungen, bevor Sie Nachrichten senden."
+msgstr "Konfigurieren Sie einen API-Schlüssel in den Ask ALYF-Einstellungen, bevor Sie Nachrichten senden."
 
 #: ask_alyf/public/js/ask_alyf.bundle.js:685
 #: ask_alyf/public/js/ask_alyf.bundle.js:707
@@ -1072,7 +1072,7 @@ msgstr "Nur lesende SQL-Anweisungen sind erlaubt."
 
 #: ask_alyf/public/js/ask_alyf.bundle.js:759
 msgid "Open Ask ALYF"
-msgstr "ALYF-Fragen öffnen"
+msgstr "Ask ALYF öffnen"
 
 #: ask_alyf/ask_alyf/toolset.py:1130
 #, python-brace-format
@@ -1717,7 +1717,7 @@ msgstr "Unbenannte Konversation"
 #. Title of an Onboarding Step
 #: ask_alyf/ask_alyf/onboarding_step/update_ask_alyf_settings/update_ask_alyf_settings.json
 msgid "Update Ask ALYF Settings"
-msgstr "ALYF-Fragen-Einstellungen aktualisieren"
+msgstr "Ask ALYF-Einstellungen aktualisieren"
 
 #: ask_alyf/ask_alyf/toolset.py:877
 msgid "Update proposal needs correction."
@@ -1828,7 +1828,7 @@ msgstr "Welche Benutzer haben sich heute angemeldet?"
 #: ask_alyf/ask_alyf/api.py:786 ask_alyf/ask_alyf/api.py:891
 #: ask_alyf/ask_alyf/api.py:1010 ask_alyf/ask_alyf/api.py:1048
 msgid "You do not have access to Ask ALYF."
-msgstr "Sie haben keinen Zugriff auf ALYF-Fragen."
+msgstr "Sie haben keinen Zugriff auf Ask ALYF."
 
 #: ask_alyf/ask_alyf/api.py:1017
 #, python-brace-format
@@ -1933,3 +1933,35 @@ msgstr "{0} Zeilen"
 msgid "{0} steps"
 msgstr "{0} Schritte"
 
+#: ask_alyf/public/js/ask_alyf.bundle.js:998
+msgid "Ask ALYF uses AI and can make mistakes, including with numbers and information about people."
+msgstr "Ask ALYF nutzt KI und kann Fehler machen, auch bei Zahlen und Informationen über Personen."
+
+#. Label of a Check field in DocType 'Ask ALYF Settings'
+#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.json
+msgid "Enable Tracing"
+msgstr "Tracing aktivieren"
+
+#. Label of a Password field in DocType 'Ask ALYF Settings'
+#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.json
+msgid "LangSmith API Key"
+msgstr "LangSmith-API-Schlüssel"
+
+#. Label of a Data field in DocType 'Ask ALYF Settings'
+#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.json
+msgid "LangSmith Endpoint"
+msgstr "LangSmith-Endpunkt"
+
+#. Label of a Data field in DocType 'Ask ALYF Settings'
+#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.json
+msgid "LangSmith Project"
+msgstr "LangSmith-Projekt"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:2191
+msgid "Sending..."
+msgstr "Sende..."
+
+#. Label of a Tab Break field in DocType 'Ask ALYF Settings'
+#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.json
+msgid "Tracing"
+msgstr "Tracing"

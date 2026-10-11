@@ -1933,3 +1933,35 @@ msgstr "{0} 行"
 msgid "{0} steps"
 msgstr "{0} ステップ"
 
+#: ask_alyf/public/js/ask_alyf.bundle.js:998
+msgid "Ask ALYF uses AI and can make mistakes, including with numbers and information about people."
+msgstr "Ask ALYF は AI を利用しており、数値や人物に関する情報などについて誤りを犯す可能性があります。"
+
+#. Label of a Check field in DocType 'Ask ALYF Settings'
+#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.json
+msgid "Enable Tracing"
+msgstr "トレーシングを有効にする"
+
+#. Label of a Password field in DocType 'Ask ALYF Settings'
+#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.json
+msgid "LangSmith API Key"
+msgstr "LangSmith API キー"
+
+#. Label of a Data field in DocType 'Ask ALYF Settings'
+#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.json
+msgid "LangSmith Endpoint"
+msgstr "LangSmith エンドポイント"
+
+#. Label of a Data field in DocType 'Ask ALYF Settings'
+#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.json
+msgid "LangSmith Project"
+msgstr "LangSmith プロジェクト"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:2191
+msgid "Sending..."
+msgstr "送信中..."
+
+#. Label of a Tab Break field in DocType 'Ask ALYF Settings'
+#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.json
+msgid "Tracing"
+msgstr "トレーシング"
