@@ -1935,3 +1935,34 @@ msgstr "{0} সারি"
 msgid "{0} steps"
 msgstr "{0}টি ধাপ"
 
+#: ask_alyf/public/js/ask_alyf.bundle.js:1003
+msgid "Ask ALYF uses AI and can make mistakes, including with numbers and information about people."
+msgstr "Ask ALYF AI ব্যবহার করে এবং ভুল করতে পারে, যার মধ্যে সংখ্যা এবং ব্যক্তিদের সম্পর্কে তথ্য অন্তর্ভুক্ত।"
+
+#. Label of the enable_tracing (Check) field in DocType 'Ask ALYF Settings'
+#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.json
+msgid "Enable Tracing"
+msgstr "ট্রেসিং সক্ষম করুন"
+
+#. Label of the langsmith_api_key (Password) field in DocType 'Ask ALYF
+#. Settings'
+#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.json
+msgid "LangSmith API Key"
+msgstr "LangSmith API কী"
+
+#. Label of the langsmith_endpoint (Data) field in DocType 'Ask ALYF
+#. Settings'
+#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.json
+msgid "LangSmith Endpoint"
+msgstr "LangSmith এন্ডপয়েন্ট"
+
+#. Label of the langsmith_project (Data) field in DocType 'Ask ALYF
+#. Settings'
+#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.json
+msgid "LangSmith Project"
+msgstr "LangSmith প্রকল্প"
+
+#. Label of the tracing_tab (Tab Break) field in DocType 'Ask ALYF Settings'
+#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.json
+msgid "Tracing"
+msgstr "ট্রেসিং"
