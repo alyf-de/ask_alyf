@@ -57,8 +57,7 @@
    "description": "Optional. Overrides the provider's default endpoint, e.g. for OpenAI-compatible APIs.",
    "fieldname": "base_url",
    "fieldtype": "Data",
-   "label": "Base URL",
-   "mandatory_depends_on": "eval: doc.llm_provider == \"OpenAI Compatible\""
+   "label": "Base URL"
   },
   {
    "fieldname": "api_key",
@@ -162,15 +161,13 @@
    "description": "Optional. Overrides the provider's default endpoint, e.g. for OpenAI-compatible APIs.",
    "fieldname": "vision_base_url",
    "fieldtype": "Data",
-   "label": "Vision Base URL",
-   "mandatory_depends_on": "eval: doc.vision_llm_provider == \"OpenAI Compatible\" && !doc.vision_model_is_chat_model"
+   "label": "Vision Base URL"
   },
   {
    "depends_on": "eval:!doc.vision_model_is_chat_model",
    "fieldname": "vision_api_key",
    "fieldtype": "Password",
-   "label": "Vision API Key",
-   "mandatory_depends_on": "eval:!doc.vision_model_is_chat_model"
+   "label": "Vision API Key"
   },
   {
    "depends_on": "eval:!doc.vision_model_is_chat_model && doc.vision_llm_provider",
@@ -219,7 +216,7 @@
  "grid_page_length": 50,
  "issingle": 1,
  "links": [],
- "modified": "2026-10-11 22:17:47.391644",
+ "modified": "2026-10-12 03:59:35.752315",
  "modified_by": "Administrator",
  "module": "Ask ALYF",
  "name": "Ask ALYF Settings",

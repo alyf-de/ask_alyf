@@ -8,7 +8,7 @@ import unittest
 from concurrent.futures import ThreadPoolExecutor
 from types import SimpleNamespace
 from typing import Any
-from unittest.mock import MagicMock, patch
+from unittest.mock import AsyncMock, MagicMock, patch
 
 import frappe
 from frappe.tests import UnitTestCase
@@ -170,6 +170,58 @@ class UnitTestCodeTools(UnitTestCase):
 		model = build_chat_model(FakeSettings(allow_code_search=False, reasoning_effort="high"))
 
 		self.assertEqual(model.reasoning_effort, "high")
+
+	def run_document_extraction(self, settings) -> tuple[dict[str, Any], MagicMock]:
+		"""Run `extract_document_data` with the file and the provider mocked out."""
+		model = MagicMock()
+		model.ainvoke = AsyncMock(return_value=AIMessage(content='```json\n{"supplier": "ACME"}\n```'))
+		file_doc = SimpleNamespace(name="FILE-0001", file_name="invoice.pdf", get_full_path=lambda: "")
+		images = [{"mime_type": "image/png", "data": "AAAA"}]
+
+		with (
+			patch.object(tools, "get_settings", return_value=settings),
+			patch.object(tools, "_get_accessible_file_doc", return_value=file_doc),
+			patch.object(tools, "_file_to_base64_images", return_value=(images, 1)),
+			patch("ask_alyf.ask_alyf.agent.init_chat_model", return_value=model) as init_model,
+		):
+			result = asyncio.run(tools.extract_document_data("FILE-0001", "Extract the supplier."))
+
+		[messages] = model.ainvoke.call_args.args
+		[message] = messages
+		self.assertIsInstance(message, HumanMessage)
+		text_part, image_part = message.content
+		self.assertIn("Extract the supplier.", text_part["text"])
+		self.assertEqual(image_part["image_url"]["url"], "data:image/png;base64,AAAA")
+		self.assertEqual(result["extracted_data"], {"supplier": "ACME"})
+		self.assertEqual(result["file_id"], "FILE-0001")
+		return result, init_model
+
+	def test_document_extraction_uses_chat_model_when_shared(self):
+		settings = FakeSettings(allow_code_search=False, passwords={"vision_api_key": "vision-key"})
+		settings.vision_model_is_chat_model = 1
+		settings.llm_provider = "anthropic"
+		settings.model = "claude-test"
+		settings.base_url = "https://chat.example.test"
+
+		_result, init_model = self.run_document_extraction(settings)
+
+		init_model.assert_called_once_with(
+			"claude-test",
+			model_provider="anthropic",
+			api_key="test-key",
+			base_url="https://chat.example.test",
+		)
+
+	def test_document_extraction_uses_separate_vision_model(self):
+		settings = FakeSettings(allow_code_search=False, passwords={"vision_api_key": "vision-key"})
+		settings.vision_model_is_chat_model = 0
+		settings.vision_llm_provider = "google_genai"
+		settings.vision_model = "gemini-test"
+		settings.vision_base_url = ""
+
+		_result, init_model = self.run_document_extraction(settings)
+
+		init_model.assert_called_once_with("gemini-test", model_provider="google_genai", api_key="vision-key")
 
 	def test_build_chat_model_leaves_temperature_to_the_provider(self):
 		# Newer Anthropic models reject any temperature with a 400 error.
