@@ -339,6 +339,18 @@ def init_settings_chat_model(
 	return init_chat_model(model, model_provider=provider, **kwargs)
 
 
+# The LangChain argument that takes the Reasoning Effort setting, per provider.
+# Providers missing here get no reasoning argument.
+REASONING_EFFORT_ARGUMENTS = {
+	"openai": "reasoning_effort",
+	"anthropic": "effort",
+	"google_genai": "thinking_level",
+}
+
+# Gemini's thinking levels stop at "high".
+GEMINI_THINKING_LEVELS = {"xhigh": "high", "max": "high"}
+
+
 def build_chat_model(settings) -> BaseChatModel:
 	"""Build the chat model configured in Ask ALYF Settings.
 
@@ -348,7 +360,12 @@ def build_chat_model(settings) -> BaseChatModel:
 	kwargs = {}
 	if provider == "openai":
 		kwargs["use_responses_api"] = True
-		kwargs["reasoning_effort"] = (settings.reasoning_effort or "").strip() or None
+
+	reasoning_effort = (settings.reasoning_effort or "").strip()
+	if provider == "google_genai":
+		reasoning_effort = GEMINI_THINKING_LEVELS.get(reasoning_effort, reasoning_effort)
+	if reasoning_effort and provider in REASONING_EFFORT_ARGUMENTS:
+		kwargs[REASONING_EFFORT_ARGUMENTS[provider]] = reasoning_effort
 
 	return init_settings_chat_model(
 		provider,

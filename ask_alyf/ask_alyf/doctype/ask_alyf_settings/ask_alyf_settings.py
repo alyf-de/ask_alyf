@@ -110,7 +110,9 @@ class AskALYFSettings(Document):
 			ModelConfiguration.CHAT,
 			unsupported_message=_("The selected Chat Model ({0}) does not support function calling."),
 		)
-		warn_if_unsupported_reasoning_effort(self.model, self.get("reasoning_effort"))
+		# Only LangChain's OpenAI model data lists the supported reasoning levels.
+		if self.llm_provider == "openai":
+			warn_if_unsupported_reasoning_effort(self.model, self.get("reasoning_effort"))
 
 		if self.vision_model_is_chat_model:
 			validate_model_selection(

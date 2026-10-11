@@ -176,7 +176,8 @@
    "label": "Vision Model"
   },
   {
-   "depends_on": "eval:doc.llm_provider == \"openai\"",
+   "depends_on": "eval:[\"openai\", \"anthropic\", \"google_genai\"].includes(doc.llm_provider)",
+   "description": "Gemini uses \"high\" for \"xhigh\" and \"max\".",
    "fieldname": "reasoning_effort",
    "fieldtype": "Select",
    "label": "Reasoning Effort",
@@ -216,7 +217,7 @@
  "grid_page_length": 50,
  "issingle": 1,
  "links": [],
- "modified": "2026-10-12 03:59:35.752315",
+ "modified": "2026-10-12 04:05:12.521622",
  "modified_by": "Administrator",
  "module": "Ask ALYF",
  "name": "Ask ALYF Settings",

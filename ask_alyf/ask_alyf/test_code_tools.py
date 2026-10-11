@@ -223,6 +223,43 @@ class UnitTestCodeTools(UnitTestCase):
 
 		init_model.assert_called_once_with("gemini-test", model_provider="google_genai", api_key="vision-key")
 
+	def build_model_with_reasoning_effort(self, provider: str, model: str, reasoning_effort: str):
+		settings = FakeSettings(allow_code_search=False, reasoning_effort=reasoning_effort)
+		settings.llm_provider = provider
+		settings.model = model
+		return build_chat_model(settings)
+
+	def test_build_chat_model_passes_reasoning_effort_as_anthropic_effort(self):
+		model = self.build_model_with_reasoning_effort("anthropic", "claude-test", "max")
+
+		payload = model._get_request_payload([HumanMessage(content="hi")])
+		self.assertEqual(payload["output_config"], {"effort": "max"})
+		self.assertNotIn("reasoning_effort", payload)
+
+	def test_build_chat_model_passes_reasoning_effort_as_gemini_thinking_level(self):
+		self.assertEqual(
+			self.build_model_with_reasoning_effort("google_genai", "gemini-test", "low").thinking_level,
+			"low",
+		)
+		# Gemini has no level above "high".
+		for reasoning_effort in ("xhigh", "max"):
+			self.assertEqual(
+				self.build_model_with_reasoning_effort(
+					"google_genai", "gemini-test", reasoning_effort
+				).thinking_level,
+				"high",
+			)
+
+	def test_build_chat_model_skips_reasoning_effort_for_unmapped_providers(self):
+		model = self.build_model_with_reasoning_effort("deepseek", "deepseek-test", "high")
+
+		self.assertIsNone(model.reasoning_effort)
+
+	def test_build_chat_model_leaves_reasoning_effort_unset_when_blank(self):
+		model = self.build_model_with_reasoning_effort("anthropic", "claude-test", "")
+
+		self.assertIsNone(model.effort)
+
 	def test_build_chat_model_leaves_temperature_to_the_provider(self):
 		# Newer Anthropic models reject any temperature with a 400 error.
 		settings = FakeSettings(allow_code_search=False)

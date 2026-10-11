@@ -328,6 +328,7 @@ class UnitTestAskALYFSettings(UnitTestCase):
 		settings = ask_alyf_settings.AskALYFSettings(
 			{
 				"doctype": "Ask ALYF Settings",
+				"llm_provider": "openai",
 				"model": "gpt-5",
 				"reasoning_effort": "max",
 			}
@@ -340,6 +341,24 @@ class UnitTestAskALYFSettings(UnitTestCase):
 			settings.validate()
 
 		warn.assert_called_once_with("gpt-5", "max")
+
+	def test_validate_does_not_warn_about_reasoning_effort_for_other_providers(self):
+		settings = ask_alyf_settings.AskALYFSettings(
+			{
+				"doctype": "Ask ALYF Settings",
+				"llm_provider": "anthropic",
+				"model": "claude-opus-4-5",
+				"reasoning_effort": "max",
+			}
+		)
+
+		with (
+			patch.object(ask_alyf_settings, "is_available_model", return_value=True),
+			patch.object(ask_alyf_settings.frappe, "msgprint") as msgprint,
+		):
+			settings.validate()
+
+		msgprint.assert_not_called()
 
 
 class IntegrationTestAskALYFSettings(IntegrationTestCase):
