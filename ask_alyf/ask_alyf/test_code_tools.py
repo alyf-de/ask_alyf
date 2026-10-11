@@ -58,7 +58,7 @@ class FakeSettings(SimpleNamespace):
 			allow_code_search=allow_code_search,
 			system_prompt="",
 			model="gpt-test",
-			llm_provider="OpenAI",
+			llm_provider="openai",
 			base_url="",
 			reasoning_effort=reasoning_effort,
 			enable_tracing=enable_tracing,
@@ -170,6 +170,30 @@ class UnitTestCodeTools(UnitTestCase):
 		model = build_chat_model(FakeSettings(allow_code_search=False, reasoning_effort="high"))
 
 		self.assertEqual(model.reasoning_effort, "high")
+
+	def test_build_chat_model_leaves_temperature_to_the_provider(self):
+		# Newer Anthropic models reject any temperature with a 400 error.
+		settings = FakeSettings(allow_code_search=False)
+		settings.llm_provider = "anthropic"
+		settings.model = "claude-test"
+
+		model = build_chat_model(settings)
+
+		self.assertIsNone(model.temperature)
+		self.assertNotIn("temperature", model._get_request_payload([HumanMessage(content="hi")]))
+
+	def test_build_chat_model_uses_configured_provider(self):
+		settings = FakeSettings(allow_code_search=False, reasoning_effort="high")
+		settings.llm_provider = "anthropic"
+		settings.model = "claude-test"
+		settings.base_url = "https://example.test"
+
+		model = build_chat_model(settings)
+
+		self.assertEqual(type(model).__name__, "ChatAnthropic")
+		self.assertEqual(model.model, "claude-test")
+		self.assertEqual(model.anthropic_api_url, "https://example.test")
+		self.assertEqual(model.anthropic_api_key.get_secret_value(), "test-key")
 
 	def test_subagents_register_source_code_analyzer_only_when_code_search_enabled(self):
 		raw_code_tool_names = {"search_code", "read_code_file", "ls", "find", "grep"}
@@ -541,16 +565,27 @@ class UnitTestCodeTools(UnitTestCase):
 		planner = next(sub for sub in runner._build_subagents() if sub["name"] == "document-planner")
 		self.assertIs(planner["response_format"], DocumentPlannerResult)
 
-	def test_harness_profile_excludes_write_edit_execute(self):
+	def test_harness_profile_excludes_write_edit_execute_for_any_provider(self):
+		# The same lookup `create_deep_agent` does for a pre-built model.
+		from deepagents.profiles.harness.harness_profiles import _harness_profile_for_model
+
 		from ask_alyf.ask_alyf.agent import _ensure_ask_alyf_harness_profile
 
 		self.assertEqual(
 			ASK_ALYF_EXCLUDED_TOOLS,
 			frozenset({"write_file", "edit_file", "execute"}),
 		)
-		# Registration is idempotent and safe to call repeatedly.
-		_ensure_ask_alyf_harness_profile()
-		_ensure_ask_alyf_harness_profile()
+		for provider, model_name in (("openai", "gpt-test"), ("anthropic", "claude-test")):
+			settings = FakeSettings(allow_code_search=False)
+			settings.llm_provider = provider
+			settings.model = model_name
+			model = build_chat_model(settings)
+			# Registration is idempotent and safe to call repeatedly.
+			_ensure_ask_alyf_harness_profile(model)
+			_ensure_ask_alyf_harness_profile(model)
+
+			profile = _harness_profile_for_model(model, None)
+			self.assertTrue(ASK_ALYF_EXCLUDED_TOOLS <= profile.excluded_tools, provider)
 
 	def test_build_permissions_denies_write_everywhere(self):
 		from deepagents import FilesystemPermission

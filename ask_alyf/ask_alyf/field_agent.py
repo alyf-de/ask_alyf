@@ -140,7 +140,7 @@ def run_field_agent(
 		in_private_frappe_context(getattr(toolset, method_name)) for method_name in FIELD_AGENT_TOOLS
 	]
 
-	model = build_chat_model(settings, temperature=0.1)
+	model = build_chat_model(settings)
 	agent = build_stateless_agent(model, tool_defs, system_prompt=instructions)
 
 	try:

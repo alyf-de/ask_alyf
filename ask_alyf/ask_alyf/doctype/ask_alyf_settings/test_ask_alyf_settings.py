@@ -32,7 +32,7 @@ class FakeSettings(SimpleNamespace):
 class UnitTestAskALYFSettings(UnitTestCase):
 	def test_get_available_models_uses_chat_configuration_by_default(self):
 		settings = FakeSettings(
-			llm_provider="OpenAI",
+			llm_provider="openai",
 			base_url=None,
 			passwords={"api_key": "chat-key"},
 		)
@@ -56,7 +56,7 @@ class UnitTestAskALYFSettings(UnitTestCase):
 
 	def test_get_available_models_uses_vision_configuration_when_requested(self):
 		settings = FakeSettings(
-			vision_llm_provider="OpenAI Compatible",
+			vision_llm_provider="openai",
 			vision_base_url="https://example.test/v1",
 			passwords={"vision_api_key": "vision-key"},
 		)
@@ -80,6 +80,23 @@ class UnitTestAskALYFSettings(UnitTestCase):
 			api_base="https://example.test/v1",
 		)
 		self.assertEqual(models, [{"id": "gpt-4.1-mini"}])
+
+	def test_get_available_models_maps_provider_to_any_llm_name(self):
+		settings = FakeSettings(
+			llm_provider="google_genai",
+			base_url=None,
+			passwords={"api_key": "chat-key"},
+		)
+		client = SimpleNamespace(list_models=lambda: [SimpleNamespace(id="gemini-test")])
+
+		with (
+			patch.object(ask_alyf_settings.frappe, "get_single", return_value=settings),
+			patch.object(ask_alyf_settings.AnyLLM, "create", return_value=client) as create_client,
+		):
+			models = ask_alyf_settings.get_available_models()
+
+		create_client.assert_called_once_with(provider="gemini", api_key="chat-key", api_base=None)
+		self.assertEqual(models, [{"id": "gemini-test"}])
 
 	def test_get_available_models_returns_empty_when_configuration_is_blank(self):
 		settings = FakeSettings(
@@ -143,6 +160,28 @@ class UnitTestAskALYFSettings(UnitTestCase):
 			ask_alyf_settings.parse_model_configuration("vision"),
 			ask_alyf_settings.ModelConfiguration.VISION,
 		)
+
+	def test_validate_rejects_unknown_llm_provider(self):
+		settings = ask_alyf_settings.AskALYFSettings(
+			{
+				"doctype": "Ask ALYF Settings",
+				"llm_provider": "OpenAI Compatible",
+			}
+		)
+
+		with self.assertRaises(frappe.ValidationError):
+			settings.validate()
+
+	def test_validate_accepts_known_llm_provider(self):
+		settings = ask_alyf_settings.AskALYFSettings(
+			{
+				"doctype": "Ask ALYF Settings",
+				"llm_provider": "anthropic",
+				"vision_llm_provider": "google_genai",
+			}
+		)
+
+		settings.validate()
 
 	def test_validate_rejects_known_chat_model_without_function_calling(self):
 		settings = ask_alyf_settings.AskALYFSettings(
