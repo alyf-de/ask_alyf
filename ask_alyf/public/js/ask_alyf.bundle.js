@@ -2644,6 +2644,7 @@ import "./field_agent";
 				const originalCall = frappe.request.call;
 				const originalThrow = frappe.throw;
 				frappe.msgprint = (msg, ...rest) => {
+					if (!fieldInProgress) return originalMsgprint(msg, ...rest);
 					if (msg && typeof msg === "object" && !Array.isArray(msg))
 						msg = { ...msg, re_route: false };
 					const dialog = originalMsgprint(msg, ...rest);
@@ -2678,7 +2679,6 @@ import "./field_agent";
 					frappe.msgprint = originalMsgprint;
 					frappe.request.call = originalCall;
 					frappe.throw = originalThrow;
-					if (frappe.msg_dialog) frappe.msg_dialog.custom_onhide = null;
 				}
 				const result = { doctype: doc.doctype, docname: doc.name };
 				if (omittedFields.length) result.omitted_fields = omittedFields;
