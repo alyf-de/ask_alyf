@@ -141,7 +141,7 @@ class ask_alyfRuntime:
 	run_id: str = ""
 	stop_requested: bool = False
 
-	def begin_tool_call(self, call_id: str, name: str, args: dict[str, Any], label: str):
+	def begin_tool_call(self, call_id: str, name: str, args: dict[str, Any], label: str, detail: str = ""):
 		"""Announce a tool call that is starting, and log it for the transcript.
 
 		Resuming an interrupt re-runs a whole tool node, so a call that was
@@ -149,7 +149,7 @@ class ask_alyfRuntime:
 		"""
 		step = self._find_tool_call(call_id)
 		if step is None:
-			step = {"call_id": call_id, "name": name, "args": args, "label": label}
+			step = {"call_id": call_id, "name": name, "args": args, "label": label, "detail": detail}
 			self.tool_calls.append(step)
 
 		step["status"] = "running"
