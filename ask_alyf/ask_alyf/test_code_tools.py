@@ -25,6 +25,9 @@ from langgraph.errors import GraphInterrupt
 from ask_alyf.ask_alyf import tools
 from ask_alyf.ask_alyf.agent import (
 	ASK_ALYF_EXCLUDED_TOOLS,
+	TOOL_CALL_ARGS_LIMIT,
+	_summarize_tool_args,
+	_tool_call_detail,
 	_tool_call_label,
 	ask_alyfAgentRunner,
 	build_chat_model,
@@ -782,7 +785,9 @@ class UnitTestCodeTools(UnitTestCase):
 			result = runner._run_graph({"messages": []})
 
 		self.assertEqual(result["response"], "Done.")
-		log_error.assert_called_once_with("Ask ALYF LangSmith Tracing Error")
+		log_error.assert_called_once()
+		self.assertEqual(log_error.call_args.args[0], "Ask ALYF LangSmith Tracing Error")
+		self.assertIn("RuntimeError: langsmith down", log_error.call_args.args[1])
 		self.assertEqual(runner.checkpointer.flush_count, 1)
 
 	def test_run_graph_keeps_the_invoke_error_when_langsmith_flush_also_fails(self):
@@ -839,7 +844,9 @@ class UnitTestCodeTools(UnitTestCase):
 		self.assertEqual(runner.checkpointer.deleted_threads, ["TEST-CONVERSATION"])
 		savepoint.assert_called_once_with("ask_alyf_operation_resume")
 		rollback.assert_called_once_with(save_point="ask_alyf_operation_resume")
-		log_error.assert_called_once_with("Ask ALYF Action Follow-Up Error")
+		log_error.assert_called_once()
+		self.assertEqual(log_error.call_args.args[0], "Ask ALYF Action Follow-Up Error")
+		self.assertIn("RuntimeError: boom", log_error.call_args.args[1])
 		clear_messages.assert_called_once_with()
 
 	def test_resume_still_raises_when_the_operation_did_not_commit(self):
@@ -1075,6 +1082,45 @@ class UnitTestCodeTools(UnitTestCase):
 		for (name, args), expected in cases:
 			with self.subTest(tool=name):
 				self.assertEqual(_tool_call_label(name, args), expected)
+
+	def test_source_code_calls_say_which_file_or_pattern_they_are_on(self):
+		cases = [
+			(
+				("grep", {"pattern": "on_submit", "path": "/source/hrms/hrms/hr"}),
+				'Searching for "on_submit" in hrms/hrms/hr',
+			),
+			(("grep", {"pattern": "working_time", "path": "/source"}), 'Searching for "working_time"'),
+			(
+				("grep", {"pattern": "working_time", "path": "/source", "glob": "**/*.json"}),
+				'Searching for "working_time" in **/*.json',
+			),
+			(
+				("grep", {"pattern": "submit", "path": "/source/frappe/frappe/model", "glob": "*.py"}),
+				'Searching for "submit" in frappe/frappe/model/*.py',
+			),
+			(
+				(
+					"grep",
+					{"pattern": "submit", "path": "/source/frappe/frappe/model/document.py", "glob": "*.py"},
+				),
+				'Searching for "submit" in frappe/frappe/model/document.py',
+			),
+			(("glob", {"pattern": "**/*.json", "path": "/source/erpnext/"}), "Finding **/*.json in erpnext"),
+			(
+				("read_file", {"file_path": "/source/frappe/model/document.py", "offset": 200, "limit": 50}),
+				"Reading frappe/model/document.py, lines 201-250",
+			),
+			(("read_file", {"file_path": "/source/frappe/hooks.py"}), "Reading frappe/hooks.py, lines 1-100"),
+			(("ls", {"path": "/source/"}), "Listing /"),
+			(("get_list", {"doctype": "ToDo"}), ""),
+		]
+		for (name, args), expected in cases:
+			with self.subTest(tool=name, args=args):
+				self.assertEqual(_tool_call_detail(name, _summarize_tool_args(args)), expected)
+
+	def test_a_long_search_pattern_is_trimmed_like_the_arguments(self):
+		detail = _tool_call_detail("grep", _summarize_tool_args({"pattern": "x" * 5000}))
+		self.assertLess(len(detail), TOOL_CALL_ARGS_LIMIT + 50)
 
 	def test_an_unmapped_tool_still_gets_a_readable_label(self):
 		self.assertEqual(_tool_call_label("some_new_tool", {}), "Some new tool")
