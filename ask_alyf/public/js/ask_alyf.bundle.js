@@ -2618,6 +2618,7 @@ import "./field_agent";
 					for (const [fieldname, childDoctype] of tables) {
 						const rows = source?.[fieldname];
 						if (!Array.isArray(rows)) continue;
+						frappe.model.clear_table(target, fieldname);
 						let rowNumber = 0;
 						for (const row of rows) {
 							rowNumber += 1;
