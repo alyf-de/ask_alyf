@@ -81,7 +81,7 @@ class UnitTestFieldAgent(FrappeTestCase):
 		):
 			mock_settings.return_value = SimpleNamespace(
 				model="gpt-test",
-				llm_provider="OpenAI",
+				llm_provider="openai",
 				base_url="",
 				reasoning_effort="",
 				get_password=lambda _f, raise_exception=False: "test-key",
@@ -115,7 +115,7 @@ class UnitTestFieldAgent(FrappeTestCase):
 		):
 			mock_settings.return_value = SimpleNamespace(
 				model="gpt-test",
-				llm_provider="OpenAI",
+				llm_provider="openai",
 				base_url="",
 				reasoning_effort="",
 				get_password=lambda _f, raise_exception=False: "test-key",
@@ -145,7 +145,7 @@ class UnitTestFieldAgent(FrappeTestCase):
 		):
 			mock_settings.return_value = SimpleNamespace(
 				model="gpt-test",
-				llm_provider="OpenAI",
+				llm_provider="openai",
 				base_url="",
 				reasoning_effort="",
 				get_password=lambda _f, raise_exception=False: "test-key",

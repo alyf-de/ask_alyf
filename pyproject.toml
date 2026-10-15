@@ -9,8 +9,13 @@ requires-python = ">=3.11,<3.12"
 readme = "README.md"
 dynamic = ["version"]
 dependencies = [
+<<<<<<< HEAD
     # "frappe~=15.0.0" # Installed and managed by bench.
     "any-llm-sdk",
+=======
+    # "frappe~=16.0.0" # Installed and managed by bench.
+    "any-llm-sdk[mistral]",
+>>>>>>> 9f16aea (feat: support Anthropic, DeepSeek, Mistral and Gemini models (#172))
     "deepagents==0.6.12",
     # Imported directly (langchain.agents, langchain_core.messages); pinned to
     # the ranges required by deepagents/langchain-openai so a downstream
@@ -19,6 +24,11 @@ dependencies = [
     "langchain-core>=1.4.9,<2.0.0",
     "langgraph>=1.2.5,<1.3.0",
     "langchain-openai==1.4.1",
+    # Chat model integrations offered as LLM Provider in Ask ALYF Settings.
+    "langchain-anthropic>=1.4.8,<2.0.0",
+    "langchain-deepseek>=1.1.1,<2.0.0",
+    "langchain-google-genai>=4.2.7,<5.0.0",
+    "langchain-mistralai>=1.1.6,<2.0.0",
     "litellm>=1.83.0",
     "pathspec>=1.0.0,<2",
     "pymupdf",
