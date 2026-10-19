@@ -2,7 +2,7 @@ import frappe
 
 
 def ensure_erpnext_report_skill():
-	"""Install the ERPNext report skill once. Skip when ERPNext is absent or the skill was edited."""
+	"""Install the ERPNext report skill once. Skip when ERPNext is absent or the skill already exists."""
 	if "erpnext" not in frappe.get_installed_apps():
 		return
 	if frappe.db.exists("Ask ALYF Skill", REPORT_SKILL_NAME):
