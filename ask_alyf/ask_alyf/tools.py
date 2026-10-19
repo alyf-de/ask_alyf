@@ -429,22 +429,6 @@ def get_report_filters(report_name: str) -> dict[str, Any]:
 	}
 
 
-def _cap_report_rows(payload):
-	rows = payload.get("result")
-	if not isinstance(rows, list) or len(rows) <= MAX_REPORT_ROWS:
-		return payload
-	head = rows[: MAX_REPORT_ROWS - 2]
-	omitted = len(rows) - MAX_REPORT_ROWS
-	payload["result"] = [
-		*head,
-		{"_truncated": f"{omitted} rows omitted"},
-		*rows[-2:],
-	]
-	payload["truncated"] = True
-	payload["row_count"] = len(rows)
-	return payload
-
-
 def _builder_filters(report_name, applied_filters, filter_rows, js_filters):
 	"""Keep known fieldnames and rewrite MultiSelectList values to `["in", values]`.
 
@@ -485,18 +469,39 @@ def _execute_report(report_name, applied_filters, meta, are_default_filters):
 			user=frappe.session.user,
 			as_dict=True,
 		)
-		return _cap_report_rows({"result": result, "columns": columns})
+		fetched_all = len(result) <= MAX_REPORT_ROWS
+		if fetched_all:
+			return {"result": result, "columns": columns}
+		return {
+			"result": [
+				*result[: MAX_REPORT_ROWS - 1],
+				{"_truncated": "more rows exist; total unknown"},
+			],
+			"columns": columns,
+			"truncated": True,
+		}
+
 	from frappe.desk.query_report import run
 
-	return _cap_report_rows(
-		run(
-			report_name=report_name,
-			filters=applied_filters,
-			ignore_prepared_report=True,  # always rebuild the report
-			js_filters=meta["js_filters"],
-			are_default_filters=are_default_filters,
-		)
+	payload = run(
+		report_name=report_name,
+		filters=applied_filters,
+		ignore_prepared_report=True,  # always rebuild the report
+		js_filters=meta["js_filters"],
+		are_default_filters=are_default_filters,
 	)
+	rows = payload.get("result")
+	if not isinstance(rows, list) or len(rows) <= MAX_REPORT_ROWS:
+		return payload
+	omitted = len(rows) - MAX_REPORT_ROWS
+	payload["result"] = [
+		*rows[: MAX_REPORT_ROWS - 2],
+		{"_truncated": f"{omitted} rows omitted"},
+		*rows[-2:],
+	]
+	payload["truncated"] = True
+	payload["row_count"] = len(rows)
+	return payload
 
 
 def run_report(
