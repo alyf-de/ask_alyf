@@ -83,13 +83,43 @@ def read_filter_objects(script: str) -> list[dict[str, Any]]:
 		for token in tokenize(script, jsx=False, dotted=True)
 		if token.type not in ("linecomment", "multilinecomment")
 	]
-	rows = []
-	for index, token in enumerate(tokens):
-		if token.value != "{":
+	rows, index, count = [], 0, len(tokens)
+	while index < count:
+		value = tokens[index].value
+		# filters: [...] or filters = [...] is the start of a list of filters.
+		if (
+			value == "filters"
+			and token_value(tokens, index + 1) in (":", "=")
+			and token_value(tokens, index + 2) == "["
+		):
+			index += 2
+		# .filters.push(...) or ["filters"].push(...) is the start of a list of filters.
+		elif (
+			value == "push"
+			and token_value(tokens, index - 1) == "."
+			and token_value(tokens, index + 1) == "("
+			and (
+				token_value(tokens, index - 2) == "filters"
+				or (
+					token_value(tokens, index - 2) == "]"
+					and unquote_string(token_value(tokens, index - 3)) == "filters"
+				)
+			)
+		):
+			index += 1
+		else:
+			index += 1
 			continue
-		row = read_filter_object(tokens, index)
-		if row:
-			rows.append(row)
+		index, depth = index + 1, 1
+		while index < count and depth:
+			if tokens[index].value == "{" and depth == 1:
+				if row := read_filter_object(tokens, index):
+					rows.append(row)
+			if tokens[index].value in "{[(":
+				depth += 1
+			elif tokens[index].value in "}])":
+				depth -= 1
+			index += 1
 	return rows
 
 
