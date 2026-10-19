@@ -1497,11 +1497,12 @@ class IntegrationTestReports(IntegrationTestCase):
 		meta = tools.get_report_filters(report.name)
 
 		with self.assertRaisesRegex(frappe.ValidationError, "Invalid filter: unknown"):
-			tools._run_report_builder(report.name, {"unknown": "x"}, meta["filters"], meta["js_filters"])
+			tools._execute_report(report.name, {"unknown": "x"}, meta, are_default_filters=False)
 
 	def test_report_builder_rejects_link_the_user_cannot_read(self):
 		"""The user can read this ToDo, and its Link points at Administrator.
-		get_list would return that row. Report Builder must still reject the filter, because this user can neither read nor select that User.
+		get_list would return that row. Report Builder must still reject the filter,
+		because this user can neither read nor select that User.
 		"""
 		frappe.get_doc({"doctype": "Role", "role_name": "Report Link Demo", "desk_access": 0}).insert()
 		user = frappe.get_doc(
@@ -1548,11 +1549,11 @@ class IntegrationTestReports(IntegrationTestCase):
 				frappe.ValidationError,
 				"You do not have permission to access User: Administrator",
 			):
-				tools._run_report_builder(
+				tools._execute_report(
 					report.name,
 					{"allocated_to": "Administrator"},
-					meta["filters"],
-					meta["js_filters"],
+					meta,
+					are_default_filters=False,
 				)
 		finally:
 			frappe.set_user("Administrator")

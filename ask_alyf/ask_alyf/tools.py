@@ -438,17 +438,18 @@ def _cap_report_rows(payload):
 	return payload
 
 
-def _builder_filters(report_name, filters, filter_rows, js_filters):
+def _builder_filters(report_name, applied_filters, filter_rows, js_filters):
 	"""Keep known fieldnames and rewrite MultiSelectList values to `["in", values]`.
 
-	A Link value names another document. Reject it when the user can neither read nor select that document, so it cannot narrow the report to that document's rows.
+	A Link value names another document. Reject it when the user can neither read nor
+	select that document, so it cannot narrow the report to that document's rows.
 	"""
 
 	from frappe.desk.query_report import validate_filters_permissions
 
 	allowed = {row["fieldname"]: row for row in filter_rows}
 	checked = {}
-	for key, value in filters.items():
+	for key, value in applied_filters.items():
 		row = allowed.get(key)
 		if row is None or isinstance(value, dict):
 			frappe.throw(_("Invalid filter: {0}").format(key))
@@ -465,48 +466,26 @@ def _builder_filters(report_name, filters, filter_rows, js_filters):
 	}
 
 
-def _omit_default_checks(filters, rows):
-	"""Drop optional Check filters whose value equals the default."""
-	by_name = {row["fieldname"]: row for row in rows}
-	kept, omitted = {}, []
-	for key, value in filters.items():
-		row = by_name.get(key)
-		if (
-			row
-			and row.get("fieldtype") == "Check"
-			and not row.get("reqd")
-			and cint(row.get("default")) == cint(value)
-		):
-			omitted.append(key)
-			continue
-		kept[key] = value
-	return kept, omitted
-
-
-def _run_report_builder(report_name, filters, rows, js_filters):
-	doc = frappe.get_doc("Report", report_name)
-	columns, result = doc.get_data(
-		# Report Builder skips query_report.run, where this check normally lives,
-		# and get_list only checks access to the report rows.
-		# _builder_filters validates the filters and permissions.
-		filters=_builder_filters(report_name, filters, rows, js_filters),
-		limit=MAX_REPORT_ROWS + 1,
-		user=frappe.session.user,
-		as_dict=True,
-	)
-	return _cap_report_rows({"result": result, "columns": columns})
-
-
-def _execute_report(report_name, meta, filters, are_default_filters):
+def _execute_report(report_name, applied_filters, meta, are_default_filters):
 	if meta["report_type"] == "Report Builder":
-		return _run_report_builder(report_name, filters, meta["filters"], meta["js_filters"])
+		doc = frappe.get_doc("Report", report_name)
+		columns, result = doc.get_data(
+			# Report Builder skips query_report.run, where this check normally lives,
+			# and get_list only checks access to the report rows.
+			# _builder_filters validates the applied filters and permissions.
+			filters=_builder_filters(report_name, applied_filters, meta["filters"], meta["js_filters"]),
+			limit=MAX_REPORT_ROWS + 1,
+			user=frappe.session.user,
+			as_dict=True,
+		)
+		return _cap_report_rows({"result": result, "columns": columns})
 	from frappe.desk.query_report import run
 
 	return _cap_report_rows(
 		run(
 			report_name=report_name,
-			filters=filters,
-			ignore_prepared_report=True,
+			filters=applied_filters,
+			ignore_prepared_report=True,  # always rebuild the report
 			js_filters=meta["js_filters"],
 			are_default_filters=are_default_filters,
 		)
@@ -521,25 +500,24 @@ def run_report(
 	applied_filters = dict(filters or {})
 	try:
 		meta = get_report_filters(report_name)
-		return _execute_report(report_name, meta, applied_filters, are_default_filters=not filters)
+		if not filters:
+			# fill in default filters if not provided
+			for row in meta["filters"]:
+				if row["fieldname"] in applied_filters or row.get("default") in (None, ""):
+					continue
+				if row.get("fieldtype") == "Check" and not cint(row["default"]):
+					continue
+				applied_filters[row["fieldname"]] = row["default"]
+		return _execute_report(report_name, applied_filters, meta, are_default_filters=not filters)
 	except Exception as error:
-		# can be frappe.throw, but marks every failed tool call as an error in ui
-		# so the agent gets the error as return with allowed filters and can handle it
-		rows = (meta or {}).get("filters") or []
-		narrowed, omitted = _omit_default_checks(applied_filters, rows)
-		if omitted:
-			try:
-				result = _execute_report(report_name, meta, narrowed, are_default_filters=False)
-				result["omitted_filters"] = omitted
-				return result
-			except Exception:
-				pass
-		return {
-			"error": str(error),
-			"report_name": report_name,
-			"applied_filters": applied_filters,
-			"allowed_filters": rows,
-		}
+		allowed_filters = (meta or {}).get("filters") or []
+		if isinstance(error, frappe.ValidationError | frappe.PermissionError):
+			# the agent gets the error with filter details and can handle it accordingly
+			frappe.throw(
+				f"{error}\nreport_name: {report_name}\napplied_filters: {applied_filters}\nallowed_filters: {allowed_filters}",
+				type(error),
+			)
+		raise
 
 
 def get_file_id(
