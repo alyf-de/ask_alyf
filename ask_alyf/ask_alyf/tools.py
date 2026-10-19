@@ -433,8 +433,15 @@ def _cap_report_rows(payload):
 	rows = payload.get("result")
 	if not isinstance(rows, list) or len(rows) <= MAX_REPORT_ROWS:
 		return payload
-	payload["result"] = rows[:MAX_REPORT_ROWS]
+	head = rows[: MAX_REPORT_ROWS - 2]
+	omitted = len(rows) - MAX_REPORT_ROWS
+	payload["result"] = [
+		*head,
+		{"_truncated": f"{omitted} rows omitted"},
+		*rows[-2:],
+	]
 	payload["truncated"] = True
+	payload["row_count"] = len(rows)
 	return payload
 
 
