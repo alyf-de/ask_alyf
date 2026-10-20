@@ -1588,3 +1588,70 @@ class IntegrationTestReports(IntegrationTestCase):
 				("extra", "Extra", 0),
 			],
 		)
+
+	def test_read_filter_objects_accepts_the_filter_forms(self):
+		from ask_alyf.ask_alyf.extract_report_filters import read_filter_objects
+
+		rows = read_filter_objects("""
+		frappe.query_reports["Demo"] = {
+			filters: [
+				{ fieldname: "bare", label: __("Bare"), fieldtype: "Data", reqd: 1 },
+				{ "fieldname": "quoted", "label": "Quoted", "fieldtype": "Check", "mandatory": true },
+				{ fieldname: "select_text", label: "Select text", fieldtype: "Select", options: "Open\\nClosed", default: "Open" },
+				{ fieldname: "select_list", label: "Select list", fieldtype: "Select", options: ["", "A", "B"], default: ["A"] },
+				{ fieldname: "select_objects", label: "Select objects", fieldtype: "Select", options: [{value: "M", label: __("Monthly")}, {"value": "Q", label: "Quoted value"}] },
+				{ fieldname: "number", label: "Number", fieldtype: "Int", default: -3 },
+				{ fieldname: "depends", label: "Depends", fieldtype: "Date", depends_on: "eval:doc.bare", mandatory_depends_on: "eval:doc.bare" },
+			],
+		};
+		let filters = [
+			{ fieldname: "assigned", label: "Assigned", fieldtype: "Data" },
+		];
+		frappe.query_reports["Demo"]["filters"].push(
+			{ fieldname: "pushed", label: "Pushed", fieldtype: "Check", default: 0 }
+		);
+		query_reports['Demo']['filters'].push({ fieldname: "single_quoted_push", label: "Single", fieldtype: "Data" });
+		""")
+
+		self.assertEqual(
+			rows,
+			[
+				{"fieldname": "bare", "label": "Bare", "fieldtype": "Data", "reqd": 1},
+				{"fieldname": "quoted", "label": "Quoted", "fieldtype": "Check", "reqd": 1},
+				{
+					"fieldname": "select_text",
+					"label": "Select text",
+					"fieldtype": "Select",
+					"reqd": 0,
+					"options": ["Open", "Closed"],
+					"default": "Open",
+				},
+				{
+					"fieldname": "select_list",
+					"label": "Select list",
+					"fieldtype": "Select",
+					"reqd": 0,
+					"options": ["", "A", "B"],
+					"default": "A",
+				},
+				{
+					"fieldname": "select_objects",
+					"label": "Select objects",
+					"fieldtype": "Select",
+					"reqd": 0,
+					"options": ["M", "Q"],
+				},
+				{"fieldname": "number", "label": "Number", "fieldtype": "Int", "reqd": 0, "default": -3},
+				{
+					"fieldname": "depends",
+					"label": "Depends",
+					"fieldtype": "Date",
+					"reqd": 0,
+					"depends_on": "eval:doc.bare",
+					"mandatory_depends_on": "eval:doc.bare",
+				},
+				{"fieldname": "assigned", "label": "Assigned", "fieldtype": "Data", "reqd": 0},
+				{"fieldname": "pushed", "label": "Pushed", "fieldtype": "Check", "reqd": 0, "default": 0},
+				{"fieldname": "single_quoted_push", "label": "Single", "fieldtype": "Data", "reqd": 0},
+			],
+		)

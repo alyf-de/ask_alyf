@@ -126,22 +126,17 @@ def read_filter_object(tokens, start: int) -> dict[str, Any] | None:
 	index, depth, token_count = start, 0, len(tokens)
 	while index < token_count:
 		value = tokens[index].value
+		key = unquote_string(value) if tokens[index].type == "string" else value
 		if value in "{[":
 			depth += 1
 		elif value in "}]":
 			depth -= 1
 			if depth == 0:
 				break
-		elif (
-			depth == 1
-			and tokens[index].type == "name"
-			and value in JS_FILTER_KEYS
-			and index + 1 < token_count
-			and tokens[index + 1].value == ":"
-		):
+		elif depth == 1 and key in JS_FILTER_KEYS and token_value(tokens, index + 1) == ":":
 			literal, index = read_literal(tokens, index + 2)
 			if literal is not None:
-				properties[value] = literal
+				properties[key] = literal
 			continue
 		index += 1
 	return build_filter(
@@ -227,7 +222,8 @@ def read_option_value(tokens, index):
 	depth = 1
 	while index < len(tokens) and depth:
 		value = tokens[index].value
-		if depth == 1 and value == "value" and token_value(tokens, index + 1) == ":":
+		key = unquote_string(value) if tokens[index].type == "string" else value
+		if depth == 1 and key == "value" and token_value(tokens, index + 1) == ":":
 			literal, index = read_literal(tokens, index + 2)
 			if literal is not None:
 				entry = literal
