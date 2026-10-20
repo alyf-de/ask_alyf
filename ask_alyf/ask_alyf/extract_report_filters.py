@@ -48,16 +48,11 @@ def filters_from_doc(filters) -> list[dict[str, Any]]:
 def filters_from_js(script: str) -> list[dict[str, Any]]:
 	chunks = [extended_script(identifier) for identifier in EXTEND_RE.findall(script)]
 	chunks.append(script)
-	rows: list[dict[str, Any]] = []
-	seen: set[str] = set()
+	filters: dict[str, dict[str, Any]] = {}
 	for chunk in chunks:
 		for row in read_filter_objects(chunk or ""):
-			name = row["fieldname"]
-			if name in seen:
-				continue
-			seen.add(name)
-			rows.append(row)
-	return rows
+			filters[row["fieldname"]] = row
+	return list(filters.values())
 
 
 def extended_script(identifier: str) -> str:

@@ -1557,3 +1557,34 @@ class IntegrationTestReports(IntegrationTestCase):
 				)
 		finally:
 			frappe.set_user("Administrator")
+
+	def test_script_filter_replaces_extended_filter(self):
+		base = """
+		let filters = [
+			{ fieldname: "company", label: "From Extend", fieldtype: "Data" },
+			{ fieldname: "period", label: "Period", fieldtype: "Data", default: "Monthly" },
+		];
+		"""
+		script = """
+		frappe.query_reports["Demo"] = $.extend({}, erpnext.demo);
+		frappe.query_reports["Demo"]["filters"].push(
+			{ fieldname: "company", label: "From Script", fieldtype: "Data", reqd: 1 },
+			{ fieldname: "extra", label: "Extra", fieldtype: "Check" }
+		);
+		"""
+		with patch(
+			"ask_alyf.ask_alyf.extract_report_filters.extended_script",
+			return_value=base,
+		):
+			from ask_alyf.ask_alyf.extract_report_filters import filters_from_js
+
+			rows = filters_from_js(script)
+
+		self.assertEqual(
+			[(row["fieldname"], row["label"], row["reqd"]) for row in rows],
+			[
+				("company", "From Script", 1),
+				("period", "Period", 0),
+				("extra", "Extra", 0),
+			],
+		)
