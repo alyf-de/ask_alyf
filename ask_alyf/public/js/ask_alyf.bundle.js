@@ -2579,10 +2579,22 @@ import "./field_agent";
 					for (let i = 0; i < 5 && frappe.request.ajax_count; i++) await frappe.after_ajax();
 				};
 
-				const setField = async (target, fieldname, value, path) => {
+				const setField = async (target, fieldname, fieldtype, options, value, path) => {
 					const attempt = { failed: false };
 					fieldInProgress = attempt;
 					try {
+						// check if link value is valid before setting it
+						if (["Link", "Dynamic Link"].includes(fieldtype)) {
+							const linkedDoctype = fieldtype === "Dynamic Link" ? target[options] : options;
+							const response = await frappe.xcall("frappe.client.validate_link_and_fetch", {
+								doctype: linkedDoctype,
+								docname: value || "",
+							});
+							if (!response?.name) {
+								throw new Error(__("Link field {0} is invalid.", [fieldname]));
+							}
+							value = response.name;
+						}
 						await frappe.model.set_value(target.doctype, target.name, fieldname, value);
 					} catch {
 						attempt.failed = true;
@@ -2613,7 +2625,14 @@ import "./field_agent";
 						const value = source?.[df.fieldname];
 						if (!hasValue(value)) continue;
 						values.set(df.fieldname, value);
-						await setField(target, df.fieldname, value, `${pathPrefix}${df.fieldname}`);
+						await setField(
+							target,
+							df.fieldname,
+							df.fieldtype,
+							df.options,
+							value,
+							`${pathPrefix}${df.fieldname}`,
+						);
 					}
 					for (const [fieldname, childDoctype] of tables) {
 						const rows = source?.[fieldname];
