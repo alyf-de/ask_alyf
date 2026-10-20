@@ -2579,13 +2579,25 @@ import "./field_agent";
 					for (let i = 0; i < 5 && frappe.request.ajax_count; i++) await frappe.after_ajax();
 				};
 
-				const setField = async (target, fieldname, fieldtype, options, value, path) => {
+				const setField = async (
+					target,
+					source_options,
+					fieldname,
+					fieldtype,
+					options,
+					value,
+					path,
+				) => {
 					const attempt = { failed: false };
 					fieldInProgress = attempt;
 					try {
 						// check if link value is valid before setting it
 						if (["Link", "Dynamic Link"].includes(fieldtype)) {
-							const linkedDoctype = fieldtype === "Dynamic Link" ? target[options] : options;
+							const linkedDoctype =
+								fieldtype === "Dynamic Link" ? source_options || target[options] : options;
+							if (!linkedDoctype) {
+								throw new Error(__("Link field {0} has no DocType.", [fieldname]));
+							}
 							const response = await frappe.xcall("frappe.client.validate_link_and_fetch", {
 								doctype: linkedDoctype,
 								docname: value || "",
@@ -2627,6 +2639,7 @@ import "./field_agent";
 						values.set(df.fieldname, value);
 						await setField(
 							target,
+							source?.[df.options],
 							df.fieldname,
 							df.fieldtype,
 							df.options,
