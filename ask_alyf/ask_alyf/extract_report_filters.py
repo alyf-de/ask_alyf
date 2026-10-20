@@ -81,6 +81,7 @@ def read_filter_objects(script: str) -> list[dict[str, Any]]:
 	rows, index, count = [], 0, len(tokens)
 	while index < count:
 		value = tokens[index].value
+		key = token_value(tokens, index - 3)
 		# filters: [...] or filters = [...] is the start of a list of filters.
 		if (
 			value == "filters"
@@ -97,7 +98,9 @@ def read_filter_objects(script: str) -> list[dict[str, Any]]:
 				token_value(tokens, index - 2) == "filters"
 				or (
 					token_value(tokens, index - 2) == "]"
-					and unquote_string(token_value(tokens, index - 3)) == "filters"
+					and key[:1] in "\"'`"
+					and key[:1] == key[-1:]
+					and unquote_string(key) == "filters"
 				)
 			)
 		):
@@ -240,7 +243,7 @@ def read_option_value(tokens, index):
 
 
 def token_value(tokens, index):
-	if index >= len(tokens):
+	if not 0 <= index < len(tokens):
 		return ""
 	return tokens[index].value
 
