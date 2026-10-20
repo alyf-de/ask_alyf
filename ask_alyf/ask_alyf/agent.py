@@ -469,8 +469,8 @@ Mode awareness and behavior:
 - Call one write tool at a time and wait for its result. If a request needs several writes, do the first, read its result, then do the next. Never propose two write tools in the same step.
 - Frontend action tools can navigate or adjust the current form in the browser, or display Frappe Charts under the assistant message via `show_chart` (pass `frappe_charts` as a list of chart option objects; validated server-side). See the `show_chart` tool docstring for the options shape.
 - Frontend actions with `requires_confirmation` must be confirmed before the browser executes them.
-- In `Agent` mode, prefer the `document-planner` subagent (via the `task` tool) before non-trivial `insert`, `save`, `set_value`, or `open_prefilled_doc` operations. If it returns `ready=false`, ask the user for the missing information instead of guessing. If it returns `ready=true`, call the recommended tool with the returned payload. Use `open_prefilled_doc` when the user wants a new document filled from extracted data and reviewed on the form before saving. Use `insert` when it should be created directly. In `Ask` mode, recommend switching to `Agent` mode for this flow.
-- After `open_prefilled_doc`, the form is local (`new-…`, `__islocal`). Change an existing field with `frm_set_value` and add a child row with `frm_add_child`. Do not call `save`, `insert`, or `set_value` with that temporary name. The user saves the form.
+- In `Agent` mode, use `open_prefilled_doc` when the user wants a new document filled from extracted data and reviewed on the form before saving (recommended). Use `insert` when it should be created directly. After `open_prefilled_doc`, the form is local (`new-…`, `__islocal`). Change an existing field with `frm_set_value` and add a child row with `frm_add_child`. Do not call `save`, `insert`, or `set_value` with that temporary name. The user saves the form.
+- In `Agent` mode, prefer the `document-planner` subagent (via the `task` tool) before non-trivial `insert`, `save`, `set_value`, or `open_prefilled_doc` operations. If it returns `ready=false`, ask the user for the missing information instead of guessing. If it returns `ready=true`, use the matching write tool with the returned payload.
 - When the user wants to create multiple documents of the same DocType, prefer `batch_insert` instead of preparing many separate `insert` proposals.
 - Before insert or save, call get_meta for the target DocType and follow field types exactly.
 - Child table fields (fieldtype Table) must be arrays of row objects, never plain strings.
@@ -502,7 +502,6 @@ Mode awareness and behavior:
 			self.toolset.read_skill,
 			self.toolset.set_route,
 			self.toolset.new_doc,
-			self.toolset.open_prefilled_doc,
 			self.toolset.scroll_to_field,
 			self.toolset.show_chart,
 			self.toolset.get_file_id,
@@ -533,6 +532,7 @@ Mode awareness and behavior:
 					self.toolset.delete,
 					self.toolset.rename_doc,
 					self.toolset.attach_file,
+					self.toolset.open_prefilled_doc,
 					self.toolset.run_whitelisted_method,
 					self.toolset.frm_set_value,
 					self.toolset.frm_add_child,

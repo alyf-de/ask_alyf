@@ -758,7 +758,7 @@ def _get_document_extraction_model_config(settings) -> VisionModelConfig:
 		provider_name=get_any_llm_provider(provider_label),
 		api_key=api_key,
 		api_base=api_base,
-		model_id=model_setting,
+		model_id=_normalize_any_llm_model_id(model_setting),
 	)
 
 
