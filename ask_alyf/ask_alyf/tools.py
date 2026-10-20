@@ -1729,7 +1729,7 @@ def validate_table_field_shapes(doctype: str, values: dict[str, Any]) -> str | N
 	table_fields = {
 		df.fieldname: df.options
 		for df in meta.fields
-		if df.fieldtype == "Table" and df.fieldname and df.options
+		if "Table" in df.fieldtype and df.fieldname and df.options
 	}
 	if not table_fields:
 		return None
