@@ -392,6 +392,66 @@ class UnitTestAskALYFConversation(UnitTestCase):
 		self.assertEqual(file_entry["file_name"], file_doc.file_name)
 		self.assertEqual(file_entry["file_url"], file_doc.file_url)
 
+	def test_open_prefilled_doc_missing_doctype(self):
+		self.assertEqual(
+			tools.validate_frontend_action_payload(
+				"open_prefilled_doc",
+				{
+					"doctype": "",
+					"doc": {
+						"doctype": "DocType",
+					},
+				},
+			),
+			"Frontend action 'open_prefilled_doc' requires a DocType.",
+		)
+
+	def test_open_prefilled_doc_not_object(self):
+		self.assertEqual(
+			tools.validate_frontend_action_payload(
+				"open_prefilled_doc",
+				{
+					"doctype": "DocType",
+					"doc": "not an object",
+				},
+			),
+			"Frontend action 'open_prefilled_doc' field 'doc' must be an object.",
+		)
+
+	def test_open_prefilled_doc_different_doctype(self):
+		self.assertEqual(
+			tools.validate_frontend_action_payload(
+				"open_prefilled_doc",
+				{
+					"doctype": "DocType",
+					"doc": {
+						"doctype": "Different DocType",
+					},
+				},
+			),
+			"Frontend action 'open_prefilled_doc' doc DocType must match.",
+		)
+
+	def test_open_prefilled_doc_child_table_field(self):
+		self.assertEqual(
+			tools.validate_frontend_action_payload(
+				"open_prefilled_doc",
+				{"doctype": "DocType", "doc": {"fields": ["DocField"]}},
+			),
+			"Field 'fields' row #1 in DocType must be an object.",
+		)
+
+		self.assertEqual(
+			tools.validate_frontend_action_payload(
+				"open_prefilled_doc",
+				{
+					"doctype": "DocType",
+					"doc": {"doctype": "DocType", "fields": "DocField"},
+				},
+			),
+			"Field 'fields' in DocType is a child table (DocField) and must be a list of row objects.",
+		)
+
 	def test_parse_json_object_text_accepts_markdown_fenced_json(self):
 		parsed = tools._parse_json_object_text(
 			"""```json
