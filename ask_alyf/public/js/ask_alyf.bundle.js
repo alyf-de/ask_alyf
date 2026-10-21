@@ -2579,6 +2579,17 @@ import "./field_agent";
 					for (let i = 0; i < 5 && frappe.request.ajax_count; i++) await frappe.after_ajax();
 				};
 
+				const linkValue = async (doctype, name, fieldsToFetch = []) => {
+					// validate and fetch for Link and Dynamic Link fields
+					if (!doctype || !hasValue(name)) return null;
+					const response = await frappe.xcall("frappe.client.validate_link_and_fetch", {
+						doctype,
+						docname: name,
+						fields_to_fetch: fieldsToFetch,
+					});
+					return response?.name ? response : null;
+				};
+
 				const setField = async (
 					target,
 					source_options,
@@ -2589,25 +2600,32 @@ import "./field_agent";
 					path,
 				) => {
 					const attempt = { failed: false };
+					let fetchMap = {};
+					let response = null;
 					fieldInProgress = attempt;
 					try {
-						// check if link value is valid before setting it
 						if (["Link", "Dynamic Link"].includes(fieldtype)) {
+							// get the fields to fetch_from
+							for (const df of frappe.get_meta(target.doctype)?.fields || []) {
+								if (!df.fetch_from?.startsWith(`${fieldname}.`)) continue;
+								const [, sourceField] = df.fetch_from.split(".");
+								if (sourceField) fetchMap[df.fieldname] = sourceField;
+							}
+							const fieldsToFetch = [...new Set(Object.values(fetchMap))];
 							const linkedDoctype =
 								fieldtype === "Dynamic Link" ? source_options || target[options] : options;
 							if (!linkedDoctype) {
 								throw new Error(__("Link field {0} has no DocType.", [fieldname]));
 							}
-							const response = await frappe.xcall("frappe.client.validate_link_and_fetch", {
-								doctype: linkedDoctype,
-								docname: value || "",
-							});
-							if (!response?.name) {
+							response = await linkValue(linkedDoctype, value, fieldsToFetch);
+							if (!response) {
 								throw new Error(__("Link field {0} is invalid.", [fieldname]));
 							}
-							value = response.name;
+							payloadValues.get(target)?.set(fieldname, response.name);
+							await frappe.model.set_value(target.doctype, target.name, fieldname, response.name);
+						} else {
+							await frappe.model.set_value(target.doctype, target.name, fieldname, value);
 						}
-						await frappe.model.set_value(target.doctype, target.name, fieldname, value);
 					} catch {
 						attempt.failed = true;
 					} finally {
@@ -2617,6 +2635,19 @@ import "./field_agent";
 						target[fieldname] = "";
 						payloadValues.get(target)?.delete(fieldname);
 						omittedFields.push(path);
+					} else if (response) {
+						for (const [targetField, sourceField] of Object.entries(fetchMap)) {
+							try {
+								await frappe.model.set_value(
+									target.doctype,
+									target.name,
+									targetField,
+									response[sourceField],
+								);
+							} catch {
+								// fetched field remains empty, the link remains unchanged
+							}
+						}
 					}
 					fieldInProgress = null;
 				};
@@ -2639,7 +2670,7 @@ import "./field_agent";
 						values.set(df.fieldname, value);
 						await setField(
 							target,
-							source?.[df.options],
+							df.fieldtype === "Dynamic Link" ? source?.[df.options] : null,
 							df.fieldname,
 							df.fieldtype,
 							df.options,
@@ -2674,30 +2705,15 @@ import "./field_agent";
 
 				let fieldInProgress = null;
 				const originalMsgprint = frappe.msgprint;
-				const originalCall = frappe.request.call;
-				const originalThrow = frappe.throw;
 				frappe.msgprint = (msg, ...rest) => {
 					if (!fieldInProgress) return originalMsgprint(msg, ...rest);
+					// prevent re-routing after an error
 					if (msg && typeof msg === "object" && !Array.isArray(msg))
 						msg = { ...msg, re_route: false };
 					const dialog = originalMsgprint(msg, ...rest);
 					if (frappe.msg_dialog) frappe.msg_dialog.custom_onhide = null;
 					return dialog;
 				};
-				frappe.request.call = function () {
-					const attempt = fieldInProgress;
-					const req = originalCall.apply(this, arguments);
-					if (attempt)
-						req?.fail?.(() => {
-							attempt.failed = true;
-						});
-					return req;
-				};
-				frappe.throw = (msg) => {
-					if (fieldInProgress) fieldInProgress.failed = true;
-					return originalThrow(msg);
-				};
-
 				try {
 					await frappe.set_route("Form", doc.doctype, doc.name);
 					await waitForRequests();
@@ -2710,8 +2726,6 @@ import "./field_agent";
 					}
 				} finally {
 					frappe.msgprint = originalMsgprint;
-					frappe.request.call = originalCall;
-					frappe.throw = originalThrow;
 				}
 				const result = { doctype: doc.doctype, docname: doc.name };
 				if (omittedFields.length) result.omitted_fields = omittedFields;
