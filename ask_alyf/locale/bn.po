@@ -496,7 +496,15 @@ msgstr "কন্টেন্ট তৈরি করা যায়নি।"
 msgid "Could not render chart."
 msgstr "চার্ট রেন্ডার করা যায়নি।"
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/agent.py:100
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:734
+msgid "Could not render diagram."
+msgstr "ডায়াগ্রাম রেন্ডার করা যায়নি।"
+
+#: ask_alyf/ask_alyf/agent.py:101
+>>>>>>> a2cc40e (feat: add Mermaid diagram rendering support (#182))
 #, python-brace-format
 msgid "Counting {0}"
 msgstr "{0} গণনা করা হচ্ছে"

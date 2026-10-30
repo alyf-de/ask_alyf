@@ -475,7 +475,15 @@ msgstr ""
 msgid "Could not render chart."
 msgstr ""
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/agent.py:100
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:734
+msgid "Could not render diagram."
+msgstr ""
+
+#: ask_alyf/ask_alyf/agent.py:101
+>>>>>>> a2cc40e (feat: add Mermaid diagram rendering support (#182))
 msgid "Counting {0}"
 msgstr ""
 
