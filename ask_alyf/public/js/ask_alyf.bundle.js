@@ -1,8 +1,5 @@
-<<<<<<< HEAD
-import "./icons";
-=======
 import { render as renderPele } from "pele";
->>>>>>> a2cc40e (feat: add Mermaid diagram rendering support (#182))
+import "./icons";
 import "./field_agent";
 
 (function () {
@@ -16,15 +13,6 @@ import "./field_agent";
 	const ASK_ALYF_FRAPPE_CHART_MAX_HEIGHT = 720;
 	const ASK_ALYF_JOB_POLL_INTERVAL_MS = 2000;
 	const ASK_ALYF_MISSING_JOB_CHECKS = 3;
-
-<<<<<<< HEAD
-=======
-	function getIcon(name, size = "sm", svgClass = "", currentColor = false) {
-		if (typeof frappe.utils?.icon !== "function") {
-			return "";
-		}
-		return frappe.utils.icon(name, size, "", "", svgClass, currentColor);
-	}
 
 	// Streaming re-renders a message on every chunk, so each diagram is parsed once.
 	const mermaidSvgCache = new Map();
@@ -40,7 +28,6 @@ import "./field_agent";
 		return mermaidSvgCache.get(source);
 	}
 
->>>>>>> a2cc40e (feat: add Mermaid diagram rendering support (#182))
 	/**
 	 * Frappe Charts divides by labels.length and (for pie) grand total;
 	 * tiny/negative plot height yields NaN axis lines in draw.js.
