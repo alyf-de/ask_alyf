@@ -486,7 +486,15 @@ msgstr "Inhalt konnte nicht generiert werden."
 msgid "Could not render chart."
 msgstr "Diagramm konnte nicht gerendert werden."
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/agent.py:100
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:734
+msgid "Could not render diagram."
+msgstr "Diagramm konnte nicht angezeigt werden."
+
+#: ask_alyf/ask_alyf/agent.py:101
+>>>>>>> a2cc40e (feat: add Mermaid diagram rendering support (#182))
 #, python-brace-format
 msgid "Counting {0}"
 msgstr "{0} werden gezählt"
