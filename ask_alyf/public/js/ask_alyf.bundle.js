@@ -2275,7 +2275,7 @@ import "./field_agent";
 					id: messageId,
 					role: "assistant",
 					content: "",
-					created_at: frappe.datetime.now_datetime(),
+					created_at: frappe.datetime.system_datetime(),
 					metadata: {},
 				};
 				if (this.state.steps.length) {
