@@ -486,6 +486,10 @@ msgstr "تعذر إنشاء المحتوى."
 msgid "Could not render chart."
 msgstr "تعذر عرض الخريطة."
 
+#: ask_alyf/public/js/ask_alyf.bundle.js:728
+msgid "Could not render diagram."
+msgstr "تعذر عرض المخطط."
+
 #: ask_alyf/ask_alyf/agent.py:100
 #, python-brace-format
 msgid "Counting {0}"
