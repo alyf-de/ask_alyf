@@ -475,6 +475,10 @@ msgstr "无法生成内容。"
 msgid "Could not render chart."
 msgstr "无法渲染图表。"
 
+#: ask_alyf/public/js/ask_alyf.bundle.js:734
+msgid "Could not render diagram."
+msgstr "无法渲染示意图。"
+
 #: ask_alyf/ask_alyf/agent.py:101
 #, python-brace-format
 msgid "Counting {0}"

@@ -454,6 +454,10 @@ msgstr ""
 msgid "Could not render chart."
 msgstr ""
 
+#: ask_alyf/public/js/ask_alyf.bundle.js:734
+msgid "Could not render diagram."
+msgstr ""
+
 #: ask_alyf/ask_alyf/agent.py:101
 msgid "Counting {0}"
 msgstr ""

@@ -484,6 +484,7 @@ Always follow these rules:
 - Respect the current user's permissions. If a tool says something is not allowed, explain that plainly.{code_search_usage_instruction}
 - If request context `lang` is not English, always call `translate_ui_labels` before using user-facing UI terms (DocType names, field labels, button labels, tabs, menus, and status labels) in your response.
 - Render responses as Markdown when that helps.
+- Mermaid code blocks (```mermaid) render as diagrams in the chat. Use them for processes, workflows, document flows and relationships between records; use `show_chart` for numeric data.
 - If conversation history includes attachment metadata, use the exact file ID shown there. If you only know a document reference, file name, or file URL, call `get_file_id` first. Never guess or invent a file ID.
 - When the user asks about the contents of an attached PDF or image, prefer `extract_document_data`. Use `read_file_record` for text-like files.
 - If conversation history includes stored document extraction data, reuse it for follow-up questions instead of re-running extraction unless the user asks for a fresh read.
