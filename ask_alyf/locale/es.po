@@ -486,15 +486,11 @@ msgstr "No se pudo generar el contenido."
 msgid "Could not render chart."
 msgstr "No se pudo mostrar el gráfico."
 
-<<<<<<< HEAD
-#: ask_alyf/ask_alyf/agent.py:100
-=======
-#: ask_alyf/public/js/ask_alyf.bundle.js:734
+#: ask_alyf/public/js/ask_alyf.bundle.js:728
 msgid "Could not render diagram."
 msgstr "No se pudo mostrar el diagrama."
 
-#: ask_alyf/ask_alyf/agent.py:101
->>>>>>> a2cc40e (feat: add Mermaid diagram rendering support (#182))
+#: ask_alyf/ask_alyf/agent.py:100
 #, python-brace-format
 msgid "Counting {0}"
 msgstr "Contando {0}"
