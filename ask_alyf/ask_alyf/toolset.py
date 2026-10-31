@@ -1130,6 +1130,27 @@ class ask_alyfToolset:
 			route_options=route_options or {},
 		)
 
+	def open_prefilled_doc(self, doctype: str, doc: dict[str, Any], reason: str = "") -> dict[str, Any]:
+		"""Propose opening a new unsaved document in the form view.
+
+		Args:
+			doctype: The target DocType.
+			doc: Field values for the unsaved document. Child tables are lists of row objects.
+			reason: Optional explanation of why this action helps the user.
+
+		Returns:
+			A pending frontend operation proposal.
+		"""
+		return self._frontend_proposal(
+			"open_prefilled_doc",
+			_("Open unsaved {0}").format(_(doctype)),
+			reason,
+			validation_error_status=_("Open document action needs correction."),
+			prepared_status=_("Prepared unsaved document."),
+			doctype=doctype,
+			doc=doc,
+		)
+
 	def scroll_to_field(self, fieldname: str, reason: str = "") -> dict[str, Any]:
 		"""Propose scrolling to a field on the active form.
 

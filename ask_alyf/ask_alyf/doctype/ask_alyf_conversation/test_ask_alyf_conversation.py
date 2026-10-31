@@ -392,6 +392,66 @@ class UnitTestAskALYFConversation(UnitTestCase):
 		self.assertEqual(file_entry["file_name"], file_doc.file_name)
 		self.assertEqual(file_entry["file_url"], file_doc.file_url)
 
+	def test_open_prefilled_doc_missing_doctype(self):
+		self.assertEqual(
+			tools.validate_frontend_action_payload(
+				"open_prefilled_doc",
+				{
+					"doctype": "",
+					"doc": {
+						"doctype": "DocType",
+					},
+				},
+			),
+			"Frontend action 'open_prefilled_doc' requires a DocType.",
+		)
+
+	def test_open_prefilled_doc_not_object(self):
+		self.assertEqual(
+			tools.validate_frontend_action_payload(
+				"open_prefilled_doc",
+				{
+					"doctype": "DocType",
+					"doc": "not an object",
+				},
+			),
+			"Frontend action 'open_prefilled_doc' field 'doc' must be an object.",
+		)
+
+	def test_open_prefilled_doc_different_doctype(self):
+		self.assertEqual(
+			tools.validate_frontend_action_payload(
+				"open_prefilled_doc",
+				{
+					"doctype": "DocType",
+					"doc": {
+						"doctype": "Different DocType",
+					},
+				},
+			),
+			"Frontend action 'open_prefilled_doc' doc DocType must match.",
+		)
+
+	def test_open_prefilled_doc_child_table_field(self):
+		self.assertEqual(
+			tools.validate_frontend_action_payload(
+				"open_prefilled_doc",
+				{"doctype": "DocType", "doc": {"fields": ["DocField"]}},
+			),
+			"Field 'fields' row #1 in DocType must be an object.",
+		)
+
+		self.assertEqual(
+			tools.validate_frontend_action_payload(
+				"open_prefilled_doc",
+				{
+					"doctype": "DocType",
+					"doc": {"doctype": "DocType", "fields": "DocField"},
+				},
+			),
+			"Field 'fields' in DocType is a child table (DocField) and must be a list of row objects.",
+		)
+
 	def test_parse_json_object_text_accepts_markdown_fenced_json(self):
 		parsed = tools._parse_json_object_text(
 			"""```json
@@ -578,6 +638,34 @@ class UnitTestAskALYFConversation(UnitTestCase):
 		messages = loads(conversation.messages_json, [])
 		self.assertEqual(messages[-1]["metadata"].get("frontend_action_status"), "success")
 		self.assertTrue(messages[-1]["metadata"].get("frontend_action_result"))
+
+	def test_auto_frontend_action_result_names_omitted_fields(self):
+		pending_operation = {
+			"kind": "frontend_action",
+			"tool": "open_prefilled_doc",
+			"summary": "Open unsaved Sales Invoice",
+			"requires_confirmation": False,
+			"payload": {"doctype": "Sales Invoice", "doc": {}},
+			"call_id": "call-frontend-omitted",
+		}
+		conversation = self.make_conversation(messages=[], pending_operations=[pending_operation])
+
+		with patch("ask_alyf.ask_alyf.api.can_access_ask_alyf", return_value=True):
+			api.frontend_action_result(
+				conversation=conversation.name,
+				call_id="call-frontend-omitted",
+				status="success",
+				mode=api.MODE_ASK,
+				result={
+					"doctype": "Sales Invoice",
+					"docname": "new-sales-invoice-1",
+					"omitted_fields": ["customer", "items.1.item_code"],
+				},
+			)
+
+		conversation.reload()
+		messages = loads(conversation.messages_json, [])
+		self.assertIn("Left blank: customer, items.1.item_code", messages[-1]["content"])
 
 	def test_confirmable_frontend_action_result_resumes_the_paused_agent(self):
 		pending_operation = {
