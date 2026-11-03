@@ -4,7 +4,6 @@ import base64
 import fnmatch
 import json
 import re
-from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 from urllib.parse import urlparse
@@ -19,6 +18,8 @@ import frappe
 from frappe import _, client
 from frappe.utils import get_bench_path
 from frappe.utils.data import cint
+from langchain_core.language_models import BaseChatModel
+from langchain_core.messages import HumanMessage
 
 from ask_alyf.ask_alyf.source_files import SourceTree
 
@@ -75,16 +76,6 @@ JSON_OBJECT_OUTPUT_INSTRUCTION = (
 	"Do not wrap the JSON in markdown fences. "
 	"Do not add explanatory prose before or after the JSON."
 )
-
-
-@dataclass(frozen=True)
-class VisionModelConfig:
-	"""Resolved provider settings for a document extraction request."""
-
-	provider_name: str
-	api_key: str
-	api_base: str | None
-	model_id: str
 
 
 def coerce_int(value: Any, default: int, *, minimum: int | None = None) -> int:
@@ -669,13 +660,13 @@ async def extract_document_data(file_id: str, extraction_prompt: str = "") -> di
 	if not images:
 		frappe.throw(_("Could not extract visual content from the file."))
 
-	model_config = _get_document_extraction_model_config(get_settings())
+	model = _build_document_extraction_model(get_settings())
 	content_parts = _build_document_extraction_content_parts(
 		_build_document_extraction_prompt(extraction_prompt),
 		images,
 	)
-	response = await _run_document_extraction_completion(model_config, content_parts)
-	extracted_data = _parse_json_object_text(_get_completion_message_content(response))
+	response = await model.ainvoke([HumanMessage(content=content_parts)])
+	extracted_data = _parse_json_object_text(response.text)
 	return _build_document_extraction_result(
 		file_doc=file_doc,
 		extracted_data=extracted_data,
@@ -737,42 +728,31 @@ def _build_file_reference_filters(
 	return filters
 
 
-def _get_document_extraction_model_config(settings) -> VisionModelConfig:
-	"""Resolve the vision-capable model configuration from settings."""
-	from ask_alyf.ask_alyf.doctype.ask_alyf_settings.ask_alyf_settings import get_any_llm_provider
+def _build_document_extraction_model(settings) -> BaseChatModel:
+	"""Build the vision-capable chat model configured in settings."""
+	from ask_alyf.ask_alyf.agent import init_settings_chat_model
 
 	if settings.vision_model_is_chat_model:
-		provider_label = settings.llm_provider
-		api_base = (settings.base_url or "").strip() or None
-		api_key = (settings.get_password("api_key", raise_exception=False) or "").strip()
-		model_setting = (settings.model or "").strip()
+		provider = settings.llm_provider
+		base_url = settings.base_url
+		api_key = settings.get_password("api_key", raise_exception=False)
+		model = (settings.model or "").strip()
 	else:
-		provider_label = settings.vision_llm_provider
-		api_base = (settings.vision_base_url or "").strip() or None
-		api_key = (settings.get_password("vision_api_key", raise_exception=False) or "").strip()
-		model_setting = (settings.vision_model or "").strip()
+		provider = settings.vision_llm_provider
+		base_url = settings.vision_base_url
+		api_key = settings.get_password("vision_api_key", raise_exception=False)
+		model = (settings.vision_model or "").strip()
 
-	if not api_key:
-		frappe.throw(_("Configure a vision model API key in Ask ALYF Settings."))
-	if not model_setting:
+	if not model:
 		frappe.throw(_("Configure a vision model in Ask ALYF Settings."))
 
-	return VisionModelConfig(
-		provider_name=get_any_llm_provider(provider_label),
-		api_key=api_key,
-		api_base=api_base,
-		model_id=_normalize_any_llm_model_id(model_setting),
+	# Do not pass temperature: gpt-5.x (and similar) reject non-default values.
+	return init_settings_chat_model(
+		provider,
+		model,
+		api_key=(api_key or "").strip(),
+		base_url=(base_url or "").strip(),
 	)
-
-
-def _normalize_any_llm_model_id(model_setting: str) -> str:
-	"""Strip an optional provider prefix from an any-llm model setting."""
-	from any_llm import AnyLLM
-
-	try:
-		return AnyLLM.split_model_provider(model_setting)[1]
-	except ValueError:
-		return model_setting
 
 
 def _build_document_extraction_prompt(extraction_prompt: str) -> str:
@@ -801,40 +781,6 @@ def _build_vision_image_part(image: dict[str, str]) -> dict[str, Any]:
 			"detail": "high",
 		},
 	}
-
-
-async def _run_document_extraction_completion(
-	model_config: VisionModelConfig,
-	content_parts: list[dict[str, Any]],
-):
-	"""Execute the vision completion request that returns JSON."""
-	from any_llm import AnyLLM
-
-	client = AnyLLM.create(
-		provider=model_config.provider_name,
-		api_key=model_config.api_key,
-		api_base=model_config.api_base,
-	)
-	# Do not pass temperature: gpt-5.x (and similar) reject non-default values.
-	return await client.acompletion(
-		model=model_config.model_id,
-		messages=[{"role": "user", "content": content_parts}],
-		response_format={"type": "json_object"},
-	)
-
-
-def _get_completion_message_content(response: Any) -> Any:
-	"""Read the first completion message content or raise a user-facing error."""
-	choices = getattr(response, "choices", None)
-	if not isinstance(choices, list) or not choices:
-		frappe.throw(_("Document extraction returned no choices."))
-
-	message = getattr(choices[0], "message", None)
-	content = getattr(message, "content", None)
-	if content in (None, ""):
-		frappe.throw(_("Document extraction returned no content."))
-
-	return content
 
 
 def _build_document_extraction_result(

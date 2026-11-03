@@ -111,15 +111,6 @@ function is_model_configuration_ready(frm, configuration) {
 	const field_prefix = configuration === VISION_MODEL_CONFIGURATION ? "vision_" : "";
 	const llm_provider = (frm.doc[`${field_prefix}llm_provider`] || "").trim();
 	const api_key = (frm.doc[`${field_prefix}api_key`] || "").trim();
-	const base_url = (frm.doc[`${field_prefix}base_url`] || "").trim();
 
-	if (!llm_provider || !api_key) {
-		return false;
-	}
-
-	if (llm_provider === "OpenAI Compatible" && !base_url) {
-		return false;
-	}
-
-	return true;
+	return Boolean(llm_provider && api_key);
 }
