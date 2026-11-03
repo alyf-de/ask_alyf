@@ -539,6 +539,20 @@
 	gap: 0.35rem;
 }
 
+.ask_alyf-mermaid {
+	--pele-bg: var(--fg-color);
+	--pele-fg: var(--text-color);
+	--pele-muted: var(--text-muted);
+	--pele-line: var(--text-color);
+	--pele-surface: var(--subtle-accent);
+	--pele-surface-alt: var(--subtle-fg);
+	--pele-border: var(--border-color);
+	--pele-accent: var(--primary);
+	--pele-error: var(--red-500);
+	--pele-font: var(--font-stack);
+	--pele-radius: var(--radius);
+}
+
 .ask_alyf-message-charts {
 	width: 100%;
 	max-width: 100%;
@@ -610,7 +624,8 @@
 	min-width: 0;
 }
 
-.ask_alyf-frappe-chart-error {
+.ask_alyf-frappe-chart-error,
+.ask_alyf-mermaid-error {
 	color: var(--text-muted);
 	font-size: 0.85rem;
 	padding: 0.35rem 0;
