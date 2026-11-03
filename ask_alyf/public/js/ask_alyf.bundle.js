@@ -2588,6 +2588,149 @@ import "./field_agent";
 				return { doctype: payload.doctype };
 			}
 
+			if (tool === "open_prefilled_doc") {
+				await frappe.model.with_doctype(payload.doctype);
+				const doc = frappe.model.get_new_doc(payload.doctype);
+				const skip = new Set([
+					"doctype",
+					...frappe.model.std_fields_list,
+					...frappe.model.child_table_field_list,
+				]);
+				const omittedFields = [];
+				const hasValue = (value) => value !== undefined && value !== null && value !== "";
+				const tableFieldsOf = (doctype) =>
+					(frappe.get_meta(doctype)?.fields || []).filter(
+						(df) => frappe.model.table_fields.includes(df.fieldtype) && df.fieldname && df.options,
+					);
+
+				const waitForRequests = async () => {
+					for (let i = 0; i < 5 && frappe.request.ajax_count; i++) await frappe.after_ajax();
+				};
+
+				const linkValue = async (doctype, name, fieldsToFetch = []) => {
+					// validate and fetch for Link and Dynamic Link fields
+					if (!doctype || !hasValue(name)) return null;
+					const response = await frappe.xcall("frappe.client.validate_link_and_fetch", {
+						doctype,
+						docname: name,
+						fields_to_fetch: fieldsToFetch,
+					});
+					return response?.name ? response : null;
+				};
+
+				const setField = async (target, source, fieldname, fieldtype, options, value, path) => {
+					let fetchMap = {};
+					let response = null;
+
+					if (["Link", "Dynamic Link"].includes(fieldtype)) {
+						// get fetch map for Link and Dynamic Link fields
+						for (const df of frappe.get_meta(target.doctype)?.fields || []) {
+							if (!df.fetch_from?.startsWith(`${fieldname}.`)) continue;
+							const [, sourceField] = df.fetch_from.split(".");
+							if (sourceField) fetchMap[df.fieldname] = sourceField;
+						}
+						const linkedDoctype =
+							fieldtype === "Dynamic Link" ? source?.[options] || target[options] : options;
+						try {
+							response = linkedDoctype
+								? await linkValue(linkedDoctype, value, [...new Set(Object.values(fetchMap))])
+								: null;
+						} catch {
+							response = null;
+						}
+						if (!response) {
+							target[fieldname] = "";
+							omittedFields.push(path);
+							return;
+						}
+						value = response.name;
+					}
+
+					// set values for fetched fields from Link and Dynamic Link fields
+					if (response) {
+						for (const [targetField, sourceField] of Object.entries(fetchMap)) {
+							const fromSource = source?.[targetField];
+							const next = hasValue(fromSource)
+								? fromSource
+								: hasValue(response[sourceField])
+								  ? response[sourceField]
+								  : "";
+							if (target[targetField] === next) continue;
+							try {
+								await frappe.model.set_value(target.doctype, target.name, targetField, next);
+							} catch {
+								// ignore, because the value is not from the source document
+							}
+						}
+					}
+
+					try {
+						await frappe.model.set_value(target.doctype, target.name, fieldname, value, fieldtype);
+					} catch {
+						// if not able to set value, omit the field if it is not already set
+						if (!hasValue(target[fieldname])) omittedFields.push(path);
+					} finally {
+						await waitForRequests();
+					}
+				};
+
+				const fillDocument = async (target, source, pathPrefix = "") => {
+					const tables = new Map(
+						tableFieldsOf(target.doctype).map((df) => [df.fieldname, df.options]),
+					);
+					for (const df of frappe.get_meta(target.doctype)?.fields || []) {
+						if (
+							tables.has(df.fieldname) ||
+							skip.has(df.fieldname) ||
+							df.fieldname.startsWith("__")
+						)
+							continue;
+						const value = source?.[df.fieldname];
+						if (!hasValue(value)) continue;
+						await setField(
+							target,
+							source,
+							df.fieldname,
+							df.fieldtype,
+							df.options,
+							value,
+							`${pathPrefix}${df.fieldname}`,
+						);
+					}
+					for (const [fieldname, childDoctype] of tables) {
+						const rows = source?.[fieldname];
+						if (!Array.isArray(rows)) continue;
+						frappe.model.clear_table(target, fieldname);
+						for (const row of rows) {
+							if (!row || typeof row !== "object" || Array.isArray(row)) continue;
+							const child = frappe.model.add_child(target, childDoctype, fieldname);
+							// recursively fill the child document
+							await fillDocument(child, row, `${pathPrefix}${fieldname}.${child.idx}.`);
+						}
+					}
+				};
+
+				const originalReroute = frappe.re_route_on_msgprint_hide;
+				frappe.re_route_on_msgprint_hide = () => {};
+
+				try {
+					await frappe.set_route("Form", doc.doctype, doc.name);
+					await waitForRequests();
+					await fillDocument(doc, payload.doc);
+				} finally {
+					frappe.re_route_on_msgprint_hide = originalReroute;
+					// custom_onhide is used to prevent re-routing after an error
+					if (frappe.msg_dialog) frappe.msg_dialog.custom_onhide = null;
+					frappe.views.formview[
+						frappe.router.doctype_layout || doc.doctype
+					]?.frm?.refresh_fields();
+				}
+
+				const result = { doctype: doc.doctype, docname: doc.name };
+				if (omittedFields.length) result.omitted_fields = omittedFields;
+				return result;
+			}
+
 			if (tool === "scroll_to_field") {
 				const frm = this.getMatchingForm(payload);
 				if (typeof frm.scroll_to_field !== "function") {
