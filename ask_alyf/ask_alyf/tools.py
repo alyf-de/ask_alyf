@@ -4,11 +4,6 @@ import base64
 import fnmatch
 import json
 import re
-<<<<<<< HEAD
-from dataclasses import dataclass
-=======
-import tomllib
->>>>>>> 9f16aea (feat: support Anthropic, DeepSeek, Mistral and Gemini models (#172))
 from pathlib import Path
 from typing import Any
 from urllib.parse import urlparse
