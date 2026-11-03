@@ -59,6 +59,13 @@ VISION_DPI = 200
 # How much of a docs page one read returns. A longer page is read on in a
 # second call, from the offset the first one reported.
 MAX_COMPENDIUM_PAGE_CHARS = 6000
+# Row results above this size are cut before they reach the model. deepagents
+# moves tool results above ~20,000 tokens into a file, and the model then
+# spends extra rounds reading that file back in chunks. ~40,000 characters stay
+# well below that and still hold a few hundred narrow rows.
+MAX_TOOL_RESULT_CHARS = 40_000
+MAX_TOOL_RESULT_VALUE_CHARS = 1_000
+TRUNCATED_VALUE_SUFFIX = "… [truncated]"
 # Wider than the Awesome Bar's snippet: the model picks which page to read
 # from it, where a user picks from the title.
 COMPENDIUM_SNIPPET_TOKENS = 60
@@ -302,10 +309,10 @@ def get_list(
 	order_by: str | None = None,
 	limit: int = 20,
 	group_by: str | None = None,
-) -> list[dict[str, Any]]:
+) -> list[dict[str, Any]] | dict[str, Any]:
 	limit = coerce_int(limit, 20, minimum=1)
 	fields = coerce_field_list(fields)
-	return client.get_list(
+	rows = client.get_list(
 		doctype=doctype,
 		fields=fields,
 		filters=filters,
@@ -313,6 +320,49 @@ def get_list(
 		limit_page_length=limit,
 		group_by=group_by,
 	)
+	return limit_result_rows(
+		rows,
+		how_to_narrow=(
+			"Request fewer fields, add filters, use `get_count` or aggregate fields with "
+			"`group_by`, or page with a smaller `limit`."
+		),
+	)
+
+
+def limit_result_rows(
+	rows: list[dict[str, Any]], *, how_to_narrow: str
+) -> list[dict[str, Any]] | dict[str, Any]:
+	"""Keep a row result small enough to stay inline in the conversation.
+
+	Long text values are shortened. If the rows are still too large, only the
+	leading rows are kept and the result says so, together with how to ask a
+	narrower question. A result that fits is returned unchanged, as a list.
+	"""
+	kept: list[dict[str, Any]] = []
+	size = 0
+	for row in rows:
+		row = {key: shorten_result_value(value) for key, value in dict(row).items()}
+		size += len(json.dumps(row, default=str, ensure_ascii=False)) + 2
+		if size > MAX_TOOL_RESULT_CHARS and kept:
+			return {
+				"rows": kept,
+				"truncated": True,
+				"returned_rows": len(kept),
+				"total_rows": len(rows),
+				"message": (
+					f"Only the first {len(kept)} of {len(rows)} rows are shown because the full result is "
+					f"too large. {how_to_narrow}"
+				),
+			}
+		kept.append(row)
+
+	return kept
+
+
+def shorten_result_value(value: Any) -> Any:
+	if isinstance(value, str) and len(value) > MAX_TOOL_RESULT_VALUE_CHARS:
+		return value[: MAX_TOOL_RESULT_VALUE_CHARS - len(TRUNCATED_VALUE_SUFFIX)] + TRUNCATED_VALUE_SUFFIX
+	return value
 
 
 def get_count(doctype: str, filters: dict[str, Any] | list | None = None) -> int:
@@ -947,7 +997,7 @@ def get_print(
 	}
 
 
-def run_read_only_sql(query: str) -> list[dict[str, Any]]:
+def run_read_only_sql(query: str) -> list[dict[str, Any]] | dict[str, Any]:
 	roles = set(frappe.get_roles())
 	if frappe.session.user != "Administrator" and "System Manager" not in roles:
 		frappe.throw(_("Only Administrator and System Manager can run SQL queries."))
@@ -958,7 +1008,12 @@ def run_read_only_sql(query: str) -> list[dict[str, Any]]:
 	if not READ_ONLY_SQL_RE.match(query) or FORBIDDEN_SQL_RE.search(query):
 		frappe.throw(_("Only read-only SQL statements are allowed."))
 
-	return frappe.db.sql(query, as_dict=True)
+	return limit_result_rows(
+		frappe.db.sql(query, as_dict=True),
+		how_to_narrow=(
+			"Select fewer columns, filter with WHERE, aggregate with GROUP BY, SUM or COUNT, or add a LIMIT."
+		),
+	)
 
 
 def get_app_version(app_name: str) -> str:

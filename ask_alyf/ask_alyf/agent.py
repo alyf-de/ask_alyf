@@ -14,7 +14,7 @@ from deepagents import (
 )
 from deepagents.middleware.filesystem import DEFAULT_READ_LIMIT
 from frappe import _
-from frappe.utils import cint
+from frappe.utils import cint, get_system_timezone, getdate, nowdate
 from langchain.agents import create_agent
 from langchain.agents.middleware import AgentMiddleware, ToolErrorMiddleware, hook_config
 from langchain.agents.middleware.types import ToolCallRequest
@@ -25,6 +25,7 @@ from langgraph.errors import GraphBubbleUp
 from langgraph.types import Command
 
 from ask_alyf.ask_alyf import tools
+from ask_alyf.ask_alyf.answer_stream import AnswerDraftPublisher, invoke_streaming
 from ask_alyf.ask_alyf.checkpointer import FrappeCheckpointSaver
 from ask_alyf.ask_alyf.deep_agent_backend import build_ask_alyf_backend
 from ask_alyf.ask_alyf.history import history_item_to_native_message
@@ -351,17 +352,44 @@ REASONING_EFFORT_ARGUMENTS = {
 GEMINI_THINKING_LEVELS = {"xhigh": "high", "max": "high"}
 
 
-def build_chat_model(settings) -> BaseChatModel:
-	"""Build the chat model configured in Ask ALYF Settings.
+# The mode whose model can differ from the Chat Model (see `uses_ask_model`).
+ASK_MODE = "Ask"
+
+
+def uses_ask_model(settings, mode: str | None) -> bool:
+	"""Whether this run takes the separate Ask Mode Model from the settings.
+
+	Only read-only Ask runs do; Agent mode and the field agent always use the
+	Chat Model, so the model that proposes writes stays the configured one.
+	"""
+	return mode == ASK_MODE and not cint(getattr(settings, "ask_model_is_chat_model", 1))
+
+
+def build_chat_model(settings, mode: str | None = None) -> BaseChatModel:
+	"""Build the chat model configured in Ask ALYF Settings for a run in `mode`.
 
 	No temperature: newer models (gpt-5.x, recent Claude) reject non-default values.
 	"""
-	provider = settings.llm_provider
+	if uses_ask_model(settings, mode):
+		provider = settings.ask_llm_provider
+		model = (settings.ask_model or "").strip()
+		if not model:
+			frappe.throw(_("Configure an Ask Mode Model in Ask ALYF Settings before sending messages."))
+		api_key = settings.get_password("ask_api_key", raise_exception=False)
+		base_url = settings.ask_base_url
+		reasoning_effort = settings.ask_reasoning_effort
+	else:
+		provider = settings.llm_provider
+		model = _get_model_name_from_settings(settings)
+		api_key = settings.get_password("api_key", raise_exception=False)
+		base_url = settings.base_url
+		reasoning_effort = settings.reasoning_effort
+
 	kwargs = {}
 	if provider == "openai":
 		kwargs["use_responses_api"] = True
 
-	reasoning_effort = (settings.reasoning_effort or "").strip()
+	reasoning_effort = (reasoning_effort or "").strip()
 	if provider == "google_genai":
 		reasoning_effort = GEMINI_THINKING_LEVELS.get(reasoning_effort, reasoning_effort)
 	if reasoning_effort and provider in REASONING_EFFORT_ARGUMENTS:
@@ -369,9 +397,9 @@ def build_chat_model(settings) -> BaseChatModel:
 
 	return init_settings_chat_model(
 		provider,
-		_get_model_name_from_settings(settings),
-		api_key=(settings.get_password("api_key", raise_exception=False) or "").strip(),
-		base_url=(settings.base_url or "").strip(),
+		model,
+		api_key=(api_key or "").strip(),
+		base_url=(base_url or "").strip(),
 		**kwargs,
 	)
 
@@ -421,12 +449,27 @@ def _langsmith_tracing(settings, *, metadata: dict[str, Any]) -> Generator[None]
 # --- Deep Agents coordinator --------------------------------------------------
 
 
+def build_current_date_instruction() -> str:
+	"""Tell the model today's date, so it does not spend a tool call to look it up.
+
+	Only the date, not the time: the system prompt is part of the cached
+	prompt prefix, and a value that changes every minute would defeat the
+	cache between the model calls of one turn and the turns of one day.
+	"""
+	today = getdate(nowdate())
+	return (
+		f"- Today is {today.strftime('%A')}, {today.isoformat()} "
+		f"(system time zone {get_system_timezone()}). Use this date for relative periods such as "
+		'"today", "this month" or "last year"; do not query the database for the current date.'
+	)
+
+
 class ask_alyfAgentRunner:
 	def __init__(self, runtime: ask_alyfRuntime):
 		self.runtime = runtime
 		self.settings = tools.get_settings()
 		self.toolset = ask_alyfToolset(runtime, settings=self.settings)
-		self.model = build_chat_model(self.settings)
+		self.model = build_chat_model(self.settings, mode=runtime.mode)
 		_ensure_ask_alyf_harness_profile(self.model)
 		app_roots = tools.get_installed_app_roots() if self.settings.is_code_search_enabled() else {}
 		self.backend = build_ask_alyf_backend(app_roots)
@@ -490,6 +533,7 @@ Always follow these rules:
 - If conversation history includes stored document extraction data, reuse it for follow-up questions instead of re-running extraction unless the user asks for a fresh read.
 - If a file tool returns a truncation warning, tell the user clearly that only part of the file was processed.
 {available_skills_instruction}
+{build_current_date_instruction()}
 
 - Current request context (includes `user_roles` for non-Administrator users):
 {context}
@@ -704,7 +748,9 @@ Mode awareness and behavior:
 				"mode": self.runtime.mode,
 			},
 		):
-			return self.agent.invoke(payload, config=self.thread_config)
+			# Streamed, so the chat can show the answer while it is written.
+			publisher = AnswerDraftPublisher(self.runtime.conversation_name)
+			return invoke_streaming(self.agent, payload, self.thread_config, publisher)
 
 	def resume(self, call_id: str, status: str, **decision: Any) -> dict[str, Any]:
 		"""Continue a run that paused on a proposal, with the user's decision."""

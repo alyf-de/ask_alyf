@@ -182,6 +182,8 @@ import "./field_agent";
 			this.statusWrapperEl = null;
 			this.statusBodyEl = null;
 			this.liveStepsEl = null;
+			this.liveDraftEl = null;
+			this.liveDraftText = "";
 			this.pendingOperationsEl = null;
 			this.suggestedPromptsEl = null;
 			this.activeResponseJob = null;
@@ -475,6 +477,56 @@ import "./field_agent";
 		clearLiveSteps() {
 			this.state.steps = [];
 			this.renderLiveSteps();
+		}
+
+		setLiveDraft(text) {
+			// The answer as the model writes it. It is replaced by the stored
+			// message once the run is over; an empty text withdraws it, because
+			// what was written turned out to be a step towards a tool call.
+			this.liveDraftText = text || "";
+			this.renderLiveDraft();
+			this.scrollToBottom();
+		}
+
+		clearLiveDraft() {
+			this.liveDraftText = "";
+			this.renderLiveDraft();
+		}
+
+		renderLiveDraft() {
+			if (!this.messagesEl) {
+				return;
+			}
+
+			if (!this.liveDraftText) {
+				if (this.liveDraftEl) {
+					this.liveDraftEl.remove();
+					this.liveDraftEl = null;
+				}
+				return;
+			}
+
+			if (!this.liveDraftEl) {
+				const wrapper = document.createElement("div");
+				wrapper.className = "ask_alyf-message ask_alyf-assistant ask_alyf-live-draft";
+				const body = document.createElement("div");
+				body.className = "ask_alyf-message-body";
+				wrapper.appendChild(body);
+				this.liveDraftEl = wrapper;
+			}
+			this.liveDraftEl.firstChild.innerHTML = frappe.markdown(this.liveDraftText);
+
+			// Always right after the live steps, ahead of the status line.
+			let before = this.statusWrapperEl || this.pendingOperationsEl || null;
+			if (before && before.parentNode !== this.messagesEl) {
+				before = null;
+			}
+			if (
+				this.liveDraftEl.parentNode !== this.messagesEl ||
+				this.liveDraftEl.nextSibling !== before
+			) {
+				this.messagesEl.insertBefore(this.liveDraftEl, before);
+			}
 		}
 
 		renderLiveSteps() {
@@ -1118,6 +1170,7 @@ import "./field_agent";
 				if (message.conversation !== this.state.conversation?.name) return;
 				this.setLoading(true);
 				this.clearLiveSteps();
+				this.clearLiveDraft();
 				this.setStatus(__("Thinking..."));
 			});
 
@@ -1135,6 +1188,13 @@ import "./field_agent";
 				}
 			});
 
+			frappe.realtime.on("ask_alyf_response_draft", (message) => {
+				if (message.conversation !== this.state.conversation?.name) return;
+				// A draft that arrives after the stored answer belongs to no run.
+				if (!this.state.loading && message.text) return;
+				this.setLiveDraft(message.text || "");
+			});
+
 			frappe.realtime.on("ask_alyf_response_chunk", (message) => {
 				if (message.conversation !== this.state.conversation?.name) return;
 				this.appendAssistantChunk(message.message_id, message.chunk || "");
@@ -1147,6 +1207,7 @@ import "./field_agent";
 				this.setStatus("");
 				this.adoptCompletedToolCalls(message.message_id, message.tool_calls);
 				this.clearLiveSteps();
+				this.clearLiveDraft();
 				this.state.pendingOperations = this.normalizePendingOperations(message.pending_operations);
 				this.pendingStreamMessageId = null;
 
@@ -1202,6 +1263,7 @@ import "./field_agent";
 		async applyConversation(conversation) {
 			this.stopResponseJobMonitor();
 			this.pendingStreamMessageId = null;
+			this.liveDraftText = "";
 			this.handledFrontendCallIds = new Set();
 			// Steps of the run that just finished are part of its assistant
 			// message now, and steps of another conversation are not ours.
@@ -2312,6 +2374,7 @@ import "./field_agent";
 					message.metadata.tool_calls = this.state.steps.map((step) => ({ ...step }));
 					this.state.steps = [];
 				}
+				this.liveDraftText = "";
 				this.state.messages.push(message);
 			}
 
@@ -2835,6 +2898,7 @@ import "./field_agent";
 
 			this.renderedMessageKeys = nextMessageKeys;
 			this.renderLiveSteps();
+			this.renderLiveDraft();
 			this.renderStatusMessage();
 			this.renderPendingOperation();
 			this.renderSuggestedPrompts();

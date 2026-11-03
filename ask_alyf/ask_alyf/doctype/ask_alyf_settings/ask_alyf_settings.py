@@ -21,6 +21,7 @@ if TYPE_CHECKING:
 class ModelConfiguration(StrEnum):
 	CHAT = "chat"
 	VISION = "vision"
+	ASK = "ask"
 
 
 MODEL_CONFIG_FIELDS = {
@@ -33,6 +34,11 @@ MODEL_CONFIG_FIELDS = {
 		"provider_field": "vision_llm_provider",
 		"base_url_field": "vision_base_url",
 		"api_key_field": "vision_api_key",
+	},
+	ModelConfiguration.ASK: {
+		"provider_field": "ask_llm_provider",
+		"base_url_field": "ask_base_url",
+		"api_key_field": "ask_api_key",
 	},
 }
 
@@ -81,6 +87,12 @@ class AskALYFSettings(Document):
 		allow_field_agent: DF.Check
 		allow_file_upload: DF.Check
 		api_key: DF.Password | None
+		ask_api_key: DF.Password | None
+		ask_base_url: DF.Data | None
+		ask_llm_provider: DF.Autocomplete | None
+		ask_model: DF.Autocomplete | None
+		ask_model_is_chat_model: DF.Check
+		ask_reasoning_effort: DF.Literal["", "low", "medium", "high", "xhigh", "max"]
 		base_url: DF.Data | None
 		enable_tracing: DF.Check
 		enabled: DF.Check
@@ -114,6 +126,8 @@ class AskALYFSettings(Document):
 		if self.llm_provider == "openai":
 			warn_if_unsupported_reasoning_effort(self.model, self.get("reasoning_effort"))
 
+		self.validate_ask_model()
+
 		if self.vision_model_is_chat_model:
 			validate_model_selection(
 				self.model,
@@ -130,9 +144,32 @@ class AskALYFSettings(Document):
 			unsupported_message=_("The selected Vision Model ({0}) does not support vision."),
 		)
 
+	def validate_ask_model(self):
+		if self.ask_model_is_chat_model:
+			return
+
+		validate_model_selection(
+			self.ask_model,
+			ModelConfiguration.ASK,
+			unsupported_message=_("The selected Ask Mode Model ({0}) does not support function calling."),
+		)
+		reasoning_effort = (self.get("ask_reasoning_effort") or "").strip()
+		if self.ask_llm_provider != "openai" or not self.ask_model or not reasoning_effort:
+			return
+
+		levels = get_langchain_reasoning_effort_levels(self.ask_model)
+		if levels is not None and reasoning_effort not in levels:
+			frappe.msgprint(
+				_("The selected Ask Mode Model ({0}) does not support Reasoning Effort ({1}).").format(
+					self.ask_model, reasoning_effort
+				),
+				indicator="orange",
+				alert=True,
+			)
+
 	def validate_llm_providers(self):
 		"""Autocomplete accepts free text, so check the value is a known provider."""
-		for fieldname in ("llm_provider", "vision_llm_provider"):
+		for fieldname in ("llm_provider", "vision_llm_provider", "ask_llm_provider"):
 			provider = self.get(fieldname)
 			if not provider:
 				continue
@@ -275,7 +312,7 @@ def is_litellm_mapped_model(model_id: str) -> bool:
 
 def has_required_capability(model_id: str, configuration: ModelConfiguration) -> bool:
 	match configuration:
-		case ModelConfiguration.CHAT:
+		case ModelConfiguration.CHAT | ModelConfiguration.ASK:
 			supported = supports_function_calling(model_id, custom_llm_provider=LITELLM_PROVIDER)
 		case ModelConfiguration.VISION:
 			supported = supports_vision(model_id, custom_llm_provider=LITELLM_PROVIDER)

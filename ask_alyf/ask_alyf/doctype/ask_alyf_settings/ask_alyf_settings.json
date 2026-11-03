@@ -28,6 +28,13 @@
   "vision_base_url",
   "vision_api_key",
   "vision_model",
+  "ask_provider_tab",
+  "ask_model_is_chat_model",
+  "ask_llm_provider",
+  "ask_base_url",
+  "ask_api_key",
+  "ask_model",
+  "ask_reasoning_effort",
   "access_tab",
   "section_break_kmgx",
   "excluded_doctypes",
@@ -212,6 +219,54 @@
    "fieldtype": "Data",
    "label": "LangSmith Project",
    "mandatory_depends_on": "enable_tracing"
+  },
+  {
+   "fieldname": "ask_provider_tab",
+   "fieldtype": "Tab Break",
+   "label": "Ask Mode Provider"
+  },
+  {
+   "default": "1",
+   "description": "Ask mode answers with the Chat Model. Turn this off to answer read-only questions with another model, for example a faster or cheaper one. Agent mode always uses the Chat Model.",
+   "fieldname": "ask_model_is_chat_model",
+   "fieldtype": "Check",
+   "label": "Same as Chat"
+  },
+  {
+   "depends_on": "eval:!doc.ask_model_is_chat_model",
+   "fieldname": "ask_llm_provider",
+   "fieldtype": "Autocomplete",
+   "label": "Ask Mode LLM Provider",
+   "mandatory_depends_on": "eval:!doc.ask_model_is_chat_model",
+   "options": "[\n {\n  \"label\": \"OpenAI\",\n  \"value\": \"openai\"\n },\n {\n  \"label\": \"Anthropic\",\n  \"value\": \"anthropic\"\n },\n {\n  \"label\": \"DeepSeek\",\n  \"value\": \"deepseek\"\n },\n {\n  \"label\": \"Mistral\",\n  \"value\": \"mistralai\"\n },\n {\n  \"label\": \"Gemini\",\n  \"value\": \"google_genai\"\n }\n]"
+  },
+  {
+   "depends_on": "eval:!doc.ask_model_is_chat_model",
+   "description": "Optional. Overrides the provider's default endpoint, e.g. for OpenAI-compatible APIs.",
+   "fieldname": "ask_base_url",
+   "fieldtype": "Data",
+   "label": "Ask Mode Base URL"
+  },
+  {
+   "depends_on": "eval:!doc.ask_model_is_chat_model",
+   "fieldname": "ask_api_key",
+   "fieldtype": "Password",
+   "label": "Ask Mode API Key"
+  },
+  {
+   "depends_on": "eval:!doc.ask_model_is_chat_model && doc.ask_llm_provider",
+   "fieldname": "ask_model",
+   "fieldtype": "Autocomplete",
+   "label": "Ask Mode Model",
+   "mandatory_depends_on": "eval:!doc.ask_model_is_chat_model"
+  },
+  {
+   "depends_on": "eval:!doc.ask_model_is_chat_model && [\"openai\", \"anthropic\", \"google_genai\"].includes(doc.ask_llm_provider)",
+   "description": "Gemini uses \"high\" for \"xhigh\" and \"max\".",
+   "fieldname": "ask_reasoning_effort",
+   "fieldtype": "Select",
+   "label": "Ask Mode Reasoning Effort",
+   "options": "\nlow\nmedium\nhigh\nxhigh\nmax"
   }
  ],
  "grid_page_length": 50,
