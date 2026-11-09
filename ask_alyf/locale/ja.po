@@ -475,6 +475,10 @@ msgstr "コンテンツを生成できませんでした。"
 msgid "Could not render chart."
 msgstr "チャートを表示できませんでした。"
 
+#: ask_alyf/public/js/ask_alyf.bundle.js:734
+msgid "Could not render diagram."
+msgstr "図を表示できませんでした。"
+
 #: ask_alyf/ask_alyf/agent.py:101
 #, python-brace-format
 msgid "Counting {0}"

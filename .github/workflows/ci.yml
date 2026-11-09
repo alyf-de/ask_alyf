@@ -4,7 +4,11 @@ on:
   push:
     branches:
       - develop
+    paths-ignore:
+      - "**/locale/main.pot"
   pull_request:
+    paths-ignore:
+      - "**/locale/main.pot"
 
 concurrency:
   group: develop-ask_alyf-${{ github.event.number }}

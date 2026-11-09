@@ -1,3 +1,4 @@
+import { render as renderPele } from "pele";
 import "./field_agent";
 
 (function () {
@@ -17,6 +18,20 @@ import "./field_agent";
 			return "";
 		}
 		return frappe.utils.icon(name, size, "", "", svgClass, currentColor);
+	}
+
+	// Streaming re-renders a message on every chunk, so each diagram is parsed once.
+	const mermaidSvgCache = new Map();
+
+	function renderMermaidSvg(source) {
+		if (!mermaidSvgCache.has(source)) {
+			try {
+				mermaidSvgCache.set(source, renderPele(source).svg);
+			} catch {
+				mermaidSvgCache.set(source, null);
+			}
+		}
+		return mermaidSvgCache.get(source);
 	}
 
 	/**
@@ -705,6 +720,21 @@ import "./field_agent";
 			if (entry.html !== html) {
 				entry.body.innerHTML = html;
 				entry.html = html;
+				for (const code of entry.body.querySelectorAll("code.language-mermaid")) {
+					const svg = renderMermaidSvg(code.textContent);
+					const pre = code.closest("pre");
+					if (svg) {
+						const diagram = document.createElement("div");
+						diagram.className = "ask_alyf-mermaid";
+						diagram.innerHTML = svg;
+						pre.replaceWith(diagram);
+					} else {
+						const note = document.createElement("div");
+						note.className = "ask_alyf-mermaid-error";
+						note.textContent = __("Could not render diagram.");
+						pre.before(note);
+					}
+				}
 				for (const table of entry.body.querySelectorAll("table")) {
 					const PAGE = 10;
 					const body = table.tBodies[0];

@@ -4,6 +4,8 @@ Ask ALYF adds an assistant to ERPNext so users can ask questions, find informati
 
 It is built for teams that already use ERPNext and want a practical assistant inside their existing system, not a separate chat product with a separate permission model.
 
+[![Ask ALYF: Tutorial and Review on YouTube](./assets/ask_alyf_video_thumbnail.jpg)](https://youtu.be/hDqQaanfPKE)
+
 ## What You Can Do
 
 Use Ask ALYF to:

@@ -33,7 +33,7 @@ env.bak/
 venv.bak/
 
 # Dependency directories
-node_modules/
+node_modules
 jspm_packages/
 
 # IDEs and editors
