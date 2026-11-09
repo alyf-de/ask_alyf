@@ -684,6 +684,11 @@ msgstr "发送消息失败。"
 msgid "Failed to stop the run."
 msgstr "无法停止本次运行。"
 
+#: ask_alyf/ask_alyf/tools.py:1770
+#, python-brace-format
+msgid "Field '{0}' does not exist in {1}."
+msgstr "{1} 中不存在字段 '{0}'。"
+
 #: ask_alyf/ask_alyf/tools.py:1734
 #, python-brace-format
 msgid "Field '{0}' in {1} is a child table ({2}) and must be a list of row objects."
@@ -923,11 +928,6 @@ msgstr "最后上下文 JSON"
 msgid "Last Message At"
 msgstr "最后消息时间"
 
-#: ask_alyf/ask_alyf/api.py:973
-#, python-brace-format
-msgid "Left blank: {0}"
-msgstr "留空：{0}"
-
 #: ask_alyf/ask_alyf/deep_agent_backend.py:172
 #: ask_alyf/ask_alyf/deep_agent_backend.py:278
 #, python-brace-format
@@ -1054,6 +1054,11 @@ msgstr "未提供有效的文件。"
 #, python-brace-format
 msgid "No version was found for app '{0}'."
 msgstr "未找到应用 '{0}' 的版本。"
+
+#: ask_alyf/ask_alyf/api.py:977
+#, python-brace-format
+msgid "Not set: {0}"
+msgstr "未应用：{0}"
 
 #. Description of the 'Excluded DocTypes' (Table MultiSelect) field in DocType
 #. 'Ask ALYF Settings'

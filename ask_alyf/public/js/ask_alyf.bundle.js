@@ -2588,14 +2588,19 @@ import "./field_agent";
 					return response?.name ? response : null;
 				};
 
-				const setField = async (target, source, fieldname, fieldtype, options, value, path) => {
+				const setField = async (target, source, fieldname, fieldtype, options, value) => {
 					let fetchMap = {};
 					let response = null;
 
 					if (["Link", "Dynamic Link"].includes(fieldtype)) {
 						// get fetch map for Link and Dynamic Link fields
 						for (const df of frappe.get_meta(target.doctype)?.fields || []) {
-							if (!df.fetch_from?.startsWith(`${fieldname}.`)) continue;
+							if (
+								!df.fetch_from?.startsWith(`${fieldname}.`) ||
+								(df.fetch_if_empty && target[df.fieldname]) ||
+								hasValue(source?.[df.fieldname])
+							)
+								continue;
 							const [, sourceField] = df.fetch_from.split(".");
 							if (sourceField) fetchMap[df.fieldname] = sourceField;
 						}
@@ -2608,28 +2613,19 @@ import "./field_agent";
 						} catch {
 							response = null;
 						}
-						if (!response) {
-							target[fieldname] = "";
-							omittedFields.push(path);
-							return;
-						}
+						if (!response) return false;
 						value = response.name;
 					}
 
 					// set values for fetched fields from Link and Dynamic Link fields
 					if (response) {
 						for (const [targetField, sourceField] of Object.entries(fetchMap)) {
-							const fromSource = source?.[targetField];
-							const next = hasValue(fromSource)
-								? fromSource
-								: hasValue(response[sourceField])
-								  ? response[sourceField]
-								  : "";
+							const next = hasValue(response[sourceField]) ? response[sourceField] : "";
 							if (target[targetField] === next) continue;
 							try {
 								await frappe.model.set_value(target.doctype, target.name, targetField, next);
 							} catch {
-								// ignore, because the value is not from the source document
+								// a failing form trigger must not stop the fill
 							}
 						}
 					}
@@ -2637,45 +2633,40 @@ import "./field_agent";
 					try {
 						await frappe.model.set_value(target.doctype, target.name, fieldname, value, fieldtype);
 					} catch {
-						// if not able to set value, omit the field if it is not already set
-						if (!hasValue(target[fieldname])) omittedFields.push(path);
+						// a failing form trigger must not stop the fill
 					} finally {
 						await waitForRequests();
 					}
+					return hasValue(target[fieldname]);
 				};
 
-				const fillDocument = async (target, source, pathPrefix = "") => {
-					const tables = new Map(
-						tableFieldsOf(target.doctype).map((df) => [df.fieldname, df.options]),
-					);
+				const fillDocument = async (target, source, prefix = "") => {
+					const tables = new Map(tableFieldsOf(target.doctype).map((df) => [df.fieldname, df]));
 					for (const df of frappe.get_meta(target.doctype)?.fields || []) {
-						if (
-							tables.has(df.fieldname) ||
-							skip.has(df.fieldname) ||
-							df.fieldname.startsWith("__")
-						)
-							continue;
+						if (tables.has(df.fieldname) || skip.has(df.fieldname)) continue;
 						const value = source?.[df.fieldname];
 						if (!hasValue(value)) continue;
-						await setField(
+						const isSet = await setField(
 							target,
 							source,
 							df.fieldname,
 							df.fieldtype,
 							df.options,
 							value,
-							`${pathPrefix}${df.fieldname}`,
 						);
+						if (!isSet) omittedFields.push(`${prefix}${__(df.label || df.fieldname)}`);
 					}
-					for (const [fieldname, childDoctype] of tables) {
+					for (const [fieldname, tableDf] of tables) {
 						const rows = source?.[fieldname];
 						if (!Array.isArray(rows)) continue;
 						frappe.model.clear_table(target, fieldname);
 						for (const row of rows) {
 							if (!row || typeof row !== "object" || Array.isArray(row)) continue;
-							const child = frappe.model.add_child(target, childDoctype, fieldname);
+							const child = frappe.model.add_child(target, tableDf.options, fieldname);
+							await frm.script_manager.trigger(`${fieldname}_add`, child.doctype, child.name);
+							await waitForRequests();
 							// recursively fill the child document
-							await fillDocument(child, row, `${pathPrefix}${fieldname}.${child.idx}.`);
+							await fillDocument(child, row, `${__(tableDf.label || fieldname)} #${child.idx}: `);
 						}
 					}
 				};
@@ -2683,17 +2674,15 @@ import "./field_agent";
 				const originalReroute = frappe.re_route_on_msgprint_hide;
 				frappe.re_route_on_msgprint_hide = () => {};
 
+				let frm;
 				try {
 					await frappe.set_route("Form", doc.doctype, doc.name);
 					await waitForRequests();
+					frm = this.getMatchingForm({ doctype: doc.doctype, docname: doc.name });
 					await fillDocument(doc, payload.doc);
 				} finally {
 					frappe.re_route_on_msgprint_hide = originalReroute;
-					// custom_onhide is used to prevent re-routing after an error
-					if (frappe.msg_dialog) frappe.msg_dialog.custom_onhide = null;
-					frappe.views.formview[
-						frappe.router.doctype_layout || doc.doctype
-					]?.frm?.refresh_fields();
+					frm?.refresh_fields();
 				}
 
 				const result = { doctype: doc.doctype, docname: doc.name };

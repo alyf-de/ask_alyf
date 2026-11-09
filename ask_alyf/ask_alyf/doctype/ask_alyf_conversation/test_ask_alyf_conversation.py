@@ -452,6 +452,33 @@ class UnitTestAskALYFConversation(UnitTestCase):
 			"Field 'fields' in DocType is a child table (DocField) and must be a list of row objects.",
 		)
 
+	def test_insert_and_save_check_table_multiselect_shape(self):
+		for action in ("insert", "save"):
+			self.assertEqual(
+				tools.validate_pending_action_payload(
+					action,
+					{"doctype": "User Group", "values": {"user_group_members": "Administrator"}},
+				),
+				"Field 'user_group_members' in User Group is a child table (User Group Member) "
+				"and must be a list of row objects.",
+			)
+
+	def test_open_prefilled_doc_unknown_field(self):
+		self.assertEqual(
+			tools.validate_frontend_action_payload(
+				"open_prefilled_doc",
+				{"doctype": "DocType", "doc": {"modul": "Core"}},
+			),
+			"Field 'modul' does not exist in DocType.",
+		)
+		self.assertEqual(
+			tools.validate_frontend_action_payload(
+				"open_prefilled_doc",
+				{"doctype": "DocType", "doc": {"fields": [{"fieldnam": "title"}]}},
+			),
+			"Field 'fields.1.fieldnam' does not exist in DocField.",
+		)
+
 	def test_parse_json_object_text_accepts_markdown_fenced_json(self):
 		parsed = tools._parse_json_object_text(
 			"""```json
@@ -659,13 +686,13 @@ class UnitTestAskALYFConversation(UnitTestCase):
 				result={
 					"doctype": "Sales Invoice",
 					"docname": "new-sales-invoice-1",
-					"omitted_fields": ["customer", "items.1.item_code"],
+					"omitted_fields": ["Customer", "Items #1: Item Code"],
 				},
 			)
 
 		conversation.reload()
 		messages = loads(conversation.messages_json, [])
-		self.assertIn("Left blank: customer, items.1.item_code", messages[-1]["content"])
+		self.assertIn("Not set: Customer, Items #1: Item Code", messages[-1]["content"])
 
 	def test_confirmable_frontend_action_result_resumes_the_paused_agent(self):
 		pending_operation = {

@@ -650,6 +650,10 @@ msgstr ""
 msgid "Failed to stop the run."
 msgstr ""
 
+#: ask_alyf/ask_alyf/tools.py:1770
+msgid "Field '{0}' does not exist in {1}."
+msgstr ""
+
 #: ask_alyf/ask_alyf/tools.py:1734
 msgid "Field '{0}' in {1} is a child table ({2}) and must be a list of row objects."
 msgstr ""
@@ -881,10 +885,6 @@ msgstr ""
 msgid "Last Message At"
 msgstr ""
 
-#: ask_alyf/ask_alyf/api.py:973
-msgid "Left blank: {0}"
-msgstr ""
-
 #: ask_alyf/ask_alyf/deep_agent_backend.py:172
 #: ask_alyf/ask_alyf/deep_agent_backend.py:278
 msgid "Line offset {0} exceeds file length"
@@ -1001,6 +1001,10 @@ msgstr ""
 
 #: ask_alyf/ask_alyf/tools.py:1041
 msgid "No version was found for app '{0}'."
+msgstr ""
+
+#: ask_alyf/ask_alyf/api.py:977
+msgid "Not set: {0}"
 msgstr ""
 
 #. Description of the 'Excluded DocTypes' (Table MultiSelect) field in DocType

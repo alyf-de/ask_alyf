@@ -1682,7 +1682,7 @@ def validate_frontend_action_payload(tool: str, payload: dict[str, Any]) -> str 
 			return _("Frontend action 'open_prefilled_doc' field 'doc' must be an object.")
 		if doc.get("doctype") not in (None, doctype):
 			return _("Frontend action 'open_prefilled_doc' doc DocType must match.")
-		return validate_table_field_shapes(doctype, doc)
+		return validate_table_field_shapes(doctype, doc) or validate_known_fields(doctype, doc)
 
 	if tool == "scroll_to_field":
 		fieldname = payload.get("fieldname")
@@ -1729,7 +1729,7 @@ def validate_table_field_shapes(doctype: str, values: dict[str, Any]) -> str | N
 	table_fields = {
 		df.fieldname: df.options
 		for df in meta.fields
-		if "Table" in df.fieldtype and df.fieldname and df.options
+		if df.fieldtype in frappe.model.table_fields and df.fieldname and df.options
 	}
 	if not table_fields:
 		return None
@@ -1757,4 +1757,20 @@ def validate_table_field_shapes(doctype: str, values: dict[str, Any]) -> str | N
 					_(doctype),
 				)
 
+	return None
+
+
+def validate_known_fields(doctype: str, values: dict[str, Any], path: str = "") -> str | None:
+	meta = frappe.get_meta(doctype)
+	for fieldname, value in values.items():
+		if fieldname == "doctype":
+			continue
+		df = meta.get_field(fieldname)
+		if not df:
+			return _("Field '{0}' does not exist in {1}.").format(f"{path}{fieldname}", _(doctype))
+		if df.fieldtype in frappe.model.table_fields and isinstance(value, list):
+			for index, row in enumerate(value, start=1):
+				unknown_field_error = validate_known_fields(df.options, row, f"{path}{fieldname}.{index}.")
+				if unknown_field_error:
+					return unknown_field_error
 	return None
