@@ -1137,7 +1137,7 @@ import "./field_agent";
 
 			frappe.realtime.on("ask_alyf_response_chunk", (message) => {
 				if (message.conversation !== this.state.conversation?.name) return;
-				this.appendAssistantChunk(message.message_id, message.chunk || "");
+				this.appendAssistantChunk(message.message_id, message.created_at, message.chunk || "");
 			});
 
 			frappe.realtime.on("ask_alyf_response_complete", async (message) => {
@@ -2298,7 +2298,7 @@ import "./field_agent";
 			}
 		}
 
-		appendAssistantChunk(messageId, chunk) {
+		appendAssistantChunk(messageId, createdAt, chunk) {
 			let message = this.state.messages.find((item) => item.id === messageId);
 			if (!message) {
 				// The steps that were streaming live belong to this answer, so
@@ -2308,7 +2308,7 @@ import "./field_agent";
 					id: messageId,
 					role: "assistant",
 					content: "",
-					created_at: frappe.datetime.system_datetime(),
+					created_at: createdAt,
 					metadata: {},
 				};
 				if (this.state.steps.length) {
