@@ -28,6 +28,32 @@ import "./field_agent";
 		return mermaidSvgCache.get(source);
 	}
 
+	// An image loads as soon as it renders and sends its URL. A prompt injection could put
+	// private data in that URL, so every image except inline data becomes a link. The HTML is
+	// parsed in an inert document: an <img> set through innerHTML loads even when detached.
+	function renderMarkdown(text) {
+		const doc = new DOMParser().parseFromString(frappe.markdown(text), "text/html");
+		for (const img of doc.querySelectorAll("img")) {
+			const src = img.getAttribute("src") || "";
+			if (/^data:/i.test(src)) {
+				continue;
+			}
+			const label = img.getAttribute("alt") || src;
+			// links don't nest, so an image inside a link leaves only its label
+			if (!src || img.closest("a")) {
+				img.replaceWith(label);
+				continue;
+			}
+			const link = doc.createElement("a");
+			link.setAttribute("href", src);
+			link.setAttribute("target", "_blank");
+			link.setAttribute("rel", "noopener noreferrer");
+			link.textContent = label;
+			img.replaceWith(link);
+		}
+		return doc.body.innerHTML;
+	}
+
 	/**
 	 * Frappe Charts divides by labels.length and (for pie) grand total;
 	 * tiny/negative plot height yields NaN axis lines in draw.js.
@@ -264,7 +290,7 @@ import "./field_agent";
 
 		getMessageHtml(message) {
 			if (message.role === "assistant") {
-				return frappe.markdown(message.content || "");
+				return renderMarkdown(message.content || "");
 			}
 			if (message.role === "system" && Array.isArray(message.metadata?.files)) {
 				const names = message.metadata.files
@@ -2538,7 +2564,7 @@ import "./field_agent";
 
 		renderInlineMarkdown(value) {
 			const container = document.createElement("div");
-			container.innerHTML = frappe.markdown((value || "").toString());
+			container.innerHTML = renderMarkdown((value || "").toString());
 			if (container.childElementCount === 1 && container.firstElementChild?.tagName === "P") {
 				return container.firstElementChild.innerHTML;
 			}
