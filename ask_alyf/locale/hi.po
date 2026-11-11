@@ -475,6 +475,10 @@ msgstr "सामग्री उत्पन्न नहीं की जा �
 msgid "Could not render chart."
 msgstr "चार्ट रेंडर नहीं किया जा सका।"
 
+#: ask_alyf/public/js/ask_alyf.bundle.js:734
+msgid "Could not render diagram."
+msgstr "आरेख रेंडर नहीं किया जा सका।"
+
 #: ask_alyf/ask_alyf/agent.py:101
 #, python-brace-format
 msgid "Counting {0}"

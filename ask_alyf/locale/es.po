@@ -475,6 +475,10 @@ msgstr "No se pudo generar el contenido."
 msgid "Could not render chart."
 msgstr "No se pudo mostrar el gráfico."
 
+#: ask_alyf/public/js/ask_alyf.bundle.js:734
+msgid "Could not render diagram."
+msgstr "No se pudo mostrar el diagrama."
+
 #: ask_alyf/ask_alyf/agent.py:101
 #, python-brace-format
 msgid "Counting {0}"

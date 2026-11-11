@@ -1,0 +1,9 @@
+{
+  "name": "ask_alyf",
+  "private": true,
+  "author": "ALYF GmbH <hallo@alyf.de>",
+  "license": "AGPL-3.0-only",
+  "dependencies": {
+    "pele": "^1.12.0"
+  }
+}
