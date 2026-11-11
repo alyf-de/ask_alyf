@@ -183,6 +183,55 @@ class UnitTestAskALYFSettings(UnitTestCase):
 
 		settings.validate()
 
+	def test_validate_rejects_unknown_ask_mode_provider(self):
+		settings = ask_alyf_settings.AskALYFSettings(
+			{
+				"doctype": "Ask ALYF Settings",
+				"llm_provider": "anthropic",
+				"ask_model_is_chat_model": 0,
+				"ask_llm_provider": "OpenAI Compatible",
+			}
+		)
+
+		with self.assertRaises(frappe.ValidationError):
+			settings.validate()
+
+	def test_validate_rejects_ask_mode_model_without_function_calling(self):
+		settings = ask_alyf_settings.AskALYFSettings(
+			{
+				"doctype": "Ask ALYF Settings",
+				"llm_provider": "anthropic",
+				"ask_model_is_chat_model": 0,
+				"ask_llm_provider": "mistralai",
+				"ask_model": "mistral-embed",
+			}
+		)
+
+		with self.assertRaises(frappe.ValidationError):
+			settings.validate()
+
+	def test_validate_ignores_the_ask_mode_model_when_same_as_chat(self):
+		settings = ask_alyf_settings.AskALYFSettings(
+			{
+				"doctype": "Ask ALYF Settings",
+				"llm_provider": "anthropic",
+				"ask_model_is_chat_model": 1,
+				"ask_model": "mistral-embed",
+			}
+		)
+
+		settings.validate()
+
+	def test_ask_configuration_reads_the_ask_mode_provider_fields(self):
+		self.assertEqual(
+			ask_alyf_settings.get_model_config_fields("ask"),
+			{
+				"provider_field": "ask_llm_provider",
+				"base_url_field": "ask_base_url",
+				"api_key_field": "ask_api_key",
+			},
+		)
+
 	def test_validate_rejects_known_chat_model_without_function_calling(self):
 		settings = ask_alyf_settings.AskALYFSettings(
 			{

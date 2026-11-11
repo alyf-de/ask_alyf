@@ -119,6 +119,7 @@ Common settings include:
 - _Allow Field Agent_
 - _Excluded DocTypes_
 - separate vision model settings, if document and image extraction should use a different model
+- separate Ask mode model settings (tab _Ask Mode Provider_), if read-only questions should use a different model or provider than Agent mode, for example a fast, inexpensive model for Ask and a stronger one for Agent. Agent mode and the field agent always use the _Chat Model_.
 - _Enable Tracing_, _LangSmith API Key_, _LangSmith Endpoint_, and _LangSmith Project_
 
 _System Prompt_ is added on top of the built-in instructions, not instead of them. Ask ALYF already tells the assistant how to behave, which tools to use, and how to respect permissions. Put only company-specific context here, such as your company name, the language to answer in, or conventions the assistant cannot read from the data. For step-by-step procedures, write a skill instead of adding it to the system prompt, so the instructions load only when they are relevant and only for the roles that need them.

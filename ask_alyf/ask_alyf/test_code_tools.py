@@ -3,6 +3,7 @@ import contextlib
 import contextvars
 import importlib.util
 import itertools
+import json
 import threading
 import unittest
 from concurrent.futures import ThreadPoolExecutor
@@ -145,9 +146,22 @@ class UnitTestCodeTools(UnitTestCase):
 		return runtime
 
 	def make_agent(self, invoke, *, interrupts=()):
-		"""Stand in for the compiled graph, which the runner also asks for state."""
+		"""Stand in for the compiled graph, which the runner also asks for state.
+
+		The runner streams the graph; `stream` replays what `invoke` returns
+		the way LangGraph's stream does: interrupts as an update, then the state.
+		"""
+
+		def stream(payload, config=None, stream_mode=None):
+			result = invoke(payload, config=config)
+			if isinstance(result, dict) and "__interrupt__" in result:
+				yield "updates", {"__interrupt__": result["__interrupt__"]}
+				result = {key: value for key, value in result.items() if key != "__interrupt__"}
+			yield "values", result
+
 		return SimpleNamespace(
 			invoke=invoke,
+			stream=stream,
 			get_state=lambda _config: SimpleNamespace(interrupts=interrupts),
 		)
 
@@ -284,6 +298,69 @@ class UnitTestCodeTools(UnitTestCase):
 		self.assertEqual(model.anthropic_api_url, "https://example.test")
 		self.assertEqual(model.anthropic_api_key.get_secret_value(), "test-key")
 
+	def make_settings_with_ask_model(self) -> FakeSettings:
+		"""Opus for Agent mode, a separate Mistral model for Ask mode."""
+		settings = FakeSettings(
+			allow_code_search=False,
+			reasoning_effort="high",
+			passwords={"ask_api_key": "ask-key"},
+		)
+		settings.llm_provider = "anthropic"
+		settings.model = "claude-opus-test"
+		settings.ask_model_is_chat_model = 0
+		settings.ask_llm_provider = "mistralai"
+		settings.ask_model = "mistral-test"
+		settings.ask_base_url = ""
+		settings.ask_reasoning_effort = ""
+		return settings
+
+	def test_build_chat_model_uses_the_ask_mode_model_for_ask_runs(self):
+		model = build_chat_model(self.make_settings_with_ask_model(), mode="Ask")
+
+		self.assertEqual(type(model).__name__, "ChatMistralAI")
+		self.assertEqual(model.model, "mistral-test")
+		self.assertEqual(model.mistral_api_key.get_secret_value(), "ask-key")
+
+	def test_build_chat_model_keeps_the_chat_model_for_agent_runs(self):
+		model = build_chat_model(self.make_settings_with_ask_model(), mode="Agent")
+
+		self.assertEqual(type(model).__name__, "ChatAnthropic")
+		self.assertEqual(model.model, "claude-opus-test")
+		self.assertEqual(model.effort, "high")
+
+	def test_build_chat_model_keeps_the_chat_model_without_a_mode(self):
+		# The field agent passes no mode and writes into forms, like Agent mode.
+		model = build_chat_model(self.make_settings_with_ask_model())
+
+		self.assertEqual(model.model, "claude-opus-test")
+
+	def test_build_chat_model_uses_the_chat_model_for_ask_runs_when_same_as_chat(self):
+		settings = self.make_settings_with_ask_model()
+		settings.ask_model_is_chat_model = 1
+
+		model = build_chat_model(settings, mode="Ask")
+
+		self.assertEqual(model.model, "claude-opus-test")
+
+	def test_build_chat_model_passes_the_ask_mode_reasoning_effort(self):
+		settings = self.make_settings_with_ask_model()
+		settings.ask_llm_provider = "anthropic"
+		settings.ask_model = "claude-haiku-test"
+		settings.ask_reasoning_effort = "low"
+
+		model = build_chat_model(settings, mode="Ask")
+
+		self.assertEqual(model.model, "claude-haiku-test")
+		self.assertEqual(model.effort, "low")
+		self.assertEqual(model.anthropic_api_key.get_secret_value(), "ask-key")
+
+	def test_build_chat_model_requires_an_ask_mode_model_when_separate(self):
+		settings = self.make_settings_with_ask_model()
+		settings.ask_model = ""
+
+		with self.assertRaises(frappe.ValidationError):
+			build_chat_model(settings, mode="Ask")
+
 	def test_subagents_register_source_code_analyzer_only_when_code_search_enabled(self):
 		raw_code_tool_names = {"search_code", "read_code_file", "ls", "find", "grep"}
 
@@ -345,6 +422,19 @@ class UnitTestCodeTools(UnitTestCase):
 
 		self.assertIn("Use `read_skill`", instructions)
 		self.assertIn("name: expense-guide | title: Expense Guide", instructions)
+
+	def test_build_instructions_state_todays_date(self):
+		runner = self.make_runner(allow_code_search=False)
+
+		with (
+			patch("ask_alyf.ask_alyf.agent.nowdate", return_value="2026-10-31"),
+			patch("ask_alyf.ask_alyf.agent.get_system_timezone", return_value="Europe/Berlin"),
+			patch("ask_alyf.ask_alyf.skill_utils.get_available_skill_summaries", return_value=[]),
+			patch("ask_alyf.ask_alyf.tools.get_excluded_doctypes", return_value=set()),
+		):
+			instructions = runner._build_instructions()
+
+		self.assertIn("Today is Saturday, 2026-10-31 (system time zone Europe/Berlin)", instructions)
 
 	def test_read_skill_returns_accessible_skill_content(self):
 		runtime = self.make_runtime(mode="Ask")
@@ -492,6 +582,45 @@ class UnitTestCodeTools(UnitTestCase):
 			group_by=None,
 		)
 		self.assertEqual(result, [])
+
+	def test_get_list_returns_a_result_that_fits_unchanged(self):
+		rows = [{"name": f"ITEM-{index}"} for index in range(50)]
+		with patch("ask_alyf.ask_alyf.tools.client.get_list", return_value=rows):
+			result = tools.get_list("Item", fields="name", limit=50)
+
+		self.assertEqual(result, rows)
+
+	def test_get_list_cuts_a_result_too_large_for_the_conversation(self):
+		rows = [{"name": f"ITEM-{index}", "description": "x" * 900} for index in range(200)]
+		with patch("ask_alyf.ask_alyf.tools.client.get_list", return_value=rows):
+			result = tools.get_list("Item", fields="name,description", limit=200)
+
+		self.assertTrue(result["truncated"])
+		self.assertEqual(result["total_rows"], 200)
+		self.assertEqual(result["returned_rows"], len(result["rows"]))
+		self.assertLess(result["returned_rows"], 200)
+		self.assertEqual(result["rows"][0], rows[0])
+		self.assertIn(f"first {result['returned_rows']} of 200 rows", result["message"])
+		self.assertLessEqual(len(json.dumps(result["rows"])), tools.MAX_TOOL_RESULT_CHARS)
+
+	def test_run_read_only_sql_cuts_a_result_too_large_for_the_conversation(self):
+		rows = [frappe._dict(name=f"SINV-{index}", remarks="y" * 900) for index in range(200)]
+		with (
+			patch("ask_alyf.ask_alyf.tools.frappe.get_roles", return_value=["System Manager"]),
+			patch("ask_alyf.ask_alyf.tools.frappe.db.sql", return_value=rows),
+		):
+			result = tools.run_read_only_sql("SELECT name, remarks FROM `tabSales Invoice`")
+
+		self.assertTrue(result["truncated"])
+		self.assertIn("GROUP BY", result["message"])
+
+	def test_long_values_are_shortened_in_row_results(self):
+		result = tools.limit_result_rows([{"notes": "z" * 5000, "qty": 3}], how_to_narrow="")
+
+		[row] = result
+		self.assertEqual(len(row["notes"]), tools.MAX_TOOL_RESULT_VALUE_CHARS)
+		self.assertTrue(row["notes"].endswith(tools.TRUNCATED_VALUE_SUFFIX))
+		self.assertEqual(row["qty"], 3)
 
 	def test_get_list_preserves_aggregate_field_dict(self):
 		fields = [{"SUM": "grand_total", "as": "total"}]

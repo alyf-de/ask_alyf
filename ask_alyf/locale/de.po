@@ -1940,3 +1940,32 @@ msgstr "{0} Zeilen"
 msgid "{0} steps"
 msgstr "{0} Schritte"
 
+msgid "Ask Mode Provider"
+msgstr "Anbieter Fragen-Modus"
+
+msgid "Ask Mode LLM Provider"
+msgstr "LLM-Anbieter Fragen-Modus"
+
+msgid "Ask Mode Base URL"
+msgstr "Basis-URL Fragen-Modus"
+
+msgid "Ask Mode API Key"
+msgstr "API-Schlüssel Fragen-Modus"
+
+msgid "Ask Mode Model"
+msgstr "Modell Fragen-Modus"
+
+msgid "Ask Mode Reasoning Effort"
+msgstr "Denkaufwand Fragen-Modus"
+
+msgid "Ask mode answers with the Chat Model. Turn this off to answer read-only questions with another model, for example a faster or cheaper one. Agent mode always uses the Chat Model."
+msgstr "Der Fragen-Modus antwortet mit dem Chat-Modell. Schalten Sie dies aus, um reine Lesefragen mit einem anderen Modell zu beantworten, zum Beispiel einem schnelleren oder günstigeren. Der Agent-Modus verwendet immer das Chat-Modell."
+
+msgid "Configure an Ask Mode Model in Ask ALYF Settings before sending messages."
+msgstr "Konfigurieren Sie ein Modell für den Fragen-Modus in den Ask ALYF-Einstellungen, bevor Sie Nachrichten senden."
+
+msgid "The selected Ask Mode Model ({0}) does not support function calling."
+msgstr "Das ausgewählte Modell für den Fragen-Modus ({0}) unterstützt kein Function Calling."
+
+msgid "The selected Ask Mode Model ({0}) does not support Reasoning Effort ({1})."
+msgstr "Das ausgewählte Modell für den Fragen-Modus ({0}) unterstützt den Denkaufwand ({1}) nicht."

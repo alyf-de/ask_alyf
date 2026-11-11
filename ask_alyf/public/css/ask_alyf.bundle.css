@@ -1179,6 +1179,10 @@
 	color: var(--text-muted);
 }
 
+.ask_alyf-live-draft .ask_alyf-message-body {
+	animation: ask_alyf-step-in 0.18s ease-out;
+}
+
 .ask_alyf-tool-calls > summary {
 	cursor: pointer;
 	list-style: none;
