@@ -1234,7 +1234,10 @@ import "./field_agent";
 			}
 			const createdAt = lastMessage.created_at;
 			if (createdAt && !lastMessage.metadata?.background_job_id) {
-				const ageMs = Date.now() - new Date(createdAt).getTime();
+				// created_at is system-zone time without an offset; new Date()
+				// would read it as browser-local time.
+				const createdAtMs = moment.tz(createdAt, frappe.boot.time_zone.system).valueOf();
+				const ageMs = Date.now() - createdAtMs;
 				if (ageMs > 5 * 60 * 1000) {
 					return null;
 				}
