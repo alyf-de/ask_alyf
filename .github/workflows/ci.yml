@@ -75,12 +75,21 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-yarn-
 
+      # Best effort: when the Ubuntu archive is unreachable, Frappe falls back
+      # to the preinstalled mysql client and the ripgrep tests skip themselves.
       - name: Install system dependencies
+        continue-on-error: true
+        timeout-minutes: 3
         run: |
+<<<<<<< HEAD
           sudo apt update
           sudo apt-get install mariadb-client ripgrep
           # MariaDB 10.6 server has no TLS, but newer clients require it by default
           printf "[client]\nskip-ssl\n" > ~/.my.cnf
+=======
+          sudo apt-get update
+          sudo apt-get install -y mariadb-client ripgrep
+>>>>>>> e31df55 (ci: do not fail when the Ubuntu archive is unreachable (#198))
 
       - name: Setup
         run: |
