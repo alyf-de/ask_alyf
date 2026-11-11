@@ -8,6 +8,7 @@ app_include_js = "ask_alyf.bundle.js"
 app_include_css = "ask_alyf.bundle.css"
 extend_bootinfo = "ask_alyf.ask_alyf.boot.boot_session"
 
+
 # Apps
 # ------------------
 
@@ -75,6 +76,8 @@ extend_bootinfo = "ask_alyf.ask_alyf.boot.boot_session"
 # ------------
 
 # before_install = "ask_alyf.install.before_install"
+after_install = ["ask_alyf.ask_alyf.install.ensure_erpnext_report_skill"]
+
 
 # Uninstallation
 # ------------
