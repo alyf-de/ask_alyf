@@ -697,6 +697,7 @@ def process_message_job(
 			{
 				"conversation": conversation_name,
 				"message_id": assistant_message["id"],
+				"created_at": assistant_message["created_at"],
 				"chunk": chunk + " ",
 			},
 			user=doc.owner,
