@@ -688,6 +688,11 @@ msgstr "বার্তা পাঠাতে ব্যর্থ হয়েছ
 msgid "Failed to stop the run."
 msgstr "রান বন্ধ করা যায়নি।"
 
+#: ask_alyf/ask_alyf/tools.py:1770
+#, python-brace-format
+msgid "Field '{0}' does not exist in {1}."
+msgstr "{1}-এ '{0}' ফিল্ডটি বিদ্যমান নেই।"
+
 #: ask_alyf/ask_alyf/tools.py:1734
 #, python-brace-format
 msgid "Field '{0}' in {1} is a child table ({2}) and must be a list of row objects."
@@ -775,7 +780,19 @@ msgstr "ফ্রন্টএন্ড অ্যাকশন 'new_doc'-এর �
 msgid "Frontend action 'new_doc' requires a DocType."
 msgstr "ফ্রন্টএন্ড অ্যাকশন 'new_doc'-এর জন্য একটি DocType প্রয়োজন।"
 
-#: ask_alyf/ask_alyf/tools.py:1678
+#: ask_alyf/ask_alyf/tools.py:1711
+msgid "Frontend action 'open_prefilled_doc' doc DocType must match."
+msgstr "ফ্রন্টএন্ড অ্যাকশন 'open_prefilled_doc'-এর ডকুমেন্ট DocType মিলতে হবে।"
+
+#: ask_alyf/ask_alyf/tools.py:1709
+msgid "Frontend action 'open_prefilled_doc' field 'doc' must be an object."
+msgstr "ফ্রন্টএন্ড অ্যাকশন 'open_prefilled_doc'-এর ফিল্ড 'doc' একটি অবজেক্ট হতে হবে।"
+
+#: ask_alyf/ask_alyf/tools.py:1706
+msgid "Frontend action 'open_prefilled_doc' requires a DocType."
+msgstr "ফ্রন্টএন্ড অ্যাকশন 'open_prefilled_doc'-এর জন্য একটি DocType প্রয়োজন।"
+
+#: ask_alyf/ask_alyf/tools.py:1705
 msgid "Frontend action 'scroll_to_field' requires a fieldname."
 msgstr "ফ্রন্টএন্ড অ্যাকশন 'scroll_to_field'-এর জন্য একটি fieldname প্রয়োজন।"
 
@@ -1042,6 +1059,11 @@ msgstr "কোনো বৈধ ফাইল প্রদান করা হয�
 msgid "No version was found for app '{0}'."
 msgstr "অ্যাপ '{0}' এর জন্য কোনো সংস্করণ পাওয়া যায়নি।"
 
+#: ask_alyf/ask_alyf/api.py:977
+#, python-brace-format
+msgid "Not set: {0}"
+msgstr "প্রয়োগ করা হয়নি: {0}"
+
 #. Description of the 'Excluded DocTypes' (Table MultiSelect) field in DocType
 #. 'Ask ALYF Settings'
 #: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.json
@@ -1082,10 +1104,19 @@ msgstr "শুধুমাত্র read-only SQL statements অনুমোদ�
 msgid "Open Ask ALYF"
 msgstr "Ask ALYF খুলুন"
 
+#: ask_alyf/ask_alyf/toolset.py:1148
+msgid "Open document action needs correction."
+msgstr "ডকুমেন্ট খোলার অ্যাকশনের সংশোধন প্রয়োজন।"
+
 #: ask_alyf/ask_alyf/toolset.py:1125
 #, python-brace-format
 msgid "Open new {0}"
 msgstr "নতুন {0} খুলুন"
+
+#: ask_alyf/ask_alyf/toolset.py:1146
+#, python-brace-format
+msgid "Open unsaved {0}"
+msgstr "অসংরক্ষিত {0} খুলুন"
 
 #. Option for the 'LLM Provider' (Select) field in DocType 'Ask ALYF Settings'
 #. Option for the 'Vision LLM Provider' (Select) field in DocType 'Ask ALYF
@@ -1109,6 +1140,11 @@ msgstr "একটি নতুন {0} খোলা হচ্ছে"
 #: ask_alyf/ask_alyf/agent.py:158
 msgid "Opening a page"
 msgstr "একটি পৃষ্ঠা খোলা হচ্ছে"
+
+#: ask_alyf/ask_alyf/agent.py:162
+#, python-brace-format
+msgid "Opening an unsaved {0}"
+msgstr "একটি অসংরক্ষিত {0} খোলা হচ্ছে"
 
 #. Description of the 'Base URL' (Data) field in DocType 'Ask ALYF Settings'
 #. Description of the 'Vision Base URL' (Data) field in DocType 'Ask ALYF
@@ -1235,6 +1271,10 @@ msgstr "দক্ষতার প্রস্তাব প্রস্তুত 
 #: ask_alyf/ask_alyf/toolset.py:927
 msgid "Prepared submit proposal."
 msgstr "সাবমিট প্রস্তাব প্রস্তুত করা হয়েছে।"
+
+#: ask_alyf/ask_alyf/toolset.py:1149
+msgid "Prepared unsaved document."
+msgstr "অসংরক্ষিত ডকুমেন্ট প্রস্তুত করা হয়েছে।"
 
 #: ask_alyf/ask_alyf/toolset.py:873
 msgid "Prepared update proposal."

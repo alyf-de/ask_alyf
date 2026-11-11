@@ -688,6 +688,11 @@ msgstr "发送消息失败。"
 msgid "Failed to stop the run."
 msgstr "无法停止本次运行。"
 
+#: ask_alyf/ask_alyf/tools.py:1770
+#, python-brace-format
+msgid "Field '{0}' does not exist in {1}."
+msgstr "{1} 中不存在字段 '{0}'。"
+
 #: ask_alyf/ask_alyf/tools.py:1734
 #, python-brace-format
 msgid "Field '{0}' in {1} is a child table ({2}) and must be a list of row objects."
@@ -775,7 +780,19 @@ msgstr "前端操作 'new_doc' 的字段 'route_options' 必须是一个对象�
 msgid "Frontend action 'new_doc' requires a DocType."
 msgstr "前端操作 'new_doc' 需要一个单据类型。"
 
-#: ask_alyf/ask_alyf/tools.py:1678
+#: ask_alyf/ask_alyf/tools.py:1711
+msgid "Frontend action 'open_prefilled_doc' doc DocType must match."
+msgstr "前端操作 'open_prefilled_doc' 的单据类型必须一致。"
+
+#: ask_alyf/ask_alyf/tools.py:1709
+msgid "Frontend action 'open_prefilled_doc' field 'doc' must be an object."
+msgstr "前端操作 'open_prefilled_doc' 的字段 'doc' 必须是一个对象。"
+
+#: ask_alyf/ask_alyf/tools.py:1706
+msgid "Frontend action 'open_prefilled_doc' requires a DocType."
+msgstr "前端操作 'open_prefilled_doc' 需要一个单据类型。"
+
+#: ask_alyf/ask_alyf/tools.py:1705
 msgid "Frontend action 'scroll_to_field' requires a fieldname."
 msgstr "前端操作 'scroll_to_field' 需要一个字段名称。"
 
@@ -1042,6 +1059,11 @@ msgstr "未提供有效的文件。"
 msgid "No version was found for app '{0}'."
 msgstr "未找到应用 '{0}' 的版本。"
 
+#: ask_alyf/ask_alyf/api.py:977
+#, python-brace-format
+msgid "Not set: {0}"
+msgstr "未应用：{0}"
+
 #. Description of the 'Excluded DocTypes' (Table MultiSelect) field in DocType
 #. 'Ask ALYF Settings'
 #: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.json
@@ -1082,10 +1104,19 @@ msgstr "仅允许只读 SQL 语句。"
 msgid "Open Ask ALYF"
 msgstr "打开 Ask ALYF"
 
+#: ask_alyf/ask_alyf/toolset.py:1148
+msgid "Open document action needs correction."
+msgstr "打开文档操作需要更正。"
+
 #: ask_alyf/ask_alyf/toolset.py:1125
 #, python-brace-format
 msgid "Open new {0}"
 msgstr "打开新的 {0}"
+
+#: ask_alyf/ask_alyf/toolset.py:1146
+#, python-brace-format
+msgid "Open unsaved {0}"
+msgstr "打开未保存的 {0}"
 
 #. Option for the 'LLM Provider' (Select) field in DocType 'Ask ALYF Settings'
 #. Option for the 'Vision LLM Provider' (Select) field in DocType 'Ask ALYF
@@ -1109,6 +1140,11 @@ msgstr "正在打开新的 {0}"
 #: ask_alyf/ask_alyf/agent.py:158
 msgid "Opening a page"
 msgstr "正在打开页面"
+
+#: ask_alyf/ask_alyf/agent.py:162
+#, python-brace-format
+msgid "Opening an unsaved {0}"
+msgstr "正在打开未保存的 {0}"
 
 #. Description of the 'Base URL' (Data) field in DocType 'Ask ALYF Settings'
 #. Description of the 'Vision Base URL' (Data) field in DocType 'Ask ALYF
@@ -1235,6 +1271,10 @@ msgstr "已准备技能提案。"
 #: ask_alyf/ask_alyf/toolset.py:927
 msgid "Prepared submit proposal."
 msgstr "已准备提交提案。"
+
+#: ask_alyf/ask_alyf/toolset.py:1149
+msgid "Prepared unsaved document."
+msgstr "已准备未保存的文档。"
 
 #: ask_alyf/ask_alyf/toolset.py:873
 msgid "Prepared update proposal."

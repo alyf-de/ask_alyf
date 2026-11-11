@@ -688,6 +688,11 @@ msgstr "فشل إرسال الرسالة."
 msgid "Failed to stop the run."
 msgstr "فشل إيقاف التشغيل."
 
+#: ask_alyf/ask_alyf/tools.py:1770
+#, python-brace-format
+msgid "Field '{0}' does not exist in {1}."
+msgstr "الحقل '{0}' غير موجود في {1}."
+
 #: ask_alyf/ask_alyf/tools.py:1734
 #, python-brace-format
 msgid "Field '{0}' in {1} is a child table ({2}) and must be a list of row objects."
@@ -775,7 +780,19 @@ msgstr "يجب أن يكون حقل 'route_options' في إجراء الواجه
 msgid "Frontend action 'new_doc' requires a DocType."
 msgstr "يتطلب إجراء الواجهة الأمامية 'new_doc' نوع DOCTYPE."
 
-#: ask_alyf/ask_alyf/tools.py:1678
+#: ask_alyf/ask_alyf/tools.py:1711
+msgid "Frontend action 'open_prefilled_doc' doc DocType must match."
+msgstr "يجب أن يتطابق نوع DOCTYPE للمستند في إجراء الواجهة الأمامية 'open_prefilled_doc'."
+
+#: ask_alyf/ask_alyf/tools.py:1709
+msgid "Frontend action 'open_prefilled_doc' field 'doc' must be an object."
+msgstr "يجب أن يكون حقل 'doc' في إجراء الواجهة الأمامية 'open_prefilled_doc' كائناً."
+
+#: ask_alyf/ask_alyf/tools.py:1706
+msgid "Frontend action 'open_prefilled_doc' requires a DocType."
+msgstr "يتطلب إجراء الواجهة الأمامية 'open_prefilled_doc' نوع DOCTYPE."
+
+#: ask_alyf/ask_alyf/tools.py:1705
 msgid "Frontend action 'scroll_to_field' requires a fieldname."
 msgstr "يتطلب إجراء الواجهة الأمامية 'scroll_to_field' اسم حقل."
 
@@ -1042,6 +1059,11 @@ msgstr "لم يتم تقديم ملف صالح."
 msgid "No version was found for app '{0}'."
 msgstr "لم يتم العثور على إصدار للتطبيق '{0}'."
 
+#: ask_alyf/ask_alyf/api.py:977
+#, python-brace-format
+msgid "Not set: {0}"
+msgstr "لم يتم تطبيقه: {0}"
+
 #. Description of the 'Excluded DocTypes' (Table MultiSelect) field in DocType
 #. 'Ask ALYF Settings'
 #: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.json
@@ -1082,10 +1104,19 @@ msgstr "يُسمح فقط بعبارات SQL للقراءة فقط."
 msgid "Open Ask ALYF"
 msgstr "فتح Ask ALYF"
 
+#: ask_alyf/ask_alyf/toolset.py:1148
+msgid "Open document action needs correction."
+msgstr "يحتاج إجراء فتح المستند إلى تصحيح."
+
 #: ask_alyf/ask_alyf/toolset.py:1125
 #, python-brace-format
 msgid "Open new {0}"
 msgstr "فتح {0} جديد"
+
+#: ask_alyf/ask_alyf/toolset.py:1146
+#, python-brace-format
+msgid "Open unsaved {0}"
+msgstr "فتح {0} غير محفوظ"
 
 #. Option for the 'LLM Provider' (Select) field in DocType 'Ask ALYF Settings'
 #. Option for the 'Vision LLM Provider' (Select) field in DocType 'Ask ALYF
@@ -1109,6 +1140,11 @@ msgstr "فتح {0} جديد"
 #: ask_alyf/ask_alyf/agent.py:158
 msgid "Opening a page"
 msgstr "فتح صفحة"
+
+#: ask_alyf/ask_alyf/agent.py:162
+#, python-brace-format
+msgid "Opening an unsaved {0}"
+msgstr "فتح {0} غير محفوظ"
 
 #. Description of the 'Base URL' (Data) field in DocType 'Ask ALYF Settings'
 #. Description of the 'Vision Base URL' (Data) field in DocType 'Ask ALYF
@@ -1235,6 +1271,10 @@ msgstr "تم تحضير اقتراح المهارة."
 #: ask_alyf/ask_alyf/toolset.py:927
 msgid "Prepared submit proposal."
 msgstr "تم تحضير اقتراح التسجيل."
+
+#: ask_alyf/ask_alyf/toolset.py:1149
+msgid "Prepared unsaved document."
+msgstr "تم تحضير مستند غير محفوظ."
 
 #: ask_alyf/ask_alyf/toolset.py:873
 msgid "Prepared update proposal."

@@ -688,6 +688,11 @@ msgstr "No se pudo enviar el mensaje."
 msgid "Failed to stop the run."
 msgstr "No se pudo detener la ejecución."
 
+#: ask_alyf/ask_alyf/tools.py:1770
+#, python-brace-format
+msgid "Field '{0}' does not exist in {1}."
+msgstr "El campo '{0}' no existe en {1}."
+
 #: ask_alyf/ask_alyf/tools.py:1734
 #, python-brace-format
 msgid "Field '{0}' in {1} is a child table ({2}) and must be a list of row objects."
@@ -775,7 +780,19 @@ msgstr "El campo 'route_options' de la acción de frontend 'new_doc' debe ser un
 msgid "Frontend action 'new_doc' requires a DocType."
 msgstr "La acción de frontend 'new_doc' requiere un Doctype."
 
-#: ask_alyf/ask_alyf/tools.py:1678
+#: ask_alyf/ask_alyf/tools.py:1711
+msgid "Frontend action 'open_prefilled_doc' doc DocType must match."
+msgstr "El DocType del documento de la acción de frontend 'open_prefilled_doc' debe coincidir."
+
+#: ask_alyf/ask_alyf/tools.py:1709
+msgid "Frontend action 'open_prefilled_doc' field 'doc' must be an object."
+msgstr "El campo 'doc' de la acción de frontend 'open_prefilled_doc' debe ser un objeto."
+
+#: ask_alyf/ask_alyf/tools.py:1706
+msgid "Frontend action 'open_prefilled_doc' requires a DocType."
+msgstr "La acción de frontend 'open_prefilled_doc' requiere un DocType."
+
+#: ask_alyf/ask_alyf/tools.py:1705
 msgid "Frontend action 'scroll_to_field' requires a fieldname."
 msgstr "La acción de frontend 'scroll_to_field' requiere un nombre del campo."
 
@@ -1042,6 +1059,11 @@ msgstr "No se proporcionó un archivo válido."
 msgid "No version was found for app '{0}'."
 msgstr "No se encontró ninguna versión para la aplicación '{0}'."
 
+#: ask_alyf/ask_alyf/api.py:977
+#, python-brace-format
+msgid "Not set: {0}"
+msgstr "No aplicado: {0}"
+
 #. Description of the 'Excluded DocTypes' (Table MultiSelect) field in DocType
 #. 'Ask ALYF Settings'
 #: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.json
@@ -1082,10 +1104,19 @@ msgstr "Solo se permiten instrucciones SQL de solo lectura."
 msgid "Open Ask ALYF"
 msgstr "Abrir Ask ALYF"
 
+#: ask_alyf/ask_alyf/toolset.py:1148
+msgid "Open document action needs correction."
+msgstr "La acción de abrir documento necesita corrección."
+
 #: ask_alyf/ask_alyf/toolset.py:1125
 #, python-brace-format
 msgid "Open new {0}"
 msgstr "Abrir nuevo {0}"
+
+#: ask_alyf/ask_alyf/toolset.py:1146
+#, python-brace-format
+msgid "Open unsaved {0}"
+msgstr "Abrir {0} sin guardar"
 
 #. Option for the 'LLM Provider' (Select) field in DocType 'Ask ALYF Settings'
 #. Option for the 'Vision LLM Provider' (Select) field in DocType 'Ask ALYF
@@ -1109,6 +1140,11 @@ msgstr "Abriendo un nuevo {0}"
 #: ask_alyf/ask_alyf/agent.py:158
 msgid "Opening a page"
 msgstr "Abriendo una página"
+
+#: ask_alyf/ask_alyf/agent.py:162
+#, python-brace-format
+msgid "Opening an unsaved {0}"
+msgstr "Abriendo un {0} sin guardar"
 
 #. Description of the 'Base URL' (Data) field in DocType 'Ask ALYF Settings'
 #. Description of the 'Vision Base URL' (Data) field in DocType 'Ask ALYF
@@ -1235,6 +1271,10 @@ msgstr "Propuesta de habilidad preparada."
 #: ask_alyf/ask_alyf/toolset.py:927
 msgid "Prepared submit proposal."
 msgstr "Propuesta de validar preparada."
+
+#: ask_alyf/ask_alyf/toolset.py:1149
+msgid "Prepared unsaved document."
+msgstr "Documento sin guardar preparado."
 
 #: ask_alyf/ask_alyf/toolset.py:873
 msgid "Prepared update proposal."
