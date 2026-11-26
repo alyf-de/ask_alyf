@@ -527,6 +527,39 @@ class ask_alyfToolset:
 		"""
 		return tools.list_accessible_reports()
 
+	def get_report_filters(self, report_name: str) -> dict[str, Any]:
+		"""List a report's filters before run_report.
+
+		Args:
+			report_name: Report name.
+
+		Returns:
+			filters: fieldname, label, fieldtype, reqd, and when set options, default, depends_on.
+			Pass only those fieldnames to run_report, as {"fieldname": value}.
+		"""
+		meta = tools.get_report_filters(report_name)
+		meta.pop("js_filters", None)
+		return meta
+
+	def run_report(
+		self,
+		report_name: str,
+		filters: dict[str, Any] | None = None,
+	) -> dict[str, Any]:
+		"""Run a report and return its columns and rows.
+
+		Args:
+			report_name: Report name.
+			filters: Field values, {"fieldname": value}. Dates are YYYY-MM-DD.
+				Select and Link values are strings. MultiSelectList values are lists.
+				A filter you leave out keeps its default. Pass only what the user asked for.
+				To switch off a Check that defaults to 1, pass 0.
+
+		Returns:
+			The report result. At most 200 rows; truncated is true when more existed.
+		"""
+		return tools.run_report(report_name=report_name, filters=filters)
+
 	def translate_ui_labels(
 		self,
 		labels: list[str],
