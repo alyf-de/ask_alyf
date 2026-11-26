@@ -4,6 +4,8 @@ Ask ALYF adds an assistant to ERPNext so users can ask questions, find informati
 
 It is built for teams that already use ERPNext and want a practical assistant inside their existing system, not a separate chat product with a separate permission model.
 
+[![Ask ALYF: Tutorial and Review on YouTube](./assets/ask_alyf_video_thumbnail.jpg)](https://youtu.be/hDqQaanfPKE)
+
 ## What You Can Do
 
 Use Ask ALYF to:
@@ -25,6 +27,8 @@ Ask mode is for questions and research. The assistant can read permitted data, e
 Agent mode is for taking action. The assistant can prepare changes such as creating, updating, submitting, cancelling, amending, renaming, or deleting documents. Before anything is changed, the user sees a proposal and must approve it.
 
 ## Field Writing Help
+
+![Field Writing Help](./assets/ask_alyf_field_agent.gif)
 
 Ask ALYF can also add a small sparkles button next to long text fields on Desk forms. Users can describe what they want written, and the assistant fills the field in place.
 

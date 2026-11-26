@@ -1,0 +1,19 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Stop bench services",
+      "type": "shell",
+      "command": "pkill -SIGINT -f '[a]pps/frappe/socketio.js' || true; pkill -SIGINT -f '[b]ench watch' || true; pkill -SIGINT -f '[b]ench schedule' || true; pkill -SIGINT -f '[b]ench worker' || true",
+      "isBackground": false,
+      "presentation": {
+        "echo": false,
+        "reveal": "silent",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": false,
+        "close": true
+      }
+    }
+  ]
+}

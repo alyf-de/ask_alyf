@@ -1,0 +1,115 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Bench: Web only (stop bench start first)",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/apps/frappe/frappe/utils/bench_helper.py",
+      "args": [
+        "frappe",
+        "--site",
+        "test_site",
+        "serve",
+        "--port",
+        "8000",
+        "--noreload"
+      ],
+      "python": "${workspaceFolder}/env/bin/python",
+      "cwd": "${workspaceFolder}/sites",
+      "env": {
+        "DEV_SERVER": "1"
+      },
+      "justMyCode": true
+    },
+    {
+      "name": "Bench: Services (without web)",
+      "type": "node-terminal",
+      "request": "launch",
+      "command": "honcho start socketio watch schedule worker",
+      "cwd": "${workspaceFolder}",
+      "postDebugTask": "Stop bench services"
+    },
+    {
+      "name": "Bench: Console",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/apps/frappe/frappe/utils/bench_helper.py",
+      "args": ["frappe", "--site", "test_site", "console"],
+      "python": "${workspaceFolder}/env/bin/python",
+      "cwd": "${workspaceFolder}/sites",
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "Bench: Test ask_alyf",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/apps/frappe/frappe/utils/bench_helper.py",
+      "args": [
+        "frappe",
+        "--site",
+        "test_site",
+        "run-tests",
+        "--app",
+        "ask_alyf"
+      ],
+      "python": "${workspaceFolder}/env/bin/python",
+      "cwd": "${workspaceFolder}/sites",
+      "justMyCode": true
+    },
+    {
+      "name": "Bench: Test module",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/apps/frappe/frappe/utils/bench_helper.py",
+      "args": [
+        "frappe",
+        "--site",
+        "test_site",
+        "run-tests",
+        "--module",
+        "${input:testModule}"
+      ],
+      "python": "${workspaceFolder}/env/bin/python",
+      "cwd": "${workspaceFolder}/sites",
+      "justMyCode": true
+    },
+    {
+      "name": "Bench: Migrate",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/apps/frappe/frappe/utils/bench_helper.py",
+      "args": ["frappe", "--site", "test_site", "migrate"],
+      "python": "${workspaceFolder}/env/bin/python",
+      "cwd": "${workspaceFolder}/sites"
+    },
+    {
+      "name": "Bench: Worker",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/apps/frappe/frappe/utils/bench_helper.py",
+      "args": ["frappe", "worker"],
+      "python": "${workspaceFolder}/env/bin/python",
+      "cwd": "${workspaceFolder}/sites",
+      "justMyCode": true
+    }
+  ],
+  "compounds": [
+    {
+      "name": "Bench: Full stack (debug web)",
+      "configurations": [
+        "Bench: Web only (stop bench start first)",
+        "Bench: Services (without web)"
+      ],
+      "stopAll": true
+    }
+  ],
+  "inputs": [
+    {
+      "type": "promptString",
+      "id": "testModule",
+      "description": "Dotted test module",
+      "default": "ask_alyf.ask_alyf.test_api"
+    }
+  ]
+}

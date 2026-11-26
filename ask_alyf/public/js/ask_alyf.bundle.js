@@ -13,6 +13,13 @@ import "./field_agent";
 	const ASK_ALYF_JOB_POLL_INTERVAL_MS = 2000;
 	const ASK_ALYF_MISSING_JOB_CHECKS = 3;
 
+	function getIcon(name, size = "sm", svgClass = "", currentColor = false) {
+		if (typeof frappe.utils?.icon !== "function") {
+			return "";
+		}
+		return frappe.utils.icon(name, size, "", "", svgClass, currentColor);
+	}
+
 	// Streaming re-renders a message on every chunk, so each diagram is parsed once.
 	const mermaidSvgCache = new Map();
 
@@ -301,7 +308,7 @@ import "./field_agent";
 					.map((f) => this.renderFileLink(f))
 					.filter(Boolean)
 					.join(", ");
-				return `<i class="fa fa-paperclip" aria-hidden="true"></i> ${names}`;
+				return `${getIcon("paperclip", "xs", "", true)} ${names}`;
 			}
 			return this.escapeHtml(message.content || "").replace(/\n/g, "<br>");
 		}
@@ -681,8 +688,7 @@ import "./field_agent";
 				copyButton.type = "button";
 				copyButton.title = label;
 				copyButton.setAttribute("aria-label", label);
-				copyButton.innerHTML =
-					typeof frappe.utils?.icon === "function" ? frappe.utils.icon("copy", "xs") : "Copy";
+				copyButton.innerHTML = getIcon("copy", "xs", "", true);
 				copyButton.addEventListener("click", () =>
 					frappe.utils.copy_to_clipboard(entry.copyText || ""),
 				);
@@ -770,8 +776,8 @@ import "./field_agent";
 						prev.setAttribute("aria-label", __("Previous page"));
 						next.setAttribute("aria-label", __("Next page"));
 						label.setAttribute("aria-live", "polite");
-						prev.innerHTML = frappe.utils.icon("es-line-left-chevron", "xs", "", true);
-						next.innerHTML = frappe.utils.icon("es-line-right-chevron", "xs", "", true);
+						prev.innerHTML = getIcon("chevron-left", "xs", "", true);
+						next.innerHTML = getIcon("chevron-right", "xs", "", true);
 						const show = (page) => {
 							const rows = [...body.rows];
 							const pages = Math.ceil(rows.length / PAGE);
@@ -791,7 +797,7 @@ import "./field_agent";
 					}
 					const header = table.tHead?.rows[0];
 					if (!header) continue;
-					const sortIcon = (name) => frappe.utils.icon(name, "xs", "", true);
+					const sortIcon = (name) => getIcon(name, "xs", "", true);
 					const sortButtonLabel = (columnLabel, direction) => {
 						if (direction === "asc") {
 							return __("Sorted ascending by {0}", [columnLabel]);
@@ -816,10 +822,10 @@ import "./field_agent";
 							: "ask_alyf-sort-btn ask_alyf-sort-icon ask_alyf-sort-icon-default";
 						btn.innerHTML = sortIcon(
 							direction === "asc"
-								? "es-line-up"
+								? "chevron-up"
 								: direction === "desc"
-								  ? "es-line-down"
-								  : "es-line-sort",
+								  ? "chevron-down"
+								  : "chevrons-up-down",
 						);
 						btn.setAttribute("aria-label", sortButtonLabel(columnLabel, direction));
 					};
@@ -831,7 +837,7 @@ import "./field_agent";
 						const labelHtml = cell.innerHTML;
 						cell.innerHTML = `<span class="ask_alyf-th">${labelHtml}<button type="button" class="ask_alyf-sort-btn ask_alyf-sort-icon ask_alyf-sort-icon-default" aria-label="${this.escapeHtml(
 							sortButtonLabel(columnLabel, null),
-						)}">${sortIcon("es-line-sort")}</button></span>`;
+						)}">${sortIcon("chevrons-up-down")}</button></span>`;
 					}
 					table.tHead?.addEventListener("click", (event) => {
 						const sortBtn = event.target.closest(".ask_alyf-sort-btn");
@@ -1001,9 +1007,7 @@ import "./field_agent";
 							)}" aria-label="${__("New chat")}">${__("New chat")}</button>
 							<a class="ask_alyf-header-button ask_alyf-support-phone btn btn-secondary btn-sm ask_alyf-hidden" href="#" role="button" title="${__(
 								"Call support",
-							)}" aria-label="${__(
-								"Call support",
-							)}"><i class="fa fa-phone" aria-hidden="true"></i></a>
+							)}" aria-label="${__("Call support")}">${getIcon("phone", "sm", "", true)}</a>
 							<button class="ask_alyf-header-button ask_alyf-close btn btn-secondary btn-sm" type="button" title="${__(
 								"Close",
 							)}" aria-label="${__("Close")}">&times;</button>
@@ -1034,7 +1038,7 @@ import "./field_agent";
 								<div class="ask_alyf-mode-dropdown">
 									<button class="ask_alyf-mode-trigger btn btn-secondary btn-sm" type="button" aria-haspopup="menu" aria-expanded="false">
 										<span class="ask_alyf-mode-trigger-label"></span>
-										<i class="fa fa-chevron-down ask_alyf-mode-trigger-chevron" aria-hidden="true"></i>
+										${getIcon("chevron-down", "xs", "ask_alyf-mode-trigger-chevron", true)}
 									</button>
 									<div class="ask_alyf-mode-menu ask_alyf-hidden" role="menu">
 										<button class="ask_alyf-mode-option btn btn-secondary btn-sm" type="button" role="menuitemradio" data-mode="Ask">${__(
@@ -1048,10 +1052,15 @@ import "./field_agent";
 								<div class="ask_alyf-composer-actions">
 									<button class="ask_alyf-icon-button ask_alyf-attach btn btn-secondary btn-sm ask_alyf-hidden" type="button" title="${__(
 										"Attach file",
-									)}" aria-label="${__("Attach file")}"><i class="fa fa-paperclip"></i></button>
+									)}" aria-label="${__("Attach file")}">${getIcon(
+										"paperclip",
+										"sm",
+										"",
+										true,
+									)}</button>
 									<button class="ask_alyf-icon-button ask_alyf-mic btn btn-secondary btn-sm" type="button" title="${__(
 										"Voice input",
-									)}" aria-label="${__("Voice input")}"><i class="fa fa-microphone"></i></button>
+									)}" aria-label="${__("Voice input")}">${getIcon("mic", "sm", "", true)}</button>
 									<button class="ask_alyf-send btn btn-primary btn-sm" type="button">${__("Send")}</button>
 								</div>
 							</div>
@@ -1928,10 +1937,7 @@ import "./field_agent";
 					}
 					deleteEl.title = __("Delete conversation");
 					deleteEl.setAttribute("aria-label", __("Delete conversation"));
-					deleteEl.innerHTML =
-						typeof frappe.utils?.icon === "function"
-							? frappe.utils.icon("trash", "sm", "", "", "", true)
-							: "\u00d7";
+					deleteEl.innerHTML = getIcon("trash", "sm", "", true);
 					deleteEl.addEventListener("click", (event) =>
 						this.onHistoryConversationDeleteClick(event, conversation.name, title),
 					);
@@ -2939,8 +2945,7 @@ import "./field_agent";
 				downloadButton.title = downloadLabel;
 				downloadButton.setAttribute("aria-label", downloadLabel);
 				downloadButton.disabled = true;
-				downloadButton.innerHTML =
-					typeof frappe.utils?.icon === "function" ? frappe.utils.icon("download", "xs") : "SVG";
+				downloadButton.innerHTML = getIcon("download", "xs", "", true);
 				downloadButton.addEventListener("click", () => {
 					const chart = this.getTrackedFrappeChart(messageKey, index);
 					if (!chart || typeof chart.export !== "function") {
