@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Ask ALYF VERSION\n"
 "Report-Msgid-Bugs-To: hallo@alyf.de\n"
-"POT-Creation-Date: 2026-11-26 17:59+0053\n"
+"POT-Creation-Date: 2026-11-26 18:16+0053\n"
 "PO-Revision-Date: 2026-05-02 19:04+0053\n"
 "Last-Translator: hallo@alyf.de\n"
 "Language: ru\n"
@@ -30,42 +30,42 @@ msgstr "Доступ к скрытым путям не разрешён"
 msgid "Accounts"
 msgstr "Учёт"
 
-#: ask_alyf/ask_alyf/tools.py:1520
+#: ask_alyf/ask_alyf/tools.py:1519
 msgid "Action field 'args' must be an object."
 msgstr "Поле действия 'args' должно быть объектом."
 
-#: ask_alyf/ask_alyf/tools.py:1486 ask_alyf/ask_alyf/tools.py:1497
+#: ask_alyf/ask_alyf/tools.py:1485 ask_alyf/ask_alyf/tools.py:1496
 msgid "Action field 'doctype' is required."
 msgstr "Поле действия 'doctype' обязательно."
 
-#: ask_alyf/ask_alyf/tools.py:1515
+#: ask_alyf/ask_alyf/tools.py:1514
 msgid "Action field 'file_id' is required."
 msgstr "Поле действия 'file_id' обязательно."
 
-#: ask_alyf/ask_alyf/tools.py:1501
+#: ask_alyf/ask_alyf/tools.py:1500
 msgid "Action field 'records' must be a non-empty list."
 msgstr "Поле действия 'records' должно быть непустым списком."
 
-#: ask_alyf/ask_alyf/tools.py:1505
+#: ask_alyf/ask_alyf/tools.py:1504
 #, python-brace-format
 msgid "Action field 'records' row #{0} must be an object."
 msgstr "Строка #{0} поля действия 'records' должна быть объектом."
 
-#: ask_alyf/ask_alyf/tools.py:1490
+#: ask_alyf/ask_alyf/tools.py:1489
 msgid "Action field 'values' must be an object."
 msgstr "Поле действия 'values' должно быть объектом."
 
-#: ask_alyf/ask_alyf/tools.py:1430
+#: ask_alyf/ask_alyf/tools.py:1429
 #, python-brace-format
 msgid "Action field '{0}' must be an object."
 msgstr "Поле действия '{0}' должно быть объектом."
 
-#: ask_alyf/ask_alyf/toolset.py:1246
+#: ask_alyf/ask_alyf/toolset.py:1248
 #, python-brace-format
 msgid "Add a row to {0} on current form"
 msgstr "Добавить строку в {0} в текущей форме"
 
-#: ask_alyf/ask_alyf/toolset.py:1248
+#: ask_alyf/ask_alyf/toolset.py:1250
 msgid "Add child row action needs correction."
 msgstr "Действие добавления дочерней строки требует исправления."
 
@@ -99,11 +99,11 @@ msgstr "Разрешить полевого агента"
 msgid "Allow File Upload"
 msgstr "Разрешить загрузку файлов"
 
-#: ask_alyf/ask_alyf/toolset.py:999
+#: ask_alyf/ask_alyf/toolset.py:1001
 msgid "Amend proposal needs correction."
 msgstr "Предложение об изменении требует исправления."
 
-#: ask_alyf/ask_alyf/toolset.py:997
+#: ask_alyf/ask_alyf/toolset.py:999
 #, python-brace-format
 msgid "Amend {0} {1}"
 msgstr "Внести изменения в {0} {1}"
@@ -113,13 +113,13 @@ msgstr "Внести изменения в {0} {1}"
 msgid "Amending {0}"
 msgstr "Внесение дополнений в {0}"
 
-#: ask_alyf/ask_alyf/tools.py:1478
+#: ask_alyf/ask_alyf/tools.py:1477
 #, python-brace-format
 msgid "And {0} more."
 msgstr "И ещё {0}."
 
 #: ask_alyf/ask_alyf/deep_agent_backend.py:100 ask_alyf/ask_alyf/tools.py:150
-#: ask_alyf/ask_alyf/tools.py:1098
+#: ask_alyf/ask_alyf/tools.py:1097
 #, python-brace-format
 msgid "App '{0}' is not installed."
 msgstr "Приложение '{0}' не установлено."
@@ -214,7 +214,7 @@ msgstr "Задайте вопрос об этом экземпляре ERPNext"
 msgid "Asking the {0} specialist"
 msgstr "Запрос к специалисту по {0}"
 
-#: ask_alyf/ask_alyf/toolset.py:818
+#: ask_alyf/ask_alyf/toolset.py:820
 msgid "At least one role is required."
 msgstr "Требуется как минимум одна роль."
 
@@ -223,11 +223,11 @@ msgstr "Требуется как минимум одна роль."
 msgid "Attach file"
 msgstr "Прикрепить файл"
 
-#: ask_alyf/ask_alyf/toolset.py:1085
+#: ask_alyf/ask_alyf/toolset.py:1087
 msgid "Attach file proposal needs correction."
 msgstr "Предложение по прикреплению файла требует исправления."
 
-#: ask_alyf/ask_alyf/toolset.py:1079
+#: ask_alyf/ask_alyf/toolset.py:1081
 #, python-brace-format
 msgid "Attach file {0} to {1} {2}"
 msgstr "Прикрепить файл {0} к {1} {2}"
@@ -245,7 +245,7 @@ msgstr "Требуется имя вложения"
 msgid "Attachments are read-only"
 msgstr "Приложения доступны только для чтения"
 
-#: ask_alyf/ask_alyf/toolset.py:874
+#: ask_alyf/ask_alyf/toolset.py:876
 msgid "Batch create proposal needs correction."
 msgstr "Предложение по пакетному созданию требует исправления."
 
@@ -264,16 +264,16 @@ msgstr "Позвонить в службу поддержки"
 msgid "Call support: {0}"
 msgstr "Позвонить в службу поддержки: {0}"
 
-#: ask_alyf/ask_alyf/toolset.py:1110
+#: ask_alyf/ask_alyf/toolset.py:1112
 #, python-brace-format
 msgid "Call {0}"
 msgstr "Вызвать {0}"
 
-#: ask_alyf/ask_alyf/toolset.py:978
+#: ask_alyf/ask_alyf/toolset.py:980
 msgid "Cancel proposal needs correction."
 msgstr "Предложение об отмене требует исправления."
 
-#: ask_alyf/ask_alyf/toolset.py:976
+#: ask_alyf/ask_alyf/toolset.py:978
 #, python-brace-format
 msgid "Cancel {0} {1}"
 msgstr "Отменить {0} {1}"
@@ -297,27 +297,27 @@ msgstr "Ожидающая операция отменена: {0}."
 msgid "Changes preview"
 msgstr "Предпросмотр изменений"
 
-#: ask_alyf/ask_alyf/toolset.py:1284
+#: ask_alyf/ask_alyf/toolset.py:1286
 msgid "Chart action needs correction."
 msgstr "Действие диаграммы требует исправления."
 
-#: ask_alyf/ask_alyf/tools.py:1652
+#: ask_alyf/ask_alyf/tools.py:1651
 msgid "Chart data must be an object."
 msgstr "Данные диаграммы должны быть объектом."
 
-#: ask_alyf/ask_alyf/tools.py:1578
+#: ask_alyf/ask_alyf/tools.py:1577
 msgid "Chart data requires a non-empty datasets array."
 msgstr "Для данных диаграммы требуется непустой массив наборов данных."
 
-#: ask_alyf/ask_alyf/tools.py:1559
+#: ask_alyf/ask_alyf/tools.py:1558
 msgid "Chart data requires a non-empty labels array."
 msgstr "Для данных диаграммы требуется непустой массив меток."
 
-#: ask_alyf/ask_alyf/tools.py:1638
+#: ask_alyf/ask_alyf/tools.py:1637
 msgid "Chart height is out of range."
 msgstr "Высота диаграммы вне допустимого диапазона."
 
-#: ask_alyf/ask_alyf/tools.py:1568
+#: ask_alyf/ask_alyf/tools.py:1567
 msgid "Chart labels must be numbers or strings."
 msgstr "Метки диаграммы должны быть числами или строками."
 
@@ -405,7 +405,7 @@ msgstr "Поиск по коду отключен в настройках Ask AL
 msgid "Configure a model in Ask ALYF Settings before sending messages."
 msgstr "Настройте модель в настройках Ask ALYF перед отправкой сообщений."
 
-#: ask_alyf/ask_alyf/tools.py:871
+#: ask_alyf/ask_alyf/tools.py:870
 msgid "Configure a vision model in Ask ALYF Settings."
 msgstr "Настройте модель зрения в настройках Ask ALYF."
 
@@ -425,7 +425,7 @@ msgstr "Подтверждение действия..."
 msgid "Conversation deletion is not allowed."
 msgstr "Удаление бесед не разрешено."
 
-#: ask_alyf/ask_alyf/tools.py:1038
+#: ask_alyf/ask_alyf/tools.py:1037
 msgid "Conversation name is required."
 msgstr "Имя беседы обязательно."
 
@@ -454,7 +454,7 @@ msgstr "Не удалось отобразить диаграмму."
 msgid "Could not download chart."
 msgstr "Не удалось скачать диаграмму."
 
-#: ask_alyf/ask_alyf/tools.py:785
+#: ask_alyf/ask_alyf/tools.py:784
 msgid "Could not extract visual content from the file."
 msgstr "Не удалось извлечь визуальное содержимое из файла."
 
@@ -475,26 +475,26 @@ msgstr "Не удалось отобразить схему."
 msgid "Counting {0}"
 msgstr "Подсчёт {0}"
 
-#: ask_alyf/ask_alyf/toolset.py:850
+#: ask_alyf/ask_alyf/toolset.py:852
 msgid "Create proposal needs correction."
 msgstr "Предложение о создании требует исправления."
 
-#: ask_alyf/ask_alyf/toolset.py:822
+#: ask_alyf/ask_alyf/toolset.py:824
 #, python-brace-format
 msgid "Create skill '{0}'"
 msgstr "Создать навык '{0}'"
 
-#: ask_alyf/ask_alyf/toolset.py:848
+#: ask_alyf/ask_alyf/toolset.py:850
 #, python-brace-format
 msgid "Create {0}"
 msgstr "Создать {0}"
 
-#: ask_alyf/ask_alyf/toolset.py:872
+#: ask_alyf/ask_alyf/toolset.py:874
 #, python-brace-format
 msgid "Create {0} {1} records"
 msgstr "Создать {0} записей {1}"
 
-#: ask_alyf/ask_alyf/tools.py:1442
+#: ask_alyf/ask_alyf/tools.py:1441
 #, python-brace-format
 msgid "Created {0} of {1} {2} records."
 msgstr "Создано {0} из {1} записей {2}."
@@ -514,12 +514,12 @@ msgstr "Текущий документ — {0}, ожидался {1}."
 msgid "Current form is {0}, expected {1}."
 msgstr "Текущая форма — {0}, ожидалась {1}."
 
-#: ask_alyf/ask_alyf/tools.py:1596 ask_alyf/ask_alyf/tools.py:1599
-#: ask_alyf/ask_alyf/tools.py:1602
+#: ask_alyf/ask_alyf/tools.py:1595 ask_alyf/ask_alyf/tools.py:1598
+#: ask_alyf/ask_alyf/tools.py:1601
 msgid "Dataset values must be numeric."
 msgstr "Значения набора данных должны быть числовыми."
 
-#: ask_alyf/ask_alyf/tools.py:1591
+#: ask_alyf/ask_alyf/tools.py:1590
 msgid "Dataset values must match labels length."
 msgstr "Значения набора данных должны соответствовать длине меток."
 
@@ -533,16 +533,16 @@ msgstr "Удалить разговор"
 msgid "Delete conversation '{0}'?"
 msgstr "Удалить разговор '{0}'?"
 
-#: ask_alyf/ask_alyf/toolset.py:1020
+#: ask_alyf/ask_alyf/toolset.py:1022
 msgid "Delete proposal needs correction."
 msgstr "Предложение об удалении требует исправления."
 
-#: ask_alyf/ask_alyf/toolset.py:1018
+#: ask_alyf/ask_alyf/toolset.py:1020
 #, python-brace-format
 msgid "Delete {0} {1}"
 msgstr "Удалить {0} {1}"
 
-#: ask_alyf/ask_alyf/tools.py:1376
+#: ask_alyf/ask_alyf/tools.py:1375
 #, python-brace-format
 msgid "Deleted {0} {1}"
 msgstr "Удалено {0} {1}"
@@ -561,23 +561,23 @@ msgstr "Тип документа '{0}' исключён из режима аг�
 msgid "DocType is excluded"
 msgstr "Тип документа исключён"
 
-#: ask_alyf/ask_alyf/tools.py:1034
+#: ask_alyf/ask_alyf/tools.py:1033
 msgid "DocType is required."
 msgstr "Тип документа обязателен."
 
-#: ask_alyf/ask_alyf/tools.py:951
+#: ask_alyf/ask_alyf/tools.py:950
 msgid "Document extraction did not return text."
 msgstr "Извлечение документа не вернуло текст."
 
-#: ask_alyf/ask_alyf/tools.py:975
+#: ask_alyf/ask_alyf/tools.py:974
 msgid "Document extraction did not return valid JSON."
 msgstr "Извлечение документа не вернуло корректный JSON."
 
-#: ask_alyf/ask_alyf/tools.py:955
+#: ask_alyf/ask_alyf/tools.py:954
 msgid "Document extraction returned an empty response."
 msgstr "Извлечение документа вернуло пустой ответ."
 
-#: ask_alyf/ask_alyf/tools.py:1036
+#: ask_alyf/ask_alyf/tools.py:1035
 msgid "Document name is required."
 msgstr "Название документа обязательно."
 
@@ -593,19 +593,19 @@ msgstr "Составление черновика..."
 msgid "ERPNext assistant"
 msgstr "Ассистент ERPNext"
 
-#: ask_alyf/ask_alyf/tools.py:1618
+#: ask_alyf/ask_alyf/tools.py:1617
 msgid "Each chart must be an object."
 msgstr "Каждая диаграмма должна быть объектом."
 
-#: ask_alyf/ask_alyf/tools.py:1586
+#: ask_alyf/ask_alyf/tools.py:1585
 msgid "Each dataset must be an object."
 msgstr "Каждый набор данных должен быть объектом."
 
-#: ask_alyf/ask_alyf/tools.py:1589
+#: ask_alyf/ask_alyf/tools.py:1588
 msgid "Each dataset needs a values array."
 msgstr "Каждому набору данных требуется массив значений."
 
-#: ask_alyf/ask_alyf/tools.py:562
+#: ask_alyf/ask_alyf/tools.py:561
 msgid "Each label must be a string."
 msgstr "Каждая метка должна быть строкой."
 
@@ -614,7 +614,7 @@ msgstr "Каждая метка должна быть строкой."
 msgid "Enable Tracing"
 msgstr "Включить трассировку"
 
-#: ask_alyf/ask_alyf/tools.py:680
+#: ask_alyf/ask_alyf/tools.py:679
 msgid "Entry type must be one of any, file, or directory."
 msgstr "Тип записи должен быть одним из: any, file или directory."
 
@@ -635,7 +635,7 @@ msgstr "Исключенные DocTypes"
 msgid "Executed frontend action: {0}"
 msgstr "Выполнено действие фронтенда: {0}"
 
-#: ask_alyf/ask_alyf/tools.py:1475
+#: ask_alyf/ask_alyf/tools.py:1474
 #, python-brace-format
 msgid "Failed rows: {0}"
 msgstr "Неуспешные строки: {0}"
@@ -672,12 +672,12 @@ msgstr "Не удалось отправить сообщение."
 msgid "Failed to stop the run."
 msgstr "Не удалось остановить выполнение."
 
-#: ask_alyf/ask_alyf/tools.py:1808
+#: ask_alyf/ask_alyf/tools.py:1807
 #, python-brace-format
 msgid "Field '{0}' in {1} is a child table ({2}) and must be a list of row objects."
 msgstr "Поле '{0}' в {1} является дочерней таблицей ({2}) и должно быть списком объектов строк."
 
-#: ask_alyf/ask_alyf/tools.py:1816
+#: ask_alyf/ask_alyf/tools.py:1815
 #, python-brace-format
 msgid "Field '{0}' row #{1} in {2} must be an object."
 msgstr "Поле '{0}' строка №{1} в {2} должно быть объектом."
@@ -696,12 +696,12 @@ msgstr "Поле обновлено."
 msgid "Field {0} does not exist on this form."
 msgstr "Поле {0} не существует в этой форме."
 
-#: ask_alyf/ask_alyf/api.py:1073 ask_alyf/ask_alyf/tools.py:811
+#: ask_alyf/ask_alyf/api.py:1073 ask_alyf/ask_alyf/tools.py:810
 #, python-brace-format
 msgid "File '{0}' was not found."
 msgstr "Файл '{0}' не найден."
 
-#: ask_alyf/ask_alyf/tools.py:809
+#: ask_alyf/ask_alyf/tools.py:808
 msgid "File ID is required."
 msgstr "Требуется File ID."
 
@@ -723,47 +723,47 @@ msgstr "Поиск файлов {0}"
 msgid "Finding {0} in {1}"
 msgstr "Поиск файлов {0} в {1}"
 
-#: ask_alyf/ask_alyf/tools.py:1779
+#: ask_alyf/ask_alyf/tools.py:1778
 msgid "Frontend action 'frm_add_child' field 'docname' must be a string."
 msgstr "В действии интерфейса 'frm_add_child' поле 'docname' должно быть строкой."
 
-#: ask_alyf/ask_alyf/tools.py:1777
+#: ask_alyf/ask_alyf/tools.py:1776
 msgid "Frontend action 'frm_add_child' field 'doctype' must be a string."
 msgstr "В действии интерфейса 'frm_add_child' поле 'doctype' должно быть строкой."
 
-#: ask_alyf/ask_alyf/tools.py:1773
+#: ask_alyf/ask_alyf/tools.py:1772
 msgid "Frontend action 'frm_add_child' field 'values' must be an object."
 msgstr "Поле 'values' фронтенд-действия 'frm_add_child' должно быть объектом."
 
-#: ask_alyf/ask_alyf/tools.py:1770
+#: ask_alyf/ask_alyf/tools.py:1769
 msgid "Frontend action 'frm_add_child' requires a fieldname."
 msgstr "Фронтенд-действию 'frm_add_child' требуется имя поля."
 
-#: ask_alyf/ask_alyf/tools.py:1764
+#: ask_alyf/ask_alyf/tools.py:1763
 msgid "Frontend action 'frm_set_value' field 'docname' must be a string."
 msgstr "Поле 'docname' фронтенд-действия 'frm_set_value' должно быть строкой."
 
-#: ask_alyf/ask_alyf/tools.py:1762
+#: ask_alyf/ask_alyf/tools.py:1761
 msgid "Frontend action 'frm_set_value' field 'doctype' must be a string."
 msgstr "Поле 'doctype' фронтенд-действия 'frm_set_value' должно быть строкой."
 
-#: ask_alyf/ask_alyf/tools.py:1758
+#: ask_alyf/ask_alyf/tools.py:1757
 msgid "Frontend action 'frm_set_value' requires a fieldname."
 msgstr "Фронтенд-действию 'frm_set_value' требуется имя поля."
 
-#: ask_alyf/ask_alyf/tools.py:1746
+#: ask_alyf/ask_alyf/tools.py:1745
 msgid "Frontend action 'new_doc' field 'route_options' must be an object."
 msgstr "Поле 'route_options' фронтенд-действия 'new_doc' должно быть объектом."
 
-#: ask_alyf/ask_alyf/tools.py:1743
+#: ask_alyf/ask_alyf/tools.py:1742
 msgid "Frontend action 'new_doc' requires a DocType."
 msgstr "Фронтенд-действию 'new_doc' требуется Тип документа."
 
-#: ask_alyf/ask_alyf/tools.py:1752
+#: ask_alyf/ask_alyf/tools.py:1751
 msgid "Frontend action 'scroll_to_field' requires a fieldname."
 msgstr "Фронтенд-действию 'scroll_to_field' требуется имя поля."
 
-#: ask_alyf/ask_alyf/tools.py:1734
+#: ask_alyf/ask_alyf/tools.py:1733
 msgid "Frontend action 'set_route' requires a non-empty route list."
 msgstr "Фронтенд-действию 'set_route' требуется непустой список маршрутов."
 
@@ -776,15 +776,15 @@ msgstr "Фронтенд-действие не выполнено: {0}"
 msgid "Frontend action is missing a call ID."
 msgstr "У фронтенд-действия отсутствует идентификатор звонка (Call ID)."
 
-#: ask_alyf/ask_alyf/tools.py:1729
+#: ask_alyf/ask_alyf/tools.py:1728
 msgid "Frontend action payload contains an unsafe key."
 msgstr "Полезная нагрузка фронтенд-действия содержит небезопасный ключ."
 
-#: ask_alyf/ask_alyf/tools.py:1726
+#: ask_alyf/ask_alyf/tools.py:1725
 msgid "Frontend action payload must be an object."
 msgstr "Полезная нагрузка фронтенд-действия должна быть объектом."
 
-#: ask_alyf/ask_alyf/tools.py:1271
+#: ask_alyf/ask_alyf/tools.py:1270
 msgid "Frontend actions must be executed in the browser."
 msgstr "Фронтенд-действия должны выполняться в браузере."
 
@@ -847,19 +847,19 @@ msgstr "Произошла ошибка при обработке этого з�
 msgid "I've prepared the operation. Please review and confirm."
 msgstr "Я подготовил операцию. Пожалуйста, проверьте и подтвердите."
 
-#: ask_alyf/ask_alyf/tools.py:1278
+#: ask_alyf/ask_alyf/tools.py:1277
 msgid "Invalid action payload."
 msgstr "Недопустимые данные действия."
 
-#: ask_alyf/ask_alyf/tools.py:1656 ask_alyf/public/js/ask_alyf.bundle.js:2998
+#: ask_alyf/ask_alyf/tools.py:1655 ask_alyf/public/js/ask_alyf.bundle.js:2998
 msgid "Invalid chart data."
 msgstr "Недопустимые данные диаграммы."
 
-#: ask_alyf/ask_alyf/tools.py:1714
+#: ask_alyf/ask_alyf/tools.py:1713
 msgid "Invalid chart specification."
 msgstr "Недопустимая спецификация диаграммы."
 
-#: ask_alyf/ask_alyf/tools.py:1258
+#: ask_alyf/ask_alyf/tools.py:1257
 msgid "Invalid pending operation payload."
 msgstr "Недопустимые данные ожидающей операции."
 
@@ -874,7 +874,7 @@ msgstr "Недопустимый шаблон regex: {0}"
 msgid "LLM Provider"
 msgstr "Поставщик LLM"
 
-#: ask_alyf/ask_alyf/tools.py:557
+#: ask_alyf/ask_alyf/tools.py:556
 msgid "Labels must be provided as a list of strings."
 msgstr "Метки должны быть предоставлены в виде списка строк."
 
@@ -953,7 +953,7 @@ msgstr "Данные метаданных (base64)"
 msgid "Metadata Type"
 msgstr "Тип метаданных"
 
-#: ask_alyf/ask_alyf/toolset.py:1112
+#: ask_alyf/ask_alyf/toolset.py:1114
 msgid "Method call proposal needs correction."
 msgstr "Предложение вызова метода требует исправления."
 
@@ -962,11 +962,11 @@ msgstr "Предложение вызова метода требует испр
 msgid "Mode: {0}"
 msgstr "Режим: {0}"
 
-#: ask_alyf/ask_alyf/tools.py:547
+#: ask_alyf/ask_alyf/tools.py:546
 msgid "Multiple matching files were found. Provide reference_field, file_url, or file_name."
 msgstr "Найдено несколько совпадающих файлов. Укажите reference_field, file_url или file_name."
 
-#: ask_alyf/ask_alyf/toolset.py:1131
+#: ask_alyf/ask_alyf/toolset.py:1133
 #, python-brace-format
 msgid "Navigate to {0}"
 msgstr "Перейти к {0}"
@@ -976,7 +976,7 @@ msgstr "Перейти к {0}"
 msgid "New Conversation"
 msgstr "Новый разговор"
 
-#: ask_alyf/ask_alyf/toolset.py:1158
+#: ask_alyf/ask_alyf/toolset.py:1160
 msgid "New document action needs correction."
 msgstr "Действие создания нового документа требует исправления."
 
@@ -988,7 +988,7 @@ msgstr "Активная форма не найдена."
 msgid "No conversations yet."
 msgstr "Пока нет разговоров."
 
-#: ask_alyf/ask_alyf/tools.py:1210
+#: ask_alyf/ask_alyf/tools.py:1209
 #, python-brace-format
 msgid "No documentation URL was found for app '{0}'."
 msgstr "URL-адрес документации для приложения '{0}' не найден."
@@ -1001,7 +1001,7 @@ msgstr "В настоящее время ни одна форма не откр�
 msgid "No installed app code roots were found."
 msgstr "Корни кода установленных приложений не найдены."
 
-#: ask_alyf/ask_alyf/tools.py:543
+#: ask_alyf/ask_alyf/tools.py:542
 msgid "No matching file was found."
 msgstr "Совпадающий файл не найден."
 
@@ -1010,12 +1010,12 @@ msgstr "Совпадающий файл не найден."
 msgid "No pending operation matches call_id '{0}'."
 msgstr "Ни одна ожидающая операция не соответствует call_id '{0}'."
 
-#: ask_alyf/ask_alyf/tools.py:1227
+#: ask_alyf/ask_alyf/tools.py:1226
 #, python-brace-format
 msgid "No pyproject.toml was found for app '{0}'."
 msgstr "pyproject.toml для приложения '{0}' не найден."
 
-#: ask_alyf/ask_alyf/tools.py:1125
+#: ask_alyf/ask_alyf/tools.py:1124
 #, python-brace-format
 msgid "No repository URL was found for app '{0}'."
 msgstr "URL-адрес репозитория для приложения '{0}' не найден."
@@ -1024,7 +1024,7 @@ msgstr "URL-адрес репозитория для приложения '{0}' 
 msgid "No valid file provided."
 msgstr "Не предоставлен действительный файл."
 
-#: ask_alyf/ask_alyf/tools.py:1115
+#: ask_alyf/ask_alyf/tools.py:1114
 #, python-brace-format
 msgid "No version was found for app '{0}'."
 msgstr "Не найдена версия для приложения '{0}'."
@@ -1045,15 +1045,15 @@ msgstr "Одна контрольная точка LangGraph. Записывае
 msgid "One pending write of a LangGraph checkpoint. Written by FrappeCheckpointSaver, not by users."
 msgstr "Одна ожидающая запись контрольной точки LangGraph. Записывается FrappeCheckpointSaver, а не пользователями."
 
-#: ask_alyf/ask_alyf/tools.py:1081
+#: ask_alyf/ask_alyf/tools.py:1080
 msgid "Only Administrator and System Manager can run SQL queries."
 msgstr "Только Администратор и Системный менеджер могут выполнять SQL-запросы."
 
-#: ask_alyf/ask_alyf/tools.py:1130
+#: ask_alyf/ask_alyf/tools.py:1129
 msgid "Only GitHub repositories are supported for release lookup."
 msgstr "Для поиска релизов поддерживаются только репозитории GitHub."
 
-#: ask_alyf/ask_alyf/tools.py:1084
+#: ask_alyf/ask_alyf/tools.py:1083
 msgid "Only a single read-only SQL statement is allowed."
 msgstr "Разрешено только одно SQL-выражение только для чтения."
 
@@ -1061,7 +1061,7 @@ msgstr "Разрешено только одно SQL-выражение толь
 msgid "Only backend actions can be confirmed by this endpoint."
 msgstr "Этой конечной точкой могут быть подтверждены только backend actions."
 
-#: ask_alyf/ask_alyf/tools.py:1087
+#: ask_alyf/ask_alyf/tools.py:1086
 msgid "Only read-only SQL statements are allowed."
 msgstr "Разрешены только SQL-выражения только для чтения."
 
@@ -1069,7 +1069,7 @@ msgstr "Разрешены только SQL-выражения только дл
 msgid "Open Ask ALYF"
 msgstr "Открыть Ask ALYF"
 
-#: ask_alyf/ask_alyf/toolset.py:1156
+#: ask_alyf/ask_alyf/toolset.py:1158
 #, python-brace-format
 msgid "Open new {0}"
 msgstr "Открыть новый {0}"
@@ -1096,7 +1096,7 @@ msgstr ""
 msgid "Parent Checkpoint ID"
 msgstr "ID родительской контрольной точки"
 
-#: ask_alyf/ask_alyf/tools.py:624
+#: ask_alyf/ask_alyf/tools.py:623
 #, python-brace-format
 msgid "Path '{0}' must point to a file inside an installed app."
 msgstr "Путь '{0}' должен указывать на файл внутри установленного приложения."
@@ -1133,75 +1133,75 @@ msgstr "Планирование следующих шагов"
 msgid "Please configure an API key first and save the settings, then we can fetch available models."
 msgstr "Сначала настройте API-ключ и сохраните настройки, затем мы сможем получить доступные модели."
 
-#: ask_alyf/ask_alyf/toolset.py:1249
+#: ask_alyf/ask_alyf/toolset.py:1251
 msgid "Prepared add child row action."
 msgstr "Действие добавления дочерней строки подготовлено."
 
-#: ask_alyf/ask_alyf/toolset.py:1000
+#: ask_alyf/ask_alyf/toolset.py:1002
 msgid "Prepared amend proposal."
 msgstr "Предложение о внесении изменений подготовлено."
 
-#: ask_alyf/ask_alyf/toolset.py:1086
+#: ask_alyf/ask_alyf/toolset.py:1088
 msgid "Prepared attach file proposal."
 msgstr "Предложение прикрепить файл подготовлено."
 
-#: ask_alyf/ask_alyf/toolset.py:875
+#: ask_alyf/ask_alyf/toolset.py:877
 msgid "Prepared batch create proposal."
 msgstr "Предложение о пакетном создании подготовлено."
 
-#: ask_alyf/ask_alyf/toolset.py:979
+#: ask_alyf/ask_alyf/toolset.py:981
 msgid "Prepared cancel proposal."
 msgstr "Предложение об отмене подготовлено."
 
-#: ask_alyf/ask_alyf/toolset.py:1285
+#: ask_alyf/ask_alyf/toolset.py:1287
 msgid "Prepared chart display."
 msgstr "Отображение диаграммы подготовлено."
 
-#: ask_alyf/ask_alyf/toolset.py:851
+#: ask_alyf/ask_alyf/toolset.py:853
 msgid "Prepared create proposal."
 msgstr "Предложение о создании подготовлено."
 
-#: ask_alyf/ask_alyf/toolset.py:1021
+#: ask_alyf/ask_alyf/toolset.py:1023
 msgid "Prepared delete proposal."
 msgstr "Предложение об удалении подготовлено."
 
-#: ask_alyf/ask_alyf/toolset.py:1113
+#: ask_alyf/ask_alyf/toolset.py:1115
 msgid "Prepared method call proposal."
 msgstr "Предложение о вызове метода подготовлено."
 
-#: ask_alyf/ask_alyf/toolset.py:1159
+#: ask_alyf/ask_alyf/toolset.py:1161
 msgid "Prepared new document action."
 msgstr "Действие создания нового документа подготовлено."
 
-#: ask_alyf/ask_alyf/toolset.py:1051
+#: ask_alyf/ask_alyf/toolset.py:1053
 msgid "Prepared rename proposal."
 msgstr "Предложение о переименовании подготовлено."
 
-#: ask_alyf/ask_alyf/toolset.py:1134
+#: ask_alyf/ask_alyf/toolset.py:1136
 msgid "Prepared route action."
 msgstr "Действие маршрутизации подготовлено."
 
-#: ask_alyf/ask_alyf/toolset.py:1179
+#: ask_alyf/ask_alyf/toolset.py:1181
 msgid "Prepared scroll action."
 msgstr "Действие прокрутки подготовлено."
 
-#: ask_alyf/ask_alyf/toolset.py:1214
+#: ask_alyf/ask_alyf/toolset.py:1216
 msgid "Prepared set field action."
 msgstr "Действие установки поля подготовлено."
 
-#: ask_alyf/ask_alyf/toolset.py:935
+#: ask_alyf/ask_alyf/toolset.py:937
 msgid "Prepared set value proposal."
 msgstr "Предложение об установке значения подготовлено."
 
-#: ask_alyf/ask_alyf/toolset.py:825
+#: ask_alyf/ask_alyf/toolset.py:827
 msgid "Prepared skill proposal."
 msgstr "Предложение о навыке подготовлено."
 
-#: ask_alyf/ask_alyf/toolset.py:958
+#: ask_alyf/ask_alyf/toolset.py:960
 msgid "Prepared submit proposal."
 msgstr "Предложение об отправке подготовлено."
 
-#: ask_alyf/ask_alyf/toolset.py:904
+#: ask_alyf/ask_alyf/toolset.py:906
 msgid "Prepared update proposal."
 msgstr "Предложение об обновлении подготовлено."
 
@@ -1213,15 +1213,15 @@ msgstr "Подготовка диаграммы"
 msgid "Projects"
 msgstr "Проекты"
 
-#: ask_alyf/ask_alyf/tools.py:1705
+#: ask_alyf/ask_alyf/tools.py:1704
 msgid "Provide at least one chart in frappe_charts."
 msgstr "Укажите хотя бы одну диаграмму в frappe_charts."
 
-#: ask_alyf/ask_alyf/tools.py:568
+#: ask_alyf/ask_alyf/tools.py:567
 msgid "Provide at least one label to translate."
 msgstr "Укажите хотя бы одну метку для перевода."
 
-#: ask_alyf/ask_alyf/tools.py:587 ask_alyf/ask_alyf/tools.py:726
+#: ask_alyf/ask_alyf/tools.py:586 ask_alyf/ask_alyf/tools.py:725
 msgid "Query is required."
 msgstr "Запрос обязателен."
 
@@ -1262,11 +1262,11 @@ msgstr "Уровень рассуждений"
 msgid "Records to create ({0})"
 msgstr "Записи для создания ({0})"
 
-#: ask_alyf/ask_alyf/tools.py:829
+#: ask_alyf/ask_alyf/tools.py:828
 msgid "Reference doctype is required."
 msgstr "Справочный тип документа обязателен."
 
-#: ask_alyf/ask_alyf/tools.py:833
+#: ask_alyf/ask_alyf/tools.py:832
 msgid "Reference name is required."
 msgstr "Имя ссылки обязательно."
 
@@ -1274,11 +1274,11 @@ msgstr "Имя ссылки обязательно."
 msgid "Reject all"
 msgstr "Отклонить все"
 
-#: ask_alyf/ask_alyf/toolset.py:1050
+#: ask_alyf/ask_alyf/toolset.py:1052
 msgid "Rename proposal needs correction."
 msgstr "Предложение по переименованию требует исправления."
 
-#: ask_alyf/ask_alyf/toolset.py:1048
+#: ask_alyf/ask_alyf/toolset.py:1050
 #, python-brace-format
 msgid "Rename {0} {1} to {2}"
 msgstr "Переименовать {0} {1} в {2}"
@@ -1296,11 +1296,11 @@ msgstr "Изменить размер окна чата"
 msgid "Reverted."
 msgstr "Возвращено."
 
-#: ask_alyf/ask_alyf/toolset.py:1133
+#: ask_alyf/ask_alyf/toolset.py:1135
 msgid "Route action needs correction."
 msgstr "Действие маршрута требует исправления."
 
-#: ask_alyf/ask_alyf/tools.py:1737
+#: ask_alyf/ask_alyf/tools.py:1736
 #, python-brace-format
 msgid "Route part #{0} must be a non-empty string."
 msgstr "Часть маршрута #{0} должна быть непустой строкой."
@@ -1323,11 +1323,11 @@ msgstr "Так же, как Чат"
 msgid "Saving instructions"
 msgstr "Сохранение инструкций"
 
-#: ask_alyf/ask_alyf/toolset.py:1178
+#: ask_alyf/ask_alyf/toolset.py:1180
 msgid "Scroll action needs correction."
 msgstr "Действие прокрутки требует исправления."
 
-#: ask_alyf/ask_alyf/toolset.py:1176
+#: ask_alyf/ask_alyf/toolset.py:1178
 #, python-brace-format
 msgid "Scroll to field {0}"
 msgstr "Прокрутить к полю {0}"
@@ -1362,20 +1362,20 @@ msgstr "Продажи"
 msgid "Sending..."
 msgstr "Отправка..."
 
-#: ask_alyf/ask_alyf/toolset.py:1213
+#: ask_alyf/ask_alyf/toolset.py:1215
 msgid "Set field action needs correction."
 msgstr "Действие установки поля требует исправления."
 
-#: ask_alyf/ask_alyf/toolset.py:1211
+#: ask_alyf/ask_alyf/toolset.py:1213
 #, python-brace-format
 msgid "Set field {0} on current form"
 msgstr "Установить поле {0} в текущей форме"
 
-#: ask_alyf/ask_alyf/toolset.py:934
+#: ask_alyf/ask_alyf/toolset.py:936
 msgid "Set value proposal needs correction."
 msgstr "Предложение установки значения требует исправления."
 
-#: ask_alyf/ask_alyf/toolset.py:932
+#: ask_alyf/ask_alyf/toolset.py:934
 #, python-brace-format
 msgid "Set {0} on {1} {2}"
 msgstr "Установить {0} в {1} {2}"
@@ -1384,7 +1384,7 @@ msgstr "Установить {0} в {1} {2}"
 msgid "Show all"
 msgstr "Показать все"
 
-#: ask_alyf/ask_alyf/toolset.py:1279
+#: ask_alyf/ask_alyf/toolset.py:1281
 msgid "Show chart"
 msgstr "Показать диаграмму"
 
@@ -1412,7 +1412,7 @@ msgstr "Показать нерешённые проблемы за эту не�
 msgid "Show project progress as a chart"
 msgstr "Показать прогресс проекта в виде диаграммы"
 
-#: ask_alyf/ask_alyf/toolset.py:1279
+#: ask_alyf/ask_alyf/toolset.py:1281
 #, python-brace-format
 msgid "Show {0} charts"
 msgstr "Показать {0} диаграмм"
@@ -1427,7 +1427,7 @@ msgstr "Навык «{0}» недоступен для текущего поль
 msgid "Skill '{0}' was not found."
 msgstr "Навык «{0}» не найден."
 
-#: ask_alyf/ask_alyf/toolset.py:816
+#: ask_alyf/ask_alyf/toolset.py:818
 msgid "Skill description is required."
 msgstr "Описание навыка обязательно."
 
@@ -1435,15 +1435,15 @@ msgstr "Описание навыка обязательно."
 msgid "Skill name is required."
 msgstr "Имя навыка обязательно."
 
-#: ask_alyf/ask_alyf/toolset.py:824
+#: ask_alyf/ask_alyf/toolset.py:826
 msgid "Skill proposal needs correction."
 msgstr "Предложение навыка требует исправления."
 
-#: ask_alyf/ask_alyf/toolset.py:814
+#: ask_alyf/ask_alyf/toolset.py:816
 msgid "Skill title is required."
 msgstr "Заголовок навыка обязателен."
 
-#: ask_alyf/ask_alyf/tools.py:1473
+#: ask_alyf/ask_alyf/tools.py:1472
 msgid "Some rows failed."
 msgstr "Некоторые строки завершились с ошибкой."
 
@@ -1504,11 +1504,11 @@ msgstr "Приостановлено. Отправьте сообщение, ч�
 msgid "Stopping..."
 msgstr "Остановка..."
 
-#: ask_alyf/ask_alyf/toolset.py:957
+#: ask_alyf/ask_alyf/toolset.py:959
 msgid "Submit proposal needs correction."
 msgstr "Предложение об отправке требует исправления."
 
-#: ask_alyf/ask_alyf/toolset.py:955
+#: ask_alyf/ask_alyf/toolset.py:957
 #, python-brace-format
 msgid "Submit {0} {1}"
 msgstr "Отправить {0} {1}"
@@ -1542,7 +1542,7 @@ msgstr "Путь задачи"
 msgid "That confirmation did not match this operation. Propose it again on its own."
 msgstr "Это подтверждение не соответствует данной операции. Предложите её снова отдельно."
 
-#: ask_alyf/ask_alyf/tools.py:1153
+#: ask_alyf/ask_alyf/tools.py:1152
 msgid "The Compendium app is not installed."
 msgstr "Приложение Compendium не установлено."
 
@@ -1619,15 +1619,15 @@ msgstr "Это занимает некоторое время..."
 msgid "Thread ID"
 msgstr "ID потока"
 
-#: ask_alyf/ask_alyf/tools.py:1581
+#: ask_alyf/ask_alyf/tools.py:1580
 msgid "Too many chart datasets."
 msgstr "Слишком много наборов данных диаграммы."
 
-#: ask_alyf/ask_alyf/tools.py:1562
+#: ask_alyf/ask_alyf/tools.py:1561
 msgid "Too many chart labels."
 msgstr "Слишком много меток диаграммы."
 
-#: ask_alyf/ask_alyf/tools.py:1708
+#: ask_alyf/ask_alyf/tools.py:1707
 msgid "Too many charts in one request."
 msgstr "Слишком много графиков в одном запросе."
 
@@ -1640,21 +1640,21 @@ msgstr "Трассировка"
 msgid "Translating labels"
 msgstr "Перевод меток"
 
-#: ask_alyf/ask_alyf/tools.py:1311
+#: ask_alyf/ask_alyf/tools.py:1310
 msgid "Unknown error."
 msgstr "Неизвестная ошибка."
 
-#: ask_alyf/ask_alyf/tools.py:1412
+#: ask_alyf/ask_alyf/tools.py:1411
 #, python-brace-format
 msgid "Unsupported action '{0}'."
 msgstr "Неподдерживаемое действие '{0}'."
 
-#: ask_alyf/ask_alyf/tools.py:988
+#: ask_alyf/ask_alyf/tools.py:987
 #, python-brace-format
 msgid "Unsupported file type '{0}'. Supported types: PDF, PNG, JPG, GIF, WebP."
 msgstr "Неподдерживаемый тип файла '{0}'. Поддерживаемые типы: PDF, PNG, JPG, GIF, WebP."
 
-#: ask_alyf/ask_alyf/tools.py:1723 ask_alyf/ask_alyf/tools.py:1786
+#: ask_alyf/ask_alyf/tools.py:1722 ask_alyf/ask_alyf/tools.py:1785
 #, python-brace-format
 msgid "Unsupported frontend action '{0}'."
 msgstr "Неподдерживаемое действие фронтенда '{0}'."
@@ -1669,12 +1669,12 @@ msgstr "Неподдерживаемое действие фронтенда: {0
 msgid "Unsupported model configuration: {0}"
 msgstr "Неподдерживаемая конфигурация модели: {0}"
 
-#: ask_alyf/ask_alyf/tools.py:1253 ask_alyf/ask_alyf/tools.py:1273
+#: ask_alyf/ask_alyf/tools.py:1252 ask_alyf/ask_alyf/tools.py:1272
 #, python-brace-format
 msgid "Unsupported operation kind '{0}'."
 msgstr "Неподдерживаемый вид операции '{0}'."
 
-#: ask_alyf/ask_alyf/tools.py:1622
+#: ask_alyf/ask_alyf/tools.py:1621
 msgid "Unsupported or missing chart type."
 msgstr "Неподдерживаемый или отсутствующий тип диаграммы."
 
@@ -1687,11 +1687,11 @@ msgstr "Беседа без названия"
 msgid "Update Ask ALYF Settings"
 msgstr "Обновить настройки Ask ALYF"
 
-#: ask_alyf/ask_alyf/toolset.py:903
+#: ask_alyf/ask_alyf/toolset.py:905
 msgid "Update proposal needs correction."
 msgstr "Предложение об обновлении требует исправления."
 
-#: ask_alyf/ask_alyf/toolset.py:901
+#: ask_alyf/ask_alyf/toolset.py:903
 #, python-brace-format
 msgid "Update {0} {1}"
 msgstr "Обновить {0} {1}"
@@ -1852,12 +1852,12 @@ msgstr "Максимальный"
 msgid "medium"
 msgstr "Средний"
 
-#: ask_alyf/ask_alyf/tools.py:1466
+#: ask_alyf/ask_alyf/tools.py:1465
 #, python-brace-format
 msgid "row {0}: {1}"
 msgstr "строка {0}: {1}"
 
-#: ask_alyf/ask_alyf/toolset.py:1131
+#: ask_alyf/ask_alyf/toolset.py:1133
 msgid "target route"
 msgstr "целевой маршрут"
 
@@ -1867,7 +1867,7 @@ msgstr "целевой маршрут"
 msgid "xhigh"
 msgstr "Очень высокий"
 
-#: ask_alyf/ask_alyf/tools.py:1040
+#: ask_alyf/ask_alyf/tools.py:1039
 #, python-brace-format
 msgid "{0} '{1}' was not found."
 msgstr "{0} «{1}» не найден."
