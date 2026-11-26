@@ -1311,7 +1311,7 @@ msgstr "正在运行数据库查询"
 
 #: ask_alyf/ask_alyf/agent.py:174
 msgid "Running a report"
-msgstr ""
+msgstr "正在运行报表"
 
 #. Label of the vision_model_is_chat_model (Check) field in DocType 'Ask ALYF
 #. Settings'

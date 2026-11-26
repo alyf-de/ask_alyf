@@ -1311,7 +1311,7 @@ msgstr "Ejecutando una consulta de base de datos"
 
 #: ask_alyf/ask_alyf/agent.py:174
 msgid "Running a report"
-msgstr ""
+msgstr "Ejecutando un informe"
 
 #. Label of the vision_model_is_chat_model (Check) field in DocType 'Ask ALYF
 #. Settings'

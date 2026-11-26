@@ -1311,7 +1311,7 @@ msgstr "डेटाबेस क्वेरी चलाई जा रही �
 
 #: ask_alyf/ask_alyf/agent.py:174
 msgid "Running a report"
-msgstr ""
+msgstr "रिपोर्ट चलाई जा रही है"
 
 #. Label of the vision_model_is_chat_model (Check) field in DocType 'Ask ALYF
 #. Settings'
