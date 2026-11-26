@@ -7,7 +7,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Ask ALYF VERSION\n"
 "Report-Msgid-Bugs-To: hallo@alyf.de\n"
+<<<<<<< HEAD
 "POT-Creation-Date: 2026-09-12 22:19+0053\n"
+=======
+"POT-Creation-Date: 2026-11-26 19:46+0053\n"
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 "PO-Revision-Date: 2026-05-02 19:04+0053\n"
 "Last-Translator: hallo@alyf.de\n"
 "Language: ar\n"
@@ -18,7 +22,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.13.1\n"
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:302
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:356
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 msgid "1 step"
 msgstr "خطوة واحدة"
 
@@ -33,6 +41,7 @@ msgstr "الوصول"
 msgid "Access to hidden paths is not allowed"
 msgstr "الوصول إلى المسارات المخفية غير مسموح"
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:1470
 msgid "Accounts"
 msgstr "الحسابات"
@@ -54,25 +63,64 @@ msgid "Action field 'records' must be a non-empty list."
 msgstr "يجب أن يكون حقل الإجراء 'records' قائمة غير فارغة."
 
 #: ask_alyf/ask_alyf/tools.py:1462
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:1712
+msgid "Accounts"
+msgstr "الحسابات"
+
+#: ask_alyf/ask_alyf/tools.py:1520
+msgid "Action field 'args' must be an object."
+msgstr "يجب أن يكون حقل الإجراء 'args' كائنًا."
+
+#: ask_alyf/ask_alyf/tools.py:1486 ask_alyf/ask_alyf/tools.py:1497
+msgid "Action field 'doctype' is required."
+msgstr "حقل الإجراء 'doctype' مطلوب."
+
+#: ask_alyf/ask_alyf/tools.py:1515
+msgid "Action field 'file_id' is required."
+msgstr "حقل الإجراء 'file_id' مطلوب."
+
+#: ask_alyf/ask_alyf/tools.py:1501
+msgid "Action field 'records' must be a non-empty list."
+msgstr "يجب أن يكون حقل الإجراء 'records' قائمة غير فارغة."
+
+#: ask_alyf/ask_alyf/tools.py:1505
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 #, python-brace-format
 msgid "Action field 'records' row #{0} must be an object."
 msgstr "يجب أن يكون الصف رقم {0} في حقل الإجراء 'records' كائنًا."
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/tools.py:1447
 msgid "Action field 'values' must be an object."
 msgstr "يجب أن يكون حقل الإجراء 'values' كائنًا."
 
 #: ask_alyf/ask_alyf/tools.py:1387
+=======
+#: ask_alyf/ask_alyf/tools.py:1490
+msgid "Action field 'values' must be an object."
+msgstr "يجب أن يكون حقل الإجراء 'values' كائنًا."
+
+#: ask_alyf/ask_alyf/tools.py:1430
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 #, python-brace-format
 msgid "Action field '{0}' must be an object."
 msgstr "يجب أن يكون حقل الإجراء '{0}' كائنًا."
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/toolset.py:1220
+=======
+#: ask_alyf/ask_alyf/toolset.py:1269
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 #, python-brace-format
 msgid "Add a row to {0} on current form"
 msgstr "أضف صفًا إلى {0} في النموذج الحالي"
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/toolset.py:1222
+=======
+#: ask_alyf/ask_alyf/toolset.py:1271
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 msgid "Add child row action needs correction."
 msgstr "إجراء إضافة صف فرعي يحتاج إلى تصحيح."
 
@@ -124,22 +172,35 @@ msgstr "تعديل {0} {1}"
 msgid "Amending {0}"
 msgstr "جارٍ تعديل {0}"
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/tools.py:1435
+=======
+#: ask_alyf/ask_alyf/tools.py:1478
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 #, python-brace-format
 msgid "And {0} more."
 msgstr "و{0} أخرى."
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/deep_agent_backend.py:100 ask_alyf/ask_alyf/tools.py:158
 #: ask_alyf/ask_alyf/tools.py:1055
+=======
+#: ask_alyf/ask_alyf/deep_agent_backend.py:100 ask_alyf/ask_alyf/tools.py:151
+#: ask_alyf/ask_alyf/tools.py:1098
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 #, python-brace-format
 msgid "App '{0}' is not installed."
 msgstr "التطبيق '{0}' غير مثبت."
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/tools.py:154 ask_alyf/ask_alyf/tools.py:1052
 msgid "App name is required."
 msgstr "اسم التطبيق مطلوب."
 
 #: ask_alyf/public/js/ask_alyf.bundle.js:2500
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:2743
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 msgid "Applying action..."
 msgstr "جارٍ تطبيق الإجراء..."
 
@@ -201,7 +262,11 @@ msgstr "مهارة Ask ALYF"
 msgid "Ask ALYF User"
 msgstr "مستخدم Ask ALYF"
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:1168
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:1410
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 msgid "Ask ALYF could not finish processing this message. Please try again."
 msgstr "تعذّر على Ask ALYF إنهاء معالجة هذه الرسالة. يُرجى المحاولة مرة أخرى."
 
@@ -217,6 +282,7 @@ msgstr "لا يزال Ask ALYF يعمل على رسالة في هذه المحا
 msgid "Ask ALYF is still working on the previous message in this conversation."
 msgstr "لا يزال Ask ALYF يعمل على الرسالة السابقة في هذه المحادثة."
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:976
 msgid "Ask ALYF is visible, but no API key/model is configured yet in Ask ALYF Settings."
 msgstr "Ask ALYF مرئي، ولكن لم يتم تكوين أي مفتاح API/نموذج بعد في إعدادات Ask ALYF."
@@ -230,6 +296,25 @@ msgid "Ask ALYF stopped processing this message. Please try again."
 msgstr "توقّف Ask ALYF عن معالجة هذه الرسالة. يُرجى المحاولة مرة أخرى."
 
 #: ask_alyf/public/js/ask_alyf.bundle.js:802
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:1213
+msgid "Ask ALYF is visible, but no API key/model is configured yet in Ask ALYF Settings."
+msgstr "Ask ALYF مرئي، ولكن لم يتم تكوين أي مفتاح API/نموذج بعد في إعدادات Ask ALYF."
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1018
+msgid "Ask ALYF sections"
+msgstr "أقسام Ask ALYF"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1411
+msgid "Ask ALYF stopped processing this message. Please try again."
+msgstr "توقّف Ask ALYF عن معالجة هذه الرسالة. يُرجى المحاولة مرة أخرى."
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1068
+msgid "Ask ALYF uses AI and can make mistakes, including with numbers and information about people."
+msgstr "يستخدم Ask ALYF الذكاء الاصطناعي وقد يُرتكِب أخطاء، بما في ذلك في الأرقام والمعلومات المتعلقة بالأشخاص."
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1036
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 msgid "Ask about this ERPNext instance"
 msgstr "اسأل عن مثيل ERPNext هذا"
 
@@ -242,8 +327,13 @@ msgstr "جارٍ سؤال المختص في {0}"
 msgid "At least one role is required."
 msgstr "يلزم وجود دور واحد على الأقل."
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:818
 #: ask_alyf/public/js/ask_alyf.bundle.js:820
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:1054
+#: ask_alyf/public/js/ask_alyf.bundle.js:1056
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 msgid "Attach file"
 msgstr "إرفاق ملف"
 
@@ -273,6 +363,7 @@ msgstr "المرفقات للقراءة فقط"
 msgid "Batch create proposal needs correction."
 msgstr "اقتراح الإنشاء المجمّع يحتاج إلى تصحيح."
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:1461
 msgid "Buying"
 msgstr "المشتريات"
@@ -284,6 +375,19 @@ msgid "Call support"
 msgstr "اتصل بالدعم"
 
 #: ask_alyf/public/js/ask_alyf.bundle.js:1338
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:1703
+msgid "Buying"
+msgstr "المشتريات"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1009
+#: ask_alyf/public/js/ask_alyf.bundle.js:1011
+#: ask_alyf/public/js/ask_alyf.bundle.js:1581
+msgid "Call support"
+msgstr "اتصل بالدعم"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1580
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 #, python-brace-format
 msgid "Call support: {0}"
 msgstr "اتصل بالدعم: {0}"
@@ -302,7 +406,11 @@ msgstr "يحتاج اقتراح الإلغاء إلى تصحيح."
 msgid "Cancel {0} {1}"
 msgstr "إلغاء {0} {1}"
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/api.py:969
+=======
+#: ask_alyf/ask_alyf/api.py:980
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 #, python-brace-format
 msgid "Cancelled frontend action: {0}"
 msgstr "تم إلغاء إجراء الواجهة الأمامية: {0}"
@@ -317,6 +425,7 @@ msgstr "تم إلغاء عرض المخطط: {0}."
 msgid "Cancelled the pending operation: {0}."
 msgstr "تم إلغاء العملية المعلقة: {0}."
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:2216
 msgid "Changes preview"
 msgstr "معاينة التغييرات"
@@ -366,6 +475,57 @@ msgid "Chart spending by supplier for this quarter"
 msgstr "عرض الإنفاق حسب المورد لهذا الربع في مخطط"
 
 #: ask_alyf/public/js/ask_alyf.bundle.js:1490
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:2455
+msgid "Changes preview"
+msgstr "معاينة التغييرات"
+
+#: ask_alyf/ask_alyf/toolset.py:1307
+msgid "Chart action needs correction."
+msgstr "يحتاج إجراء المخطط إلى تصحيح."
+
+#: ask_alyf/ask_alyf/tools.py:1652
+msgid "Chart data must be an object."
+msgstr "يجب أن تكون بيانات المخطط كائنًا."
+
+#: ask_alyf/ask_alyf/tools.py:1578
+msgid "Chart data requires a non-empty datasets array."
+msgstr "تتطلب بيانات المخطط مصفوفة مجموعات بيانات غير فارغة."
+
+#: ask_alyf/ask_alyf/tools.py:1559
+msgid "Chart data requires a non-empty labels array."
+msgstr "تتطلب بيانات المخطط مصفوفة تسميات غير فارغة."
+
+#: ask_alyf/ask_alyf/tools.py:1638
+msgid "Chart height is out of range."
+msgstr "ارتفاع المخطط خارج النطاق."
+
+#: ask_alyf/ask_alyf/tools.py:1568
+msgid "Chart labels must be numbers or strings."
+msgstr "يجب أن تكون تسميات المخطط أرقامًا أو سلاسل نصية."
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1714
+msgid "Chart monthly expenses by cost center"
+msgstr "عرض المصروفات الشهرية حسب مركز التكلفة في مخطط"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1696
+msgid "Chart my monthly sales revenue for the last 6 months"
+msgstr "عرض إيرادات المبيعات الشهرية لآخر 6 أشهر في مخطط"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1759
+msgid "Chart open issues by priority"
+msgstr "عرض المشكلات المفتوحة حسب الأولوية في مخطط"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1741
+msgid "Chart production output by item this week"
+msgstr "عرض إنتاج هذا الأسبوع حسب الصنف في مخطط"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1705
+msgid "Chart spending by supplier for this quarter"
+msgstr "عرض الإنفاق حسب المورد لهذا الربع في مخطط"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1732
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 msgid "Chart stock value by warehouse"
 msgstr "رسم بياني لقيمة المخزون حسب المستودع"
 
@@ -413,6 +573,7 @@ msgstr "مساحة اسم نقطة التحقق"
 msgid "Checkpoint Type"
 msgstr "نوع نقطة التحقق"
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/deep_agent_backend.py:104 ask_alyf/ask_alyf/tools.py:187
 msgid "Code access is restricted to installed app directories."
 msgstr "الوصول إلى الكود مقيد بأدلة التطبيقات المثبتة."
@@ -430,6 +591,21 @@ msgid "Configure a vision model API key in Ask ALYF Settings."
 msgstr "قم بتكوين مفتاح API لنموذج الرؤية في إعدادات Ask ALYF."
 
 #: ask_alyf/ask_alyf/tools.py:785
+=======
+#: ask_alyf/ask_alyf/deep_agent_backend.py:104 ask_alyf/ask_alyf/tools.py:180
+msgid "Code access is restricted to installed app directories."
+msgstr "الوصول إلى الكود مقيد بأدلة التطبيقات المثبتة."
+
+#: ask_alyf/ask_alyf/tools.py:122
+msgid "Code search is disabled in Ask ALYF Settings."
+msgstr "البحث في الكود معطل في إعدادات Ask ALYF."
+
+#: ask_alyf/ask_alyf/agent.py:328
+msgid "Configure a model in Ask ALYF Settings before sending messages."
+msgstr "قم بتكوين نموذج في إعدادات Ask ALYF قبل إرسال الرسائل."
+
+#: ask_alyf/ask_alyf/tools.py:871
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 msgid "Configure a vision model in Ask ALYF Settings."
 msgstr "قم بتكوين نموذج رؤية في إعدادات Ask ALYF."
 
@@ -438,6 +614,7 @@ msgstr "قم بتكوين نموذج رؤية في إعدادات Ask ALYF."
 msgid "Configure an API key in Ask ALYF Settings before sending messages."
 msgstr "قم بتكوين مفتاح API في إعدادات Ask ALYF قبل إرسال الرسائل."
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:685
 #: ask_alyf/public/js/ask_alyf.bundle.js:707
 msgid "Column"
@@ -448,6 +625,13 @@ msgid "Confirm all"
 msgstr "تأكيد الكل"
 
 #: ask_alyf/ask_alyf/api.py:740 ask_alyf/public/js/ask_alyf.bundle.js:2500
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:951
+msgid "Confirm all"
+msgstr "تأكيد الكل"
+
+#: ask_alyf/ask_alyf/api.py:746 ask_alyf/public/js/ask_alyf.bundle.js:2743
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 msgid "Confirming action..."
 msgstr "جارٍ تأكيد الإجراء..."
 
@@ -455,6 +639,7 @@ msgstr "جارٍ تأكيد الإجراء..."
 msgid "Conversation deletion is not allowed."
 msgstr "لا يُسمح بحذف المحادثات."
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/tools.py:995
 msgid "Conversation name is required."
 msgstr "اسم المحادثة مطلوب."
@@ -464,6 +649,17 @@ msgid "Conversation not found. Please start a new conversation."
 msgstr "لم يتم العثور على المحادثة. يُرجى بدء محادثة جديدة."
 
 #: ask_alyf/public/js/ask_alyf.bundle.js:571
+=======
+#: ask_alyf/ask_alyf/tools.py:1038
+msgid "Conversation name is required."
+msgstr "اسم المحادثة مطلوب."
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1398
+msgid "Conversation not found. Please start a new conversation."
+msgstr "لم يتم العثور على المحادثة. يُرجى بدء محادثة جديدة."
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:686
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 msgid "Copy as Markdown"
 msgstr "نسخ بصيغة Markdown"
 
@@ -480,11 +676,19 @@ msgstr "تعذّر إكمال العملية: {0}."
 msgid "Could not display chart."
 msgstr "تعذر عرض الرسم البياني."
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:2722
 msgid "Could not download chart."
 msgstr "تعذر تحميل الرسم البياني."
 
 #: ask_alyf/ask_alyf/tools.py:697
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:2962
+msgid "Could not download chart."
+msgstr "تعذر تحميل الرسم البياني."
+
+#: ask_alyf/ask_alyf/tools.py:785
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 msgid "Could not extract visual content from the file."
 msgstr "تعذر استخراج المحتوى المرئي من الملف."
 
@@ -492,11 +696,19 @@ msgstr "تعذر استخراج المحتوى المرئي من الملف."
 msgid "Could not generate content."
 msgstr "تعذر إنشاء المحتوى."
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:2789
 msgid "Could not render chart."
 msgstr "تعذر عرض الخريطة."
 
 #: ask_alyf/public/js/ask_alyf.bundle.js:725
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:3033
+msgid "Could not render chart."
+msgstr "تعذر عرض الخريطة."
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:761
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 msgid "Could not render diagram."
 msgstr "تعذر عرض المخطط."
 
@@ -524,7 +736,11 @@ msgstr "إنشاء {0}"
 msgid "Create {0} {1} records"
 msgstr "إنشاء {0} من سجلات {1}"
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/tools.py:1399
+=======
+#: ask_alyf/ask_alyf/tools.py:1442
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 #, python-brace-format
 msgid "Created {0} of {1} {2} records."
 msgstr "تم إنشاء {0} من أصل {1} من سجلات {2}."
@@ -534,16 +750,25 @@ msgstr "تم إنشاء {0} من أصل {1} من سجلات {2}."
 msgid "Creating several {0} records"
 msgstr "إنشاء عدة سجلات {0}"
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:2364
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:2603
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 #, python-brace-format
 msgid "Current document is {0}, expected {1}."
 msgstr "المستند الحالي هو {0}، المتوقع {1}."
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:2357
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:2596
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 #, python-brace-format
 msgid "Current form is {0}, expected {1}."
 msgstr "الاستمارة الحالية هي {0}، المتوقع {1}."
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/tools.py:1553 ask_alyf/ask_alyf/tools.py:1556
 #: ask_alyf/ask_alyf/tools.py:1559
 msgid "Dataset values must be numeric."
@@ -559,6 +784,23 @@ msgid "Delete conversation"
 msgstr "حذف المحادثة"
 
 #: ask_alyf/public/js/ask_alyf.bundle.js:1225
+=======
+#: ask_alyf/ask_alyf/tools.py:1596 ask_alyf/ask_alyf/tools.py:1599
+#: ask_alyf/ask_alyf/tools.py:1602
+msgid "Dataset values must be numeric."
+msgstr "يجب أن تكون قيم مجموعة البيانات رقمية."
+
+#: ask_alyf/ask_alyf/tools.py:1591
+msgid "Dataset values must match labels length."
+msgstr "يجب أن تتطابق قيم مجموعة البيانات مع طول التسميات."
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1939
+#: ask_alyf/public/js/ask_alyf.bundle.js:1940
+msgid "Delete conversation"
+msgstr "حذف المحادثة"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1467
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 #, python-brace-format
 msgid "Delete conversation '{0}'?"
 msgstr "حذف المحادثة '{0}'؟"
@@ -572,7 +814,11 @@ msgstr "يحتاج اقتراح الحذف إلى تصحيح."
 msgid "Delete {0} {1}"
 msgstr "حذف {0} {1}"
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/tools.py:1333
+=======
+#: ask_alyf/ask_alyf/tools.py:1376
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 #, python-brace-format
 msgid "Deleted {0} {1}"
 msgstr "تم حذف {0} {1}"
@@ -581,7 +827,11 @@ msgstr "تم حذف {0} {1}"
 msgid "Describe what you want..."
 msgstr "صف ما تريده..."
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/tools.py:337
+=======
+#: ask_alyf/ask_alyf/tools.py:299
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 #, python-brace-format
 msgid "DocType '{0}' is excluded from Agent mode."
 msgstr "DocType '{0}' مستبعد من وضع الوكيل."
@@ -591,6 +841,7 @@ msgstr "DocType '{0}' مستبعد من وضع الوكيل."
 msgid "DocType is excluded"
 msgstr "تم استبعاد DOCTYPE"
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/tools.py:991
 msgid "DocType is required."
 msgstr "DocType مطلوب."
@@ -620,6 +871,29 @@ msgid "Document name is required."
 msgstr "اسم المستند مطلوب."
 
 #: ask_alyf/public/js/ask_alyf.bundle.js:2704
+=======
+#: ask_alyf/ask_alyf/tools.py:1034
+msgid "DocType is required."
+msgstr "DocType مطلوب."
+
+#: ask_alyf/ask_alyf/tools.py:951
+msgid "Document extraction did not return text."
+msgstr "لم يُرجع استخراج المستند نصًا."
+
+#: ask_alyf/ask_alyf/tools.py:975
+msgid "Document extraction did not return valid JSON."
+msgstr "لم يُرجع استخراج المستند JSON صالحًا."
+
+#: ask_alyf/ask_alyf/tools.py:955
+msgid "Document extraction returned an empty response."
+msgstr "أرجع استخراج المستند رداً فارغاً."
+
+#: ask_alyf/ask_alyf/tools.py:1036
+msgid "Document name is required."
+msgstr "اسم المستند مطلوب."
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:2947
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 msgid "Download chart as SVG"
 msgstr "تحميل الخريطة بصيغة SVG"
 
@@ -627,6 +901,7 @@ msgstr "تحميل الخريطة بصيغة SVG"
 msgid "Drafting..."
 msgstr "جاري الصياغة..."
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:767
 msgid "ERPNext assistant"
 msgstr "مساعد ERPNext"
@@ -648,6 +923,34 @@ msgid "Each label must be a string."
 msgstr "يجب أن يكون كل تصنيف سلسلة نصية."
 
 #: ask_alyf/ask_alyf/tools.py:592
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:1003
+msgid "ERPNext assistant"
+msgstr "مساعد ERPNext"
+
+#: ask_alyf/ask_alyf/tools.py:1618
+msgid "Each chart must be an object."
+msgstr "يجب أن تكون كل خريطة كائناً."
+
+#: ask_alyf/ask_alyf/tools.py:1586
+msgid "Each dataset must be an object."
+msgstr "يجب أن تكون كل مجموعة بيانات كائناً."
+
+#: ask_alyf/ask_alyf/tools.py:1589
+msgid "Each dataset needs a values array."
+msgstr "تحتاج كل مجموعة بيانات إلى مصفوفة قيم."
+
+#: ask_alyf/ask_alyf/tools.py:562
+msgid "Each label must be a string."
+msgstr "يجب أن يكون كل تصنيف سلسلة نصية."
+
+#. Label of the enable_tracing (Check) field in DocType 'Ask ALYF Settings'
+#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.json:201
+msgid "Enable Tracing"
+msgstr "تفعيل التتبع"
+
+#: ask_alyf/ask_alyf/tools.py:680
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 msgid "Entry type must be one of any, file, or directory."
 msgstr "يجب أن يكون نوع الإدخال أحد التالي: any أو file أو directory."
 
@@ -666,11 +969,16 @@ msgstr "DocTypes المستبعدة"
 msgid "Executed frontend action: {0}"
 msgstr "تم تنفيذ إجراء الواجهة الأمامية: {0}"
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/tools.py:1432
+=======
+#: ask_alyf/ask_alyf/tools.py:1475
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 #, python-brace-format
 msgid "Failed rows: {0}"
 msgstr "الصفوف الفاشلة: {0}"
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:1316
 msgid "Failed to attach file to conversation."
 msgstr "فشل إرفاق الملف بالمحادثة."
@@ -704,16 +1012,64 @@ msgid "Failed to stop the run."
 msgstr "فشل إيقاف التشغيل."
 
 #: ask_alyf/ask_alyf/tools.py:1765
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:1558
+msgid "Failed to attach file to conversation."
+msgstr "فشل إرفاق الملف بالمحادثة."
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:2770
+msgid "Failed to confirm pending operation."
+msgstr "فشل تأكيد العملية المعلقة."
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1471
+msgid "Failed to delete conversation."
+msgstr "فشل حذف المحادثة."
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:2708
+msgid "Failed to execute frontend action."
+msgstr "فشل تنفيذ إجراء الواجهة الأمامية."
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1982
+msgid "Failed to open conversation."
+msgstr "فشل فتح المحادثة."
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:2808
+msgid "Failed to reject pending operation."
+msgstr "فشل رفض العملية المعلقة."
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:2324
+msgid "Failed to send message."
+msgstr "فشل إرسال الرسالة."
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:2070
+msgid "Failed to stop the run."
+msgstr "فشل إيقاف التشغيل."
+
+#: ask_alyf/ask_alyf/tools.py:1843
+#, python-brace-format
+msgid "Field '{0}' does not exist in {1}."
+msgstr "الحقل '{0}' غير موجود في {1}."
+
+#: ask_alyf/ask_alyf/tools.py:1819
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 #, python-brace-format
 msgid "Field '{0}' in {1} is a child table ({2}) and must be a list of row objects."
 msgstr "الحقل '{0}' في {1} هو جدول تابع ({2}) ويجب أن يكون قائمة من كائنات الصفوف."
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/tools.py:1773
+=======
+#: ask_alyf/ask_alyf/tools.py:1827
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 #, python-brace-format
 msgid "Field '{0}' row #{1} in {2} must be an object."
 msgstr "الحقل '{0}' الصف رقم {1} في {2} يجب أن يكون كائنًا."
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/api.py:1014
+=======
+#: ask_alyf/ask_alyf/api.py:1025
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 msgid "Field Agent is not enabled."
 msgstr "وكيل الحقل غير مفعّل."
 
@@ -721,17 +1077,27 @@ msgstr "وكيل الحقل غير مفعّل."
 msgid "Field updated."
 msgstr "تم تحديث الحقل."
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:2394
 #: ask_alyf/public/js/ask_alyf.bundle.js:2403
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:2637
+#: ask_alyf/public/js/ask_alyf.bundle.js:2646
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 #, python-brace-format
 msgid "Field {0} does not exist on this form."
 msgstr "الحقل {0} غير موجود في هذه الاستمارة."
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/api.py:1067 ask_alyf/ask_alyf/tools.py:723
+=======
+#: ask_alyf/ask_alyf/api.py:1078 ask_alyf/ask_alyf/tools.py:811
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 #, python-brace-format
 msgid "File '{0}' was not found."
 msgstr "لم يتم العثور على الملف '{0}'."
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/tools.py:721
 msgid "File ID is required."
 msgstr "معرّف الملف (File ID) مطلوب."
@@ -745,15 +1111,35 @@ msgid "Filling in the open form"
 msgstr "تعبئة الاستمارة المفتوحة"
 
 #: ask_alyf/ask_alyf/agent.py:200
+=======
+#: ask_alyf/ask_alyf/tools.py:809
+msgid "File ID is required."
+msgstr "معرّف الملف (File ID) مطلوب."
+
+#: ask_alyf/ask_alyf/api.py:1063
+msgid "File upload is not enabled."
+msgstr "رفع الملف غير مفعّل."
+
+#: ask_alyf/ask_alyf/agent.py:174
+msgid "Filling in the open form"
+msgstr "تعبئة الاستمارة المفتوحة"
+
+#: ask_alyf/ask_alyf/agent.py:207
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 #, python-brace-format
 msgid "Finding {0}"
 msgstr "جارٍ البحث عن الملفات {0}"
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/agent.py:200
+=======
+#: ask_alyf/ask_alyf/agent.py:207
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 #, python-brace-format
 msgid "Finding {0} in {1}"
 msgstr "جارٍ البحث عن الملفات {0} في {1}"
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/tools.py:1736
 msgid "Frontend action 'frm_add_child' field 'docname' must be a string."
 msgstr "في إجراء الواجهة الأمامية 'frm_add_child'، يجب أن يكون الحقل 'docname' من نوع سلسلة نصية."
@@ -799,10 +1185,70 @@ msgid "Frontend action 'set_route' requires a non-empty route list."
 msgstr "يتطلب إجراء الواجهة الأمامية 'set_route' قائمة مسارات غير فارغة."
 
 #: ask_alyf/ask_alyf/api.py:971
+=======
+#: ask_alyf/ask_alyf/tools.py:1790
+msgid "Frontend action 'frm_add_child' field 'docname' must be a string."
+msgstr "في إجراء الواجهة الأمامية 'frm_add_child'، يجب أن يكون الحقل 'docname' من نوع سلسلة نصية."
+
+#: ask_alyf/ask_alyf/tools.py:1788
+msgid "Frontend action 'frm_add_child' field 'doctype' must be a string."
+msgstr "في إجراء الواجهة الأمامية 'frm_add_child'، يجب أن يكون الحقل 'doctype' من نوع سلسلة نصية."
+
+#: ask_alyf/ask_alyf/tools.py:1784
+msgid "Frontend action 'frm_add_child' field 'values' must be an object."
+msgstr "يجب أن يكون حقل 'values' في إجراء الواجهة الأمامية 'frm_add_child' كائناً."
+
+#: ask_alyf/ask_alyf/tools.py:1781
+msgid "Frontend action 'frm_add_child' requires a fieldname."
+msgstr "يتطلب إجراء الواجهة الأمامية 'frm_add_child' اسم حقل."
+
+#: ask_alyf/ask_alyf/tools.py:1775
+msgid "Frontend action 'frm_set_value' field 'docname' must be a string."
+msgstr "يجب أن يكون حقل 'docname' في إجراء الواجهة الأمامية 'frm_set_value' سلسلة نصية."
+
+#: ask_alyf/ask_alyf/tools.py:1773
+msgid "Frontend action 'frm_set_value' field 'doctype' must be a string."
+msgstr "يجب أن يكون حقل 'doctype' في إجراء الواجهة الأمامية 'frm_set_value' سلسلة نصية."
+
+#: ask_alyf/ask_alyf/tools.py:1769
+msgid "Frontend action 'frm_set_value' requires a fieldname."
+msgstr "يتطلب إجراء الواجهة الأمامية 'frm_set_value' اسم حقل."
+
+#: ask_alyf/ask_alyf/tools.py:1746
+msgid "Frontend action 'new_doc' field 'route_options' must be an object."
+msgstr "يجب أن يكون حقل 'route_options' في إجراء الواجهة الأمامية 'new_doc' كائناً."
+
+#: ask_alyf/ask_alyf/tools.py:1743
+msgid "Frontend action 'new_doc' requires a DocType."
+msgstr "يتطلب إجراء الواجهة الأمامية 'new_doc' نوع DOCTYPE."
+
+#: ask_alyf/ask_alyf/tools.py:1757
+msgid "Frontend action 'open_prefilled_doc' doc DocType must match."
+msgstr "يجب أن يتطابق نوع DOCTYPE للمستند في إجراء الواجهة الأمامية 'open_prefilled_doc'."
+
+#: ask_alyf/ask_alyf/tools.py:1755
+msgid "Frontend action 'open_prefilled_doc' field 'doc' must be an object."
+msgstr "يجب أن يكون حقل 'doc' في إجراء الواجهة الأمامية 'open_prefilled_doc' كائناً."
+
+#: ask_alyf/ask_alyf/tools.py:1752
+msgid "Frontend action 'open_prefilled_doc' requires a DocType."
+msgstr "يتطلب إجراء الواجهة الأمامية 'open_prefilled_doc' نوع DOCTYPE."
+
+#: ask_alyf/ask_alyf/tools.py:1763
+msgid "Frontend action 'scroll_to_field' requires a fieldname."
+msgstr "يتطلب إجراء الواجهة الأمامية 'scroll_to_field' اسم حقل."
+
+#: ask_alyf/ask_alyf/tools.py:1734
+msgid "Frontend action 'set_route' requires a non-empty route list."
+msgstr "يتطلب إجراء الواجهة الأمامية 'set_route' قائمة مسارات غير فارغة."
+
+#: ask_alyf/ask_alyf/api.py:982
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 #, python-brace-format
 msgid "Frontend action failed: {0}"
 msgstr "فشل إجراء الواجهة الأمامية: {0}"
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:2452
 msgid "Frontend action is missing a call ID."
 msgstr "إجراء الواجهة الأمامية يفتقر إلى معرّف اتصال (Call ID)."
@@ -816,6 +1262,21 @@ msgid "Frontend action payload must be an object."
 msgstr "يجب أن تكون حمولة إجراء الواجهة الأمامية كائناً."
 
 #: ask_alyf/ask_alyf/tools.py:1228
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:2695
+msgid "Frontend action is missing a call ID."
+msgstr "إجراء الواجهة الأمامية يفتقر إلى معرّف اتصال (Call ID)."
+
+#: ask_alyf/ask_alyf/tools.py:1729
+msgid "Frontend action payload contains an unsafe key."
+msgstr "تحتوي حمولة إجراء الواجهة الأمامية على مفتاح غير آمن."
+
+#: ask_alyf/ask_alyf/tools.py:1726
+msgid "Frontend action payload must be an object."
+msgstr "يجب أن تكون حمولة إجراء الواجهة الأمامية كائناً."
+
+#: ask_alyf/ask_alyf/tools.py:1271
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 msgid "Frontend actions must be executed in the browser."
 msgstr "يجب تنفيذ إجراءات الواجهة الأمامية في المتصفح."
 
@@ -835,6 +1296,7 @@ msgstr "جاري إنشاء الرد..."
 msgid "Generating..."
 msgstr "جاري الإنشاء..."
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:1479
 msgid "HR"
 msgstr "الموارد البشرية"
@@ -860,6 +1322,33 @@ msgid "How many pending purchase receipts do I have?"
 msgstr "كم عدد إيصالات الشراء المعلقة لدي؟"
 
 #: ask_alyf/public/js/ask_alyf.bundle.js:1456
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:1721
+msgid "HR"
+msgstr "الموارد البشرية"
+
+#: ask_alyf/ask_alyf/agent.py:170
+msgid "Highlighting a field"
+msgstr "تمييز حقل"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1025
+msgid "History"
+msgstr "السجل"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1743
+msgid "How many Work Orders are behind schedule?"
+msgstr "كم عدد أوامر العمل المتأخرة عن الجدول الزمني؟"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1725
+msgid "How many leave applications are pending approval?"
+msgstr "كم عدد طلبات الإجازة المعلقة للموافقة؟"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1707
+msgid "How many pending purchase receipts do I have?"
+msgstr "كم عدد إيصالات الشراء المعلقة لدي؟"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1698
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 msgid "How many quotations were sent this month?"
 msgstr "كم عدد عروض الأسعار التي أُرسلت هذا الشهر؟"
 
@@ -872,6 +1361,7 @@ msgstr "واجهت خطأً أثناء معالجة هذا الطلب. يُرج�
 msgid "I've prepared the operation. Please review and confirm."
 msgstr "لقد قمت بإعداد العملية. يُرجى المراجعة والتأكيد."
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/tools.py:1235
 msgid "Invalid action payload."
 msgstr "حمولة إجراء غير صالحة."
@@ -885,6 +1375,21 @@ msgid "Invalid chart specification."
 msgstr "مواصفات الرسم البياني غير صالحة."
 
 #: ask_alyf/ask_alyf/tools.py:1215
+=======
+#: ask_alyf/ask_alyf/tools.py:1278
+msgid "Invalid action payload."
+msgstr "حمولة إجراء غير صالحة."
+
+#: ask_alyf/ask_alyf/tools.py:1656 ask_alyf/public/js/ask_alyf.bundle.js:3003
+msgid "Invalid chart data."
+msgstr "بيانات الرسم البياني غير صالحة."
+
+#: ask_alyf/ask_alyf/tools.py:1714
+msgid "Invalid chart specification."
+msgstr "مواصفات الرسم البياني غير صالحة."
+
+#: ask_alyf/ask_alyf/tools.py:1258
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 msgid "Invalid pending operation payload."
 msgstr "حمولة عملية معلقة غير صالحة."
 
@@ -898,7 +1403,11 @@ msgstr "نمط regex غير صالح: {0}"
 msgid "LLM Provider"
 msgstr "مزود LLM"
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/tools.py:471
+=======
+#: ask_alyf/ask_alyf/tools.py:557
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 msgid "Labels must be provided as a list of strings."
 msgstr "يجب توفير التسميات كقائمة من السلاسل النصية."
 
@@ -918,12 +1427,20 @@ msgstr "آخر رسالة في"
 msgid "Line offset {0} exceeds file length"
 msgstr "إزاحة السطر {0} تتجاوز طول الملف"
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/agent.py:210
+=======
+#: ask_alyf/ask_alyf/agent.py:217
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 #, python-brace-format
 msgid "Listing {0}"
 msgstr "جارٍ عرض {0}"
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:1728
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:1967
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 msgid "Loading conversation..."
 msgstr "جارٍ تحميل المحادثة..."
 
@@ -935,7 +1452,11 @@ msgstr "البحث عن التقارير المتاحة"
 msgid "Looking up what you can access"
 msgstr "البحث عما يمكنك الوصول إليه"
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:1497
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:1739
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 msgid "Manufacturing"
 msgstr "التصنيع"
 
@@ -958,12 +1479,20 @@ msgstr "نوع البيانات الوصفية"
 msgid "Method call proposal needs correction."
 msgstr "يحتاج اقتراح استدعاء الطريقة إلى تصحيح."
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:1384
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:1626
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 #, python-brace-format
 msgid "Mode: {0}"
 msgstr "الوضع: {0}"
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/tools.py:461
+=======
+#: ask_alyf/ask_alyf/tools.py:547
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 msgid "Multiple matching files were found. Provide reference_field, file_url, or file_name."
 msgstr "تم العثور على عدة ملفات مطابقة. يرجى تقديم reference_field أو file_url أو file_name."
 
@@ -993,15 +1522,24 @@ msgstr "يحتاج إجراء إنشاء المستند الجديد إلى تص
 msgid "No active form found."
 msgstr "لم يتم العثور على استمارة نشطة."
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:1652
 msgid "No conversations yet."
 msgstr "لا توجد محادثات بعد."
 
 #: ask_alyf/ask_alyf/tools.py:1167
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:1894
+msgid "No conversations yet."
+msgstr "لا توجد محادثات بعد."
+
+#: ask_alyf/ask_alyf/tools.py:1210
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 #, python-brace-format
 msgid "No documentation URL was found for app '{0}'."
 msgstr "لم يتم العثور على URL التوثيق للتطبيق '{0}'."
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:2351
 msgid "No form is currently open."
 msgstr "لا توجد استمارة مفتوحة حاليًا."
@@ -1011,6 +1549,17 @@ msgid "No installed app code roots were found."
 msgstr "لم يتم العثور على جذور كود التطبيقات المثبتة."
 
 #: ask_alyf/ask_alyf/tools.py:457
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:2590
+msgid "No form is currently open."
+msgstr "لا توجد استمارة مفتوحة حاليًا."
+
+#: ask_alyf/ask_alyf/tools.py:189
+msgid "No installed app code roots were found."
+msgstr "لم يتم العثور على جذور كود التطبيقات المثبتة."
+
+#: ask_alyf/ask_alyf/tools.py:543
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 msgid "No matching file was found."
 msgstr "لم يتم العثور على ملف مطابق."
 
@@ -1019,24 +1568,45 @@ msgstr "لم يتم العثور على ملف مطابق."
 msgid "No pending operation matches call_id '{0}'."
 msgstr "لا توجد عملية معلقة تطابق call_id '{0}'."
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/tools.py:1184
+=======
+#: ask_alyf/ask_alyf/tools.py:1227
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 #, python-brace-format
 msgid "No pyproject.toml was found for app '{0}'."
 msgstr "لم يتم العثور على pyproject.toml للتطبيق '{0}'."
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/tools.py:1082
+=======
+#: ask_alyf/ask_alyf/tools.py:1125
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 #, python-brace-format
 msgid "No repository URL was found for app '{0}'."
 msgstr "لم يتم العثور على URL المستودع للتطبيق '{0}'."
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/api.py:1065
 msgid "No valid file provided."
 msgstr "لم يتم تقديم ملف صالح."
 
 #: ask_alyf/ask_alyf/tools.py:1072
+=======
+#: ask_alyf/ask_alyf/api.py:1076
+msgid "No valid file provided."
+msgstr "لم يتم تقديم ملف صالح."
+
+#: ask_alyf/ask_alyf/tools.py:1115
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 #, python-brace-format
 msgid "No version was found for app '{0}'."
 msgstr "لم يتم العثور على إصدار للتطبيق '{0}'."
+
+#: ask_alyf/ask_alyf/api.py:978
+#, python-brace-format
+msgid "Not set: {0}"
+msgstr "لم يتم تطبيقه: {0}"
 
 #. Description of the 'Excluded DocTypes' (Table MultiSelect) field in DocType
 #. 'Ask ALYF Settings'
@@ -1054,6 +1624,7 @@ msgstr "نقطة تفتيش LangGraph واحدة. تتم كتابتها بواس
 msgid "One pending write of a LangGraph checkpoint. Written by FrappeCheckpointSaver, not by users."
 msgstr "عملية كتابة معلقة واحدة لنقطة تفتيش LangGraph. تتم كتابتها بواسطة FrappeCheckpointSaver، وليس بواسطة المستخدمين."
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/tools.py:1038
 msgid "Only Administrator and System Manager can run SQL queries."
 msgstr "يمكن للمدير ومدير النظام فقط تشغيل استعلامات SQL."
@@ -1063,6 +1634,17 @@ msgid "Only GitHub repositories are supported for release lookup."
 msgstr "يتم دعم مستودعات GitHub فقط للبحث عن الإصدارات."
 
 #: ask_alyf/ask_alyf/tools.py:1041
+=======
+#: ask_alyf/ask_alyf/tools.py:1081
+msgid "Only Administrator and System Manager can run SQL queries."
+msgstr "يمكن للمدير ومدير النظام فقط تشغيل استعلامات SQL."
+
+#: ask_alyf/ask_alyf/tools.py:1130
+msgid "Only GitHub repositories are supported for release lookup."
+msgstr "يتم دعم مستودعات GitHub فقط للبحث عن الإصدارات."
+
+#: ask_alyf/ask_alyf/tools.py:1084
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 msgid "Only a single read-only SQL statement is allowed."
 msgstr "يُسمح فقط بعبارة SQL واحدة للقراءة فقط."
 
@@ -1070,6 +1652,7 @@ msgstr "يُسمح فقط بعبارة SQL واحدة للقراءة فقط."
 msgid "Only backend actions can be confirmed by this endpoint."
 msgstr "يمكن لهذا النقطة النهائية تأكيد إجراءات الخلفية فقط."
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/tools.py:1044
 msgid "Only read-only SQL statements are allowed."
 msgstr "يُسمح فقط بعبارات SQL للقراءة فقط."
@@ -1079,10 +1662,26 @@ msgid "Open Ask ALYF"
 msgstr "فتح Ask ALYF"
 
 #: ask_alyf/ask_alyf/toolset.py:1130
+=======
+#: ask_alyf/ask_alyf/tools.py:1087
+msgid "Only read-only SQL statements are allowed."
+msgstr "يُسمح فقط بعبارات SQL للقراءة فقط."
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:995
+msgid "Open Ask ALYF"
+msgstr "فتح Ask ALYF"
+
+#: ask_alyf/ask_alyf/toolset.py:1181
+msgid "Open document action needs correction."
+msgstr "يحتاج إجراء فتح المستند إلى تصحيح."
+
+#: ask_alyf/ask_alyf/toolset.py:1158
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 #, python-brace-format
 msgid "Open new {0}"
 msgstr "فتح {0} جديد"
 
+<<<<<<< HEAD
 #. Option for the 'LLM Provider' (Select) field in DocType 'Ask ALYF Settings'
 #. Option for the 'Vision LLM Provider' (Select) field in DocType 'Ask ALYF
 #. Settings'
@@ -1098,6 +1697,14 @@ msgid "OpenAI Compatible"
 msgstr "متوافق مع OpenAI"
 
 #: ask_alyf/ask_alyf/agent.py:159
+=======
+#: ask_alyf/ask_alyf/toolset.py:1179
+#, python-brace-format
+msgid "Open unsaved {0}"
+msgstr "فتح {0} غير محفوظ"
+
+#: ask_alyf/ask_alyf/agent.py:166
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 #, python-brace-format
 msgid "Opening a new {0}"
 msgstr "فتح {0} جديد"
@@ -1105,6 +1712,11 @@ msgstr "فتح {0} جديد"
 #: ask_alyf/ask_alyf/agent.py:157
 msgid "Opening a page"
 msgstr "فتح صفحة"
+
+#: ask_alyf/ask_alyf/agent.py:168
+#, python-brace-format
+msgid "Opening an unsaved {0}"
+msgstr "فتح {0} غير محفوظ"
 
 #. Description of the 'Base URL' (Data) field in DocType 'Ask ALYF Settings'
 #. Description of the 'Vision Base URL' (Data) field in DocType 'Ask ALYF
@@ -1118,12 +1730,20 @@ msgstr "اختياري لـ OpenAI. مطلوب للموفرين المتوافق
 msgid "Parent Checkpoint ID"
 msgstr "معرف نقطة التفتيش الأب"
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/tools.py:538
+=======
+#: ask_alyf/ask_alyf/tools.py:624
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 #, python-brace-format
 msgid "Path '{0}' must point to a file inside an installed app."
 msgstr "يجب أن يشير المسار '{0}' إلى ملف داخل تطبيق مثبت."
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/tools.py:269
+=======
+#: ask_alyf/ask_alyf/tools.py:262
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 #, python-brace-format
 msgid "Path '{0}' was not found in app '{1}'."
 msgstr "لم يتم العثور على المسار '{0}' في التطبيق '{1}'."
@@ -1133,7 +1753,11 @@ msgstr "لم يتم العثور على المسار '{0}' في التطبيق '
 msgid "Path is not a file: {0}"
 msgstr "المسار ليس ملفًا: {0}"
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/deep_agent_backend.py:93 ask_alyf/ask_alyf/tools.py:218
+=======
+#: ask_alyf/ask_alyf/deep_agent_backend.py:93 ask_alyf/ask_alyf/tools.py:211
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 msgid "Path must start with an installed app name."
 msgstr "يجب أن يبدأ المسار باسم تطبيق مثبت."
 
@@ -1142,7 +1766,11 @@ msgstr "يجب أن يبدأ المسار باسم تطبيق مثبت."
 msgid "Pending Operation JSON"
 msgstr "JSON العملية المعلقة"
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:2170
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:2409
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 msgid "Pending operation"
 msgstr "عملية معلقة"
 
@@ -1158,7 +1786,11 @@ msgstr "يرجى تكوين عنوان URL الأساسي أولاً وحفظ ا
 msgid "Please configure an API key first and save the settings, then we can fetch available models."
 msgstr "يرجى تكوين مفتاح API أولاً وحفظ الإعدادات، ثم يمكننا جلب النماذج المتاحة."
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/toolset.py:1223
+=======
+#: ask_alyf/ask_alyf/toolset.py:1272
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 msgid "Prepared add child row action."
 msgstr "تم تحضير إجراء إضافة صف فرعي."
 
@@ -1178,7 +1810,11 @@ msgstr "تم تحضير اقتراح الإنشاء الجماعي."
 msgid "Prepared cancel proposal."
 msgstr "تم تحضير اقتراح الإلغاء."
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/toolset.py:1259
+=======
+#: ask_alyf/ask_alyf/toolset.py:1308
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 msgid "Prepared chart display."
 msgstr "تم تحضير عرض الخريطة."
 
@@ -1206,11 +1842,19 @@ msgstr "تم تحضير اقتراح إعادة التسمية."
 msgid "Prepared route action."
 msgstr "تم تحضير إجراء التوجيه."
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/toolset.py:1153
 msgid "Prepared scroll action."
 msgstr "تم تحضير إجراء التمرير."
 
 #: ask_alyf/ask_alyf/toolset.py:1188
+=======
+#: ask_alyf/ask_alyf/toolset.py:1202
+msgid "Prepared scroll action."
+msgstr "تم تحضير إجراء التمرير."
+
+#: ask_alyf/ask_alyf/toolset.py:1237
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 msgid "Prepared set field action."
 msgstr "تم تحضير إجراء تعيين الحقل."
 
@@ -1226,6 +1870,7 @@ msgstr "تم تحضير اقتراح المهارة."
 msgid "Prepared submit proposal."
 msgstr "تم تحضير اقتراح التسجيل."
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/toolset.py:878
 msgid "Prepared update proposal."
 msgstr "تم تحضير اقتراح التحديث."
@@ -1251,6 +1896,33 @@ msgid "Provide at least one label to translate."
 msgstr "يرجى تقديم تسمية واحدة على الأقل للترجمة."
 
 #: ask_alyf/ask_alyf/tools.py:501 ask_alyf/ask_alyf/tools.py:638
+=======
+#: ask_alyf/ask_alyf/toolset.py:1182
+msgid "Prepared unsaved document."
+msgstr "تم تحضير مستند غير محفوظ."
+
+#: ask_alyf/ask_alyf/toolset.py:906
+msgid "Prepared update proposal."
+msgstr "تم تحضير اقتراح التحديث."
+
+#: ask_alyf/ask_alyf/agent.py:172
+msgid "Preparing a chart"
+msgstr "إعداد خريطة"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1748
+msgid "Projects"
+msgstr "المشاريع"
+
+#: ask_alyf/ask_alyf/tools.py:1705
+msgid "Provide at least one chart in frappe_charts."
+msgstr "قدّم خريطة واحدة على الأقل في frappe_charts."
+
+#: ask_alyf/ask_alyf/tools.py:568
+msgid "Provide at least one label to translate."
+msgstr "يرجى تقديم تسمية واحدة على الأقل للترجمة."
+
+#: ask_alyf/ask_alyf/tools.py:587 ask_alyf/ask_alyf/tools.py:726
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 msgid "Query is required."
 msgstr "الاستعلام مطلوب."
 
@@ -1271,17 +1943,25 @@ msgstr "جارٍ قراءة المستند المرفق"
 msgid "Reading {0}"
 msgstr "جارٍ قراءة {0}"
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/agent.py:206
+=======
+#: ask_alyf/ask_alyf/agent.py:213
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 #, python-brace-format
 msgid "Reading {0}, lines {1}-{2}"
 msgstr "جارٍ قراءة {0}، الأسطر {1}-{2}"
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/agent.py:98
 #, python-brace-format
 msgid "Reading {0} list"
 msgstr "جارٍ قراءة قائمة {0}"
 
 #: ask_alyf/ask_alyf/api.py:866 ask_alyf/ask_alyf/api.py:973
+=======
+#: ask_alyf/ask_alyf/api.py:872 ask_alyf/ask_alyf/api.py:984
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 #, python-brace-format
 msgid "Reason: {0}"
 msgstr "السبب: {0}"
@@ -1291,11 +1971,16 @@ msgstr "السبب: {0}"
 msgid "Reasoning Effort"
 msgstr "جهد الاستدلال"
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:2263
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:2502
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 #, python-brace-format
 msgid "Records to create ({0})"
 msgstr "السجلات المراد إنشاؤها ({0})"
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/tools.py:741
 msgid "Reference doctype is required."
 msgstr "مرجع DocType مطلوب."
@@ -1309,6 +1994,17 @@ msgid "Reject"
 msgstr "رفض"
 
 #: ask_alyf/public/js/ask_alyf.bundle.js:720
+=======
+#: ask_alyf/ask_alyf/tools.py:829
+msgid "Reference doctype is required."
+msgstr "مرجع DocType مطلوب."
+
+#: ask_alyf/ask_alyf/tools.py:833
+msgid "Reference name is required."
+msgstr "اسم الإشارة مطلوب."
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:954
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 msgid "Reject all"
 msgstr "رفض الكل"
 
@@ -1326,7 +2022,11 @@ msgstr "إعادة تسمية {0} {1} إلى {2}"
 msgid "Renaming {0}"
 msgstr "جارٍ إعادة تسمية {0}"
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:763
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:999
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 msgid "Resize chat window"
 msgstr "تغيير حجم نافذة المحادثة"
 
@@ -1338,7 +2038,11 @@ msgstr "تم التراجع."
 msgid "Route action needs correction."
 msgstr "يحتاج إجراء المسار إلى تصحيح."
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/tools.py:1694
+=======
+#: ask_alyf/ask_alyf/tools.py:1737
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 #, python-brace-format
 msgid "Route part #{0} must be a non-empty string."
 msgstr "يجب أن يكون جزء المسار رقم {0} سلسلة نصية غير فارغة."
@@ -1347,10 +2051,16 @@ msgstr "يجب أن يكون جزء المسار رقم {0} سلسلة نصية 
 msgid "Running a database query"
 msgstr "جارٍ تشغيل استعلام قاعدة بيانات"
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/agent.py:154
 #, python-brace-format
 msgid "Running {0}"
 msgstr "جارٍ تشغيل {0}"
+=======
+#: ask_alyf/ask_alyf/agent.py:176
+msgid "Running a report"
+msgstr "جارٍ تشغيل تقرير"
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 
 #. Label of a Check field in DocType 'Ask ALYF Settings'
 #: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.json
@@ -1361,25 +2071,45 @@ msgstr "نفس المحادثة"
 msgid "Saving instructions"
 msgstr "جارٍ حفظ التعليمات"
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/toolset.py:1152
 msgid "Scroll action needs correction."
 msgstr "يحتاج إجراء التمرير إلى تصحيح."
 
 #: ask_alyf/ask_alyf/toolset.py:1150
+=======
+#: ask_alyf/ask_alyf/toolset.py:1201
+msgid "Scroll action needs correction."
+msgstr "يحتاج إجراء التمرير إلى تصحيح."
+
+#: ask_alyf/ask_alyf/toolset.py:1199
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 #, python-brace-format
 msgid "Scroll to field {0}"
 msgstr "التمرير إلى الحقل {0}"
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:2385
 msgid "Scrolling to fields is not available on this form."
 msgstr "التمرير إلى الحقول غير متاح في هذه الاستمارة."
 
 #: ask_alyf/ask_alyf/agent.py:196
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:2628
+msgid "Scrolling to fields is not available on this form."
+msgstr "التمرير إلى الحقول غير متاح في هذه الاستمارة."
+
+#: ask_alyf/ask_alyf/agent.py:203
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 #, python-brace-format
 msgid "Searching for \"{0}\""
 msgstr "جارٍ البحث عن \"{0}\""
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/agent.py:194
+=======
+#: ask_alyf/ask_alyf/agent.py:201
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 #, python-brace-format
 msgid "Searching for \"{0}\" in {1}"
 msgstr "جارٍ البحث عن \"{0}\" في {1}"
@@ -1392,6 +2122,7 @@ msgstr "جارٍ البحث في الوثائق"
 msgid "Searching the source code"
 msgstr "جارٍ البحث في شفرة المصدر"
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:1452
 msgid "Selling"
 msgstr "المبيعات"
@@ -1401,6 +2132,21 @@ msgid "Set field action needs correction."
 msgstr "يحتاج إجراء تعيين الحقل إلى تصحيح."
 
 #: ask_alyf/ask_alyf/toolset.py:1185
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:1694
+msgid "Selling"
+msgstr "المبيعات"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:2264
+msgid "Sending..."
+msgstr "جارٍ الإرسال..."
+
+#: ask_alyf/ask_alyf/toolset.py:1236
+msgid "Set field action needs correction."
+msgstr "يحتاج إجراء تعيين الحقل إلى تصحيح."
+
+#: ask_alyf/ask_alyf/toolset.py:1234
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 #, python-brace-format
 msgid "Set field {0} on current form"
 msgstr "تعيين الحقل {0} في الاستمارة الحالية"
@@ -1414,6 +2160,7 @@ msgstr "يحتاج اقتراح تعيين القيمة إلى تصحيح."
 msgid "Set {0} on {1} {2}"
 msgstr "تعيين {0} في {1} {2}"
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:398
 msgid "Show all"
 msgstr "عرض الكل"
@@ -1447,6 +2194,41 @@ msgid "Show project progress as a chart"
 msgstr "عرض تقدم المشروع كرسم بياني"
 
 #: ask_alyf/ask_alyf/toolset.py:1253
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:440
+msgid "Show all"
+msgstr "عرض الكل"
+
+#: ask_alyf/ask_alyf/toolset.py:1302
+msgid "Show chart"
+msgstr "عرض الخريطة"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1723
+msgid "Show employee headcount by department as a chart"
+msgstr "عرض عدد الموظفين حسب القسم كخريطة"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1742
+msgid "Show me open Work Orders and their status"
+msgstr "اعرض لي أوامر العمل المفتوحة وحالتها"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1768
+msgid "Show me the top 10 DocTypes by record count"
+msgstr "اعرض لي أفضل 10 DocTypes حسب عدد السجلات"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1715
+msgid "Show me unpaid Sales Invoices older than 30 days"
+msgstr "اعرض لي فواتير المبيعات غير المدفوعة الأقدم من 30 يومًا"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1760
+msgid "Show me unresolved issues from this week"
+msgstr "عرض المشكلات غير المحلولة من هذا الأسبوع"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1750
+msgid "Show project progress as a chart"
+msgstr "عرض تقدم المشروع كرسم بياني"
+
+#: ask_alyf/ask_alyf/toolset.py:1302
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 #, python-brace-format
 msgid "Show {0} charts"
 msgstr "عرض {0} رسوم بيانية"
@@ -1477,10 +2259,32 @@ msgstr "يحتاج اقتراح المهارة إلى تصحيح."
 msgid "Skill title is required."
 msgstr "عنوان المهارة مطلوب."
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/tools.py:1430
 msgid "Some rows failed."
 msgstr "فشلت بعض الصفوف."
 
+=======
+#: ask_alyf/ask_alyf/tools.py:1473
+msgid "Some rows failed."
+msgstr "فشلت بعض الصفوف."
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:809
+#, python-brace-format
+msgid "Sort by {0}"
+msgstr "ترتيب حسب {0}"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:804
+#, python-brace-format
+msgid "Sorted ascending by {0}"
+msgstr "ترتيب تصاعدي حسب {0}"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:807
+#, python-brace-format
+msgid "Sorted descending by {0}"
+msgstr "ترتيب تنازلي حسب {0}"
+
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 #: ask_alyf/ask_alyf/deep_agent_backend.py:39
 msgid "Source code is read-only"
 msgstr "شفرة المصدر للقراءة فقط"
@@ -1489,7 +2293,11 @@ msgstr "شفرة المصدر للقراءة فقط"
 msgid "Source file path is required"
 msgstr "مسار ملف المصدر مطلوب"
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:770
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:1006
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 msgid "Start a new conversation"
 msgstr "بدء محادثة جديدة"
 
@@ -1507,11 +2315,19 @@ msgstr "يجب أن تكون الحالة إحدى القيم: success أو fail
 msgid "Still generating..."
 msgstr "لا يزال قيد الإنشاء..."
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:1488
 msgid "Stock"
 msgstr "المخزون"
 
 #: ask_alyf/public/js/ask_alyf.bundle.js:1792
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:1730
+msgid "Stock"
+msgstr "المخزون"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:2031
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 msgid "Stop this run"
 msgstr "إيقاف هذا التشغيل"
 
@@ -1519,6 +2335,7 @@ msgstr "إيقاف هذا التشغيل"
 msgid "Stopped. Send a message to pick up from here."
 msgstr "تم الإيقاف. أرسل رسالة للمتابعة من هنا."
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:682
 #, python-brace-format
 msgid "Sort by {0}"
@@ -1535,6 +2352,9 @@ msgid "Sorted descending by {0}"
 msgstr "ترتيب تنازلي حسب {0}"
 
 #: ask_alyf/public/js/ask_alyf.bundle.js:1918
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:2052
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 msgid "Stopping..."
 msgstr "جارٍ الإيقاف..."
 
@@ -1561,8 +2381,17 @@ msgstr "رقم هاتف الدعم"
 msgid "System Prompt"
 msgstr "موجه النظام"
 
+<<<<<<< HEAD
 #. Label of a Data field in DocType 'Ask ALYF Checkpoint Write'
 #: ask_alyf/ask_alyf/doctype/ask_alyf_checkpoint_write/ask_alyf_checkpoint_write.json
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:772
+msgid "Table pagination"
+msgstr "تصفح الجدول"
+
+#. Label of the task_id (Data) field in DocType 'Ask ALYF Checkpoint Write'
+#: ask_alyf/ask_alyf/doctype/ask_alyf_checkpoint_write/ask_alyf_checkpoint_write.json:44
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 msgid "Task ID"
 msgstr "معرّف المهمة"
 
@@ -1575,7 +2404,11 @@ msgstr "مسار المهمة"
 msgid "That confirmation did not match this operation. Propose it again on its own."
 msgstr "لم يتطابق ذلك التأكيد مع هذه العملية. اقترحها مرة أخرى بمفردها."
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/tools.py:1110
+=======
+#: ask_alyf/ask_alyf/tools.py:1153
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 msgid "The Compendium app is not installed."
 msgstr "تطبيق Compendium غير مثبت."
 
@@ -1592,7 +2425,11 @@ msgstr "مهمة الخلفية لا تطابق هذه الرسالة."
 msgid "The message could not be found in this conversation."
 msgstr "تعذر العثور على الرسالة في هذه المحادثة."
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/agent.py:594
+=======
+#: ask_alyf/ask_alyf/agent.py:745
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 msgid "The operation was completed, but the follow-up response could not be generated."
 msgstr "تم إكمال العملية، ولكن تعذر إنشاء الرد اللاحق."
 
@@ -1637,7 +2474,11 @@ msgstr "لا يوجد إجراء واجهة أمامية معلق لحله."
 msgid "There is no pending operation to confirm."
 msgstr "لا توجد عملية معلقة لتأكيدها."
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:911
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:1148
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 msgid "Thinking..."
 msgstr "جارٍ التفكير..."
 
@@ -1655,6 +2496,7 @@ msgstr "يستغرق هذا بعض الوقت..."
 msgid "Thread ID"
 msgstr "معرف السلسلة"
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/tools.py:1538
 msgid "Too many chart datasets."
 msgstr "عدد كبير جدًا من مجموعات بيانات الرسم البياني."
@@ -1664,6 +2506,17 @@ msgid "Too many chart labels."
 msgstr "عدد كبير جدًا من تسميات الرسم البياني."
 
 #: ask_alyf/ask_alyf/tools.py:1665
+=======
+#: ask_alyf/ask_alyf/tools.py:1581
+msgid "Too many chart datasets."
+msgstr "عدد كبير جدًا من مجموعات بيانات الرسم البياني."
+
+#: ask_alyf/ask_alyf/tools.py:1562
+msgid "Too many chart labels."
+msgstr "عدد كبير جدًا من تسميات الرسم البياني."
+
+#: ask_alyf/ask_alyf/tools.py:1708
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 msgid "Too many charts in one request."
 msgstr "عدد كبير جدًا من الرسوم البيانية في طلب واحد."
 
@@ -1671,6 +2524,7 @@ msgstr "عدد كبير جدًا من الرسوم البيانية في طلب 
 msgid "Translating labels"
 msgstr "جارٍ ترجمة التسميات"
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/tools.py:1268
 msgid "Unknown error."
 msgstr "خطأ غير معروف."
@@ -1681,21 +2535,40 @@ msgid "Unsupported LLM provider: {0}"
 msgstr "مزود LLM غير مدعوم: {0}"
 
 #: ask_alyf/ask_alyf/tools.py:1369
+=======
+#: ask_alyf/ask_alyf/tools.py:1311
+msgid "Unknown error."
+msgstr "خطأ غير معروف."
+
+#: ask_alyf/ask_alyf/tools.py:1412
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 #, python-brace-format
 msgid "Unsupported action '{0}'."
 msgstr "إجراء غير مدعوم '{0}'."
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/tools.py:945
+=======
+#: ask_alyf/ask_alyf/tools.py:988
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 #, python-brace-format
 msgid "Unsupported file type '{0}'. Supported types: PDF, PNG, JPG, GIF, WebP."
 msgstr "نوع الملف '{0}' غير مدعوم. الأنواع المدعومة: PDF، PNG، JPG، GIF، WebP."
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/tools.py:1680 ask_alyf/ask_alyf/tools.py:1743
+=======
+#: ask_alyf/ask_alyf/tools.py:1723 ask_alyf/ask_alyf/tools.py:1797
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 #, python-brace-format
 msgid "Unsupported frontend action '{0}'."
 msgstr "إجراء واجهة أمامية غير مدعوم '{0}'."
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:2414
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:2657
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 #, python-brace-format
 msgid "Unsupported frontend action: {0}"
 msgstr "إجراء واجهة أمامية غير مدعوم: {0}"
@@ -1705,16 +2578,28 @@ msgstr "إجراء واجهة أمامية غير مدعوم: {0}"
 msgid "Unsupported model configuration: {0}"
 msgstr "إعدادات النموذج غير مدعومة: {0}"
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/tools.py:1210 ask_alyf/ask_alyf/tools.py:1230
+=======
+#: ask_alyf/ask_alyf/tools.py:1253 ask_alyf/ask_alyf/tools.py:1273
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 #, python-brace-format
 msgid "Unsupported operation kind '{0}'."
 msgstr "نوع عملية غير مدعوم '{0}'."
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/tools.py:1579
 msgid "Unsupported or missing chart type."
 msgstr "نوع الرسم البياني غير مدعوم أو مفقود."
 
 #: ask_alyf/public/js/ask_alyf.bundle.js:1427
+=======
+#: ask_alyf/ask_alyf/tools.py:1622
+msgid "Unsupported or missing chart type."
+msgstr "نوع الرسم البياني غير مدعوم أو مفقود."
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1669
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 msgid "Untitled conversation"
 msgstr "محادثة بدون عنوان"
 
@@ -1767,16 +2652,26 @@ msgstr "نموذج Vision"
 msgid "Vision Provider"
 msgstr "مزود Vision"
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:823
 #: ask_alyf/public/js/ask_alyf.bundle.js:825
 msgid "Voice input"
 msgstr "إدخال صوتي"
 
 #: ask_alyf/public/js/ask_alyf.bundle.js:2911
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:1062
+#: ask_alyf/public/js/ask_alyf.bundle.js:1064
+msgid "Voice input"
+msgstr "إدخال صوتي"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:3155
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 #, python-brace-format
 msgid "Voice input language: {0}"
 msgstr "لغة الإدخال الصوتي: {0}"
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:2073
 msgid "Waiting for response..."
 msgstr "في انتظار الرد..."
@@ -1835,11 +2730,75 @@ msgid "You do not have access to Ask ALYF."
 msgstr "ليس لديك صلاحية الوصول إلى Ask ALYF."
 
 #: ask_alyf/ask_alyf/api.py:1017
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:2312
+msgid "Waiting for response..."
+msgstr "في انتظار الرد..."
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1697
+msgid "What Sales Orders are pending delivery?"
+msgstr "ما هي أوامر البيع المعلقة للتسليم؟"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1769
+msgid "What are the recent Error Logs?"
+msgstr "ما هي سجلات الأخطاء الأخيرة؟"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1751
+msgid "What open tasks are assigned to me?"
+msgstr "ما هي المهام المفتوحة المكلف بها؟"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1734
+msgid "What were the top 10 most moved items this month?"
+msgstr "ما هي أكثر 10 أصناف حركةً هذا الشهر؟"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1761
+msgid "What's the average resolution time for issues?"
+msgstr "ما هو متوسط وقت حل المشكلات؟"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1716
+msgid "What's the total outstanding receivables?"
+msgstr "ما هو إجمالي المستحقات القائمة؟"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1706
+msgid "Which Purchase Orders are overdue?"
+msgstr "ما هي أوامر الشراء المتأخرة؟"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1724
+msgid "Which employees are on leave today?"
+msgstr "ما هم الموظفون الذين في إجازة اليوم؟"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1733
+msgid "Which items are below their reorder level?"
+msgstr "ما هي الأصناف التي أقل من مستوى إعادة الطلب الخاص بها؟"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1752
+msgid "Which project tasks are overdue?"
+msgstr "ما هي مهام المشاريع المتأخرة؟"
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1770
+msgid "Which users logged in today?"
+msgstr "أي المستخدمين سجلوا الدخول اليوم؟"
+
+#: ask_alyf/ask_alyf/api.py:367 ask_alyf/ask_alyf/api.py:379
+#: ask_alyf/ask_alyf/api.py:396 ask_alyf/ask_alyf/api.py:426
+#: ask_alyf/ask_alyf/api.py:452 ask_alyf/ask_alyf/api.py:520
+#: ask_alyf/ask_alyf/api.py:544 ask_alyf/ask_alyf/api.py:724
+#: ask_alyf/ask_alyf/api.py:792 ask_alyf/ask_alyf/api.py:897
+#: ask_alyf/ask_alyf/api.py:1021 ask_alyf/ask_alyf/api.py:1059
+msgid "You do not have access to Ask ALYF."
+msgstr "ليس لديك صلاحية الوصول إلى Ask ALYF."
+
+#: ask_alyf/ask_alyf/api.py:1028
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 #, python-brace-format
 msgid "You do not have read permission on {0}."
 msgstr "ليس لديك صلاحية القراءة على {0}."
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:2852
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:3096
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 msgid "Your browser does not support voice input."
 msgstr "متصفحك لا يدعم الإدخال الصوتي."
 
@@ -1892,12 +2851,16 @@ msgstr "أقصى"
 msgid "medium"
 msgstr "متوسط"
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/tools.py:1425
 #, python-brace-format
 msgid "row {0}"
 msgstr "الصف {0}"
 
 #: ask_alyf/ask_alyf/tools.py:1423
+=======
+#: ask_alyf/ask_alyf/tools.py:1466
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 #, python-brace-format
 msgid "row {0}: {1}"
 msgstr "الصف {0}: {1}"
@@ -1912,11 +2875,16 @@ msgstr "المسار المستهدف"
 msgid "xhigh"
 msgstr "مرتفع جدًا"
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/tools.py:997
+=======
+#: ask_alyf/ask_alyf/tools.py:1040
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 #, python-brace-format
 msgid "{0} '{1}' was not found."
 msgstr "لم يتم العثور على {0} ‘{1}’."
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:371
 #, python-brace-format
 msgid "{0} failed"
@@ -1933,6 +2901,9 @@ msgid "{0} rows"
 msgstr "{0} صفوف"
 
 #: ask_alyf/public/js/ask_alyf.bundle.js:302
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:356
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 #, python-brace-format
 msgid "{0} steps"
 msgstr "{0} خطوات"
