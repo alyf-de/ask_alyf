@@ -267,11 +267,16 @@ class UnitTestAskALYFSettings(UnitTestCase):
 		with patch.object(ask_alyf_settings, "ChatOpenAI", return_value=SimpleNamespace(profile=None)):
 			self.assertIsNone(ask_alyf_settings.get_langchain_reasoning_effort_levels("custom-local-model"))
 
-	def test_get_langchain_reasoning_effort_levels_returns_empty_when_profile_has_no_levels(self):
-		with patch.object(
-			ask_alyf_settings, "ChatOpenAI", return_value=SimpleNamespace(profile={"name": "GPT-4o"})
-		):
+	def test_get_langchain_reasoning_effort_levels_returns_empty_for_non_reasoning_model(self):
+		profile = {"name": "GPT-4o", "reasoning_output": False}
+		with patch.object(ask_alyf_settings, "ChatOpenAI", return_value=SimpleNamespace(profile=profile)):
 			self.assertEqual(ask_alyf_settings.get_langchain_reasoning_effort_levels("gpt-4o"), [])
+
+	def test_get_langchain_reasoning_effort_levels_returns_none_for_reasoning_model_without_levels(self):
+		# LangChain knows that the model reasons, but not which effort levels it accepts.
+		profile = {"name": "GPT-6.1 Terra", "reasoning_output": True}
+		with patch.object(ask_alyf_settings, "ChatOpenAI", return_value=SimpleNamespace(profile=profile)):
+			self.assertIsNone(ask_alyf_settings.get_langchain_reasoning_effort_levels("gpt-6.1-terra"))
 
 	def test_warn_if_unsupported_reasoning_effort_skips_unknown_models(self):
 		with (
