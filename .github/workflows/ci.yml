@@ -3,7 +3,7 @@ name: CI
 on:
   push:
     branches:
-      - develop
+      - version-16
     paths-ignore:
       - "**/locale/main.pot"
   pull_request:
@@ -11,7 +11,7 @@ on:
       - "**/locale/main.pot"
 
 concurrency:
-  group: develop-ask_alyf-${{ github.event.number }}
+  group: version-16-ask_alyf-${{ github.event.number }}
   cancel-in-progress: true
 
 jobs:
@@ -79,10 +79,14 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-yarn-
 
+      # Best effort: when the Ubuntu archive is unreachable, Frappe falls back
+      # to the preinstalled mysql client and the ripgrep tests skip themselves.
       - name: Install system dependencies
+        continue-on-error: true
+        timeout-minutes: 3
         run: |
-          sudo apt update
-          sudo apt-get install mariadb-client ripgrep
+          sudo apt-get update
+          sudo apt-get install -y mariadb-client ripgrep
 
       - name: Setup
         run: |

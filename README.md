@@ -156,6 +156,8 @@ Schema, permissions, and UI:
 - `get_doc_permissions` returns the evaluated permissions for a document
 - `list_accessible_doctypes` lists DocTypes the current user can read or write
 - `list_accessible_reports` lists reports the current user can access
+- `get_report_filters` lists a permitted **Report**'s filters
+- `run_report` runs a permitted **Report** with optional filters
 - `translate_ui_labels` translates UI labels so answers match the user's language
 - `read_skill` reads a stored **Ask ALYF Skill** the current user's roles allow
 
@@ -238,7 +240,7 @@ Install this app with the [bench](https://github.com/frappe/bench) CLI:
 
 ```bash
 cd $PATH_TO_YOUR_BENCH
-bench get-app $URL_OF_THIS_REPO --branch develop
+bench get-app $URL_OF_THIS_REPO --branch version-16
 bench install-app ask_alyf
 ```
 
@@ -281,7 +283,7 @@ The benchmark reports file counts and search times for native search and the Pyt
 
 This app can use GitHub Actions for CI. The configured workflows are:
 
-- CI installs this app and runs unit tests on every push to the `develop` branch.
+- CI installs this app and runs unit tests on every push to the `version-16` branch.
 - Linters run [Frappe Semgrep Rules](https://github.com/frappe/semgrep-rules) and [pip-audit](https://pypi.org/project/pip-audit/) on every pull request.
 
 ## Privacy

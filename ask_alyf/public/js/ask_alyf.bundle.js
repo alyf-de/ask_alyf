@@ -35,6 +35,32 @@ import { PrefilledDoc } from "./prefilled_doc";
 		return mermaidSvgCache.get(source);
 	}
 
+	// An image loads as soon as it renders and sends its URL. A prompt injection could put
+	// private data in that URL, so every image except inline data becomes a link. The HTML is
+	// parsed in an inert document: an <img> set through innerHTML loads even when detached.
+	function renderMarkdown(text) {
+		const doc = new DOMParser().parseFromString(frappe.markdown(text), "text/html");
+		for (const img of doc.querySelectorAll("img")) {
+			const src = img.getAttribute("src") || "";
+			if (/^data:/i.test(src)) {
+				continue;
+			}
+			const label = img.getAttribute("alt") || src;
+			// links don't nest, so an image inside a link leaves only its label
+			if (!src || img.closest("a")) {
+				img.replaceWith(label);
+				continue;
+			}
+			const link = doc.createElement("a");
+			link.setAttribute("href", src);
+			link.setAttribute("target", "_blank");
+			link.setAttribute("rel", "noopener noreferrer");
+			link.textContent = label;
+			img.replaceWith(link);
+		}
+		return doc.body.innerHTML;
+	}
+
 	/**
 	 * Frappe Charts divides by labels.length and (for pie) grand total;
 	 * tiny/negative plot height yields NaN axis lines in draw.js.
@@ -276,7 +302,7 @@ import { PrefilledDoc } from "./prefilled_doc";
 
 		getMessageHtml(message) {
 			if (message.role === "assistant") {
-				return frappe.markdown(message.content || "");
+				return renderMarkdown(message.content || "");
 			}
 			if (message.role === "system" && Array.isArray(message.metadata?.files)) {
 				const names = message.metadata.files
@@ -1138,7 +1164,7 @@ import { PrefilledDoc } from "./prefilled_doc";
 
 			frappe.realtime.on("ask_alyf_response_chunk", (message) => {
 				if (message.conversation !== this.state.conversation?.name) return;
-				this.appendAssistantChunk(message.message_id, message.chunk || "");
+				this.appendAssistantChunk(message.message_id, message.created_at, message.chunk || "");
 			});
 
 			frappe.realtime.on("ask_alyf_response_complete", async (message) => {
@@ -1235,7 +1261,10 @@ import { PrefilledDoc } from "./prefilled_doc";
 			}
 			const createdAt = lastMessage.created_at;
 			if (createdAt && !lastMessage.metadata?.background_job_id) {
-				const ageMs = Date.now() - new Date(createdAt).getTime();
+				// created_at is system-zone time without an offset; new Date()
+				// would read it as browser-local time.
+				const createdAtMs = moment.tz(createdAt, frappe.boot.time_zone.system).valueOf();
+				const ageMs = Date.now() - createdAtMs;
 				if (ageMs > 5 * 60 * 1000) {
 					return null;
 				}
@@ -2296,7 +2325,7 @@ import { PrefilledDoc } from "./prefilled_doc";
 			}
 		}
 
-		appendAssistantChunk(messageId, chunk) {
+		appendAssistantChunk(messageId, createdAt, chunk) {
 			let message = this.state.messages.find((item) => item.id === messageId);
 			if (!message) {
 				// The steps that were streaming live belong to this answer, so
@@ -2306,7 +2335,7 @@ import { PrefilledDoc } from "./prefilled_doc";
 					id: messageId,
 					role: "assistant",
 					content: "",
-					created_at: frappe.datetime.now_datetime(),
+					created_at: createdAt,
 					metadata: {},
 				};
 				if (this.state.steps.length) {
@@ -2549,7 +2578,7 @@ import { PrefilledDoc } from "./prefilled_doc";
 
 		renderInlineMarkdown(value) {
 			const container = document.createElement("div");
-			container.innerHTML = frappe.markdown((value || "").toString());
+			container.innerHTML = renderMarkdown((value || "").toString());
 			if (container.childElementCount === 1 && container.firstElementChild?.tagName === "P") {
 				return container.firstElementChild.innerHTML;
 			}
