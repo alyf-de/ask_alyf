@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Ask ALYF VERSION\n"
 "Report-Msgid-Bugs-To: hallo@alyf.de\n"
-"POT-Creation-Date: 2026-11-26 17:53+0053\n"
+"POT-Creation-Date: 2026-11-26 17:59+0053\n"
 "PO-Revision-Date: 2026-05-02 19:04+0053\n"
 "Last-Translator: hallo@alyf.de\n"
 "Language: bn\n"
@@ -30,42 +30,42 @@ msgstr "লুকানো পাথে অ্যাক্সেস অনুম
 msgid "Accounts"
 msgstr "অ্যাকাউন্টস"
 
-#: ask_alyf/ask_alyf/tools.py:1392
+#: ask_alyf/ask_alyf/tools.py:1520
 msgid "Action field 'args' must be an object."
 msgstr "অ্যাকশন ফিল্ড 'args' একটি অবজেক্ট হতে হবে।"
 
-#: ask_alyf/ask_alyf/tools.py:1358 ask_alyf/ask_alyf/tools.py:1369
+#: ask_alyf/ask_alyf/tools.py:1486 ask_alyf/ask_alyf/tools.py:1497
 msgid "Action field 'doctype' is required."
 msgstr "অ্যাকশন ফিল্ড 'doctype' প্রয়োজন।"
 
-#: ask_alyf/ask_alyf/tools.py:1387
+#: ask_alyf/ask_alyf/tools.py:1515
 msgid "Action field 'file_id' is required."
 msgstr "অ্যাকশন ফিল্ড 'file_id' প্রয়োজন।"
 
-#: ask_alyf/ask_alyf/tools.py:1373
+#: ask_alyf/ask_alyf/tools.py:1501
 msgid "Action field 'records' must be a non-empty list."
 msgstr "অ্যাকশন ফিল্ড 'records' একটি অ-খালি তালিকা হতে হবে।"
 
-#: ask_alyf/ask_alyf/tools.py:1377
+#: ask_alyf/ask_alyf/tools.py:1505
 #, python-brace-format
 msgid "Action field 'records' row #{0} must be an object."
 msgstr "অ্যাকশন ফিল্ড 'records' এর সারি #{0} একটি অবজেক্ট হতে হবে।"
 
-#: ask_alyf/ask_alyf/tools.py:1362
+#: ask_alyf/ask_alyf/tools.py:1490
 msgid "Action field 'values' must be an object."
 msgstr "অ্যাকশন ফিল্ড 'values' একটি অবজেক্ট হতে হবে।"
 
-#: ask_alyf/ask_alyf/tools.py:1302
+#: ask_alyf/ask_alyf/tools.py:1430
 #, python-brace-format
 msgid "Action field '{0}' must be an object."
 msgstr "অ্যাকশন ফিল্ড '{0}' একটি অবজেক্ট হতে হবে।"
 
-#: ask_alyf/ask_alyf/toolset.py:1215
+#: ask_alyf/ask_alyf/toolset.py:1246
 #, python-brace-format
 msgid "Add a row to {0} on current form"
 msgstr "বর্তমান ফর্মে {0}-এ একটি সারি যোগ করুন"
 
-#: ask_alyf/ask_alyf/toolset.py:1217
+#: ask_alyf/ask_alyf/toolset.py:1248
 msgid "Add child row action needs correction."
 msgstr "চাইল্ড সারি যোগ করার অ্যাকশনের সংশোধন প্রয়োজন।"
 
@@ -99,27 +99,27 @@ msgstr "ফিল্ড এজেন্ট অনুমোদন করুন"
 msgid "Allow File Upload"
 msgstr "ফাইল আপলোড অনুমোদন করুন"
 
-#: ask_alyf/ask_alyf/toolset.py:968
+#: ask_alyf/ask_alyf/toolset.py:999
 msgid "Amend proposal needs correction."
 msgstr "সংশোধন প্রস্তাবের সংশোধন প্রয়োজন।"
 
-#: ask_alyf/ask_alyf/toolset.py:966
+#: ask_alyf/ask_alyf/toolset.py:997
 #, python-brace-format
 msgid "Amend {0} {1}"
 msgstr "{0} {1} সংশোধন করুন"
 
-#: ask_alyf/ask_alyf/agent.py:151
+#: ask_alyf/ask_alyf/agent.py:153
 #, python-brace-format
 msgid "Amending {0}"
 msgstr "{0} সংশোধন করা হচ্ছে"
 
-#: ask_alyf/ask_alyf/tools.py:1350
+#: ask_alyf/ask_alyf/tools.py:1478
 #, python-brace-format
 msgid "And {0} more."
 msgstr "এবং আরও {0} টি।"
 
-#: ask_alyf/ask_alyf/deep_agent_backend.py:100 ask_alyf/ask_alyf/tools.py:147
-#: ask_alyf/ask_alyf/tools.py:970
+#: ask_alyf/ask_alyf/deep_agent_backend.py:100 ask_alyf/ask_alyf/tools.py:150
+#: ask_alyf/ask_alyf/tools.py:1098
 #, python-brace-format
 msgid "App '{0}' is not installed."
 msgstr "অ্যাপ '{0}' ইনস্টল করা নেই।"
@@ -209,12 +209,12 @@ msgstr "Ask ALYF AI ব্যবহার করে এবং ভুল কর�
 msgid "Ask about this ERPNext instance"
 msgstr "এই ERPNext ইনস্ট্যান্স সম্পর্কে জিজ্ঞাসা করুন"
 
-#: ask_alyf/ask_alyf/agent.py:136
+#: ask_alyf/ask_alyf/agent.py:138
 #, python-brace-format
 msgid "Asking the {0} specialist"
 msgstr "{0} বিশেষজ্ঞকে জিজ্ঞাসা করা হচ্ছে"
 
-#: ask_alyf/ask_alyf/toolset.py:787
+#: ask_alyf/ask_alyf/toolset.py:818
 msgid "At least one role is required."
 msgstr "কমপক্ষে একটি ভূমিকা আবশ্যক।"
 
@@ -223,16 +223,16 @@ msgstr "কমপক্ষে একটি ভূমিকা আবশ্যক
 msgid "Attach file"
 msgstr "ফাইল সংযুক্ত করুন"
 
-#: ask_alyf/ask_alyf/toolset.py:1054
+#: ask_alyf/ask_alyf/toolset.py:1085
 msgid "Attach file proposal needs correction."
 msgstr "ফাইল সংযুক্তির প্রস্তাব সংশোধন প্রয়োজন।"
 
-#: ask_alyf/ask_alyf/toolset.py:1048
+#: ask_alyf/ask_alyf/toolset.py:1079
 #, python-brace-format
 msgid "Attach file {0} to {1} {2}"
 msgstr "ফাইল {0} {1} {2}-এ সংযুক্ত করুন"
 
-#: ask_alyf/ask_alyf/agent.py:157
+#: ask_alyf/ask_alyf/agent.py:159
 #, python-brace-format
 msgid "Attaching a file to {0}"
 msgstr "{0}-এ একটি ফাইল সংযুক্ত করা হচ্ছে"
@@ -245,7 +245,7 @@ msgstr "সংযুক্তির নাম আবশ্যক"
 msgid "Attachments are read-only"
 msgstr "সংযুক্তিগুলি কেবল-পাঠযোগ্য"
 
-#: ask_alyf/ask_alyf/toolset.py:843
+#: ask_alyf/ask_alyf/toolset.py:874
 msgid "Batch create proposal needs correction."
 msgstr "ব্যাচ তৈরির প্রস্তাব সংশোধন প্রয়োজন।"
 
@@ -264,16 +264,16 @@ msgstr "সাপোর্টে কল করুন"
 msgid "Call support: {0}"
 msgstr "সাপোর্টে কল করুন: {0}"
 
-#: ask_alyf/ask_alyf/toolset.py:1079
+#: ask_alyf/ask_alyf/toolset.py:1110
 #, python-brace-format
 msgid "Call {0}"
 msgstr "{0} কল করুন"
 
-#: ask_alyf/ask_alyf/toolset.py:947
+#: ask_alyf/ask_alyf/toolset.py:978
 msgid "Cancel proposal needs correction."
 msgstr "বাতিলের প্রস্তাব সংশোধন প্রয়োজন।"
 
-#: ask_alyf/ask_alyf/toolset.py:945
+#: ask_alyf/ask_alyf/toolset.py:976
 #, python-brace-format
 msgid "Cancel {0} {1}"
 msgstr "{0} {1} বাতিল করুন"
@@ -297,27 +297,27 @@ msgstr "মুলতুবি অপারেশন বাতিল করা �
 msgid "Changes preview"
 msgstr "পরিবর্তনের প্রিভিউ"
 
-#: ask_alyf/ask_alyf/toolset.py:1253
+#: ask_alyf/ask_alyf/toolset.py:1284
 msgid "Chart action needs correction."
 msgstr "চার্ট অ্যাকশন সংশোধন প্রয়োজন।"
 
-#: ask_alyf/ask_alyf/tools.py:1524
+#: ask_alyf/ask_alyf/tools.py:1652
 msgid "Chart data must be an object."
 msgstr "চার্ট ডেটা একটি অবজেক্ট হতে হবে।"
 
-#: ask_alyf/ask_alyf/tools.py:1450
+#: ask_alyf/ask_alyf/tools.py:1578
 msgid "Chart data requires a non-empty datasets array."
 msgstr "চার্ট ডেটার জন্য একটি অ-খালি ডেটাসেট অ্যারে প্রয়োজন।"
 
-#: ask_alyf/ask_alyf/tools.py:1431
+#: ask_alyf/ask_alyf/tools.py:1559
 msgid "Chart data requires a non-empty labels array."
 msgstr "চার্ট ডেটার জন্য একটি অ-খালি লেবেল অ্যারে প্রয়োজন।"
 
-#: ask_alyf/ask_alyf/tools.py:1510
+#: ask_alyf/ask_alyf/tools.py:1638
 msgid "Chart height is out of range."
 msgstr "চার্টের উচ্চতা সীমার বাইরে।"
 
-#: ask_alyf/ask_alyf/tools.py:1440
+#: ask_alyf/ask_alyf/tools.py:1568
 msgid "Chart labels must be numbers or strings."
 msgstr "চার্ট লেবেল অবশ্যই সংখ্যা বা স্ট্রিং হতে হবে।"
 
@@ -393,19 +393,19 @@ msgstr "চেকপয়েন্ট নেমস্পেস"
 msgid "Checkpoint Type"
 msgstr "চেকপয়েন্ট টাইপ"
 
-#: ask_alyf/ask_alyf/deep_agent_backend.py:104 ask_alyf/ask_alyf/tools.py:176
+#: ask_alyf/ask_alyf/deep_agent_backend.py:104 ask_alyf/ask_alyf/tools.py:179
 msgid "Code access is restricted to installed app directories."
 msgstr "কোড অ্যাক্সেস ইনস্টল করা অ্যাপ ডিরেক্টরির মধ্যে সীমাবদ্ধ।"
 
-#: ask_alyf/ask_alyf/tools.py:118
+#: ask_alyf/ask_alyf/tools.py:121
 msgid "Code search is disabled in Ask ALYF Settings."
 msgstr "Ask ALYF সেটিংসে কোড অনুসন্ধান নিষ্ক্রিয় করা হয়েছে।"
 
-#: ask_alyf/ask_alyf/agent.py:322
+#: ask_alyf/ask_alyf/agent.py:326
 msgid "Configure a model in Ask ALYF Settings before sending messages."
 msgstr "বার্তা পাঠানোর আগে Ask ALYF সেটিংসে একটি মডেল কনফিগার করুন।"
 
-#: ask_alyf/ask_alyf/tools.py:743
+#: ask_alyf/ask_alyf/tools.py:871
 msgid "Configure a vision model in Ask ALYF Settings."
 msgstr "Ask ALYF সেটিংসে একটি ভিশন মডেল কনফিগার করুন।"
 
@@ -425,7 +425,7 @@ msgstr "অ্যাকশন নিশ্চিত করা হচ্ছে...
 msgid "Conversation deletion is not allowed."
 msgstr "কথোপকথন মুছে ফেলার অনুমতি নেই।"
 
-#: ask_alyf/ask_alyf/tools.py:910
+#: ask_alyf/ask_alyf/tools.py:1038
 msgid "Conversation name is required."
 msgstr "কথোপকথনের নাম প্রয়োজন।"
 
@@ -454,7 +454,7 @@ msgstr "চার্ট প্রদর্শন করা যায়নি।
 msgid "Could not download chart."
 msgstr "চার্ট ডাউনলোড করা যায়নি।"
 
-#: ask_alyf/ask_alyf/tools.py:657
+#: ask_alyf/ask_alyf/tools.py:785
 msgid "Could not extract visual content from the file."
 msgstr "ফাইল থেকে ভিজ্যুয়াল কন্টেন্ট নিষ্কাশন করা যায়নি।"
 
@@ -475,31 +475,31 @@ msgstr "ডায়াগ্রাম রেন্ডার করা যায
 msgid "Counting {0}"
 msgstr "{0} গণনা করা হচ্ছে"
 
-#: ask_alyf/ask_alyf/toolset.py:819
+#: ask_alyf/ask_alyf/toolset.py:850
 msgid "Create proposal needs correction."
 msgstr "তৈরি করার প্রস্তাবনায় সংশোধন প্রয়োজন।"
 
-#: ask_alyf/ask_alyf/toolset.py:791
+#: ask_alyf/ask_alyf/toolset.py:822
 #, python-brace-format
 msgid "Create skill '{0}'"
 msgstr "স্কিল '{0}' তৈরি করুন"
 
-#: ask_alyf/ask_alyf/toolset.py:817
+#: ask_alyf/ask_alyf/toolset.py:848
 #, python-brace-format
 msgid "Create {0}"
 msgstr "{0} তৈরি করুন"
 
-#: ask_alyf/ask_alyf/toolset.py:841
+#: ask_alyf/ask_alyf/toolset.py:872
 #, python-brace-format
 msgid "Create {0} {1} records"
 msgstr "{0} টি {1} রেকর্ড তৈরি করুন"
 
-#: ask_alyf/ask_alyf/tools.py:1314
+#: ask_alyf/ask_alyf/tools.py:1442
 #, python-brace-format
 msgid "Created {0} of {1} {2} records."
 msgstr "{1} টির মধ্যে {0} টি {2} রেকর্ড তৈরি হয়েছে।"
 
-#: ask_alyf/ask_alyf/agent.py:143
+#: ask_alyf/ask_alyf/agent.py:145
 #, python-brace-format
 msgid "Creating several {0} records"
 msgstr "একাধিক {0} রেকর্ড তৈরি করা হচ্ছে"
@@ -514,12 +514,12 @@ msgstr "বর্তমান নথি হল {0}, প্রত্যাশি�
 msgid "Current form is {0}, expected {1}."
 msgstr "বর্তমান ফর্ম হল {0}, প্রত্যাশিত {1}।"
 
-#: ask_alyf/ask_alyf/tools.py:1468 ask_alyf/ask_alyf/tools.py:1471
-#: ask_alyf/ask_alyf/tools.py:1474
+#: ask_alyf/ask_alyf/tools.py:1596 ask_alyf/ask_alyf/tools.py:1599
+#: ask_alyf/ask_alyf/tools.py:1602
 msgid "Dataset values must be numeric."
 msgstr "ডেটাসেটের মান অবশ্যই সংখ্যাসূচক হতে হবে।"
 
-#: ask_alyf/ask_alyf/tools.py:1463
+#: ask_alyf/ask_alyf/tools.py:1591
 msgid "Dataset values must match labels length."
 msgstr "ডেটাসেটের মানগুলি অবশ্যই লেবেলের দৈর্ঘ্যের সাথে মিলতে হবে।"
 
@@ -533,16 +533,16 @@ msgstr "কথোপকথন মুছুন"
 msgid "Delete conversation '{0}'?"
 msgstr "কথোপকথন '{0}' মুছে ফেলা হবে?"
 
-#: ask_alyf/ask_alyf/toolset.py:989
+#: ask_alyf/ask_alyf/toolset.py:1020
 msgid "Delete proposal needs correction."
 msgstr "মুছে ফেলার প্রস্তাবনায় সংশোধন প্রয়োজন।"
 
-#: ask_alyf/ask_alyf/toolset.py:987
+#: ask_alyf/ask_alyf/toolset.py:1018
 #, python-brace-format
 msgid "Delete {0} {1}"
 msgstr "{0} {1} মুছে ফেলুন"
 
-#: ask_alyf/ask_alyf/tools.py:1248
+#: ask_alyf/ask_alyf/tools.py:1376
 #, python-brace-format
 msgid "Deleted {0} {1}"
 msgstr "{0} {1} মুছে ফেলা হয়েছে"
@@ -551,7 +551,7 @@ msgstr "{0} {1} মুছে ফেলা হয়েছে"
 msgid "Describe what you want..."
 msgstr "আপনি কী চান তা বর্ণনা করুন..."
 
-#: ask_alyf/ask_alyf/tools.py:295
+#: ask_alyf/ask_alyf/tools.py:298
 #, python-brace-format
 msgid "DocType '{0}' is excluded from Agent mode."
 msgstr "DocType '{0}' এজেন্ট মোড থেকে বাদ দেওয়া হয়েছে।"
@@ -561,23 +561,23 @@ msgstr "DocType '{0}' এজেন্ট মোড থেকে বাদ দে
 msgid "DocType is excluded"
 msgstr "DocType বাদ দেওয়া হয়েছে"
 
-#: ask_alyf/ask_alyf/tools.py:906
+#: ask_alyf/ask_alyf/tools.py:1034
 msgid "DocType is required."
 msgstr "DocType প্রয়োজন।"
 
-#: ask_alyf/ask_alyf/tools.py:823
+#: ask_alyf/ask_alyf/tools.py:951
 msgid "Document extraction did not return text."
 msgstr "নথি নিষ্কাশন কোনো টেক্সট ফেরত দেয়নি।"
 
-#: ask_alyf/ask_alyf/tools.py:847
+#: ask_alyf/ask_alyf/tools.py:975
 msgid "Document extraction did not return valid JSON."
 msgstr "নথি নিষ্কাশন বৈধ JSON ফেরত দেয়নি।"
 
-#: ask_alyf/ask_alyf/tools.py:827
+#: ask_alyf/ask_alyf/tools.py:955
 msgid "Document extraction returned an empty response."
 msgstr "ডকুমেন্ট নিষ্কাশন একটি খালি প্রতিক্রিয়া ফেরত দিয়েছে।"
 
-#: ask_alyf/ask_alyf/tools.py:908
+#: ask_alyf/ask_alyf/tools.py:1036
 msgid "Document name is required."
 msgstr "ডকুমেন্টের নাম প্রয়োজন।"
 
@@ -593,19 +593,19 @@ msgstr "খসড়া তৈরি হচ্ছে..."
 msgid "ERPNext assistant"
 msgstr "ERPNext সহকারী"
 
-#: ask_alyf/ask_alyf/tools.py:1490
+#: ask_alyf/ask_alyf/tools.py:1618
 msgid "Each chart must be an object."
 msgstr "প্রতিটি চার্ট একটি অবজেক্ট হতে হবে।"
 
-#: ask_alyf/ask_alyf/tools.py:1458
+#: ask_alyf/ask_alyf/tools.py:1586
 msgid "Each dataset must be an object."
 msgstr "প্রতিটি ডেটাসেট একটি অবজেক্ট হতে হবে।"
 
-#: ask_alyf/ask_alyf/tools.py:1461
+#: ask_alyf/ask_alyf/tools.py:1589
 msgid "Each dataset needs a values array."
 msgstr "প্রতিটি ডেটাসেটের একটি মান অ্যারে প্রয়োজন।"
 
-#: ask_alyf/ask_alyf/tools.py:434
+#: ask_alyf/ask_alyf/tools.py:562
 msgid "Each label must be a string."
 msgstr "প্রতিটি লেবেল একটি স্ট্রিং হতে হবে।"
 
@@ -614,7 +614,7 @@ msgstr "প্রতিটি লেবেল একটি স্ট্রিং
 msgid "Enable Tracing"
 msgstr "ট্রেসিং সক্ষম করুন"
 
-#: ask_alyf/ask_alyf/tools.py:552
+#: ask_alyf/ask_alyf/tools.py:680
 msgid "Entry type must be one of any, file, or directory."
 msgstr "এন্ট্রি টাইপ অবশ্যই any, file, অথবা directory-এর মধ্যে একটি হতে হবে।"
 
@@ -635,7 +635,7 @@ msgstr "বাদ দেওয়া DocTypes"
 msgid "Executed frontend action: {0}"
 msgstr "ফ্রন্টএন্ড অ্যাকশন কার্যকর করা হয়েছে: {0}"
 
-#: ask_alyf/ask_alyf/tools.py:1347
+#: ask_alyf/ask_alyf/tools.py:1475
 #, python-brace-format
 msgid "Failed rows: {0}"
 msgstr "ব্যর্থ সারি: {0}"
@@ -672,12 +672,12 @@ msgstr "বার্তা পাঠাতে ব্যর্থ হয়েছ
 msgid "Failed to stop the run."
 msgstr "রান বন্ধ করা যায়নি।"
 
-#: ask_alyf/ask_alyf/tools.py:1680
+#: ask_alyf/ask_alyf/tools.py:1808
 #, python-brace-format
 msgid "Field '{0}' in {1} is a child table ({2}) and must be a list of row objects."
 msgstr "{1}-এ '{0}' ফিল্ডটি একটি চাইল্ড টেবিল ({2}) এবং এটি অবশ্যই সারি অবজেক্টের একটি তালিকা হতে হবে।"
 
-#: ask_alyf/ask_alyf/tools.py:1688
+#: ask_alyf/ask_alyf/tools.py:1816
 #, python-brace-format
 msgid "Field '{0}' row #{1} in {2} must be an object."
 msgstr "{2}-এ '{0}' ফিল্ডের সারি #{1} অবশ্যই একটি অবজেক্ট হতে হবে।"
@@ -696,12 +696,12 @@ msgstr "ফিল্ড আপডেট করা হয়েছে।"
 msgid "Field {0} does not exist on this form."
 msgstr "এই ফর্মে {0} ফিল্ড বিদ্যমান নেই।"
 
-#: ask_alyf/ask_alyf/api.py:1073 ask_alyf/ask_alyf/tools.py:683
+#: ask_alyf/ask_alyf/api.py:1073 ask_alyf/ask_alyf/tools.py:811
 #, python-brace-format
 msgid "File '{0}' was not found."
 msgstr "'{0}' ফাইলটি পাওয়া যায়নি।"
 
-#: ask_alyf/ask_alyf/tools.py:681
+#: ask_alyf/ask_alyf/tools.py:809
 msgid "File ID is required."
 msgstr "File ID প্রয়োজন।"
 
@@ -709,61 +709,61 @@ msgstr "File ID প্রয়োজন।"
 msgid "File upload is not enabled."
 msgstr "ফাইল আপলোড সক্ষম নয়।"
 
-#: ask_alyf/ask_alyf/agent.py:170
+#: ask_alyf/ask_alyf/agent.py:172
 msgid "Filling in the open form"
 msgstr "খোলা ফর্মটি পূরণ করা হচ্ছে"
 
-#: ask_alyf/ask_alyf/agent.py:201
+#: ask_alyf/ask_alyf/agent.py:205
 #, python-brace-format
 msgid "Finding {0}"
 msgstr "{0} ফাইল খোঁজা হচ্ছে"
 
-#: ask_alyf/ask_alyf/agent.py:201
+#: ask_alyf/ask_alyf/agent.py:205
 #, python-brace-format
 msgid "Finding {0} in {1}"
 msgstr "{1}-এ {0} ফাইল খোঁজা হচ্ছে"
 
-#: ask_alyf/ask_alyf/tools.py:1651
+#: ask_alyf/ask_alyf/tools.py:1779
 msgid "Frontend action 'frm_add_child' field 'docname' must be a string."
 msgstr "ফ্রন্টএন্ড অ্যাকশন 'frm_add_child'-এর 'docname' ফিল্ড অবশ্যই একটি স্ট্রিং হতে হবে।"
 
-#: ask_alyf/ask_alyf/tools.py:1649
+#: ask_alyf/ask_alyf/tools.py:1777
 msgid "Frontend action 'frm_add_child' field 'doctype' must be a string."
 msgstr "ফ্রন্টএন্ড অ্যাকশন 'frm_add_child'-এর 'doctype' ফিল্ড অবশ্যই একটি স্ট্রিং হতে হবে।"
 
-#: ask_alyf/ask_alyf/tools.py:1645
+#: ask_alyf/ask_alyf/tools.py:1773
 msgid "Frontend action 'frm_add_child' field 'values' must be an object."
 msgstr "ফ্রন্টএন্ড অ্যাকশন 'frm_add_child'-এর ফিল্ড 'values' একটি অবজেক্ট হতে হবে।"
 
-#: ask_alyf/ask_alyf/tools.py:1642
+#: ask_alyf/ask_alyf/tools.py:1770
 msgid "Frontend action 'frm_add_child' requires a fieldname."
 msgstr "ফ্রন্টএন্ড অ্যাকশন 'frm_add_child'-এর জন্য একটি fieldname প্রয়োজন।"
 
-#: ask_alyf/ask_alyf/tools.py:1636
+#: ask_alyf/ask_alyf/tools.py:1764
 msgid "Frontend action 'frm_set_value' field 'docname' must be a string."
 msgstr "ফ্রন্টএন্ড অ্যাকশন 'frm_set_value'-এর ফিল্ড 'docname' একটি স্ট্রিং হতে হবে।"
 
-#: ask_alyf/ask_alyf/tools.py:1634
+#: ask_alyf/ask_alyf/tools.py:1762
 msgid "Frontend action 'frm_set_value' field 'doctype' must be a string."
 msgstr "ফ্রন্টএন্ড অ্যাকশন 'frm_set_value'-এর ফিল্ড 'doctype' একটি স্ট্রিং হতে হবে।"
 
-#: ask_alyf/ask_alyf/tools.py:1630
+#: ask_alyf/ask_alyf/tools.py:1758
 msgid "Frontend action 'frm_set_value' requires a fieldname."
 msgstr "ফ্রন্টএন্ড অ্যাকশন 'frm_set_value'-এর জন্য একটি fieldname প্রয়োজন।"
 
-#: ask_alyf/ask_alyf/tools.py:1618
+#: ask_alyf/ask_alyf/tools.py:1746
 msgid "Frontend action 'new_doc' field 'route_options' must be an object."
 msgstr "ফ্রন্টএন্ড অ্যাকশন 'new_doc'-এর ফিল্ড 'route_options' একটি অবজেক্ট হতে হবে।"
 
-#: ask_alyf/ask_alyf/tools.py:1615
+#: ask_alyf/ask_alyf/tools.py:1743
 msgid "Frontend action 'new_doc' requires a DocType."
 msgstr "ফ্রন্টএন্ড অ্যাকশন 'new_doc'-এর জন্য একটি DocType প্রয়োজন।"
 
-#: ask_alyf/ask_alyf/tools.py:1624
+#: ask_alyf/ask_alyf/tools.py:1752
 msgid "Frontend action 'scroll_to_field' requires a fieldname."
 msgstr "ফ্রন্টএন্ড অ্যাকশন 'scroll_to_field'-এর জন্য একটি fieldname প্রয়োজন।"
 
-#: ask_alyf/ask_alyf/tools.py:1606
+#: ask_alyf/ask_alyf/tools.py:1734
 msgid "Frontend action 'set_route' requires a non-empty route list."
 msgstr "ফ্রন্টএন্ড অ্যাকশন 'set_route'-এর জন্য একটি অ-খালি রুট তালিকা প্রয়োজন।"
 
@@ -776,15 +776,15 @@ msgstr "ফ্রন্টএন্ড অ্যাকশন ব্যর্থ 
 msgid "Frontend action is missing a call ID."
 msgstr "ফ্রন্টএন্ড অ্যাকশনে একটি কল ID অনুপস্থিত।"
 
-#: ask_alyf/ask_alyf/tools.py:1601
+#: ask_alyf/ask_alyf/tools.py:1729
 msgid "Frontend action payload contains an unsafe key."
 msgstr "ফ্রন্টএন্ড অ্যাকশন পেলোডে একটি অনিরাপদ কী রয়েছে।"
 
-#: ask_alyf/ask_alyf/tools.py:1598
+#: ask_alyf/ask_alyf/tools.py:1726
 msgid "Frontend action payload must be an object."
 msgstr "ফ্রন্টএন্ড অ্যাকশন পেলোড একটি অবজেক্ট হতে হবে।"
 
-#: ask_alyf/ask_alyf/tools.py:1143
+#: ask_alyf/ask_alyf/tools.py:1271
 msgid "Frontend actions must be executed in the browser."
 msgstr "ফ্রন্টএন্ড অ্যাকশনগুলি অবশ্যই ব্রাউজারে কার্যকর করতে হবে।"
 
@@ -814,7 +814,7 @@ msgstr "তৈরি করা হচ্ছে..."
 msgid "HR"
 msgstr "HR"
 
-#: ask_alyf/ask_alyf/agent.py:166
+#: ask_alyf/ask_alyf/agent.py:168
 msgid "Highlighting a field"
 msgstr "একটি ফিল্ড হাইলাইট করা হচ্ছে"
 
@@ -847,19 +847,19 @@ msgstr "সেই অনুরোধটি প্রক্রিয়া কর
 msgid "I've prepared the operation. Please review and confirm."
 msgstr "আমি অপারেশনটি প্রস্তুত করেছি। অনুগ্রহ করে পর্যালোচনা করে নিশ্চিত করুন।"
 
-#: ask_alyf/ask_alyf/tools.py:1150
+#: ask_alyf/ask_alyf/tools.py:1278
 msgid "Invalid action payload."
 msgstr "অবৈধ অ্যাকশন পেলোড।"
 
-#: ask_alyf/ask_alyf/tools.py:1528 ask_alyf/public/js/ask_alyf.bundle.js:2998
+#: ask_alyf/ask_alyf/tools.py:1656 ask_alyf/public/js/ask_alyf.bundle.js:2998
 msgid "Invalid chart data."
 msgstr "অবৈধ চার্ট ডেটা।"
 
-#: ask_alyf/ask_alyf/tools.py:1586
+#: ask_alyf/ask_alyf/tools.py:1714
 msgid "Invalid chart specification."
 msgstr "অবৈধ চার্ট স্পেসিফিকেশন।"
 
-#: ask_alyf/ask_alyf/tools.py:1130
+#: ask_alyf/ask_alyf/tools.py:1258
 msgid "Invalid pending operation payload."
 msgstr "অবৈধ অপেক্ষমাণ অপারেশন পেলোড।"
 
@@ -874,7 +874,7 @@ msgstr "অবৈধ regex প্যাটার্ন: {0}"
 msgid "LLM Provider"
 msgstr "LLM প্রদানকারী"
 
-#: ask_alyf/ask_alyf/tools.py:429
+#: ask_alyf/ask_alyf/tools.py:557
 msgid "Labels must be provided as a list of strings."
 msgstr "লেবেলগুলি স্ট্রিংয়ের একটি তালিকা হিসাবে প্রদান করতে হবে।"
 
@@ -912,7 +912,7 @@ msgstr "সর্বশেষ বার্তা প্রাপ্তির স
 msgid "Line offset {0} exceeds file length"
 msgstr "লাইন অফসেট {0} ফাইলের দৈর্ঘ্য অতিক্রম করেছে"
 
-#: ask_alyf/ask_alyf/agent.py:211
+#: ask_alyf/ask_alyf/agent.py:215
 #, python-brace-format
 msgid "Listing {0}"
 msgstr "{0} তালিকাভুক্ত করা হচ্ছে"
@@ -924,6 +924,10 @@ msgstr "কথোপকথন লোড হচ্ছে..."
 #: ask_alyf/ask_alyf/agent.py:115
 msgid "Looking up available reports"
 msgstr "উপলব্ধ রিপোর্ট খোঁজা হচ্ছে"
+
+#: ask_alyf/ask_alyf/agent.py:117
+msgid "Looking up report filters"
+msgstr "রিপোর্ট ফিল্টার খোঁজা হচ্ছে"
 
 #: ask_alyf/ask_alyf/agent.py:113
 msgid "Looking up what you can access"
@@ -949,7 +953,7 @@ msgstr "মেটাডেটা ডেটা (base64)"
 msgid "Metadata Type"
 msgstr "মেটাডেটা টাইপ"
 
-#: ask_alyf/ask_alyf/toolset.py:1081
+#: ask_alyf/ask_alyf/toolset.py:1112
 msgid "Method call proposal needs correction."
 msgstr "পদ্ধতি কল প্রস্তাবটির সংশোধন প্রয়োজন।"
 
@@ -958,11 +962,11 @@ msgstr "পদ্ধতি কল প্রস্তাবটির সংশো
 msgid "Mode: {0}"
 msgstr "মোড: {0}"
 
-#: ask_alyf/ask_alyf/tools.py:419
+#: ask_alyf/ask_alyf/tools.py:547
 msgid "Multiple matching files were found. Provide reference_field, file_url, or file_name."
 msgstr "একাধিক মিলে যাওয়া ফাইল পাওয়া গেছে। reference_field, file_url, অথবা file_name প্রদান করুন।"
 
-#: ask_alyf/ask_alyf/toolset.py:1100
+#: ask_alyf/ask_alyf/toolset.py:1131
 #, python-brace-format
 msgid "Navigate to {0}"
 msgstr "{0}-এ নেভিগেট করুন"
@@ -972,7 +976,7 @@ msgstr "{0}-এ নেভিগেট করুন"
 msgid "New Conversation"
 msgstr "নতুন কথোপকথন"
 
-#: ask_alyf/ask_alyf/toolset.py:1127
+#: ask_alyf/ask_alyf/toolset.py:1158
 msgid "New document action needs correction."
 msgstr "নতুন ডকুমেন্ট অ্যাকশনের সংশোধন প্রয়োজন।"
 
@@ -984,7 +988,7 @@ msgstr "কোনো সক্রিয় ফর্ম পাওয়া য�
 msgid "No conversations yet."
 msgstr "এখনও কোনো কথোপকথন নেই।"
 
-#: ask_alyf/ask_alyf/tools.py:1082
+#: ask_alyf/ask_alyf/tools.py:1210
 #, python-brace-format
 msgid "No documentation URL was found for app '{0}'."
 msgstr "'{0}' অ্যাপের জন্য কোনো ডকুমেন্টেশন URL পাওয়া যায়নি।"
@@ -993,11 +997,11 @@ msgstr "'{0}' অ্যাপের জন্য কোনো ডকুমেন
 msgid "No form is currently open."
 msgstr "বর্তমানে কোনো ফর্ম খোলা নেই।"
 
-#: ask_alyf/ask_alyf/tools.py:185
+#: ask_alyf/ask_alyf/tools.py:188
 msgid "No installed app code roots were found."
 msgstr "কোনো ইনস্টল করা অ্যাপ কোড রুট পাওয়া যায়নি।"
 
-#: ask_alyf/ask_alyf/tools.py:415
+#: ask_alyf/ask_alyf/tools.py:543
 msgid "No matching file was found."
 msgstr "কোনো মিলে যাওয়া ফাইল পাওয়া যায়নি।"
 
@@ -1006,12 +1010,12 @@ msgstr "কোনো মিলে যাওয়া ফাইল পাওয�
 msgid "No pending operation matches call_id '{0}'."
 msgstr "call_id '{0}' এর সাথে মিলে এমন কোনো মুলতুবি অপারেশন নেই।"
 
-#: ask_alyf/ask_alyf/tools.py:1099
+#: ask_alyf/ask_alyf/tools.py:1227
 #, python-brace-format
 msgid "No pyproject.toml was found for app '{0}'."
 msgstr "'{0}' অ্যাপের জন্য কোনো pyproject.toml পাওয়া যায়নি।"
 
-#: ask_alyf/ask_alyf/tools.py:997
+#: ask_alyf/ask_alyf/tools.py:1125
 #, python-brace-format
 msgid "No repository URL was found for app '{0}'."
 msgstr "'{0}' অ্যাপের জন্য কোনো রিপোজিটরি URL পাওয়া যায়নি।"
@@ -1020,7 +1024,7 @@ msgstr "'{0}' অ্যাপের জন্য কোনো রিপোজি
 msgid "No valid file provided."
 msgstr "কোনো বৈধ ফাইল প্রদান করা হয়নি।"
 
-#: ask_alyf/ask_alyf/tools.py:987
+#: ask_alyf/ask_alyf/tools.py:1115
 #, python-brace-format
 msgid "No version was found for app '{0}'."
 msgstr "অ্যাপ '{0}' এর জন্য কোনো সংস্করণ পাওয়া যায়নি।"
@@ -1041,15 +1045,15 @@ msgstr "একটি একক LangGraph চেকপয়েন্ট। এ�
 msgid "One pending write of a LangGraph checkpoint. Written by FrappeCheckpointSaver, not by users."
 msgstr "একটি LangGraph চেকপয়েন্টের একটি মুলতুবি রাইট। এটি FrappeCheckpointSaver দ্বারা লেখা হয়, ব্যবহারকারীদের দ্বারা নয়।"
 
-#: ask_alyf/ask_alyf/tools.py:953
+#: ask_alyf/ask_alyf/tools.py:1081
 msgid "Only Administrator and System Manager can run SQL queries."
 msgstr "শুধুমাত্র Administrator এবং System Manager SQL queries চালাতে পারেন।"
 
-#: ask_alyf/ask_alyf/tools.py:1002
+#: ask_alyf/ask_alyf/tools.py:1130
 msgid "Only GitHub repositories are supported for release lookup."
 msgstr "release lookup-এর জন্য শুধুমাত্র GitHub repositories সমর্থিত।"
 
-#: ask_alyf/ask_alyf/tools.py:956
+#: ask_alyf/ask_alyf/tools.py:1084
 msgid "Only a single read-only SQL statement is allowed."
 msgstr "শুধুমাত্র একটি একক read-only SQL statement অনুমোদিত।"
 
@@ -1057,7 +1061,7 @@ msgstr "শুধুমাত্র একটি একক read-only SQL stateme
 msgid "Only backend actions can be confirmed by this endpoint."
 msgstr "এই endpoint দ্বারা শুধুমাত্র backend actions নিশ্চিত করা যেতে পারে।"
 
-#: ask_alyf/ask_alyf/tools.py:959
+#: ask_alyf/ask_alyf/tools.py:1087
 msgid "Only read-only SQL statements are allowed."
 msgstr "শুধুমাত্র read-only SQL statements অনুমোদিত।"
 
@@ -1065,17 +1069,17 @@ msgstr "শুধুমাত্র read-only SQL statements অনুমোদ�
 msgid "Open Ask ALYF"
 msgstr "Ask ALYF খুলুন"
 
-#: ask_alyf/ask_alyf/toolset.py:1125
+#: ask_alyf/ask_alyf/toolset.py:1156
 #, python-brace-format
 msgid "Open new {0}"
 msgstr "নতুন {0} খুলুন"
 
-#: ask_alyf/ask_alyf/agent.py:164
+#: ask_alyf/ask_alyf/agent.py:166
 #, python-brace-format
 msgid "Opening a new {0}"
 msgstr "একটি নতুন {0} খোলা হচ্ছে"
 
-#: ask_alyf/ask_alyf/agent.py:162
+#: ask_alyf/ask_alyf/agent.py:164
 msgid "Opening a page"
 msgstr "একটি পৃষ্ঠা খোলা হচ্ছে"
 
@@ -1092,12 +1096,12 @@ msgstr ""
 msgid "Parent Checkpoint ID"
 msgstr "প্যারেন্ট চেকপয়েন্ট ID"
 
-#: ask_alyf/ask_alyf/tools.py:496
+#: ask_alyf/ask_alyf/tools.py:624
 #, python-brace-format
 msgid "Path '{0}' must point to a file inside an installed app."
 msgstr "Path '{0}' একটি ইনস্টল করা অ্যাপের ভিতরের ফাইলের দিকে নির্দেশ করতে হবে।"
 
-#: ask_alyf/ask_alyf/tools.py:258
+#: ask_alyf/ask_alyf/tools.py:261
 #, python-brace-format
 msgid "Path '{0}' was not found in app '{1}'."
 msgstr "অ্যাপ '{1}'-এ Path '{0}' পাওয়া যায়নি।"
@@ -1107,7 +1111,7 @@ msgstr "অ্যাপ '{1}'-এ Path '{0}' পাওয়া যায়ন�
 msgid "Path is not a file: {0}"
 msgstr "পাথটি একটি ফাইল নয়: {0}"
 
-#: ask_alyf/ask_alyf/deep_agent_backend.py:93 ask_alyf/ask_alyf/tools.py:207
+#: ask_alyf/ask_alyf/deep_agent_backend.py:93 ask_alyf/ask_alyf/tools.py:210
 msgid "Path must start with an installed app name."
 msgstr "Path অবশ্যই একটি ইনস্টল করা অ্যাপের নাম দিয়ে শুরু হতে হবে।"
 
@@ -1121,7 +1125,7 @@ msgstr "Pending Operation JSON"
 msgid "Pending operation"
 msgstr "মুলতুবি কার্যক্রম"
 
-#: ask_alyf/ask_alyf/agent.py:138
+#: ask_alyf/ask_alyf/agent.py:140
 msgid "Planning the next steps"
 msgstr "পরবর্তী পদক্ষেপগুলির পরিকল্পনা করা হচ্ছে"
 
@@ -1129,79 +1133,79 @@ msgstr "পরবর্তী পদক্ষেপগুলির পরিক�
 msgid "Please configure an API key first and save the settings, then we can fetch available models."
 msgstr "অনুগ্রহ করে প্রথমে একটি API key কনফিগার করুন এবং সেটিংস সংরক্ষণ করুন, তারপর আমরা উপলব্ধ মডেলগুলি আনতে পারি।"
 
-#: ask_alyf/ask_alyf/toolset.py:1218
+#: ask_alyf/ask_alyf/toolset.py:1249
 msgid "Prepared add child row action."
 msgstr "চাইল্ড সারি যোগ করার অ্যাকশন প্রস্তুত করা হয়েছে।"
 
-#: ask_alyf/ask_alyf/toolset.py:969
+#: ask_alyf/ask_alyf/toolset.py:1000
 msgid "Prepared amend proposal."
 msgstr "সংশোধনের প্রস্তাব প্রস্তুত করা হয়েছে।"
 
-#: ask_alyf/ask_alyf/toolset.py:1055
+#: ask_alyf/ask_alyf/toolset.py:1086
 msgid "Prepared attach file proposal."
 msgstr "ফাইল সংযুক্ত করার প্রস্তাব প্রস্তুত করা হয়েছে।"
 
-#: ask_alyf/ask_alyf/toolset.py:844
+#: ask_alyf/ask_alyf/toolset.py:875
 msgid "Prepared batch create proposal."
 msgstr "ব্যাচ তৈরির প্রস্তাব প্রস্তুত করা হয়েছে।"
 
-#: ask_alyf/ask_alyf/toolset.py:948
+#: ask_alyf/ask_alyf/toolset.py:979
 msgid "Prepared cancel proposal."
 msgstr "বাতিলের প্রস্তাব প্রস্তুত করা হয়েছে।"
 
-#: ask_alyf/ask_alyf/toolset.py:1254
+#: ask_alyf/ask_alyf/toolset.py:1285
 msgid "Prepared chart display."
 msgstr "চার্ট প্রদর্শন প্রস্তুত করা হয়েছে।"
 
-#: ask_alyf/ask_alyf/toolset.py:820
+#: ask_alyf/ask_alyf/toolset.py:851
 msgid "Prepared create proposal."
 msgstr "তৈরির প্রস্তাব প্রস্তুত করা হয়েছে।"
 
-#: ask_alyf/ask_alyf/toolset.py:990
+#: ask_alyf/ask_alyf/toolset.py:1021
 msgid "Prepared delete proposal."
 msgstr "মুছে ফেলার প্রস্তাব প্রস্তুত করা হয়েছে।"
 
-#: ask_alyf/ask_alyf/toolset.py:1082
+#: ask_alyf/ask_alyf/toolset.py:1113
 msgid "Prepared method call proposal."
 msgstr "মেথড কল প্রস্তাব প্রস্তুত করা হয়েছে।"
 
-#: ask_alyf/ask_alyf/toolset.py:1128
+#: ask_alyf/ask_alyf/toolset.py:1159
 msgid "Prepared new document action."
 msgstr "নতুন ডকুমেন্ট অ্যাকশন প্রস্তুত করা হয়েছে।"
 
-#: ask_alyf/ask_alyf/toolset.py:1020
+#: ask_alyf/ask_alyf/toolset.py:1051
 msgid "Prepared rename proposal."
 msgstr "পুনঃনামকরণের প্রস্তাব প্রস্তুত করা হয়েছে।"
 
-#: ask_alyf/ask_alyf/toolset.py:1103
+#: ask_alyf/ask_alyf/toolset.py:1134
 msgid "Prepared route action."
 msgstr "রুট অ্যাকশন প্রস্তুত করা হয়েছে।"
 
-#: ask_alyf/ask_alyf/toolset.py:1148
+#: ask_alyf/ask_alyf/toolset.py:1179
 msgid "Prepared scroll action."
 msgstr "স্ক্রল অ্যাকশন প্রস্তুত করা হয়েছে।"
 
-#: ask_alyf/ask_alyf/toolset.py:1183
+#: ask_alyf/ask_alyf/toolset.py:1214
 msgid "Prepared set field action."
 msgstr "ফিল্ড সেট করার অ্যাকশন প্রস্তুত করা হয়েছে।"
 
-#: ask_alyf/ask_alyf/toolset.py:904
+#: ask_alyf/ask_alyf/toolset.py:935
 msgid "Prepared set value proposal."
 msgstr "মান সেট করার প্রস্তাব প্রস্তুত করা হয়েছে।"
 
-#: ask_alyf/ask_alyf/toolset.py:794
+#: ask_alyf/ask_alyf/toolset.py:825
 msgid "Prepared skill proposal."
 msgstr "দক্ষতার প্রস্তাব প্রস্তুত করা হয়েছে।"
 
-#: ask_alyf/ask_alyf/toolset.py:927
+#: ask_alyf/ask_alyf/toolset.py:958
 msgid "Prepared submit proposal."
 msgstr "সাবমিট প্রস্তাব প্রস্তুত করা হয়েছে।"
 
-#: ask_alyf/ask_alyf/toolset.py:873
+#: ask_alyf/ask_alyf/toolset.py:904
 msgid "Prepared update proposal."
 msgstr "আপডেট প্রস্তাব প্রস্তুত করা হয়েছে।"
 
-#: ask_alyf/ask_alyf/agent.py:168
+#: ask_alyf/ask_alyf/agent.py:170
 msgid "Preparing a chart"
 msgstr "একটি চার্ট প্রস্তুত করা হচ্ছে"
 
@@ -1209,27 +1213,27 @@ msgstr "একটি চার্ট প্রস্তুত করা হচ�
 msgid "Projects"
 msgstr "প্রকল্পসমূহ"
 
-#: ask_alyf/ask_alyf/tools.py:1577
+#: ask_alyf/ask_alyf/tools.py:1705
 msgid "Provide at least one chart in frappe_charts."
 msgstr "frappe_charts-এ অন্তত একটি চার্ট প্রদান করুন।"
 
-#: ask_alyf/ask_alyf/tools.py:440
+#: ask_alyf/ask_alyf/tools.py:568
 msgid "Provide at least one label to translate."
 msgstr "অনুবাদ করার জন্য অন্তত একটি লেবেল প্রদান করুন।"
 
-#: ask_alyf/ask_alyf/tools.py:459 ask_alyf/ask_alyf/tools.py:598
+#: ask_alyf/ask_alyf/tools.py:587 ask_alyf/ask_alyf/tools.py:726
 msgid "Query is required."
 msgstr "ক্যোয়ারি প্রয়োজন।"
 
-#: ask_alyf/ask_alyf/agent.py:130
+#: ask_alyf/ask_alyf/agent.py:132
 msgid "Reading documentation"
 msgstr "ডকুমেন্টেশন পড়া হচ্ছে"
 
-#: ask_alyf/ask_alyf/agent.py:121
+#: ask_alyf/ask_alyf/agent.py:123
 msgid "Reading instructions"
 msgstr "নির্দেশাবলী পড়া হচ্ছে"
 
-#: ask_alyf/ask_alyf/agent.py:123
+#: ask_alyf/ask_alyf/agent.py:125
 msgid "Reading the attached document"
 msgstr "সংযুক্ত নথি পড়া হচ্ছে"
 
@@ -1238,7 +1242,7 @@ msgstr "সংযুক্ত নথি পড়া হচ্ছে"
 msgid "Reading {0} list"
 msgstr "{0} তালিকা পড়া হচ্ছে"
 
-#: ask_alyf/ask_alyf/agent.py:207
+#: ask_alyf/ask_alyf/agent.py:211
 #, python-brace-format
 msgid "Reading {0}, lines {1}-{2}"
 msgstr "{0}-এর {1}-{2} লাইন পড়া হচ্ছে"
@@ -1258,11 +1262,11 @@ msgstr "রিজনিং প্রচেষ্টা"
 msgid "Records to create ({0})"
 msgstr "তৈরি করার রেকর্ড ({0})"
 
-#: ask_alyf/ask_alyf/tools.py:701
+#: ask_alyf/ask_alyf/tools.py:829
 msgid "Reference doctype is required."
 msgstr "Reference DocType প্রয়োজন।"
 
-#: ask_alyf/ask_alyf/tools.py:705
+#: ask_alyf/ask_alyf/tools.py:833
 msgid "Reference name is required."
 msgstr "Reference Name প্রয়োজন।"
 
@@ -1270,16 +1274,16 @@ msgstr "Reference Name প্রয়োজন।"
 msgid "Reject all"
 msgstr "সব প্রত্যাখ্যান করুন"
 
-#: ask_alyf/ask_alyf/toolset.py:1019
+#: ask_alyf/ask_alyf/toolset.py:1050
 msgid "Rename proposal needs correction."
 msgstr "নাম পরিবর্তনের প্রস্তাবে সংশোধন প্রয়োজন।"
 
-#: ask_alyf/ask_alyf/toolset.py:1017
+#: ask_alyf/ask_alyf/toolset.py:1048
 #, python-brace-format
 msgid "Rename {0} {1} to {2}"
 msgstr "{0} {1} এর নাম পরিবর্তন করে {2} করুন"
 
-#: ask_alyf/ask_alyf/agent.py:155
+#: ask_alyf/ask_alyf/agent.py:157
 #, python-brace-format
 msgid "Renaming {0}"
 msgstr "{0} পুনঃনামকরণ করা হচ্ছে"
@@ -1292,18 +1296,22 @@ msgstr "চ্যাট উইন্ডোর আকার পরিবর্ত
 msgid "Reverted."
 msgstr "পূর্বাবস্থায় ফেরানো হয়েছে।"
 
-#: ask_alyf/ask_alyf/toolset.py:1102
+#: ask_alyf/ask_alyf/toolset.py:1133
 msgid "Route action needs correction."
 msgstr "রুট অ্যাকশন সংশোধন প্রয়োজন।"
 
-#: ask_alyf/ask_alyf/tools.py:1609
+#: ask_alyf/ask_alyf/tools.py:1737
 #, python-brace-format
 msgid "Route part #{0} must be a non-empty string."
 msgstr "রুট অংশ #{0} অবশ্যই একটি অ-খালি স্ট্রিং হতে হবে।"
 
-#: ask_alyf/ask_alyf/agent.py:119
+#: ask_alyf/ask_alyf/agent.py:121
 msgid "Running a database query"
 msgstr "একটি ডেটাবেস ক্যোয়ারি চালানো হচ্ছে"
+
+#: ask_alyf/ask_alyf/agent.py:174
+msgid "Running a report"
+msgstr ""
 
 #. Label of the vision_model_is_chat_model (Check) field in DocType 'Ask ALYF
 #. Settings'
@@ -1311,15 +1319,15 @@ msgstr "একটি ডেটাবেস ক্যোয়ারি চাল
 msgid "Same as Chat"
 msgstr "চ্যাট-এর অনুরূপ"
 
-#: ask_alyf/ask_alyf/agent.py:121
+#: ask_alyf/ask_alyf/agent.py:123
 msgid "Saving instructions"
 msgstr "নির্দেশাবলী সংরক্ষণ করা হচ্ছে"
 
-#: ask_alyf/ask_alyf/toolset.py:1147
+#: ask_alyf/ask_alyf/toolset.py:1178
 msgid "Scroll action needs correction."
 msgstr "স্ক্রল অ্যাকশন সংশোধন প্রয়োজন।"
 
-#: ask_alyf/ask_alyf/toolset.py:1145
+#: ask_alyf/ask_alyf/toolset.py:1176
 #, python-brace-format
 msgid "Scroll to field {0}"
 msgstr "{0} ফিল্ডে স্ক্রল করুন"
@@ -1328,21 +1336,21 @@ msgstr "{0} ফিল্ডে স্ক্রল করুন"
 msgid "Scrolling to fields is not available on this form."
 msgstr "এই ফর্মে ফিল্ডে স্ক্রল করা উপলব্ধ নয়।"
 
-#: ask_alyf/ask_alyf/agent.py:197
+#: ask_alyf/ask_alyf/agent.py:201
 #, python-brace-format
 msgid "Searching for \"{0}\""
 msgstr "\"{0}\" খোঁজা হচ্ছে"
 
-#: ask_alyf/ask_alyf/agent.py:195
+#: ask_alyf/ask_alyf/agent.py:199
 #, python-brace-format
 msgid "Searching for \"{0}\" in {1}"
 msgstr "{1}-এ \"{0}\" খোঁজা হচ্ছে"
 
-#: ask_alyf/ask_alyf/agent.py:132
+#: ask_alyf/ask_alyf/agent.py:134
 msgid "Searching the documentation"
 msgstr "ডকুমেন্টেশনে অনুসন্ধান করা হচ্ছে"
 
-#: ask_alyf/ask_alyf/agent.py:134
+#: ask_alyf/ask_alyf/agent.py:136
 msgid "Searching the source code"
 msgstr "সোর্স কোডে অনুসন্ধান করা হচ্ছে"
 
@@ -1354,20 +1362,20 @@ msgstr "বিক্রয়"
 msgid "Sending..."
 msgstr "পাঠানো হচ্ছে..."
 
-#: ask_alyf/ask_alyf/toolset.py:1182
+#: ask_alyf/ask_alyf/toolset.py:1213
 msgid "Set field action needs correction."
 msgstr "ফিল্ড সেট অ্যাকশন সংশোধন প্রয়োজন।"
 
-#: ask_alyf/ask_alyf/toolset.py:1180
+#: ask_alyf/ask_alyf/toolset.py:1211
 #, python-brace-format
 msgid "Set field {0} on current form"
 msgstr "বর্তমান ফর্মে {0} ফিল্ড সেট করুন"
 
-#: ask_alyf/ask_alyf/toolset.py:903
+#: ask_alyf/ask_alyf/toolset.py:934
 msgid "Set value proposal needs correction."
 msgstr "মান সেট করার প্রস্তাব সংশোধন প্রয়োজন।"
 
-#: ask_alyf/ask_alyf/toolset.py:901
+#: ask_alyf/ask_alyf/toolset.py:932
 #, python-brace-format
 msgid "Set {0} on {1} {2}"
 msgstr "{1} {2}-এ {0} সেট করুন"
@@ -1376,7 +1384,7 @@ msgstr "{1} {2}-এ {0} সেট করুন"
 msgid "Show all"
 msgstr "সব দেখান"
 
-#: ask_alyf/ask_alyf/toolset.py:1248
+#: ask_alyf/ask_alyf/toolset.py:1279
 msgid "Show chart"
 msgstr "চার্ট দেখান"
 
@@ -1404,7 +1412,7 @@ msgstr "এই সপ্তাহের অমীমাংসিত সমস্
 msgid "Show project progress as a chart"
 msgstr "প্রকল্পের অগ্রগতি একটি চার্ট হিসেবে দেখান"
 
-#: ask_alyf/ask_alyf/toolset.py:1248
+#: ask_alyf/ask_alyf/toolset.py:1279
 #, python-brace-format
 msgid "Show {0} charts"
 msgstr "{0} টি চার্ট দেখান"
@@ -1419,7 +1427,7 @@ msgstr "বর্তমান ব্যবহারকারীর জন্য 
 msgid "Skill '{0}' was not found."
 msgstr "'{0}' স্কিল পাওয়া যায়নি।"
 
-#: ask_alyf/ask_alyf/toolset.py:785
+#: ask_alyf/ask_alyf/toolset.py:816
 msgid "Skill description is required."
 msgstr "স্কিলের বিবরণ আবশ্যক।"
 
@@ -1427,15 +1435,15 @@ msgstr "স্কিলের বিবরণ আবশ্যক।"
 msgid "Skill name is required."
 msgstr "স্কিলের নাম আবশ্যক।"
 
-#: ask_alyf/ask_alyf/toolset.py:793
+#: ask_alyf/ask_alyf/toolset.py:824
 msgid "Skill proposal needs correction."
 msgstr "স্কিল প্রস্তাবনাটি সংশোধন প্রয়োজন।"
 
-#: ask_alyf/ask_alyf/toolset.py:783
+#: ask_alyf/ask_alyf/toolset.py:814
 msgid "Skill title is required."
 msgstr "স্কিলের শিরোনাম আবশ্যক।"
 
-#: ask_alyf/ask_alyf/tools.py:1345
+#: ask_alyf/ask_alyf/tools.py:1473
 msgid "Some rows failed."
 msgstr "কিছু সারি ব্যর্থ হয়েছে।"
 
@@ -1496,11 +1504,11 @@ msgstr "থামানো হয়েছে। এখান থেকে চ�
 msgid "Stopping..."
 msgstr "থামানো হচ্ছে..."
 
-#: ask_alyf/ask_alyf/toolset.py:926
+#: ask_alyf/ask_alyf/toolset.py:957
 msgid "Submit proposal needs correction."
 msgstr "সাবমিট প্রস্তাবনাটি সংশোধন প্রয়োজন।"
 
-#: ask_alyf/ask_alyf/toolset.py:924
+#: ask_alyf/ask_alyf/toolset.py:955
 #, python-brace-format
 msgid "Submit {0} {1}"
 msgstr "{0} {1} সাবমিট করুন"
@@ -1534,7 +1542,7 @@ msgstr "টাস্ক পাথ"
 msgid "That confirmation did not match this operation. Propose it again on its own."
 msgstr "সেই নিশ্চিতকরণটি এই অপারেশনের সাথে মেলেনি। এটি আলাদাভাবে আবার প্রস্তাব করুন।"
 
-#: ask_alyf/ask_alyf/tools.py:1025
+#: ask_alyf/ask_alyf/tools.py:1153
 msgid "The Compendium app is not installed."
 msgstr "Compendium অ্যাপটি ইনস্টল করা নেই।"
 
@@ -1551,7 +1559,7 @@ msgstr "ব্যাকগ্রাউন্ড জবটি এই মেসে
 msgid "The message could not be found in this conversation."
 msgstr "এই কথোপকথনে মেসেজটি খুঁজে পাওয়া যায়নি।"
 
-#: ask_alyf/ask_alyf/agent.py:734
+#: ask_alyf/ask_alyf/agent.py:741
 msgid "The operation was completed, but the follow-up response could not be generated."
 msgstr "অপারেশনটি সম্পন্ন হয়েছে, তবে ফলো-আপ রেসপন্স তৈরি করা যায়নি।"
 
@@ -1611,15 +1619,15 @@ msgstr "এটি একটু সময় নিচ্ছে..."
 msgid "Thread ID"
 msgstr "থ্রেড আইডি"
 
-#: ask_alyf/ask_alyf/tools.py:1453
+#: ask_alyf/ask_alyf/tools.py:1581
 msgid "Too many chart datasets."
 msgstr "অনেক বেশি চার্ট ডেটাসেট।"
 
-#: ask_alyf/ask_alyf/tools.py:1434
+#: ask_alyf/ask_alyf/tools.py:1562
 msgid "Too many chart labels."
 msgstr "অনেক বেশি চার্ট লেবেল।"
 
-#: ask_alyf/ask_alyf/tools.py:1580
+#: ask_alyf/ask_alyf/tools.py:1708
 msgid "Too many charts in one request."
 msgstr "একটি অনুরোধে অনেক বেশি চার্ট।"
 
@@ -1628,25 +1636,25 @@ msgstr "একটি অনুরোধে অনেক বেশি চার�
 msgid "Tracing"
 msgstr "ট্রেসিং"
 
-#: ask_alyf/ask_alyf/agent.py:117
+#: ask_alyf/ask_alyf/agent.py:119
 msgid "Translating labels"
 msgstr "লেবেল অনুবাদ করা হচ্ছে"
 
-#: ask_alyf/ask_alyf/tools.py:1183
+#: ask_alyf/ask_alyf/tools.py:1311
 msgid "Unknown error."
 msgstr "অজানা ত্রুটি।"
 
-#: ask_alyf/ask_alyf/tools.py:1284
+#: ask_alyf/ask_alyf/tools.py:1412
 #, python-brace-format
 msgid "Unsupported action '{0}'."
 msgstr "অসমর্থিত অ্যাকশন '{0}'।"
 
-#: ask_alyf/ask_alyf/tools.py:860
+#: ask_alyf/ask_alyf/tools.py:988
 #, python-brace-format
 msgid "Unsupported file type '{0}'. Supported types: PDF, PNG, JPG, GIF, WebP."
 msgstr "অসমর্থিত ফাইল প্রকার '{0}'। সমর্থিত প্রকার: PDF, PNG, JPG, GIF, WebP।"
 
-#: ask_alyf/ask_alyf/tools.py:1595 ask_alyf/ask_alyf/tools.py:1658
+#: ask_alyf/ask_alyf/tools.py:1723 ask_alyf/ask_alyf/tools.py:1786
 #, python-brace-format
 msgid "Unsupported frontend action '{0}'."
 msgstr "অসমর্থিত ফ্রন্টএন্ড অ্যাকশন '{0}'।"
@@ -1661,12 +1669,12 @@ msgstr "অসমর্থিত ফ্রন্টএন্ড অ্যাক�
 msgid "Unsupported model configuration: {0}"
 msgstr "অসমর্থিত মডেল কনফিগারেশন: {0}"
 
-#: ask_alyf/ask_alyf/tools.py:1125 ask_alyf/ask_alyf/tools.py:1145
+#: ask_alyf/ask_alyf/tools.py:1253 ask_alyf/ask_alyf/tools.py:1273
 #, python-brace-format
 msgid "Unsupported operation kind '{0}'."
 msgstr "অসমর্থিত অপারেশন প্রকার '{0}'।"
 
-#: ask_alyf/ask_alyf/tools.py:1494
+#: ask_alyf/ask_alyf/tools.py:1622
 msgid "Unsupported or missing chart type."
 msgstr "অসমর্থিত বা অনুপস্থিত চার্ট প্রকার।"
 
@@ -1679,11 +1687,11 @@ msgstr "শিরোনামহীন কথোপকথন"
 msgid "Update Ask ALYF Settings"
 msgstr "Ask ALYF সেটিংস আপডেট করুন"
 
-#: ask_alyf/ask_alyf/toolset.py:872
+#: ask_alyf/ask_alyf/toolset.py:903
 msgid "Update proposal needs correction."
 msgstr "আপডেট প্রস্তাবটি সংশোধন প্রয়োজন।"
 
-#: ask_alyf/ask_alyf/toolset.py:870
+#: ask_alyf/ask_alyf/toolset.py:901
 #, python-brace-format
 msgid "Update {0} {1}"
 msgstr "আপডেট {0} {1}"
@@ -1803,7 +1811,7 @@ msgstr "{0}-এ আপনার পড়ার অনুমতি নেই।"
 msgid "Your browser does not support voice input."
 msgstr "আপনার ব্রাউজার ভয়েস ইনপুট সমর্থন করে না।"
 
-#: ask_alyf/ask_alyf/agent.py:159
+#: ask_alyf/ask_alyf/agent.py:161
 msgid "an action"
 msgstr "একটি অ্যাকশন"
 
@@ -1844,12 +1852,12 @@ msgstr "সর্বোচ্চ"
 msgid "medium"
 msgstr "মাঝারি"
 
-#: ask_alyf/ask_alyf/tools.py:1338
+#: ask_alyf/ask_alyf/tools.py:1466
 #, python-brace-format
 msgid "row {0}: {1}"
 msgstr "সারি {0}: {1}"
 
-#: ask_alyf/ask_alyf/toolset.py:1100
+#: ask_alyf/ask_alyf/toolset.py:1131
 msgid "target route"
 msgstr "টার্গেট রুট"
 
@@ -1859,7 +1867,7 @@ msgstr "টার্গেট রুট"
 msgid "xhigh"
 msgstr "অতি উচ্চ"
 
-#: ask_alyf/ask_alyf/tools.py:912
+#: ask_alyf/ask_alyf/tools.py:1040
 #, python-brace-format
 msgid "{0} '{1}' was not found."
 msgstr "{0} '{1}' পাওয়া যায়নি।"
