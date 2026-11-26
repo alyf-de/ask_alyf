@@ -84,6 +84,46 @@ class IntegrationTestReports(IntegrationTestCase):
 		finally:
 			frappe.set_user("Administrator")
 
+	def test_filters_left_out_keep_their_default(self):
+		"""The agent passes only `priority`. `status` must keep its default "Open", as in Desk."""
+		report = frappe.get_doc(
+			{
+				"doctype": "Report",
+				"report_name": "Test Report Partial Filters",
+				"ref_doctype": "ToDo",
+				"report_type": "Report Builder",
+				"is_standard": "No",
+				"json": '{"filters":[],"columns":[["name","ToDo"]]}',
+				"filters": [
+					{
+						"label": "Status",
+						"fieldname": "status",
+						"fieldtype": "Select",
+						"options": "Open\nClosed\nCancelled",
+						"default": "Open",
+					},
+					{
+						"label": "Priority",
+						"fieldname": "priority",
+						"fieldtype": "Select",
+						"options": "High\nMedium\nLow",
+					},
+				],
+			}
+		).insert()
+		open_todo = frappe.get_doc(
+			{"doctype": "ToDo", "description": "partial filters", "priority": "High", "status": "Open"}
+		).insert()
+		closed_todo = frappe.get_doc(
+			{"doctype": "ToDo", "description": "partial filters", "priority": "High", "status": "Closed"}
+		).insert()
+
+		result = tools.run_report(report.name, {"priority": "High"})
+
+		names = [row["name"] for row in result["result"]]
+		self.assertIn(open_todo.name, names)
+		self.assertNotIn(closed_todo.name, names)
+
 	def test_script_filter_replaces_extended_filter(self):
 		base = """
 		let filters = [

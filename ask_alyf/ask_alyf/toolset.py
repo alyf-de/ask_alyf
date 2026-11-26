@@ -552,6 +552,8 @@ class ask_alyfToolset:
 			report_name: Report name.
 			filters: Field values, {"fieldname": value}. Dates are YYYY-MM-DD.
 				Select and Link values are strings. MultiSelectList values are lists.
+				A filter you leave out keeps its default. Pass only what the user asked for.
+				To switch off a Check that defaults to 1, pass 0.
 
 		Returns:
 			The report result. At most 200 rows; truncated is true when more existed.

@@ -503,14 +503,13 @@ def run_report(
 	applied_filters = dict(filters or {})
 	try:
 		meta = get_report_filters(report_name)
-		if not filters:
-			# fill in default filters if not provided
-			for row in meta["filters"]:
-				if row["fieldname"] in applied_filters or row.get("default") in (None, ""):
-					continue
-				if row.get("fieldtype") == "Check" and not cint(row["default"]):
-					continue
-				applied_filters[row["fieldname"]] = row["default"]
+		# Start from the defaults that Desk shows. A filter the agent passed wins.
+		for row in meta["filters"]:
+			if row.get("default") in (None, ""):
+				continue
+			if row.get("fieldtype") == "Check" and not cint(row["default"]):
+				continue
+			applied_filters.setdefault(row["fieldname"], row["default"])
 		return _execute_report(report_name, applied_filters, meta, are_default_filters=not filters)
 	except Exception as error:
 		allowed_filters = (meta or {}).get("filters") or []
