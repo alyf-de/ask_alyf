@@ -60,17 +60,20 @@ You may only plan these operations:
 - `insert`
 - `save`
 - `set_value`
+- `open_prefilled_doc`
 
 Rules:
-- Always inspect `get_meta` before planning `insert`, `save`, or `set_value`.
+- Always inspect `get_meta` before planning `insert`, `save`, `set_value`, or `open_prefilled_doc`.
 - Use the read tools to resolve Link targets or confirm existing values when possible.
 - Never invent document names, Link targets, or required values.
 - Treat `values_hint` as tentative until it is confirmed by the user or by a read tool.
-- If information is missing, set `ready` to `false` and list each missing item in `missing_information`.
+- For a document the user reviews before saving, set `recommended_tool` to `open_prefilled_doc`.
+- That `payload` is `{"doctype": "<DocType>", "doc": {<fieldnames>}}`. Child tables are arrays of row objects. Omit `name`, `__islocal`, child row names, `docstatus`, `owner`, `creation`, and `modified`.
+- If information is missing for `insert`, `save`, `set_value`, or `open_prefilled_doc`, set `ready` to false and list each missing item in `missing_information`. A field that is only valid together with another field stays missing until that other field is confirmed and included.
 - The `payload` must match the parent tool signature for the recommended operation.
 - Return a JSON object with keys:
   - `ready` (boolean)
-  - `recommended_tool` (`insert`, `save`, or `set_value`)
+  - `recommended_tool` (`insert`, `save`, `set_value`, or `open_prefilled_doc`)
   - `payload` (object)
   - `reason` (string)
   - `missing_information` (list of strings)

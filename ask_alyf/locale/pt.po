@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Ask ALYF VERSION\n"
 "Report-Msgid-Bugs-To: hallo@alyf.de\n"
-"POT-Creation-Date: 2026-11-26 18:16+0053\n"
+"POT-Creation-Date: 2026-11-26 19:46+0053\n"
 "PO-Revision-Date: 2026-05-02 19:04+0053\n"
 "Last-Translator: hallo@alyf.de\n"
 "Language: pt\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.18.0\n"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:355
+#: ask_alyf/public/js/ask_alyf.bundle.js:356
 msgid "1 step"
 msgstr "1 passo"
 
@@ -26,46 +26,46 @@ msgstr "1 passo"
 msgid "Access to hidden paths is not allowed"
 msgstr "O acesso a caminhos ocultos não é permitido"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1711
+#: ask_alyf/public/js/ask_alyf.bundle.js:1712
 msgid "Accounts"
 msgstr "Contas"
 
-#: ask_alyf/ask_alyf/tools.py:1519
+#: ask_alyf/ask_alyf/tools.py:1520
 msgid "Action field 'args' must be an object."
 msgstr "O campo de ação 'args' deve ser um objeto."
 
-#: ask_alyf/ask_alyf/tools.py:1485 ask_alyf/ask_alyf/tools.py:1496
+#: ask_alyf/ask_alyf/tools.py:1486 ask_alyf/ask_alyf/tools.py:1497
 msgid "Action field 'doctype' is required."
 msgstr "O campo de ação 'doctype' é obrigatório."
 
-#: ask_alyf/ask_alyf/tools.py:1514
+#: ask_alyf/ask_alyf/tools.py:1515
 msgid "Action field 'file_id' is required."
 msgstr "O campo de ação 'file_id' é obrigatório."
 
-#: ask_alyf/ask_alyf/tools.py:1500
+#: ask_alyf/ask_alyf/tools.py:1501
 msgid "Action field 'records' must be a non-empty list."
 msgstr "O campo de ação 'records' deve ser uma lista não vazia."
 
-#: ask_alyf/ask_alyf/tools.py:1504
+#: ask_alyf/ask_alyf/tools.py:1505
 #, python-brace-format
 msgid "Action field 'records' row #{0} must be an object."
 msgstr "A linha #{0} do campo de ação 'records' deve ser um objeto."
 
-#: ask_alyf/ask_alyf/tools.py:1489
+#: ask_alyf/ask_alyf/tools.py:1490
 msgid "Action field 'values' must be an object."
 msgstr "O campo de ação 'values' deve ser um objeto."
 
-#: ask_alyf/ask_alyf/tools.py:1429
+#: ask_alyf/ask_alyf/tools.py:1430
 #, python-brace-format
 msgid "Action field '{0}' must be an object."
 msgstr "O campo de ação '{0}' deve ser um objeto."
 
-#: ask_alyf/ask_alyf/toolset.py:1248
+#: ask_alyf/ask_alyf/toolset.py:1269
 #, python-brace-format
 msgid "Add a row to {0} on current form"
 msgstr "Adicionar uma linha a {0} no formulário atual"
 
-#: ask_alyf/ask_alyf/toolset.py:1250
+#: ask_alyf/ask_alyf/toolset.py:1271
 msgid "Add child row action needs correction."
 msgstr "A ação de adicionar linha secundária precisa de correção."
 
@@ -113,18 +113,18 @@ msgstr "Emendar {0} {1}"
 msgid "Amending {0}"
 msgstr "Corrigindo {0}"
 
-#: ask_alyf/ask_alyf/tools.py:1477
+#: ask_alyf/ask_alyf/tools.py:1478
 #, python-brace-format
 msgid "And {0} more."
 msgstr "E mais {0}."
 
-#: ask_alyf/ask_alyf/deep_agent_backend.py:100 ask_alyf/ask_alyf/tools.py:150
-#: ask_alyf/ask_alyf/tools.py:1097
+#: ask_alyf/ask_alyf/deep_agent_backend.py:100 ask_alyf/ask_alyf/tools.py:151
+#: ask_alyf/ask_alyf/tools.py:1098
 #, python-brace-format
 msgid "App '{0}' is not installed."
 msgstr "A aplicação '{0}' não está instalada."
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2738
+#: ask_alyf/public/js/ask_alyf.bundle.js:2743
 msgid "Applying action..."
 msgstr "A aplicar ação..."
 
@@ -177,7 +177,7 @@ msgstr "Competência do Ask ALYF"
 msgid "Ask ALYF User"
 msgstr "Utilizador do Ask ALYF"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1409
+#: ask_alyf/public/js/ask_alyf.bundle.js:1410
 msgid "Ask ALYF could not finish processing this message. Please try again."
 msgstr "O Ask ALYF não conseguiu terminar de processar esta mensagem. Tente novamente."
 
@@ -189,23 +189,23 @@ msgstr "O Ask ALYF ainda está a trabalhar numa mensagem nesta conversa. Pare ou
 msgid "Ask ALYF is still working on the previous message in this conversation."
 msgstr "O Ask ALYF ainda está a trabalhar na mensagem anterior desta conversa."
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1212
+#: ask_alyf/public/js/ask_alyf.bundle.js:1213
 msgid "Ask ALYF is visible, but no API key/model is configured yet in Ask ALYF Settings."
 msgstr "O Ask ALYF está visível, mas ainda não há nenhuma chave de API/modelo configurado nas Definições do Ask ALYF."
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1017
+#: ask_alyf/public/js/ask_alyf.bundle.js:1018
 msgid "Ask ALYF sections"
 msgstr "Secções do Ask ALYF"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1410
+#: ask_alyf/public/js/ask_alyf.bundle.js:1411
 msgid "Ask ALYF stopped processing this message. Please try again."
 msgstr "O Ask ALYF parou o processamento desta mensagem. Tente novamente."
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1067
+#: ask_alyf/public/js/ask_alyf.bundle.js:1068
 msgid "Ask ALYF uses AI and can make mistakes, including with numbers and information about people."
 msgstr "O Ask ALYF utiliza IA e pode cometer erros, inclusive em números e informações sobre pessoas."
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1035
+#: ask_alyf/public/js/ask_alyf.bundle.js:1036
 msgid "Ask about this ERPNext instance"
 msgstr "Pergunte sobre esta instância do ERPNext"
 
@@ -218,8 +218,8 @@ msgstr "A consultar o especialista em {0}"
 msgid "At least one role is required."
 msgstr "É obrigatória pelo menos uma função."
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1053
-#: ask_alyf/public/js/ask_alyf.bundle.js:1055
+#: ask_alyf/public/js/ask_alyf.bundle.js:1054
+#: ask_alyf/public/js/ask_alyf.bundle.js:1056
 msgid "Attach file"
 msgstr "Anexar ficheiro"
 
@@ -249,17 +249,17 @@ msgstr "Os anexos são somente leitura"
 msgid "Batch create proposal needs correction."
 msgstr "A proposta de criação em lote precisa de correção."
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1702
+#: ask_alyf/public/js/ask_alyf.bundle.js:1703
 msgid "Buying"
 msgstr "Compras"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1008
-#: ask_alyf/public/js/ask_alyf.bundle.js:1010
-#: ask_alyf/public/js/ask_alyf.bundle.js:1580
+#: ask_alyf/public/js/ask_alyf.bundle.js:1009
+#: ask_alyf/public/js/ask_alyf.bundle.js:1011
+#: ask_alyf/public/js/ask_alyf.bundle.js:1581
 msgid "Call support"
 msgstr "Chamar o suporte"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1579
+#: ask_alyf/public/js/ask_alyf.bundle.js:1580
 #, python-brace-format
 msgid "Call support: {0}"
 msgstr "Chamar o suporte: {0}"
@@ -278,7 +278,7 @@ msgstr "A proposta de cancelamento precisa de correção."
 msgid "Cancel {0} {1}"
 msgstr "Cancelar {0} {1}"
 
-#: ask_alyf/ask_alyf/api.py:975
+#: ask_alyf/ask_alyf/api.py:980
 #, python-brace-format
 msgid "Cancelled frontend action: {0}"
 msgstr "Ação do frontend cancelada: {0}"
@@ -293,55 +293,55 @@ msgstr "Exibição do gráfico cancelada: {0}."
 msgid "Cancelled the pending operation: {0}."
 msgstr "Operação pendente cancelada: {0}."
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2454
+#: ask_alyf/public/js/ask_alyf.bundle.js:2455
 msgid "Changes preview"
 msgstr "Pré-visualização das alterações"
 
-#: ask_alyf/ask_alyf/toolset.py:1286
+#: ask_alyf/ask_alyf/toolset.py:1307
 msgid "Chart action needs correction."
 msgstr "A ação do gráfico precisa de correção."
 
-#: ask_alyf/ask_alyf/tools.py:1651
+#: ask_alyf/ask_alyf/tools.py:1652
 msgid "Chart data must be an object."
 msgstr "Os dados do gráfico devem ser um objeto."
 
-#: ask_alyf/ask_alyf/tools.py:1577
+#: ask_alyf/ask_alyf/tools.py:1578
 msgid "Chart data requires a non-empty datasets array."
 msgstr "Os dados do gráfico exigem um array de datasets não vazio."
 
-#: ask_alyf/ask_alyf/tools.py:1558
+#: ask_alyf/ask_alyf/tools.py:1559
 msgid "Chart data requires a non-empty labels array."
 msgstr "Os dados do gráfico exigem um array de etiquetas não vazio."
 
-#: ask_alyf/ask_alyf/tools.py:1637
+#: ask_alyf/ask_alyf/tools.py:1638
 msgid "Chart height is out of range."
 msgstr "A altura do gráfico está fora do intervalo."
 
-#: ask_alyf/ask_alyf/tools.py:1567
+#: ask_alyf/ask_alyf/tools.py:1568
 msgid "Chart labels must be numbers or strings."
 msgstr "As etiquetas do gráfico devem ser números ou strings."
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1713
+#: ask_alyf/public/js/ask_alyf.bundle.js:1714
 msgid "Chart monthly expenses by cost center"
 msgstr "Gerar gráfico das despesas mensais por centro de custo"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1695
+#: ask_alyf/public/js/ask_alyf.bundle.js:1696
 msgid "Chart my monthly sales revenue for the last 6 months"
 msgstr "Gerar gráfico da minha receita mensal de vendas dos últimos 6 meses"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1758
+#: ask_alyf/public/js/ask_alyf.bundle.js:1759
 msgid "Chart open issues by priority"
 msgstr "Gerar gráfico de issues abertas por prioridade"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1740
+#: ask_alyf/public/js/ask_alyf.bundle.js:1741
 msgid "Chart production output by item this week"
 msgstr "Gerar gráfico da produção desta semana por item"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1704
+#: ask_alyf/public/js/ask_alyf.bundle.js:1705
 msgid "Chart spending by supplier for this quarter"
 msgstr "Gerar gráfico de gastos por fornecedor para este trimestre"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1731
+#: ask_alyf/public/js/ask_alyf.bundle.js:1732
 msgid "Chart stock value by warehouse"
 msgstr "Gráfico do valor do stock por armazém"
 
@@ -393,19 +393,19 @@ msgstr "Namespace do Ponto de Verificação"
 msgid "Checkpoint Type"
 msgstr "Tipo de Ponto de Verificação"
 
-#: ask_alyf/ask_alyf/deep_agent_backend.py:104 ask_alyf/ask_alyf/tools.py:179
+#: ask_alyf/ask_alyf/deep_agent_backend.py:104 ask_alyf/ask_alyf/tools.py:180
 msgid "Code access is restricted to installed app directories."
 msgstr "O acesso ao código está restrito aos diretórios das aplicações instaladas."
 
-#: ask_alyf/ask_alyf/tools.py:121
+#: ask_alyf/ask_alyf/tools.py:122
 msgid "Code search is disabled in Ask ALYF Settings."
 msgstr "A pesquisa de código está desativada nas Definições do Ask ALYF."
 
-#: ask_alyf/ask_alyf/agent.py:326
+#: ask_alyf/ask_alyf/agent.py:328
 msgid "Configure a model in Ask ALYF Settings before sending messages."
 msgstr "Configure um modelo nas Definições do Ask ALYF antes de enviar mensagens."
 
-#: ask_alyf/ask_alyf/tools.py:870
+#: ask_alyf/ask_alyf/tools.py:871
 msgid "Configure a vision model in Ask ALYF Settings."
 msgstr "Configure um modelo de visão nas Definições do Ask ALYF."
 
@@ -413,11 +413,11 @@ msgstr "Configure um modelo de visão nas Definições do Ask ALYF."
 msgid "Configure an API key in Ask ALYF Settings before sending messages."
 msgstr "Configure uma chave de API nas Definições do Ask ALYF antes de enviar mensagens."
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:950
+#: ask_alyf/public/js/ask_alyf.bundle.js:951
 msgid "Confirm all"
 msgstr "Confirmar tudo"
 
-#: ask_alyf/ask_alyf/api.py:746 ask_alyf/public/js/ask_alyf.bundle.js:2738
+#: ask_alyf/ask_alyf/api.py:746 ask_alyf/public/js/ask_alyf.bundle.js:2743
 msgid "Confirming action..."
 msgstr "A confirmar ação..."
 
@@ -425,15 +425,15 @@ msgstr "A confirmar ação..."
 msgid "Conversation deletion is not allowed."
 msgstr "Não é permitido eliminar conversas."
 
-#: ask_alyf/ask_alyf/tools.py:1037
+#: ask_alyf/ask_alyf/tools.py:1038
 msgid "Conversation name is required."
 msgstr "O nome da conversa é obrigatório."
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1397
+#: ask_alyf/public/js/ask_alyf.bundle.js:1398
 msgid "Conversation not found. Please start a new conversation."
 msgstr "Conversa não encontrada. Inicie uma nova conversa."
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:685
+#: ask_alyf/public/js/ask_alyf.bundle.js:686
 msgid "Copy as Markdown"
 msgstr "Copiar como Markdown"
 
@@ -450,11 +450,11 @@ msgstr "Não foi possível concluir a operação: {0}."
 msgid "Could not display chart."
 msgstr "Não foi possível exibir o gráfico."
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2957
+#: ask_alyf/public/js/ask_alyf.bundle.js:2962
 msgid "Could not download chart."
 msgstr "Não foi possível descarregar o gráfico."
 
-#: ask_alyf/ask_alyf/tools.py:784
+#: ask_alyf/ask_alyf/tools.py:785
 msgid "Could not extract visual content from the file."
 msgstr "Não foi possível extrair o conteúdo visual do ficheiro."
 
@@ -462,11 +462,11 @@ msgstr "Não foi possível extrair o conteúdo visual do ficheiro."
 msgid "Could not generate content."
 msgstr "Não foi possível gerar o conteúdo."
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:3028
+#: ask_alyf/public/js/ask_alyf.bundle.js:3033
 msgid "Could not render chart."
 msgstr "Não foi possível apresentar o gráfico."
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:760
+#: ask_alyf/public/js/ask_alyf.bundle.js:761
 msgid "Could not render diagram."
 msgstr "Não foi possível apresentar o diagrama."
 
@@ -494,7 +494,7 @@ msgstr "Criar {0}"
 msgid "Create {0} {1} records"
 msgstr "Criar {0} registos de {1}"
 
-#: ask_alyf/ask_alyf/tools.py:1441
+#: ask_alyf/ask_alyf/tools.py:1442
 #, python-brace-format
 msgid "Created {0} of {1} {2} records."
 msgstr "Criados {0} de {1} registos de {2}."
@@ -504,31 +504,31 @@ msgstr "Criados {0} de {1} registos de {2}."
 msgid "Creating several {0} records"
 msgstr "A criar vários registos de {0}"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2602
+#: ask_alyf/public/js/ask_alyf.bundle.js:2603
 #, python-brace-format
 msgid "Current document is {0}, expected {1}."
 msgstr "O documento atual é {0}, esperado {1}."
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2595
+#: ask_alyf/public/js/ask_alyf.bundle.js:2596
 #, python-brace-format
 msgid "Current form is {0}, expected {1}."
 msgstr "O formulário atual é {0}, esperado {1}."
 
-#: ask_alyf/ask_alyf/tools.py:1595 ask_alyf/ask_alyf/tools.py:1598
-#: ask_alyf/ask_alyf/tools.py:1601
+#: ask_alyf/ask_alyf/tools.py:1596 ask_alyf/ask_alyf/tools.py:1599
+#: ask_alyf/ask_alyf/tools.py:1602
 msgid "Dataset values must be numeric."
 msgstr "Os valores do conjunto de dados devem ser numéricos."
 
-#: ask_alyf/ask_alyf/tools.py:1590
+#: ask_alyf/ask_alyf/tools.py:1591
 msgid "Dataset values must match labels length."
 msgstr "Os valores do conjunto de dados devem corresponder ao comprimento das etiquetas."
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1938
 #: ask_alyf/public/js/ask_alyf.bundle.js:1939
+#: ask_alyf/public/js/ask_alyf.bundle.js:1940
 msgid "Delete conversation"
 msgstr "Excluir conversa"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1466
+#: ask_alyf/public/js/ask_alyf.bundle.js:1467
 #, python-brace-format
 msgid "Delete conversation '{0}'?"
 msgstr "Excluir conversa '{0}'?"
@@ -542,7 +542,7 @@ msgstr "A proposta de eliminação precisa de correção."
 msgid "Delete {0} {1}"
 msgstr "Eliminar {0} {1}"
 
-#: ask_alyf/ask_alyf/tools.py:1375
+#: ask_alyf/ask_alyf/tools.py:1376
 #, python-brace-format
 msgid "Deleted {0} {1}"
 msgstr "Eliminado {0} {1}"
@@ -551,7 +551,7 @@ msgstr "Eliminado {0} {1}"
 msgid "Describe what you want..."
 msgstr "Descreva o que pretende..."
 
-#: ask_alyf/ask_alyf/tools.py:298
+#: ask_alyf/ask_alyf/tools.py:299
 #, python-brace-format
 msgid "DocType '{0}' is excluded from Agent mode."
 msgstr "Doctype '{0}' está excluído do modo Agente."
@@ -561,27 +561,27 @@ msgstr "Doctype '{0}' está excluído do modo Agente."
 msgid "DocType is excluded"
 msgstr "O Doctype está excluído"
 
-#: ask_alyf/ask_alyf/tools.py:1033
+#: ask_alyf/ask_alyf/tools.py:1034
 msgid "DocType is required."
 msgstr "Doctype é obrigatório."
 
-#: ask_alyf/ask_alyf/tools.py:950
+#: ask_alyf/ask_alyf/tools.py:951
 msgid "Document extraction did not return text."
 msgstr "A extração de documento não retornou texto."
 
-#: ask_alyf/ask_alyf/tools.py:974
+#: ask_alyf/ask_alyf/tools.py:975
 msgid "Document extraction did not return valid JSON."
 msgstr "A extração de documento não retornou JSON válido."
 
-#: ask_alyf/ask_alyf/tools.py:954
+#: ask_alyf/ask_alyf/tools.py:955
 msgid "Document extraction returned an empty response."
 msgstr "A extração do documento retornou uma resposta vazia."
 
-#: ask_alyf/ask_alyf/tools.py:1035
+#: ask_alyf/ask_alyf/tools.py:1036
 msgid "Document name is required."
 msgstr "O nome do documento é obrigatório."
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2942
+#: ask_alyf/public/js/ask_alyf.bundle.js:2947
 msgid "Download chart as SVG"
 msgstr "Baixar gráfico como SVG"
 
@@ -589,23 +589,23 @@ msgstr "Baixar gráfico como SVG"
 msgid "Drafting..."
 msgstr "A elaborar..."
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1002
+#: ask_alyf/public/js/ask_alyf.bundle.js:1003
 msgid "ERPNext assistant"
 msgstr "Assistente do ERPNext"
 
-#: ask_alyf/ask_alyf/tools.py:1617
+#: ask_alyf/ask_alyf/tools.py:1618
 msgid "Each chart must be an object."
 msgstr "Cada gráfico deve ser um objeto."
 
-#: ask_alyf/ask_alyf/tools.py:1585
+#: ask_alyf/ask_alyf/tools.py:1586
 msgid "Each dataset must be an object."
 msgstr "Cada conjunto de dados deve ser um objeto."
 
-#: ask_alyf/ask_alyf/tools.py:1588
+#: ask_alyf/ask_alyf/tools.py:1589
 msgid "Each dataset needs a values array."
 msgstr "Cada conjunto de dados precisa de uma matriz de valores."
 
-#: ask_alyf/ask_alyf/tools.py:561
+#: ask_alyf/ask_alyf/tools.py:562
 msgid "Each label must be a string."
 msgstr "Cada rótulo deve ser uma cadeia de caracteres."
 
@@ -614,7 +614,7 @@ msgstr "Cada rótulo deve ser uma cadeia de caracteres."
 msgid "Enable Tracing"
 msgstr "Ativar rastreamento"
 
-#: ask_alyf/ask_alyf/tools.py:679
+#: ask_alyf/ask_alyf/tools.py:680
 msgid "Entry type must be one of any, file, or directory."
 msgstr "O tipo de entrada deve ser um de: any, file ou directory."
 
@@ -635,54 +635,59 @@ msgstr "DocTypes excluídos"
 msgid "Executed frontend action: {0}"
 msgstr "Ação de frontend executada: {0}"
 
-#: ask_alyf/ask_alyf/tools.py:1474
+#: ask_alyf/ask_alyf/tools.py:1475
 #, python-brace-format
 msgid "Failed rows: {0}"
 msgstr "Linhas falhadas: {0}"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1557
+#: ask_alyf/public/js/ask_alyf.bundle.js:1558
 msgid "Failed to attach file to conversation."
 msgstr "Falha ao anexar o ficheiro à conversa."
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2765
+#: ask_alyf/public/js/ask_alyf.bundle.js:2770
 msgid "Failed to confirm pending operation."
 msgstr "Falha ao confirmar operação pendente."
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1470
+#: ask_alyf/public/js/ask_alyf.bundle.js:1471
 msgid "Failed to delete conversation."
 msgstr "Falha ao excluir conversa."
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2703
+#: ask_alyf/public/js/ask_alyf.bundle.js:2708
 msgid "Failed to execute frontend action."
 msgstr "Falha ao executar ação de frontend."
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1981
+#: ask_alyf/public/js/ask_alyf.bundle.js:1982
 msgid "Failed to open conversation."
 msgstr "Falha ao abrir conversa."
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2803
+#: ask_alyf/public/js/ask_alyf.bundle.js:2808
 msgid "Failed to reject pending operation."
 msgstr "Falha ao rejeitar operação pendente."
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2323
+#: ask_alyf/public/js/ask_alyf.bundle.js:2324
 msgid "Failed to send message."
 msgstr "Falha ao enviar mensagem."
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2069
+#: ask_alyf/public/js/ask_alyf.bundle.js:2070
 msgid "Failed to stop the run."
 msgstr "Não foi possível parar a execução."
 
-#: ask_alyf/ask_alyf/tools.py:1807
+#: ask_alyf/ask_alyf/tools.py:1843
+#, python-brace-format
+msgid "Field '{0}' does not exist in {1}."
+msgstr "O campo '{0}' não existe em {1}."
+
+#: ask_alyf/ask_alyf/tools.py:1819
 #, python-brace-format
 msgid "Field '{0}' in {1} is a child table ({2}) and must be a list of row objects."
 msgstr "O campo '{0}' em {1} é uma tabela filha ({2}) e deve ser uma lista de objetos de linha."
 
-#: ask_alyf/ask_alyf/tools.py:1815
+#: ask_alyf/ask_alyf/tools.py:1827
 #, python-brace-format
 msgid "Field '{0}' row #{1} in {2} must be an object."
 msgstr "O campo '{0}' linha #{1} em {2} deve ser um objeto."
 
-#: ask_alyf/ask_alyf/api.py:1020
+#: ask_alyf/ask_alyf/api.py:1025
 msgid "Field Agent is not enabled."
 msgstr "O Agent de campo não está ativado."
 
@@ -690,101 +695,113 @@ msgstr "O Agent de campo não está ativado."
 msgid "Field updated."
 msgstr "Campo atualizado."
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2632
-#: ask_alyf/public/js/ask_alyf.bundle.js:2641
+#: ask_alyf/public/js/ask_alyf.bundle.js:2637
+#: ask_alyf/public/js/ask_alyf.bundle.js:2646
 #, python-brace-format
 msgid "Field {0} does not exist on this form."
 msgstr "O campo {0} não existe neste formulário."
 
-#: ask_alyf/ask_alyf/api.py:1073 ask_alyf/ask_alyf/tools.py:810
+#: ask_alyf/ask_alyf/api.py:1078 ask_alyf/ask_alyf/tools.py:811
 #, python-brace-format
 msgid "File '{0}' was not found."
 msgstr "O ficheiro '{0}' não foi encontrado."
 
-#: ask_alyf/ask_alyf/tools.py:808
+#: ask_alyf/ask_alyf/tools.py:809
 msgid "File ID is required."
 msgstr "O File ID é obrigatório."
 
-#: ask_alyf/ask_alyf/api.py:1058
+#: ask_alyf/ask_alyf/api.py:1063
 msgid "File upload is not enabled."
 msgstr "O carregamento de ficheiro não está ativado."
 
-#: ask_alyf/ask_alyf/agent.py:172
+#: ask_alyf/ask_alyf/agent.py:174
 msgid "Filling in the open form"
 msgstr "A preencher o formulário aberto"
 
-#: ask_alyf/ask_alyf/agent.py:205
+#: ask_alyf/ask_alyf/agent.py:207
 #, python-brace-format
 msgid "Finding {0}"
 msgstr "Procurando arquivos {0}"
 
-#: ask_alyf/ask_alyf/agent.py:205
+#: ask_alyf/ask_alyf/agent.py:207
 #, python-brace-format
 msgid "Finding {0} in {1}"
 msgstr "Procurando arquivos {0} em {1}"
 
-#: ask_alyf/ask_alyf/tools.py:1778
+#: ask_alyf/ask_alyf/tools.py:1790
 msgid "Frontend action 'frm_add_child' field 'docname' must be a string."
 msgstr "Na ação de frontend 'frm_add_child', o campo 'docname' deve ser uma cadeia de caracteres."
 
-#: ask_alyf/ask_alyf/tools.py:1776
+#: ask_alyf/ask_alyf/tools.py:1788
 msgid "Frontend action 'frm_add_child' field 'doctype' must be a string."
 msgstr "Na ação de frontend 'frm_add_child', o campo 'doctype' deve ser uma cadeia de caracteres."
 
-#: ask_alyf/ask_alyf/tools.py:1772
+#: ask_alyf/ask_alyf/tools.py:1784
 msgid "Frontend action 'frm_add_child' field 'values' must be an object."
 msgstr "O campo 'values' da ação de frontend 'frm_add_child' deve ser um objeto."
 
-#: ask_alyf/ask_alyf/tools.py:1769
+#: ask_alyf/ask_alyf/tools.py:1781
 msgid "Frontend action 'frm_add_child' requires a fieldname."
 msgstr "A ação de frontend 'frm_add_child' requer um nome do campo."
 
-#: ask_alyf/ask_alyf/tools.py:1763
+#: ask_alyf/ask_alyf/tools.py:1775
 msgid "Frontend action 'frm_set_value' field 'docname' must be a string."
 msgstr "O campo 'docname' da ação de frontend 'frm_set_value' deve ser uma cadeia de caracteres."
 
-#: ask_alyf/ask_alyf/tools.py:1761
+#: ask_alyf/ask_alyf/tools.py:1773
 msgid "Frontend action 'frm_set_value' field 'doctype' must be a string."
 msgstr "O campo 'doctype' da ação de frontend 'frm_set_value' deve ser uma cadeia de caracteres."
 
-#: ask_alyf/ask_alyf/tools.py:1757
+#: ask_alyf/ask_alyf/tools.py:1769
 msgid "Frontend action 'frm_set_value' requires a fieldname."
 msgstr "A ação de frontend 'frm_set_value' requer um nome do campo."
 
-#: ask_alyf/ask_alyf/tools.py:1745
+#: ask_alyf/ask_alyf/tools.py:1746
 msgid "Frontend action 'new_doc' field 'route_options' must be an object."
 msgstr "O campo 'route_options' da ação de frontend 'new_doc' deve ser um objeto."
 
-#: ask_alyf/ask_alyf/tools.py:1742
+#: ask_alyf/ask_alyf/tools.py:1743
 msgid "Frontend action 'new_doc' requires a DocType."
 msgstr "A ação de frontend 'new_doc' requer um Doctype."
 
-#: ask_alyf/ask_alyf/tools.py:1751
+#: ask_alyf/ask_alyf/tools.py:1757
+msgid "Frontend action 'open_prefilled_doc' doc DocType must match."
+msgstr "O DocType do documento na ação de frontend 'open_prefilled_doc' tem de corresponder."
+
+#: ask_alyf/ask_alyf/tools.py:1755
+msgid "Frontend action 'open_prefilled_doc' field 'doc' must be an object."
+msgstr "O campo 'doc' da ação de frontend 'open_prefilled_doc' deve ser um objeto."
+
+#: ask_alyf/ask_alyf/tools.py:1752
+msgid "Frontend action 'open_prefilled_doc' requires a DocType."
+msgstr "A ação de frontend 'open_prefilled_doc' requer um DocType."
+
+#: ask_alyf/ask_alyf/tools.py:1763
 msgid "Frontend action 'scroll_to_field' requires a fieldname."
 msgstr "A ação de frontend 'scroll_to_field' requer um nome do campo."
 
-#: ask_alyf/ask_alyf/tools.py:1733
+#: ask_alyf/ask_alyf/tools.py:1734
 msgid "Frontend action 'set_route' requires a non-empty route list."
 msgstr "A ação de frontend 'set_route' requer uma lista de Rota não vazia."
 
-#: ask_alyf/ask_alyf/api.py:977
+#: ask_alyf/ask_alyf/api.py:982
 #, python-brace-format
 msgid "Frontend action failed: {0}"
 msgstr "Ação de frontend falhada: {0}"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2690
+#: ask_alyf/public/js/ask_alyf.bundle.js:2695
 msgid "Frontend action is missing a call ID."
 msgstr "Falta um ID de Chamada na ação de frontend."
 
-#: ask_alyf/ask_alyf/tools.py:1728
+#: ask_alyf/ask_alyf/tools.py:1729
 msgid "Frontend action payload contains an unsafe key."
 msgstr "A carga útil da ação de frontend contém uma Chave não segura."
 
-#: ask_alyf/ask_alyf/tools.py:1725
+#: ask_alyf/ask_alyf/tools.py:1726
 msgid "Frontend action payload must be an object."
 msgstr "A carga útil da ação de frontend deve ser um objeto."
 
-#: ask_alyf/ask_alyf/tools.py:1270
+#: ask_alyf/ask_alyf/tools.py:1271
 msgid "Frontend actions must be executed in the browser."
 msgstr "As ações de frontend devem ser executadas no Navegador."
 
@@ -810,31 +827,31 @@ msgstr "A gerar resposta..."
 msgid "Generating..."
 msgstr "A gerar..."
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1720
+#: ask_alyf/public/js/ask_alyf.bundle.js:1721
 msgid "HR"
 msgstr "RH"
 
-#: ask_alyf/ask_alyf/agent.py:168
+#: ask_alyf/ask_alyf/agent.py:170
 msgid "Highlighting a field"
 msgstr "A destacar um campo"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1024
+#: ask_alyf/public/js/ask_alyf.bundle.js:1025
 msgid "History"
 msgstr "Histórico"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1742
+#: ask_alyf/public/js/ask_alyf.bundle.js:1743
 msgid "How many Work Orders are behind schedule?"
 msgstr "Quantas Ordens de Trabalho estão atrasadas em relação ao cronograma?"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1724
+#: ask_alyf/public/js/ask_alyf.bundle.js:1725
 msgid "How many leave applications are pending approval?"
 msgstr "Quantos pedidos de licença estão pendentes de aprovação?"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1706
+#: ask_alyf/public/js/ask_alyf.bundle.js:1707
 msgid "How many pending purchase receipts do I have?"
 msgstr "Quantos recibos de compra pendentes tenho?"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1697
+#: ask_alyf/public/js/ask_alyf.bundle.js:1698
 msgid "How many quotations were sent this month?"
 msgstr "Quantas cotações foram enviadas este mês?"
 
@@ -847,19 +864,19 @@ msgstr "Ocorreu um erro ao processar esse pedido. Por favor, tente novamente."
 msgid "I've prepared the operation. Please review and confirm."
 msgstr "Preparei a operação. Por favor, reveja e confirme."
 
-#: ask_alyf/ask_alyf/tools.py:1277
+#: ask_alyf/ask_alyf/tools.py:1278
 msgid "Invalid action payload."
 msgstr "Carga útil de ação inválida."
 
-#: ask_alyf/ask_alyf/tools.py:1655 ask_alyf/public/js/ask_alyf.bundle.js:2998
+#: ask_alyf/ask_alyf/tools.py:1656 ask_alyf/public/js/ask_alyf.bundle.js:3003
 msgid "Invalid chart data."
 msgstr "Dados de gráfico inválidos."
 
-#: ask_alyf/ask_alyf/tools.py:1713
+#: ask_alyf/ask_alyf/tools.py:1714
 msgid "Invalid chart specification."
 msgstr "Especificação de gráfico inválida."
 
-#: ask_alyf/ask_alyf/tools.py:1257
+#: ask_alyf/ask_alyf/tools.py:1258
 msgid "Invalid pending operation payload."
 msgstr "Carga útil de operação pendente inválida."
 
@@ -874,7 +891,7 @@ msgstr "Padrão de regex inválido: {0}"
 msgid "LLM Provider"
 msgstr "Fornecedor de LLM"
 
-#: ask_alyf/ask_alyf/tools.py:556
+#: ask_alyf/ask_alyf/tools.py:557
 msgid "Labels must be provided as a list of strings."
 msgstr "Os rótulos devem ser fornecidos como uma lista de strings."
 
@@ -912,12 +929,12 @@ msgstr "Última mensagem em"
 msgid "Line offset {0} exceeds file length"
 msgstr "O deslocamento de linha {0} excede o comprimento do ficheiro"
 
-#: ask_alyf/ask_alyf/agent.py:215
+#: ask_alyf/ask_alyf/agent.py:217
 #, python-brace-format
 msgid "Listing {0}"
 msgstr "Listando {0}"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1966
+#: ask_alyf/public/js/ask_alyf.bundle.js:1967
 msgid "Loading conversation..."
 msgstr "A carregar conversa..."
 
@@ -933,7 +950,7 @@ msgstr "A procurar filtros do relatório"
 msgid "Looking up what you can access"
 msgstr "A verificar a que pode aceder"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1738
+#: ask_alyf/public/js/ask_alyf.bundle.js:1739
 msgid "Manufacturing"
 msgstr "Fabricação"
 
@@ -957,12 +974,12 @@ msgstr "Tipo de metadados"
 msgid "Method call proposal needs correction."
 msgstr "A proposta de chamada de método precisa de correção."
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1625
+#: ask_alyf/public/js/ask_alyf.bundle.js:1626
 #, python-brace-format
 msgid "Mode: {0}"
 msgstr "Modo: {0}"
 
-#: ask_alyf/ask_alyf/tools.py:546
+#: ask_alyf/ask_alyf/tools.py:547
 msgid "Multiple matching files were found. Provide reference_field, file_url, or file_name."
 msgstr "Foram encontrados vários arquivos correspondentes. Forneça reference_field, file_url ou file_name."
 
@@ -984,24 +1001,24 @@ msgstr "A ação de novo documento precisa de correção."
 msgid "No active form found."
 msgstr "Nenhum formulário ativo encontrado."
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1893
+#: ask_alyf/public/js/ask_alyf.bundle.js:1894
 msgid "No conversations yet."
 msgstr "Ainda não há conversas."
 
-#: ask_alyf/ask_alyf/tools.py:1209
+#: ask_alyf/ask_alyf/tools.py:1210
 #, python-brace-format
 msgid "No documentation URL was found for app '{0}'."
 msgstr "Nenhuma URL de documentação foi encontrada para a aplicação '{0}'."
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2589
+#: ask_alyf/public/js/ask_alyf.bundle.js:2590
 msgid "No form is currently open."
 msgstr "Nenhum formulário está aberto no momento."
 
-#: ask_alyf/ask_alyf/tools.py:188
+#: ask_alyf/ask_alyf/tools.py:189
 msgid "No installed app code roots were found."
 msgstr "Não foram encontradas raízes de código de aplicações instaladas."
 
-#: ask_alyf/ask_alyf/tools.py:542
+#: ask_alyf/ask_alyf/tools.py:543
 msgid "No matching file was found."
 msgstr "Nenhum arquivo correspondente foi encontrado."
 
@@ -1010,24 +1027,29 @@ msgstr "Nenhum arquivo correspondente foi encontrado."
 msgid "No pending operation matches call_id '{0}'."
 msgstr "Nenhuma operação pendente corresponde ao call_id '{0}'."
 
-#: ask_alyf/ask_alyf/tools.py:1226
+#: ask_alyf/ask_alyf/tools.py:1227
 #, python-brace-format
 msgid "No pyproject.toml was found for app '{0}'."
 msgstr "Nenhum pyproject.toml foi encontrado para a aplicação '{0}'."
 
-#: ask_alyf/ask_alyf/tools.py:1124
+#: ask_alyf/ask_alyf/tools.py:1125
 #, python-brace-format
 msgid "No repository URL was found for app '{0}'."
 msgstr "Nenhuma URL de repositório foi encontrada para a aplicação '{0}'."
 
-#: ask_alyf/ask_alyf/api.py:1071
+#: ask_alyf/ask_alyf/api.py:1076
 msgid "No valid file provided."
 msgstr "Nenhum arquivo válido foi fornecido."
 
-#: ask_alyf/ask_alyf/tools.py:1114
+#: ask_alyf/ask_alyf/tools.py:1115
 #, python-brace-format
 msgid "No version was found for app '{0}'."
 msgstr "Nenhuma versão foi encontrada para a aplicação '{0}'."
+
+#: ask_alyf/ask_alyf/api.py:978
+#, python-brace-format
+msgid "Not set: {0}"
+msgstr "Não aplicado: {0}"
 
 #. Description of the 'Excluded DocTypes' (Table MultiSelect) field in DocType
 #. 'Ask ALYF Settings'
@@ -1045,15 +1067,15 @@ msgstr "Um ponto de verificação do LangGraph. Escrito pelo FrappeCheckpointSav
 msgid "One pending write of a LangGraph checkpoint. Written by FrappeCheckpointSaver, not by users."
 msgstr "Uma escrita pendente de um ponto de verificação do LangGraph. Escrita pelo FrappeCheckpointSaver, não pelos utilizadores."
 
-#: ask_alyf/ask_alyf/tools.py:1080
+#: ask_alyf/ask_alyf/tools.py:1081
 msgid "Only Administrator and System Manager can run SQL queries."
 msgstr "Apenas o Administrador e o Gestor do sistema podem executar consultas SQL."
 
-#: ask_alyf/ask_alyf/tools.py:1129
+#: ask_alyf/ask_alyf/tools.py:1130
 msgid "Only GitHub repositories are supported for release lookup."
 msgstr "Apenas repositórios GitHub são suportados para procura de versões."
 
-#: ask_alyf/ask_alyf/tools.py:1083
+#: ask_alyf/ask_alyf/tools.py:1084
 msgid "Only a single read-only SQL statement is allowed."
 msgstr "Apenas uma única instrução SQL somente leitura é permitida."
 
@@ -1061,18 +1083,27 @@ msgstr "Apenas uma única instrução SQL somente leitura é permitida."
 msgid "Only backend actions can be confirmed by this endpoint."
 msgstr "Apenas backend actions podem ser confirmadas por este ponto de extremidade."
 
-#: ask_alyf/ask_alyf/tools.py:1086
+#: ask_alyf/ask_alyf/tools.py:1087
 msgid "Only read-only SQL statements are allowed."
 msgstr "Apenas instruções SQL somente leitura são permitidas."
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:994
+#: ask_alyf/public/js/ask_alyf.bundle.js:995
 msgid "Open Ask ALYF"
 msgstr "Abrir Ask ALYF"
+
+#: ask_alyf/ask_alyf/toolset.py:1181
+msgid "Open document action needs correction."
+msgstr "A ação de abrir documento precisa de correção."
 
 #: ask_alyf/ask_alyf/toolset.py:1158
 #, python-brace-format
 msgid "Open new {0}"
 msgstr "Abrir novo {0}"
+
+#: ask_alyf/ask_alyf/toolset.py:1179
+#, python-brace-format
+msgid "Open unsaved {0}"
+msgstr "Abrir {0} não guardado"
 
 #: ask_alyf/ask_alyf/agent.py:166
 #, python-brace-format
@@ -1082,6 +1113,11 @@ msgstr "A abrir um novo {0}"
 #: ask_alyf/ask_alyf/agent.py:164
 msgid "Opening a page"
 msgstr "A abrir uma página"
+
+#: ask_alyf/ask_alyf/agent.py:168
+#, python-brace-format
+msgid "Opening an unsaved {0}"
+msgstr "A abrir um {0} não guardado"
 
 #. Description of the 'Base URL' (Data) field in DocType 'Ask ALYF Settings'
 #. Description of the 'Vision Base URL' (Data) field in DocType 'Ask ALYF
@@ -1096,12 +1132,12 @@ msgstr ""
 msgid "Parent Checkpoint ID"
 msgstr "ID do ponto de verificação principal"
 
-#: ask_alyf/ask_alyf/tools.py:623
+#: ask_alyf/ask_alyf/tools.py:624
 #, python-brace-format
 msgid "Path '{0}' must point to a file inside an installed app."
 msgstr "O caminho '{0}' deve apontar para um ficheiro dentro de uma aplicação instalada."
 
-#: ask_alyf/ask_alyf/tools.py:261
+#: ask_alyf/ask_alyf/tools.py:262
 #, python-brace-format
 msgid "Path '{0}' was not found in app '{1}'."
 msgstr "O caminho '{0}' não foi encontrado na aplicação '{1}'."
@@ -1111,7 +1147,7 @@ msgstr "O caminho '{0}' não foi encontrado na aplicação '{1}'."
 msgid "Path is not a file: {0}"
 msgstr "O caminho não é um ficheiro: {0}"
 
-#: ask_alyf/ask_alyf/deep_agent_backend.py:93 ask_alyf/ask_alyf/tools.py:210
+#: ask_alyf/ask_alyf/deep_agent_backend.py:93 ask_alyf/ask_alyf/tools.py:211
 msgid "Path must start with an installed app name."
 msgstr "O caminho deve começar com o nome de uma aplicação instalada."
 
@@ -1121,7 +1157,7 @@ msgstr "O caminho deve começar com o nome de uma aplicação instalada."
 msgid "Pending Operation JSON"
 msgstr "JSON de operação pendente"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2408
+#: ask_alyf/public/js/ask_alyf.bundle.js:2409
 msgid "Pending operation"
 msgstr "Operação pendente"
 
@@ -1133,7 +1169,7 @@ msgstr "A planear os próximos passos"
 msgid "Please configure an API key first and save the settings, then we can fetch available models."
 msgstr "Por favor, configure primeiro uma chave de API e guarde as definições, depois podemos obter os modelos disponíveis."
 
-#: ask_alyf/ask_alyf/toolset.py:1251
+#: ask_alyf/ask_alyf/toolset.py:1272
 msgid "Prepared add child row action."
 msgstr "Ação de adicionar linha secundária preparada."
 
@@ -1153,7 +1189,7 @@ msgstr "Proposta de criação em lote preparada."
 msgid "Prepared cancel proposal."
 msgstr "Proposta de cancelar preparada."
 
-#: ask_alyf/ask_alyf/toolset.py:1287
+#: ask_alyf/ask_alyf/toolset.py:1308
 msgid "Prepared chart display."
 msgstr "Exibição de gráfico preparada."
 
@@ -1181,11 +1217,11 @@ msgstr "Proposta de renomear preparada."
 msgid "Prepared route action."
 msgstr "Ação de rota preparada."
 
-#: ask_alyf/ask_alyf/toolset.py:1181
+#: ask_alyf/ask_alyf/toolset.py:1202
 msgid "Prepared scroll action."
 msgstr "Ação de rolagem preparada."
 
-#: ask_alyf/ask_alyf/toolset.py:1216
+#: ask_alyf/ask_alyf/toolset.py:1237
 msgid "Prepared set field action."
 msgstr "Ação de definir campo preparada."
 
@@ -1201,27 +1237,31 @@ msgstr "Proposta de habilidade preparada."
 msgid "Prepared submit proposal."
 msgstr "Proposta de submeter preparada."
 
+#: ask_alyf/ask_alyf/toolset.py:1182
+msgid "Prepared unsaved document."
+msgstr "Documento não guardado preparado."
+
 #: ask_alyf/ask_alyf/toolset.py:906
 msgid "Prepared update proposal."
 msgstr "Proposta de atualização preparada."
 
-#: ask_alyf/ask_alyf/agent.py:170
+#: ask_alyf/ask_alyf/agent.py:172
 msgid "Preparing a chart"
 msgstr "A preparar um gráfico"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1747
+#: ask_alyf/public/js/ask_alyf.bundle.js:1748
 msgid "Projects"
 msgstr "Projetos"
 
-#: ask_alyf/ask_alyf/tools.py:1704
+#: ask_alyf/ask_alyf/tools.py:1705
 msgid "Provide at least one chart in frappe_charts."
 msgstr "Forneça pelo menos um gráfico em frappe_charts."
 
-#: ask_alyf/ask_alyf/tools.py:567
+#: ask_alyf/ask_alyf/tools.py:568
 msgid "Provide at least one label to translate."
 msgstr "Forneça pelo menos um rótulo para traduzir."
 
-#: ask_alyf/ask_alyf/tools.py:586 ask_alyf/ask_alyf/tools.py:725
+#: ask_alyf/ask_alyf/tools.py:587 ask_alyf/ask_alyf/tools.py:726
 msgid "Query is required."
 msgstr "A consulta é obrigatória."
 
@@ -1242,12 +1282,12 @@ msgstr "A ler o documento anexado"
 msgid "Reading {0} list"
 msgstr "A ler a lista de {0}"
 
-#: ask_alyf/ask_alyf/agent.py:211
+#: ask_alyf/ask_alyf/agent.py:213
 #, python-brace-format
 msgid "Reading {0}, lines {1}-{2}"
 msgstr "Lendo {0}, linhas {1}-{2}"
 
-#: ask_alyf/ask_alyf/api.py:872 ask_alyf/ask_alyf/api.py:979
+#: ask_alyf/ask_alyf/api.py:872 ask_alyf/ask_alyf/api.py:984
 #, python-brace-format
 msgid "Reason: {0}"
 msgstr "Motivo: {0}"
@@ -1257,20 +1297,20 @@ msgstr "Motivo: {0}"
 msgid "Reasoning Effort"
 msgstr "Esforço de raciocínio"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2501
+#: ask_alyf/public/js/ask_alyf.bundle.js:2502
 #, python-brace-format
 msgid "Records to create ({0})"
 msgstr "Registos a criar ({0})"
 
-#: ask_alyf/ask_alyf/tools.py:828
+#: ask_alyf/ask_alyf/tools.py:829
 msgid "Reference doctype is required."
 msgstr "O DocType de Referência é obrigatório."
 
-#: ask_alyf/ask_alyf/tools.py:832
+#: ask_alyf/ask_alyf/tools.py:833
 msgid "Reference name is required."
 msgstr "O Nome de Referência é obrigatório."
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:953
+#: ask_alyf/public/js/ask_alyf.bundle.js:954
 msgid "Reject all"
 msgstr "Rejeitar todas"
 
@@ -1288,7 +1328,7 @@ msgstr "Renomear {0} {1} para {2}"
 msgid "Renaming {0}"
 msgstr "A renomear {0}"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:998
+#: ask_alyf/public/js/ask_alyf.bundle.js:999
 msgid "Resize chat window"
 msgstr "Redimensionar janela de chat"
 
@@ -1300,7 +1340,7 @@ msgstr "Revertido."
 msgid "Route action needs correction."
 msgstr "A ação de rota precisa de correção."
 
-#: ask_alyf/ask_alyf/tools.py:1736
+#: ask_alyf/ask_alyf/tools.py:1737
 #, python-brace-format
 msgid "Route part #{0} must be a non-empty string."
 msgstr "A parte da rota #{0} deve ser uma cadeia não vazia."
@@ -1309,7 +1349,7 @@ msgstr "A parte da rota #{0} deve ser uma cadeia não vazia."
 msgid "Running a database query"
 msgstr "A executar uma consulta à base de dados"
 
-#: ask_alyf/ask_alyf/agent.py:174
+#: ask_alyf/ask_alyf/agent.py:176
 msgid "Running a report"
 msgstr "A executar um relatório"
 
@@ -1323,25 +1363,25 @@ msgstr "Igual ao Chat"
 msgid "Saving instructions"
 msgstr "A guardar as instruções"
 
-#: ask_alyf/ask_alyf/toolset.py:1180
+#: ask_alyf/ask_alyf/toolset.py:1201
 msgid "Scroll action needs correction."
 msgstr "A ação de rolagem precisa de correção."
 
-#: ask_alyf/ask_alyf/toolset.py:1178
+#: ask_alyf/ask_alyf/toolset.py:1199
 #, python-brace-format
 msgid "Scroll to field {0}"
 msgstr "Rolar até o campo {0}"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2623
+#: ask_alyf/public/js/ask_alyf.bundle.js:2628
 msgid "Scrolling to fields is not available on this form."
 msgstr "A rolagem para campos não está disponível neste formulário."
 
-#: ask_alyf/ask_alyf/agent.py:201
+#: ask_alyf/ask_alyf/agent.py:203
 #, python-brace-format
 msgid "Searching for \"{0}\""
 msgstr "Pesquisando \"{0}\""
 
-#: ask_alyf/ask_alyf/agent.py:199
+#: ask_alyf/ask_alyf/agent.py:201
 #, python-brace-format
 msgid "Searching for \"{0}\" in {1}"
 msgstr "Pesquisando \"{0}\" em {1}"
@@ -1354,19 +1394,19 @@ msgstr "A pesquisar na documentação"
 msgid "Searching the source code"
 msgstr "A pesquisar no código fonte"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1693
+#: ask_alyf/public/js/ask_alyf.bundle.js:1694
 msgid "Selling"
 msgstr "Vendas"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2263
+#: ask_alyf/public/js/ask_alyf.bundle.js:2264
 msgid "Sending..."
 msgstr "Enviando..."
 
-#: ask_alyf/ask_alyf/toolset.py:1215
+#: ask_alyf/ask_alyf/toolset.py:1236
 msgid "Set field action needs correction."
 msgstr "A ação de definir campo precisa de correção."
 
-#: ask_alyf/ask_alyf/toolset.py:1213
+#: ask_alyf/ask_alyf/toolset.py:1234
 #, python-brace-format
 msgid "Set field {0} on current form"
 msgstr "Definir o campo {0} no formulário atual"
@@ -1380,39 +1420,39 @@ msgstr "A proposta de definir valor precisa de correção."
 msgid "Set {0} on {1} {2}"
 msgstr "Definir {0} em {1} {2}"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:439
+#: ask_alyf/public/js/ask_alyf.bundle.js:440
 msgid "Show all"
 msgstr "Mostrar tudo"
 
-#: ask_alyf/ask_alyf/toolset.py:1281
+#: ask_alyf/ask_alyf/toolset.py:1302
 msgid "Show chart"
 msgstr "Mostrar gráfico"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1722
+#: ask_alyf/public/js/ask_alyf.bundle.js:1723
 msgid "Show employee headcount by department as a chart"
 msgstr "Mostrar o número de funcionários por departamento como um gráfico"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1741
+#: ask_alyf/public/js/ask_alyf.bundle.js:1742
 msgid "Show me open Work Orders and their status"
 msgstr "Mostrar as Ordens de Trabalho abertas e o seu estado"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1767
+#: ask_alyf/public/js/ask_alyf.bundle.js:1768
 msgid "Show me the top 10 DocTypes by record count"
 msgstr "Mostrar os 10 principais DocTypes por contagem de registros"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1714
+#: ask_alyf/public/js/ask_alyf.bundle.js:1715
 msgid "Show me unpaid Sales Invoices older than 30 days"
 msgstr "Mostrar as faturas de venda não pagas há mais de 30 dias"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1759
+#: ask_alyf/public/js/ask_alyf.bundle.js:1760
 msgid "Show me unresolved issues from this week"
 msgstr "Mostrar as questões não resolvidas desta semana"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1749
+#: ask_alyf/public/js/ask_alyf.bundle.js:1750
 msgid "Show project progress as a chart"
 msgstr "Mostrar o progresso do projeto como um gráfico"
 
-#: ask_alyf/ask_alyf/toolset.py:1281
+#: ask_alyf/ask_alyf/toolset.py:1302
 #, python-brace-format
 msgid "Show {0} charts"
 msgstr "Mostrar {0} gráficos"
@@ -1443,21 +1483,21 @@ msgstr "A proposta de competência necessita de correção."
 msgid "Skill title is required."
 msgstr "O título da competência é obrigatório."
 
-#: ask_alyf/ask_alyf/tools.py:1472
+#: ask_alyf/ask_alyf/tools.py:1473
 msgid "Some rows failed."
 msgstr "Algumas linhas falharam."
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:808
+#: ask_alyf/public/js/ask_alyf.bundle.js:809
 #, python-brace-format
 msgid "Sort by {0}"
 msgstr "Ordenar por {0}"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:803
+#: ask_alyf/public/js/ask_alyf.bundle.js:804
 #, python-brace-format
 msgid "Sorted ascending by {0}"
 msgstr "Ordenado ascendente por {0}"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:806
+#: ask_alyf/public/js/ask_alyf.bundle.js:807
 #, python-brace-format
 msgid "Sorted descending by {0}"
 msgstr "Ordenado descendente por {0}"
@@ -1470,7 +1510,7 @@ msgstr "O código fonte é somente leitura"
 msgid "Source file path is required"
 msgstr "O caminho do ficheiro de origem é obrigatório"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1005
+#: ask_alyf/public/js/ask_alyf.bundle.js:1006
 msgid "Start a new conversation"
 msgstr "Iniciar uma nova conversa"
 
@@ -1488,11 +1528,11 @@ msgstr "O estado deve ser um dos seguintes: success, failed ou rejected."
 msgid "Still generating..."
 msgstr "Ainda a gerar..."
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1729
+#: ask_alyf/public/js/ask_alyf.bundle.js:1730
 msgid "Stock"
 msgstr "Stock"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2030
+#: ask_alyf/public/js/ask_alyf.bundle.js:2031
 msgid "Stop this run"
 msgstr "Parar esta execução"
 
@@ -1500,7 +1540,7 @@ msgstr "Parar esta execução"
 msgid "Stopped. Send a message to pick up from here."
 msgstr "Parado. Envie uma mensagem para continuar a partir daqui."
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2051
+#: ask_alyf/public/js/ask_alyf.bundle.js:2052
 msgid "Stopping..."
 msgstr "A parar..."
 
@@ -1524,7 +1564,7 @@ msgstr "Número de telefone do suporte"
 msgid "System Prompt"
 msgstr "Instrução do sistema"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:771
+#: ask_alyf/public/js/ask_alyf.bundle.js:772
 msgid "Table pagination"
 msgstr "Paginação da tabela"
 
@@ -1542,7 +1582,7 @@ msgstr "Caminho da tarefa"
 msgid "That confirmation did not match this operation. Propose it again on its own."
 msgstr "Essa confirmação não correspondeu a esta operação. Proponha-a novamente de forma isolada."
 
-#: ask_alyf/ask_alyf/tools.py:1152
+#: ask_alyf/ask_alyf/tools.py:1153
 msgid "The Compendium app is not installed."
 msgstr "A aplicação Compendium não está instalada."
 
@@ -1559,7 +1599,7 @@ msgstr "A tarefa em segundo plano não corresponde a esta mensagem."
 msgid "The message could not be found in this conversation."
 msgstr "Não foi possível encontrar a mensagem nesta conversa."
 
-#: ask_alyf/ask_alyf/agent.py:741
+#: ask_alyf/ask_alyf/agent.py:745
 msgid "The operation was completed, but the follow-up response could not be generated."
 msgstr "A operação foi concluída, mas não foi possível gerar a resposta de acompanhamento."
 
@@ -1604,7 +1644,7 @@ msgstr "Não há nenhuma ação de frontend pendente para resolver."
 msgid "There is no pending operation to confirm."
 msgstr "Não há nenhuma operação pendente para confirmar."
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1147
+#: ask_alyf/public/js/ask_alyf.bundle.js:1148
 msgid "Thinking..."
 msgstr "A pensar..."
 
@@ -1619,15 +1659,15 @@ msgstr "Isto está a demorar um pouco..."
 msgid "Thread ID"
 msgstr "ID da thread"
 
-#: ask_alyf/ask_alyf/tools.py:1580
+#: ask_alyf/ask_alyf/tools.py:1581
 msgid "Too many chart datasets."
 msgstr "Demasiados conjuntos de dados do gráfico."
 
-#: ask_alyf/ask_alyf/tools.py:1561
+#: ask_alyf/ask_alyf/tools.py:1562
 msgid "Too many chart labels."
 msgstr "Demasiadas etiquetas de gráfico."
 
-#: ask_alyf/ask_alyf/tools.py:1707
+#: ask_alyf/ask_alyf/tools.py:1708
 msgid "Too many charts in one request."
 msgstr "Demasiados gráficos num único pedido."
 
@@ -1640,26 +1680,26 @@ msgstr "Rastreamento"
 msgid "Translating labels"
 msgstr "A traduzir etiquetas"
 
-#: ask_alyf/ask_alyf/tools.py:1310
+#: ask_alyf/ask_alyf/tools.py:1311
 msgid "Unknown error."
 msgstr "Erro desconhecido."
 
-#: ask_alyf/ask_alyf/tools.py:1411
+#: ask_alyf/ask_alyf/tools.py:1412
 #, python-brace-format
 msgid "Unsupported action '{0}'."
 msgstr "Ação não suportada '{0}'."
 
-#: ask_alyf/ask_alyf/tools.py:987
+#: ask_alyf/ask_alyf/tools.py:988
 #, python-brace-format
 msgid "Unsupported file type '{0}'. Supported types: PDF, PNG, JPG, GIF, WebP."
 msgstr "Tipo de ficheiro não suportado '{0}'. Tipos suportados: PDF, PNG, JPG, GIF, WebP."
 
-#: ask_alyf/ask_alyf/tools.py:1722 ask_alyf/ask_alyf/tools.py:1785
+#: ask_alyf/ask_alyf/tools.py:1723 ask_alyf/ask_alyf/tools.py:1797
 #, python-brace-format
 msgid "Unsupported frontend action '{0}'."
 msgstr "Ação de frontend não suportada '{0}'."
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2652
+#: ask_alyf/public/js/ask_alyf.bundle.js:2657
 #, python-brace-format
 msgid "Unsupported frontend action: {0}"
 msgstr "Ação de frontend não suportada: {0}"
@@ -1669,16 +1709,16 @@ msgstr "Ação de frontend não suportada: {0}"
 msgid "Unsupported model configuration: {0}"
 msgstr "Configuração de modelo não suportada: {0}"
 
-#: ask_alyf/ask_alyf/tools.py:1252 ask_alyf/ask_alyf/tools.py:1272
+#: ask_alyf/ask_alyf/tools.py:1253 ask_alyf/ask_alyf/tools.py:1273
 #, python-brace-format
 msgid "Unsupported operation kind '{0}'."
 msgstr "Tipo de operação não suportado '{0}'."
 
-#: ask_alyf/ask_alyf/tools.py:1621
+#: ask_alyf/ask_alyf/tools.py:1622
 msgid "Unsupported or missing chart type."
 msgstr "Tipo de gráfico não suportado ou em falta."
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1668
+#: ask_alyf/public/js/ask_alyf.bundle.js:1669
 msgid "Untitled conversation"
 msgstr "Conversa sem título"
 
@@ -1735,61 +1775,61 @@ msgstr "Modelo de Vision"
 msgid "Vision Provider"
 msgstr "Provedor de Vision"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1061
-#: ask_alyf/public/js/ask_alyf.bundle.js:1063
+#: ask_alyf/public/js/ask_alyf.bundle.js:1062
+#: ask_alyf/public/js/ask_alyf.bundle.js:1064
 msgid "Voice input"
 msgstr "Entrada de voz"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:3150
+#: ask_alyf/public/js/ask_alyf.bundle.js:3155
 #, python-brace-format
 msgid "Voice input language: {0}"
 msgstr "Idioma da entrada de voz: {0}"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:2311
+#: ask_alyf/public/js/ask_alyf.bundle.js:2312
 msgid "Waiting for response..."
 msgstr "Aguardando resposta..."
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1696
+#: ask_alyf/public/js/ask_alyf.bundle.js:1697
 msgid "What Sales Orders are pending delivery?"
 msgstr "Quais Pedidos de Venda estão pendentes de entrega?"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1768
+#: ask_alyf/public/js/ask_alyf.bundle.js:1769
 msgid "What are the recent Error Logs?"
 msgstr "Quais são os Error Logs recentes?"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1750
+#: ask_alyf/public/js/ask_alyf.bundle.js:1751
 msgid "What open tasks are assigned to me?"
 msgstr "Quais tarefas abertas estão atribuídas a mim?"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1733
+#: ask_alyf/public/js/ask_alyf.bundle.js:1734
 msgid "What were the top 10 most moved items this month?"
 msgstr "Quais foram os 10 itens mais movimentados este mês?"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1760
+#: ask_alyf/public/js/ask_alyf.bundle.js:1761
 msgid "What's the average resolution time for issues?"
 msgstr "Qual é o tempo médio de resolução de Issues?"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1715
+#: ask_alyf/public/js/ask_alyf.bundle.js:1716
 msgid "What's the total outstanding receivables?"
 msgstr "Qual é o total de contas a receber em aberto?"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1705
+#: ask_alyf/public/js/ask_alyf.bundle.js:1706
 msgid "Which Purchase Orders are overdue?"
 msgstr "Quais Pedidos de Compra estão em atraso?"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1723
+#: ask_alyf/public/js/ask_alyf.bundle.js:1724
 msgid "Which employees are on leave today?"
 msgstr "Quais funcionários estão de licença hoje?"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1732
+#: ask_alyf/public/js/ask_alyf.bundle.js:1733
 msgid "Which items are below their reorder level?"
 msgstr "Quais itens estão abaixo do seu nível de reposição?"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1751
+#: ask_alyf/public/js/ask_alyf.bundle.js:1752
 msgid "Which project tasks are overdue?"
 msgstr "Quais tarefas de projeto estão em atraso?"
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:1769
+#: ask_alyf/public/js/ask_alyf.bundle.js:1770
 msgid "Which users logged in today?"
 msgstr "Que utilizadores iniciaram sessão hoje?"
 
@@ -1798,16 +1838,16 @@ msgstr "Que utilizadores iniciaram sessão hoje?"
 #: ask_alyf/ask_alyf/api.py:452 ask_alyf/ask_alyf/api.py:520
 #: ask_alyf/ask_alyf/api.py:544 ask_alyf/ask_alyf/api.py:724
 #: ask_alyf/ask_alyf/api.py:792 ask_alyf/ask_alyf/api.py:897
-#: ask_alyf/ask_alyf/api.py:1016 ask_alyf/ask_alyf/api.py:1054
+#: ask_alyf/ask_alyf/api.py:1021 ask_alyf/ask_alyf/api.py:1059
 msgid "You do not have access to Ask ALYF."
 msgstr "Você não tem acesso ao Ask ALYF."
 
-#: ask_alyf/ask_alyf/api.py:1023
+#: ask_alyf/ask_alyf/api.py:1028
 #, python-brace-format
 msgid "You do not have read permission on {0}."
 msgstr "Você não tem permissão de leitura em {0}."
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:3091
+#: ask_alyf/public/js/ask_alyf.bundle.js:3096
 msgid "Your browser does not support voice input."
 msgstr "O seu navegador não suporta entrada de voz."
 
@@ -1852,7 +1892,7 @@ msgstr "Máximo"
 msgid "medium"
 msgstr "Médio"
 
-#: ask_alyf/ask_alyf/tools.py:1465
+#: ask_alyf/ask_alyf/tools.py:1466
 #, python-brace-format
 msgid "row {0}: {1}"
 msgstr "linha {0}: {1}"
@@ -1867,12 +1907,12 @@ msgstr "rota de destino"
 msgid "xhigh"
 msgstr "Muito alto"
 
-#: ask_alyf/ask_alyf/tools.py:1039
+#: ask_alyf/ask_alyf/tools.py:1040
 #, python-brace-format
 msgid "{0} '{1}' was not found."
 msgstr "{0} '{1}' não foi encontrado."
 
-#: ask_alyf/public/js/ask_alyf.bundle.js:355
+#: ask_alyf/public/js/ask_alyf.bundle.js:356
 #, python-brace-format
 msgid "{0} steps"
 msgstr "{0} passos"
