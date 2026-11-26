@@ -231,7 +231,15 @@ def get_langchain_reasoning_effort_levels(model_id: str) -> list[str] | None:
 	if profile is None:
 		return None
 
-	return list(profile.get("reasoning_effort_levels") or ())
+	levels = profile.get("reasoning_effort_levels")
+	if levels is not None:
+		return list(levels)
+
+	# Without levels, only a profile that rules out reasoning tells us anything.
+	if profile.get("reasoning_output") is False:
+		return []
+
+	return None
 
 
 def warn_if_unsupported_reasoning_effort(model_id: str | None, reasoning_effort: str | None) -> None:
