@@ -7,8 +7,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Ask ALYF VERSION\n"
 "Report-Msgid-Bugs-To: hallo@alyf.de\n"
+<<<<<<< HEAD
 "POT-Creation-Date: 2026-09-12 22:19+0053\n"
 "PO-Revision-Date: 2026-09-12 22:19+0053\n"
+=======
+"POT-Creation-Date: 2026-11-26 19:46+0053\n"
+"PO-Revision-Date: 2026-11-26 19:46+0053\n"
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 "Last-Translator: hallo@alyf.de\n"
 "Language-Team: hallo@alyf.de\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +21,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.13.1\n"
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:302
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:356
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 msgid "1 step"
 msgstr ""
 
@@ -31,6 +40,7 @@ msgstr ""
 msgid "Access to hidden paths is not allowed"
 msgstr ""
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:1470
 msgid "Accounts"
 msgstr ""
@@ -68,6 +78,48 @@ msgid "Add a row to {0} on current form"
 msgstr ""
 
 #: ask_alyf/ask_alyf/toolset.py:1222
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:1712
+msgid "Accounts"
+msgstr ""
+
+#: ask_alyf/ask_alyf/tools.py:1520
+msgid "Action field 'args' must be an object."
+msgstr ""
+
+#: ask_alyf/ask_alyf/tools.py:1486 ask_alyf/ask_alyf/tools.py:1497
+msgid "Action field 'doctype' is required."
+msgstr ""
+
+#: ask_alyf/ask_alyf/tools.py:1515
+msgid "Action field 'file_id' is required."
+msgstr ""
+
+#: ask_alyf/ask_alyf/tools.py:1501
+msgid "Action field 'records' must be a non-empty list."
+msgstr ""
+
+#: ask_alyf/ask_alyf/tools.py:1505
+#, python-brace-format
+msgid "Action field 'records' row #{0} must be an object."
+msgstr ""
+
+#: ask_alyf/ask_alyf/tools.py:1490
+msgid "Action field 'values' must be an object."
+msgstr ""
+
+#: ask_alyf/ask_alyf/tools.py:1430
+#, python-brace-format
+msgid "Action field '{0}' must be an object."
+msgstr ""
+
+#: ask_alyf/ask_alyf/toolset.py:1269
+#, python-brace-format
+msgid "Add a row to {0} on current form"
+msgstr ""
+
+#: ask_alyf/ask_alyf/toolset.py:1271
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 msgid "Add child row action needs correction."
 msgstr ""
 
@@ -117,6 +169,7 @@ msgstr ""
 msgid "Amending {0}"
 msgstr ""
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/tools.py:1435
 msgid "And {0} more."
 msgstr ""
@@ -131,6 +184,20 @@ msgid "App name is required."
 msgstr ""
 
 #: ask_alyf/public/js/ask_alyf.bundle.js:2500
+=======
+#: ask_alyf/ask_alyf/tools.py:1478
+#, python-brace-format
+msgid "And {0} more."
+msgstr ""
+
+#: ask_alyf/ask_alyf/deep_agent_backend.py:100 ask_alyf/ask_alyf/tools.py:151
+#: ask_alyf/ask_alyf/tools.py:1098
+#, python-brace-format
+msgid "App '{0}' is not installed."
+msgstr ""
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:2743
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 msgid "Applying action..."
 msgstr ""
 
@@ -192,7 +259,11 @@ msgstr ""
 msgid "Ask ALYF User"
 msgstr ""
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:1168
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:1410
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 msgid "Ask ALYF could not finish processing this message. Please try again."
 msgstr ""
 
@@ -208,6 +279,7 @@ msgstr ""
 msgid "Ask ALYF is still working on the previous message in this conversation."
 msgstr ""
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:976
 msgid "Ask ALYF is visible, but no API key/model is configured yet in Ask ALYF Settings."
 msgstr ""
@@ -221,6 +293,25 @@ msgid "Ask ALYF stopped processing this message. Please try again."
 msgstr ""
 
 #: ask_alyf/public/js/ask_alyf.bundle.js:802
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:1213
+msgid "Ask ALYF is visible, but no API key/model is configured yet in Ask ALYF Settings."
+msgstr ""
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1018
+msgid "Ask ALYF sections"
+msgstr ""
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1411
+msgid "Ask ALYF stopped processing this message. Please try again."
+msgstr ""
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1068
+msgid "Ask ALYF uses AI and can make mistakes, including with numbers and information about people."
+msgstr ""
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1036
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 msgid "Ask about this ERPNext instance"
 msgstr ""
 
@@ -232,8 +323,13 @@ msgstr ""
 msgid "At least one role is required."
 msgstr ""
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:818
 #: ask_alyf/public/js/ask_alyf.bundle.js:820
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:1054
+#: ask_alyf/public/js/ask_alyf.bundle.js:1056
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 msgid "Attach file"
 msgstr ""
 
@@ -261,6 +357,7 @@ msgstr ""
 msgid "Batch create proposal needs correction."
 msgstr ""
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:1461
 msgid "Buying"
 msgstr ""
@@ -272,6 +369,20 @@ msgid "Call support"
 msgstr ""
 
 #: ask_alyf/public/js/ask_alyf.bundle.js:1338
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:1703
+msgid "Buying"
+msgstr ""
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1009
+#: ask_alyf/public/js/ask_alyf.bundle.js:1011
+#: ask_alyf/public/js/ask_alyf.bundle.js:1581
+msgid "Call support"
+msgstr ""
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1580
+#, python-brace-format
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 msgid "Call support: {0}"
 msgstr ""
 
@@ -287,7 +398,12 @@ msgstr ""
 msgid "Cancel {0} {1}"
 msgstr ""
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/api.py:969
+=======
+#: ask_alyf/ask_alyf/api.py:980
+#, python-brace-format
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 msgid "Cancelled frontend action: {0}"
 msgstr ""
 
@@ -299,6 +415,7 @@ msgstr ""
 msgid "Cancelled the pending operation: {0}."
 msgstr ""
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:2216
 msgid "Changes preview"
 msgstr ""
@@ -348,6 +465,57 @@ msgid "Chart spending by supplier for this quarter"
 msgstr ""
 
 #: ask_alyf/public/js/ask_alyf.bundle.js:1490
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:2455
+msgid "Changes preview"
+msgstr ""
+
+#: ask_alyf/ask_alyf/toolset.py:1307
+msgid "Chart action needs correction."
+msgstr ""
+
+#: ask_alyf/ask_alyf/tools.py:1652
+msgid "Chart data must be an object."
+msgstr ""
+
+#: ask_alyf/ask_alyf/tools.py:1578
+msgid "Chart data requires a non-empty datasets array."
+msgstr ""
+
+#: ask_alyf/ask_alyf/tools.py:1559
+msgid "Chart data requires a non-empty labels array."
+msgstr ""
+
+#: ask_alyf/ask_alyf/tools.py:1638
+msgid "Chart height is out of range."
+msgstr ""
+
+#: ask_alyf/ask_alyf/tools.py:1568
+msgid "Chart labels must be numbers or strings."
+msgstr ""
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1714
+msgid "Chart monthly expenses by cost center"
+msgstr ""
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1696
+msgid "Chart my monthly sales revenue for the last 6 months"
+msgstr ""
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1759
+msgid "Chart open issues by priority"
+msgstr ""
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1741
+msgid "Chart production output by item this week"
+msgstr ""
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1705
+msgid "Chart spending by supplier for this quarter"
+msgstr ""
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1732
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 msgid "Chart stock value by warehouse"
 msgstr ""
 
@@ -393,6 +561,7 @@ msgstr ""
 msgid "Checkpoint Type"
 msgstr ""
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/deep_agent_backend.py:104 ask_alyf/ask_alyf/tools.py:187
 msgid "Code access is restricted to installed app directories."
 msgstr ""
@@ -410,6 +579,21 @@ msgid "Configure a vision model API key in Ask ALYF Settings."
 msgstr ""
 
 #: ask_alyf/ask_alyf/tools.py:785
+=======
+#: ask_alyf/ask_alyf/deep_agent_backend.py:104 ask_alyf/ask_alyf/tools.py:180
+msgid "Code access is restricted to installed app directories."
+msgstr ""
+
+#: ask_alyf/ask_alyf/tools.py:122
+msgid "Code search is disabled in Ask ALYF Settings."
+msgstr ""
+
+#: ask_alyf/ask_alyf/agent.py:328
+msgid "Configure a model in Ask ALYF Settings before sending messages."
+msgstr ""
+
+#: ask_alyf/ask_alyf/tools.py:871
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 msgid "Configure a vision model in Ask ALYF Settings."
 msgstr ""
 
@@ -418,6 +602,7 @@ msgstr ""
 msgid "Configure an API key in Ask ALYF Settings before sending messages."
 msgstr ""
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:685
 #: ask_alyf/public/js/ask_alyf.bundle.js:707
 msgid "Column"
@@ -428,6 +613,13 @@ msgid "Confirm all"
 msgstr ""
 
 #: ask_alyf/ask_alyf/api.py:740 ask_alyf/public/js/ask_alyf.bundle.js:2500
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:951
+msgid "Confirm all"
+msgstr ""
+
+#: ask_alyf/ask_alyf/api.py:746 ask_alyf/public/js/ask_alyf.bundle.js:2743
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 msgid "Confirming action..."
 msgstr ""
 
@@ -435,6 +627,7 @@ msgstr ""
 msgid "Conversation deletion is not allowed."
 msgstr ""
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/tools.py:995
 msgid "Conversation name is required."
 msgstr ""
@@ -444,6 +637,17 @@ msgid "Conversation not found. Please start a new conversation."
 msgstr ""
 
 #: ask_alyf/public/js/ask_alyf.bundle.js:571
+=======
+#: ask_alyf/ask_alyf/tools.py:1038
+msgid "Conversation name is required."
+msgstr ""
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1398
+msgid "Conversation not found. Please start a new conversation."
+msgstr ""
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:686
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 msgid "Copy as Markdown"
 msgstr ""
 
@@ -459,11 +663,19 @@ msgstr ""
 msgid "Could not display chart."
 msgstr ""
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:2722
 msgid "Could not download chart."
 msgstr ""
 
 #: ask_alyf/ask_alyf/tools.py:697
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:2962
+msgid "Could not download chart."
+msgstr ""
+
+#: ask_alyf/ask_alyf/tools.py:785
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 msgid "Could not extract visual content from the file."
 msgstr ""
 
@@ -471,11 +683,19 @@ msgstr ""
 msgid "Could not generate content."
 msgstr ""
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:2789
 msgid "Could not render chart."
 msgstr ""
 
 #: ask_alyf/public/js/ask_alyf.bundle.js:725
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:3033
+msgid "Could not render chart."
+msgstr ""
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:761
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 msgid "Could not render diagram."
 msgstr ""
 
@@ -499,7 +719,12 @@ msgstr ""
 msgid "Create {0} {1} records"
 msgstr ""
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/tools.py:1399
+=======
+#: ask_alyf/ask_alyf/tools.py:1442
+#, python-brace-format
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 msgid "Created {0} of {1} {2} records."
 msgstr ""
 
@@ -507,6 +732,7 @@ msgstr ""
 msgid "Creating several {0} records"
 msgstr ""
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:2364
 msgid "Current document is {0}, expected {1}."
 msgstr ""
@@ -530,6 +756,34 @@ msgid "Delete conversation"
 msgstr ""
 
 #: ask_alyf/public/js/ask_alyf.bundle.js:1225
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:2603
+#, python-brace-format
+msgid "Current document is {0}, expected {1}."
+msgstr ""
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:2596
+#, python-brace-format
+msgid "Current form is {0}, expected {1}."
+msgstr ""
+
+#: ask_alyf/ask_alyf/tools.py:1596 ask_alyf/ask_alyf/tools.py:1599
+#: ask_alyf/ask_alyf/tools.py:1602
+msgid "Dataset values must be numeric."
+msgstr ""
+
+#: ask_alyf/ask_alyf/tools.py:1591
+msgid "Dataset values must match labels length."
+msgstr ""
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1939
+#: ask_alyf/public/js/ask_alyf.bundle.js:1940
+msgid "Delete conversation"
+msgstr ""
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1467
+#, python-brace-format
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 msgid "Delete conversation '{0}'?"
 msgstr ""
 
@@ -541,7 +795,12 @@ msgstr ""
 msgid "Delete {0} {1}"
 msgstr ""
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/tools.py:1333
+=======
+#: ask_alyf/ask_alyf/tools.py:1376
+#, python-brace-format
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 msgid "Deleted {0} {1}"
 msgstr ""
 
@@ -549,7 +808,12 @@ msgstr ""
 msgid "Describe what you want..."
 msgstr ""
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/tools.py:337
+=======
+#: ask_alyf/ask_alyf/tools.py:299
+#, python-brace-format
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 msgid "DocType '{0}' is excluded from Agent mode."
 msgstr ""
 
@@ -558,6 +822,7 @@ msgstr ""
 msgid "DocType is excluded"
 msgstr ""
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/tools.py:991
 msgid "DocType is required."
 msgstr ""
@@ -587,6 +852,29 @@ msgid "Document name is required."
 msgstr ""
 
 #: ask_alyf/public/js/ask_alyf.bundle.js:2704
+=======
+#: ask_alyf/ask_alyf/tools.py:1034
+msgid "DocType is required."
+msgstr ""
+
+#: ask_alyf/ask_alyf/tools.py:951
+msgid "Document extraction did not return text."
+msgstr ""
+
+#: ask_alyf/ask_alyf/tools.py:975
+msgid "Document extraction did not return valid JSON."
+msgstr ""
+
+#: ask_alyf/ask_alyf/tools.py:955
+msgid "Document extraction returned an empty response."
+msgstr ""
+
+#: ask_alyf/ask_alyf/tools.py:1036
+msgid "Document name is required."
+msgstr ""
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:2947
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 msgid "Download chart as SVG"
 msgstr ""
 
@@ -594,6 +882,7 @@ msgstr ""
 msgid "Drafting..."
 msgstr ""
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:767
 msgid "ERPNext assistant"
 msgstr ""
@@ -615,6 +904,34 @@ msgid "Each label must be a string."
 msgstr ""
 
 #: ask_alyf/ask_alyf/tools.py:592
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:1003
+msgid "ERPNext assistant"
+msgstr ""
+
+#: ask_alyf/ask_alyf/tools.py:1618
+msgid "Each chart must be an object."
+msgstr ""
+
+#: ask_alyf/ask_alyf/tools.py:1586
+msgid "Each dataset must be an object."
+msgstr ""
+
+#: ask_alyf/ask_alyf/tools.py:1589
+msgid "Each dataset needs a values array."
+msgstr ""
+
+#: ask_alyf/ask_alyf/tools.py:562
+msgid "Each label must be a string."
+msgstr ""
+
+#. Label of the enable_tracing (Check) field in DocType 'Ask ALYF Settings'
+#: ask_alyf/ask_alyf/doctype/ask_alyf_settings/ask_alyf_settings.json:201
+msgid "Enable Tracing"
+msgstr ""
+
+#: ask_alyf/ask_alyf/tools.py:680
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 msgid "Entry type must be one of any, file, or directory."
 msgstr ""
 
@@ -632,6 +949,7 @@ msgstr ""
 msgid "Executed frontend action: {0}"
 msgstr ""
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/tools.py:1432
 msgid "Failed rows: {0}"
 msgstr ""
@@ -677,6 +995,61 @@ msgid "Field '{0}' row #{1} in {2} must be an object."
 msgstr ""
 
 #: ask_alyf/ask_alyf/api.py:1014
+=======
+#: ask_alyf/ask_alyf/tools.py:1475
+#, python-brace-format
+msgid "Failed rows: {0}"
+msgstr ""
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1558
+msgid "Failed to attach file to conversation."
+msgstr ""
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:2770
+msgid "Failed to confirm pending operation."
+msgstr ""
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1471
+msgid "Failed to delete conversation."
+msgstr ""
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:2708
+msgid "Failed to execute frontend action."
+msgstr ""
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1982
+msgid "Failed to open conversation."
+msgstr ""
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:2808
+msgid "Failed to reject pending operation."
+msgstr ""
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:2324
+msgid "Failed to send message."
+msgstr ""
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:2070
+msgid "Failed to stop the run."
+msgstr ""
+
+#: ask_alyf/ask_alyf/tools.py:1843
+#, python-brace-format
+msgid "Field '{0}' does not exist in {1}."
+msgstr ""
+
+#: ask_alyf/ask_alyf/tools.py:1819
+#, python-brace-format
+msgid "Field '{0}' in {1} is a child table ({2}) and must be a list of row objects."
+msgstr ""
+
+#: ask_alyf/ask_alyf/tools.py:1827
+#, python-brace-format
+msgid "Field '{0}' row #{1} in {2} must be an object."
+msgstr ""
+
+#: ask_alyf/ask_alyf/api.py:1025
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 msgid "Field Agent is not enabled."
 msgstr ""
 
@@ -684,6 +1057,7 @@ msgstr ""
 msgid "Field updated."
 msgstr ""
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:2394
 #: ask_alyf/public/js/ask_alyf.bundle.js:2403
 msgid "Field {0} does not exist on this form."
@@ -774,6 +1148,115 @@ msgid "Frontend action payload must be an object."
 msgstr ""
 
 #: ask_alyf/ask_alyf/tools.py:1228
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:2637
+#: ask_alyf/public/js/ask_alyf.bundle.js:2646
+#, python-brace-format
+msgid "Field {0} does not exist on this form."
+msgstr ""
+
+#: ask_alyf/ask_alyf/api.py:1078 ask_alyf/ask_alyf/tools.py:811
+#, python-brace-format
+msgid "File '{0}' was not found."
+msgstr ""
+
+#: ask_alyf/ask_alyf/tools.py:809
+msgid "File ID is required."
+msgstr ""
+
+#: ask_alyf/ask_alyf/api.py:1063
+msgid "File upload is not enabled."
+msgstr ""
+
+#: ask_alyf/ask_alyf/agent.py:174
+msgid "Filling in the open form"
+msgstr ""
+
+#: ask_alyf/ask_alyf/agent.py:207
+#, python-brace-format
+msgid "Finding {0}"
+msgstr ""
+
+#: ask_alyf/ask_alyf/agent.py:207
+#, python-brace-format
+msgid "Finding {0} in {1}"
+msgstr ""
+
+#: ask_alyf/ask_alyf/tools.py:1790
+msgid "Frontend action 'frm_add_child' field 'docname' must be a string."
+msgstr ""
+
+#: ask_alyf/ask_alyf/tools.py:1788
+msgid "Frontend action 'frm_add_child' field 'doctype' must be a string."
+msgstr ""
+
+#: ask_alyf/ask_alyf/tools.py:1784
+msgid "Frontend action 'frm_add_child' field 'values' must be an object."
+msgstr ""
+
+#: ask_alyf/ask_alyf/tools.py:1781
+msgid "Frontend action 'frm_add_child' requires a fieldname."
+msgstr ""
+
+#: ask_alyf/ask_alyf/tools.py:1775
+msgid "Frontend action 'frm_set_value' field 'docname' must be a string."
+msgstr ""
+
+#: ask_alyf/ask_alyf/tools.py:1773
+msgid "Frontend action 'frm_set_value' field 'doctype' must be a string."
+msgstr ""
+
+#: ask_alyf/ask_alyf/tools.py:1769
+msgid "Frontend action 'frm_set_value' requires a fieldname."
+msgstr ""
+
+#: ask_alyf/ask_alyf/tools.py:1746
+msgid "Frontend action 'new_doc' field 'route_options' must be an object."
+msgstr ""
+
+#: ask_alyf/ask_alyf/tools.py:1743
+msgid "Frontend action 'new_doc' requires a DocType."
+msgstr ""
+
+#: ask_alyf/ask_alyf/tools.py:1757
+msgid "Frontend action 'open_prefilled_doc' doc DocType must match."
+msgstr ""
+
+#: ask_alyf/ask_alyf/tools.py:1755
+msgid "Frontend action 'open_prefilled_doc' field 'doc' must be an object."
+msgstr ""
+
+#: ask_alyf/ask_alyf/tools.py:1752
+msgid "Frontend action 'open_prefilled_doc' requires a DocType."
+msgstr ""
+
+#: ask_alyf/ask_alyf/tools.py:1763
+msgid "Frontend action 'scroll_to_field' requires a fieldname."
+msgstr ""
+
+#: ask_alyf/ask_alyf/tools.py:1734
+msgid "Frontend action 'set_route' requires a non-empty route list."
+msgstr ""
+
+#: ask_alyf/ask_alyf/api.py:982
+#, python-brace-format
+msgid "Frontend action failed: {0}"
+msgstr ""
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:2695
+msgid "Frontend action is missing a call ID."
+msgstr ""
+
+#: ask_alyf/ask_alyf/tools.py:1729
+msgid "Frontend action payload contains an unsafe key."
+msgstr ""
+
+#: ask_alyf/ask_alyf/tools.py:1726
+msgid "Frontend action payload must be an object."
+msgstr ""
+
+#: ask_alyf/ask_alyf/tools.py:1271
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 msgid "Frontend actions must be executed in the browser."
 msgstr ""
 
@@ -793,6 +1276,7 @@ msgstr ""
 msgid "Generating..."
 msgstr ""
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:1479
 msgid "HR"
 msgstr ""
@@ -818,6 +1302,33 @@ msgid "How many pending purchase receipts do I have?"
 msgstr ""
 
 #: ask_alyf/public/js/ask_alyf.bundle.js:1456
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:1721
+msgid "HR"
+msgstr ""
+
+#: ask_alyf/ask_alyf/agent.py:170
+msgid "Highlighting a field"
+msgstr ""
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1025
+msgid "History"
+msgstr ""
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1743
+msgid "How many Work Orders are behind schedule?"
+msgstr ""
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1725
+msgid "How many leave applications are pending approval?"
+msgstr ""
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1707
+msgid "How many pending purchase receipts do I have?"
+msgstr ""
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1698
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 msgid "How many quotations were sent this month?"
 msgstr ""
 
@@ -830,6 +1341,7 @@ msgstr ""
 msgid "I've prepared the operation. Please review and confirm."
 msgstr ""
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/tools.py:1235
 msgid "Invalid action payload."
 msgstr ""
@@ -843,6 +1355,21 @@ msgid "Invalid chart specification."
 msgstr ""
 
 #: ask_alyf/ask_alyf/tools.py:1215
+=======
+#: ask_alyf/ask_alyf/tools.py:1278
+msgid "Invalid action payload."
+msgstr ""
+
+#: ask_alyf/ask_alyf/tools.py:1656 ask_alyf/public/js/ask_alyf.bundle.js:3003
+msgid "Invalid chart data."
+msgstr ""
+
+#: ask_alyf/ask_alyf/tools.py:1714
+msgid "Invalid chart specification."
+msgstr ""
+
+#: ask_alyf/ask_alyf/tools.py:1258
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 msgid "Invalid pending operation payload."
 msgstr ""
 
@@ -855,7 +1382,11 @@ msgstr ""
 msgid "LLM Provider"
 msgstr ""
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/tools.py:471
+=======
+#: ask_alyf/ask_alyf/tools.py:557
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 msgid "Labels must be provided as a list of strings."
 msgstr ""
 
@@ -874,11 +1405,20 @@ msgstr ""
 msgid "Line offset {0} exceeds file length"
 msgstr ""
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/agent.py:210
 msgid "Listing {0}"
 msgstr ""
 
 #: ask_alyf/public/js/ask_alyf.bundle.js:1728
+=======
+#: ask_alyf/ask_alyf/agent.py:217
+#, python-brace-format
+msgid "Listing {0}"
+msgstr ""
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1967
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 msgid "Loading conversation..."
 msgstr ""
 
@@ -890,7 +1430,11 @@ msgstr ""
 msgid "Looking up what you can access"
 msgstr ""
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:1497
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:1739
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 msgid "Manufacturing"
 msgstr ""
 
@@ -913,11 +1457,20 @@ msgstr ""
 msgid "Method call proposal needs correction."
 msgstr ""
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:1384
 msgid "Mode: {0}"
 msgstr ""
 
 #: ask_alyf/ask_alyf/tools.py:461
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:1626
+#, python-brace-format
+msgid "Mode: {0}"
+msgstr ""
+
+#: ask_alyf/ask_alyf/tools.py:547
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 msgid "Multiple matching files were found. Provide reference_field, file_url, or file_name."
 msgstr ""
 
@@ -946,6 +1499,7 @@ msgstr ""
 msgid "No active form found."
 msgstr ""
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:1652
 msgid "No conversations yet."
 msgstr ""
@@ -963,6 +1517,26 @@ msgid "No installed app code roots were found."
 msgstr ""
 
 #: ask_alyf/ask_alyf/tools.py:457
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:1894
+msgid "No conversations yet."
+msgstr ""
+
+#: ask_alyf/ask_alyf/tools.py:1210
+#, python-brace-format
+msgid "No documentation URL was found for app '{0}'."
+msgstr ""
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:2590
+msgid "No form is currently open."
+msgstr ""
+
+#: ask_alyf/ask_alyf/tools.py:189
+msgid "No installed app code roots were found."
+msgstr ""
+
+#: ask_alyf/ask_alyf/tools.py:543
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 msgid "No matching file was found."
 msgstr ""
 
@@ -970,6 +1544,7 @@ msgstr ""
 msgid "No pending operation matches call_id '{0}'."
 msgstr ""
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/tools.py:1184
 msgid "No pyproject.toml was found for app '{0}'."
 msgstr ""
@@ -983,7 +1558,30 @@ msgid "No valid file provided."
 msgstr ""
 
 #: ask_alyf/ask_alyf/tools.py:1072
+=======
+#: ask_alyf/ask_alyf/tools.py:1227
+#, python-brace-format
+msgid "No pyproject.toml was found for app '{0}'."
+msgstr ""
+
+#: ask_alyf/ask_alyf/tools.py:1125
+#, python-brace-format
+msgid "No repository URL was found for app '{0}'."
+msgstr ""
+
+#: ask_alyf/ask_alyf/api.py:1076
+msgid "No valid file provided."
+msgstr ""
+
+#: ask_alyf/ask_alyf/tools.py:1115
+#, python-brace-format
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 msgid "No version was found for app '{0}'."
+msgstr ""
+
+#: ask_alyf/ask_alyf/api.py:978
+#, python-brace-format
+msgid "Not set: {0}"
 msgstr ""
 
 #. Description of the 'Excluded DocTypes' (Table MultiSelect) field in DocType
@@ -1002,6 +1600,7 @@ msgstr ""
 msgid "One pending write of a LangGraph checkpoint. Written by FrappeCheckpointSaver, not by users."
 msgstr ""
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/tools.py:1038
 msgid "Only Administrator and System Manager can run SQL queries."
 msgstr ""
@@ -1011,6 +1610,17 @@ msgid "Only GitHub repositories are supported for release lookup."
 msgstr ""
 
 #: ask_alyf/ask_alyf/tools.py:1041
+=======
+#: ask_alyf/ask_alyf/tools.py:1081
+msgid "Only Administrator and System Manager can run SQL queries."
+msgstr ""
+
+#: ask_alyf/ask_alyf/tools.py:1130
+msgid "Only GitHub repositories are supported for release lookup."
+msgstr ""
+
+#: ask_alyf/ask_alyf/tools.py:1084
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 msgid "Only a single read-only SQL statement is allowed."
 msgstr ""
 
@@ -1018,6 +1628,7 @@ msgstr ""
 msgid "Only backend actions can be confirmed by this endpoint."
 msgstr ""
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/tools.py:1044
 msgid "Only read-only SQL statements are allowed."
 msgstr ""
@@ -1045,11 +1656,42 @@ msgid "OpenAI Compatible"
 msgstr ""
 
 #: ask_alyf/ask_alyf/agent.py:159
+=======
+#: ask_alyf/ask_alyf/tools.py:1087
+msgid "Only read-only SQL statements are allowed."
+msgstr ""
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:995
+msgid "Open Ask ALYF"
+msgstr ""
+
+#: ask_alyf/ask_alyf/toolset.py:1181
+msgid "Open document action needs correction."
+msgstr ""
+
+#: ask_alyf/ask_alyf/toolset.py:1158
+#, python-brace-format
+msgid "Open new {0}"
+msgstr ""
+
+#: ask_alyf/ask_alyf/toolset.py:1179
+#, python-brace-format
+msgid "Open unsaved {0}"
+msgstr ""
+
+#: ask_alyf/ask_alyf/agent.py:166
+#, python-brace-format
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 msgid "Opening a new {0}"
 msgstr ""
 
 #: ask_alyf/ask_alyf/agent.py:157
 msgid "Opening a page"
+msgstr ""
+
+#: ask_alyf/ask_alyf/agent.py:168
+#, python-brace-format
+msgid "Opening an unsaved {0}"
 msgstr ""
 
 #. Description of the 'Base URL' (Data) field in DocType 'Ask ALYF Settings'
@@ -1064,11 +1706,21 @@ msgstr ""
 msgid "Parent Checkpoint ID"
 msgstr ""
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/tools.py:538
 msgid "Path '{0}' must point to a file inside an installed app."
 msgstr ""
 
 #: ask_alyf/ask_alyf/tools.py:269
+=======
+#: ask_alyf/ask_alyf/tools.py:624
+#, python-brace-format
+msgid "Path '{0}' must point to a file inside an installed app."
+msgstr ""
+
+#: ask_alyf/ask_alyf/tools.py:262
+#, python-brace-format
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 msgid "Path '{0}' was not found in app '{1}'."
 msgstr ""
 
@@ -1076,7 +1728,11 @@ msgstr ""
 msgid "Path is not a file: {0}"
 msgstr ""
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/deep_agent_backend.py:93 ask_alyf/ask_alyf/tools.py:218
+=======
+#: ask_alyf/ask_alyf/deep_agent_backend.py:93 ask_alyf/ask_alyf/tools.py:211
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 msgid "Path must start with an installed app name."
 msgstr ""
 
@@ -1085,7 +1741,11 @@ msgstr ""
 msgid "Pending Operation JSON"
 msgstr ""
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:2170
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:2409
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 msgid "Pending operation"
 msgstr ""
 
@@ -1101,7 +1761,11 @@ msgstr ""
 msgid "Please configure an API key first and save the settings, then we can fetch available models."
 msgstr ""
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/toolset.py:1223
+=======
+#: ask_alyf/ask_alyf/toolset.py:1272
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 msgid "Prepared add child row action."
 msgstr ""
 
@@ -1121,7 +1785,11 @@ msgstr ""
 msgid "Prepared cancel proposal."
 msgstr ""
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/toolset.py:1259
+=======
+#: ask_alyf/ask_alyf/toolset.py:1308
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 msgid "Prepared chart display."
 msgstr ""
 
@@ -1149,11 +1817,19 @@ msgstr ""
 msgid "Prepared route action."
 msgstr ""
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/toolset.py:1153
 msgid "Prepared scroll action."
 msgstr ""
 
 #: ask_alyf/ask_alyf/toolset.py:1188
+=======
+#: ask_alyf/ask_alyf/toolset.py:1202
+msgid "Prepared scroll action."
+msgstr ""
+
+#: ask_alyf/ask_alyf/toolset.py:1237
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 msgid "Prepared set field action."
 msgstr ""
 
@@ -1169,6 +1845,7 @@ msgstr ""
 msgid "Prepared submit proposal."
 msgstr ""
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/toolset.py:878
 msgid "Prepared update proposal."
 msgstr ""
@@ -1194,6 +1871,33 @@ msgid "Provide at least one label to translate."
 msgstr ""
 
 #: ask_alyf/ask_alyf/tools.py:501 ask_alyf/ask_alyf/tools.py:638
+=======
+#: ask_alyf/ask_alyf/toolset.py:1182
+msgid "Prepared unsaved document."
+msgstr ""
+
+#: ask_alyf/ask_alyf/toolset.py:906
+msgid "Prepared update proposal."
+msgstr ""
+
+#: ask_alyf/ask_alyf/agent.py:172
+msgid "Preparing a chart"
+msgstr ""
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1748
+msgid "Projects"
+msgstr ""
+
+#: ask_alyf/ask_alyf/tools.py:1705
+msgid "Provide at least one chart in frappe_charts."
+msgstr ""
+
+#: ask_alyf/ask_alyf/tools.py:568
+msgid "Provide at least one label to translate."
+msgstr ""
+
+#: ask_alyf/ask_alyf/tools.py:587 ask_alyf/ask_alyf/tools.py:726
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 msgid "Query is required."
 msgstr ""
 
@@ -1213,6 +1917,7 @@ msgstr ""
 msgid "Reading {0}"
 msgstr ""
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/agent.py:206
 msgid "Reading {0}, lines {1}-{2}"
 msgstr ""
@@ -1222,6 +1927,15 @@ msgid "Reading {0} list"
 msgstr ""
 
 #: ask_alyf/ask_alyf/api.py:866 ask_alyf/ask_alyf/api.py:973
+=======
+#: ask_alyf/ask_alyf/agent.py:213
+#, python-brace-format
+msgid "Reading {0}, lines {1}-{2}"
+msgstr ""
+
+#: ask_alyf/ask_alyf/api.py:872 ask_alyf/ask_alyf/api.py:984
+#, python-brace-format
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 msgid "Reason: {0}"
 msgstr ""
 
@@ -1230,6 +1944,7 @@ msgstr ""
 msgid "Reasoning Effort"
 msgstr ""
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:2263
 msgid "Records to create ({0})"
 msgstr ""
@@ -1247,6 +1962,22 @@ msgid "Reject"
 msgstr ""
 
 #: ask_alyf/public/js/ask_alyf.bundle.js:720
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:2502
+#, python-brace-format
+msgid "Records to create ({0})"
+msgstr ""
+
+#: ask_alyf/ask_alyf/tools.py:829
+msgid "Reference doctype is required."
+msgstr ""
+
+#: ask_alyf/ask_alyf/tools.py:833
+msgid "Reference name is required."
+msgstr ""
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:954
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 msgid "Reject all"
 msgstr ""
 
@@ -1262,7 +1993,11 @@ msgstr ""
 msgid "Renaming {0}"
 msgstr ""
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:763
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:999
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 msgid "Resize chat window"
 msgstr ""
 
@@ -1274,7 +2009,12 @@ msgstr ""
 msgid "Route action needs correction."
 msgstr ""
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/tools.py:1694
+=======
+#: ask_alyf/ask_alyf/tools.py:1737
+#, python-brace-format
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 msgid "Route part #{0} must be a non-empty string."
 msgstr ""
 
@@ -1282,8 +2022,13 @@ msgstr ""
 msgid "Running a database query"
 msgstr ""
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/agent.py:154
 msgid "Running {0}"
+=======
+#: ask_alyf/ask_alyf/agent.py:176
+msgid "Running a report"
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 msgstr ""
 
 #. Label of a Check field in DocType 'Ask ALYF Settings'
@@ -1295,6 +2040,7 @@ msgstr ""
 msgid "Saving instructions"
 msgstr ""
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/toolset.py:1152
 msgid "Scroll action needs correction."
 msgstr ""
@@ -1312,6 +2058,28 @@ msgid "Searching for \"{0}\""
 msgstr ""
 
 #: ask_alyf/ask_alyf/agent.py:194
+=======
+#: ask_alyf/ask_alyf/toolset.py:1201
+msgid "Scroll action needs correction."
+msgstr ""
+
+#: ask_alyf/ask_alyf/toolset.py:1199
+#, python-brace-format
+msgid "Scroll to field {0}"
+msgstr ""
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:2628
+msgid "Scrolling to fields is not available on this form."
+msgstr ""
+
+#: ask_alyf/ask_alyf/agent.py:203
+#, python-brace-format
+msgid "Searching for \"{0}\""
+msgstr ""
+
+#: ask_alyf/ask_alyf/agent.py:201
+#, python-brace-format
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 msgid "Searching for \"{0}\" in {1}"
 msgstr ""
 
@@ -1323,6 +2091,7 @@ msgstr ""
 msgid "Searching the source code"
 msgstr ""
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:1452
 msgid "Selling"
 msgstr ""
@@ -1332,6 +2101,22 @@ msgid "Set field action needs correction."
 msgstr ""
 
 #: ask_alyf/ask_alyf/toolset.py:1185
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:1694
+msgid "Selling"
+msgstr ""
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:2264
+msgid "Sending..."
+msgstr ""
+
+#: ask_alyf/ask_alyf/toolset.py:1236
+msgid "Set field action needs correction."
+msgstr ""
+
+#: ask_alyf/ask_alyf/toolset.py:1234
+#, python-brace-format
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 msgid "Set field {0} on current form"
 msgstr ""
 
@@ -1343,6 +2128,7 @@ msgstr ""
 msgid "Set {0} on {1} {2}"
 msgstr ""
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:398
 msgid "Show all"
 msgstr ""
@@ -1376,6 +2162,42 @@ msgid "Show project progress as a chart"
 msgstr ""
 
 #: ask_alyf/ask_alyf/toolset.py:1253
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:440
+msgid "Show all"
+msgstr ""
+
+#: ask_alyf/ask_alyf/toolset.py:1302
+msgid "Show chart"
+msgstr ""
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1723
+msgid "Show employee headcount by department as a chart"
+msgstr ""
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1742
+msgid "Show me open Work Orders and their status"
+msgstr ""
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1768
+msgid "Show me the top 10 DocTypes by record count"
+msgstr ""
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1715
+msgid "Show me unpaid Sales Invoices older than 30 days"
+msgstr ""
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1760
+msgid "Show me unresolved issues from this week"
+msgstr ""
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1750
+msgid "Show project progress as a chart"
+msgstr ""
+
+#: ask_alyf/ask_alyf/toolset.py:1302
+#, python-brace-format
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 msgid "Show {0} charts"
 msgstr ""
 
@@ -1403,10 +2225,32 @@ msgstr ""
 msgid "Skill title is required."
 msgstr ""
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/tools.py:1430
 msgid "Some rows failed."
 msgstr ""
 
+=======
+#: ask_alyf/ask_alyf/tools.py:1473
+msgid "Some rows failed."
+msgstr ""
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:809
+#, python-brace-format
+msgid "Sort by {0}"
+msgstr ""
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:804
+#, python-brace-format
+msgid "Sorted ascending by {0}"
+msgstr ""
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:807
+#, python-brace-format
+msgid "Sorted descending by {0}"
+msgstr ""
+
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 #: ask_alyf/ask_alyf/deep_agent_backend.py:39
 msgid "Source code is read-only"
 msgstr ""
@@ -1415,7 +2259,11 @@ msgstr ""
 msgid "Source file path is required"
 msgstr ""
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:770
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:1006
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 msgid "Start a new conversation"
 msgstr ""
 
@@ -1433,11 +2281,19 @@ msgstr ""
 msgid "Still generating..."
 msgstr ""
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:1488
 msgid "Stock"
 msgstr ""
 
 #: ask_alyf/public/js/ask_alyf.bundle.js:1792
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:1730
+msgid "Stock"
+msgstr ""
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:2031
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 msgid "Stop this run"
 msgstr ""
 
@@ -1445,6 +2301,7 @@ msgstr ""
 msgid "Stopped. Send a message to pick up from here."
 msgstr ""
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:682
 #, python-brace-format
 msgid "Sort by {0}"
@@ -1461,6 +2318,9 @@ msgid "Sorted descending by {0}"
 msgstr ""
 
 #: ask_alyf/public/js/ask_alyf.bundle.js:1918
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:2052
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 msgid "Stopping..."
 msgstr ""
 
@@ -1486,8 +2346,17 @@ msgstr ""
 msgid "System Prompt"
 msgstr ""
 
+<<<<<<< HEAD
 #. Label of a Data field in DocType 'Ask ALYF Checkpoint Write'
 #: ask_alyf/ask_alyf/doctype/ask_alyf_checkpoint_write/ask_alyf_checkpoint_write.json
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:772
+msgid "Table pagination"
+msgstr ""
+
+#. Label of the task_id (Data) field in DocType 'Ask ALYF Checkpoint Write'
+#: ask_alyf/ask_alyf/doctype/ask_alyf_checkpoint_write/ask_alyf_checkpoint_write.json:44
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 msgid "Task ID"
 msgstr ""
 
@@ -1500,7 +2369,11 @@ msgstr ""
 msgid "That confirmation did not match this operation. Propose it again on its own."
 msgstr ""
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/tools.py:1110
+=======
+#: ask_alyf/ask_alyf/tools.py:1153
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 msgid "The Compendium app is not installed."
 msgstr ""
 
@@ -1517,7 +2390,11 @@ msgstr ""
 msgid "The message could not be found in this conversation."
 msgstr ""
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/agent.py:594
+=======
+#: ask_alyf/ask_alyf/agent.py:745
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 msgid "The operation was completed, but the follow-up response could not be generated."
 msgstr ""
 
@@ -1557,7 +2434,11 @@ msgstr ""
 msgid "There is no pending operation to confirm."
 msgstr ""
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:911
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:1148
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 msgid "Thinking..."
 msgstr ""
 
@@ -1575,6 +2456,7 @@ msgstr ""
 msgid "Thread ID"
 msgstr ""
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/tools.py:1538
 msgid "Too many chart datasets."
 msgstr ""
@@ -1584,6 +2466,17 @@ msgid "Too many chart labels."
 msgstr ""
 
 #: ask_alyf/ask_alyf/tools.py:1665
+=======
+#: ask_alyf/ask_alyf/tools.py:1581
+msgid "Too many chart datasets."
+msgstr ""
+
+#: ask_alyf/ask_alyf/tools.py:1562
+msgid "Too many chart labels."
+msgstr ""
+
+#: ask_alyf/ask_alyf/tools.py:1708
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 msgid "Too many charts in one request."
 msgstr ""
 
@@ -1591,6 +2484,7 @@ msgstr ""
 msgid "Translating labels"
 msgstr ""
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/tools.py:1268
 msgid "Unknown error."
 msgstr ""
@@ -1612,6 +2506,29 @@ msgid "Unsupported frontend action '{0}'."
 msgstr ""
 
 #: ask_alyf/public/js/ask_alyf.bundle.js:2414
+=======
+#: ask_alyf/ask_alyf/tools.py:1311
+msgid "Unknown error."
+msgstr ""
+
+#: ask_alyf/ask_alyf/tools.py:1412
+#, python-brace-format
+msgid "Unsupported action '{0}'."
+msgstr ""
+
+#: ask_alyf/ask_alyf/tools.py:988
+#, python-brace-format
+msgid "Unsupported file type '{0}'. Supported types: PDF, PNG, JPG, GIF, WebP."
+msgstr ""
+
+#: ask_alyf/ask_alyf/tools.py:1723 ask_alyf/ask_alyf/tools.py:1797
+#, python-brace-format
+msgid "Unsupported frontend action '{0}'."
+msgstr ""
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:2657
+#, python-brace-format
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 msgid "Unsupported frontend action: {0}"
 msgstr ""
 
@@ -1619,6 +2536,7 @@ msgstr ""
 msgid "Unsupported model configuration: {0}"
 msgstr ""
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/tools.py:1210 ask_alyf/ask_alyf/tools.py:1230
 msgid "Unsupported operation kind '{0}'."
 msgstr ""
@@ -1628,6 +2546,18 @@ msgid "Unsupported or missing chart type."
 msgstr ""
 
 #: ask_alyf/public/js/ask_alyf.bundle.js:1427
+=======
+#: ask_alyf/ask_alyf/tools.py:1253 ask_alyf/ask_alyf/tools.py:1273
+#, python-brace-format
+msgid "Unsupported operation kind '{0}'."
+msgstr ""
+
+#: ask_alyf/ask_alyf/tools.py:1622
+msgid "Unsupported or missing chart type."
+msgstr ""
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1669
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 msgid "Untitled conversation"
 msgstr ""
 
@@ -1679,6 +2609,7 @@ msgstr ""
 msgid "Vision Provider"
 msgstr ""
 
+<<<<<<< HEAD
 #: ask_alyf/public/js/ask_alyf.bundle.js:823
 #: ask_alyf/public/js/ask_alyf.bundle.js:825
 msgid "Voice input"
@@ -1750,6 +2681,81 @@ msgid "You do not have read permission on {0}."
 msgstr ""
 
 #: ask_alyf/public/js/ask_alyf.bundle.js:2852
+=======
+#: ask_alyf/public/js/ask_alyf.bundle.js:1062
+#: ask_alyf/public/js/ask_alyf.bundle.js:1064
+msgid "Voice input"
+msgstr ""
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:3155
+#, python-brace-format
+msgid "Voice input language: {0}"
+msgstr ""
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:2312
+msgid "Waiting for response..."
+msgstr ""
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1697
+msgid "What Sales Orders are pending delivery?"
+msgstr ""
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1769
+msgid "What are the recent Error Logs?"
+msgstr ""
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1751
+msgid "What open tasks are assigned to me?"
+msgstr ""
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1734
+msgid "What were the top 10 most moved items this month?"
+msgstr ""
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1761
+msgid "What's the average resolution time for issues?"
+msgstr ""
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1716
+msgid "What's the total outstanding receivables?"
+msgstr ""
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1706
+msgid "Which Purchase Orders are overdue?"
+msgstr ""
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1724
+msgid "Which employees are on leave today?"
+msgstr ""
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1733
+msgid "Which items are below their reorder level?"
+msgstr ""
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1752
+msgid "Which project tasks are overdue?"
+msgstr ""
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:1770
+msgid "Which users logged in today?"
+msgstr ""
+
+#: ask_alyf/ask_alyf/api.py:367 ask_alyf/ask_alyf/api.py:379
+#: ask_alyf/ask_alyf/api.py:396 ask_alyf/ask_alyf/api.py:426
+#: ask_alyf/ask_alyf/api.py:452 ask_alyf/ask_alyf/api.py:520
+#: ask_alyf/ask_alyf/api.py:544 ask_alyf/ask_alyf/api.py:724
+#: ask_alyf/ask_alyf/api.py:792 ask_alyf/ask_alyf/api.py:897
+#: ask_alyf/ask_alyf/api.py:1021 ask_alyf/ask_alyf/api.py:1059
+msgid "You do not have access to Ask ALYF."
+msgstr ""
+
+#: ask_alyf/ask_alyf/api.py:1028
+#, python-brace-format
+msgid "You do not have read permission on {0}."
+msgstr ""
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:3096
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 msgid "Your browser does not support voice input."
 msgstr ""
 
@@ -1802,11 +2808,16 @@ msgstr ""
 msgid "medium"
 msgstr ""
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/tools.py:1425
 msgid "row {0}"
 msgstr ""
 
 #: ask_alyf/ask_alyf/tools.py:1423
+=======
+#: ask_alyf/ask_alyf/tools.py:1466
+#, python-brace-format
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 msgid "row {0}: {1}"
 msgstr ""
 
@@ -1820,6 +2831,7 @@ msgstr ""
 msgid "xhigh"
 msgstr ""
 
+<<<<<<< HEAD
 #: ask_alyf/ask_alyf/tools.py:997
 msgid "{0} '{1}' was not found."
 msgstr ""
@@ -1837,6 +2849,15 @@ msgid "{0} rows"
 msgstr ""
 
 #: ask_alyf/public/js/ask_alyf.bundle.js:302
+=======
+#: ask_alyf/ask_alyf/tools.py:1040
+#, python-brace-format
+msgid "{0} '{1}' was not found."
+msgstr ""
+
+#: ask_alyf/public/js/ask_alyf.bundle.js:356
+#, python-brace-format
+>>>>>>> 5d28ecb (feat: implement open_prefilled_doc tool for unsaved document handling (#150))
 msgid "{0} steps"
 msgstr ""
 

@@ -1,6 +1,7 @@
 import { render as renderPele } from "pele";
 import "./icons";
 import "./field_agent";
+import { PrefilledDoc } from "./prefilled_doc";
 
 (function () {
 	if (window.ask_alyfWidget) {
@@ -2602,6 +2603,10 @@ import "./field_agent";
 			if (tool === "new_doc") {
 				frappe.new_doc(payload.doctype, payload.route_options || null);
 				return { doctype: payload.doctype };
+			}
+
+			if (tool === "open_prefilled_doc") {
+				return await new PrefilledDoc(payload).open((form) => this.getMatchingForm(form));
 			}
 
 			if (tool === "scroll_to_field") {
